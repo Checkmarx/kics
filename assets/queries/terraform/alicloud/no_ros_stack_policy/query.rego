@@ -5,7 +5,7 @@ import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_ros_stack[name]
-	
+
 	not hasPolicy(resource)
 
 	result := {
@@ -13,6 +13,7 @@ CxPolicy[result] {
 		"resourceType": "alicloud_ros_stack",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_ros_stack", name),
 		"searchKey": sprintf("alicloud_ros_stack[%s]", [name]),
+        "searchValue": "stack_policy",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The stack should have the attribute 'stack_policy_body' or 'stack_policy_url' defined",
 		"keyActualValue": "The stack has neither 'stack_policy_body' nor 'stack_policy_url' defined",
@@ -22,7 +23,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_ros_stack[name]
-	
+
 	not hasPolicyDuringUpdate(resource)
 
 	result := {
@@ -30,6 +31,7 @@ CxPolicy[result] {
 		"resourceType": "alicloud_ros_stack",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_ros_stack", name),
 		"searchKey": sprintf("alicloud_ros_stack[%s]", [name]),
+        "searchValue": "stack_policy_during_update",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The stack should have the attribute 'stack_policy_during_update_body' or 'stack_policy_during_update_url' defined",
 		"keyActualValue": "The stack has neither 'stack_policy_during_update_body' nor 'stack_policy_during_update_url' defined",

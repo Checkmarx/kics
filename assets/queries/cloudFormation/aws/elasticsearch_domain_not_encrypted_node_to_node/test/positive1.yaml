@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Example
+
+Resources:
+  MyOpenSearchDomain:
+    Type: AWS::OpenSearchService::Domain
+    Properties:
+      DomainName: my-sample-domain
+      EngineVersion: Elasticsearch_7.10
+      ClusterConfig:
+        InstanceType: r6g.large.search
+        InstanceCount: 2
+        DedicatedMasterEnabled: true
+        DedicatedMasterType: r6g.large.search
+        DedicatedMasterCount: 3
+        ZoneAwarenessEnabled: true
+        ZoneAwarenessConfig:
+          AvailabilityZoneCount: 2
+      EBSOptions:
+        EBSEnabled: true
+        VolumeType: gp3
+        VolumeSize: 50
+        Iops: 3000
+        Throughput: 125
+      AccessPolicies:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: "*"
+            Action: "es:*"
+            Resource: !Sub "arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/my-sample-domain/*"
+      EncryptionAtRestOptions:
+        Enabled: true
+      DomainEndpointOptions:
+        EnforceHTTPS: true
+        TLSSecurityPolicy: Policy-Min-TLS-1-2-2019-07
+      SnapshotOptions:
+        AutomatedSnapshotStartHour: 3
+      AdvancedOptions:
+        rest.action.multi.allow_explicit_index: "true"
+        override_main_response_version: "true"
+      Tags:
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: OpenSearch

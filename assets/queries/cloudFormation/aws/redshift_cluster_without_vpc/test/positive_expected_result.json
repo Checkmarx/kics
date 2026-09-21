@@ -1,0 +1,74 @@
+[
+  {
+    "queryName": "Redshift Cluster Without VPC",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Redshift Cluster Without VPC",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Redshift Cluster Without VPC",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Redshift Cluster Without VPC",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "Redshift Cluster Without VPC",
+    "severity": "LOW",
+    "line": 19,
+    "fileName": "positive5.yaml"
+  },
+  {
+    "queryName": "Redshift Cluster Without VPC",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive6.yaml"
+  },
+  {
+    "queryName": "Redshift Cluster Without VPC",
+    "severity": "LOW",
+    "line": 6,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "Redshift Cluster Without VPC",
+    "severity": "LOW",
+    "line": 6,
+    "fileName": "positive8.json"
+  },
+  {
+    "queryName": "Redshift Cluster Without VPC",
+    "severity": "LOW",
+    "line": 6,
+    "fileName": "positive9.json"
+  },
+  {
+    "queryName": "Redshift Cluster Without VPC",
+    "severity": "LOW",
+    "line": 6,
+    "fileName": "positive10.json"
+  },
+  {
+    "queryName": "Redshift Cluster Without VPC",
+    "severity": "LOW",
+    "line": 26,
+    "fileName": "positive11.json"
+  },
+  {
+    "queryName": "Redshift Cluster Without VPC",
+    "severity": "LOW",
+    "line": 24,
+    "fileName": "positive12.json"
+  }
+]

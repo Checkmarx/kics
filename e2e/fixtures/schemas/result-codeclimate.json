@@ -44,6 +44,11 @@
                 "type": "string",
                 "minimum": 0
             },
+            "risk_score": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^([0-9]|10)(\\.\\d{1,2})?$"
+            },
             "description": {
                 "type": "string",
                 "minLength": 1

@@ -1,0 +1,141 @@
+similarityIDChangeList:
+  - queryId: 1828a670-5957-4bc5-9974-47da228f75e2
+    queryName: Audit Policy Not Cover Key Security Concerns
+    observations: ""
+    change: 5
+  - queryId: cf34805e-3872-4c08-bf92-6ff7bb0cfadb
+    queryName: Container Running As Root
+    observations: ""
+    change: 5
+  - queryId: 02323c00-cdc3-4fdc-a310-4f2b3e7a1660
+    queryName: Container Running With Low UID
+    observations: ""
+    change: 5
+  - queryId: ca469dd4-c736-448f-8ac1-30a642705e0a
+    queryName: CPU Requests Not Set
+    observations: ""
+    change: 5
+  - queryId: 09bb9e96-8da3-4736-b89a-b36814acca60
+    queryName: Etcd Peer TLS Certificate Files Not Properly Set
+    observations: ""
+    change: 3
+  - queryId: 075ca296-6768-4322-aea2-ba5063b969a9
+    queryName: Etcd TLS Certificate Files Not Properly Set
+    observations: ""
+    change: 3
+  - queryId: 895a5a95-3756-4b04-9924-2f3bc93181bd
+    queryName: Etcd TLS Certificate Not Properly Configured
+    observations: ""
+    change: 3
+  - queryId: caa3479d-885d-4882-9aac-95e5e78ef5c2
+    queryName: Image Pull Policy Of The Container Is Not Set To Always
+    observations: ""
+    change: 5
+  - queryId: 7c81d34c-8e5a-402b-9798-9f442630e678
+    queryName: Image Without Digest
+    observations: ""
+    change: 5
+  - queryId: 36a27826-1bf5-49da-aeb0-a60a30c0e834
+    queryName: Kubelet Client Certificate Or Key Not Set
+    observations: ""
+    change: 3
+  - queryId: ade74944-a674-4e00-859e-c6eab5bde441
+    queryName: Liveness Probe Is Not Defined
+    observations: ""
+    change: 5
+  - queryId: 229588ef-8fde-40c8-8756-f4f2b5825ded
+    queryName: Memory Requests Not Defined
+    observations: ""
+    change: 3
+  - queryId: 1123031a-f921-4c5b-bd86-ef354ecfd37a
+    queryName: Metadata Label Is Invalid
+    observations: ""
+    change: 5
+  - queryId: 8b36775e-183d-4d46-b0f7-96a6f34a723f
+    queryName: Missing AppArmor Profile
+    observations: ""
+    change: 5
+  - queryId: dbbc6705-d541-43b0-b166-dd4be8208b54
+    queryName: NET_RAW Capabilities Not Being Dropped
+    observations: ""
+    change: 5
+  - queryId: 268ca686-7fb7-4ae9-b129-955a2a89064e
+    queryName: No Drop Capabilities for Containers
+    observations: ""
+    change: 5
+  - queryId: 94b76ea5-e074-4ca2-8a03-c5a606e30645
+    queryName: Object Is Using A Deprecated API Version
+    observations: ""
+    change: 5
+  - queryId: 592ad21d-ad9b-46c6-8d2d-fad09d62a942
+    queryName: Permissive Access to Create Pods
+    observations: Nested Array makes it impossible to add searchLine
+    change: 3
+  - queryId: 4a20ebac-1060-4c81-95d1-1f7f620e983b
+    queryName: Pod or Container Without LimitRange
+    observations: ""
+    change: 3
+  - queryId: 48a5beba-e4c0-4584-a2aa-e6894e4cf424
+    queryName: Pod or Container Without ResourceQuota
+    observations: ""
+    change: 3
+  - queryId: a97a340a-0063-418e-b3a1-3028941d0995
+    queryName: Pod or Container Without Security Context
+    observations: ""
+    change: 4
+  - queryId: 5572cc5e-1e4c-4113-92a6-7a8a3bd25e6d
+    queryName: Privilege Escalation Allowed
+    observations: ""
+    change: 5
+  - queryId: b7bca5c4-1dab-4c2c-8cbe-3050b9d59b14
+    queryName: RBAC Roles with Read Secrets Permissions
+    observations: ""
+    change: 3
+  - queryId: 6b896afb-ca07-467a-b256-1a0077a1c08e
+    queryName: RBAC Wildcard In Rule
+    observations: ""
+    change: 2
+  - queryId: a659f3b5-9bf0-438a-bd9a-7d3a6427f1e3
+    queryName: Readiness Probe Is Not Configured
+    observations: ""
+    change: 5
+  - queryId: a9c2f49d-0671-4fc9-9ece-f4e261e128d0
+    queryName: Root Container Not Mounted Read-only
+    observations: ""
+    change: 5
+  - queryId: f377b83e-bd07-4f48-a591-60c82b14a78b
+    queryName: Seccomp Profile Is Not Configured
+    observations: ""
+    change: 5
+  - queryId: 3d658f8b-d988-41a0-a841-40043121de1e
+    queryName: Secrets As Environment Variables
+    observations: ""
+    change: 5
+  - queryId: 48471392-d4d0-47c0-b135-cdec95eb3eef
+    queryName: Service Account Token Automount Not Disabled
+    observations: ""
+    change: 5
+  - queryId: 056ac60e-fe07-4acc-9b34-8e1d51716ab9
+    queryName: ServiceAccount Allows Access Secrets
+    observations: ""
+    change: 3
+  - queryId: 6d173be7-545a-46c6-a81d-2ae52ed1605d
+    queryName: Tiller (Helm v2) Is Deployed
+    observations: ""
+    change: 5
+  - queryId: 8b862ca9-0fbd-4959-ad72-b6609bdaa22d
+    queryName: Tiller Service Is Not Deleted
+    observations: ""
+    change: 5
+  - queryId: fa750c81-93c2-4fab-9c6d-d3fd3ce3b89f
+    queryName: TSL Connection Certificate Not Setup
+    observations: The Kubelet has been added both sV & sL
+    change: 3
+  - queryId: 611ab018-c4aa-4ba2-b0f6-a448337509a6
+    queryName: Using Unrecommended Namespace
+    observations: ""
+    change: 3
+  - queryId: b7652612-de4e-4466-a0bf-1cd81f0c6063
+    queryName: Volume Mount With OS Directory Write Permissions
+    observations: Nested Array makes it impossible to add searchLine
+    change: 5

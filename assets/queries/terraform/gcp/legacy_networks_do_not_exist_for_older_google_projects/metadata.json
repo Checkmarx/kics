@@ -1,0 +1,14 @@
+{
+  "id": "700f1049-7fa0-4cb0-971b-3efebfb6a91f",
+  "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Legacy networks can have an impact for high network traffic projects and are subject to a single point of contention or failure.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/6.36.1/docs/resources/compute_network",
+  "platform": "Terraform",
+  "descriptionID": "700f1049",
+  "cloudProvider": "gcp",
+  "cwe": "276",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

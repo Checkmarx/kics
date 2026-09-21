@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Observability
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/778.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/778.html')">778</a>
+-   **Risk score:** <span style="color:#ff7213">5.1</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/azure/log_retention_is_not_set)
 
 ### Description
@@ -76,3 +77,4 @@ resource "azurerm_postgresql_configuration" "negative3" {
     value               = "ON"
 }
 ```
+

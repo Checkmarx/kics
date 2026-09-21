@@ -1,9 +1,14 @@
 package analyzer
 
 import (
+	"fmt"
+	"os"
 	"path/filepath"
+	"runtime"
 	"sort"
+	"sync/atomic"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/require"
 )
@@ -98,6 +103,23 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			MaxFileSize:          -1,
 		},
 		{
+			name: "analyze_test_not_dockercompose_false_positive",
+			paths: []string{
+				filepath.FromSlash("../../test/fixtures/analyzer_test_dockercompose_false_positive/azure_marketplace.json"),
+			},
+			wantTypes: []string{},
+			wantExclude: []string{
+				filepath.FromSlash("../../test/fixtures/analyzer_test_dockercompose_false_positive/azure_marketplace.json"),
+			},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              0,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
+		{
 			name: "analyze_test_error_path",
 			paths: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/Dockserfile"),
@@ -151,7 +173,6 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude: []string{
 				filepath.FromSlash("../../test/fixtures/gitignore/positive.dockerfile"),
 				filepath.FromSlash("../../test/fixtures/gitignore/secrets.tf"),
-				filepath.FromSlash("../../test/fixtures/gitignore/gitignore"),
 			},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
@@ -167,7 +188,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/gitignore"),
 			},
 			wantTypes:            []string{"dockerfile", "kubernetes", "terraform"},
-			wantExclude:          []string{filepath.FromSlash("../../test/fixtures/gitignore/gitignore")},
+			wantExclude:          []string{},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              42,
@@ -426,11 +447,63 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		{
 			name:                 "analyze_test_bicep",
 			paths:                []string{filepath.FromSlash("../../test/fixtures/bicep_test")},
-			wantTypes:            []string{"bicep"},
+			wantTypes:            []string{"azureresourcemanager"},
 			wantExclude:          []string{},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
-			wantLOC:              697,
+			wantLOC:              749,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
+		{
+			name:                 "analyze_test_bicep_with_type_flag",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/bicep_test")},
+			wantTypes:            []string{"azureresourcemanager"},
+			wantExclude:          []string{},
+			typesFromFlag:        []string{"azureresourcemanager"},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              749,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
+		{
+			name:                 "analyze_test_bicep_with_exclude_type_flag",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/bicep_test")},
+			wantTypes:            []string{},
+			wantExclude:          []string{},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{"azureresourcemanager"},
+			wantLOC:              0,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
+		{
+			name:                 "analyze_test_bicep_with_multiple_types_including_arm",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/bicep_test")},
+			wantTypes:            []string{"azureresourcemanager"},
+			wantExclude:          []string{},
+			typesFromFlag:        []string{"ansible", "azureresourcemanager", "terraform"},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              749,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
+		{
+			name:                 "analyze_test_bicep_with_multiple_exclude_types_including_arm",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/bicep_test")},
+			wantTypes:            []string{},
+			wantExclude:          []string{},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{"ansible", "azureresourcemanager", "terraform"},
+			wantLOC:              0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -505,6 +578,23 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			excludeGitIgnore:     false,
 			MaxFileSize:          -1,
 		},
+		{
+			name: "analyze_test_non_utf8_is_set_as_unwanted",
+			paths: []string{
+				filepath.FromSlash("../../test/fixtures/mix_utf8_and_non_utf"),
+			},
+			wantTypes: []string{"ansible"},
+			wantExclude: []string{
+				filepath.FromSlash("../../test/fixtures/mix_utf8_and_non_utf/non_utf.json"),
+			},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              57,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
 	}
 
 	for _, tt := range tests {
@@ -535,4 +625,259 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			require.Equal(t, tt.wantLOC, got.ExpectedLOC, "wrong loc from analyzer")
 		})
 	}
+}
+
+func TestAnalyzer_FileStats(t *testing.T) {
+	tests := []struct {
+		name                 string
+		paths                []string
+		typesFromFlag        []string
+		excludeTypesFromFlag []string
+		wantPlatformStats    map[string]platformFileStats
+		gitIgnoreFileName    string
+		excludeGitIgnore     bool
+		MaxFileSize          int
+	}{
+		{
+			name:                 "file_stats_nested_structure_with_multiple_platforms",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/analyzer_test/helm")},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantPlatformStats: map[string]platformFileStats{
+				"kubernetes": {
+					fileCount: 3,
+					dirCount:  2,
+					totalLOC:  118,
+				},
+			},
+			gitIgnoreFileName: "",
+			excludeGitIgnore:  true,
+			MaxFileSize:       -1,
+		},
+		{
+			name:                 "file_stats_multiple_platforms_nested_directories",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantPlatformStats: map[string]platformFileStats{
+				"terraform": {
+					fileCount: 1,
+					dirCount:  1,
+					totalLOC:  10,
+				},
+				"kubernetes": {
+					fileCount: 4,
+					dirCount:  3,
+					totalLOC:  131,
+				},
+				"dockerfile": {
+					fileCount: 1,
+					dirCount:  1,
+					totalLOC:  3,
+				},
+			},
+			gitIgnoreFileName: "",
+			excludeGitIgnore:  true,
+			MaxFileSize:       -1,
+		},
+		{
+			name:                 "file_stats_with_type_filter",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
+			typesFromFlag:        []string{"terraform", "kubernetes"},
+			excludeTypesFromFlag: []string{""},
+			wantPlatformStats: map[string]platformFileStats{
+				"terraform": {
+					fileCount: 1,
+					dirCount:  1,
+					totalLOC:  10,
+				},
+				"kubernetes": {
+					fileCount: 6,
+					dirCount:  3,
+					totalLOC:  156,
+				},
+			},
+			gitIgnoreFileName: "",
+			excludeGitIgnore:  true,
+			MaxFileSize:       -1,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			exc := []string{""}
+
+			analyzer := &Analyzer{
+				Paths:             tt.paths,
+				Types:             tt.typesFromFlag,
+				ExcludeTypes:      tt.excludeTypesFromFlag,
+				Exc:               exc,
+				ExcludeGitIgnore:  tt.excludeGitIgnore,
+				GitIgnoreFileName: tt.gitIgnoreFileName,
+				MaxFileSize:       tt.MaxFileSize,
+			}
+
+			got, err := Analyze(analyzer)
+			require.NoError(t, err)
+
+			require.NotNil(t, got.FileStats, "FileStats should not be nil")
+
+			for platform, expectedStats := range tt.wantPlatformStats {
+				platformStats, exists := got.FileStats[platform]
+				require.True(t, exists, "FileStats should contain platform: %s", platform)
+
+				require.Equal(t, expectedStats.fileCount, platformStats.FileCount,
+					"wrong file count for platform %s", platform)
+
+				require.Equal(t, expectedStats.dirCount, platformStats.DirectoryCount,
+					"wrong directory count for platform %s", platform)
+
+				require.Equal(t, expectedStats.totalLOC, platformStats.TotalLOC,
+					"wrong total LOC for platform %s", platform)
+
+				require.NotNil(t, platformStats.FilesByDir, "FilesByDir should not be nil")
+				require.Equal(t, expectedStats.dirCount, len(platformStats.FilesByDir),
+					"wrong FilesByDir entries for platform %s", platform)
+
+				totalFilesFromDirs := 0
+				for _, fileCount := range platformStats.FilesByDir {
+					totalFilesFromDirs += fileCount
+				}
+				require.Equal(t, platformStats.FileCount, totalFilesFromDirs,
+					"file count sum mismatch for platform %s", platform)
+			}
+		})
+	}
+}
+
+type platformFileStats struct {
+	fileCount int
+	dirCount  int
+	totalLOC  int
+}
+
+func TestAnalyzerWorkerCount(t *testing.T) {
+	oldMaxProcs := runtime.GOMAXPROCS(1)
+	defer runtime.GOMAXPROCS(oldMaxProcs)
+
+	require.Equal(t, 0, analyzerWorkerCount(0, maxAnalyzerWorkers))
+	require.Equal(t, 2, analyzerWorkerCount(10, maxAnalyzerWorkers))
+
+	runtime.GOMAXPROCS(maxAnalyzerWorkers)
+	require.Equal(t, 5, analyzerWorkerCount(5, maxAnalyzerWorkers))
+	require.Equal(t, maxAnalyzerWorkers, analyzerWorkerCount(maxAnalyzerWorkers+1, 0))
+
+	// A caller-supplied maxWorkers overrides the built-in default, both below and above it.
+	require.Equal(t, 3, analyzerWorkerCount(maxAnalyzerWorkers+1, 3))
+	require.Equal(t, 200, analyzerWorkerCount(300, 200))
+}
+
+// TestAnalyzer_BoundedWorkerConcurrency guards against Analyze regressing back to
+// spawning one goroutine per file. A bounded pool stays near analyzerWorkerCount
+// even while a large repository is scanned.
+func TestAnalyzer_BoundedWorkerConcurrency(t *testing.T) {
+	oldMaxProcs := runtime.GOMAXPROCS(2)
+	defer runtime.GOMAXPROCS(oldMaxProcs)
+
+	dir := t.TempDir()
+	const fileCount = 3000
+	for i := 0; i < fileCount; i++ {
+		content := []byte(fmt.Sprintf("resource \"null_resource\" \"r%d\" {}\n", i))
+		require.NoError(t, os.WriteFile(filepath.Join(dir, fmt.Sprintf("file_%d.tf", i)), content, 0o600))
+	}
+
+	expectedWorkers := analyzerWorkerCount(fileCount, 0)
+	const goroutineSlack = 20
+	baseline := runtime.NumGoroutine()
+	var peak int64
+	stop := make(chan struct{})
+	monitorDone := make(chan struct{})
+	go func() {
+		defer close(monitorDone)
+		for {
+			select {
+			case <-stop:
+				return
+			default:
+				if n := int64(runtime.NumGoroutine()); n > atomic.LoadInt64(&peak) {
+					atomic.StoreInt64(&peak, n)
+				}
+				time.Sleep(time.Microsecond)
+			}
+		}
+	}()
+
+	analyzer := &Analyzer{
+		Paths:        []string{dir},
+		Types:        []string{""},
+		ExcludeTypes: []string{""},
+		Exc:          []string{""},
+		MaxFileSize:  -1,
+	}
+	_, err := Analyze(analyzer)
+	require.NoError(t, err)
+	close(stop)
+	<-monitorDone
+
+	extraGoroutines := int(atomic.LoadInt64(&peak)) - baseline
+	require.LessOrEqualf(t, extraGoroutines, expectedWorkers+goroutineSlack,
+		"Analyze spawned %d extra goroutines while processing %d files; expected at most about %d bounded workers",
+		extraGoroutines, fileCount, expectedWorkers)
+}
+
+// TestAnalyzer_MaxAnalyzerWorkersOverride verifies that a caller-supplied
+// Analyzer.MaxAnalyzerWorkers value (used by library embedders) is honored by Analyze
+// capping concurrency below the built-in default rather than being ignored.
+func TestAnalyzer_MaxAnalyzerWorkersOverride(t *testing.T) {
+	oldMaxProcs := runtime.GOMAXPROCS(8)
+	defer runtime.GOMAXPROCS(oldMaxProcs)
+
+	dir := t.TempDir()
+	const fileCount = 500
+	for i := 0; i < fileCount; i++ {
+		content := []byte(fmt.Sprintf("resource \"null_resource\" \"r%d\" {}\n", i))
+		require.NoError(t, os.WriteFile(filepath.Join(dir, fmt.Sprintf("file_%d.tf", i)), content, 0o600))
+	}
+
+	const customCap = 2
+	expectedWorkers := analyzerWorkerCount(fileCount, customCap)
+	require.Equal(t, customCap, expectedWorkers, "test setup should exercise the custom cap, not the default")
+
+	const goroutineSlack = 20
+	baseline := runtime.NumGoroutine()
+	var peak int64
+	stop := make(chan struct{})
+	monitorDone := make(chan struct{})
+	go func() {
+		defer close(monitorDone)
+		for {
+			select {
+			case <-stop:
+				return
+			default:
+				if n := int64(runtime.NumGoroutine()); n > atomic.LoadInt64(&peak) {
+					atomic.StoreInt64(&peak, n)
+				}
+				time.Sleep(time.Microsecond)
+			}
+		}
+	}()
+
+	analyzer := &Analyzer{
+		Paths:              []string{dir},
+		Types:              []string{""},
+		ExcludeTypes:       []string{""},
+		Exc:                []string{""},
+		MaxFileSize:        -1,
+		MaxAnalyzerWorkers: customCap,
+	}
+	_, err := Analyze(analyzer)
+	require.NoError(t, err)
+	close(stop)
+	<-monitorDone
+
+	extraGoroutines := int(atomic.LoadInt64(&peak)) - baseline
+	require.LessOrEqualf(t, extraGoroutines, expectedWorkers+goroutineSlack,
+		"Analyze spawned %d extra goroutines while processing %d files with MaxAnalyzerWorkers=%d; expected at most about %d bounded workers",
+		extraGoroutines, fileCount, customCap, expectedWorkers)
 }

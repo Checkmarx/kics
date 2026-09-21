@@ -8,5 +8,6 @@
   "platform": "Pulumi",
   "descriptionID": "58a27cbf",
   "cloudProvider": "gcp",
-  "cwe": "326"
+  "cwe": "326",
+  "riskScore": "5.9"
 }

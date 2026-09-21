@@ -1,0 +1,25 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "PostgresDBCluster": {
+            "Type": "AWS::RDS::DBCluster",
+            "Properties": {
+                "MasterUsername": {
+                    "Ref": "DBUsername"
+                },
+                "MasterUserPassword": {
+                    "Ref": "DBPassword"
+                },
+                "StorageEncrypted": true,
+                "DBClusterIdentifier": "postgres-db-cluster",
+                "Engine": "postgres",
+                "EngineVersion": "15.5",
+                "DBClusterParameterGroupName": "default.postgres15",
+                "EnableCloudwatchLogsExports": [
+                    "postgresql"
+                ],
+                "EnableIAMDatabaseAuthentication": true
+            }
+        }
+    }
+}

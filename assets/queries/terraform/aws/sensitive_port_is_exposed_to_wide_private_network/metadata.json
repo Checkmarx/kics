@@ -10,5 +10,6 @@
   "aggregation": 63,
   "cloudProvider": "aws",
   "cwe": "200",
-  "oldSeverity": "MEDIUM"
+  "oldSeverity": "MEDIUM",
+  "riskScore": "2.9"
 }

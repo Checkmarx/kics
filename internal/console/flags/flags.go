@@ -37,9 +37,9 @@ func evalUsage(usage string, supportedPlatforms, supportedCloudProviders []strin
 	variables := map[string]string{
 		"sliceInstructions":  "can be provided multiple times or as a comma separated string",
 		"supportedLogLevels": strings.Join(constants.AvailableLogLevels, ","),
-		"supportedPlatforms": strings.Join(supportedPlatforms, ", "),
-		"supportedProviders": strings.Join(supportedCloudProviders, ", "),
-		"supportedReports":   strings.Join(append([]string{"all"}, helpers.ListReportFormats()...), ", "),
+		"supportedPlatforms": strings.Join(supportedPlatforms, ","),
+		"supportedProviders": strings.Join(supportedCloudProviders, ","),
+		"supportedReports":   strings.Join(append([]string{"all"}, helpers.ListReportFormats()...), ","),
 		"defaultLogFile":     constants.DefaultLogFile,
 		"logFormatPretty":    constants.LogFormatPretty,
 		"logFormatJSON":      constants.LogFormatJSON,
@@ -181,6 +181,15 @@ func SetStrFlag(flagName, value string) {
 		*flagsStrReferences[flagName] = value
 	} else {
 		log.Debug().Msgf("Could not set string flag %s", flagName)
+	}
+}
+
+// SetBoolFlag set a boolean flag using its name
+func SetBoolFlag(flagName string, value bool) {
+	if _, ok := flagsBoolReferences[flagName]; ok {
+		*flagsBoolReferences[flagName] = value
+	} else {
+		log.Debug().Msgf("Could not set bool flag %s", flagName)
 	}
 }
 

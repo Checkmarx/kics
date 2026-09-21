@@ -75,9 +75,14 @@ emptyOrNull("") = true
 
 emptyOrNull(null) = true
 
+# List of valid forms for the "::/0" ipv6 address
+unrestricted_ipv6 := ["::/0","0000:0000:0000:0000:0000:0000:0000:0000/0","0:0:0:0:0:0:0:0/0"]
+# List of all ip addresses considered "unrestricted"
+unrestricted_ips := array.concat(unrestricted_ipv6, ["0.0.0.0/0"])
+
 # Checks if an IP is private
 isPrivateIP(ipVal) {
-	private_ips := ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
+	private_ips := ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12", "fc00::/8", "fd00::/8"]
 	some i
 	net.cidr_contains(private_ips[i], ipVal)
 }
@@ -421,6 +426,25 @@ get_policy(p) = policy {
 	policy = p
 }
 
+condition_keys_limiting_access_to_account_id = {
+	"aws:SourceOwner",
+	"aws:SourceAccount",
+	"aws:ResourceAccount",
+	"aws:PrincipalAccount",
+	"aws:VpceAccount"
+}
+
+conditions = {
+	"Condition",
+	"condition"
+}
+
+is_access_limited_to_an_account_id(statement) {
+	valid_key(statement, conditions[idx])
+	condition_operator := statement[conditions[idx]][op][key]
+	lower(key) == lower(condition_keys_limiting_access_to_account_id[_])
+}
+
 is_cross_account(statement) {
 	is_string(statement.Principal.AWS)
 	regex.match("(^[0-9]{12}$)|(^arn:aws:(iam|sts)::[0-9]{12})", statement.Principal.AWS)
@@ -462,7 +486,7 @@ is_recommended_tls(field) {
 }
 
 is_unrestricted(sourceRange) {
-	cidrs := {"0.0.0.0/0", "::/0"}
+	cidrs := {"0.0.0.0/0", "::/0", "0000:0000:0000:0000:0000:0000:0000:0000/0", "0:0:0:0:0:0:0:0/0"}
 	sourceRange == cidrs[_]
 }
 
@@ -513,6 +537,7 @@ get_nested_values_info(object, array_vals) = return_value {
 	return_value := {
 		"valid": count(array_vals) == count(arr),
 		"searchKey": concat(".", arr),
+		"searchLine": arr,
 	}
 }
 
@@ -581,7 +606,8 @@ weakCipher(aux) {
 valid_for_iam_engine_and_version_check(resource, engineVar, engineVersionVar, instanceClassVar) {
 	key_list := [engineVar, engineVersionVar]
 	contains(lower(resource[engineVar]), "mariadb")
-	version_check := {x | x := resource[key_list[_]]; contains(x, "10.6")}
+	supported_versions := {"10.6", "10.11", "11.4"}
+	version_check := {x | x := resource[key_list[_]]; contains(x, supported_versions[_])}
 	count(version_check) > 0
 } else {
 	engines_that_supports_iam := ["aurora-postgresql", "postgres", "mysql", "mariadb"]
@@ -616,7 +642,7 @@ get_user_from_policy_attachment(attachment) = user {
 }
 
 unrecommended_permission_policy(resourcePolicy, permission) {
-	policy := json_unmarshal(resourcePolicy.policy)
+	policy := get_policy(resourcePolicy.policy)
 
 	st := get_statement(policy)
 	statement := st[_]
@@ -749,3 +775,7 @@ valid_non_empty_key(field, key) = output {
 	keyObj == ""
 	output := concat(".", ["", key])
 }
+
+get_array_if_exists(resource, field_name) = [] {
+	not valid_key(resource, field_name)
+} else = resource[field_name]

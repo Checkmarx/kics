@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Example
+
+Resources:
+  MyElasticsearchDomain:
+    Type: AWS::Elasticsearch::Domain
+    Properties:
+      DomainName: my-es-domain
+      ElasticsearchVersion: 7.10
+      ElasticsearchClusterConfig:
+        InstanceType: r5.large.elasticsearch
+        InstanceCount: 2
+        DedicatedMasterEnabled: true
+        DedicatedMasterType: r5.large.elasticsearch
+        DedicatedMasterCount: 3
+        ZoneAwarenessEnabled: true
+        ZoneAwarenessConfig:
+          AvailabilityZoneCount: 2
+      EBSOptions:
+        EBSEnabled: true
+        VolumeType: gp2
+        VolumeSize: 50
+      AccessPolicies:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: "*"
+            Action: "es:*"
+            Resource: !Sub "arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/my-es-domain/*"
+      NodeToNodeEncryptionOptions:
+        Enabled: false
+      EncryptionAtRestOptions:
+        Enabled: true
+      DomainEndpointOptions:
+        EnforceHTTPS: true
+        TLSSecurityPolicy: Policy-Min-TLS-1-2-2019-07
+      SnapshotOptions:
+        AutomatedSnapshotStartHour: 2
+      AdvancedOptions:
+        rest.action.multi.allow_explicit_index: "true"
+        override_main_response_version: "true"
+      Tags:
+        - Key: Environment
+          Value: Production
+        - Key: Department
+          Value: Analytics

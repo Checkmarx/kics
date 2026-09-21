@@ -8,5 +8,6 @@
   "platform": "Dockerfile",
   "descriptionID": "26810b44",
   "cwe": "710",
-  "oldSeverity": "MEDIUM"
+  "oldSeverity": "MEDIUM",
+  "riskScore": "2.3"
 }

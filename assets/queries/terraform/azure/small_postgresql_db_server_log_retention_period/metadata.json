@@ -9,5 +9,6 @@
   "descriptionID": "1ec96250",
   "cloudProvider": "azure",
   "cwe": "778",
-  "oldSeverity": "MEDIUM"
+  "oldSeverity": "MEDIUM",
+  "riskScore": "3.3"
 }

@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: security-context-demo
+spec:
+  serviceName: "security-context-demo"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: security-context-demo
+  template:
+    metadata:
+      labels:
+        app: security-context-demo
+    spec:
+      containers:
+        - name: sec-ctx-demo
+          image: gcr.io/google-samples/node-hello:1.0
+          securityContext:
+            runAsNonRoot: false
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: security-context-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: security-context-demo
+  template:
+    metadata:
+      labels:
+        app: security-context-demo
+    spec:
+      securityContext:
+        runAsNonRoot: false
+      containers:
+        - name: sec-ctx-demo
+          image: gcr.io/google-samples/node-hello:1.0
+          securityContext:
+            runAsNonRoot: false

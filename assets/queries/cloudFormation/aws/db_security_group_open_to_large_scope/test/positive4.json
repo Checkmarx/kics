@@ -1,28 +1,30 @@
 {
   "Resources": {
-    "DBinstance1": {
-      "DeletionPolicy": "Snapshot",
-      "Type": "AWS::RDS::DBInstance",
+    "MyDBSecurityGroupIngress": {
+      "Type": "AWS::RDS::DBSecurityGroupIngress",
       "Properties": {
-        "DBInstanceClass": "db.t3.small",
-        "Engine": "MySQL",
-        "MasterUsername": "YourName",
-        "MasterUserPassword": "YourPassword",
-        "DBSecurityGroups": [
-          {
-            "Ref": "DbSecurity"
-          }
-        ],
-        "AllocatedStorage": "5"
+        "DBSecurityGroupName": {
+          "Ref": "MyDBSecurityGroup"
+        },
+        "CIDRIP": "1.2.3.4/23"
       }
     },
-    "DbSecurity": {
-      "Type": "AWS::RDS::DBSecurityGroup",
+    "StandaloneIngressIPv4": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "GroupDescription": "Ingress for Amazon EC2 security group",
-        "DBSecurityGroupIngress": {
-          "CIDRIP": "1.2.3.4/23"
-        }
+        "GroupId": {
+          "Ref": "DbSecurityByEC2SecurityGroup1"
+        },
+        "CidrIp": "1.2.3.4/23"
+      }
+    },
+    "StandaloneIngressIPv6": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "DbSecurityByEC2SecurityGroup2"
+        },
+        "CidrIpv6": "2001:db8:a::123/64"
       }
     }
   }

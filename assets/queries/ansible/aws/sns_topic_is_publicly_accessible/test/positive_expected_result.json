@@ -1,14 +1,26 @@
 [
 	{
 		"queryName": "SNS Topic is Publicly Accessible",
-		"severity": "HIGH",
+		"severity": "CRITICAL",
 		"line": 23,
-		"fileName": "positive.yaml"
+		"fileName": "positive1.yaml"
 	},
 	{
 		"queryName": "SNS Topic is Publicly Accessible",
-		"severity": "HIGH",
-		"line": 50,
-		"fileName": "positive.yaml"
+		"severity": "CRITICAL",
+		"line": 52,
+		"fileName": "positive1.yaml"
+	},
+	{
+		"queryName": "SNS Topic is Publicly Accessible",
+		"severity": "CRITICAL",
+		"line": 23,
+		"fileName": "positive2.yaml"
+	},
+	{
+		"queryName": "SNS Topic is Publicly Accessible",
+		"severity": "CRITICAL",
+		"line": 55,
+		"fileName": "positive2.yaml"
 	}
 ]

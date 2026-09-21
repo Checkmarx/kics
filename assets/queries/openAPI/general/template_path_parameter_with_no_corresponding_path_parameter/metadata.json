@@ -16,5 +16,6 @@
     }
   },
   "cwe": "20",
-  "cloudProvider": "common"
+  "cloudProvider": "common",
+  "riskScore": "0.0"
 }

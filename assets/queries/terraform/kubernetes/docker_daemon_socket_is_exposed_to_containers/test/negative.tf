@@ -4,22 +4,19 @@ resource "kubernetes_pod" "test2" {
   }
 
   spec {
+   volume {
+     host_path {
+       path = "/data"
+       type = "Directory"
+     }
+   }
 
-    volume = [
-     {
-       host_path = {
-         path = "/data"
-         type = "Directory"
-       }
+   volume {
+     host_path {
+       path = "/data"
+       type = "Directory"
      }
-     ,
-     {
-       host_path = {
-         path = "/data"
-         type = "Directory"
-       }
-     }
-    ]
+   }
 
     container {
       image = "nginx:1.7.9"
@@ -94,22 +91,19 @@ resource "kubernetes_deployment" "example2" {
       }
 
       spec {
+        volume {
+          host_path {
+            path = "/data"
+            type = "Directory"
+          }
+        }
 
-        volume = [
-          {
-            host_path = {
-              path = "/data"
-              type = "Directory"
-            }
+        volume {
+          host_path {
+            path = "/data"
+            type = "Directory"
           }
-          ,
-          {
-            host_path = {
-              path = "/data"
-              type = "Directory"
-            }
-          }
-        ]
+        }
 
         container {
           image = "nginx:1.7.8"
@@ -166,21 +160,19 @@ resource "kubernetes_cron_job" "demo22" {
           metadata {}
           spec {
 
-            volume = [
-              {
-                host_path = {
-                  path = "/data"
-                  type = "Directory"
-                }
+            volume {
+              host_path {
+                path = "/data"
+                type = "Directory"
               }
-              ,
-              {
-                host_path = {
-                  path = "/data"
-                  type = "Directory"
-                }
+            }
+
+            volume {
+              host_path {
+                path = "/data"
+                type = "Directory"
               }
-            ]
+            }
 
             container {
               name    = "hello"

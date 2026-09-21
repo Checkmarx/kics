@@ -1,0 +1,140 @@
+name: Run CI Projects
+
+on:
+  workflow_call:
+    inputs:
+      machines-count:
+        description: 'Total number of machines'
+        required: true
+        type: number
+
+env:
+  ENGINE: "kics"
+  CES_ENVIRONMENT: "prod"
+
+permissions:
+  id-token: none # default deny baseline; the run-projects job below elevates to write for AWS OIDC
+
+jobs:
+  setup:
+    name: Setup
+    runs-on: cx-public-ubuntu-x64
+    outputs:
+      machines: ${{ steps.set-machines.outputs.machines }}
+    env:
+      MACHINES_COUNT: ${{ inputs.machines-count }}
+    steps:
+      - name: Generate Machine Matrix
+        id: set-machines
+        run: |
+          machines=$(seq -s, 0 $(("${MACHINES_COUNT}" - 1)))
+          echo "machines=[$machines]" >> "$GITHUB_OUTPUT"
+
+  run-projects:
+    name: Run kics againts projects
+    permissions:
+      id-token: write # permission to run kics againts project
+    needs: setup
+    runs-on: cx-public-ubuntu-x64
+    env:
+      AWS_REGION: ${{ secrets.CES_BUCKET_AWS_REGION }}
+      MACHINES_MATRIX: ${{ matrix.machine }}
+
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        machine: ${{ fromJSON(needs.setup.outputs.machines) }}
+
+    steps:
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@ec61189d14ec14c8efccab744f656cffd0e33f37 # v6.1.0
+        with:
+          role-to-assume: ${{ secrets.CES_BUCKET_AWS_ROLE }}
+          aws-region: ${{ secrets.CES_BUCKET_AWS_REGION }}
+
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: ${{ secrets.CES_EXECUTOR_REPO }}
+          token: ${{ secrets.GH_TOKEN }}
+          path: cli
+          ref: master
+          persist-credentials: false
+
+      - name: Setup Go
+        uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
+        with:
+          go-version-file: cli/go.mod
+          cache: false
+
+      - name: Download kics
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c #v8.0.1
+        with:
+          name: kics
+          path: .
+
+      - name: Unzip kics
+        run: |
+          unzip -q kics.zip
+
+      - name: Download Json
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c #v8.0.1
+        with:
+          name: Metadata
+          path: .
+
+      - name: Build Engines Executor
+        run: |
+          cd cli
+          go build -o executor
+
+      - name: Set log file
+        run: |
+          LOG_FILE="$GITHUB_WORKSPACE/log_"${MACHINES_MATRIX}".log"
+          echo "LOG_FILE=$LOG_FILE" >> $GITHUB_ENV
+
+      - name: Select Projects
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/zips/"
+          cd cli
+          ./executor sources \
+          -s $GITHUB_WORKSPACE/zips/ \
+          -e $ENGINE \
+          --chunk "${MACHINES_MATRIX}" \
+          --machines "${MACHINES_COUNT}" \
+          >> "$LOG_FILE" 2>&1
+
+      - name: Prepare Projects
+        run: |
+          cd "$GITHUB_WORKSPACE/zips/"
+          for zip in *.zip; do
+            [ -e "$zip" ] || continue
+            zip_name=$(basename "$zip" .zip)
+            echo "::add-mask::$zip_name"
+            unzip -qqo "$zip" -d "./$zip_name" >> "$LOG_FILE" 2>&1
+          done
+
+      - name: Run Engines Executor
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/results
+          ./cli/executor run kics \
+          -b $GITHUB_WORKSPACE/kics/bin/kics \
+          -s $GITHUB_WORKSPACE/zips/ \
+          -r $GITHUB_WORKSPACE/results \
+          -j $GITHUB_WORKSPACE/pr-metadata.json \
+          -q $GITHUB_WORKSPACE/kics/assets/queries/ \
+          --libraries $GITHUB_WORKSPACE/kics/assets/libraries/ \
+          --assets $GITHUB_WORKSPACE/kics/assets/similarityID_transition/ \
+          --env $CES_ENVIRONMENT \
+          >> $LOG_FILE 2>&1
+
+      - name: Upload log
+        if: failure()
+        run: |
+          ./cli/executor save-log \
+          -e $ENGINE \
+          -j $GITHUB_WORKSPACE/pr-metadata.json \
+          -l $LOG_FILE \
+          --env $CES_ENVIRONMENT \
+          > /dev/null 2>&1

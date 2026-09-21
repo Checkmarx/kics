@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Resource Management
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/665.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/665.html')">665</a>
+-   **Risk score:** <span style="color:#edd57e">1.9</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/sdb_domain_declared_as_a_resource)
 
 ### Description
@@ -92,3 +93,4 @@ Resources:
 }
 
 ```
+

@@ -1,0 +1,14 @@
+{
+  "id": "f5aff735-fd1c-4751-a5e9-98bfe4893fa2",
+  "queryName": "Beta - SQL DB Instance With Exposed Trace Logs",
+  "severity": "MEDIUM",
+  "category": "Insecure Defaults",
+  "descriptionText": "All 'google_sql_database_instance' resources based on SQLSERVER should enable the '3625'(trace log) flag to prevent the disclosure of sensitive information",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance.html#settings-1",
+  "platform": "Terraform",
+  "descriptionID": "f5aff735",
+  "cloudProvider": "gcp",
+  "cwe": "209",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

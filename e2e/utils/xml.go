@@ -69,10 +69,11 @@ type CycloneSchema struct {
 			} `xml:"hashes>hash"`
 			Purl            string `xml:"purl"`
 			Vulnerabilities []struct {
-				Ref    string `xml:"ref,attr"`
-				ID     string `xml:"id"`
-				CWE    string `xml:"cwe"`
-				Source struct {
+				Ref       string `xml:"ref,attr"`
+				ID        string `xml:"id"`
+				CWE       string `xml:"cwe"`
+				RiskScore string `xml:"riskScore"`
+				Source    struct {
 					Name string `xml:"name"`
 					URL  string `xml:"url"`
 				} `xml:"source"`

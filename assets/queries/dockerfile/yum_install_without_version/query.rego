@@ -1,9 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.dockerfile as dockerLib
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	resource := input.document[i].command[name][cmd]
 	resource.Cmd == "run"
 
 	count(resource.Value) == 1
@@ -18,34 +19,42 @@ CxPolicy[result] {
 	some j
 	analyzePackages(j, packages[j], packages, length)
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
+		"searchValue": packages[j],
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The package version should always be specified when using yum install",
 		"keyActualValue": sprintf("No version is specified in package '%s'", [packages[j]]),
+		"searchLine": common_lib.build_search_line(["command", name, cmd], []),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	resource := input.document[i].command[name][cmd]
 	resource.Cmd == "run"
 
 	count(resource.Value) > 1
 
-    dockerLib.arrayContains(resource.Value, {"yum", "install"})
+	dockerLib.arrayContains(resource.Value, {"yum", "install"})
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "yum"
 	regex.match("^[a-zA-Z]", resource.Value[j]) == true
 	not dockerLib.withVersion(resource.Value[j])
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
+		"searchValue": resource.Value[j],
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The package version should always be specified when using yum install",
 		"keyActualValue": sprintf("No version is specified in package '%s'", [resource.Value[j]]),
+		"searchLine": common_lib.build_search_line(["command", name, cmd], []),
 	}
 }
 

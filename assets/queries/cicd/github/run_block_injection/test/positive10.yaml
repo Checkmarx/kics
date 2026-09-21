@@ -1,0 +1,14 @@
+name: Push Head Commit Author Email Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  process_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Commit Author Email
+        run: |
+          echo "Author email: ${{ github.event.head_commit.author.email }}"

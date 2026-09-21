@@ -1,0 +1,102 @@
+name: CESARt
+on:
+  pull_request:
+    types: [ labeled ]
+
+env:
+  ENGINE_VERSION: ${{ vars.CES_ENGINE_VERSION }}
+  PLATFORM: "LINUX_X64"
+  ENGINE: "kics"
+  REMOVE_HISTORY: "true"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # for actions/checkout to fetch code
+  id-token: none # default deny-write baseline; the ci-projects job below elevates to write for AWS OIDC
+
+jobs:
+  build:
+    name: Build KICS binary
+    if: (github.event.label.name == 'cesar' && github.event.pull_request.mergeable == true)
+    runs-on: cx-public-ubuntu-x64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: refs/pull/${{ github.event.pull_request.number }}/merge
+          path: kics
+          persist-credentials: false
+      - name: Setup Go
+        uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
+        with:
+          go-version-file: kics/go.mod
+          cache-dependency-path: kics/go.sum
+          cache: true
+
+      - name: Build kics Binary
+        env:
+          CGO_ENABLED: 0
+          GOOS: linux
+          GOARCH: amd64
+        run: |
+          cd $GITHUB_WORKSPACE/kics
+          go build -installsuffix cgo -ldflags "-s -w" -a -o ./bin/kics ./cmd/console/main.go
+          chmod +x ./bin/kics
+
+      - name: Create Metadata File
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_ACTOR: ${{ github.actor }}
+          PR_HEAD_REF: ${{ github.head_ref }}
+          PR_BASE_REF: ${{ github.base_ref }}
+        run: |
+          COMMIT_TIMESTAMP=$(git -C "$GITHUB_WORKSPACE/kics" log -1 --format=%ct)
+          METADATA_PATH="$GITHUB_WORKSPACE/pr-metadata.json"
+          CURR_TIMESTAMP=$(date +%s)
+          echo '{
+            "seq": "'"${CURR_TIMESTAMP}"'",
+            "tag": "'"${PR_NUMBER}"'",
+            "comment": "'"${PR_TITLE}"'",
+            "commit": "'"${PR_HEAD_SHA}"'",
+            "owner": "'"${PR_ACTOR}"'",
+            "branch": "'"${PR_HEAD_REF}"'",
+            "engine": "'"${ENGINE}"'",
+            "platform": "'"${PLATFORM}"'",
+            "version": "'"${ENGINE_VERSION}"'",
+            "forkSeq": "'"${CURR_TIMESTAMP}"'",
+            "forkBranch": "'"${PR_BASE_REF}"'",
+            "removeHistory" : "'"${REMOVE_HISTORY}"'"
+          }' > "$METADATA_PATH"
+
+      - name: Zip kics Folder
+        run: |
+          cd $GITHUB_WORKSPACE
+          zip -qr kics.zip kics/
+
+      - name: Save kics
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: kics
+          path: ${{ github.workspace }}/kics.zip
+          retention-days: 1
+
+      - name: Pr parameters
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: Metadata
+          path: ${{ github.workspace }}/pr-metadata.json
+          retention-days: 1
+
+  ci-projects:
+    permissions:
+      id-token: write # run kics againts the projects
+    needs: build
+    uses: ./.github/workflows/run-projects.yaml
+    with:
+      machines-count: 10
+    secrets: inherit # zizmor: ignore[secrets-inherit] run-projects.yaml is an internal same-repo reusable workflow, fixed caller set (here + ci-projects.yaml), needs several CES_*/GH_TOKEN secrets for AWS OIDC + private executor-repo checkout

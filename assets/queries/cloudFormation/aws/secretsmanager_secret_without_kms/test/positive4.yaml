@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MySecretB:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: MySecretForAppB
+      KmsKeyId: ''
+      Description: This secret has a hardcoded password in SecretString (use GenerateSecretString
+        instead)
+      SecretString: '{"username":"MasterUsername","password":"secret-password"}'
+      Tags:
+        - Key: AppName
+          Value: AppB

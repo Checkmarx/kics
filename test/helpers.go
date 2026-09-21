@@ -141,7 +141,8 @@ var queryHigh = model.QueryResult{ //nolint
 			VulnLines:        &[]model.CodeLine{},
 		},
 	},
-	CWE: "",
+	CWE:       "",
+	RiskScore: "6",
 }
 
 var queryMedium = model.QueryResult{
@@ -163,7 +164,8 @@ var queryMedium = model.QueryResult{
 			VulnLines:        &[]model.CodeLine{},
 		},
 	},
-	CWE: "",
+	CWE:       "",
+	RiskScore: "3",
 }
 
 var queryMedium2 = model.QueryResult{
@@ -185,6 +187,7 @@ var queryMedium2 = model.QueryResult{
 	Platform:    "Terraform",
 	Description: "Make sure that Amazon GuardDuty is Enabled",
 	CWE:         "",
+	RiskScore:   "3",
 }
 
 var queryInfo = model.QueryResult{
@@ -249,6 +252,8 @@ var queryHighExperimental = model.QueryResult{
 			VulnLines:        &[]model.CodeLine{},
 		},
 	},
+	CWE:       "319",
+	RiskScore: "6",
 }
 
 var queryMediumCycloneCWE = model.QueryResult{
@@ -270,6 +275,7 @@ var queryMediumCycloneCWE = model.QueryResult{
 	Platform:    "Terraform",
 	Description: "Make sure that Amazon GuardDuty is Enabled",
 	CWE:         "22",
+	RiskScore:   "3",
 }
 
 var queryMediumCWE = model.QueryResult{
@@ -291,7 +297,8 @@ var queryMediumCWE = model.QueryResult{
 			VulnLines:        &[]model.CodeLine{},
 		},
 	},
-	CWE: "22",
+	CWE:       "22",
+	RiskScore: "3",
 }
 
 var queryHighCWE = model.QueryResult{ //nolint
@@ -325,7 +332,8 @@ var queryHighCWE = model.QueryResult{ //nolint
 			VulnLines:        &[]model.CodeLine{},
 		},
 	},
-	CWE: "22",
+	CWE:       "22",
+	RiskScore: "6",
 }
 
 var queryCritical = model.QueryResult{
@@ -350,6 +358,8 @@ var queryCritical = model.QueryResult{
 			VulnLines:        &[]model.CodeLine{},
 		},
 	},
+	CWE:       "",
+	RiskScore: "8.5",
 }
 
 var queryLowCICDCloudProvider = model.QueryResult{
@@ -372,6 +382,8 @@ var queryLowCICDCloudProvider = model.QueryResult{
 			VulnLines:        &[]model.CodeLine{},
 		},
 	},
+	CWE:       "",
+	RiskScore: "1",
 }
 
 var queryHighPasswordsAndSecrets = model.QueryResult{
@@ -381,6 +393,8 @@ var queryHighPasswordsAndSecrets = model.QueryResult{
 	DescriptionID: "d69d8a89",
 	Platform:      "Common",
 	CloudProvider: "common",
+	CWE:           "798",
+	RiskScore:     "7.8",
 	Severity:      model.SeverityHigh,
 	Files: []model.VulnerableFile{
 		{
@@ -493,7 +507,8 @@ var queryCriticalASFF = model.QueryResult{
 			VulnLines:        &[]model.CodeLine{},
 		},
 	},
-	CWE: "22",
+	CWE:       "22",
+	RiskScore: "8.5",
 }
 
 var SummaryMockCriticalFullPathASFF = model.Summary{
@@ -572,7 +587,8 @@ var queryCriticalCLI = model.QueryResult{
 			VulnLines:        &[]model.CodeLine{},
 		},
 	},
-	CWE: "",
+	CWE:       "",
+	RiskScore: "8.5",
 }
 
 // SummaryMockCWE a summary to be used with cwe field complete

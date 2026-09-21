@@ -287,6 +287,34 @@ func TestFlags_SetStrFlag(t *testing.T) {
 	}
 }
 
+func TestFlags_SetBoolFlag(t *testing.T) {
+	tests := []struct {
+		name     string
+		flagName string
+		expected bool
+	}{
+		{
+			name:     "should return value for valid flag",
+			flagName: "test",
+			expected: true,
+		},
+		{
+			name:     "should not return value for invalid flag",
+			flagName: "undefined",
+			expected: false,
+		},
+	}
+	existValue := true
+	flagsBoolReferences["test"] = &existValue
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			SetBoolFlag(test.flagName, true)
+			got := GetBoolFlag(test.flagName)
+			require.Equal(t, test.expected, got)
+		})
+	}
+}
+
 func TestFlags_SetMultiStrFlag(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -336,14 +364,14 @@ func TestFlags_evalUsage(t *testing.T) {
 			usage:              "test ${supportedPlatforms}",
 			supportedPlatforms: []string{"terraform", "dockerfile"},
 			supportedProviders: []string{"aws", "azure"},
-			expected:           fmt.Sprintf("test %s", strings.Join([]string{"terraform", "dockerfile"}, ", ")),
+			expected:           fmt.Sprintf("test %s", strings.Join([]string{"terraform", "dockerfile"}, ",")),
 		},
 		{
 			name:               "should return message translated for multiple variables",
 			usage:              "test ${supportedPlatforms} ${defaultLogFile}",
 			supportedPlatforms: []string{"terraform", "dockerfile"},
 			supportedProviders: []string{"aws", "azure"},
-			expected:           fmt.Sprintf("test %s %s", strings.Join([]string{"terraform", "dockerfile"}, ", "), constants.DefaultLogFile),
+			expected:           fmt.Sprintf("test %s %s", strings.Join([]string{"terraform", "dockerfile"}, ","), constants.DefaultLogFile),
 		},
 	}
 	for _, test := range tests {

@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "MSSQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "MSSQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "MSSQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive3.tf"
+  }
+]

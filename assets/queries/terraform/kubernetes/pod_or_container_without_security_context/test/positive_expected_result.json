@@ -12,11 +12,16 @@
   {
     "queryName": "Pod or Container Without Security Context",
     "severity": "LOW",
-    "line": 7
+    "line": 36
   },
   {
     "queryName": "Pod or Container Without Security Context",
     "severity": "LOW",
-    "line": 93
+    "line": 88
+  },
+  {
+    "queryName": "Pod or Container Without Security Context",
+    "severity": "LOW",
+    "line": 89
   }
 ]

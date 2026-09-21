@@ -8,13 +8,79 @@
   {
     "queryName": "Azure App Service Client Certificate Disabled",
     "severity": "MEDIUM",
-    "line": 16,
+    "line": 14,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 27,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 30,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 41,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 58,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Azure App Service Client Certificate Disabled",
     "severity": "MEDIUM",
     "line": 17,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 30,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 30,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 33,
     "fileName": "positive3.tf"
   }
 ]

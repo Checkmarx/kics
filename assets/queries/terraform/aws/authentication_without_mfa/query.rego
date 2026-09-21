@@ -7,7 +7,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	resource := doc.resource.aws_iam_user_policy[name]
 
-	policy := common_lib.json_unmarshal(resource.policy)
+	policy := common_lib.get_policy(resource.policy)
 	st := common_lib.get_statement(policy)
 	statement := st[_]
 
@@ -30,7 +30,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	resource := doc.resource.aws_iam_user_policy[name]
 
-	policy := common_lib.json_unmarshal(resource.policy)
+	policy := common_lib.get_policy(resource.policy)
 	st := common_lib.get_statement(policy)
 	statement := st[_]
 

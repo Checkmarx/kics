@@ -1,26 +1,67 @@
-module "vote_service_sg" {
-  source = "terraform-aws-modules/security-group/aws"
-  version = "4.3.0"
-  name        = "user-service"
-  description = "Security group for user-service with custom ports open within VPC, and PostgreSQL publicly open"
-  vpc_id      = "vpc-12345678"
+resource "aws_security_group" "ec2" {
+  description = "ec2 sg"
+  name        = "secgroup-ec2"
+  vpc_id      = var.vpc_id
+}
 
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["192.120.0.0/16", "75.132.0.0/16"]
-  }
+resource "aws_vpc_security_group_ingress_rule" "negative2-1" {
+  security_group_id = aws_security_group.negative.id
+  from_port         = 22
+  to_port           = 22
+  ip_protocol       = "tcp"
+  description       = "TLS from VPC"
+}
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+resource "aws_vpc_security_group_ingress_rule" "negative2-2" {
+  security_group_id = aws_security_group.ec2.id
+  cidr_ipv4         = "0.0.1.0/0"
+  from_port         = 22 
+  to_port           = 22
+  ip_protocol       = "tcp"
+  description       = "allows RDP from Internet"
+}
 
-  tags = {
-    Name = "allow_tls"
-  }
+resource "aws_vpc_security_group_ingress_rule" "negative2-3" {
+  security_group_id = aws_security_group.ec2.id
+  cidr_ipv6         = "2001:db8:abcd:0012::/64"
+  from_port         = 22 
+  to_port           = 22
+  ip_protocol       = "-1"
+  description       = "allows RDP from Internet"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "negative2-4" {
+  security_group_id = aws_security_group.ec2.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 30
+  to_port           = 2000
+  ip_protocol       = "tcp"
+  description       = "allows RDP from Internet"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "negative2-5" {
+  security_group_id = aws_security_group.ec2.id
+  cidr_ipv6         = "::/0"
+  from_port         = 30 
+  to_port           = 2000
+  ip_protocol       = "tcp"
+  description       = "allows RDP from Internet"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "negative2-6" {
+  security_group_id = aws_security_group.ec2.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 22
+  to_port           = 22
+  ip_protocol       = "udp"
+  description       = "allows RDP from Internet"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "negative2-7" {
+  security_group_id = aws_security_group.ec2.id
+  cidr_ipv6         = "::/0"
+  from_port         = 22 
+  to_port           = 22
+  ip_protocol       = "udp"
+  description       = "allows RDP from Internet"
 }

@@ -1,9 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.dockerfile as dockerLib
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	resource := input.document[i].command[name][cmd]
 	resource.Cmd == "run"
 
 	count(resource.Value) == 1
@@ -21,17 +22,20 @@ CxPolicy[result] {
 	some j
 	analyzePackages(j, packages[j], packages, length)
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
 		"keyActualValue": sprintf("RUN instruction %s does not use package pinning form", [resource.Value[0]]),
+		"searchLine": common_lib.build_search_line(["command", name, cmd], []),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	resource := input.document[i].command[name][cmd]
 	resource.Cmd == "run"
 
 	count(resource.Value) == 1
@@ -49,17 +53,20 @@ CxPolicy[result] {
 	some j
 	analyzePackages(j, packages[j], packages, length)
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
 		"keyActualValue": sprintf("RUN instruction %s does not use package pinning form", [resource.Value[0]]),
+		"searchLine": common_lib.build_search_line(["command", name, cmd], []),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	resource := input.document[i].command[name][cmd]
 	resource.Cmd == "run"
 
 	count(resource.Value) == 1
@@ -76,47 +83,54 @@ CxPolicy[result] {
 	some j
 	analyzePackages(j, packages[j], packages, length)
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
 		"keyActualValue": sprintf("RUN instruction %s does not use package pinning form", [resource.Value[0]]),
+		"searchLine": common_lib.build_search_line(["command", name, cmd], []),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	resource := input.document[i].command[name][cmd]
 	resource.Cmd == "run"
 
-	count(resource.Value) > 1 
+	count(resource.Value) > 1
 
-    dockerLib.arrayContains(resource.Value, {"apk", "add"})
+	dockerLib.arrayContains(resource.Value, {"apk", "add"})
 
 	resource.Value[j] != "apk"
 	resource.Value[j] != "add"
 
-	regex.match("^[a-zA-Z]", resource.Value[j]) == true
+	regex.match("^[a-zA-Z]", resource.Value[j])
 	not dockerLib.withVersion(resource.Value[j])
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
+		"searchValue": resource.Value[j],
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
 		"keyActualValue": sprintf("RUN instruction %s does not use package pinning form", [resource.Value[j]]),
+		"searchLine": common_lib.build_search_line(["command", name, cmd], []),
 	}
 }
 
-analyzePackages(j, currentPackage, packages, length) {
+analyzePackages(j, currentPackage, _, length) {
 	j == length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
+	regex.match("^[a-zA-Z]", currentPackage)
 	not dockerLib.withVersion(currentPackage)
 }
 
 analyzePackages(j, currentPackage, packages, length) {
 	j != length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
+	regex.match("^[a-zA-Z]", currentPackage)
 	packages[plus(j, 1)] != "-v"
 	not dockerLib.withVersion(currentPackage)
 }

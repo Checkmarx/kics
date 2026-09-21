@@ -49,7 +49,7 @@ CxPolicy[result] {
 		"issueType": issue.issueType,
 		"keyExpectedValue": "resource authsettings should have 'properties.enabled' property set to true",
 		"keyActualValue": issue.keyActualValue,
-		"searchLine": common_lib.build_search_line(childPath, issue.sl),
+		"searchLine": common_lib.build_search_line(array.concat(path, ["resources"]), array.concat(childPath, issue.sl)),
 	}
 }
 

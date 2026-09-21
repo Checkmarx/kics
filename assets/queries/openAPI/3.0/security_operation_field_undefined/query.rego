@@ -17,6 +17,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.security[%d].%s should be defined in '#/components/securitySchemes'", [path, operation, s, field]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.security[%d].%s is not defined in '#/components/securitySchemes'", [path, operation, s, field]),
+		"searchLine": common_lib.build_search_line(["paths", path, operation, "security", s, field], []),
 	}
 }
 

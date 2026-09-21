@@ -1,0 +1,14 @@
+name: Push Safe Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  process_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Static Message
+        run: |
+          echo "A new push was received."

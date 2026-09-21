@@ -1,0 +1,14 @@
+{
+  "id": "d3ba7d62-bd07-4102-88ca-9668e5f08e7d",
+  "queryName": "Beta - Recovery Services Vault With Public Network Access",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "All 'azurerm_recovery_services_vault' resources should set 'public_network_access_enabled' to false in order to prevent exposure to the internet and reduce the risk of unauthorized access",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/recovery_services_vault#public_network_access_enabled-1",
+  "platform": "Terraform",
+  "descriptionID": "d3ba7d62",
+  "cloudProvider": "azure",
+  "cwe": "732",
+  "riskScore": "6.0",
+  "experimental": "true"
+}

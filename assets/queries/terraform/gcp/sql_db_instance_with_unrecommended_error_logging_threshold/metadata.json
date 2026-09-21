@@ -1,0 +1,14 @@
+{
+  "id": "13de4e49-d407-4277-ba5a-d7f59283902f",
+  "queryName": "Beta - SQL DB Instance With Unrecommended Error Logging Threshold",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "All 'google_sql_database_instance' resources based on POSTGRES should have the 'log_min_error_statement' flag set to 'ERROR' or a higher severity to prevent excessive logging",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance.html#settings-1",
+  "platform": "Terraform",
+  "descriptionID": "13de4e49",
+  "cloudProvider": "gcp",
+  "cwe": "779",
+  "riskScore": "1.0",
+  "experimental": "true"
+}

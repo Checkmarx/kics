@@ -14,13 +14,13 @@
   {
     "queryName": "Permissive Access to Create Pods",
     "severity": "MEDIUM",
-    "line": 51,
+    "line": 57,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "Permissive Access to Create Pods",
     "severity": "MEDIUM",
-    "line": 67,
+    "line": 79,
     "fileName": "positive1.tf"
   },
   {

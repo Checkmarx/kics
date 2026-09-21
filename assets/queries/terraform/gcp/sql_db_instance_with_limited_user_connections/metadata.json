@@ -1,0 +1,14 @@
+{
+  "id": "18cb7d28-57df-4d6b-9fb4-02828cb15660",
+  "queryName": "Beta - SQL DB Instance With Limited User Connections",
+  "severity": "MEDIUM",
+  "category": "Availability",
+  "descriptionText": "A 'google_sql_database_instance' resource based on SQLSERVER should have the 'user connections' database flag unset or set to a non-limiting value (default 0). A small positive value may artificially limit concurrent connections and cause dropped requests or outages.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance.html#settings-1",
+  "platform": "Terraform",
+  "descriptionID": "18cb7d28",
+  "cloudProvider": "gcp",
+  "cwe": "410",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

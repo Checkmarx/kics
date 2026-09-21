@@ -2,49 +2,61 @@
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
-    "line": 15,
+    "line": 16,
     "filename": "positive1.json"
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
-    "line": 48,
+    "line": 49,
     "filename": "positive1.json"
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
-    "line": 15,
+    "line": 16,
     "filename": "positive2.json"
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
-    "line": 27,
+    "line": 28,
     "filename": "positive2.json"
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
-    "line": 13,
-    "filename": "positive3.yaml"
+    "line": 26,
+    "filename": "positive3.json"
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
-    "line": 30,
-    "filename": "positive3.yaml"
-  },
-  {
-    "queryName": "Media Type Object Without Schema",
-    "severity": "MEDIUM",
-    "line": 13,
+    "line": 14,
     "filename": "positive4.yaml"
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
-    "line": 19,
+    "line": 31,
     "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Media Type Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Media Type Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 20,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Media Type Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 20,
+    "filename": "positive6.yaml"
   }
 ]

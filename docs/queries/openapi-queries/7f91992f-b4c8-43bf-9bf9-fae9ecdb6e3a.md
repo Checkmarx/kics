@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Structure and Semantics
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/20.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/20.html')">20</a>
+-   **Risk score:** <span style="color:#5bc0de">0.0</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/2.0/file_parameter_with_wrong_consumes_property)
 
 ### Description
@@ -200,3 +201,4 @@ definitions:
         type: string
 
 ```
+

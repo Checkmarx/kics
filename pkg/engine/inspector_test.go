@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"io"
@@ -15,6 +16,10 @@ import (
 	"github.com/open-policy-agent/opa/v1/rego"
 	"github.com/stretchr/testify/assert"
 
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
+	"github.com/stretchr/testify/require"
+
 	"github.com/Checkmarx/kics/v2/assets"
 	"github.com/Checkmarx/kics/v2/internal/tracker"
 	"github.com/Checkmarx/kics/v2/pkg/detector"
@@ -25,9 +30,6 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/progress"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/Checkmarx/kics/v2/test"
-	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/log"
-	"github.com/stretchr/testify/require"
 
 	"github.com/open-policy-agent/opa/v1/cover"
 )
@@ -240,7 +242,6 @@ func TestInspect(t *testing.T) { //nolint
 				{
 					ID:               0,
 					SimilarityID:     "fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe",
-					OldSimilarityID:  "fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe",
 					ScanID:           "scanID",
 					FileID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
 					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
@@ -259,6 +260,7 @@ func TestInspect(t *testing.T) { //nolint
 					KeyActualValue:   "'ADD' app.jar",
 					Value:            nil,
 					Output:           `{"documentId":"3a3be8f7-896e-4ef8-9db3-d6c19e60510b","issueType":"IncorrectValue","keyActualValue":"'ADD' app.jar","keyExpectedValue":"'COPY' app.jar","searchKey":"{{ADD ${JAR_FILE} app.jar}}"}`, //nolint
+					FileKind:         "DOCKERFILE",
 				},
 			},
 			wantErr: false,
@@ -776,7 +778,8 @@ func newQueryContext(ctx context.Context) QueryContext {
 func newInspectorInstance(t *testing.T, queryPath []string, kicsComputeNewSimID bool) *Inspector {
 	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"), true)
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
-		detector *detector.DetectLine, useOldSeverity bool, kicsComputeNewSimID bool) (*model.Vulnerability, error) {
+		detector *detector.DetectLine, useOldSeverity bool, kicsComputeNewSimID bool,
+		similarityIDTransition map[string]TransitionQueryInfo) (*model.Vulnerability, error) {
 		return &model.Vulnerability{}, nil
 	}
 	ins, err := NewInspector(
@@ -924,6 +927,393 @@ func TestInspector_prepareQueries(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := prepareQueries(tt.args.queries, tt.args.commonLibrary, tt.args.platformLibraries, tt.args.tracker); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("prepareQueries() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestGetSimilarityIDTransitionQueryMap(t *testing.T) {
+	dir := t.TempDir()
+	defer func() {
+		err := os.RemoveAll(dir)
+		require.NoError(t, err, "Failed to remove temporary directory")
+	}()
+
+	yamlContent := `
+similarityIDChangeList:
+  - queryId: 1828a670-5957-4bc5-9974-47da228f75e2
+    queryName: Audit Policy Not Cover Key Security Concerns
+    observations: ""
+    change: 3
+  - queryId: cf34805e-3872-4c08-bf92-6ff7bb0cfadb
+    queryName: Container Running As Root
+    observations: ""
+    change: 5
+`
+
+	filePath := filepath.Join(dir, "transition.yaml")
+	err := os.WriteFile(filePath, []byte(yamlContent), 0644)
+	require.NoError(t, err)
+
+	result := getSimilarityIDTransitionQueryMap(dir)
+
+	require.NotNil(t, result)
+
+	require.Len(t, result, 2)
+	require.Contains(t, result, "1828a670-5957-4bc5-9974-47da228f75e2")
+	require.Contains(t, result, "cf34805e-3872-4c08-bf92-6ff7bb0cfadb")
+	require.Equal(t, TransitionQueryInfo{
+		QueryID:    "1828a670-5957-4bc5-9974-47da228f75e2",
+		QueryName:  "Audit Policy Not Cover Key Security Concerns",
+		Transition: 3,
+	}, result["1828a670-5957-4bc5-9974-47da228f75e2"])
+	require.Equal(t, TransitionQueryInfo{
+		QueryID:    "cf34805e-3872-4c08-bf92-6ff7bb0cfadb",
+		QueryName:  "Container Running As Root",
+		Transition: 5,
+	}, result["cf34805e-3872-4c08-bf92-6ff7bb0cfadb"])
+}
+
+func TestFilterOutDuplicatedHelmVulnerabilities(t *testing.T) {
+	tests := []struct {
+		name            string
+		input           []model.Vulnerability
+		want            []model.Vulnerability
+		expectLogOutput bool
+		expectedLogMsg  string
+	}{
+		{
+			name:            "empty slice",
+			input:           []model.Vulnerability{},
+			want:            []model.Vulnerability{},
+			expectLogOutput: false,
+		},
+		{
+			name: "no Kubernetes vulnerabilities",
+			input: []model.Vulnerability{
+				{
+					ID:           1,
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-1",
+				},
+				{
+					ID:           2,
+					Platform:     "Docker",
+					FileKind:     model.KindDOCKER,
+					SimilarityID: "sim-2",
+				},
+			},
+			want: []model.Vulnerability{
+				{
+					ID:           1,
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-1",
+				},
+				{
+					ID:           2,
+					Platform:     "Docker",
+					FileKind:     model.KindDOCKER,
+					SimilarityID: "sim-2",
+				},
+			},
+			expectLogOutput: false,
+		},
+		{
+			name: "single Kubernetes HELM vulnerability - no duplicates",
+			input: []model.Vulnerability{
+				{
+					ID:           1,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindHELM,
+					SimilarityID: "sim-k8s-1",
+				},
+			},
+			want: []model.Vulnerability{
+				{
+					ID:           1,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindHELM,
+					SimilarityID: "sim-k8s-1",
+				},
+			},
+			expectLogOutput: false,
+		},
+		{
+			name: "Kubernetes YAML vulnerability - should not be filtered",
+			input: []model.Vulnerability{
+				{
+					ID:           1,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-1",
+				},
+				{
+					ID:           2,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-1",
+				},
+			},
+			want: []model.Vulnerability{
+				{
+					ID:           1,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-1",
+				},
+				{
+					ID:           2,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-1",
+				},
+			},
+			expectLogOutput: false,
+		},
+		{
+			name: "duplicated Kubernetes HELM vulnerabilities - should filter HELM",
+			input: []model.Vulnerability{
+				{
+					ID:           1,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-dup",
+				},
+				{
+					ID:           2,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindHELM,
+					SimilarityID: "sim-k8s-dup",
+				},
+			},
+			want: []model.Vulnerability{
+				{
+					ID:           1,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-dup",
+				},
+			},
+			expectLogOutput: false,
+		},
+		{
+			name: "multiple duplicated Kubernetes HELM vulnerabilities",
+			input: []model.Vulnerability{
+				{
+					ID:           1,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-dup-1",
+				},
+				{
+					ID:           2,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindHELM,
+					SimilarityID: "sim-k8s-dup-1",
+				},
+				{
+					ID:           3,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-dup-2",
+				},
+				{
+					ID:           4,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindHELM,
+					SimilarityID: "sim-k8s-dup-2",
+				},
+			},
+			want: []model.Vulnerability{
+				{
+					ID:           1,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-dup-1",
+				},
+				{
+					ID:           3,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-dup-2",
+				},
+			},
+			expectLogOutput: false,
+		},
+		{
+			name: "mixed platforms and duplicates",
+			input: []model.Vulnerability{
+				{
+					ID:           1,
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-tf-1",
+				},
+				{
+					ID:           2,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-dup",
+				},
+				{
+					ID:           3,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindHELM,
+					SimilarityID: "sim-k8s-dup",
+				},
+				{
+					ID:           4,
+					Platform:     "Docker",
+					FileKind:     model.KindDOCKER,
+					SimilarityID: "sim-docker-1",
+				},
+			},
+			want: []model.Vulnerability{
+				{
+					ID:           1,
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-tf-1",
+				},
+				{
+					ID:           2,
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-dup",
+				},
+				{
+					ID:           4,
+					Platform:     "Docker",
+					FileKind:     model.KindDOCKER,
+					SimilarityID: "sim-docker-1",
+				},
+			},
+			expectLogOutput: false,
+		},
+		{
+			name: "more than 2 duplicates - should log warning",
+			input: []model.Vulnerability{
+				{
+					ID:           1,
+					QueryID:      "query-123",
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-triple",
+				},
+				{
+					ID:           2,
+					QueryID:      "query-123",
+					Platform:     "Kubernetes",
+					FileKind:     model.KindHELM,
+					SimilarityID: "sim-k8s-triple",
+				},
+				{
+					ID:           3,
+					QueryID:      "query-123",
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-triple",
+				},
+			},
+			want: []model.Vulnerability{
+				{
+					ID:           1,
+					QueryID:      "query-123",
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-triple",
+				},
+				{
+					ID:           3,
+					QueryID:      "query-123",
+					Platform:     "Kubernetes",
+					FileKind:     model.KindYAML,
+					SimilarityID: "sim-k8s-triple",
+				},
+			},
+			expectLogOutput: true,
+			expectedLogMsg:  "Multiple duplicated vulnerability found for: SimilarityID=sim-k8s-triple QueryID=query-123",
+		},
+		{
+			name: "more than 2 duplicates in Terraform - should not log warning nor filter",
+			input: []model.Vulnerability{
+				{
+					ID:           1,
+					QueryID:      "query-123",
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-triple-tf",
+				},
+				{
+					ID:           2,
+					QueryID:      "query-123",
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-triple-tf",
+				},
+				{
+					ID:           3,
+					QueryID:      "query-123",
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-triple-tf",
+				},
+			},
+			want: []model.Vulnerability{
+				{
+					ID:           1,
+					QueryID:      "query-123",
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-triple-tf",
+				},
+				{
+					ID:           2,
+					QueryID:      "query-123",
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-triple-tf",
+				},
+				{
+					ID:           3,
+					QueryID:      "query-123",
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-triple-tf",
+				},
+			},
+			expectLogOutput: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			var logBuffer bytes.Buffer
+			originalLogger := log.Logger
+			log.Logger = log.Output(&logBuffer)
+			defer func() {
+				log.Logger = originalLogger
+			}()
+
+			result := filterOutDuplicatedHelmVulnerabilities(&tt.input)
+
+			require.Equal(t, len(tt.want), len(*result), "length mismatch")
+
+			for i, expected := range tt.want {
+				actual := (*result)[i]
+				assert.Equal(t, expected.ID, actual.ID, "ID mismatch at index %d", i)
+				assert.Equal(t, expected.Platform, actual.Platform, "Platform mismatch at index %d", i)
+				assert.Equal(t, expected.FileKind, actual.FileKind, "FileKind mismatch at index %d", i)
+				assert.Equal(t, expected.SimilarityID, actual.SimilarityID, "SimilarityID mismatch at index %d", i)
+			}
+
+			logOutput := logBuffer.String()
+			if tt.expectLogOutput {
+				assert.Contains(t, logOutput, tt.expectedLogMsg, "expected log message not found")
+			} else {
+				assert.NotContains(t, logOutput, "Multiple duplicated vulnerability", "unexpected log output")
 			}
 		})
 	}

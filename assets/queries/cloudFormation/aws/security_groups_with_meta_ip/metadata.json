@@ -3,10 +3,11 @@
   "queryName": "Security Groups With Meta IP",
   "severity": "HIGH",
   "category": "Networking and Firewall",
-  "descriptionText": "Security Groups allows 0.0.0.0/0 for all ports and protocols.",
+  "descriptionText": "Security Groups with exposed address should not open to all ports.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
   "platform": "CloudFormation",
   "descriptionID": "868a9ec5",
   "cloudProvider": "aws",
-  "cwe": "668"
+  "cwe": "668",
+  "riskScore": "7.7"
 }

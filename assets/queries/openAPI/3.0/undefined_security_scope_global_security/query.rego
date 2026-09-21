@@ -9,7 +9,7 @@ CxPolicy[result] {
 
 	not is_array(doc.security)
 
-	scope := doc.security[schemeKey][_]
+	scope := doc.security[schemeKey][scopeIdx]
 	openapi_lib.check_scheme(doc, schemeKey, scope, "3.0")
 
 	result := {
@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("scope %s should be defined on 'securityShemes'", [scope]),
 		"keyActualValue": sprintf("scope %s is not defined on 'securityShemes'", [scope]),
-		"searchLine": common_lib.build_search_line(["security", schemeKey], []),
+		"searchLine": common_lib.build_search_line(["security", schemeKey, scopeIdx], []),
 	}
 }
 
@@ -28,7 +28,7 @@ CxPolicy[result] {
 
 	is_array(doc.security)
 
-	scope := doc.security[s][schemeKey][_]
+	scope := doc.security[s][schemeKey][scopeIdx]
 	openapi_lib.check_scheme(doc, schemeKey, scope, "3.0")
 
 	result := {
@@ -37,6 +37,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("scope %s should be defined on 'securityShemes'", [scope]),
 		"keyActualValue": sprintf("scope %s is not defined on 'securityShemes'", [scope]),
-		"searchLine": common_lib.build_search_line(["security", s, schemeKey], []),
+		"searchLine": common_lib.build_search_line(["security", s, schemeKey, scopeIdx], []),
 	}
 }

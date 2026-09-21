@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive3_1.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive3_2.tf"
+  }
+]

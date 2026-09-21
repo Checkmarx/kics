@@ -1,0 +1,25 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "MySGv2": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "SG v2 with empty egress inline",
+                "VpcId": "vpc-123456",
+                "SecurityGroupEgress": []
+            }
+        },
+        "MyALB": {
+            "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+            "Properties": {
+                "SecurityGroups": [
+                    "MySGv2"
+                ],
+                "Subnets": [
+                    "subnet-123",
+                    "subnet-456"
+                ]
+            }
+        }
+    }
+}

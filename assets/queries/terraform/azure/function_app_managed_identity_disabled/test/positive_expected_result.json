@@ -2,7 +2,16 @@
   {
     "queryName": "Function App Managed Identity Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive1.tf"
+    "line": 1
+  },
+  {
+    "queryName": "Function App Managed Identity Disabled",
+    "severity": "MEDIUM",
+    "line": 8
+  },
+  {
+    "queryName": "Function App Managed Identity Disabled",
+    "severity": "MEDIUM",
+    "line": 15
   }
 ]

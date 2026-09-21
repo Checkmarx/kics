@@ -5,16 +5,17 @@ import (
 	"path/filepath"
 	"regexp"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/comment"
-	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
-	"github.com/Checkmarx/kics/v2/pkg/parser/utils"
-	masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	ctyjson "github.com/zclconf/go-cty/cty/json"
+
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/comment"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
+	"github.com/Checkmarx/kics/v2/pkg/parser/utils"
+	masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
 // RetriesDefaultValue is default number of times a parser will retry to execute
@@ -25,9 +26,11 @@ type Converter func(file *hcl.File, inputVariables converter.VariableMap) (model
 
 // Parser struct that contains the function to parse file and the number of retries if something goes wrong
 type Parser struct {
-	convertFunc       Converter
-	numOfRetries      int
-	terraformVarsPath string
+	convertFunc          Converter
+	numOfRetries         int
+	terraformVarsPath    string
+	scanSourcePaths      []string
+	strictSourceResolver bool
 }
 
 // NewDefault initializes a parser with Parser default values
@@ -39,9 +42,11 @@ func NewDefault() *Parser {
 }
 
 // NewDefaultWithVarsPath initializes a parser with the default values using a variables path
-func NewDefaultWithVarsPath(terraformVarsPath string) *Parser {
+func NewDefaultWithVarsPath(terraformVarsPath string, scanSourcePaths []string, secureResolver bool) *Parser {
 	parser := NewDefault()
 	parser.terraformVarsPath = terraformVarsPath
+	parser.scanSourcePaths = scanSourcePaths
+	parser.strictSourceResolver = secureResolver
 	return parser
 }
 
@@ -54,22 +59,22 @@ func (p *Parser) Resolve(fileContent []byte, filename string, _ bool, _ int) ([]
 			masterUtils.HandlePanic(r, errMessage)
 		}
 	}()
-	getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath)
+	getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath, p.scanSourcePaths, p.strictSourceResolver)
 	getDataSourcePolicy(filepath.Dir(filename))
 	return fileContent, nil
 }
 
-func processContent(elements model.Document, content, path string) {
+func processContent(elements model.Document, content, path string, validBases []string, strictSourceResolution bool) {
 	var certInfo map[string]interface{}
 	if content != "" {
-		certInfo = utils.AddCertificateInfo(path, content)
+		certInfo = utils.AddCertificateInfo(path, content, validBases, strictSourceResolution)
 		if certInfo != nil {
 			elements["certificate_body"] = certInfo
 		}
 	}
 }
 
-func processElements(elements model.Document, path string) {
+func processElements(elements model.Document, path string, validBases []string, strictSourceResolution bool) {
 	for k, v3 := range elements { // resource elements
 		if k != "certificate_body" {
 			continue
@@ -77,29 +82,29 @@ func processElements(elements model.Document, path string) {
 		switch value := v3.(type) {
 		case string:
 			content := utils.CheckCertificate(value)
-			processContent(elements, content, path)
+			processContent(elements, content, path, validBases, strictSourceResolution)
 		case ctyjson.SimpleJSONValue:
 			content := utils.CheckCertificate(value.AsString())
-			processContent(elements, content, path)
+			processContent(elements, content, path, validBases, strictSourceResolution)
 		}
 	}
 }
 
-func processResourcesElements(resourcesElements model.Document, path string) error {
+func processResourcesElements(resourcesElements model.Document, path string, validBases []string, strictSourceResolution bool) error {
 	for _, v2 := range resourcesElements {
 		switch t := v2.(type) {
 		case []interface{}:
 			return errors.New("failed to process resources")
 		case interface{}:
 			if elements, ok := t.(model.Document); ok {
-				processElements(elements, path)
+				processElements(elements, path, validBases, strictSourceResolution)
 			}
 		}
 	}
 	return nil
 }
 
-func processResources(doc model.Document, path string) error {
+func processResources(doc model.Document, path string, validBases []string, strictSourceResolution bool) error {
 	var resourcesElements model.Document
 
 	defer func() {
@@ -114,7 +119,7 @@ func processResources(doc model.Document, path string) error {
 		case []interface{}: // support the case of nameless resources - where we get a list of resources
 			for _, value := range t {
 				resourcesElements = value.(model.Document)
-				err := processResourcesElements(resourcesElements, path)
+				err := processResourcesElements(resourcesElements, path, validBases, strictSourceResolution)
 				if err != nil {
 					return err
 				}
@@ -122,7 +127,7 @@ func processResources(doc model.Document, path string) error {
 
 		case interface{}:
 			resourcesElements = t.(model.Document)
-			err := processResourcesElements(resourcesElements, path)
+			err := processResourcesElements(resourcesElements, path, validBases, strictSourceResolution)
 			if err != nil {
 				return err
 			}
@@ -131,7 +136,7 @@ func processResources(doc model.Document, path string) error {
 	return nil
 }
 
-func addExtraInfo(json []model.Document, path string) ([]model.Document, error) {
+func addExtraInfo(json []model.Document, path string, validBases []string, strictSourceResolution bool) ([]model.Document, error) {
 	// handle panic during resource processing
 	defer func() {
 		if r := recover(); r != nil {
@@ -141,7 +146,7 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
 	}()
 	for _, documents := range json { // iterate over documents
 		if resources, ok := documents["resource"].(model.Document); ok {
-			err := processResources(resources, path)
+			err := processResources(resources, path, validBases, strictSourceResolution)
 			if err != nil {
 				return []model.Document{}, err
 			}
@@ -187,7 +192,7 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, er
 	linesToIgnore := comment.GetIgnoreLines(ignore, file.Body.(*hclsyntax.Body))
 
 	fc, parseErr := p.convertFunc(file, inputVariableMap)
-	json, err := addExtraInfo([]model.Document{fc}, path)
+	json, err := addExtraInfo([]model.Document{fc}, path, p.scanSourcePaths, p.strictSourceResolver)
 	if err != nil {
 		return json, []int{}, errors.Wrap(err, "failed terraform parse")
 	}

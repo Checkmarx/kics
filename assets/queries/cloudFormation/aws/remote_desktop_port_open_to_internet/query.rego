@@ -1,41 +1,30 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
-	docs := input.document[i]
-	[path, Resources] := walk(docs)
-	resource := Resources[name]
+	resource := input.document[i].Resources[sec_group_name]
 	resource.Type == "AWS::EC2::SecurityGroup"
 
-	rule := resource.Properties.SecurityGroupIngress[index]
+	ingresses_with_names := cf_lib.search_for_standalone_ingress(sec_group_name, input.document[y])
 
-	entireNetwork(rule)
-	isTCP(rule.IpProtocol)
-	rule.FromPort <= 3389
-	rule.ToPort >= 3389
+	ingress_list := array.concat(ingresses_with_names.ingress_list, common_lib.get_array_if_exists(resource.Properties,"SecurityGroupIngress"))
+	ingress := ingress_list[ing_index]
+
+	cf_lib.entireNetwork(ingress)
+	cf_lib.isTCP_and_port_exposed(ingress, 3389)
+
+	results := cf_lib.get_search_values_for_ingress_resources(ing_index, sec_group_name, ingresses_with_names.names, y, i)
 
 	result := {
-		"documentId": input.document[i].id,
-		"resourceType": resource.Type,
-		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties.SecurityGroupIngress", [cf_lib.getPath(path), name]),
+		"documentId": input.document[results.doc_index].id,
+		"resourceType": results.type,
+		"resourceName": cf_lib.get_resource_name(resource, sec_group_name),
+		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] should not open the remote desktop port (3389)", [name, index]),
-		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] opens the remote desktop port (3389)", [name, index]),
+		"keyExpectedValue": sprintf("'%s' should not open the remote desktop port (3389)", [results.searchKey]),
+		"keyActualValue": sprintf("'%s' opens the remote desktop port (3389)", [results.searchKey]),
+		"searchLine": results.searchLine,
 	}
 }
-
-entireNetwork(rule) {
-	rule.CidrIp == "0.0.0.0/0"
-}
-
-entireNetwork(rule) {
-	rule.CidrIpv6 == "::/0"
-}
-
-isTCP("tcp") = true
-
-isTCP("-1") = true
-
-isTCP("6") = true

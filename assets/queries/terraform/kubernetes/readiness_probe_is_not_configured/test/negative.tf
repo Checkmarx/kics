@@ -1,4 +1,4 @@
-resource "kubernetes_pod" "test2" {
+resource "kubernetes_pod" "test3" {
   metadata {
     name = "terraform-example"
   }

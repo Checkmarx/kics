@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive6.tf"
+  }
+]

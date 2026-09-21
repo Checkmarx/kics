@@ -1,50 +1,50 @@
 [
   {
     "severity": "MEDIUM",
-    "line": 10,
+    "line": 11,
     "fileName": "positive1.yaml",
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range"
   },
   {
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
     "severity": "MEDIUM",
-    "line": 10,
+    "line": 15,
     "fileName": "positive1.yaml"
   },
   {
     "severity": "MEDIUM",
-    "line": 27,
+    "line": 28,
     "fileName": "positive1.yaml",
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range"
   },
   {
     "severity": "MEDIUM",
-    "line": 27,
+    "line": 32,
     "fileName": "positive1.yaml",
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range"
   },
   {
-    "line": 6,
+    "line": 8,
     "fileName": "positive2.json",
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
     "severity": "MEDIUM"
   },
   {
     "severity": "MEDIUM",
-    "line": 6,
+    "line": 14,
     "fileName": "positive2.json",
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range"
   },
   {
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
     "severity": "MEDIUM",
-    "line": 37,
+    "line": 39,
     "fileName": "positive2.json"
   },
   {
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
     "severity": "MEDIUM",
-    "line": 37,
+    "line": 45,
     "fileName": "positive2.json"
   }
 ]

@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Build Process
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/694.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/694.html')">694</a>
+-   **Risk score:** <span style="color:#edd57e">3.0</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/same_alias_in_different_froms)
 
 ### Description
@@ -29,7 +30,7 @@ Different FROMS cant have the same alias defined<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```dockerfile title="Positive test num. 1 - dockerfile file" hl_lines="4"
+```dockerfile title="Positive test num. 1 - dockerfile file" hl_lines="4 7"
 FROM baseImage
 RUN Test
 
@@ -38,6 +39,17 @@ RUN stuff
 
 FROM debian:jesse1 as build
 RUN more_stuff
+
+```
+```dockerfile title="Positive test num. 2 - dockerfile file" hl_lines="4 7"
+from baseImage
+run Test
+
+from debian:jesse2 as build
+run stuff
+
+from debian:jesse1 as build
+run more_stuff
 
 ```
 
@@ -51,3 +63,12 @@ FROM debian:jesse1 as another-alias
 RUN more_stuff
 
 ```
+```dockerfile title="Negative test num. 2 - dockerfile file"
+from debian:jesse1 as build
+run stuff
+
+from debian:jesse1 as another-alias
+run more_stuff
+
+```
+

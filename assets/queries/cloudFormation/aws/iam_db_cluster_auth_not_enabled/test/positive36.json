@@ -1,0 +1,25 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "sample": {
+            "Type": "AWS::RDS::DBCluster",
+            "Properties": {
+                "MasterUsername": {
+                    "Ref": "DBUsername"
+                },
+                "MasterUserPassword": {
+                    "Ref": "DBPassword"
+                },
+                "DBClusterIdentifier": {
+                    "Ref": "SourceDBInstanceIdentifier"
+                },
+                "Engine": "mariadb",
+                "EngineVersion": "11.4",
+                "DBClusterParameterGroupName": "default.mariadb",
+                "EnableCloudwatchLogsExports": [
+                    "mariadb"
+                ]
+            }
+        }
+    }
+}

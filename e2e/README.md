@@ -2,10 +2,15 @@
 
 The purpose of this docs is to describe KICS' E2E test suite
 
+## Prerequisites
+Before running any commands on this guide, make sure the following technologies are installed and set up on your system:
+- Node.js 
+- Go (Golang) 1.16 or higher
+- Docker engine
+
 ## Getting Started
 
 Before running the tests, you must start the script server (NodeJS) and keep it running.
-_Note: If you don't run this script, only the tests "031" and "052" must fail._
 
 - Before running tests:
 ```bash
@@ -15,6 +20,8 @@ npm start
 ```
 
 - **Running E2E Tests from binary (faster) (used in dev/local):**
+
+_Note: for Windows only the test "092" must fail and, for Linux, only the test "051" should fail._
 
 Prepare
 ```bash
@@ -35,6 +42,8 @@ go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
 
 - **Running E2E Tests from docker (slower) (used in CI):**
 
+_Note: when running the tests from docker, only the tests "031" and "051" should fail_.
+
 Prepare
 ```bash
 cd kics_repository_folder
@@ -54,6 +63,29 @@ SET "E2E_KICS_DOCKER=kics:e2e-tests" (or set the variable using environment vari
 go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
 ```
 
+## Running Selected Tests (optional)
+
+Selecting a subset of E2E test cases is fully **optional** — by default, every registered test runs as before. To narrow the run, set the `E2E_TESTS` environment variable to a comma-separated list of test IDs.
+
+Each entry may be the numeric id (`106`), the full id (`E2E-CLI-106`), or the bracketed form (`[E2E-CLI-106]`) — they are all normalized to the `[E2E-CLI-NNN]` tag carried in the test case `Name`. Cases whose name does not contain any of the selected tags are silently skipped (they are not registered as subtests). When the env var is unset or blank, no filter is applied.
+
+Run a single test:
+```bash
+E2E_TESTS=106 go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
+```
+
+Run multiple tests:
+```bash
+E2E_TESTS=071,094,106 go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
+```
+
+Run selected tests in a Docker run (CI):
+```bash
+E2E_KICS_DOCKER=kics:e2e-tests E2E_TESTS=106 go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
+```
+
+You can combine `E2E_TESTS` with Go's built-in `-run` flag if you need a finer match — `E2E_TESTS` filters at the test-case level, while `-run` matches the rendered subtest name (e.g. `_0`, `_1`).
+
 ## Test Structure
 
 Test case main structure 
@@ -71,7 +103,6 @@ var tests = []struct {
 Test case args structure
 
 ```go
-
 type cmdArgs []string
 
 type args struct {

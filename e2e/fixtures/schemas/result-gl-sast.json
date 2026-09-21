@@ -61,7 +61,7 @@
                         }
                     }
                 }
-            },   
+            },
                 "start_time": {
                     "type": "string",
                     "minLength": 1
@@ -156,6 +156,9 @@
                     "cwe":{
                         "type": "string",
                         "minLength": 0
+                    },
+                    "riskScore": {
+                        "type": "string"
                     },
                     "links": {
                         "type": "array",

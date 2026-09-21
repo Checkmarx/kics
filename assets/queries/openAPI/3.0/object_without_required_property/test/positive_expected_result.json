@@ -80,7 +80,7 @@
   {
     "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
-    "line": 53,
+    "line": 55,
     "filename": "positive7.json"
   },
   {
@@ -98,7 +98,7 @@
   {
     "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
-    "line": 31,
+    "line": 32,
     "filename": "positive8.yaml"
   },
   {

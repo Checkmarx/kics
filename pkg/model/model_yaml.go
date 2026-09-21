@@ -1,19 +1,25 @@
 package model
 
 import (
-	json "encoding/json"
+	"encoding/json"
 	"errors"
 	"path/filepath"
 	"strconv"
 
-	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
+
+	"github.com/Checkmarx/kics/v2/pkg/utils"
+)
+
+const (
+	mergeKey = "<<"
 )
 
 // UnmarshalYAML is a custom yaml parser that places line information in the payload
 func (m *Document) UnmarshalYAML(value *yaml.Node) error {
-	dpc := unmarshal(value)
+	visited := make(map[*yaml.Node]interface{})
+	dpc := unmarshalWithVisited(value, visited)
 	if mapDcp, ok := dpc.(map[string]interface{}); ok {
 		// set line information for root level objects
 		mapDcp["_kics_lines"] = getLines(value, 0)
@@ -42,7 +48,8 @@ func GetIgnoreLines(file *FileMetadata) []int {
 		}
 
 		if node.Kind == 1 && len(node.Content) == 1 {
-			_ = unmarshal(node.Content[0])
+			visited := make(map[*yaml.Node]interface{})
+			_ = unmarshalWithVisited(node.Content[0], visited)
 			ignoreLines = NewIgnore.GetLines()
 		}
 	}
@@ -56,12 +63,18 @@ func GetIgnoreLines(file *FileMetadata) []int {
 	SequenceNode -> array
 	ScalarNode -> generic (except for arrays, objects and maps)
 	MappingNode -> map
-
 */
-// unmarshal is the function that will parse the yaml elements and call the functions needed
-// to place their line information in the payload
-func unmarshal(val *yaml.Node) interface{} {
+
+// unmarshalWithVisited is the function that will parse the yaml elements and call the functions needed
+// to place their line information in the payload. It tracks visited nodes to prevent infinite recursion.
+func unmarshalWithVisited(val *yaml.Node, visited map[*yaml.Node]interface{}) interface{} { //nolint:gocyclo
+	// Check if we've already visited this node to prevent infinite recursion
+	if result, found := visited[val]; found {
+		return result
+	}
+
 	tmp := make(map[string]interface{})
+	visited[val] = tmp
 	ignoreCommentsYAML(val)
 
 	// if Yaml Node is an Array than we are working with ansible
@@ -70,11 +83,13 @@ func unmarshal(val *yaml.Node) interface{} {
 	case yaml.SequenceNode:
 		contentArray := make([]interface{}, 0)
 		for _, contentEntry := range val.Content {
-			contentArray = append(contentArray, unmarshal(contentEntry))
+			contentArray = append(contentArray, unmarshalWithVisited(contentEntry, visited))
 		}
 		tmp["playbooks"] = contentArray
 	case yaml.ScalarNode:
-		return scalarNodeResolver(val)
+		result := scalarNodeResolver(val)
+		visited[val] = result
+		return result
 	default:
 		for i := 0; i < len(val.Content); i += 2 {
 			if val.Content[i].Kind == yaml.ScalarNode {
@@ -84,7 +99,7 @@ func unmarshal(val *yaml.Node) interface{} {
 				// in case value iteration is a map
 				case yaml.MappingNode:
 					// unmarshall map value and get its line information
-					tt := unmarshal(val.Content[i+1]).(map[string]interface{})
+					tt := unmarshalWithVisited(val.Content[i+1], visited).(map[string]interface{})
 					tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
 					tmp[val.Content[i].Value] = tt
 				// in case value iteration is an array
@@ -92,38 +107,75 @@ func unmarshal(val *yaml.Node) interface{} {
 					contentArray := make([]interface{}, 0)
 					// unmarshall each iteration of the array
 					for _, contentEntry := range val.Content[i+1].Content {
-						contentArray = append(contentArray, unmarshal(contentEntry))
+						contentArray = append(contentArray, unmarshalWithVisited(contentEntry, visited))
 					}
 					tmp[val.Content[i].Value] = contentArray
 				case yaml.AliasNode:
-					if tt, ok := unmarshal(val.Content[i+1].Alias).(map[string]interface{}); ok {
-						tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
-						utils.MergeMaps(tmp, tt)
-					}
-					if v, ok := unmarshal(val.Content[i+1].Alias).(string); ok {
-						tmp[val.Content[i].Value] = v
+					aliasTarget := val.Content[i+1].Alias
+					if aliasTarget != nil {
+						if val.Content[i].Value == mergeKey {
+							// merge key: spreads aliased keys into current level
+							// example: merged: { <<: *default, key3: value3 }
+							if tt, ok := unmarshalWithVisited(aliasTarget, visited).(map[string]interface{}); ok {
+								for k, v := range tt {
+									if k != "_kics_lines" {
+										tmp[k] = v
+									}
+								}
+							}
+						} else {
+							// regular alias: assigns entire aliased object to a key
+							// example: myfield: *default
+							aliasValue := unmarshalWithVisited(aliasTarget, visited)
+							if tt, ok := aliasValue.(map[string]interface{}); ok {
+								ttCopy := make(map[string]interface{})
+								for k, v := range tt {
+									ttCopy[k] = v
+								}
+								ttCopy["_kics_lines"] = getLines(aliasTarget, val.Content[i].Line)
+								tmp[val.Content[i].Value] = ttCopy
+							} else {
+								tmp[val.Content[i].Value] = aliasValue
+							}
+						}
 					}
 				}
 			}
 		}
 	}
+	visited[val] = tmp
 	return tmp
 }
 
 // getLines creates the map containing the line information for the yaml Node
 // def is the line to be used as "_kics__default"
 func getLines(val *yaml.Node, def int) map[string]*LineObject {
+	visited := make(map[*yaml.Node]map[string]*LineObject)
+	return getLinesWithVisited(val, def, visited)
+}
+
+// getLinesWithVisited creates the map containing the line information for the yaml Node
+// with visited node tracking to prevent infinite recursion on circular aliases
+func getLinesWithVisited(val *yaml.Node, def int, visited map[*yaml.Node]map[string]*LineObject) map[string]*LineObject { //nolint:gocyclo
+	// check if we've already visited this node
+	if result, found := visited[val]; found {
+		return result
+	}
+
 	lineMap := make(map[string]*LineObject)
+	visited[val] = lineMap
+
+	// if yaml Node is an Array use func getSeqLines
+	if val.Kind == yaml.SequenceNode {
+		result := getSeqLinesWithVisited(val, def, visited)
+		visited[val] = result
+		return result
+	}
 
 	// line information map
 	lineMap["_kics__default"] = &LineObject{
 		Line: def,
 		Arr:  []map[string]*LineObject{},
-	}
-
-	// if yaml Node is an Array use func getSeqLines
-	if val.Kind == yaml.SequenceNode {
-		return getSeqLines(val, def)
 	}
 
 	// iterate two by two, since first iteration is the key and the second is the value
@@ -138,8 +190,21 @@ func getLines(val *yaml.Node, def int) map[string]*LineObject {
 				} else if contentEntry.Kind == yaml.MappingNode && len(contentEntry.Content) > 0 {
 					defaultLine = contentEntry.Content[0].Line
 				}
-				lineArr = append(lineArr, getLines(contentEntry, defaultLine))
+				lineArr = append(lineArr, getLinesWithVisited(contentEntry, defaultLine, visited))
 			}
+		}
+
+		// merge key (<<: *alias): merge line information from aliased node
+		if val.Content[i].Value == mergeKey && val.Content[i+1].Kind == yaml.AliasNode {
+			if val.Content[i+1].Alias != nil {
+				aliasLines := getLinesWithVisited(val.Content[i+1].Alias, val.Content[i+1].Alias.Line, visited)
+				for key, lineObj := range aliasLines {
+					if key != "_kics__default" {
+						lineMap[key] = lineObj
+					}
+				}
+			}
+			continue
 		}
 
 		// line information map of each key of the yaml Node
@@ -149,18 +214,19 @@ func getLines(val *yaml.Node, def int) map[string]*LineObject {
 		}
 	}
 
+	visited[val] = lineMap
 	return lineMap
 }
 
-// getSeqLines iterates through the elements of an Array
-// creating a map with each iteration lines information
-func getSeqLines(val *yaml.Node, def int) map[string]*LineObject {
+// getSeqLinesWithVisited iterates through the elements of an Array
+// creating a map with each iteration lines information, with visited node tracking
+func getSeqLinesWithVisited(val *yaml.Node, def int, visited map[*yaml.Node]map[string]*LineObject) map[string]*LineObject {
 	lineMap := make(map[string]*LineObject)
 	lineArr := make([]map[string]*LineObject, 0)
 
 	// get line information slice of every element in the array
 	for _, cont := range val.Content {
-		lineArr = append(lineArr, getLines(cont, cont.Line))
+		lineArr = append(lineArr, getLinesWithVisited(cont, cont.Line, visited))
 	}
 
 	// create line information of array with its line and elements line information
@@ -178,7 +244,7 @@ func scalarNodeResolver(val *yaml.Node) interface{} {
 	case "!!bool":
 		transformed = transformBoolScalarNode(val.Value)
 	case "!!int":
-		v, err := strconv.Atoi(val.Value)
+		v, err := strconv.ParseInt(val.Value, 0, 64)
 		if err != nil {
 			log.Error().Msgf("failed to convert integer in yaml parser")
 			return val.Value

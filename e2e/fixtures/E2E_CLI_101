@@ -1,0 +1,19 @@
+Error: unknown argument(s) for --type: Bicep
+valid arguments:
+  Ansible
+  AzureResourceManager
+  Buildah
+  CICD
+  CloudFormation
+  Crossplane
+  DockerCompose
+  Dockerfile
+  GRPC
+  GoogleDeploymentManager
+  Knative
+  Kubernetes
+  OpenAPI
+  Pulumi
+  ServerlessFW
+  Terraform
+{{.ScanHelp}}

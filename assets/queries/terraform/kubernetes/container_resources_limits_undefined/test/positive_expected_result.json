@@ -7,7 +7,7 @@
   {
     "queryName": "Container Resources Limits Undefined",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 42
   },
   {
     "queryName": "Container Resources Limits Undefined",

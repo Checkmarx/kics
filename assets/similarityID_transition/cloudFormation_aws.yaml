@@ -1,0 +1,117 @@
+similarityIDChangeList:
+    - queryId: 783860a3-6dca-4c8b-81d0-7b62769ccbca
+      queryName: API Gateway Deployment Without API Gateway UsagePlan Associated
+      observations: the second policy was always true whenever the first one was
+      change: 4
+    - queryId: 7f8f1b60-43df-4c28-aa21-fb836dbd8071
+      queryName: API Gateway Stage Without API Gateway UsagePlan Associated
+      observations: the second policy was always true whenever the first one was
+      change: 4
+    - queryId: 80d45af4-4920-4236-a56e-b7ef419d1941
+      queryName: API Gateway V2 Stage Access Logging Settings Not Defined
+      observations: ""
+      change: 5
+    - queryId: 65d07da5-9af5-44df-8983-52d2e6f24c44
+      queryName: CloudTrail Not Integrated With CloudWatch
+      observations: ""
+      change: 5
+    - queryId: 494b03d3-bf40-4464-8524-7c56ad0700ed
+      queryName: EC2 Sensitive Port Is Publicly Exposed
+      observations: The query did not function correctly when IpProtocol was set to "-1", and it also attempted to handle an invalid case where the value was "all"
+      change: 1
+    - queryId: f4c9b5f5-68b8-491f-9e48-4f96644a1d51
+      queryName: ECS Task Definition Invalid CPU or Memory
+      observations: The query was not distinguishing between ContainerDefinitions.
+      change: 4
+    - queryId: 80908a75-586b-4c61-ab04-490f4f4525b8
+      queryName: ELB Without Secure Protocol
+      observations: The existing query would work without changes, but I added another policy for when a protocol doesnt exist, so the searchLine works.
+      change: 3
+    - queryId: 43356255-495d-4148-ad8d-f6af5eac09dd
+      queryName: GameLift Fleet EC2 InboundPermissions With Port Range
+      observations: ""
+      change: 4
+    - queryId: ddfc4eaa-af23-409f-b96c-bf5c45dc4daa
+      queryName: HTTP Port Open To Internet
+      observations: Excluding the incorrect logic, the similarityID aspect appears to be correct. I've fixed the faulty logic - previously, it would almost always flag as long as the IpProtocol was tcp and open to the entire network
+      change: 1
+    - queryId: 7f65be75-90ab-4036-8c2a-410aef7bb650
+      queryName: Kinesis SSE Not Configured
+      observations: ""
+      change: 3
+    - queryId: a0ae0a4e-712b-4115-8112-51b9eeed9d69
+      queryName: Lambda Functions With Full Privileges
+      observations: ""
+      change: 1
+    - queryId: 3609d27c-3698-483a-9402-13af6ae80583
+      queryName: S3 Bucket With Unsecured CORS Rule
+      observations: searchLine is pointing to the wrong location in the json example. It is meant to point to the start of the array
+      change: 4
+    - queryId: ee464fc2-54a6-4e22-b10a-c6dcd2474d0c
+      queryName: Security Group Egress With All Protocols
+      observations: ""
+      change: 4
+    - queryId: a3e4e39a-e5fc-4ee9-8cf5-700febfa86dd
+      queryName: Security Group Ingress Has CIDR Not Recommended
+      observations: ""
+      change: 4
+    - queryId: 1a427b25-2e9e-4298-9530-0499a55e736b
+      queryName: Security Group Ingress With All Protocols
+      observations: ""
+      change: 4
+    - queryId: 87482183-a8e7-4e42-a566-7a23ec231c16
+      queryName: Security Group Ingress With Port Range
+      observations: ""
+      change: 4
+    - queryId: 5e6c9c68-8a82-408e-8749-ddad78cbb9c5
+      queryName: Security Group Rule Without Description
+      observations: ""
+      change: 4
+    - queryId: 4a1e6b34-1008-4e61-a5f2-1f7c276f8d14
+      queryName: Unrestricted Security Group Ingress
+      observations: It should have worked even before adding the missing searchLines
+      change: 4
+    - queryId: b4d9c12b-bfba-4aeb-9cb8-2358546d8041
+      queryName: Vulnerable Default SSL Certificate
+      observations: ""
+      change: 5
+    - queryId: 9564406d-e761-4e61-b8d7-5926e3ab8e79
+      queryName: DB Security Group With Public Scope
+      observations: The query was not pointing to the specific ingress inside the SecurityGroupIngress array
+      change: 1
+    - queryId: 78055456-f670-4d2e-94d5-392d1cf4f5e4
+      queryName: ELB Sensitive Port Is Exposed To Entire Network
+      observations: The query was not pointing to the specific ingress inside the SecurityGroupIngress array
+      change: 1
+    - queryId: c9846969-d066-431f-9b34-8c4abafe422a
+      queryName: Remote Desktop Port Open To Internet
+      observations: Unlike the similar 'HTTP Port Open To Internet' query, it was not poiting to the specific ingress inside the SecurityGroupIngress array
+      change: 1
+    - queryId: 66f2d8f9-a911-4ced-ae27-34f09690bb2c
+      queryName: Security Groups Allows Unrestricted Outbound Traffic
+      observations: Although the searcKey was correct some engine makes it point properly only with the searchKey, which was missing
+      change: 1
+    - queryId: cdbb0467-2957-4a77-9992-7b55b29df7b7
+      queryName: Security Groups With Exposed Admin Ports
+      observations: It was not poiting to the specific ingress inside the SecurityGroupIngress array
+      change: 1
+    - queryId: 1cc2fbd7-816c-4fbf-ad6d-38a4afa4312a
+      queryName: Security Group Egress CIDR Open To World
+      observations: SearchValue cannot reach field but searchLine can and was added changing results
+      change: 4
+    - queryId: dae9c373-8287-462f-8746-6f93dad93610
+      queryName: Security Group Egress With Port Range
+      observations: SearchValue cannot reach field but searchLine can and was added changing results
+      change: 4
+    - queryId: adcd0082-e90b-4b63-862b-21899f6e6a48
+      queryName: Security Groups With Meta IP
+      observations: Was pointing to whole array instead of object inside the array, also added searchLine
+      change: 1
+    - queryId: 6e856af2-62d7-4ba2-adc1-73b62cef9cc1
+      queryName: Security Group With Unrestricted Access To SSH
+      observations: Pointed to a whole array instead of the relevant object inside
+      change: 1
+    - queryId: 0104165b-02d5-426f-abc9-91fb48189899
+      queryName: DB Security Group Open To Large Scope
+      observations: Pointed to the whole array when it could/should point to a specific field of an object inside the array
+      change: 1

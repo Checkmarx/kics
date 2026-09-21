@@ -73,6 +73,7 @@ func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error {
 		severity := string(queries[i].Severity)
 		platform := queries[i].Platform
 		cwe := queries[i].CWE
+		riskScore := queries[i].RiskScore
 		category := queries[i].Category
 		description := queries[i].Description
 		var err error
@@ -120,6 +121,9 @@ func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error {
 		})
 		m.Row(colFour, func() {
 			createQueryEntryMetadataField(m, "Cwe", cwe, defaultTextSize)
+		})
+		m.Row(colFour, func() {
+			createQueryEntryMetadataField(m, "Risk Score", riskScore, defaultTextSize)
 		})
 		m.Row(colSix, func() {
 			createQueryEntryMetadataField(m, "Category", category, defaultTextSize)

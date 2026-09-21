@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_checkpoints' %s set to 'on'", [val_type]),
 		"keyActualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_checkpoints' set to 'off'",
-		"searchLine": common_lib.build_search_line(parentPath, ["resources", "properties", "value"]),
+		"searchLine": common_lib.build_search_line(array.concat(parentPath,childPath), ["resources", "properties", "value"]),
 	}
 }
 
@@ -42,7 +42,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_checkpoints' set to 'on'",
 		"keyActualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' 'log_checkpoints' is not defined",
-		"searchLine": common_lib.build_search_line(parentPath, ["resources", "name"]),
+		"searchLine": common_lib.build_search_line(array.concat(parentPath,childPath), ["resources", "name"]),
 	}
 }
 

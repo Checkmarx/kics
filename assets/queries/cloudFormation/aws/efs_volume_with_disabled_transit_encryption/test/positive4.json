@@ -1,0 +1,31 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "A sample template",
+    "Resources": {
+      "taskdefinition": {
+        "Type": "AWS::ECS::TaskDefinition",
+        "Properties": {
+            "ContainerDefinitions": [
+                {
+                    "Name": "container-using-efs",
+                    "Image": "amazonlinux:2",
+                    "EntryPoint": [
+                        "sh",
+                        "-c"
+                    ],
+                    "Command": [
+                        "ls -la /mount/efs"
+                    ],
+                    "MountPoints": [
+                        {
+                            "SourceVolume": "myEfsVolume",
+                            "ContainerPath": "/mount/efs",
+                            "ReadOnly": true
+                        }
+                    ]
+                }
+            ]
+        }
+      }
+    }
+  }

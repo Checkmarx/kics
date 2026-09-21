@@ -9,12 +9,14 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
+	"golang.org/x/exp/maps"
+
 	"github.com/Checkmarx/kics/v2/assets"
 	"github.com/Checkmarx/kics/v2/internal/constants"
 	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
 	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
 )
 
 // FilesystemSource this type defines a struct with a path to a filesystem source of queries
@@ -70,19 +72,16 @@ func NewFilesystemSource(source, types, cloudProviders []string, libraryPath str
 
 // ListSupportedPlatforms returns a list of supported platforms
 func ListSupportedPlatforms() []string {
-	keys := make([]string, len(constants.AvailablePlatforms))
-	i := 0
-	for k := range constants.AvailablePlatforms {
-		keys[i] = k
-		i++
-	}
-	sort.Strings(keys)
-	return keys
+	platforms := maps.Keys(constants.AvailablePlatforms)
+	sort.Strings(platforms)
+	return platforms
 }
 
 // ListSupportedCloudProviders returns a list of supported cloud providers
 func ListSupportedCloudProviders() []string {
-	return []string{"alicloud", "aws", "azure", "gcp", "nifcloud", "tencentcloud"}
+	cloudProviders := maps.Keys(constants.AvailableCloudProviders)
+	sort.Strings(cloudProviders)
+	return cloudProviders
 }
 
 func getLibraryInDir(platform, libraryDirPath string) string {
@@ -159,7 +158,10 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (RegoLibraries, erro
 
 	embeddedLibraryData, errGettingEmbeddedLibraryCode := assets.GetEmbeddedLibraryData(strings.ToLower(platform))
 	if errGettingEmbeddedLibraryCode != nil {
-		log.Debug().Msgf("Could not open embedded library data for %s platform", platform)
+		// only "common" ships embedded library data
+		if strings.EqualFold(platform, common) {
+			log.Debug().Msgf("Could not open embedded library data for %s platform", platform)
+		}
 		embeddedLibraryData = emptyInputData
 	}
 	mergedLibraryData, errMergingLibraryData := MergeInputData(embeddedLibraryData, customLibraryData)
@@ -395,11 +397,27 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 
 	experimental := getExperimental(metadata["experimental"])
 
+	cwe := ""
+	if cweValue, ok := metadata["cwe"]; ok {
+		if cweStr, ok := cweValue.(string); ok {
+			cwe = cweStr
+		}
+	}
+
+	riskScore := ""
+	if riskScoreValue, ok := metadata["riskScore"]; ok {
+		if riskScoreStr, ok := riskScoreValue.(string); ok {
+			riskScore = riskScoreStr
+		}
+	}
+
 	return model.QueryMetadata{
 		Query:        path.Base(filepath.ToSlash(queryDir)),
 		Content:      string(queryContent),
 		Metadata:     metadata,
 		Platform:     platform,
+		CWE:          cwe,
+		RiskScore:    riskScore,
 		InputData:    inputData,
 		Aggregation:  aggregation,
 		Experimental: experimental,

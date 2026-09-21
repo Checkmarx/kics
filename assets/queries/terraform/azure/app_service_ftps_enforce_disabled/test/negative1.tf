@@ -7,6 +7,6 @@ resource "azurerm_app_service" "negative1" {
   site_config {
     dotnet_framework_version = "v4.0"
     scm_type                 = "LocalGit"
-    ftps_state = "FtpsOnly"
+    ftps_state               = "FtpsOnly" # Options: AllAllowed, FtpsOnly, Disabled
   }
 }

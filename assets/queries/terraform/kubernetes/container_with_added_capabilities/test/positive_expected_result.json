@@ -2,16 +2,16 @@
   {
     "queryName": "Containers With Added Capabilities",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 14
   },
   {
     "queryName": "Containers With Added Capabilities",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 49
   },
   {
     "queryName": "Containers With Added Capabilities",
     "severity": "MEDIUM",
-    "line": 113
+    "line": 110
   }
 ]

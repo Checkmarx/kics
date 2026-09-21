@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Secret Management
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/295.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/295.html')">295</a>
+-   **Risk score:** <span style="color:#ff7213">6.5</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/k8s/kubelet_certificate_authority_not_set)
 
 ### Description
@@ -79,3 +80,4 @@ spec:
   restartPolicy: OnFailure
 
 ```
+

@@ -9,5 +9,6 @@
   "descriptionID": "d900c253",
   "cloudProvider": "common",
   "cwe": "311",
-  "oldSeverity": "HIGH"
+  "oldSeverity": "HIGH",
+  "riskScore": "5.5"
 }

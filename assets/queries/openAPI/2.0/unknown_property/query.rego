@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
@@ -9,7 +10,8 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 
 	field := path[0]
-	all([field != "id", field != "file"])
+	field != "id"
+	field != "file"
 	not known_swagger_object_field(field)
 
 	result := {
@@ -18,6 +20,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("The field '%s' is known in the openapi object", [field]),
 		"keyActualValue": sprintf("The field '%s' is unknown in the openapi object", [field]),
+		"searchLine": common_lib.build_search_line([field], []),
 	}
 }
 
@@ -27,13 +30,11 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 
-	objectValues := {"array": array_objects, "simple": simple_objects, "map": map_objects}
-	objValues := objectValues[objType][object]
+	objValues := array_objects[object]
 
-	index := {"array": 1, "simple": 1, "map": 2}
-	path[minus(count(path), index[objType])] == object
+	#index := {"array": 1, "simple": 1, "map": 2}
+	path[minus(count(path), 1)] == object
 
-	objType == "array"
 	is_array(value)
 	value[x][field]
 	not known_field(objValues, field)
@@ -44,6 +45,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [field, object]),
 		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [field, object]),
+		"searchLine": common_lib.build_search_line(path, [x, field]),
 	}
 }
 
@@ -53,13 +55,12 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 
-	objectValues := {"array": array_objects, "simple": simple_objects, "map": map_objects}
+	objectValues := {"simple": simple_objects, "map": map_objects}
 	objValues := objectValues[objType][object]
 
-	index := {"array": 1, "simple": 1, "map": 2}
+	index := {"simple": 1, "map": 2}
 	path[minus(count(path), index[objType])] == object
 
-	any([objType == "simple", objType == "map"])
 	value[field]
 	not known_field(objValues, field)
 
@@ -69,6 +70,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [field, object]),
 		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [field, object]),
+		"searchLine": common_lib.build_search_line(path, [field]),
 	}
 }
 

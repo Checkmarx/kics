@@ -1,0 +1,14 @@
+{
+  "id": "8d407b28-c746-4650-8bbd-d27df54a795f",
+  "queryName": "Beta - Backup Vault Without Soft Delete",
+  "severity": "HIGH",
+  "category": "Backup",
+  "descriptionText": "No 'azurerm_data_protection_backup_vault' resource should set 'soft_delete' to off, this makes it impossible to recover backup data",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/data_protection_backup_vault#soft_delete-1",
+  "platform": "Terraform",
+  "descriptionID": "8d407b28",
+  "cloudProvider": "azure",
+  "cwe": "754",
+  "riskScore": "6.0",
+  "experimental": "true"
+}

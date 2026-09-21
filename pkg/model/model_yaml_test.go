@@ -1,7 +1,7 @@
 package model
 
 import (
-	json "encoding/json"
+	"encoding/json"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -44,111 +44,113 @@ array:
 =============== TEST CASES ===================
 */
 
-var tests = []struct {
-	name    string
-	m       *Document
-	args    args
-	wantErr bool
-	want    string
-}{
-	{
-		name: "test simple unmarshal",
-		args: args{
-			value: &yaml.Node{
-				Kind: yaml.MappingNode,
-				Content: []*yaml.Node{
-					{
-						Kind:  yaml.ScalarNode,
-						Value: "key",
-						Line:  1,
-					},
-					{
-						Kind:  yaml.ScalarNode,
-						Value: "false",
-						Tag:   "!!bool",
-					},
-					{
-						Kind:  yaml.ScalarNode,
-						Value: "key_object",
-						Line:  2,
-					},
-					{
-						Kind: yaml.MappingNode,
-						Content: []*yaml.Node{
-							{
-								Kind:  yaml.ScalarNode,
-								Value: "null_object",
-								Line:  3,
-							},
-							{
-								Kind: yaml.ScalarNode,
-								Tag:  "!!null",
-							},
-							{
-								Kind:  yaml.ScalarNode,
-								Value: "int_object",
-								Line:  4,
-							},
-							{
-								Kind:  yaml.ScalarNode,
-								Tag:   "!!int",
-								Value: "24",
-							},
-							{
-								Kind:  yaml.ScalarNode,
-								Value: "seq_object",
-								Line:  5,
-							},
-							{
-								Kind: yaml.SequenceNode,
-								Content: []*yaml.Node{
-									{
-										Kind: yaml.MappingNode,
-										Content: []*yaml.Node{
-											{
-												Kind:  yaml.ScalarNode,
-												Value: "key_seq",
-												Line:  6,
-											},
-											{
-												Kind:  yaml.ScalarNode,
-												Value: "key_val",
-												Tag:   " !!str",
-											},
-											{
-												Kind:  yaml.ScalarNode,
-												Value: "key_seq_2",
-												Line:  7,
-											},
-											{
-												Kind:  yaml.ScalarNode,
-												Value: "key_val_2",
-												Tag:   " !!str",
+func TestDocument_UnmarshalYAML(t *testing.T) {
+	var tests = []struct {
+		name    string
+		m       *Document
+		args    args
+		wantErr bool
+		want    string
+	}{
+		{
+			name: "test simple unmarshal",
+			args: args{
+				value: &yaml.Node{
+					Kind: yaml.MappingNode,
+					Content: []*yaml.Node{
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "key",
+							Line:  1,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "false",
+							Tag:   "!!bool",
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "key_object",
+							Line:  2,
+						},
+						{
+							Kind: yaml.MappingNode,
+							Content: []*yaml.Node{
+								{
+									Kind:  yaml.ScalarNode,
+									Value: "null_object",
+									Line:  3,
+								},
+								{
+									Kind: yaml.ScalarNode,
+									Tag:  "!!null",
+								},
+								{
+									Kind:  yaml.ScalarNode,
+									Value: "int_object",
+									Line:  4,
+								},
+								{
+									Kind:  yaml.ScalarNode,
+									Tag:   "!!int",
+									Value: "24",
+								},
+								{
+									Kind:  yaml.ScalarNode,
+									Value: "seq_object",
+									Line:  5,
+								},
+								{
+									Kind: yaml.SequenceNode,
+									Content: []*yaml.Node{
+										{
+											Kind: yaml.MappingNode,
+											Content: []*yaml.Node{
+												{
+													Kind:  yaml.ScalarNode,
+													Value: "key_seq",
+													Line:  6,
+												},
+												{
+													Kind:  yaml.ScalarNode,
+													Value: "key_val",
+													Tag:   " !!str",
+												},
+												{
+													Kind:  yaml.ScalarNode,
+													Value: "key_seq_2",
+													Line:  7,
+												},
+												{
+													Kind:  yaml.ScalarNode,
+													Value: "key_val_2",
+													Tag:   " !!str",
+												},
 											},
 										},
-									},
-									{
-										Kind: yaml.MappingNode,
-										Content: []*yaml.Node{
-											{
-												Kind:  yaml.ScalarNode,
-												Value: "second_key",
-												Line:  8,
-											},
-											{
-												Kind:  yaml.ScalarNode,
-												Value: "second_val",
-												Tag:   " !!str",
-											},
-											{
-												Kind:  yaml.ScalarNode,
-												Value: "second_key_2",
-												Line:  9,
-											},
-											{
-												Kind:  yaml.ScalarNode,
-												Value: "second_val_2",
-												Tag:   " !!str",
+										{
+											Kind: yaml.MappingNode,
+											Content: []*yaml.Node{
+												{
+													Kind:  yaml.ScalarNode,
+													Value: "second_key",
+													Line:  8,
+												},
+												{
+													Kind:  yaml.ScalarNode,
+													Value: "second_val",
+													Tag:   " !!str",
+												},
+												{
+													Kind:  yaml.ScalarNode,
+													Value: "second_key_2",
+													Line:  9,
+												},
+												{
+													Kind:  yaml.ScalarNode,
+													Value: "second_val_2",
+													Tag:   " !!str",
+												},
 											},
 										},
 									},
@@ -158,10 +160,9 @@ var tests = []struct {
 					},
 				},
 			},
-		},
-		m:       &Document{},
-		wantErr: false,
-		want: `{
+			m:       &Document{},
+			wantErr: false,
+			want: `{
 			"_kics_lines": {
 			  "_kics__default": {
 				"_kics_line": 0
@@ -228,75 +229,76 @@ var tests = []struct {
 			}
 		  }
 		  `,
-	},
-	{
-		name: "test playbooks yaml",
-		m:    &Document{},
-		args: args{
-			value: &yaml.Node{
-				Kind: yaml.SequenceNode,
-				Content: []*yaml.Node{
-					{
-						Kind: yaml.MappingNode,
-						Content: []*yaml.Node{
-							{
-								Kind:  yaml.ScalarNode,
-								Line:  1,
-								Value: "name",
-							},
-							{
-								Kind:  yaml.ScalarNode,
-								Value: "ansible",
-							},
-							{
-								Kind:  yaml.ScalarNode,
-								Value: "ansible_object",
-								Line:  2,
-							},
-							{
-								Kind: yaml.MappingNode,
-								Content: []*yaml.Node{
-									{
-										Kind:  yaml.ScalarNode,
-										Value: "name",
-										Line:  3,
-									},
-									{
-										Kind:  yaml.ScalarNode,
-										Value: "object",
+		},
+		{
+			name: "test playbooks yaml",
+			m:    &Document{},
+			args: args{
+				value: &yaml.Node{
+					Kind: yaml.SequenceNode,
+					Content: []*yaml.Node{
+						{
+							Kind: yaml.MappingNode,
+							Content: []*yaml.Node{
+								{
+									Kind:  yaml.ScalarNode,
+									Line:  1,
+									Value: "name",
+								},
+								{
+									Kind:  yaml.ScalarNode,
+									Value: "ansible",
+								},
+								{
+									Kind:  yaml.ScalarNode,
+									Value: "ansible_object",
+									Line:  2,
+								},
+								{
+									Kind: yaml.MappingNode,
+									Content: []*yaml.Node{
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "name",
+											Line:  3,
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "object",
+										},
 									},
 								},
 							},
 						},
-					},
-					{
-						Kind: yaml.MappingNode,
-						Content: []*yaml.Node{
-							{
-								Kind:  yaml.ScalarNode,
-								Line:  4,
-								Value: "name",
-							},
-							{
-								Kind:  yaml.ScalarNode,
-								Value: "ansible_2",
-							},
-							{
-								Kind:  yaml.ScalarNode,
-								Value: "ansible_object_2",
-								Line:  5,
-							},
-							{
-								Kind: yaml.MappingNode,
-								Content: []*yaml.Node{
-									{
-										Kind:  yaml.ScalarNode,
-										Value: "name",
-										Line:  6,
-									},
-									{
-										Kind:  yaml.ScalarNode,
-										Value: "object_2",
+						{
+							Kind: yaml.MappingNode,
+							Content: []*yaml.Node{
+								{
+									Kind:  yaml.ScalarNode,
+									Line:  4,
+									Value: "name",
+								},
+								{
+									Kind:  yaml.ScalarNode,
+									Value: "ansible_2",
+								},
+								{
+									Kind:  yaml.ScalarNode,
+									Value: "ansible_object_2",
+									Line:  5,
+								},
+								{
+									Kind: yaml.MappingNode,
+									Content: []*yaml.Node{
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "name",
+											Line:  6,
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "object_2",
+										},
 									},
 								},
 							},
@@ -304,9 +306,8 @@ var tests = []struct {
 					},
 				},
 			},
-		},
-		wantErr: false,
-		want: `{
+			wantErr: false,
+			want: `{
 			"_kics_lines": {
 			  "_kics__default": {
 				"_kics_arr": [
@@ -368,47 +369,47 @@ var tests = []struct {
 			]
 		  }
 		  `,
-	},
-	{
-		name:    "test array scalar nodes",
-		m:       &Document{},
-		wantErr: false,
-		args: args{
-			value: &yaml.Node{
-				Kind: yaml.MappingNode,
-				Content: []*yaml.Node{
-					{
-						Kind:  yaml.ScalarNode,
-						Value: "array",
-						Line:  1,
-					},
-					{
-						Kind: yaml.SequenceNode,
-						Content: []*yaml.Node{
-							{
-								Kind:  yaml.ScalarNode,
-								Tag:   "!!str",
-								Value: "case1",
-								Line:  2,
-							},
-							{
-								Kind:  yaml.ScalarNode,
-								Tag:   "!!str",
-								Value: "case2",
-								Line:  3,
-							},
-							{
-								Kind:  yaml.ScalarNode,
-								Tag:   "!!str",
-								Value: "case3",
-								Line:  4,
+		},
+		{
+			name:    "test array scalar nodes",
+			m:       &Document{},
+			wantErr: false,
+			args: args{
+				value: &yaml.Node{
+					Kind: yaml.MappingNode,
+					Content: []*yaml.Node{
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "array",
+							Line:  1,
+						},
+						{
+							Kind: yaml.SequenceNode,
+							Content: []*yaml.Node{
+								{
+									Kind:  yaml.ScalarNode,
+									Tag:   "!!str",
+									Value: "case1",
+									Line:  2,
+								},
+								{
+									Kind:  yaml.ScalarNode,
+									Tag:   "!!str",
+									Value: "case2",
+									Line:  3,
+								},
+								{
+									Kind:  yaml.ScalarNode,
+									Tag:   "!!str",
+									Value: "case3",
+									Line:  4,
+								},
 							},
 						},
 					},
 				},
 			},
-		},
-		want: `{
+			want: `{
 			"_kics_lines": {
 			  "_kics__default": {
 				"_kics_line": 0
@@ -441,10 +442,358 @@ var tests = []struct {
 			]
 		  }
 		  `,
-	},
-}
+		},
+		{
+			name:    "test yaml alias node with merge key",
+			m:       &Document{},
+			wantErr: false,
+			args: args{
+				value: func() *yaml.Node {
+					// Create the anchor node (defaults)
+					defaultsNode := &yaml.Node{
+						Kind:   yaml.MappingNode,
+						Anchor: "default",
+						Line:   1,
+						Content: []*yaml.Node{
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "key1",
+								Line:  2,
+							},
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "value1",
+								Tag:   "!!str",
+							},
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "key2",
+								Line:  3,
+							},
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "value2",
+								Tag:   "!!str",
+							},
+						},
+					}
 
-func TestDocument_UnmarshalYAML(t *testing.T) {
+					// Create the root node
+					return &yaml.Node{
+						Kind: yaml.MappingNode,
+						Content: []*yaml.Node{
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "defaults",
+								Line:  1,
+							},
+							defaultsNode,
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "merged",
+								Line:  4,
+							},
+							{
+								Kind: yaml.MappingNode,
+								Content: []*yaml.Node{
+									{
+										Kind:  yaml.ScalarNode,
+										Value: "<<",
+										Line:  5,
+									},
+									{
+										Kind:  yaml.AliasNode,
+										Alias: defaultsNode,
+										Line:  5,
+									},
+									{
+										Kind:  yaml.ScalarNode,
+										Value: "key3",
+										Line:  6,
+									},
+									{
+										Kind:  yaml.ScalarNode,
+										Value: "value3",
+										Tag:   "!!str",
+									},
+								},
+							},
+						},
+					}
+				}(),
+			},
+			want: `{
+			"_kics_lines": {
+			  "_kics__default": {
+				"_kics_line": 0
+			  },
+			  "_kics_defaults": {
+				"_kics_line": 1
+			  },
+			  "_kics_merged": {
+				"_kics_line": 4
+			  }
+			},
+			"defaults": {
+			  "_kics_lines": {
+				"_kics__default": {
+				  "_kics_line": 1
+				},
+				"_kics_key1": {
+				  "_kics_line": 2
+				},
+				"_kics_key2": {
+				  "_kics_line": 3
+				}
+			  },
+			  "key1": "value1",
+			  "key2": "value2"
+			},
+			"merged": {
+			  "_kics_lines": {
+				"_kics__default": {
+				  "_kics_line": 4
+				},
+				"_kics_key1": {
+				  "_kics_line": 2
+				},
+				"_kics_key2": {
+				  "_kics_line": 3
+				},
+				"_kics_key3": {
+				  "_kics_line": 6
+				}
+			  },
+			  "key1": "value1",
+			  "key2": "value2",
+			  "key3": "value3"
+			}
+		  }
+		  `,
+		},
+		{
+			name:    "test yaml regular alias node",
+			m:       &Document{},
+			wantErr: false,
+			args: args{
+				value: func() *yaml.Node {
+					// Create the anchor node (defaults)
+					defaultsNode := &yaml.Node{
+						Kind:   yaml.MappingNode,
+						Anchor: "default",
+						Line:   1,
+						Content: []*yaml.Node{
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "key1",
+								Line:  2,
+							},
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "value1",
+								Tag:   "!!str",
+							},
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "key2",
+								Line:  3,
+							},
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "value2",
+								Tag:   "!!str",
+							},
+						},
+					}
+
+					// Create the root node
+					return &yaml.Node{
+						Kind: yaml.MappingNode,
+						Content: []*yaml.Node{
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "defaults",
+								Line:  1,
+							},
+							defaultsNode,
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "referenced",
+								Line:  4,
+							},
+							{
+								Kind:  yaml.AliasNode,
+								Alias: defaultsNode,
+								Line:  4,
+							},
+						},
+					}
+				}(),
+			},
+			want: `{
+			"_kics_lines": {
+			  "_kics__default": {
+				"_kics_line": 0
+			  },
+			  "_kics_defaults": {
+				"_kics_line": 1
+			  },
+			  "_kics_referenced": {
+				"_kics_line": 4
+			  }
+			},
+			"defaults": {
+			  "_kics_lines": {
+				"_kics__default": {
+				  "_kics_line": 1
+				},
+				"_kics_key1": {
+				  "_kics_line": 2
+				},
+				"_kics_key2": {
+				  "_kics_line": 3
+				}
+			  },
+			  "key1": "value1",
+			  "key2": "value2"
+			},
+			"referenced": {
+			  "_kics_lines": {
+				"_kics__default": {
+				  "_kics_line": 4
+				},
+				"_kics_key1": {
+				  "_kics_line": 2
+				},
+				"_kics_key2": {
+				  "_kics_line": 3
+				}
+			  },
+			  "key1": "value1",
+			  "key2": "value2"
+			}
+		  }
+		  `,
+		},
+		{
+			name: "test different int types unmarshal",
+			args: args{
+				value: &yaml.Node{
+					Kind: yaml.MappingNode,
+					Content: []*yaml.Node{
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  1,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "24",
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  2,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "0b11000", // 24 in binary
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  3,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "0o30", // 24 in octal
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  4,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "030", // 24 in octal in YAML 1.1 or older syntax
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  5,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "0x18", // 24 in hexadecimal
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  6,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "24e0", // exponential 24
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  7,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "7_000_000_000",
+						},
+					},
+				},
+			},
+			m:       &Document{},
+			wantErr: false,
+			want: `{
+				"_kics_lines": {
+				  "_kics__default": {
+					"_kics_line": 0
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 1
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 2
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 3
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 4
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 5
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 6
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 7
+				  }
+				},
+				"int_object": 24,
+				"int_object": 24,
+				"int_object": 24,
+				"int_object": 24,
+				"int_object": 24,
+				"int_object": 24,
+				"int_object": 7000000000
+			}`,
+		},
+	}
+
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if err := tt.m.UnmarshalYAML(tt.args.value); (err != nil) != tt.wantErr {

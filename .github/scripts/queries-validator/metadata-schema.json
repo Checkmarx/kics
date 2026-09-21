@@ -21,6 +21,16 @@
             "type": "string",
             "minLength": 1,
             "pattern": "^[a-f0-9]{8}$"
+        },
+        "cwe_pattern": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[0-9]+$"
+        },
+        "risk_score_pattern": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(10\\.0|[0-9]\\.[0-9])$"
         }
     },
     "required": [
@@ -32,8 +42,9 @@
         "descriptionUrl",
         "cloudProvider",
         "platform",
-        "descriptionID", 
-        "cwe"
+        "descriptionID",
+        "cwe",
+        "riskScore"
     ],
     "properties": {
         "id": {
@@ -176,7 +187,10 @@
             ]
         },
         "cwe": {
-            "type": "string"
+            "$ref": "#/definitions/cwe_pattern"
+        },
+        "riskScore": {
+            "$ref": "#/definitions/risk_score_pattern"
         }
     }
 }

@@ -1,0 +1,106 @@
+similarityIDChangeList:
+    - queryId: 99976ba0-aa37-4745-93a6-5f1d55997f67
+      queryName: Beta - Cluster Without Network Policy Support Enabled
+      observations: ""
+      change: 1
+    - queryId: cc9e464e-5abc-4c8f-8077-a9aa7ebe6a05
+      queryName: Beta - Google DNS Policy Logging Disabled
+      observations: ""
+      change: 1
+    - queryId: 4f60da73-190e-4048-8e1d-cc5a3974cd15
+      queryName: Beta - Cloud Asset Inventory Disabled
+      observations: ""
+      change: 1
+    - queryId: 69d4f245-d534-479e-8bcc-f6a836276dc8
+      queryName: Beta - Logs And Alerts Missing Custom Role Changes
+      observations: ""
+      change: 1
+    - queryId: 39d83c5a-2df4-4a2c-8ffb-b96b1bc3a813
+      queryName: Beta - Logs And Alerts Missing Audit Configuration Changes
+      observations: ""
+      change: 1
+    - queryId: a881b71c-73ac-4358-879c-e3271db5a3c5
+      queryName: Beta - Logs And Alerts Missing Project Ownership Assignment And Changes
+      observations: ""
+      change: 1
+    - queryId: 13de4e49-d407-4277-ba5a-d7f59283902f
+      queryName: Beta - SQL DB Instance With Unrecommended Error Logging Threshold
+      observations: ""
+      change: 1
+    - queryId: ecbbe763-95dc-47e6-8660-84ff751e5acf
+      queryName: Beta - SQL DB Instance With Unrecommended Logging Threshold
+      observations: ""
+      change: 1
+    - queryId: c3655703-569b-42ec-8027-ef8835d989c0
+      queryName: Beta - SQL DB Instance With Contained Database Authentication
+      observations: ""
+      change: 1
+    - queryId: f5aff735-fd1c-4751-a5e9-98bfe4893fa2
+      queryName: Beta - SQL DB Instance With Exposed Trace Logs
+      observations: ""
+      change: 1
+    - queryId: d4436ca8-1caf-427c-8911-8b4d31ff6b40
+      queryName: Beta - SQL DB Instance With Remote Access Enabled
+      observations: ""
+      change: 1
+    - queryId: c8e4444e-d9a9-4426-be8e-9f1b8c43133c
+      queryName: Beta - SQL DB Instance With Global User Options
+      observations: ""
+      change: 1
+    - queryId: 18cb7d28-57df-4d6b-9fb4-02828cb15660
+      queryName: Beta - SQL DB Instance With Limited User Connections
+      observations: ""
+      change: 1
+    - queryId: 5a8c5d26-c592-4c98-afac-9762c54cc868
+      queryName: Beta - SQL DB Instance With Ownership Chaining Enabled
+      observations: ""
+      change: 1
+    - queryId: 1c329b9b-8221-4b55-8d5f-f0959faf9cee
+      queryName: Beta - SQL DB Instance With External Scripts Enabled
+      observations: ""
+      change: 1
+    - queryId: 245eb024-d08a-449b-a1f2-02f7bba00fc2
+      queryName: Beta - SQL DB Instance Without Centralized Logging
+      observations: ""
+      change: 1
+    - queryId: 00335e17-674c-442e-a64c-9436e60e6efb
+      queryName: Beta - SQL DB Instance With Minimum Log Duration
+      observations: ""
+      change: 1
+    - queryId: 8895abb4-6491-4ae6-9c33-c2f360752b7a
+      queryName: Beta - SQL DB Instance Without Disconnections Logging
+      observations: ""
+      change: 1
+    - queryId: fc7187e5-b9a2-46c0-950d-3bfcaaacc5ca
+      queryName: Beta - SQL DB Instance Without Connections Logging
+      observations: ""
+      change: 1
+    - queryId: 51a2c34d-dfd0-436f-aa34-e8f796e052fd
+      queryName: Beta - SQL DB Instance With Local Data Loading Enabled
+      observations: ""
+      change: 1
+    - queryId: b5b70198-2a34-4792-b0d9-ce99abe485bb
+      queryName: Beta - SQL DB Instance With Exposed Show Privileges
+      observations: ""
+      change: 1
+    - queryId: ced11de2-e701-4e63-83ab-4fdb1ab8c5dd
+      queryName: Beta - Kubernetes Web UI Is Not Disabled
+    - queryId: 4b5ee6a4-5682-4725-8a7a-d9e9a51986c8
+      queryName: Beta - Shielded GKE Node Do Not Have Integrity Monitoring Enabled
+      change: 1
+    - queryId: c1701dcf-24df-4675-b863-340233c4e34f
+      queryName: Beta - Ensure GKE Version Management Is Automated Using Release Channels
+      observations: ""
+      change: 1
+    - queryId: 700f1049-7fa0-4cb0-971b-3efebfb6a91f
+      queryName: Beta - Legacy Networks Do Not Exist For Older Google Projects
+      observations: ""
+      change: 1
+    - queryId: 7bd9c6a8-3b1f-495c-9752-a4a9c4e1b29f
+      queryName: Beta - Ensure Essential Contacts Is Configured For Organization
+      observations: ""
+      change: 1
+    - queryId: 8ca7e731-56f6-4fb4-9b98-fcb0a93518c8
+      queryName: Beta - Google Kubernetes Engine Cluster Has Alpha Features Enabled
+      observations: ""
+      change: 1

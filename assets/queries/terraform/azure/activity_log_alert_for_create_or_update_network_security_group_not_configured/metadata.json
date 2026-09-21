@@ -1,0 +1,14 @@
+{
+  "id": "1ec163d0-a9be-4695-89a8-a4028a2cbae7",
+  "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "There should be a 'azurerm_monitor_activity_log_alert' resource configured to capture 'create or update network security group' events",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_activity_log_alert",
+  "platform": "Terraform",
+  "descriptionID": "1ec163d0",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

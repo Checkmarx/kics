@@ -1,0 +1,7 @@
+{
+  "Resources": {
+    "service-3": {
+      "secretValue": "secretVaule1"
+    }
+  }
+}

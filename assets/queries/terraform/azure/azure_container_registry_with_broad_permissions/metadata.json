@@ -1,0 +1,14 @@
+{
+  "id": "77deea6a-155e-4865-bf04-153d23e488e8",
+  "queryName": "Beta - Azure Container Registry With Broad Permissions",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Azure Container Registry resources should only have 'read' permissions",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry",
+  "platform": "Terraform",
+  "descriptionID": "77deea6a",
+  "cloudProvider": "azure",
+  "cwe": "732",
+  "riskScore": "6.0",
+  "experimental": "true"
+}

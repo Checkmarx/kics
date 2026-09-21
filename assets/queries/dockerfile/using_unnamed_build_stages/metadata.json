@@ -8,5 +8,6 @@
   "platform": "Dockerfile",
   "descriptionID": "dea09829",
   "cloudProvider": "common",
-  "cwe": "710"
+  "cwe": "710",
+  "riskScore": "2.8"
 }

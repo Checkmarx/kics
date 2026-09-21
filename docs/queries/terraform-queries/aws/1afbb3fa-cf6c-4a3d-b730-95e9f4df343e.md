@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Encryption
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/311.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/311.html')">311</a>
+-   **Risk score:** <span style="color:#ff7213">5.5</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/elasticache_replication_group_not_encrypted_at_transit)
 
 ### Description
@@ -71,3 +72,4 @@ resource "aws_elasticache_replication_group" "example3" {
 }
 
 ```
+

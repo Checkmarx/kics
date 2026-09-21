@@ -1,0 +1,21 @@
+similarityIDChangeList:
+    - queryId: 7ebd323c-31b7-4e5b-b26f-de5e9e477af8
+      queryName: Missing Flag From Dnf Install
+      observations: ""
+      change: 5
+    - queryId: efbf148a-67e9-42d2-ac47-02fa1c0d0b22
+      queryName: Shell Running A Pipe Without Pipefail Flag
+      observations: The query matched multiple times when the shell name contained substrings of other shells (e.g., '/bin/bash' matched both 'bash' and 'ash').
+      change: 5
+    - queryId: d3499f6d-1651-41bb-a9a7-de925fea487b
+      queryName: Unpinned Package Version in Apk Add
+      observations: The query is not working correctly when the problem is on RUN commands with a single value and on the right side of  "&&" or ";"
+      change: 5
+    - queryId: 6452c424-1d92-4deb-bb18-a03e95d579c4
+      queryName: Yum install Without Version
+      observations: ""
+      change: 5
+    - queryId: 562952e4-0348-4dea-9826-44f3a2c6117b
+      queryName: Zypper Install Without Version
+      observations: ""
+      change: 5

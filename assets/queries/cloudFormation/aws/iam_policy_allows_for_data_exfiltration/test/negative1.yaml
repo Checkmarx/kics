@@ -1,0 +1,16 @@
+Resources:
+  CFNUser:
+    Type: AWS::IAM::User
+    Properties:
+      LoginProfile:
+         Password: 'Password'
+         PasswordResetRequired: false
+      Policies:
+        - PolicyName: root
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'safe_action'
+                Resource: '*'

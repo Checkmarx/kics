@@ -49,6 +49,7 @@ type Issue struct {
 	RuleID             string      `json:"ruleId"`
 	Severity           string      `json:"severity"`
 	CWE                string      `json:"cwe,omitempty"`
+	RiskScore          string      `json:"riskScore,omitempty"`
 	Type               string      `json:"type"`
 	PrimaryLocation    *Location   `json:"primaryLocation"`
 	SecondaryLocations []*Location `json:"secondaryLocations,omitempty"`
@@ -91,6 +92,7 @@ func (s *SonarQubeReportBuilder) buildIssue(query *model.QueryResult) {
 		RuleID:             query.QueryID,
 		Severity:           severitySonarQubeEquivalence[query.Severity],
 		CWE:                query.CWE,
+		RiskScore:          query.RiskScore,
 		Type:               categorySonarQubeEquivalence[query.Category],
 		PrimaryLocation:    buildLocation(0, query),
 		SecondaryLocations: buildSecondaryLocation(query),

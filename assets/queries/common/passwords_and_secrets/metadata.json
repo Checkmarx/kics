@@ -8,5 +8,6 @@
   "platform": "Common",
   "descriptionID": "d69d8a89",
   "cloudProvider": "common",
-  "cwe": "798"
+  "cwe": "798",
+  "riskScore": "7.8"
 }

@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
@@ -17,6 +18,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("servers.variables.{{%s}} is used in 'servers[%d].url'", [x, s]),
 		"keyActualValue": sprintf("servers.variables.{{%s}} is not used in 'servers[%d].url'", [x, s]),
+		"searchLine": common_lib.build_search_line(["servers", s], ["variables", x]),
 	}
 }
 
@@ -35,6 +37,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.servers.variables.{{%s}} is used in 'paths.{{%s}}.{{%s}}.servers.{{%d}}.url'", [path, operation, x, path, operation, s]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.servers.variables.{{%s}} is not used in 'paths.{{%s}}.{{%s}}.servers.{{%d}}.url '", [path, operation, x, path, operation, s]),
+		"searchLine": common_lib.build_search_line(["paths", path, operation, "servers", s], ["variables", x]),
 	}
 }
 
@@ -53,6 +56,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("paths.{{%s}}.servers.variables.{{%s}} is used in 'paths.{{%s}}.servers.{{%d}}.url'", [path, x, path, s]),
 		"keyActualValue": sprintf("paths.{{%s}}.servers.variables.{{%s}} is not used in 'paths.{{%s}}.servers.{{%d}}.url'", [path, x, path, s]),
+		"searchLine": common_lib.build_search_line(["paths", path, "servers", s], ["variables", x]),
 	}
 }
 
@@ -71,6 +75,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("components.links.{{%s}}.server.variables.{{%s}} is used in 'components.links.{{%s}}.server.url'", [l, x, l]),
 		"keyActualValue": sprintf("components.links.{{%s}}.server.variables.{{%s}} is not used in 'components.links.{{%s}}.server.url'", [l, x, l]),
+		"searchLine": common_lib.build_search_line(["components", "links", l, "server"], ["variables", x]),
 	}
 }
 
@@ -89,6 +94,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.variables.{{%s}} is used in 'components.responses.{{%s}}.links.{{%s}}.server.url'", [r, l, x, r, l]),
 		"keyActualValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.variables.{{%s}} is not used in 'components.responses.{{%s}}.links.{{%s}}.server.url'", [r, l, x, r, l]),
+		"searchLine": common_lib.build_search_line(["components", "responses", r, "links", l, "server"], ["variables", x]),
 	}
 }
 
@@ -108,6 +114,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.links.{{%s}}.server.variables.{{%s}} is used in 'paths.{{%s}}.{{%s}}.responses.{{%s}}.links.{{%s}}.server.url'", [path, operation, r, l, x, path, operation, r, l]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.links.{{%s}}.server.variables.{{%s}} is not used in 'paths.{{%s}}.{{%s}}.responses.{{%s}}.links.{{%s}}.server.url'", [path, operation, r, l, x, path, operation, r, l]),
+		"searchLine": common_lib.build_search_line(["paths", path, operation, "responses", r, "links", l, "server"], ["variables", x]),
 	}
 }
 

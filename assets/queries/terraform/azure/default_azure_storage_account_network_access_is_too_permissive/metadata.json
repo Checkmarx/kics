@@ -1,12 +1,13 @@
 {
   "id": "a5613650-32ec-4975-a305-31af783153ea",
   "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Insecure Defaults",
   "descriptionText": "Default Azure Storage Account network access should be set to Deny",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account_network_rules#default_action",
   "platform": "Terraform",
   "descriptionID": "a5613650",
   "cloudProvider": "azure",
-  "cwe": "285"
+  "cwe": "285",
+  "riskScore": "7.5"
 }

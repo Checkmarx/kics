@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Insecure Defaults
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/665.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/665.html')">665</a>
+-   **Risk score:** <span style="color:#ff7213">6.8</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/kubernetes/service_account_token_automount_not_disabled)
 
 ### Description
@@ -456,3 +457,4 @@ resource "kubernetes_pod" "test62" {
 }
 
 ```
+

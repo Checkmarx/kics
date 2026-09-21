@@ -24,7 +24,7 @@ type args struct {
 	ExpectedOut             []string  // path to file with expected output
 	ExpectedPayload         []string
 	ExpectedResult          []ResultsValidation
-	ExpectedAnalyzerResults *ResultsValidation
+	ExpectedAnalyzerResults []ResultsValidation
 	ExpectedLog             LogValidation
 	UseMock                 []bool
 }

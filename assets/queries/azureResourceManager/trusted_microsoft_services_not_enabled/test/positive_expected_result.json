@@ -26,6 +26,24 @@
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 19,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
     "line": 11,
     "fileName": "positive1.bicep"
   },
@@ -46,5 +64,23 @@
     "severity": "MEDIUM",
     "line": 11,
     "fileName": "positive4.bicep"
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive5.bicep"
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive6.bicep"
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive7.bicep"
   }
 ]

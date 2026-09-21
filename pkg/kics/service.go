@@ -7,6 +7,9 @@ import (
 	"io"
 	"sync"
 
+	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
+
 	"github.com/Checkmarx/kics/v2/pkg/engine"
 	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
 	"github.com/Checkmarx/kics/v2/pkg/engine/secrets"
@@ -14,10 +17,7 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/parser"
 	"github.com/Checkmarx/kics/v2/pkg/resolver"
-
 	"github.com/Checkmarx/kics/v2/pkg/utils"
-	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
 )
 
 const (
@@ -27,7 +27,7 @@ const (
 // Storage is the interface that wraps following basic methods: SaveFile, SaveVulnerability, GetVulnerability and GetScanSummary
 // SaveFile should append metadata to a file
 // SaveVulnerabilities should append vulnerabilities list to current storage
-// GetVulnerabilities should returns all vulnerabilities associated to a scan ID
+// GetVulnerabilities should return all vulnerabilities associated to a scan ID
 // GetScanSummary should return a list of summaries based on their scan IDs
 type Storage interface {
 	SaveFile(ctx context.Context, metadata *model.FileMetadata) error
@@ -162,10 +162,18 @@ func getContent(rc io.Reader, data []byte, maxSizeMB int, filename string) (*Con
 		content = append(content, data[:n]...)
 		maxSizeMB--
 	}
-	c.Content = &content
+	// Convert UTF-16 to UTF-8 if needed (critical for Windows-created files)
+	// This must be done before parsing to avoid BOM and encoding issues
+	convertedContent, err := utils.ReadFileContentToUTF8(content, filename)
+	if err != nil {
+		log.Warn().Msgf("Failed to convert encoding for file %s: %v, using original content", filename, err)
+		convertedContent = content
+	}
+
+	c.Content = &convertedContent
 	c.CountLines = countLines
 
-	c.IsMinified = minified.IsMinified(filename, content)
+	c.IsMinified = minified.IsMinified(filename, convertedContent)
 	return c, nil
 }
 

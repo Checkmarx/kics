@@ -8,5 +8,6 @@
   "platform": "Pulumi",
   "descriptionID": "64acf7a6",
   "cloudProvider": "azure",
-  "cwe": "284"
+  "cwe": "284",
+  "riskScore": "6.8"
 }

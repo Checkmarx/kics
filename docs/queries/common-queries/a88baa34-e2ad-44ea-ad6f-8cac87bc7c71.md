@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Secret Management
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/798.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/798.html')">798</a>
+-   **Risk score:** <span style="color:#bb2124">7.8</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/common/passwords_and_secrets)
 
 ### Description
@@ -1556,7 +1557,152 @@ RUN apk add --no-cache git \
 
 ```
 </details>
-<details><summary>Positive test num. 49 - dockerfile file</summary>
+<details><summary>Positive test num. 49 - json file</summary>
+
+```json hl_lines="54"
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "siteName": {
+      "type": "string"
+    },
+    "administratorLogin": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]"
+    }
+  },
+  "variables": {
+    "databaseName": "[concat(parameters('siteName'), 'db')]",
+    "serverName": "[concat(parameters('siteName'), 'srv')]",
+    "hostingPlanName": "[concat(parameters('siteName'), 'plan')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2020-06-01",
+      "name": "[variables('hostingPlanName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "Tier": "Standard",
+        "Name": "S1"
+      },
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2020-06-01",
+      "name": "[parameters('siteName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+      ],
+      "properties": {
+        "serverFarmId": "[variables('hostingPlanName')]"
+      },
+      "resources": [
+        {
+          "type": "config",
+          "apiVersion": "2020-06-01",
+          "name": "connectionstrings",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
+          ],
+          "properties": {
+            "defaultConnection": {
+              "value": "[concat('Database=', variables('databaseName'), ';Data Source=', reference(resourceId('Microsoft.DBforMySQL/servers', variables('serverName'))).fullyQualifiedDomainName, ';User Id=', parameters('administratorLogin'), '@', variables('serverName'), ';Password=HardCodedP@ssw0rd!')]",
+              "type": "MySql"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+
+```
+</details>
+<details><summary>Positive test num. 50 - tf file</summary>
+
+```tf hl_lines="8 14"
+
+variable "linux_vms" {
+  description = "positive54.tf"
+  type = map(object({
+    region                           = string
+    size                             = optional(string)
+    admin_username                   = optional(string)
+    admin_password                   = "optional(sensitive(string))"
+  }))
+  default = {}
+}
+
+resource "azurerm_linux_virtual_machine" "vms" {
+  admin_password        = try(each.value.admin_password, "exposed_password", null)
+}
+```
+</details>
+<details><summary>Positive test num. 51 - json file</summary>
+
+```json hl_lines="4"
+{
+  "Resources": {
+    "service-3": {
+      "secretValue": "secretVaule1"
+    }
+  }
+}
+
+```
+</details>
+<details><summary>Positive test num. 52 - proto file</summary>
+
+```proto hl_lines="32 34 36 13 14 15 30"
+// "Generic Password"    - 487f4be7-3fd9-4506-a07a-eae252180c08 -                               positive-test   - #1
+// "Generic Secret"      - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 -                               positive-test   - #2
+// "Generic Token"       - baee238e-1921-4801-9c3f-79ae1d7b2cbc -                               positive-test   - #3
+// "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258 -                               positive-test   - #4
+// "Encryption Key"      - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 -                               positive-test   - #5
+// "Generic Password"    - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding Proto File fields"  allow rule test - #6
+// "Generic Token"       - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Proto File fields"  allow-rule-test - #7
+// "Encryption Key"      - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 - "Avoiding Proto File fields"  allow-rule-test - #8
+
+syntax = "proto3";
+
+// This sample should not flag the message defined only the exposed secrets in comments :
+// "password" = "test_sample"               #1
+// "secret_key" : minimum_ten_characters    #2
+// "unsafe_token" : "is_this_safe"          #3
+
+package com.example.security_test.v1;
+
+import "google/protobuf/wrappers.proto";
+
+message InocentMessage {
+  google.protobuf.StringValue safe_value = 1;
+  double not_a_password = 22222;      // #6
+  float not_a_token = 3;              // #7
+  string not_an_encryption_key = 4;   // #8
+}
+
+
+extend google.protobuf.FileOptions {                // too generic for an allow rule
+   int32 source_retention_password = 12342134                 //#1
+      [retention = RETENTION_SOURCE];
+   string source_retention_token = 12342135                   //#3
+      [retention = RETENTION_SOURCE];
+   float source_retention_private_key = 12342137              //#4
+      [retention = RETENTION_SOURCE];
+   double source_retention_encryption_key = 12342136          //#5
+      [retention = RETENTION_SOURCE];
+}
+
+```
+</details>
+<details><summary>Positive test num. 53 - dockerfile file</summary>
 
 ```dockerfile hl_lines="3 7"
 FROM baseImage
@@ -1569,7 +1715,7 @@ ARG password=pass!1213Fs
 
 ```
 </details>
-<details><summary>Positive test num. 50 - tf file</summary>
+<details><summary>Positive test num. 54 - tf file</summary>
 
 ```tf hl_lines="8"
 resource "google_container_cluster" "primary2" {
@@ -1594,7 +1740,7 @@ resource "google_container_cluster" "primary2" {
 
 ```
 </details>
-<details><summary>Positive test num. 51 - json file</summary>
+<details><summary>Positive test num. 55 - json file</summary>
 
 ```json hl_lines="4 7"
 {
@@ -1610,7 +1756,7 @@ resource "google_container_cluster" "primary2" {
 
 ```
 </details>
-<details><summary>Positive test num. 52 - tf file</summary>
+<details><summary>Positive test num. 56 - tf file</summary>
 
 ```tf hl_lines="8"
 resource "google_container_cluster" "primary4" {
@@ -2938,6 +3084,293 @@ secrets:
 
 ```json
 {
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "siteName": {
+      "type": "string"
+    },
+    "administratorLogin": {
+      "type": "string"
+    },
+    "administratorLoginPassword": {
+      "type": "securestring"
+    },
+    "secretSuffix": {
+      "type": "string",
+      "defaultValue": "word"
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]"
+    }
+  },
+  "variables": {
+    "databaseName": "[concat(parameters('siteName'), 'db')]",
+    "serverName": "[concat(parameters('siteName'), 'srv')]",
+    "hostingPlanName": "[concat(parameters('siteName'), 'plan')]",
+    "passKey": "[concat('Pass', parameters('secretSuffix'))]"
+  },
+  "resources": [
+    {
+      "apiVersion": "2020-06-01",
+      "type": "Microsoft.Web/serverfarms",
+      "name": "[variables('hostingPlanName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "Tier": "Standard",
+        "Name": "S1"
+      },
+      "properties": {}
+    },
+    {
+      "apiVersion": "2020-06-01",
+      "type": "Microsoft.Web/sites",
+      "name": "[parameters('siteName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+      ],
+      "properties": {
+        "serverFarmId": "[variables('hostingPlanName')]"
+      },
+      "resources": [
+        {
+          "apiVersion": "2020-06-01",
+          "type": "config",
+          "name": "connectionstrings",
+          "properties": {
+            "defaultConnection": {
+              "value": "[concat('Database=', variables('databaseName'), ';Data Source=', reference(resourceId('Microsoft.DBforMySQL/servers',variables('serverName'))).fullyQualifiedDomainName, ';User Id=', parameters('administratorLogin'),'@', variables('serverName'),';Password=', parameters('administratorLoginPassword'))]",
+              "type": "MySql"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+</details>
+<details><summary>Negative test num. 50 - json file</summary>
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "apiSecret": {
+      "type": "secureString"
+    }
+  },
+  "variables": {
+    "connectionSecret": "[parameters('apiSecret')]"
+  },
+  "resources": []
+}
+```
+</details>
+<details><summary>Negative test num. 51 - yml file</summary>
+
+```yml
+jobs:
+  release:
+    if: github.event.pull_request.merged == true || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on:
+      group: Prod
+      labels: helm
+    permissions:
+       contents: write # for publishing release
+       actions: write # for createWorkflowDispatch
+       issues: write # for comments on issues
+       pull-requests: write # for comments on pull requests
+       #id-token: write # for oidc npm provenance
+       #"id-token": read 
+       #'id-token': none
+       #permissions: {id-token: write, contents: read, pull-requests: write} 
+    steps:
+      - name: debug
+        shell: bash
+        run: |
+          echo 'github.event_actor=${{ github.event_actor }}'
+```
+</details>
+<details><summary>Negative test num. 52 - tf file</summary>
+
+```tf
+
+variable "linux_vms" {
+  description = "A list of the Linux VMs to create.  \n <a name=region:></a>[region:](#region:) The Azure location where the Windows Virtual Machine should exist. Changing this forces a new resource to be created.  \n <a name=size:></a>[size:](#size:) The SKU which should be used for this Virtual Machine, such as Standard_F2.  \n <a name=admin_username:></a>[admin_username:](#admin_username:) The username of the local administrator used for the Virtual Machine. Changing this forces a new resource to be created.  \n <a name=admin_password:></a>[admin_password:](#admin_password:) he Password which should be used for the local-administrator on this Virtual Machine. Changing this forces a new resource to be created."
+  type = map(object({
+    region                           = string
+    size                             = optional(string)
+    admin_username                   = optional(string)
+    admin_password                   = optional(string)
+  }))
+  default = {}
+}
+
+resource "azurerm_linux_virtual_machine" "vms" {
+  admin_password        = try(each.value.admin_password, null)
+}
+```
+</details>
+<details><summary>Negative test num. 53 - bicep file</summary>
+
+```bicep
+import { common, tagsObject, deployName, removeSpace } from '../../../CommonValues.bicep'
+
+@description('Nome do sistema')
+param systemName string
+
+@description('Nome do recurso')
+param resourceName string = removeSpace(systemName)
+
+@description('Enterprise Tagging object')
+param tags tagsObject
+
+resource kvTest 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
+  name: 'kv-test-sample'
+  scope: resourceGroup('rg-test-sample')
+}
+
+module consumerModule '../SecretConsumer/Resource.bicep' = {
+  name: deployName(resourceName, 'Test.SecretConsumer', tags.lastReleaseId)
+  params: {
+    systemName: systemName
+    resourceName: resourceName
+    tags: tags
+    apiClientSecret: kvTest.getSecret('secret-sample') 
+  }
+}
+
+```
+</details>
+<details><summary>Negative test num. 54 - json file</summary>
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "[parameters('apiVersion')]",
+            "name": "[parameters('logicAppName')]",
+            "location": "centralus",
+            "properties": {},
+            "actions": {
+                "Sample_action_1": {
+                    "runAfter_164": {
+                        "HTTP_-_Get_OAuth_Token": [
+                            "Succeeded"
+                        ]
+                    }
+                },
+                "Sample_action_2": {
+                    "runAfter_192": {
+                        "Parse_JSON_-_OAuth_Token": [
+                            "Succeeded"
+                        ]
+                    }
+                },
+                "Sample_action_3": {
+                    "runAfter_240": {
+                        "Try_-_Get_OAuth_Token": [
+                            "TimedOut",
+                            "Failed"
+                        ]
+                    }
+                },
+                "Sample_action_4": {
+                    "runAfter_678": {
+                        "Catch_-_Get_OAuth_Token": [
+                            "Skipped"
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+</details>
+<details><summary>Negative test num. 55 - bicep file</summary>
+
+```bicep
+param systemName string
+param resourceName string
+param tags object
+param originUrl string
+
+module myModule '../AnotherModule/Resource.bicep' = {
+  name: '${resourceName}-MyModule'
+  params: {
+    systemName: systemName
+    resourceName: resourceName
+    tags: tags
+    apiUrl: originUrl
+  }
+}
+
+module clientModule '../ClientModule/Resource.bicep' = {
+  name: '${resourceName}-ClientModule'
+  params: {
+    systemName: systemName
+    resourceName: resourceName
+    tags: tags
+    validationToken: myModule.outputs.apiToken 
+  }
+}
+
+// Saída do módulo
+output clientUrl string = clientModule.outputs.clientUrl
+output clientName string = clientModule.outputs.clientName
+
+```
+</details>
+<details><summary>Negative test num. 56 - tf file</summary>
+
+```tf
+resource "aws_secretsmanager_secret_version" "secret_version" {
+  for_each = { for k, v in var.clients.scram : k => v if var.enabled && var.client_sasl_scram_enabled }
+
+  secret_id     = aws_secretsmanager_secret.client_secret[each.key].id                                                                                              # use of indexes
+  secret_string = jsonencode({ "username" : join("_", [var.product, each.key, var.environment == "dev" ? var.environment : var.stack]), "password" : random_password.client_password[each.key].result })
+}
+
+resource "aws_secretsmanager_secret_version" "secret_version_2" {
+  for_each = { for k, v in var.clients.scram : k => v if var.enabled && var.client_sasl_scram_enabled }
+
+  secret_id     = aws_secretsmanager_secret.client_secret[each.key].id                                                                                              # use of indexes
+  secret_string = jsonencode({ "username" : join("_", [var.product, each.key, var.environment == "dev" ? var.environment : var.stack]), "password" : random_password[each.key].client_password.result })
+}
+
+resource "aws_secretsmanager_secret_version" "secret_version_3" {
+  for_each = { for k, v in var.clients.scram : k => v if var.enabled && var.client_sasl_scram_enabled }
+
+  secret_id     = aws_secretsmanager_secret.client_secret[each.key].id                                                                                              # use of indexes
+  secret_string = jsonencode({ "username" : join("_", [var.product, each.key, var.environment == "dev" ? var.environment : var.stack]), "password" : random_password["index"].client_password.result })
+}
+
+resource "aws_msk_scram_secret_association" "msk_secret_association" {
+  count           = var.enabled && var.client_sasl_scram_enabled ? 1 : 0
+  cluster_arn     = aws_msk_cluster.kafka[0].arn
+  secret_arn_list = [for secret in aws_secretsmanager_secret.client_secret : secret.arn] # short reference
+}
+
+resource "aws_msk_scram_secret_association" "msk_secret_association_2" {
+  count           = var.enabled && var.client_sasl_scram_enabled ? 1 : 0
+  cluster_arn     = aws_msk_cluster.kafka[0].arn
+  secret_arn_list = [for secret in aws_secretsmanager_secret.client_secret : null] # short reference
+}
+
+```
+</details>
+<details><summary>Negative test num. 57 - json file</summary>
+
+```json
+{
   "openapi": "3.0.0",
   "info": {
     "title": "Simple API Overview",
@@ -2954,7 +3387,153 @@ secrets:
 
 ```
 </details>
-<details><summary>Negative test num. 50 - tf file</summary>
+<details><summary>Negative test num. 58 - proto file</summary>
+
+```proto
+// "Generic Token"       - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Proto File fields"   allow-rule-test - #1
+// "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258 - "Avoiding Proto File fields"   allow rule test - #2
+// "Encryption Key"      - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 - "Avoiding Proto File fields"   allow-rule-test - #3
+// "Generic Password"    - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding Proto File fields"   allow rule test - #4
+// "Generic Secret"      - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - "Avoiding Proto File fields"   allow rule test - #5
+// Global allow rule     - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding Boolean's"           allow-rule-test - #6
+syntax = "proto3";
+package com.example.security_test.v1;
+import "google/protobuf/wrappers.proto";
+option go_package = "github.com/CheckmarxDev/router-audit/gen/presets/v1;presets";
+
+// Scenario 1 - Simple attribution
+message SampleMessageNegative {
+  google.protobuf.StringValue refresh_token = 536870911; // if value is larger - out of range error "Field numbers cannot be greater than 536870911."  - Generic Token #1
+  google.protobuf.StringValue sonar_token = 39;google.protobuf.StringValue codecov_token = 40;// trailing comment test - Generic Token #1
+
+  google.protobuf.StringValue access_token= 111111111;                             // Generic Token #1
+  google.protobuf.StringValue    api_token = 7   ;                                 // Generic Token #1
+  google.protobuf.StringValue token = 8;                                           // Generic Token #1
+  google.protobuf.StringValue aws_session_token = 9;                               // Generic Token #1
+  google.protobuf.StringValue twilio_auth_token = 21;                              // Generic Token #1
+  google.protobuf.StringValue test_token_ = 122  ;                                 // Generic Token #1
+
+  google.protobuf.StringValue jwt_private_key = 25;                                // Generic Private Key #2
+  google.protobuf.StringValue ssh_private_key = 26;                                // Generic Private Key #2
+  google.protobuf.StringValue tls_private_key = 27;                                // Generic Private Key #2
+  google.protobuf.StringValue ca_private_key = 28    ;                             // Generic Private Key #2
+  google.protobuf.StringValue private_key = 5;                                     // Generic Private Key #2
+
+  google.protobuf.StringValue encryption_key = 22;                                 // Encryption Key #3
+  google.protobuf.StringValue data_encryption_key= 23   ;                          // Encryption Key #3
+  google.protobuf.StringValue key_encryption_key=24;                               // Encryption Key #3
+
+  google.protobuf.StringValue registry_password =    10421;                        // Generic Password #4
+  google.protobuf.StringValue artifactory_password   = 10731  ;                    // Generic Password #4
+  google.protobuf.StringValue nexus_password = 10853;                              // Generic Password #4
+  string password =          64114;                                                // Generic Password #4
+
+  string secret_key =   123456789;                                                 // Generic Secret #5
+  string secret_value   = 123456790;                                               // Generic Secret #5
+  string   secret   =   123456791;                                                 // Generic Secret #5
+}
+
+// Scenario 2 - Attribution with options
+message SampleMessageNegative2 {
+  google.protobuf.StringValue next_page_token = 5 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}];        // Generic Token #1
+  google.protobuf.StringValue next_next_page_token = 6[(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}  ] ; // Generic Token #1
+  google.protobuf.StringValue api_token = 7 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"jira_api_token\""}];    // Generic Token #1
+
+  google.protobuf.StringValue next_page_private_key = 8 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}];             // Generic Private Key #2
+  google.protobuf.StringValue next_next_page_private_key = 8[(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}  ] ;      // Generic Private Key #2
+  google.protobuf.StringValue api_private_key = 10 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"jira_api_private_key\""}];  // Generic Private Key #2
+
+  google.protobuf.StringValue next_page_encryption_key = 11 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}];                // Encryption Key #3
+  google.protobuf.StringValue next_next_page_encryption_key = 12[(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}  ] ;         // Encryption Key #3
+  google.protobuf.StringValue api_encryption_key = 13 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"jira_api_encryption_key\""}];   // Encryption Key #3
+
+  google.protobuf.StringValue next_page_password = 14 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}];          // Generic Password #4
+  google.protobuf.StringValue next_next_page_password = 15[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}  ] ;   // Generic Password #4
+  google.protobuf.StringValue api_password = 16 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"jira_api_password\""}];   // Generic Password #4
+
+  google.protobuf.StringValue next_page_secret = 17[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}];           // Generic Secret #5
+  google.protobuf.StringValue next_next_page_secret = 18[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}  ] ;   // Generic Secret #5
+  google.protobuf.StringValue api_secret = 19[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"jira_api_secret\""}];      // Generic Secret #5
+}
+
+message MyOptions {
+  string file_only_option_token = 1 [targets = TARGET_TYPE_FILE];                     // Generic Token       #1
+  int message_and_enum_option_token = 2 [targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Generic Token       #1 (line above)
+
+  string file_only_option_private_key = 11 [targets = TARGET_TYPE_FILE];              // Generic Private Key #2
+  int message_and_enum_option_private_key = 21 [targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Generic Private Key #2 (line above)
+
+  string file_only_option_encryption_key = 13 [targets = TARGET_TYPE_FILE];           // Encryption Key      #3
+  int message_and_enum_option_encryption_key = 23 [targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Encryption Key      #3 (line above)
+
+  string file_only_option_password = 14 [targets = TARGET_TYPE_FILE];                 // Generic Password    #4
+  int message_and_enum_option_password = 24 [targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Generic Password    #4 (line above)
+
+  string file_only_option_secret = 15[targets = TARGET_TYPE_FILE];                    // Generic Secret      #5
+  int message_and_enum_option_secret = 25[targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Generic Secret      #5 (line above)
+
+  int B_message_and_enum_option_token = 2 [targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];              // Generic Token        #1
+
+  int B_message_and_enum_option_private_key = 211 [targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];      // Generic Private Key  #2
+
+  int B_message_and_enum_option_encryption_key = 232 [targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];   // Encryption Key       #3
+
+  int B_message_and_enum_option_password = 243 [targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];         // Generic Password     #4
+
+  int B_message_and_enum_option_secret = 254[targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];            // Generic Secret       #5
+}
+
+message Not_a_Token {
+  string token          = 1  [json_name = "tk"];          // Generic Token       #1
+  string private_key    = 4  [json_name = "pk"];          // Generic Private Key #2
+  string encryption_key = 3  [json_name = "ek"];          // Encryption Key      #3
+  string password       = 2  [json_name = "ps"];          // Generic Password    #4
+  string secret         = 5[json_name = "se"];            // Generic Secret      #5
+}
+
+// Scenario 3 - Enum attributions
+enum Corpus {
+  DATA_A_UNSPECIFIED_TOKEN = 0 [  deprecated =   true  ] ;    // Generic Token       #1
+  DATA_A_TOKEN = 11[deprecated=true] ;                        // Generic Token       #1 & #6
+  DATA_A_PRIVATE_KEY = 2[deprecated = false];                 // Generic Private Key #2 & #6
+  DATA_A_ENCRYPTION_KEY = 3[deprecated = true];               // Encryption Key      #3 & #6
+  DATA_A_PASSWORD = 1234  [deprecated = false];               // Generic Password    #4 & #6
+  DATA_A_SECRET = 5[deprecated=true];                         // Generic Secret      #5 & #6
+
+                                                        // Generic Token       #1 (line below)
+  DATA_B_TOKEN = 2[
+    (string_name) = "display_value"
+  ];
+                                                        // Generic Private Key #2 (line below)
+  DATA_B_PRIVATE_KEY = 2 [
+    (string_name) = "display_value"
+  ];
+                                                        // Encryption Key      #3 (line below)
+  DATA_B_ENCRYPTION_KEY = 2 [
+    (string_name) = "display_value"
+  ];
+                                                        // Generic Password    #4 (line below)
+  DATA_B_PASSWORD = 28970[
+    (string_name) = "display_value"
+  ];
+                                                        // Generic Secret      #5 (line below)
+  DATA_B_SECRET = 123456789[
+    (string_name) = "display_value"
+  ];
+}
+
+// Scenario 4 - Generic keywords in "reserved"
+enum EnumAllowingAlias {
+  reserved "password", "api_token", "private_key", "encryption_key", "exposed_secret";
+  option end_of_sample = false;}enum InlineMessageFormat{option end_of_sample = true;}
+```
+</details>
+<details><summary>Negative test num. 59 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary3" {
@@ -2979,7 +3558,7 @@ resource "google_container_cluster" "primary3" {
 
 ```
 </details>
-<details><summary>Negative test num. 51 - tf file</summary>
+<details><summary>Negative test num. 60 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary5" {
@@ -3004,7 +3583,7 @@ resource "google_container_cluster" "primary5" {
 
 ```
 </details>
-<details><summary>Negative test num. 52 - tf file</summary>
+<details><summary>Negative test num. 61 - tf file</summary>
 
 ```tf
 resource "google_secret_manager_secret" "secret-basic" {
@@ -3021,3 +3600,4 @@ resource "google_secret_manager_secret" "secret-basic" {
 
 ```
 </details>
+

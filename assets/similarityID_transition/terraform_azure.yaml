@@ -1,0 +1,225 @@
+similarityIDChangeList:
+    - queryId: c6c7b33d-d7f6-4ab8-8c82-ca0431ecdb7e
+      queryName: Sensitive Port Is Exposed To Wide Private Network
+      observations: ""
+      change: 5
+    - queryId: 9bf1568d-4cd2-4581-81ef-d2efabee1178
+      queryName: Beta - Storage Account Without CMK
+      observations: ""
+      change: 1
+    - queryId: dafe30ec-325d-4516-85d1-e8e6776f012c
+      queryName: Azure Instance Using Basic Authentication
+      observations: ""
+      change: 1
+    - queryId: a5cfef8f-910e-4fd6-8155-f381b236a492
+      queryName: Beta - VM Without Admin SSH Public Key Set
+      observations: ""
+      change: 1
+    - queryId: 59528fe9-0c8e-4153-8016-445911a2d933
+      queryName: Beta - VM With Extension Operations Enabled
+      observations: ""
+      change: 1
+    - queryId: 187e6d39-5e1e-4afa-9c0a-b79632eef346
+      queryName: Beta - VM With Automatic Updates Disabled
+      observations: ""
+      change: 1
+    - queryId: 68403c84-8497-449b-9946-ae848765813f
+      queryName: Beta - Disk Encryption On Managed Disk Disabled
+      observations: ""
+      change: 1
+    - queryId: fbb8e5e0-6dea-41d3-8739-4f2405b0e22a
+      queryName: Beta - Key Vault Without HSM Protection
+      observations: ""
+      change: 1
+    - queryId: 30c7c2f1-c048-49ba-81a4-ae465bbb3335
+      queryName: Beta - VM Without Encryption At Host
+      observations: ""
+      change: 1
+    - queryId: 0745bb3f-60dc-43b6-90ae-67bb01fd1775
+      queryName: Beta - SQL Database Without Data Encryption
+      observations: ""
+      change: 1
+    - queryId: 0536c90c-714e-4184-991e-3fed8d8b7b46
+      queryName: Beta - VM Without Managed Disk
+      observations: ""
+      change: 1
+    - queryId: d3ba7d62-bd07-4102-88ca-9668e5f08e7d
+      queryName: Beta - Recovery Services Vault With Public Network Access
+      observations: ""
+      change: 1
+    - queryId: 0af1814d-23d7-472e-a1b8-b265e7b0d88f
+      queryName: Beta - Recovery Services Vault Without Immutability
+      observations: ""
+      change: 1
+    - queryId: b373043c-f3bf-40db-b67a-c982732c7781
+      queryName: Beta - Recovery Services Vault Without Soft Delete
+      observations: ""
+      change: 1
+    - queryId: 7a0164a5-ec6e-40b2-938d-ab3edfd37dcd
+      queryName: Beta - Backup Vault Without Immutability
+      observations: ""
+      change: 1
+    - queryId: 8d407b28-c746-4650-8bbd-d27df54a795f
+      queryName: Beta - Backup Vault Without Soft Delete
+      observations: ""
+      change: 1
+    - queryId: 0bd3630a-2ae9-4522-9d66-04049654b1df
+      queryName: Beta - Databricks Diagnostic Logging Unconfigured
+      observations: ""
+      change: 1
+    - queryId: 21fa1872-47b3-46ec-9775-f41e85d80cb4
+      queryName: Beta - Diagnostic Settings Without Appropriate Logging
+      observations: ""
+      change: 1
+    - queryId: 50f32d3c-096e-406a-bb26-71b3c91c11c0
+      queryName: Beta - Resource Without Diagnostic Settings
+      observations: ""
+      change: 1
+    - queryId: 416ac446-9a2e-4f6d-84d2-82add788c7da
+      queryName: Beta - Databricks Workspace Without CMK
+      observations: ""
+      change: 1
+    - queryId: 8a0628ed-6256-4a24-a1ab-54696fb69197
+      queryName: Beta - Service Without Resource Logging
+      observations: ""
+      change: 1
+    - queryId: f677bd92-3922-4e75-8f0c-2c0f8fbc9609
+      queryName: Beta - Activity Log Alert For Service Health Not Configured
+      observations: ""
+      change: 1
+    - queryId: 0cc95bf8-9b98-4278-ad9f-fea4aed3d271
+      queryName: Beta - Storage Account Without Delete Lock
+      observations: ""
+      change: 1
+    - queryId: 50e0a9e3-7360-483c-9873-ba1ea1a7faf8
+      queryName: Beta - Storage Account With Cross Tenant Replication Enabled
+      observations: ""
+      change: 1
+    - queryId: 12ecec8a-7961-48db-b644-86be8845d8fd
+      queryName: Beta - Containers Without Soft Delete
+      observations: ""
+      change: 1
+    - queryId: 45f3e879-f8a7-4102-a3fa-46da5a849870
+      queryName: Beta - Storage Account With Shared Access Key
+      observations: ""
+      change: 1
+    - queryId: 056d28cc-7ee9-4b12-b2d1-16b7b66db72d
+      queryName: Beta - Blob Storage Without Soft Delete
+      observations: ""
+      change: 1
+    - queryId: 233ab26d-8f17-4dce-9616-41479da9ffe3
+      queryName: Beta - Storage Account Using Unsafe SMB Channel Encryption
+      observations: ""
+      change: 1
+    - queryId: 621fc7c5-c342-4223-b3dd-d1530acb43ae
+      queryName: Beta - Storage Account Not Using Latest SMB Protocol Version
+      observations: ""
+      change: 1
+    - queryId: 54087baa-8719-48a8-8460-9cc0962117aa
+      queryName: Beta - File Share Without Soft Delete
+      observations: ""
+      change: 1
+    - queryId: b3b9ce2f-c229-4133-9a2b-4e649cf2347e
+      queryName: Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured
+      observations: ""
+      change: 1
+    - queryId: 99b47957-c575-4555-b8c0-ff92384249b4
+      queryName: Beta - Activity Log Alert For Create or Update Public IP Address Rule Not Configured
+      observations: ""
+      change: 1
+    - queryId: 8ce5c61f-5cd1-41bc-b7d9-b26b18efd505
+      queryName: Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured
+      observations: ""
+      change: 1
+    - queryId: 1219a37a-9a2c-420d-8b8c-30bdbc3bfeb1
+      queryName: Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule Not Configured
+      observations: ""
+      change: 1
+    - queryId: b97a1065-a86b-442f-86c4-f95afd9b3ac6
+      queryName: Beta - Activity Log Alert For Delete Security Solution Not Configured
+      observations: ""
+      change: 1
+    - queryId: 8553d83f-fe77-4c96-8850-a95c5895b336
+      queryName: Beta - Activity Log Alert For Create or Update Security Solution Not Configured
+      observations: ""
+      change: 1
+    - queryId: 62d120b1-b1e0-40ef-a81d-a4994ac88b3b
+      queryName: Beta - Activity Log Alert For Delete Network Security Group Not Configured
+      observations: ""
+      change: 1
+    - queryId: 1ec163d0-a9be-4695-89a8-a4028a2cbae7
+      queryName: Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured
+      observations: ""
+      change: 1
+    - queryId: a7b422e3-0b2f-4795-a43a-136dbbd6cbb3
+      queryName: Beta - Activity Log Alert For Delete Policy Assignment Not Configured
+      observations: ""
+      change: 1
+    - queryId: d0514e4b-9e95-4a7a-9bc5-0adb32514122
+      queryName: Beta - Activity Log Alert For Create Policy Assignment Not Configured
+      observations: ""
+      change: 1
+    - queryId: 05d6b52e-11ca-453d-bb3a-21c7c853ee92
+      queryName: Beta - Databricks Workspace Using Default Virtual Network
+      observations: ""
+      change: 1
+    - queryId: 0f7964fa-96fd-4a72-9fb7-3cdef71479db
+      queryName: Beta - App Service Slot Managed Identity Disabled
+      observations: ""
+      change: 1
+    - queryId: 829246df-02c5-490c-993b-10a07a7242e9
+      queryName: Beta - Container App Managed Identity Disabled
+      observations: ""
+      change: 1
+    - queryId: 02f0e3e7-2550-4d75-a23b-ab5254a3ebeb
+      queryName: Beta - Container Group Managed Identity Disabled
+      observations: ""
+      change: 1
+    - queryId: 9b0140d1-50c1-4deb-ba58-472315c7a1ae
+      queryName: Beta - Kubernetes Cluster Managed Identity Disabled
+      observations: ""
+      change: 1
+    - queryId: 7fa50094-0ca5-4253-aa71-f1a3b575d4a5
+      queryName: Beta - Logic App Managed Identity Disabled
+      observations: ""
+      change: 1
+    - queryId: d501246e-45d4-48fd-8975-a23e7124bdfc
+      queryName: Beta - Redis Cache Managed Identity Is Not Set To System Assigned
+      observations: ""
+      change: 1
+    - queryId: 03928f0d-bff0-4feb-a31a-615d093e6026
+      queryName: Beta - Function App Deployment Slot Not Using Latest TLS Encryption Version
+      observations: ""
+      change: 1
+    - queryId: 22cb3507-1ef4-44ac-9c9a-cab31167e31e
+      queryName: Beta - MSSQL Not Using Latest TLS Encryption Version
+      observations: ""
+      change: 1
+    - queryId: 9f15ecc4-d9df-44ba-bb88-28c97e946114
+      queryName: Beta - PostgreSQL Not Using Latest TLS Encryption Version
+      observations: ""
+      change: 1
+    - queryId: e22e5620-3679-418e-bb74-c9f71731ab0f
+      queryName: Beta - Redis Cache Not Using Latest TLS Encryption Version
+      observations: ""
+      change: 1
+    - queryId: 77deea6a-155e-4865-bf04-153d23e488e8
+      queryName: Beta - Azure Container Registry With Broad Permissions
+      observations: ""
+      change: 1
+    - queryId: 71884fcb-ae03-41c8-87b9-22c90353f256
+      queryName: Beta - Container Instances Not Using Private Virtual Networks
+      observations: ""
+      change: 1
+    - queryId: cec6e005-9309-46eb-b34b-456f6eae818b
+      queryName: Beta - Key Vault Purge Protection Is Enabled
+      observations: ""
+      change: 1
+    - queryId: 41d7989b-3be2-4081-8c79-cf903dd174c5
+      queryName: Beta - Use Of User Access Administrator Role Is Not Restricted
+      observations: ""
+      change: 1
+    - queryId: 0493b840-50e8-430c-93bc-d794d72931a9
+      queryName: Beta - AKS Without Audit Logs
+      observations: ""
+      change: 1

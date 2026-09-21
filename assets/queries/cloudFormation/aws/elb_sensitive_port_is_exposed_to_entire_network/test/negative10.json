@@ -1,0 +1,119 @@
+{
+    "Resources": {
+        "LoadBalancer01": {
+            "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+            "Properties": {
+                "SecurityGroups": [
+                    {
+                        "Ref": "MainSecurityGroup"
+                    }
+                ]
+            }
+        },
+        "MainSecurityGroup": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Security group containing all negative/positive tests (standalone ingress)",
+                "VpcId": {
+                    "Ref": "MyVPC"
+                }
+            }
+        },
+        "Negative1IPv4_1_Ingress": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "MainSecurityGroup"
+                },
+                "IpProtocol": "icmp",
+                "FromPort": 22,
+                "ToPort": 22,
+                "CidrIp": "10.0.0.0/0"
+            }
+        },
+        "Negative1IPv4_2_Ingress": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "MainSecurityGroup"
+                },
+                "IpProtocol": "6",
+                "FromPort": 5000,
+                "ToPort": 5000,
+                "CidrIp": "192.168.0.0/0"
+            }
+        },
+        "Negative1ArrayTestIPv4_Ingress1": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "MainSecurityGroup"
+                },
+                "IpProtocol": "udp",
+                "FromPort": 137,
+                "ToPort": 137,
+                "CidrIp": "8.8.0.0/16"
+            }
+        },
+        "Negative1ArrayTestIPv4_Ingress2": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "MainSecurityGroup"
+                },
+                "IpProtocol": "icmp",
+                "FromPort": 5000,
+                "ToPort": 5000,
+                "CidrIp": "10.68.0.0/14"
+            }
+        },
+        "Positive1IPv6_1_Ingress": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "MainSecurityGroup"
+                },
+                "IpProtocol": "58",
+                "FromPort": 22,
+                "ToPort": 22,
+                "CidrIpv6": "fd00::/0"
+            }
+        },
+        "Positive1IPv6_2_Ingress": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "MainSecurityGroup"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": 5000,
+                "ToPort": 5000,
+                "CidrIpv6": "fd12:3456:789a::1/0"
+            }
+        },
+        "Positive1ArrayTestIPv6_Ingress1": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "MainSecurityGroup"
+                },
+                "IpProtocol": "udp",
+                "FromPort": 137,
+                "ToPort": 137,
+                "CidrIpv6": "2400:cb00::/32"
+            }
+        },
+        "Positive1ArrayTestIPv6_Ingress2": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "MainSecurityGroup"
+                },
+                "IpProtocol": "58",
+                "FromPort": 110,
+                "ToPort": 110,
+                "CidrIpv6": "fd00:abcd:1234::42/0"
+            }
+        }
+    }
+}

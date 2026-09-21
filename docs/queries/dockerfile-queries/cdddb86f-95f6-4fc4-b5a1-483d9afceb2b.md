@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Build Process
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/706.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/706.html')">706</a>
+-   **Risk score:** <span style="color:#edd57e">2.8</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/copy_from_references_current_from_alias)
 
 ### Description
@@ -33,6 +34,11 @@ COPY '--from' should not mention the current FROM alias, since it is impossible 
 FROM myimage:tag as dep
 COPY --from=dep /binary /
 RUN dir c:\ 
+```
+```dockerfile title="Positive test num. 2 - dockerfile file" hl_lines="2"
+from myimage:tag as dep
+copy --from=dep /binary /
+run dir c:\ 
 ```
 
 
@@ -52,3 +58,19 @@ COPY --from=builder /go/src/github.com/foo/href-counter/app .
 CMD ["./app"]
 
 ```
+```dockerfile title="Negative test num. 2 - dockerfile file"
+from golang:1.7.3 AS builder
+workdir /go/src/github.com/foo/href-counter/
+run go get -d -v golang.org/x/net/html
+copy app.go    .
+run CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+
+# another dockerfile
+from alpine:latest
+run apk --no-cache add ca-certificates
+workdir /root/
+copy --from=builder /go/src/github.com/foo/href-counter/app .
+cmd ["./app"]
+
+```
+

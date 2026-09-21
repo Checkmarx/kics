@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
@@ -17,6 +18,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s should have UsagePlan defined", [name]),
 		"keyActualValue": sprintf("Resources.%s doesn't have UsagePlan defined", [name]),
+		"searchLine": common_lib.build_search_line(["Resources", name], []),
 	}
 }
 
@@ -25,6 +27,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Stage"
 
+	check_resources_type(document[i].Resources)
 	properties := resource.Properties
 	not settings_are_equal(document[i].Resources, properties.RestApiId, properties.StageName)
 
@@ -36,6 +39,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the %s resource", [name, name]),
 		"keyActualValue": sprintf("Resources.%s should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the %s resource", [name, name]),
+		"searchLine": common_lib.build_search_line(["Resources", name], []),
 	}
 }
 

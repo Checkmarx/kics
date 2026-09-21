@@ -1,13 +1,66 @@
-resource "aws_security_group" "positive3" {
-  name        = "allow_tls3"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
+# ipv4
+resource "aws_security_group_rule" "positive3_ipv4_1" {
+  from_port    = 22
+  to_port      = 22
+  protocol     = "-1"
+  cidr_blocks  = ["10.0.0.0/8"]
+  type         = "ingress"
+}
 
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 5000
-    to_port     = 6000
-    protocol    = "-1"
-    cidr_blocks = ["172.16.0.0/12"]
-  }
+resource "aws_security_group_rule" "positive3_ipv4_2" {
+  from_port    = 22
+  to_port      = 22
+  protocol     = "tcp"
+  cidr_blocks  = ["192.168.0.0/16"]
+  type         = "ingress"
+}
+
+resource "aws_security_group_rule" "positive3_ipv4_3" {
+  from_port    = 22
+  to_port      = 22
+  protocol     = "udp"
+  cidr_blocks  = ["172.16.0.0/12"]
+  type         = "ingress"
+}
+
+resource "aws_security_group_rule" "positive3_ipv4_4" {
+  from_port    = 110
+  to_port      = 110
+  protocol     = "udp"
+  cidr_blocks  = ["10.68.0.0", "172.16.0.0/12"]
+  type         = "ingress"
+}
+
+# ipv6
+
+resource "aws_security_group_rule" "positive3_ipv6_1" {
+  from_port         = 22
+  to_port           = 22
+  protocol          = "-1"
+  ipv6_cidr_blocks  = ["fd00::/8"]  # ipv6 equivalent of 10.0.0.0/8
+  type              = "ingress"
+}
+
+resource "aws_security_group_rule" "positive3_ipv6_2" {
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  ipv6_cidr_blocks  = ["fd12:3456:789a::1"]
+  type              = "ingress"
+}
+
+resource "aws_security_group_rule" "positive3_ipv6_3" {
+  from_port         = 22
+  to_port           = 22
+  protocol          = "udp"
+  ipv6_cidr_blocks  = ["fd00:abcd:1234::42"]
+  type              = "ingress"
+}
+
+resource "aws_security_group_rule" "positive3_ipv6_4" {
+  from_port         = 110
+  to_port           = 110
+  protocol          = "udp"
+  ipv6_cidr_blocks  = ["fd03:5678::/64", "fd00:abcd:1234::42"] 
+  type              = "ingress"
 }

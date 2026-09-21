@@ -1,0 +1,13 @@
+similarityIDChangeList:
+    - queryId: 63ae3638-a38c-4ff4-b616-6e1f72a31a6a
+      queryName: Cloud Storage Anonymous or Publicly Accessible
+      observations: ""
+      change: 3
+    - queryId: c47f90e8-4a19-43f0-8413-cc434d286c4e
+      queryName: Network Policy Disabled
+      observations: ""
+      change: 3
+    - queryId: 9038b526-4c19-4928-bca2-c03d503bdb79
+      queryName: Shielded VM Disabled
+      observations: ""
+      change: 3

@@ -18,15 +18,7 @@ KICS supports scanning Ansible Inventory files with `.ini`, `.json` or `.yaml` e
 
 ## Azure Resource Manager
 
-KICS supports scanning Azure Resource Manager (ARM) templates with `.json` extension. 
-
-## Bicep 
-
-KICS supports scanning Bicep files with `.bicep` extension.
-
-For instructions on converting between ARM JSON templates and Bicep code, refer to the [official ARM documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build). To understand the distinctions between the two, explore the [official syntax comparison](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax).
-
-Note that KICS recognizes this technology as Azure Resource Manager (for queries purpose).
+KICS supports scanning Azure Resource Manager (ARM) templates with `.json` extension or Bicep files with `.bicep` extension.
 
 Explore our ongoing enhancements and planned features on our [Future Improvements](future_improvements.md) page.
 
@@ -94,7 +86,9 @@ Note that KICS recognizes this technology as Azure Resource Manager (for queries
 
 ## Docker
 
-KICS supports scanning Docker files with any name (but with no extension) and files with `.dockerfile` extension.
+KICS supports scanning Dockerfile configurations with any name (but with no extension) and files matched by either name (`Dockerfile`, `Dockerfile.<something>`), extension (`<something>.dockerfile`,`<something>.ubi8`,`<something>.debian`), or by location inside directories named `docker`, `dockerfile`, or `dockerfiles`, where all text files are verified for a valid configuration regardless of extension. 
+
+Note that every check is matched case-insensitively with the exception of the `.ubi8` and `.debian` extensions.
 
 ## Docker Compose
 
@@ -194,6 +188,14 @@ You can also run the command `cdktf synth --json` to display it in the terminal.
 ### NIFCloud for Terraform
 
 KICS supports scanning NIFCloud under Terraform file extension (`.tf`).
+
+### Databricks for Terraform
+
+KICS supports scanning Databricks under Terraform file extension (`.tf`).
+
+### TencentCloud for Terraform
+
+KICS supports scanning TencentCloud under Terraform file extension (`.tf`).
 
 ### Terraform variables path
 

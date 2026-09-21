@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Supply-Chain
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/1357.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/1357.html')">1357</a>
+-   **Risk score:** <span style="color:#ff7213">6.4</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/image_version_not_explicit)
 
 ### Description
@@ -82,6 +83,20 @@ FROM test3 AS test_fail_1
 RUN echo "depth"
 ```
 </details>
+<details><summary>Positive test num. 5 - dockerfile file</summary>
+
+```dockerfile hl_lines="1"
+from alpine
+run apk add --update py2-pip
+run pip install --upgrade pip
+copy requirements.txt /usr/src/app/
+run pip install --no-cache-dir -r /usr/src/app/requirements.txt
+copy app.py /usr/src/app/
+copy templates/index.html /usr/src/app/templates/
+expose 5000
+cmd ["python", "/usr/src/app/app.py"] 
+```
+</details>
 
 
 #### Code samples without security vulnerabilities
@@ -136,3 +151,21 @@ FROM test4
 RUN echo "depth5"
 ```
 </details>
+<details><summary>Negative test num. 5 - dockerfile file</summary>
+
+```dockerfile
+from alpine:3.5
+run apk add --update py2-pip
+run pip install --upgrade pip
+copy requirements.txt /usr/src/app/
+run pip install --no-cache-dir -r /usr/src/app/requirements.txt
+copy app.py /usr/src/app/
+copy templates/index.html /usr/src/app/templates/
+expose 5000
+arg IMAGE=alpine:3.12
+from $IMAGE
+cmd ["python", "/usr/src/app/app.py"]
+
+```
+</details>
+

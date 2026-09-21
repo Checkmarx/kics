@@ -8,5 +8,6 @@
   "platform": "GoogleDeploymentManager",
   "descriptionID": "e96debd4",
   "cloudProvider": "gcp",
-  "cwe": "200"
+  "cwe": "200",
+  "riskScore": "0.0"
 }

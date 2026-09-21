@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - Container App Managed Identity Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.tf"
+  }
+]

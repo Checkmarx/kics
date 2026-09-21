@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.37.4.10188",
+      "templateHash": "7243181032366168335"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2021-02-01-preview",
+      "name": "sqlServer1",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "sqlServer1"
+      },
+      "properties": {
+        "administratorLogin": "adminUsername",
+        "administratorLoginPassword": "adminPassword"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/auditingSettings",
+      "apiVersion": "2022-05-01-preview",
+      "name": "sqlServer1/default",
+      "properties": {
+        "state": "Enabled",
+        "isAzureMonitorTargetEnabled": true,
+        "retentionDays": 89
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', 'sqlServer1')]"
+      ]
+    }
+  ]
+}

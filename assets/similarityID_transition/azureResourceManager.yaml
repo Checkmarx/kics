@@ -1,0 +1,13 @@
+similarityIDChangeList:
+    - queryId: 43f6e60c-9cdb-4e77-864d-a66595d26518
+      queryName: Storage Logging For Read Write And Delete Requests Disabled
+      observations: ""
+      change: 3
+    - queryId: 70111098-7f85-48f0-b1b4-e4261cf5f61b
+      queryName: Website with 'Http20Enabled' Disabled
+      observations: ""
+      change: 1
+    - queryId: e055285c-bc01-48b4-8aa5-8a54acdd29df
+      queryName: SQL Server Database Without Auditing
+      observations: "Added to fix the -1 value on search_line on nested resources"
+      change: 1

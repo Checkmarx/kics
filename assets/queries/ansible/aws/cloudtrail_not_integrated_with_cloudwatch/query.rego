@@ -17,8 +17,10 @@ CxPolicy[result] {
 		"resourceType": modules[m],
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
+		"searchValue": properties[p],
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.%s should be defined", [task.name, modules[m], properties[p]]),
 		"keyActualValue": sprintf("name={{%s}}.{{%s}}.%s is not defined", [task.name, modules[m], properties[p]]),
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m]], []),
 	}
 }

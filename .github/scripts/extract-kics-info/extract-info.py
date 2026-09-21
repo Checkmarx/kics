@@ -15,6 +15,8 @@ class Query:
     descriptionID: str
     aggregation: int
     cloudProviderId: int
+    cwe: str
+    riskScore: str
 
     def __init__(self, queryData):
         self.id = queryData['id']
@@ -25,6 +27,8 @@ class Query:
         self.descriptionUrl = queryData['descriptionUrl']
         self.platformId = platforms.getPlatformId(queryData['platform'])
         self.descriptionID = queryData['descriptionID']
+        self.riskScore = queryData['riskScore']
+        self.cwe =  queryData['cwe']
         if queryData.__contains__('cloudProvider'):
             self.cloudProviderId = cloudProviders.getCloudProviderId(
                 queryData['cloudProvider'])

@@ -5,17 +5,19 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"runtime"
 	"sort"
 	"strings"
 	"sync"
+
+	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
+	ignore "github.com/sabhiram/go-gitignore"
 
 	"github.com/Checkmarx/kics/v2/internal/metrics"
 	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
-	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
-	ignore "github.com/sabhiram/go-gitignore"
 
 	yamlParser "gopkg.in/yaml.v3"
 )
@@ -36,6 +38,8 @@ const (
 	crossplane = "crossplane"
 	knative    = "knative"
 	sizeMb     = 1048576
+
+	maxAnalyzerWorkers = 128
 )
 
 // move the openApi regex to public to be used on file.go
@@ -73,7 +77,7 @@ var (
 	blueprintRegexTargetScope                       = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
 	blueprintRegexProperties                        = regexp.MustCompile(`("properties"|properties)\s*:`)
 	buildahRegex                                    = regexp.MustCompile(`buildah\s*from\s*\w+`)
-	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:[\w\W]+(image|build)\s*:`)
+	dockerComposeServicesRegex                      = regexp.MustCompile(`(^|\n)\s*"?services"?\s*:[\w\W]*\n\s*"?(image|build)"?\s*:`)
 	crossPlaneRegex                                 = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
 	knativeRegex                                    = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
 	pulumiNameRegex                                 = regexp.MustCompile(`name\s*:`)
@@ -97,22 +101,20 @@ var (
 	listKeywordsGoogleDeployment = []string{"resources"}
 	armRegexTypes                = []string{"blueprint", "templateArtifact", "roleAssignmentArtifact", "policyAssignmentArtifact"}
 	possibleFileTypes            = map[string]bool{
-		".yml":               true,
-		".yaml":              true,
-		".json":              true,
-		".dockerfile":        true,
-		"Dockerfile":         true,
-		"possibleDockerfile": true,
-		".debian":            true,
-		".ubi8":              true,
-		".tf":                true,
-		"tfvars":             true,
-		".proto":             true,
-		".sh":                true,
-		".cfg":               true,
-		".conf":              true,
-		".ini":               true,
-		".bicep":             true,
+		".yml":        true,
+		".yaml":       true,
+		".json":       true,
+		".dockerfile": true,
+		".debian":     true,
+		".ubi8":       true,
+		".tf":         true,
+		"tfvars":      true,
+		".proto":      true,
+		".sh":         true,
+		".cfg":        true,
+		".conf":       true,
+		".ini":        true,
+		".bicep":      true,
 	}
 	supportedRegexes = map[string][]string{
 		"azureresourcemanager": append(armRegexTypes, arm),
@@ -151,7 +153,21 @@ type analyzerInfo struct {
 	typesFlag               []string
 	excludeTypesFlag        []string
 	filePath                string
+	fileExt                 string
 	fallbackMinifiedFileLOC int
+}
+
+// fileExtInfo contains file path and detected extension
+type fileExtInfo struct {
+	path string
+	ext  string
+}
+
+// fileTypeInfo contains file path, detected platform type, and LOC count
+type fileTypeInfo struct {
+	filePath string
+	fileType string
+	locCount int
 }
 
 // Analyzer keeps all the relevant info for the function Analyze
@@ -164,6 +180,7 @@ type Analyzer struct {
 	ExcludeGitIgnore        bool
 	MaxFileSize             int
 	FallbackMinifiedFileLOC int
+	MaxAnalyzerWorkers      int
 }
 
 // types is a map that contains the regex by type
@@ -317,45 +334,24 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 		Types:       make([]string, 0),
 		Exc:         make([]string, 0),
 		ExpectedLOC: 0,
+		FileStats:   make(map[string]model.FileStatistics),
 	}
 
-	var files []string
+	var files []fileExtInfo
 	var wg sync.WaitGroup
 	// results is the channel shared by the workers that contains the types found
 	results := make(chan string)
 	locCount := make(chan int)
-	ignoreFiles := make([]string, 0)
-	projectConfigFiles := make([]string, 0)
+	fileInfo := make(chan fileTypeInfo)
+	var ignoreFiles []string
+	var projectConfigFiles []string
 	done := make(chan bool)
 	hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
 	// get all the files inside the given paths
-	for _, path := range a.Paths {
-		if _, err := os.Stat(path); err != nil {
-			return returnAnalyzedPaths, errors.Wrap(err, "failed to analyze path")
-		}
-		if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
-			if err != nil {
-				return err
-			}
-
-			ext, errExt := utils.GetExtension(path)
-			if errExt == nil {
-				trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
-				ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
-
-				if isConfigFile(path, defaultConfigFiles) {
-					projectConfigFiles = append(projectConfigFiles, path)
-					a.Exc = append(a.Exc, path)
-				}
-
-				if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, a.Exc) {
-					files = append(files, path)
-				}
-			}
-			return nil
-		}); err != nil {
-			log.Error().Msgf("failed to analyze path %s: %s", path, err)
-		}
+	var err error
+	files, ignoreFiles, projectConfigFiles, err = a.collectFiles(hasGitIgnoreFile, gitIgnore)
+	if err != nil {
+		return returnAnalyzedPaths, err
 	}
 
 	// unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
@@ -363,18 +359,34 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 	a.Types, a.ExcludeTypes = typeLower(a.Types, a.ExcludeTypes)
 
-	// Start the workers
-	for _, file := range files {
-		wg.Add(1)
-		// analyze the files concurrently
-		a := &analyzerInfo{
-			typesFlag:               a.Types,
-			excludeTypesFlag:        a.ExcludeTypes,
-			filePath:                file,
-			fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
-		}
-		go a.worker(results, unwanted, locCount, &wg)
+	// Start a bounded worker pool. Large repositories can contain tens of
+	// thousands of candidate files, so one goroutine per file can exhaust
+	// runtime threads while workers are blocked on file I/O.
+	filesToAnalyze := make(chan fileExtInfo)
+	workerCount := analyzerWorkerCount(len(files), a.MaxAnalyzerWorkers)
+	wg.Add(workerCount)
+	for range workerCount {
+		go func() {
+			defer wg.Done()
+			for file := range filesToAnalyze {
+				fileAnalyzer := &analyzerInfo{
+					typesFlag:               a.Types,
+					excludeTypesFlag:        a.ExcludeTypes,
+					filePath:                file.path,
+					fileExt:                 file.ext,
+					fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
+				}
+				fileAnalyzer.worker(results, unwanted, locCount, fileInfo)
+			}
+		}()
 	}
+
+	go func() {
+		for _, file := range files {
+			filesToAnalyze <- file
+		}
+		close(filesToAnalyze)
+	}()
 
 	go func() {
 		// close channel results when the worker has finished writing into it
@@ -382,109 +394,127 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 			close(unwanted)
 			close(results)
 			close(locCount)
+			close(fileInfo)
 		}()
 		wg.Wait()
 		done <- true
 	}()
 
-	availableTypes, unwantedPaths, loc := computeValues(results, unwanted, locCount, done)
+	availableTypes, unwantedPaths, loc, fileStats := computeValues(results, unwanted, locCount, fileInfo, done)
 	multiPlatformTypeCheck(&availableTypes)
 	unwantedPaths = append(unwantedPaths, ignoreFiles...)
 	unwantedPaths = append(unwantedPaths, projectConfigFiles...)
 	returnAnalyzedPaths.Types = availableTypes
 	returnAnalyzedPaths.Exc = unwantedPaths
 	returnAnalyzedPaths.ExpectedLOC = loc
+	returnAnalyzedPaths.FileStats = fileStats
 	// stop metrics for file analyzer
 	metrics.Metric.Stop()
 	return returnAnalyzedPaths, nil
 }
 
+func (a *Analyzer) collectFiles(
+	hasGitIgnoreFile bool,
+	gitIgnore *ignore.GitIgnore,
+) (files []fileExtInfo, ignoreFiles, projectConfigFiles []string, err error) {
+	ignoreFiles = make([]string, 0)
+	projectConfigFiles = make([]string, 0)
+
+	for _, path := range a.Paths {
+		if _, err := os.Stat(path); err != nil {
+			return nil, nil, nil, errors.Wrap(err, "failed to analyze path")
+		}
+		if err := filepath.Walk(path, func(p string, info os.FileInfo, err error) error {
+			if err != nil {
+				return err
+			}
+			fileData, errFile := os.Stat(p)
+			if errFile != nil {
+				return nil
+			}
+			if fileData.IsDir() {
+				return nil
+			}
+			trimmedPath := strings.ReplaceAll(p, a.Paths[0], filepath.Base(a.Paths[0]))
+			ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, p, trimmedPath, ignoreFiles)
+			ext, errExt := utils.GetExtension(p)
+			if errExt == nil {
+				if isConfigFile(p, defaultConfigFiles) {
+					projectConfigFiles = append(projectConfigFiles, p)
+					a.Exc = append(a.Exc, p)
+				}
+				if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(p, a.Exc) {
+					files = append(files, fileExtInfo{p, ext})
+				}
+			}
+			return nil
+		}); err != nil {
+			log.Error().Msgf("failed to analyze path %s: %s", path, err)
+		}
+	}
+	return files, ignoreFiles, projectConfigFiles, nil
+}
+
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
-// writes the answer to the results channel
+// writes the answer to the results channel and file info for statistics
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, wg *sync.WaitGroup) { //nolint: gocyclo
+func (a *analyzerInfo) worker( //nolint: gocyclo
+	results,
+	unwanted chan<- string,
+	locCount chan<- int,
+	fileInfo chan<- fileTypeInfo,
+) {
 	defer func() {
 		if err := recover(); err != nil {
 			log.Warn().Msgf("Recovered from analyzing panic for file %s with error: %#v", a.filePath, err.(error).Error())
 			unwanted <- a.filePath
 		}
-		wg.Done()
 	}()
 
-	ext, errExt := utils.GetExtension(a.filePath)
-	if errExt == nil {
-		linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
+	linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
 
-		switch ext {
-		// Dockerfile (direct identification)
-		case ".dockerfile", "Dockerfile":
-			if a.isAvailableType(dockerfile) {
-				results <- dockerfile
-				locCount <- linesCount
-			}
-		// Dockerfile (indirect identification)
-		case "possibleDockerfile", ".ubi8", ".debian":
-			if a.isAvailableType(dockerfile) && isDockerfile(a.filePath) {
-				results <- dockerfile
-				locCount <- linesCount
-			} else {
-				unwanted <- a.filePath
-			}
-		// Terraform
-		case ".tf", "tfvars":
-			if a.isAvailableType(terraform) {
-				results <- terraform
-				locCount <- linesCount
-			}
-		// Bicep
-		case ".bicep":
-			if a.isAvailableType(bicep) {
-				results <- bicep
-				locCount <- linesCount
-			}
-		// GRPC
-		case ".proto":
-			if a.isAvailableType(grpc) {
-				results <- grpc
-				locCount <- linesCount
-			}
-		// It could be Ansible Config or Ansible Inventory
-		case ".cfg", ".conf", ".ini":
-			if a.isAvailableType(ansible) {
-				results <- ansible
-				locCount <- linesCount
-			}
-		/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
-		Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager.
-		We also have FHIR's case which will be ignored since it's not a platform file.*/
-		case yaml, yml, json, sh:
-			a.checkContent(results, unwanted, locCount, linesCount, ext)
+	switch a.fileExt {
+	// Dockerfile
+	case ".dockerfile":
+		if a.isAvailableType(dockerfile) {
+			results <- dockerfile
+			locCount <- linesCount
+			fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: dockerfile, locCount: linesCount}
 		}
-	}
-}
-
-func isDockerfile(path string) bool {
-	content, err := os.ReadFile(filepath.Clean(path))
-	if err != nil {
-		log.Error().Msgf("failed to analyze file: %s", err)
-		return false
-	}
-
-	regexes := []*regexp.Regexp{
-		regexp.MustCompile(`\s*FROM\s*`),
-		regexp.MustCompile(`\s*RUN\s*`),
-	}
-
-	check := true
-
-	for _, regex := range regexes {
-		if !regex.Match(content) {
-			check = false
-			break
+	// Terraform
+	case ".tf", "tfvars":
+		if a.isAvailableType(terraform) {
+			results <- terraform
+			locCount <- linesCount
+			fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: terraform, locCount: linesCount}
 		}
+	// Bicep
+	case ".bicep":
+		if a.isAvailableType(bicep) {
+			results <- arm
+			locCount <- linesCount
+			fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: arm, locCount: linesCount}
+		}
+	// GRPC
+	case ".proto":
+		if a.isAvailableType(grpc) {
+			results <- grpc
+			locCount <- linesCount
+			fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: grpc, locCount: linesCount}
+		}
+	// It could be Ansible Config or Ansible Inventory
+	case ".cfg", ".conf", ".ini":
+		if a.isAvailableType(ansible) {
+			results <- ansible
+			locCount <- linesCount
+			fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: ansible, locCount: linesCount}
+		}
+	/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
+	Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager.
+	We also have FHIR's case which will be ignored since it's not a platform file.*/
+	case yaml, yml, json, sh:
+		a.checkContent(results, unwanted, locCount, fileInfo, linesCount, a.fileExt)
 	}
-
-	return check
 }
 
 // overrides k8s match when all regexes pass for azureresourcemanager key and extension is set to json
@@ -497,15 +527,45 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 	return false
 }
 
+func analyzerWorkerCount(fileCount, maxWorkers int) int {
+	if fileCount < 1 {
+		return 0
+	}
+
+	// Use default constant if maxWorkers is not set
+	if maxWorkers <= 0 {
+		maxWorkers = maxAnalyzerWorkers
+	}
+	workers := runtime.GOMAXPROCS(0) * 2
+	if workers < 1 {
+		workers = 1
+	}
+	if workers > maxWorkers {
+		workers = maxWorkers
+	}
+	if fileCount < workers {
+		return fileCount
+	}
+	return workers
+}
+
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount chan<- int, linesCount int, ext string) {
+func (a *analyzerInfo) checkContent(
+	results,
+	unwanted chan<- string,
+	locCount chan<- int,
+	fileInfo chan<- fileTypeInfo,
+	linesCount int,
+	ext string,
+) {
 	typesFlag := a.typesFlag
 	excludeTypesFlag := a.excludeTypesFlag
-	// get file content
-	content, err := os.ReadFile(a.filePath)
+	// get file content with UTF-16/UTF-8 detection
+	content, err := utils.ReadFileToUTF8(a.filePath)
 	if err != nil {
-		log.Error().Msgf("failed to analyze file: %s", err)
+		log.Warn().Msgf("failed to analyze file: %s", err)
+		unwanted <- a.filePath
 		return
 	}
 
@@ -557,6 +617,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 
 	results <- returnType
 	locCount <- linesCount
+	fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: returnType, locCount: linesCount}
 }
 
 func checkReturnType(path, returnType, ext string, content []byte) string {
@@ -660,10 +721,21 @@ func checkForAnsibleHost(yamlContent model.Document) bool {
 
 // computeValues computes expected Lines of Code to be scanned from locCount channel
 // and creates the types and unwanted slices from the channels removing any duplicates
-func computeValues(types, unwanted chan string, locCount chan int, done chan bool) (typesS, unwantedS []string, locTotal int) {
+// also collects file statistics for memory calculation
+func computeValues(
+	types,
+	unwanted chan string,
+	locCount chan int,
+	fileInfo chan fileTypeInfo,
+	done chan bool,
+) (typesS, unwantedS []string, locTotal int, stats map[string]model.FileStatistics) {
 	var val int
 	unwantedSlice := make([]string, 0)
 	typeSlice := make([]string, 0)
+	stats = make(map[string]model.FileStatistics)
+
+	platformFilesInfo := make(map[string][]fileTypeInfo)
+
 	for {
 		select {
 		case i := <-locCount:
@@ -676,8 +748,38 @@ func computeValues(types, unwanted chan string, locCount chan int, done chan boo
 			if !utils.Contains(i, typeSlice) {
 				typeSlice = append(typeSlice, i)
 			}
+		case info := <-fileInfo:
+			platformFilesInfo[info.fileType] = append(platformFilesInfo[info.fileType], info)
 		case <-done:
-			return typeSlice, unwantedSlice, val
+			// Drain the buffered `unwanted` channel before exiting
+			// The `done` signal can race with pending messages in `unwanted`
+			// returning immediately would drop exclusions and cause files
+			// that should be ignored to be scanned
+			for i := range unwanted {
+				if !utils.Contains(i, unwantedSlice) {
+					unwantedSlice = append(unwantedSlice, i)
+				}
+			}
+
+			for platformType, filesInfo := range platformFilesInfo {
+				dirMap := make(map[string]int)
+				totalLOC := 0
+
+				for _, fileInfo := range filesInfo {
+					dir := filepath.Dir(fileInfo.filePath)
+					dirMap[dir]++
+					totalLOC += fileInfo.locCount
+				}
+
+				stats[platformType] = model.FileStatistics{
+					FileCount:      len(filesInfo),
+					DirectoryCount: len(dirMap),
+					FilesByDir:     dirMap,
+					TotalLOC:       totalLOC,
+				}
+			}
+
+			return typeSlice, unwantedSlice, val, stats
 		}
 	}
 }
@@ -777,6 +879,11 @@ func multiPlatformTypeCheck(typesSelected *[]string) {
 }
 
 func (a *analyzerInfo) isAvailableType(typeName string) bool {
+	// Convert bicep internal type to its platform name for flag matching
+	if typeName == "bicep" {
+		typeName = "azureresourcemanager"
+	}
+
 	// no flag is set
 	if len(a.typesFlag) == 1 && a.typesFlag[0] == "" && len(a.excludeTypesFlag) == 1 && a.excludeTypesFlag[0] == "" {
 		return true
@@ -801,7 +908,7 @@ func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
 		a.Exc = append(a.Exc, fullPath)
 
 		if exceededFileSize {
-			log.Error().Msgf("file %s exceeds maximum file size of %d Mb", fullPath, a.MaxFileSize)
+			log.Warn().Msgf("file %s exceeds maximum file size of %d Mb", fullPath, a.MaxFileSize)
 		}
 	}
 	return ignoreFiles

@@ -1,0 +1,14 @@
+{
+  "id": "c8e4444e-d9a9-4426-be8e-9f1b8c43133c",
+  "queryName": "Beta - SQL DB Instance With Global User Options",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "No 'google_sql_database_instance' resource based on SQLSERVER should define the 'user options' flag",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance.html#settings-1",
+  "platform": "Terraform",
+  "descriptionID": "c8e4444e",
+  "cloudProvider": "gcp",
+  "cwe": "250",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

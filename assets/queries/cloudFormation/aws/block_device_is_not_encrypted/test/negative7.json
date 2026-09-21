@@ -1,0 +1,22 @@
+
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "MyLaunchConfiguration": {
+      "Type": "AWS::AutoScaling::LaunchConfiguration",
+      "Properties": {
+        "ImageId": "ami-0c55b159cbfafe1f0",  
+        "InstanceType": "t2.micro",
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+              "VolumeSize": 8,
+              "Encrypted": "true"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

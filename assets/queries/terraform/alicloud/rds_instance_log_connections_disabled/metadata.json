@@ -9,5 +9,6 @@
   "descriptionID": "0a96bec0",
   "cloudProvider": "alicloud",
   "cwe": "778",
-  "oldSeverity": "LOW"
+  "oldSeverity": "LOW",
+  "riskScore": "6.4"
 }

@@ -9,5 +9,6 @@
   "descriptionID": "f3ad2d09",
   "cwe": "250",
   "cloudProvider": "common",
-  "oldSeverity": "MEDIUM"
+  "oldSeverity": "MEDIUM",
+  "riskScore": "7.7"
 }

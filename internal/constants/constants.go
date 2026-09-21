@@ -51,7 +51,6 @@ var (
 		"OpenAPI":                 "openAPI",
 		"Terraform":               "terraform",
 		"AzureResourceManager":    "azureResourceManager",
-		"Bicep":                   "bicep",
 		"GoogleDeploymentManager": "googleDeploymentManager",
 		"GRPC":                    "grpc",
 		"Buildah":                 "buildah",
@@ -96,6 +95,9 @@ const (
 
 	// URL - KICS url
 	URL = "https://www.kics.io/"
+
+	// GitHubReleasesURL - GitHub API URL to get the latest KICS release
+	GitHubReleasesURL = "https://api.github.com/repos/Checkmarx/kics/releases/latest"
 
 	// DefaultLogFile - logfile name
 	DefaultLogFile = "info.log"

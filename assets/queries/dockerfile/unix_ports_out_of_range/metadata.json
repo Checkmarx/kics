@@ -9,5 +9,6 @@
   "descriptionID": "fed3d812",
   "cwe": "682",
   "oldSeverity": "HIGH",
-  "cloudProvider" : "common"
+  "cloudProvider": "common",
+  "riskScore": "0.0"
 }
