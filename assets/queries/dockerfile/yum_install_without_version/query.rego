@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.dockerfile as docker_lib
+import data.generic.dockerfile as dockerLib
 
 CxPolicy[result] {
 	resource := input.document[i].command[name][cmd]
@@ -13,15 +13,17 @@ CxPolicy[result] {
 	yum := regex.find_n("yum (-(-)?[a-zA-Z]+ *)*(group|local)?install", commands, -1)
 	yum != null
 
-	packages = docker_lib.getPackages(commands, yum)
+	packages = dockerLib.getPackages(commands, yum)
 	length := count(packages)
 
 	some j
 	analyzePackages(j, packages[j], packages, length)
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"searchValue": packages[j],
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The package version should always be specified when using yum install",
@@ -36,16 +38,18 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-	docker_lib.arrayContains(resource.Value, {"yum", "install"})
+	dockerLib.arrayContains(resource.Value, {"yum", "install"})
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "yum"
 	regex.match("^[a-zA-Z]", resource.Value[j]) == true
-	not docker_lib.withVersion(resource.Value[j])
+	not dockerLib.withVersion(resource.Value[j])
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"searchValue": resource.Value[j],
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The package version should always be specified when using yum install",
@@ -57,12 +61,12 @@ CxPolicy[result] {
 analyzePackages(j, currentPackage, packages, length) {
 	j == length - 1
 	regex.match("^[a-zA-Z]", currentPackage) == true
-	not docker_lib.withVersion(currentPackage)
+	not dockerLib.withVersion(currentPackage)
 }
 
 analyzePackages(j, currentPackage, packages, length) {
 	j != length - 1
 	regex.match("^[a-zA-Z]", currentPackage) == true
 	packages[plus(j, 1)] != "-v"
-	not docker_lib.withVersion(currentPackage)
+	not dockerLib.withVersion(currentPackage)
 }
