@@ -3,7 +3,7 @@
   "queryName": "Vault Auditing Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "Ensure that logging for Azure KeyVault is 'Enabled'",
+  "descriptionText": "Ensure that logging for Azure KeyVault is 'Enabled' for category groups 'audit' and 'allLogs'",
   "descriptionUrl": "https://www.terraform.io/docs/providers/azurerm/r/key_vault.html",
   "platform": "Terraform",
   "descriptionID": "047ab315",
