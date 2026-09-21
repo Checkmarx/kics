@@ -1,3 +1,5 @@
+# "Facebook Access Token" - 5176e805-0cda-44fa-ac96-c092c646180a                                     positive-test    - #1
+# "Generic Token"         - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Facebook Access Token"  allow-rule-test  - #2
 apiVersion: v1
 kind: Pod
 metadata:
@@ -10,5 +12,7 @@ spec:
     image: gcr.io/google-samples/node-hello:1.0
     env:
     - name: FACEBOOK_TOKEN
-      value: "EAACEdEose0cBA1bad3afsf2aew"
+      value: "EAACEdEose0cBA1bad3afsf2aew"  #1
+    - name: SECOND_FACEBOOK_TOKEN
+      token: "EAACEdEose0cBA12jiajkdasg9w"  #1 & #2
 

@@ -1,3 +1,4 @@
+# "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258 - "Avoiding bash variables"  allow-rule-test
 on: workflow_call
 
 stages:
@@ -9,7 +10,7 @@ variables:
 jobs:
   job_build:
     stage: build
-    script:
+    script: # negative1:
       - if [[ -z "${GIT_PRIVATE_KEY:-}" ]]; then
           echo "Missing GIT_PRIVATE_KEY variable!"
           exit 1

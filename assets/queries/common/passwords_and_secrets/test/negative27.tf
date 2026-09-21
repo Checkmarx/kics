@@ -1,3 +1,4 @@
+# Generic Negative Test - no secrets
 resource "aws_lambda_function" "analysis_lambda4" {
   # lambda have plain text secrets in environment variables
   filename      = "resources/lambda_function_payload.zip"
