@@ -27,25 +27,25 @@ existsInternetGateway(dbSubnetGroupName) {
     [_, IGresource] := walk(IGdocs)
 	startswith(IGresource.apiVersion, "network.aws.crossplane.io")
     IGresource.kind == "InternetGateway"
-    
+
     IGforProvider := IGresource.spec.forProvider
-	
+
     common_lib.valid_key(IGforProvider, "vpcId")
 	vpcId == IGforProvider.vpcId
-} 
+}
 
 CxPolicy[result] {
     docs := input.document[i]
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "database.aws.crossplane.io")
     resource.kind == "RDSInstance"
-    
+
     forProvider := resource.spec.forProvider
 
     not common_lib.valid_key(forProvider, "publiclyAccessible")
-    
+
     dbSubnetGroupName := forProvider.dbSubnetGroupName
-    
+
     existsInternetGateway(dbSubnetGroupName) == true
 
     result := {
@@ -64,7 +64,7 @@ CxPolicy[result] {
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "database.aws.crossplane.io")
     resource.kind == "RDSInstance"
-    
+
     forProvider := resource.spec.forProvider
     forProvider.publiclyAccessible == true
 

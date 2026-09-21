@@ -42,7 +42,7 @@ get_results(resource, type, name) = results {
 	is_array(resource.admin_ssh_key)
 	resource.admin_ssh_key == []
 	results := [{
-		"searchKey": sprintf("%s[%s].admin_ssh_key", [type, name]),
+		"searchKey": sprintf("resource.%s.%s.admin_ssh_key", [type, name]),
 		"keyActualValue": sprintf("'%s[%s].admin_ssh_key' is undefined or null", [type, name]),
 		"searchLine": common_lib.build_search_line(["resource", type, name, "admin_ssh_key"], [])
 	}]

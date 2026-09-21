@@ -1,0 +1,43 @@
+---
+- hosts: localhost
+  tasks:
+    - name: ssh_password_enabled false and disable_password_authentication true
+      azure_rm_virtualmachine:
+        resource_group: myResourceGroup
+        name: negative2_1
+        vm_size: Standard_DS1_v2
+        admin_username: adminUser
+        os_type: Linux
+        ssh_password_enabled: false
+        linux_config:
+          disable_password_authentication: true
+
+    - name: both ssh_password_enabled false and disable_password_authentication false - ssh_password_enabled will still prevent basic authentication
+      azure_rm_virtualmachine:
+        resource_group: myResourceGroup
+        name: negative2_2
+        vm_size: Standard_DS1_v2
+        admin_username: adminUser
+        os_type: Linux
+        ssh_password_enabled: false
+        linux_config:
+          disable_password_authentication: false
+
+    - name: no ssh_password_enabled, linux_config.disable_password_authentication explicitly true
+      azure_rm_virtualmachine:
+        resource_group: myResourceGroup
+        name: negative2_3
+        vm_size: Standard_DS1_v2
+        admin_username: adminUser
+        os_type: Linux
+        linux_config:
+          disable_password_authentication: true
+
+    - name: Windows VM is not checked
+      azure_rm_virtualmachine:
+        resource_group: myResourceGroup
+        name: negative2_4
+        vm_size: Standard_DS1_v2
+        admin_username: adminUser
+        admin_password: Password123!
+        os_type: Windows
