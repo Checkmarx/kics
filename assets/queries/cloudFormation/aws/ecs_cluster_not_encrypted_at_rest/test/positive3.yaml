@@ -8,12 +8,8 @@ Resources:
         InstanceType: t3.micro
         BlockDeviceMappings:
           - DeviceName: /dev/xvda
-            Ebs:
-              VolumeSize: 30
-              VolumeType: gp2
         UserData:
           Fn::Base64: !Sub |
             #!/bin/bash
             echo ECS_CLUSTER=${ECSCluster} >> /etc/ecs/ecs.config
-
 
