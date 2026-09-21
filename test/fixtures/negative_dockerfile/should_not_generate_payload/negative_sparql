@@ -1,0 +1,5 @@
+# SPARQL query with named graph
+FROM <http://example.org/graph>
+# "<" and ">" are not allowed
+SELECT ?subject ?predicate ?object
+WHERE { ?subject ?predicate ?object }

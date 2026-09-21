@@ -55,9 +55,9 @@ To test and debug there are two ways:
 #### Query Development Tutorial
 
 In the first instance, take a look at the query composition:
-- **query.rego**: Includes the policy and defines the result. The policy builds the pattern that breaks the security of the infrastructure code, which the query is looking for. The result defines the specific data used to present the vulnerability in the infrastructure code.
-- **metadata.json**: Each query has a metadata.json companion file with all the relevant information about the vulnerability, including the severity, category and its description;
-- **test**: Folder that contains at least one negative and positive case and a JSON file with data about the expected results.
+  - **query.rego**: Includes the policy and defines the result. The policy builds the pattern that breaks the security of the infrastructure code, which the query is looking for. The result defines the specific data used to present the vulnerability in the infrastructure code.
+  - **metadata.json**: Each query has a metadata.json companion file with all the relevant information about the vulnerability, including the severity, category and its description;
+  - **test**: Folder that contains at least one negative and positive case and a JSON file with data about the expected results.
 
 ```
 - <technology>
@@ -137,7 +137,7 @@ Observe the following metadata.json example and check the Guidelines below for m
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail",
   "platform": "Terraform",
   "descriptionID": "feb82a62",
-  "cloudProvider": "aws", 
+  "cloudProvider": "aws",
   "cwe": "778",
   "riskScore": "2.8"
 }
@@ -248,8 +248,13 @@ go run ./cmd/console/main.go generate-id
 - `cloudProvider` should specify the target cloud provider, when necessary (e.g. AWS, AZURE, GCP, etc.)
 - `aggregation` [optional] should be used when more than one query is implemented in the same query.rego file. Indicates how many queries are implemented
 - `override` [optional] should only be used when a `metadata.json` is shared between queries from different platforms or different specification versions like for example OpenAPI 2.0 (Swagger) and OpenAPI 3.0. This field defines an object that each field is mapped to a given `overrideKey` that should be provided from the query execution result (covered in the next section), if an `overrideKey` is provided, this will generate a new query that inherits the root level metadata values and only rewrites the fields defined inside this object.
-- `cwe` CWE is a community-developed list of common software and hardware weakness types that could have security ramifications. To know more about CWE, please refer to cwe.mitre.org
-- `riskScore` Numeric score used to help users prioritize security findings by potential impact. Contributors adding new queries should follow this recommended severity → score mapping: Critical → 8.5, High → 6, Medium → 3, Low → 1, Info/Trace → 0. 
+- `cwe` CWE is a community-developed list of common software and hardware weakness types that could have security ramifications. To know more about CWE, please refer to _cwe.mitre.org_. It's represented by a string numeric value;
+- `riskScore` Numeric float with one decimal place, positive, between `0.0` and `10.0`, used to help users prioritize security findings by potential impact. Contributors adding new queries should follow this recommended severity to risk score mapping:
+    - Critical → 8.5
+    - High → 6.0
+    - Medium → 3.0
+    - Low → 1.0
+    - Info/Trace → 0.0
 
 If the **query.rego** file implements more than one query, the **metadata.json** should indicate how many are implemented (through `aggregation`). That can be necessary due to two cases:
 1. It implements more than one query in the same **query.rego** for the same platform
@@ -300,7 +305,7 @@ If the **query.rego** file implements more than one query, the **metadata.json**
 Filling query.rego:
 
 - `documentId` id of the sample where the vulnerability occurs
-- `searchKey` uses Levenshtein distance to go through the original document. It should “include” as much information as possible so that the result is as accurate as possible. 
+- `searchKey` uses Levenshtein distance to go through the original document. It should “include” as much information as possible so that the result is as accurate as possible.
 
     Note the following special chars:
     - '='    -> value
@@ -462,8 +467,49 @@ Examples:
     build_search_line(path, ["son"])
 ```
 
-##### Ansible Inventory
+#### 🚨 Platform Specific Guidelines 🚨
+
+##### Ansible Inventory "searchLine"
 To create a `searchLine` query in Rego for this case, you need to think of the path as if you were dealing with a YAML/JSON file. This way, the query will be capable of locating vulnerabilities in all three types of Ansible host files.
+
+---
+
+##### Dockerfile "searchKey"
+
+Dockerfile queries use a dedicated searchKey format and two helper functions from the `dockerfile.rego` library (`import data.generic.dockerfile as dockerLib`).
+
+Basic format:
+
+```
+FROM={{<image>}}.<COMMAND>={{<value>}}
+```
+
+Where the first segment identifies the build stage by its FROM image, and subsequent segments identify the target instruction. For example:
+
+```
+FROM={{alpine:3.14}}.RUN={{apk update && apk add curl}}
+```
+
+Helper functions:
+
+  - `dockerLib.get_original_from_command(stage)` — returns an object with `Value` (the literal `"FROM"` string preserving the original casing) and `LineHint` (the line number hint derived from the FROM instruction, used to tell the detector where to start searching). Use this instead of hardcoding `"FROM"`.
+  - `dockerLib.add_line_hint(searchKey, lineHint)` — appends a `^<line>` suffix to the searchKey that tells the detector where to start searching in the file. The line hint is stripped before reaching the final results.
+
+Typical usage in a query:
+
+```rego
+stage := input.document[i].command[name]
+from_command := dockerLib.get_original_from_command(stage)
+
+result := {
+    "documentId": input.document[i].id,
+    "searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, run_command, commands]), from_command.LineHint),
+    ...
+}
+```
+
+This produces a searchKey like: `FROM={{alpine:3.14}}.RUN={{apk update && apk add curl}}^2`
+
 
 #### Allowing users to overwrite query data
 Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users have different datasets for multiple environments. This can be supported easily following some steps:

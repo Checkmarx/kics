@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	# Check if there is a command that runs install before update
 	resource := input.document[i].command[name][_]
@@ -20,9 +22,12 @@ CxPolicy[result] {
 
 	not checkFollowedBy(update, install)
     
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
+	run_command := substring(resource.Original, 0, 3)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, run_command, resource.Value[0]]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Instruction 'RUN %s %s' should be followed by 'RUN %s %s' in the same 'RUN' statement", [packageManager, pkg_installer[packageManager], packageManager, pkg_updater[packageManager]]),
 		"keyActualValue": sprintf("Instruction 'RUN %s %s' isn't followed by 'RUN %s %s in the same 'RUN' statement", [packageManager, pkg_installer[packageManager], packageManager, pkg_updater[packageManager]]),
@@ -58,9 +63,12 @@ CxPolicy[result] {
 	nextUpdate := [x | x := getDetail(nextCommandRefactor, pkg_updater[nextPackageManager][_]); count(x) > 0]
     count(nextUpdate) == 0
     
-    result := {
+    stage := input.document[i].command[name]
+    from_command := dockerLib.get_original_from_command(stage)
+	run_command := substring(resource.Original, 0, 3)
+	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, nextResource.Value[0]]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, run_command, nextResource.Value[0]]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Instruction 'RUN %s %s' should be combined with 'RUN %s %s' in the same 'RUN' statement", [nextPackageManager, pkg_installer[nextPackageManager], nextPackageManager, pkg_updater[nextPackageManager]]),
 		"keyActualValue": sprintf("Instruction 'RUN %s %s' isn't combined with 'RUN %s %s in the same 'RUN' statement", [nextPackageManager, pkg_installer[nextPackageManager], nextPackageManager, pkg_updater[nextPackageManager]]),

@@ -1,0 +1,3 @@
+# Uppercase character at start of alias is not allowed
+FROM alpine AS My!Stage
+
