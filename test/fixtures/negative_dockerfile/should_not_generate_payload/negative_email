@@ -1,0 +1,6 @@
+From user@example.com
+# "@" is not allowed
+Subject: Test email
+Date: Thu, 1 Jan 2024 00:00:00 +0000
+
+This is the body of the email.
