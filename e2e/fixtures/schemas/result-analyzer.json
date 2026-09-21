@@ -1,24 +1,24 @@
 {
     "type": "object",
     "required": [
-      "types",
-      "exc",
-      "expectedloc"
+      "Types",
+      "Exc",
+      "ExpectedLOC"
     ],
     "properties": {
-      "types": {
+      "Types": {
         "type": "array",
         "items": {
             "type": "string"
         }
       },
-      "exc": {
+      "Exc": {
         "type": "array",
         "items": {
             "type": "string"
         }
       },
-      "expectedloc": {
+      "ExpectedLOC": {
         "type": "integer",
         "minimum": 0
       }

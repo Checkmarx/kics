@@ -1,0 +1,44 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "MySGv2": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "SG with both inline and standalone egress",
+                "VpcId": "vpc-123456",
+                "SecurityGroupEgress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 443,
+                        "ToPort": 443,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            }
+        },
+        "MyStandaloneEgressv2": {
+            "Type": "AWS::EC2::SecurityGroupEgress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "MySGv2"
+                },
+                "IpProtocol": -1,
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "MyALB": {
+            "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+            "Properties": {
+                "SecurityGroups": [
+                    {
+                        "Ref": "MySGv2"
+                    }
+                ],
+                "Subnets": [
+                    "subnet-aaa",
+                    "subnet-bbb"
+                ]
+            }
+        }
+    }
+}

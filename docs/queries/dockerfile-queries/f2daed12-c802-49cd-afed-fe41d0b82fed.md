@@ -30,7 +30,7 @@ Different FROMS cant have the same alias defined<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```dockerfile title="Positive test num. 1 - dockerfile file" hl_lines="4"
+```dockerfile title="Positive test num. 1 - dockerfile file" hl_lines="4 7"
 FROM baseImage
 RUN Test
 
@@ -39,6 +39,17 @@ RUN stuff
 
 FROM debian:jesse1 as build
 RUN more_stuff
+
+```
+```dockerfile title="Positive test num. 2 - dockerfile file" hl_lines="4 7"
+from baseImage
+run Test
+
+from debian:jesse2 as build
+run stuff
+
+from debian:jesse1 as build
+run more_stuff
 
 ```
 
@@ -50,6 +61,14 @@ RUN stuff
 
 FROM debian:jesse1 as another-alias
 RUN more_stuff
+
+```
+```dockerfile title="Negative test num. 2 - dockerfile file"
+from debian:jesse1 as build
+run stuff
+
+from debian:jesse1 as another-alias
+run more_stuff
 
 ```
 

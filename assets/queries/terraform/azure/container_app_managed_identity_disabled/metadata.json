@@ -1,0 +1,14 @@
+{
+  "id": "829246df-02c5-490c-993b-10a07a7242e9",
+  "queryName": "Beta - Container App Managed Identity Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Container Apps should have managed identity enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app",
+  "platform": "Terraform",
+  "descriptionID": "829246df",
+  "cloudProvider": "azure",
+  "cwe": "522",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

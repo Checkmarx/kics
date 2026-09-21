@@ -14,7 +14,7 @@ module "iam_policy" {
             "secretsmanager:GetSecretValue"
           ],
           "Effect": "Allow",
-          "Resource": "*"
+          "Resource": ["arn:aws:dynamodb:us-east-1:123456789012:table/Users", "*"]
         }
       ]
     }

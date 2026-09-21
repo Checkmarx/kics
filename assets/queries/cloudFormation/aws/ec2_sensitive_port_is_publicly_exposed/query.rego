@@ -3,68 +3,58 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
-isAccessibleFromEntireNetwork(ingress) {
-	endswith(ingress.CidrIp, "/0")
-}
-
-getProtocolList(protocol) = list {
-	sprintf("%v", [protocol]) == "-1"
-	list = ["TCP", "UDP"]
-} else = list {
-	upper(protocol) == "TCP"
-	list = ["TCP"]
-} else = list {
-	upper(protocol) == "UDP"
-	list = ["UDP"]
-}
+portsMaps := {"TCP": common_lib.tcpPortsMap, "UDP": cf_lib.udpPortsMap}
 
 CxPolicy[result] {
-	#############	document and resource
 	resources := input.document[i].Resources
 
-	ec2InstanceList = [{"name": key, "properties": ec2Instance} |
-		ec2Instance := resources[key]
-		ec2Instance.Type == "AWS::EC2::Instance"
-	]
+	ec2Instance = resources[ec2_instance_name]
+	ec2Instance.Type == "AWS::EC2::Instance"
 
-	ec2Instance := ec2InstanceList[_]
+	resource := resources[sec_group_name]
+	resource.Type == "AWS::EC2::SecurityGroup"
 
-	securityGroupList = [{"name": key, "properties": secGroup} |
-		secGroup := resources[key]
-		secGroup.Type == "AWS::EC2::SecurityGroup"
-	]
+	cf_lib.get_name(ec2Instance.Properties.SecurityGroupIds[_]) == sec_group_name
+	ingresses_with_names := cf_lib.search_for_standalone_ingress(sec_group_name, input.document[y])
 
-	secGroup := securityGroupList[_]
+	ingress_list := array.concat(ingresses_with_names.ingress_list, common_lib.get_array_if_exists(resource.Properties,"SecurityGroupIngress"))
+	ingress := ingress_list[ing_index]
 
-	ec2Instance.properties.Properties.SecurityGroups[_] == secGroup.name
+	# check that it is exposed
+	cidr_fields := {"CidrIp", "CidrIpv6"}
+	endswith(ingress[cidr_fields[c]], "/0")
 
-	ingress := secGroup.properties.Properties.SecurityGroupIngress[l]
+	# check which sensitive port numbers are included
+	ports := get_sensitive_ports(ingress, ec2_instance_name)
 
-	protocols := getProtocolList(ingress.IpProtocol)
-	protocol := protocols[m]
-	portsMap := {
-		"TCP": common_lib.tcpPortsMap,
-		"UDP": cf_lib.udpPortsMap,
-	}
+	results := cf_lib.get_search_values_for_ingress_resources(ing_index, sec_group_name, ingresses_with_names.names, y, i)
 
-	#############	Checks
-	isAccessibleFromEntireNetwork(ingress)
-
-	# is in ports range
-	portRange := numbers.range(ingress.FromPort, ingress.ToPort)
-	portNumber := portRange[idx]
-	portName := portsMap[protocol][portNumber]
-
-	#############	Result
 	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "AWS::EC2::SecurityGroup",
-		"resourceName": cf_lib.get_resource_name(secGroup.properties, secGroup.name),
-		"searchKey": sprintf("Resources.%s.SecurityGroupIngress", [secGroup.name]),
-		"searchValue": sprintf("%s/%s:%d", [ec2Instance.name, protocol, portNumber]),
+		"documentId": input.document[results.doc_index].id,
+		"resourceType": results.type,
+		"resourceName": cf_lib.get_resource_name(resource, sec_group_name),
+		"searchKey": results.searchKey,
+		"searchValue": ports[x].searchValue,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in EC2 security group for instance %s", [portName, protocol, portNumber, ec2Instance.name]),
-		"keyActualValue": sprintf("%s (%s:%d) is allowed in EC2 security group for instance %s", [portName, protocol, portNumber, ec2Instance.name]),
-		"searchLine": common_lib.build_search_line(["Resources", secGroup.name, "Properties", "SecurityGroupIngress", l], []),
+		"keyExpectedValue": sprintf("%s should not be allowed in EC2 security group for instance '%s'", [ports[x].value, ec2_instance_name]),
+		"keyActualValue": sprintf("%s is allowed in EC2 security group for instance '%s'", [ports[x].value, ec2_instance_name]),
+		"searchLine": results.searchLine,
 	}
+}
+
+get_sensitive_ports(ingress, ec2_instance_name) = ports {
+	ports := [x |
+		protocol   := cf_lib.getProtocolList(ingress.IpProtocol)[_]
+		portName   := portsMaps[protocol][portNumber]
+		check_port(ingress.FromPort, ingress.ToPort, portNumber, ingress.IpProtocol)
+		x := {
+		"value" : sprintf("%s (%s:%d)", [portName, protocol, portNumber]),
+		"searchValue" : sprintf("%s/%s:%d", [ec2_instance_name, protocol, portNumber])
+		}]
+}
+
+check_port(from, to, port, protocol) {
+	protocol == "-1"
+} else {
+	cf_lib.containsPort(from, to, port)
 }

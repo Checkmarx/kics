@@ -2,20 +2,18 @@ package generic.terraform
 
 import data.generic.common as common_lib
 
-unrestricted_ipv6 := ["::/0","0000:0000:0000:0000:0000:0000:0000:0000/0","0:0:0:0:0:0:0:0/0"]
-
 check_cidr(rule) {
 	rule.cidr_blocks[_] == "0.0.0.0/0"
 } else {
 	rule.cidr_block == "0.0.0.0/0"
 } else {
-	rule.ipv6_cidr_blocks[_] == unrestricted_ipv6[_]
+	rule.ipv6_cidr_blocks[_] == common_lib.unrestricted_ipv6[_]
 } else {
-	rule.ipv6_cidr_blocks == unrestricted_ipv6[_]
+	rule.ipv6_cidr_blocks == common_lib.unrestricted_ipv6[_]
 } else {
 	rule.cidr_ipv4 == "0.0.0.0/0"
 } else {
-	rule.cidr_ipv6 == unrestricted_ipv6[_]
+	rule.cidr_ipv6 == common_lib.unrestricted_ipv6[_]
 }
 
 is_security_group_ingress(type,resource) {
@@ -173,6 +171,39 @@ getSpecInfo(resource) = specInfo { # this one can be also used for the result
 } else = specInfo {
 	spec := resource.spec
 	specInfo := {"spec": spec, "path": "spec"}
+}
+
+get_google_logging_metric_and_monitoring_alert_policy_data(resource, type, name, doc_index) = filter {
+	type == "google_logging_metric"
+	filter := {
+		"resource" : resource,
+		"filter" : resource.filter,
+		"path" : "filter",
+		"searchArray" : ["resource", type, name],
+		"name" : name,
+		"doc_index" : doc_index
+	}
+} else = filter {
+	# google_monitoring_alert_policy
+	filter := {
+		"resource" : resource,
+		"filter" : resource.conditions.condition_threshold.filter,			# prefered filter (allows referencing)
+		"path" : "conditions.condition_threshold.filter",
+		"searchArray" : ["resource", type, name],
+		"name" : name,
+		"doc_index" : doc_index,
+		"allows_ref" : true
+	}
+} else = filter {
+	filter := {
+		"resource" : resource,
+		"filter" : resource.conditions.condition_matched_log.filter,
+		"path" : "conditions.condition_matched_log.filter",
+		"searchArray" : ["resource", type, name],
+		"name" : name,
+		"doc_index" : doc_index,
+		"allows_ref" : false
+	}
 }
 
 check_resource_tags(p) {
@@ -536,11 +567,11 @@ is_publicly_accessible(policy) {
 }
 
 get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
-	policy := common_lib.json_unmarshal(resource.policy)
+	policy := common_lib.get_policy(resource.policy)
 	is_publicly_accessible(policy)
 	info = {"accessibility": "public", "policy": policy}
 } else = info {
-	policy := common_lib.json_unmarshal(resource.policy)
+	policy := common_lib.get_policy(resource.policy)
 	not is_publicly_accessible(policy)
 	info = {"accessibility": "hasPolicy", "policy": policy}
 } else = info {
@@ -549,7 +580,7 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
 	resourcePolicy := input.document[_].resource[resourcePolicyName][_]
 	split(resourcePolicy[resourceTarget], ".")[1] == name
 
-	policy := common_lib.json_unmarshal(resourcePolicy.policy)
+	policy := common_lib.get_policy(resourcePolicy.policy)
 	is_publicly_accessible(policy)
 	info = {"accessibility": "public", "policy": policy}
 } else = info {
@@ -558,7 +589,7 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
 	resourcePolicy := input.document[_].resource[resourcePolicyName][_]
 	split(resourcePolicy[resourceTarget], ".")[1] == name
 
-	policy := common_lib.json_unmarshal(resourcePolicy.policy)
+	policy := common_lib.get_policy(resourcePolicy.policy)
 	not is_publicly_accessible(policy)
 	info = {"accessibility": "hasPolicy", "policy": policy}
 } else = info {
@@ -615,7 +646,7 @@ has_target_resource(bucketName, resourceName) {
 
 #Checks if an action is allowed for all principals
 allows_action_from_all_principals(json_policy, action) {
- 	policy := common_lib.json_unmarshal(json_policy)
+ 	policy := common_lib.get_policy(json_policy)
 	st := common_lib.get_statement(policy)
 	statement := st[_]
 	statement.Effect == "Allow"
@@ -624,7 +655,7 @@ allows_action_from_all_principals(json_policy, action) {
 }
 
 allows_all_s3_actions_from_all_principals_match(json_policy) {
-    policy := common_lib.json_unmarshal(json_policy)
+    policy := common_lib.get_policy(json_policy)
 	st := common_lib.get_statement(policy)
 	statement := st[_]
 	statement.Effect == "Allow"

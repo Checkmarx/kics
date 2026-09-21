@@ -10,7 +10,7 @@
         "SecurityGroupIngress": [
           {
             "CidrIp": "0.0.0.0/0",
-            "IpProtocol": -1,
+            "IpProtocol": "-1",
             "FromPort": 80,
             "ToPort": 80
           }
@@ -18,7 +18,7 @@
         "SecurityGroupEgress": [
           {
             "CidrIp": "0.0.0.0/0",
-            "IpProtocol": -1,
+            "IpProtocol": "-1",
             "FromPort": 80,
             "ToPort": 80
           }
@@ -40,7 +40,7 @@
             "GroupId"
           ]
         },
-        "IpProtocol": -1,
+        "IpProtocol": "-1",
         "FromPort": 0,
         "ToPort": 65535
       }
@@ -53,7 +53,7 @@
             "GroupId"
           ]
         },
-        "IpProtocol": -1,
+        "IpProtocol": "-1",
         "FromPort": 0,
         "ToPort": 65535,
         "SourceSecurityGroupId": {

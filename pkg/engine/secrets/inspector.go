@@ -11,21 +11,23 @@ import (
 	"sync"
 	"time"
 
+	"github.com/rs/zerolog/log"
+
 	"github.com/Checkmarx/kics/v2/assets"
 	"github.com/Checkmarx/kics/v2/pkg/detector"
 	"github.com/Checkmarx/kics/v2/pkg/detector/docker"
 	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
-	engine "github.com/Checkmarx/kics/v2/pkg/engine"
+	"github.com/Checkmarx/kics/v2/pkg/engine"
 	"github.com/Checkmarx/kics/v2/pkg/engine/similarity"
 	"github.com/Checkmarx/kics/v2/pkg/engine/source"
 	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/rs/zerolog/log"
 )
 
 const (
-	Base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
-	HexChars    = "1234567890abcdefABCDEF"
-	SecretMask  = "<SECRET-MASKED-ON-PURPOSE>"
+	Base64Chars                    = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
+	HexChars                       = "1234567890abcdefABCDEF"
+	SecretMask                     = "<SECRET-MASKED-ON-PURPOSE>"
+	maxSecretsConcurrentGoRoutines = 1000
 )
 
 var (
@@ -453,7 +455,7 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 
 		text := strings.ReplaceAll(contentMatchRemoved, "\r", "")
 		contentMatchRemovedLines := strings.Split(text, "\n")
-		for i := 0; i < len(lines); i++ {
+		for i := range min(len(lines), len(contentMatchRemovedLines)) {
 			if lines[i] != contentMatchRemovedLines[i] {
 				lineVulneInfoObject.lineNumber = i + realLineUpdater
 				lineVulneInfoObject.lineContent = lines[i]
@@ -639,9 +641,14 @@ func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.Fil
 	// check file content line by line
 	if c.regexQueries[i].Multiline == (MultilineResult{}) {
 		lines := (&files[idx]).LinesOriginalData
+		sem := make(chan struct{}, maxSecretsConcurrentGoRoutines)
 		for lineNumber, currentLine := range *lines {
 			wg.Add(1)
-			go c.checkLineByLine(wg, &c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
+			sem <- struct{}{} // acquire a slot
+			go func(ln int, cl string) {
+				defer func() { <-sem }() // release the slot
+				c.checkLineByLine(wg, &c.regexQueries[i], basePaths, &files[idx], ln, cl)
+			}(lineNumber, currentLine)
 		}
 		wg.Wait()
 		return

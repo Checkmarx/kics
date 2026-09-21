@@ -1,43 +1,38 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	resource := input.document[i].Resources[sec_group_name]
 	resource.Type == "AWS::EC2::SecurityGroup"
 
-	rule := resource.Properties.SecurityGroupIngress[index]
+	ingresses_with_names := cf_lib.search_for_standalone_ingress(sec_group_name, input.document[y])
 
-	entireNetwork(rule)
-	containsUnknownPort(rule)
+	ingress_list := array.concat(ingresses_with_names.ingress_list, common_lib.get_array_if_exists(resource.Properties,"SecurityGroupIngress"))
+	ingress := ingress_list[ing_index]
+
+	cf_lib.entireNetwork(ingress)
+
+	containsUnknownPort(ingress)
+
+	results := cf_lib.get_search_values_for_ingress_resources(ing_index, sec_group_name, ingresses_with_names.names, y, i)
 
 	result := {
-		"documentId": input.document[i].id,
-		"resourceType": resource.Type,
-		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [name]),
+		"documentId": input.document[results.doc_index].id,
+		"resourceType": results.type,
+		"resourceName": cf_lib.get_resource_name(resource, sec_group_name),
+		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] shouldn't open unknown ports to the Internet", [name, index]),
-		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] opens unknown ports to the Internet", [name, index]),
-		"searchLine": commonLib.build_search_line(["Resources", name, "Properties", "SecurityGroupIngress", index], []),
+		"keyExpectedValue": sprintf("'%s' should not open unknown ports to the Internet", [results.searchKey]),
+		"keyActualValue": sprintf("'%s' opens unknown ports to the Internet", [results.searchKey]),
+		"searchLine": results.searchLine,
 	}
 }
 
-containsUnknownPort(rule) {
-	not commonLib.valid_key(commonLib.tcpPortsMap, rule.FromPort)
+containsUnknownPort(ingress) {
+	ingress.IpProtocol == "-1"
 } else {
-	not commonLib.valid_key(commonLib.tcpPortsMap, rule.ToPort)
-} else {
-	some i
-	port := numbers.range(rule.FromPort, rule.ToPort)[i]
-	not commonLib.valid_key(commonLib.tcpPortsMap, port)
-}
-
-entireNetwork(rule) {
-	rule.CidrIp == "0.0.0.0/0"
-}
-
-entireNetwork(rule) {
-	rule.CidrIpv6 == "::/0"
+	port := numbers.range(ingress.FromPort, ingress.ToPort)[_]
+	not common_lib.valid_key(common_lib.tcpPortsMap, port)
 }
