@@ -1,7 +1,6 @@
 name: validate-cfn-samples
 
 on:
-  workflow_dispatch:
   pull_request:
     paths:
     - "assets/queries/cloudFormation/**/test/*.yaml"
@@ -18,9 +17,6 @@ jobs:
   validate-cfn-syntax:
     name: Validate Cloudformation Syntax
     runs-on: cx-public-ubuntu-x64
-    permissions:
-      contents: read # for actions/checkout to fetch code
-      pull-requests: read # for lots0logs/gh-action-get-changed-files to read the PR's changed file list
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -30,19 +26,13 @@ jobs:
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: '3.x'
-      - name: Get commit changed files
-        if: github.event_name != 'workflow_dispatch'
-        uses: lots0logs/gh-action-get-changed-files@6cb5164a823dbf3318b7c8032a333b4b7ed425b2 # 2.2.2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Get cfn-python-lint
         env:
           ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
           pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip3 install -U cfn-lint --user
-      - name: Validate ALL cloudformation template samples
-        if: github.event_name == 'workflow_dispatch'
+      - name: Validate cloudformation template samples
         run: |
           python3 -u .github/scripts/samples-linters/validate-syntax.py \
             "assets/queries/cloudFormation/**/test/*.yaml" \
@@ -51,13 +41,3 @@ jobs:
             --extra " --info --config-file .github/scripts/samples-linters/.cfnlintrc.yml" \
             --skip ".github/scripts/samples-linters/ignore-list/cloudformation" \
             --verbose
-      - name: Validate CHANGED cloudformation template samples
-        if: github.event_name != 'workflow_dispatch'
-        run: |
-          python3 -u .github/scripts/samples-linters/validate-syntax.py \
-            "assets/queries/cloudFormation/**/test/*.yaml" \
-            "assets/queries/cloudFormation/**/test/*.json" \
-            --diff ${HOME}/files.json \
-            --linter /home/runner/.local/bin/cfn-lint \
-            --extra " --info --config-file .github/scripts/samples-linters/.cfnlintrc.yml" \
-            --skip ".github/scripts/samples-linters/ignore-list/cloudformation" -vv

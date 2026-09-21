@@ -58,7 +58,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("%s.name={{%s}}.properties.%s.state", [common_lib.concat_path(path), value.name, emailType[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.Security/securityContacts' %s should have '%s.state' property set to 'On'", [type ,emailType[x]]),
-		"keyActualValue": sprintf("resource with type 'Microsoft.Security/securityContacts' should have '%s.state' property set to 'Off'", [emailType[x]]),
+		"keyActualValue": sprintf("resource with type 'Microsoft.Security/securityContacts' has '%s.state' property set to 'Off'", [emailType[x]]),
 		"searchLine": common_lib.build_search_line(path, ["properties", emailType[x], "state"]),
 	}
 }

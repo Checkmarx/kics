@@ -116,7 +116,7 @@
           "search_line": 7,
           "search_value": "",
           "expected_value": "resource with type 'Microsoft.Security/securityContacts' property value should have 'alertNotifications.state' property set to 'On'",
-          "actual_value": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'Off'"
+          "actual_value": "resource with type 'Microsoft.Security/securityContacts' has 'alertNotifications.state' property set to 'Off'"
         },
         {
           "file_name": "test\\fixtures\\bicep_test\\test\\positive12.bicep",
@@ -168,7 +168,7 @@
           "search_line": 11,
           "search_value": "",
           "expected_value": "resource with type 'Microsoft.Security/securityContacts' property value should have 'notificationsByRole.state' property set to 'On'",
-          "actual_value": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'Off'"
+          "actual_value": "resource with type 'Microsoft.Security/securityContacts' has 'notificationsByRole.state' property set to 'Off'"
         },
         {
           "file_name": "test\\fixtures\\bicep_test\\test\\positive1.bicep",
@@ -181,7 +181,7 @@
           "search_line": 7,
           "search_value": "",
           "expected_value": "resource with type 'Microsoft.Security/securityContacts' property value should have 'alertNotifications.state' property set to 'On'",
-          "actual_value": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'Off'"
+          "actual_value": "resource with type 'Microsoft.Security/securityContacts' has 'alertNotifications.state' property set to 'Off'"
         },
         {
           "file_name": "test\\fixtures\\bicep_test\\test\\positive5.bicep",
@@ -194,7 +194,7 @@
           "search_line": 11,
           "search_value": "",
           "expected_value": "resource with type 'Microsoft.Security/securityContacts' property value should have 'notificationsByRole.state' property set to 'On'",
-          "actual_value": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'Off'"
+          "actual_value": "resource with type 'Microsoft.Security/securityContacts' has 'notificationsByRole.state' property set to 'Off'"
         }
       ]
     }
