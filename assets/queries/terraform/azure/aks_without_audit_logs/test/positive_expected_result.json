@@ -1,0 +1,56 @@
+[
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 35,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 38,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 34,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 39,
+    "fileName": "positive3.tf"
+  }
+]

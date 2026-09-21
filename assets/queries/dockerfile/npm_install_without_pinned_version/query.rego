@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	runCmd := input.document[i].command[name][_]
 	is_run_cmd(runCmd)
@@ -21,9 +23,11 @@ CxPolicy[result] {
 	token != "install"
 	not valid_match(token)
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, runCmd.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, runCmd.Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' uses npm install with a pinned version", [runCmd.Original]),
 		"keyActualValue": sprintf("'%s' does not uses npm install with a pinned version", [runCmd.Original]),

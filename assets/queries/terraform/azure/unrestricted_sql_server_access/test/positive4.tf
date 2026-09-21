@@ -8,7 +8,6 @@ resource "azurerm_postgresql_server" "psql_server" {
   location            = azurerm_resource_group.psql_rg.location
   resource_group_name = azurerm_resource_group.psql_rg.name
   administrator_login = "psqladmin"
-  administrator_login_password = "MyS3cureP4ss!"
   sku_name            = "B_Gen5_2"
   storage_mb          = 5120
   version             = "11"

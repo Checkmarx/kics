@@ -50,6 +50,7 @@ func RunCommand(kicsArgs []string, useDocker, useMock bool, kicsDockerImage stri
 
 // KicsDevPathAdapter adapts the path to enable kics locally execution
 func KicsDevPathAdapter(path string) string {
+	path = filepath.ToSlash(path)
 	// [e2e-029] and [e2e-056] config tests
 	switch path {
 	case "/path/e2e/fixtures/samples/configs/config.json":

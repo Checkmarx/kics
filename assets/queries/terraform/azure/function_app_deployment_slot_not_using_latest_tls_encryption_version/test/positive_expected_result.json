@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Function App Deployment Slot Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Function App Deployment Slot Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive2.tf"
+  }
+]

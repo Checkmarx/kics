@@ -1,0 +1,56 @@
+[
+  {
+    "queryName": "Beta - VM Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 34,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive6.tf"
+  }
+]

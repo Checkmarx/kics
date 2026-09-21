@@ -17,8 +17,9 @@ type Report struct {
 
 // Query includes all the files that presents a result related to the queryID
 type Query struct {
-	Files   []File `json:"files"`
-	QueryID string `json:"query_id"`
+	Files        []File `json:"files"`
+	QueryID      string `json:"query_id"`
+	Experimental bool   `json:"experimental"`
 }
 
 // File presents the result information related to the file
@@ -42,6 +43,7 @@ type Remediation struct {
 	SearchKey     string
 	ExpectedValue string
 	ActualValue   string
+	Experimental  bool
 }
 
 // Set includes all the replacements and additions related to a file
@@ -50,10 +52,25 @@ type Set struct {
 	Addition    []Remediation
 }
 
+const filePermissions = 0600
+
 // RemediateFile remediationSets the replacements first and secondly, the additions sorted down
-func (s *Summary) RemediateFile(filePath string, remediationSet Set, openAPIResolveReferences bool, maxResolverDepth int) error {
+func (s *Summary) RemediateFile(
+	filePath, originalFileName string,
+	remediationSet Set,
+	openAPIResolveReferences bool,
+	maxResolverDepth int,
+) error {
 	filepath.Clean(filePath)
-	content, err := os.ReadFile(filePath)
+	content, err := os.ReadFile(filePath) //nolint:gosec
+
+	if originalFileName == "" {
+		originalFileName = filePath
+	}
+
+	if originalFileName == "" {
+		originalFileName = filePath
+	}
 
 	if err != nil {
 		log.Error().Msgf("failed to read file: %s", err)
@@ -68,7 +85,7 @@ func (s *Summary) RemediateFile(filePath string, remediationSet Set, openAPIReso
 			r := remediationSet.Replacement[i]
 			remediatedLines := replacement(&r, lines)
 			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &r, openAPIResolveReferences, maxResolverDepth) {
-				lines = s.writeRemediation(remediatedLines, lines, filePath, r.SimilarityID)
+				lines = s.writeRemediation(remediatedLines, lines, filePath, originalFileName, r.SimilarityID)
 			}
 		}
 	}
@@ -84,7 +101,7 @@ func (s *Summary) RemediateFile(filePath string, remediationSet Set, openAPIReso
 			a := remediationSet.Addition[i]
 			remediatedLines := addition(&a, &lines)
 			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &a, openAPIResolveReferences, maxResolverDepth) {
-				lines = s.writeRemediation(remediatedLines, lines, filePath, a.SimilarityID)
+				lines = s.writeRemediation(remediatedLines, lines, filePath, originalFileName, a.SimilarityID)
 			}
 		}
 	}
@@ -153,22 +170,19 @@ func addition(r *Remediation, lines *[]string) []string {
 	return remediation
 }
 
-const (
-	FilePermMode = 0777
-)
-
-func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, similarityID string) []string {
+func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, originalFileName, similarityID string) []string {
 	remediated := []byte(strings.Join(remediatedLines, "\n"))
 
-	mode := os.FileMode(FilePermMode)
-
-	if err := os.WriteFile(filePath, remediated, mode); err != nil {
+	// perm is ignored by os.WriteFile when the file already exists (which it does — we just read it);
+	// 0600 is a safe fallback only used if the file was deleted between read and write.
+	if err := os.WriteFile(filePath, remediated, filePermissions); err != nil { //nolint:gosec
 		log.Error().Msgf("failed to write file: %s", err)
 		return lines
 	}
 
 	log.Info().Msgf("file '%s' was remediated with '%s'", filePath, similarityID)
 	s.ActualRemediationDoneNumber++
+	s.RemediatedFiles = append(s.RemediatedFiles, originalFileName)
 
 	return remediatedLines
 }

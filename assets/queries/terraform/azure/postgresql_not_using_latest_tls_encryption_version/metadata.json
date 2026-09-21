@@ -1,0 +1,14 @@
+{
+  "id": "9f15ecc4-d9df-44ba-bb88-28c97e946114",
+  "queryName": "Beta - PostgreSQL Not Using Latest TLS Encryption Version",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensure PostgreSQL is using the latest version of TLS encryption",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server",
+  "platform": "Terraform",
+  "descriptionID": "9f15ecc4",
+  "cloudProvider": "azure",
+  "cwe": "326",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

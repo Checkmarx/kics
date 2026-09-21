@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - MSSQL Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive.tf"
+  }
+]

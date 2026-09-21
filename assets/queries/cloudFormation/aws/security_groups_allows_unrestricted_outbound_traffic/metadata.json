@@ -3,7 +3,7 @@
   "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
   "severity": "MEDIUM",
   "category": "Networking and Firewall",
-  "descriptionText": "No security group should allow unrestricted egress access",
+  "descriptionText": "Security group should never allow unrestricted egress access",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
   "platform": "CloudFormation",
   "descriptionID": "05891eb1",

@@ -9,7 +9,7 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 
-	properties.IpProtocol == -1
+	properties.IpProtocol == "-1"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,8 +17,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.IpProtocol", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.IpProtocol should not be set to -1", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.IpProtocol is set to -1", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.IpProtocol should not be set to '-1'", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.IpProtocol is set to '-1'", [name]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties"], ["IpProtocol"]),
 	}
 }
@@ -29,7 +29,7 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 
-	properties.SecurityGroupIngress[index].IpProtocol == -1
+	properties.SecurityGroupIngress[index].IpProtocol == "-1"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -37,8 +37,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress.IpProtocol", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].IpProtocol should not be set to -1", [name, index]),
-		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].IpProtocol is set to -1", [name, index]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].IpProtocol should not be set to '-1'", [name, index]),
+		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].IpProtocol is set to '-1'", [name, index]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "SecurityGroupIngress", index], ["IpProtocol"]),
 	}
 }

@@ -4,7 +4,6 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
     ram_policy := input.document[i].resource.alicloud_ram_policy[name]
 
     is_admin_policy(ram_policy.document)
@@ -33,7 +32,7 @@ CxPolicy[result] {
 
 is_admin_policy(ram_policy)
 {
-	u_policy := common_lib.json_unmarshal(ram_policy)
+	u_policy := common_lib.get_policy(ram_policy)
 	statement := common_lib.get_statement(u_policy)
     st:=statement[_]
 	st.Effect == "Allow"

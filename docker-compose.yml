@@ -12,7 +12,7 @@ services:
       context: ./
       dockerfile: Dockerfile
       args:
-        VERSION: ${VERSION:-local}
+        ENGINE_VERSION: ${ENGINE_VERSION:-local}
         COMMIT: ${COMMIT}
         DESCRIPTIONS_URL: ${DESCRIPTIONS_URL}
     command: scan -p /path/ -v

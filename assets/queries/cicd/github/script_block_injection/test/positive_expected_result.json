@@ -40,5 +40,35 @@
 		"severity": "HIGH",
 		"line": 17,
 		"fileName": "positive7.yaml"
+	},
+    {
+		"queryName": "Script Block Injection",
+		"severity": "HIGH",
+		"line": 17,
+		"fileName": "positive8.yaml"
+	},
+    {
+		"queryName": "Script Block Injection",
+		"severity": "HIGH",
+		"line": 17,
+		"fileName": "positive9.yaml"
+	},
+    {
+		"queryName": "Script Block Injection",
+		"severity": "HIGH",
+		"line": 17,
+		"fileName": "positive10.yaml"
+	},
+    {
+		"queryName": "Script Block Injection",
+		"severity": "HIGH",
+		"line": 17,
+		"fileName": "positive11.yaml"
+	},
+    {
+		"queryName": "Script Block Injection",
+		"severity": "HIGH",
+		"line": 17,
+		"fileName": "positive12.yaml"
 	}
 ]

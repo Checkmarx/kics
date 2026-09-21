@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Redis Cache Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Redis Cache Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  }
+]

@@ -3,6 +3,7 @@ package test
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
@@ -58,6 +59,7 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 	summary := &remediation.Summary{
 		SelectedRemediationNumber:   0,
 		ActualRemediationDoneNumber: 0,
+		RemediatedFiles:             []string{},
 	}
 
 	// get remediationSets from query vulns
@@ -85,26 +87,28 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 		)
 
 		temporaryRemediationSets := make(map[string]interface{})
+		tempToOriginal := make(map[string]string)
 
 		for k := range remediationSets {
 			tmpFilePath := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+filepath.Ext(k))
 			tmpFile := remediation.CreateTempFile(k, tmpFilePath)
 
 			temporaryRemediationSets[tmpFile] = remediationSets[k]
+			tempToOriginal[tmpFile] = k
 		}
 
 		for filePath := range temporaryRemediationSets {
 			fix := temporaryRemediationSets[filePath].(remediation.Set)
-
-			err = summary.RemediateFile(filePath, fix, false, 15)
+			original_file_name := tempToOriginal[filePath]
+			err = summary.RemediateFile(filePath, original_file_name, fix, false, 15)
 			os.Remove(filePath)
 			if err != nil {
 				require.NoError(t, err)
 			}
 		}
 
-		require.Equal(t, summary.SelectedRemediationNumber, summary.ActualRemediationDoneNumber,
-			"'SelectedRemediationNumber' is different from 'ActualRemediationDoneNumber'")
+		errorMsg := fmt.Sprintf("'SelectedRemediationNumber' is different from 'ActualRemediationDoneNumber'\nRemediated files: %v", summary.RemediatedFiles)
+		require.Equal(t, summary.SelectedRemediationNumber, summary.ActualRemediationDoneNumber, errorMsg)
 
 	}
 }

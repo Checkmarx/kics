@@ -23,6 +23,7 @@ CxPolicy[result] {
 
 get_results(resource, name) = results {
 	not common_lib.valid_key(resource, "settings")
+	not common_lib.valid_key(resource, "clone")
 
 	results := {
 		"searchKey": sprintf("google_sql_database_instance[%s]", [name]),
@@ -33,6 +34,7 @@ get_results(resource, name) = results {
 
 	}
 } else = results {
+	common_lib.valid_key(resource, "settings")
 	not common_lib.valid_key(resource.settings, "database_flags")
 
 	results := {
@@ -44,6 +46,7 @@ get_results(resource, name) = results {
 	}
 
 } else = results {
+	common_lib.valid_key(resource, "settings")
 	not has_flag(resource.settings.database_flags)
 
 	results := {
@@ -55,6 +58,7 @@ get_results(resource, name) = results {
 	}
 
 } else = results { # array
+	common_lib.valid_key(resource, "settings")
 	resource.settings.database_flags[x].name  == "skip_show_database"
 	resource.settings.database_flags[x].value != "on"
 
@@ -66,6 +70,7 @@ get_results(resource, name) = results {
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", x, "name"], [])
 	}
 } else = results { # single object
+	common_lib.valid_key(resource, "settings")
 	resource.settings.database_flags.name  == "skip_show_database"
 	resource.settings.database_flags.value != "on"
 
