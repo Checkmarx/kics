@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
     "severity": "LOW",
@@ -45,3 +46,30 @@
     "search_line": -1
   }
 ]
+=======
+	{
+		"queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive3.dockerfile"
+	},
+	{
+		"queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive4.dockerfile"
+	}
+]
+>>>>>>> origin/master

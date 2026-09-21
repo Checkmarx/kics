@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "queryName": "Using Unnamed Build Stages",
     "severity": "LOW",
@@ -15,3 +16,18 @@
     "search_line": -1
   }
 ]
+=======
+	{
+		"queryName": "Using Unnamed Build Stages",
+		"severity": "LOW",
+		"line": 10,
+		"filename": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Using Unnamed Build Stages",
+		"severity": "LOW",
+		"line": 10,
+		"filename": "positive2.dockerfile"
+	}
+]
+>>>>>>> origin/master

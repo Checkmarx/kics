@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "queryName": "Run Utilities And POSIX Commands",
     "severity": "INFO",
@@ -30,3 +31,30 @@
     "search_line": -1
   }
 ]
+=======
+	{
+		"queryName": "Run Utilities And POSIX Commands",
+		"severity": "INFO",
+		"line": 4,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Run Utilities And POSIX Commands",
+		"severity": "INFO",
+		"line": 5,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Run Utilities And POSIX Commands",
+		"severity": "INFO",
+		"line": 4,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Run Utilities And POSIX Commands",
+		"severity": "INFO",
+		"line": 5,
+		"fileName": "positive2.dockerfile"
+	}
+]
+>>>>>>> origin/master

@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "queryName": "Zypper Install Without Version",
     "severity": "LOW",
@@ -30,3 +31,30 @@
     "search_line": -1
   }
 ]
+=======
+	{
+		"queryName": "Zypper Install Without Version",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Zypper Install Without Version",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Zypper Install Without Version",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Zypper Install Without Version",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive2.dockerfile"
+	}
+]
+>>>>>>> origin/master

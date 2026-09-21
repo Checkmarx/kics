@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
     "severity": "MEDIUM",
@@ -30,3 +31,30 @@
     "search_line": -1
   }
 ]
+=======
+	{
+		"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
+		"severity": "MEDIUM",
+		"line": 10,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
+		"severity": "MEDIUM",
+		"line": 11,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
+		"severity": "MEDIUM",
+		"line": 10,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
+		"severity": "MEDIUM",
+		"line": 11,
+		"fileName": "positive2.dockerfile"
+	}
+]
+>>>>>>> origin/master

@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "queryName": "Same Alias In Different Froms",
     "severity": "LOW",
@@ -15,3 +16,30 @@
     "search_line": -1
   }
 ]
+=======
+	{
+		"queryName": "Same Alias In Different Froms",
+		"severity": "LOW",
+		"line": 4,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Same Alias In Different Froms",
+		"severity": "LOW",
+		"line": 7,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Same Alias In Different Froms",
+		"severity": "LOW",
+		"line": 4,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Same Alias In Different Froms",
+		"severity": "LOW",
+		"line": 7,
+		"fileName": "positive2.dockerfile"
+	}
+]
+>>>>>>> origin/master

@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "queryName": "Multiple ENTRYPOINT Instructions Listed",
     "severity": "LOW",
@@ -15,3 +16,18 @@
     "search_line": -1
   }
 ]
+=======
+	{
+		"queryName": "Multiple ENTRYPOINT Instructions Listed",
+		"severity": "LOW",
+		"line": 11,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Multiple ENTRYPOINT Instructions Listed",
+		"severity": "LOW",
+		"line": 11,
+		"fileName": "positive2.dockerfile"
+	}
+]
+>>>>>>> origin/master

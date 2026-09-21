@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "queryName": "Unpinned Package Version in Apk Add",
     "severity": "MEDIUM",
@@ -75,3 +76,66 @@
     "search_line": -1
   }
 ]
+=======
+	{
+		"queryName": "Unpinned Package Version in Apk Add",
+		"severity": "MEDIUM",
+		"line": 2,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Unpinned Package Version in Apk Add",
+		"severity": "MEDIUM",
+		"line": 13,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Unpinned Package Version in Apk Add",
+		"severity": "MEDIUM",
+		"line": 14,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Unpinned Package Version in Apk Add",
+		"severity": "MEDIUM",
+		"line": 16,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Unpinned Package Version in Apk Add",
+		"severity": "MEDIUM",
+		"line": 18,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Unpinned Package Version in Apk Add",
+		"severity": "MEDIUM",
+		"line": 2,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Unpinned Package Version in Apk Add",
+		"severity": "MEDIUM",
+		"line": 13,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Unpinned Package Version in Apk Add",
+		"severity": "MEDIUM",
+		"line": 14,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Unpinned Package Version in Apk Add",
+		"severity": "MEDIUM",
+		"line": 16,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Unpinned Package Version in Apk Add",
+		"severity": "MEDIUM",
+		"line": 18,
+		"fileName": "positive2.dockerfile"
+	}
+]
+>>>>>>> origin/master

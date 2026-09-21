@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "queryName": "Using Platform Flag with FROM Command",
     "severity": "INFO",
@@ -15,3 +16,18 @@
     "search_line": -1
   }
 ]
+=======
+	{
+		"queryName": "Using Platform Flag with FROM Command",
+		"severity": "INFO",
+		"line": 6,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Using Platform Flag with FROM Command",
+		"severity": "INFO",
+		"line": 6,
+		"fileName": "positive2.dockerfile"
+	}
+]
+>>>>>>> origin/master

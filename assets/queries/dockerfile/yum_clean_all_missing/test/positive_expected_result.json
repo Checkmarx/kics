@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "queryName": "Yum Clean All Missing",
     "severity": "LOW",
@@ -15,3 +16,18 @@
     "search_line": -1
   }
 ]
+=======
+	{
+		"queryName": "Yum Clean All Missing",
+		"severity": "LOW",
+		"line": 12,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Yum Clean All Missing",
+		"severity": "LOW",
+		"line": 12,
+		"fileName": "positive2.dockerfile"
+	}
+]
+>>>>>>> origin/master

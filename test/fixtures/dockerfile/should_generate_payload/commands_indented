@@ -1,0 +1,2 @@
+    ARG BASE_IMAGE=alpine:latest
+      FROM ${BASE_IMAGE}

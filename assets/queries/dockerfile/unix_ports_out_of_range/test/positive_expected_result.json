@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "queryName": "UNIX Ports Out Of Range",
     "severity": "INFO",
@@ -15,3 +16,18 @@
     "search_line": -1
   }
 ]
+=======
+	{
+		"queryName": "UNIX Ports Out Of Range",
+		"severity": "INFO",
+		"line": 3,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "UNIX Ports Out Of Range",
+		"severity": "INFO",
+		"line": 3,
+		"fileName": "positive2.dockerfile"
+	}
+]
+>>>>>>> origin/master

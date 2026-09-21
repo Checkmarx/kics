@@ -108,6 +108,7 @@
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 3,
+<<<<<<< HEAD
     "fileName": "positive4.dockerfile",
     "resourceType": "",
     "resourceName": "",
@@ -118,5 +119,32 @@
     "issueType": "IncorrectValue",
     "similarityID": "057db4c4b9fa851d9fcfa82d864b6e37b1abfcd19965afdb74cc2d651abc124b",
     "search_line": -1
+=======
+    "filename": "positive4.dockerfile"
+  },
+  {
+    "queryName": "Unpinned Package Version in Pip Install",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive5.dockerfile"
+  },
+  {
+    "queryName": "Unpinned Package Version in Pip Install",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive5.dockerfile"
+  },
+  {
+    "queryName": "Unpinned Package Version in Pip Install",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive5.dockerfile"
+  },
+  {
+    "queryName": "Unpinned Package Version in Pip Install",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive5.dockerfile"
+>>>>>>> origin/master
   }
 ]

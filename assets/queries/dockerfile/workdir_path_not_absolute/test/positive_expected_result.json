@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "queryName": "WORKDIR Path Not Absolute",
     "severity": "LOW",
@@ -15,3 +16,18 @@
     "search_line": -1
   }
 ]
+=======
+	{
+		"queryName": "WORKDIR Path Not Absolute",
+		"severity": "LOW",
+		"line": 5,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "WORKDIR Path Not Absolute",
+		"severity": "LOW",
+		"line": 5,
+		"fileName": "positive2.dockerfile"
+	}
+]
+>>>>>>> origin/master

@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "queryName": "Yum Install Allows Manual Input",
     "severity": "LOW",
@@ -30,3 +31,30 @@
     "search_line": -1
   }
 ]
+=======
+	{
+		"queryName": "Yum Install Allows Manual Input",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Yum Install Allows Manual Input",
+		"severity": "LOW",
+		"line": 4,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Yum Install Allows Manual Input",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Yum Install Allows Manual Input",
+		"severity": "LOW",
+		"line": 4,
+		"fileName": "positive2.dockerfile"
+	}
+]
+>>>>>>> origin/master
