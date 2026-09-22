@@ -1,10 +1,9 @@
 [
-<<<<<<< HEAD
   {
     "queryName": "Run Utilities And POSIX Commands",
     "severity": "INFO",
     "line": 4,
-    "fileName": "positive.dockerfile",
+    "fileName": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{golang:1.12.0-stretch}}.{{RUN top}}",
@@ -12,14 +11,14 @@
     "expectedValue": "There should be no dangerous commands or utilities executed",
     "actualValue": "Run instruction is executing the top command",
     "issueType": "IncorrectValue",
-    "similarityID": "53afc099bbe3ab95c2d0d663d2f546cf38e3823e4e2e92dc02ee600fc15d9fc1",
+    "similarityID": "0b1ac07daff76c20989f3e9312e2646d8a50693533c25b4ab27b80f2f71dc13b",
     "search_line": -1
   },
   {
     "queryName": "Run Utilities And POSIX Commands",
     "severity": "INFO",
     "line": 5,
-    "fileName": "positive.dockerfile",
+    "fileName": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{golang:1.12.0-stretch}}.{{RUN [\"ps\", \"-d\"]}}",
@@ -27,34 +26,37 @@
     "expectedValue": "There should be no dangerous commands or utilities executed",
     "actualValue": "Run instruction is executing the ps command",
     "issueType": "IncorrectValue",
-    "similarityID": "e31e17b7591957be5f5133a31fb20c2ea6d27e2dbdc313fcb6971fb5f87eefed",
+    "similarityID": "feb2549cec70393d9efd85d0e1f17d4c4182825f056c749b377050166903d530",
+    "search_line": -1
+  },
+  {
+    "queryName": "Run Utilities And POSIX Commands",
+    "severity": "INFO",
+    "line": 4,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{golang:1.12.0-stretch}}.{{run top}}",
+    "searchValue": "",
+    "expectedValue": "There should be no dangerous commands or utilities executed",
+    "actualValue": "Run instruction is executing the top command",
+    "issueType": "IncorrectValue",
+    "similarityID": "b8adde417008c7578fbdb886c29dccdd1efdb1171f8b74fc8d88d56d7d29a7e8",
+    "search_line": -1
+  },
+  {
+    "queryName": "Run Utilities And POSIX Commands",
+    "severity": "INFO",
+    "line": 5,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{golang:1.12.0-stretch}}.{{run [\"ps\", \"-d\"]}}",
+    "searchValue": "",
+    "expectedValue": "There should be no dangerous commands or utilities executed",
+    "actualValue": "Run instruction is executing the ps command",
+    "issueType": "IncorrectValue",
+    "similarityID": "33858d2bf355a0d6cb71c6ee7886150dc5d0db403e66790b1969101f3f196a42",
     "search_line": -1
   }
 ]
-=======
-	{
-		"queryName": "Run Utilities And POSIX Commands",
-		"severity": "INFO",
-		"line": 4,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Run Utilities And POSIX Commands",
-		"severity": "INFO",
-		"line": 5,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Run Utilities And POSIX Commands",
-		"severity": "INFO",
-		"line": 4,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Run Utilities And POSIX Commands",
-		"severity": "INFO",
-		"line": 5,
-		"fileName": "positive2.dockerfile"
-	}
-]
->>>>>>> origin/master

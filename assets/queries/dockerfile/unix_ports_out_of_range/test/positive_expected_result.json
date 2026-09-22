@@ -1,10 +1,9 @@
 [
-<<<<<<< HEAD
   {
     "queryName": "UNIX Ports Out Of Range",
     "severity": "INFO",
     "line": 3,
-    "fileName": "positive.dockerfile",
+    "fileName": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{gliderlabs/alpine:3.3}}.{{EXPOSE 65536/tcp 80 443 22}}",
@@ -12,22 +11,22 @@
     "expectedValue": "'EXPOSE' should not contain ports out of range [0, 65535]",
     "actualValue": "'EXPOSE' contains ports out of range [0, 65535]",
     "issueType": "IncorrectValue",
-    "similarityID": "6c1d05d89d11e7a0ddec9a627903340379ec42c4926158374f16967360826dba",
+    "similarityID": "0f4d636217ed00c58486105a11dd2d29fff706ca0bb070d4a821cb100449446c",
+    "search_line": -1
+  },
+  {
+    "queryName": "UNIX Ports Out Of Range",
+    "severity": "INFO",
+    "line": 3,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{gliderlabs/alpine:3.3}}.{{expose 65536/tcp 80 443 22}}",
+    "searchValue": "",
+    "expectedValue": "'EXPOSE' should not contain ports out of range [0, 65535]",
+    "actualValue": "'EXPOSE' contains ports out of range [0, 65535]",
+    "issueType": "IncorrectValue",
+    "similarityID": "e0b4b8a35ce5b996c195b0c40b05f63e638f1785cca436edd9aa5cbb9680dbc8",
     "search_line": -1
   }
 ]
-=======
-	{
-		"queryName": "UNIX Ports Out Of Range",
-		"severity": "INFO",
-		"line": 3,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "UNIX Ports Out Of Range",
-		"severity": "INFO",
-		"line": 3,
-		"fileName": "positive2.dockerfile"
-	}
-]
->>>>>>> origin/master

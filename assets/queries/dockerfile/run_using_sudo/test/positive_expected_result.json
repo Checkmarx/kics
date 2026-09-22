@@ -1,10 +1,9 @@
 [
-<<<<<<< HEAD
   {
     "queryName": "Run Using Sudo",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive.dockerfile",
+    "fileName": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{alpine:3.5}}.RUN={{sudo pip install --upgrade pip}}",
@@ -12,52 +11,97 @@
     "expectedValue": "RUN instruction shouldn't contain sudo",
     "actualValue": "RUN instruction contains sudo",
     "issueType": "IncorrectValue",
-    "similarityID": "66bf1e6c78ada6faf6840a6897c9e72d91f614c19001050f1bc234cf084d1d57",
+    "similarityID": "95949be567890c2971a8bc400fad09062a0dcff13dd05ce21d362f389a56ed75",
+    "search_line": -1
+  },
+  {
+    "queryName": "Run Using Sudo",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:3.5}}.run={{sudo pip install --upgrade pip}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction shouldn't contain sudo",
+    "actualValue": "RUN instruction contains sudo",
+    "issueType": "IncorrectValue",
+    "similarityID": "9fe46fd530dc99f81f724137f53aad6065d0f66a2fb5f25b55bb3d54f646e037",
+    "search_line": -1
+  },
+  {
+    "queryName": "Run Using Sudo",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.RUN={{[\"sudo\", \"pip\", \"install\", \"--upgrade\", \"pip\"]}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction shouldn't contain sudo",
+    "actualValue": "RUN instruction contains sudo",
+    "issueType": "IncorrectValue",
+    "similarityID": "ed301414cfd9fac3cffcad22621ab5312ca83529db59329a190418ae0d84b9e4",
+    "search_line": -1
+  },
+  {
+    "queryName": "Run Using Sudo",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive4.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.RUN={{sudo pip install --upgrade pip}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction shouldn't contain sudo",
+    "actualValue": "RUN instruction contains sudo",
+    "issueType": "IncorrectValue",
+    "similarityID": "c372ebcef9cbe68eaed87f76d53a9c9806eb14324657e9c028a84c71b45353e9",
+    "search_line": -1
+  },
+  {
+    "queryName": "Run Using Sudo",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive4.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.RUN={{sudo apt-get install -y vim}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction shouldn't contain sudo",
+    "actualValue": "RUN instruction contains sudo",
+    "issueType": "IncorrectValue",
+    "similarityID": "c59236f00a19de2fa40feda0d93b1d3966197900723ae9c2ad0bba51c5ca79e1",
+    "search_line": -1
+  },
+  {
+    "queryName": "Run Using Sudo",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive5.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.RUN={{[\"sudo\", \"pip\", \"install\", \"--upgrade\", \"pip\"]}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction shouldn't contain sudo",
+    "actualValue": "RUN instruction contains sudo",
+    "issueType": "IncorrectValue",
+    "similarityID": "4931d6cea0a6fcd0228fb34f3f435e72fe491a3e60bfce9b60376d8f008fc9a8",
+    "search_line": -1
+  },
+  {
+    "queryName": "Run Using Sudo",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive5.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.RUN={{[\"sudo\", \"apt-get\", \"install\", \"-y\", \"vim\"]}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction shouldn't contain sudo",
+    "actualValue": "RUN instruction contains sudo",
+    "issueType": "IncorrectValue",
+    "similarityID": "c1e6f4625b52940caf5846d2fa531c05d708dc6971620192989b80933cb70d50",
     "search_line": -1
   }
 ]
-=======
-	{
-		"queryName": "Run Using Sudo",
-		"severity": "MEDIUM",
-		"line": 3,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Run Using Sudo",
-		"severity": "MEDIUM",
-		"line": 3,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Run Using Sudo",
-		"severity": "MEDIUM",
-		"line": 3,
-		"fileName": "positive3.dockerfile"
-	},
-	{
-		"queryName": "Run Using Sudo",
-		"severity": "MEDIUM",
-		"line": 3,
-		"fileName": "positive4.dockerfile"
-	},
-	{
-		"queryName": "Run Using Sudo",
-		"severity": "MEDIUM",
-		"line": 4,
-		"fileName": "positive4.dockerfile"
-	},
-	{
-		"queryName": "Run Using Sudo",
-		"severity": "MEDIUM",
-		"line": 3,
-		"fileName": "positive5.dockerfile"
-	},
-	{
-		"queryName": "Run Using Sudo",
-		"severity": "MEDIUM",
-		"line": 4,
-		"fileName": "positive5.dockerfile"
-	}
-]
->>>>>>> origin/master

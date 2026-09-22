@@ -1,5 +1,4 @@
 [
-<<<<<<< HEAD
   {
     "queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
     "severity": "LOW",
@@ -44,32 +43,20 @@
     "issueType": "RedundantAttribute",
     "similarityID": "f1de0824f227342b7b5d9f6150d2ec1a3bfb3f657365240ad29a6d3663fba8d4",
     "search_line": -1
+  },
+  {
+    "queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive4.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{ubuntu}}.{{run apt-get install -y wget}}",
+    "searchValue": "",
+    "expectedValue": "There isn\u00b4t any RUN instruction that could be grouped",
+    "actualValue": "There are RUN instructions that could be grouped",
+    "issueType": "RedundantAttribute",
+    "similarityID": "144f845f27eb9b07283e212263083720309426da29192c45b1b5890ee3cacf7c",
+    "search_line": -1
   }
 ]
-=======
-	{
-		"queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive3.dockerfile"
-	},
-	{
-		"queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive4.dockerfile"
-	}
-]
->>>>>>> origin/master

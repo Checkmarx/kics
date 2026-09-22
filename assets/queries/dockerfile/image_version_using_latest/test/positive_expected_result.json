@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Image Version Using 'latest'",
-		"severity": "MEDIUM",
-		"line": 1,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Image Version Using 'latest'",
-		"severity": "MEDIUM",
-		"line": 1,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Image Version Using 'latest'",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:latest}}",
+    "searchValue": "",
+    "expectedValue": "FROM alpine:latest:'version' where version should not be 'latest'",
+    "actualValue": "FROM alpine:latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0cf2b03421989eab1bda9d4b146d88cf8f345a9fe9e8aa98c15736cfb7dfcc06",
+    "search_line": -1
+  },
+  {
+    "queryName": "Image Version Using 'latest'",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:latest}}",
+    "searchValue": "",
+    "expectedValue": "FROM alpine:latest:'version' where version should not be 'latest'",
+    "actualValue": "FROM alpine:latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f80146cfc23686708fc275a0ca27d37591afe637cd9eeeea3e189c885a4e2b01",
+    "search_line": -1
+  }
 ]

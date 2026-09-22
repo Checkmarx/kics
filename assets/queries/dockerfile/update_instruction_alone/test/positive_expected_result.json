@@ -1,5 +1,4 @@
 [
-<<<<<<< HEAD
   {
     "queryName": "Update Instruction Alone",
     "severity": "LOW",
@@ -104,56 +103,20 @@
     "issueType": "IncorrectValue",
     "similarityID": "74941a883f02518c5eafe5f85b69ea7b5550a63b8686143d3b7cb4a5323b81f2",
     "search_line": -1
+  },
+  {
+    "queryName": "Update Instruction Alone",
+    "severity": "LOW",
+    "line": 3,
+    "fileName": "positive8.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:latest}}.run={{apk add nginx}}",
+    "searchValue": "",
+    "expectedValue": "Instruction 'RUN apk [\"add\"]' should be combined with 'RUN apk [\"update\"]' in the same 'RUN' statement",
+    "actualValue": "Instruction 'RUN apk [\"add\"]' isn't combined with 'RUN apk [\"update\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue",
+    "similarityID": "ac484fd1174ddf8438b8a29be7d1968e797c4de5d0ba184ecb89f1c032f5019d",
+    "search_line": -1
   }
 ]
-=======
-	{
-		"queryName": "Update Instruction Alone",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Update Instruction Alone",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Update Instruction Alone",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive3.dockerfile"
-	},
-	{
-		"queryName": "Update Instruction Alone",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive4.dockerfile"
-	},
-	{
-		"queryName": "Update Instruction Alone",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive5.dockerfile"
-	},
-	{
-		"queryName": "Update Instruction Alone",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive6.dockerfile"
-	},
-	{
-		"queryName": "Update Instruction Alone",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive7.dockerfile"
-	},
-	{
-		"queryName": "Update Instruction Alone",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive8.dockerfile"
-	}
-]
->>>>>>> origin/master

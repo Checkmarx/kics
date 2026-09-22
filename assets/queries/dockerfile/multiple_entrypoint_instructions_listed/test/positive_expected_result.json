@@ -1,10 +1,9 @@
 [
-<<<<<<< HEAD
   {
     "queryName": "Multiple ENTRYPOINT Instructions Listed",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive.dockerfile",
+    "fileName": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{alpine:latest}}.{{ENTRYPOINT [ \"/opt/app/run.sh\", \"--port\", \"8080\" ]}}",
@@ -12,22 +11,22 @@
     "expectedValue": "There should be only one ENTRYPOINT instruction",
     "actualValue": "There are 2 ENTRYPOINT instructions",
     "issueType": "RedundantAttribute",
-    "similarityID": "3dd440a31d88530ab1e8861c1d0fceedcf6b7949fc80495e9a67ceac699a546e",
+    "similarityID": "9ceab63604de6dfa55a84891c30fdc70ceeff2a07df04dbda0c5f57175f9d251",
+    "search_line": -1
+  },
+  {
+    "queryName": "Multiple ENTRYPOINT Instructions Listed",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:latest}}.{{entrypoint [ \"/opt/app/run.sh\", \"--port\", \"8080\" ]}}",
+    "searchValue": "",
+    "expectedValue": "There should be only one ENTRYPOINT instruction",
+    "actualValue": "There are 2 ENTRYPOINT instructions",
+    "issueType": "RedundantAttribute",
+    "similarityID": "b63a9485fed3f6b802bb4f02684150d544a02766811d358945fed52cd49ee08b",
     "search_line": -1
   }
 ]
-=======
-	{
-		"queryName": "Multiple ENTRYPOINT Instructions Listed",
-		"severity": "LOW",
-		"line": 11,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Multiple ENTRYPOINT Instructions Listed",
-		"severity": "LOW",
-		"line": 11,
-		"fileName": "positive2.dockerfile"
-	}
-]
->>>>>>> origin/master

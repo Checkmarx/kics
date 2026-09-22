@@ -1,5 +1,4 @@
 [
-<<<<<<< HEAD
   {
     "queryName": "Using Platform Flag with FROM Command",
     "severity": "INFO",
@@ -14,20 +13,20 @@
     "issueType": "IncorrectValue",
     "similarityID": "ecd874a164d0a0f68be50d2a46c086755a2b4216981dfb9c7e1c399ccbe47131",
     "search_line": -1
+  },
+  {
+    "queryName": "Using Platform Flag with FROM Command",
+    "severity": "INFO",
+    "line": 6,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{--platform=arm64 baseimage as baseimage-build}}.{{from --platform=arm64 baseimage as baseimage-build}}",
+    "searchValue": "",
+    "expectedValue": "from={{--platform=arm64 baseimage as baseimage-build}}.{{from --platform=arm64 baseimage as baseimage-build}} should not use the '--platform' flag",
+    "actualValue": "from={{--platform=arm64 baseimage as baseimage-build}}.{{from --platform=arm64 baseimage as baseimage-build}} is using the '--platform' flag",
+    "issueType": "IncorrectValue",
+    "similarityID": "728b0363e63fb98044ee203aacb20acf7c184c64a6c5ba341c21a3a1ce9bae8f",
+    "search_line": -1
   }
 ]
-=======
-	{
-		"queryName": "Using Platform Flag with FROM Command",
-		"severity": "INFO",
-		"line": 6,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Using Platform Flag with FROM Command",
-		"severity": "INFO",
-		"line": 6,
-		"fileName": "positive2.dockerfile"
-	}
-]
->>>>>>> origin/master

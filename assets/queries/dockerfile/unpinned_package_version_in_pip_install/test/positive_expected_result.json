@@ -108,7 +108,6 @@
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 3,
-<<<<<<< HEAD
     "fileName": "positive4.dockerfile",
     "resourceType": "",
     "resourceName": "",
@@ -119,32 +118,65 @@
     "issueType": "IncorrectValue",
     "similarityID": "057db4c4b9fa851d9fcfa82d864b6e37b1abfcd19965afdb74cc2d651abc124b",
     "search_line": -1
-=======
-    "filename": "positive4.dockerfile"
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 3,
-    "filename": "positive5.dockerfile"
+    "fileName": "positive5.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:3.9}}.{{run pip install --user pip}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
+    "actualValue": "RUN instruction pip install --user pip does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "0958c9709dac52fdbb81641f7196bb5e56e2cbe5eb29b12509b10731d5ac42b0",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive5.dockerfile"
+    "fileName": "positive5.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:3.9}}.{{run [\"pip\", \"install\", \"connexion\"]}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
+    "actualValue": "RUN instruction connexion does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "ea398b1089e584a76cbbefc5560a226c39a18aacae82db355a3c49e21f78a9e3",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive5.dockerfile"
+    "fileName": "positive5.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:3.7}}.{{run pip install connexion}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
+    "actualValue": "RUN instruction pip install connexion does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "c6edabf03eac7b029b9de13373e12a607afa340fdd760eea619f41c666b358b9",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive5.dockerfile"
->>>>>>> origin/master
+    "fileName": "positive5.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:3.7}}.{{run pip3 install requests}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
+    "actualValue": "RUN instruction pip3 install requests does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "05ff74828e4076ac8f4193e3e9ac7239bf6ddbeb951cf51c79fa4efad3df11e5",
+    "search_line": -1
   }
 ]

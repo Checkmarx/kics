@@ -1,5 +1,4 @@
 [
-<<<<<<< HEAD
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
@@ -104,92 +103,110 @@
     "issueType": "IncorrectValue",
     "similarityID": "5dba4a651019aefe5c71ad3eb474be07108381de446f5abcc864fd0077faf39f",
     "search_line": -1
+  },
+  {
+    "queryName": "NPM Install Command Without Pinned Version",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{node:12}}.{{run npm install sax}}",
+    "searchValue": "",
+    "expectedValue": "'run npm install sax' uses npm install with a pinned version",
+    "actualValue": "'run npm install sax' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "a195e0b95bbf0bebb1c637069876c8ebc2de8b5046a2a03456001a7d4ecd0c9e",
+    "search_line": -1
+  },
+  {
+    "queryName": "NPM Install Command Without Pinned Version",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{node:12}}.{{run npm install sax --no-cache}}",
+    "searchValue": "",
+    "expectedValue": "'run npm install sax --no-cache' uses npm install with a pinned version",
+    "actualValue": "'run npm install sax --no-cache' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "f62b78096a5c511839e99a7a886e4b6908adf052ae2452fbaa97b475ff101557",
+    "search_line": -1
+  },
+  {
+    "queryName": "NPM Install Command Without Pinned Version",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{node:12}}.{{run npm install sax | grep fail && npm install sax@latest}}",
+    "searchValue": "",
+    "expectedValue": "'run npm install sax | grep fail && npm install sax@latest' uses npm install with a pinned version",
+    "actualValue": "'run npm install sax | grep fail && npm install sax@latest' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "82524a572e88164c6513aaf1d2c553bbe109e25f9d256c873ffb35929089a794",
+    "search_line": -1
+  },
+  {
+    "queryName": "NPM Install Command Without Pinned Version",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{node:12}}.{{run npm install sax@latest | grep fail && npm install sax}}",
+    "searchValue": "",
+    "expectedValue": "'run npm install sax@latest | grep fail && npm install sax' uses npm install with a pinned version",
+    "actualValue": "'run npm install sax@latest | grep fail && npm install sax' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "c405241e0bed67a3c5cb99adbbca6542d690cacb9cbb33e64d091ae007e3657b",
+    "search_line": -1
+  },
+  {
+    "queryName": "NPM Install Command Without Pinned Version",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{node:12}}.{{run npm install sax | grep fail && npm install sax}}",
+    "searchValue": "",
+    "expectedValue": "'run npm install sax | grep fail && npm install sax' uses npm install with a pinned version",
+    "actualValue": "'run npm install sax | grep fail && npm install sax' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "37ca29f7db36f9148ff84951c274fc7e4e49d2f1bdf8dcd81c30c9872c9a0d8f",
+    "search_line": -1
+  },
+  {
+    "queryName": "NPM Install Command Without Pinned Version",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{node:12}}.{{run npm i -g @angular/cli}}",
+    "searchValue": "",
+    "expectedValue": "'run npm i -g @angular/cli' uses npm install with a pinned version",
+    "actualValue": "'run npm i -g @angular/cli' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "16ec58c30a1dcf55abf54325ebfec1bc3500d44f941d28e23eb7a69184ae863c",
+    "search_line": -1
+  },
+  {
+    "queryName": "NPM Install Command Without Pinned Version",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{node:12}}.{{run [\"npm\",\"add\",\"sax\"]}}",
+    "searchValue": "",
+    "expectedValue": "'run [\"npm\",\"add\",\"sax\"]' uses npm install with a pinned version",
+    "actualValue": "'run [\"npm\",\"add\",\"sax\"]' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "8f6bd5d5edeb4e87d999b207e879059d4c3adf8cf6988e8696b03eb72a85c4ee",
+    "search_line": -1
   }
 ]
-=======
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 2,
-		"filename": "positive1.dockerfile"
-	},
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 3,
-		"filename": "positive1.dockerfile"
-	},
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 4,
-		"filename": "positive1.dockerfile"
-	},
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 5,
-		"filename": "positive1.dockerfile"
-	},
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 6,
-		"filename": "positive1.dockerfile"
-	},
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 7,
-		"filename": "positive1.dockerfile"
-	},
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 8,
-		"filename": "positive1.dockerfile"
-	},
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 2,
-		"filename": "positive2.dockerfile"
-	},
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 3,
-		"filename": "positive2.dockerfile"
-	},
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 4,
-		"filename": "positive2.dockerfile"
-	},
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 5,
-		"filename": "positive2.dockerfile"
-	},
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 6,
-		"filename": "positive2.dockerfile"
-	},
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 7,
-		"filename": "positive2.dockerfile"
-	},
-	{
-		"queryName": "NPM Install Command Without Pinned Version",
-		"severity": "MEDIUM",
-		"line": 8,
-		"filename": "positive2.dockerfile"
-	}
-]
->>>>>>> origin/master

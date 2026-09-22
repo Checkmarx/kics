@@ -1,56 +1,137 @@
 [
-	{
-		"queryName": "Apt Get Install Lists Were Not Deleted",
-		"severity": "INFO",
-		"line": 2,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Apt Get Install Lists Were Not Deleted",
-		"severity": "INFO",
-		"line": 5,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Apt Get Install Lists Were Not Deleted",
-		"severity": "INFO",
-		"line": 8,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Apt Get Install Lists Were Not Deleted",
-		"severity": "INFO",
-		"line": 12,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Apt Get Install Lists Were Not Deleted",
-		"severity": "INFO",
-		"line": 2,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Apt Get Install Lists Were Not Deleted",
-		"severity": "INFO",
-		"line": 2,
-		"fileName": "positive3.dockerfile"
-	},
-	{
-		"queryName": "Apt Get Install Lists Were Not Deleted",
-		"severity": "INFO",
-		"line": 5,
-		"fileName": "positive3.dockerfile"
-	},
-	{
-		"queryName": "Apt Get Install Lists Were Not Deleted",
-		"severity": "INFO",
-		"line": 8,
-		"fileName": "positive3.dockerfile"
-	},
-	{
-		"queryName": "Apt Get Install Lists Were Not Deleted",
-		"severity": "INFO",
-		"line": 12,
-		"fileName": "positive3.dockerfile"
-	}
+  {
+    "queryName": "Apt Get Install Lists Were Not Deleted",
+    "severity": "INFO",
+    "line": 2,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox1}}.RUN={{apt-get update && apt-get install --no-install-recommends -y python}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "0dafd3ec0d0e17528399352e8855eb4da461bb93447a4ae68b83fb70432da117",
+    "search_line": -1
+  },
+  {
+    "queryName": "Apt Get Install Lists Were Not Deleted",
+    "severity": "INFO",
+    "line": 5,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox2}}.RUN={{apt-get install python}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "ae087a2465831688b3767b661f54104cb0e40fa84813d2510afe0ab31e37ebdf",
+    "search_line": -1
+  },
+  {
+    "queryName": "Apt Get Install Lists Were Not Deleted",
+    "severity": "INFO",
+    "line": 8,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox3}}.RUN={{apt-get update && apt-get install --no-install-recommends -y python}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "48999a295e411b743df86bdbb3611183d81fe9422fc596016eddf161bf30a699",
+    "search_line": -1
+  },
+  {
+    "queryName": "Apt Get Install Lists Were Not Deleted",
+    "severity": "INFO",
+    "line": 12,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox4}}.RUN={{apt-get update && apt-get install --no-install-recommends -y python}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "22d2d76e3bda01bf666d0374a3e68f2dcbdcdadd93f52ea79fee8d9fb60d1b45",
+    "search_line": -1
+  },
+  {
+    "queryName": "Apt Get Install Lists Were Not Deleted",
+    "severity": "INFO",
+    "line": 2,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox5}}.RUN={{set -eux; \tapt-get update; \tapt-get install -y --no-install-recommends package=0.0.0}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "56b1a1a6fa4cfd2f8bdd13611e394e9eff045d29fc2de0bb556b1a717cb8cb99",
+    "search_line": -1
+  },
+  {
+    "queryName": "Apt Get Install Lists Were Not Deleted",
+    "severity": "INFO",
+    "line": 2,
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{busybox1}}.run={{apt-get update && apt-get install --no-install-recommends -y python}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "e40ed51e9664c1eaa30839abaf626ac7f0038d8dc60b74408683de231e28bd20",
+    "search_line": -1
+  },
+  {
+    "queryName": "Apt Get Install Lists Were Not Deleted",
+    "severity": "INFO",
+    "line": 5,
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{busybox2}}.run={{apt-get install python}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "d7bc36a35df088dfe4e5358367705aed1a64241609e5ee06cbc5fb9768ad78b7",
+    "search_line": -1
+  },
+  {
+    "queryName": "Apt Get Install Lists Were Not Deleted",
+    "severity": "INFO",
+    "line": 8,
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{busybox3}}.run={{apt-get update && apt-get install --no-install-recommends -y python}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "9adc03ac52034799d790ffdcade562ab3ec8ea07071c6b354cbbb1f68c3cb2f7",
+    "search_line": -1
+  },
+  {
+    "queryName": "Apt Get Install Lists Were Not Deleted",
+    "severity": "INFO",
+    "line": 12,
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{busybox4}}.run={{apt-get update && apt-get install --no-install-recommends -y python}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "98a4ad8aa47e339b863c2f48944f053f6b2835f603e546b9739433eee7ce2c3f",
+    "search_line": -1
+  }
 ]

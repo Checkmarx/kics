@@ -1,10 +1,9 @@
 [
-<<<<<<< HEAD
   {
     "queryName": "Run Using apt",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive.dockerfile",
+    "fileName": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{busybox:1.0}}.{{RUN apt install curl}}",
@@ -12,22 +11,22 @@
     "expectedValue": "RUN instructions should not use the 'apt' program",
     "actualValue": "RUN instruction is invoking the 'apt' program",
     "issueType": "IncorrectValue",
-    "similarityID": "59199720dc88ce76449c600169d5787360b29ea88334730a4759a857ece516c7",
+    "similarityID": "7cc53ef362f87167baad898b1a23b27880ebbe49db09b514f97515c766549803",
+    "search_line": -1
+  },
+  {
+    "queryName": "Run Using apt",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{busybox:1.0}}.{{run apt install curl}}",
+    "searchValue": "",
+    "expectedValue": "RUN instructions should not use the 'apt' program",
+    "actualValue": "RUN instruction is invoking the 'apt' program",
+    "issueType": "IncorrectValue",
+    "similarityID": "2ff71bd33ce870018e2371e0c50a4997303d3645ea994a78bbf140880f261ac0",
     "search_line": -1
   }
 ]
-=======
-	{
-		"queryName": "Run Using apt",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Run Using apt",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive2.dockerfile"
-	}
-]
->>>>>>> origin/master

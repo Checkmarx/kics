@@ -1,10 +1,9 @@
 [
-<<<<<<< HEAD
   {
     "queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive.dockerfile",
+    "fileName": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{alpine:3.5}}.{{CMD [python, /usr/src/app/app.py] }}",
@@ -12,14 +11,14 @@
     "expectedValue": "{{CMD [python, /usr/src/app/app.py] }} should be in the JSON Notation",
     "actualValue": "{{CMD [python, /usr/src/app/app.py] }} isn't in JSON Notation",
     "issueType": "IncorrectValue",
-    "similarityID": "3d23340495151ac6c19e293c6631ea2afd20044023f86af6358a4d3c8688fb1a",
+    "similarityID": "ad010e3228f0558572319c6748fb32ddd8d5f0e07296582fd4d24f3807c70ebb",
     "search_line": -1
   },
   {
     "queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive.dockerfile",
+    "fileName": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{alpine:3.5}}.{{ENTRYPOINT [top, -b]}}",
@@ -27,34 +26,37 @@
     "expectedValue": "{{ENTRYPOINT [top, -b]}} should be in the JSON Notation",
     "actualValue": "{{ENTRYPOINT [top, -b]}} isn't in JSON Notation",
     "issueType": "IncorrectValue",
-    "similarityID": "5f92f977927ce81a93f1a4097e21ae7df0633f5d9dc40031fa05f53ce07ccc1a",
+    "similarityID": "362d790fbfdda44f6bad21033698bddf1ca6faec6f5dd1869efef48081fffe58",
+    "search_line": -1
+  },
+  {
+    "queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:3.5}}.{{cmd [python, /usr/src/app/app.py] }}",
+    "searchValue": "",
+    "expectedValue": "{{cmd [python, /usr/src/app/app.py] }} should be in the JSON Notation",
+    "actualValue": "{{cmd [python, /usr/src/app/app.py] }} isn't in JSON Notation",
+    "issueType": "IncorrectValue",
+    "similarityID": "6e0bc5324da8ce7a2edb40d18349b4e49350f1bc201e08fe60f85d307b1eb76d",
+    "search_line": -1
+  },
+  {
+    "queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:3.5}}.{{entrypoint [top, -b]}}",
+    "searchValue": "",
+    "expectedValue": "{{entrypoint [top, -b]}} should be in the JSON Notation",
+    "actualValue": "{{entrypoint [top, -b]}} isn't in JSON Notation",
+    "issueType": "IncorrectValue",
+    "similarityID": "c08a66346bebed40aa08039f606ef3910e1aee5b84622d88079d47dcd6a25b16",
     "search_line": -1
   }
 ]
-=======
-	{
-		"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
-		"severity": "MEDIUM",
-		"line": 10,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
-		"severity": "MEDIUM",
-		"line": 11,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
-		"severity": "MEDIUM",
-		"line": 10,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
-		"severity": "MEDIUM",
-		"line": 11,
-		"fileName": "positive2.dockerfile"
-	}
-]
->>>>>>> origin/master

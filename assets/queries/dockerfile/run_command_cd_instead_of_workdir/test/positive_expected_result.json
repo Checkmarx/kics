@@ -1,10 +1,9 @@
 [
-<<<<<<< HEAD
   {
     "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive.dockerfile",
+    "fileName": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{nginx}}.RUN={{cd /../share/nginx/html}}",
@@ -12,76 +11,82 @@
     "expectedValue": "Using WORKDIR to change directory",
     "actualValue": "RUN cd /../share/nginx/html'",
     "issueType": "IncorrectValue",
-    "similarityID": "19171f8fcec7de7a76a995d61183acc918ec8a4c1d445467fa16f3e209f1e533",
+    "similarityID": "882e36ac201210c0e649f643d52ab3a552a41faf16f4a6d383d8c3c7ba2e596e",
     "search_line": -1
   },
   {
     "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive.dockerfile",
+    "fileName": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "FROM={{nginx}}.RUN={{cd ../share/nginx/html}}",
+    "searchKey": "FROM={{nginx(1)}}.RUN={{cd ../share/nginx/html}}",
     "searchValue": "",
     "expectedValue": "Using WORKDIR to change directory",
     "actualValue": "RUN cd ../share/nginx/html'",
     "issueType": "IncorrectValue",
-    "similarityID": "509c051032db5d0ea554d04cacff99a004503bb8b1be687354dcc7d6dd09c625",
+    "similarityID": "519c5885d85cbfedf77081d8bb3e04a8197755d79231730e8b919c6fe9a36c64",
     "search_line": -1
   },
   {
     "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive.dockerfile",
+    "fileName": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "FROM={{nginx}}.RUN={{cd /usr/../share/nginx/html}}",
+    "searchKey": "FROM={{nginx(2)}}.RUN={{cd /usr/../share/nginx/html}}",
     "searchValue": "",
     "expectedValue": "Using WORKDIR to change directory",
     "actualValue": "RUN cd /usr/../share/nginx/html'",
     "issueType": "IncorrectValue",
-    "similarityID": "633d850a94fb82cb565446981c9ceb08cc3b30ceff9e3d24c2778320130d28a6",
+    "similarityID": "45f13a96f77b7a6be1a95758d6527fd3d7369dbbeb8c40d24f61ebddd4a81e5b",
+    "search_line": -1
+  },
+  {
+    "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
+    "severity": "LOW",
+    "line": 3,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{nginx}}.run={{cd /../share/nginx/html}}",
+    "searchValue": "",
+    "expectedValue": "Using WORKDIR to change directory",
+    "actualValue": "RUN cd /../share/nginx/html'",
+    "issueType": "IncorrectValue",
+    "similarityID": "fdacc9d680baa116df76da06f6db8a8bbea43ff7737faedadf7ce3b274bdde66",
+    "search_line": -1
+  },
+  {
+    "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{nginx(1)}}.run={{cd ../share/nginx/html}}",
+    "searchValue": "",
+    "expectedValue": "Using WORKDIR to change directory",
+    "actualValue": "RUN cd ../share/nginx/html'",
+    "issueType": "IncorrectValue",
+    "similarityID": "36bffb68add4d1f01ef6d0289f43adfb5365ff700bfe6e3dced53b55abeb08f4",
+    "search_line": -1
+  },
+  {
+    "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
+    "severity": "LOW",
+    "line": 15,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{nginx(2)}}.run={{cd /usr/../share/nginx/html}}",
+    "searchValue": "",
+    "expectedValue": "Using WORKDIR to change directory",
+    "actualValue": "RUN cd /usr/../share/nginx/html'",
+    "issueType": "IncorrectValue",
+    "similarityID": "7063708cd8a6d2705cb944ab23f179b0a3d406f2f1e8553ce22d3536f4bdc77b",
     "search_line": -1
   }
 ]
-=======
-	{
-		"queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
-		"severity": "LOW",
-		"line": 9,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
-		"severity": "LOW",
-		"line": 15,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
-		"severity": "LOW",
-		"line": 9,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
-		"severity": "LOW",
-		"line": 15,
-		"fileName": "positive2.dockerfile"
-	}
-]
->>>>>>> origin/master
