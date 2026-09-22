@@ -2,37 +2,91 @@
   {
     "queryName": "Standard Price Is Not Selected",
     "severity": "LOW",
+    "line": 18,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Security/pricings",
+    "resourceName": "Princing",
+    "searchKey": "resources.name=Princing.properties.pricingTier",
+    "searchValue": "",
+    "expectedValue": "'pricingTier' should be set to standard",
+    "actualValue": "'pricingTier' property value is set to Free",
+    "issueType": "IncorrectValue",
+    "similarityID": "35cbcce6cc962e01bede9e46beea22c00faaed40ec666368dd70da5d5262f92d",
+    "search_line": 18
+  },
+  {
+    "queryName": "Standard Price Is Not Selected",
+    "severity": "LOW",
     "line": 27,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Security/pricings",
+    "resourceName": "Princing",
+    "searchKey": "resources.name=Princing.properties.pricingTier",
+    "searchValue": "",
+    "expectedValue": "'pricingTier' should be set to standard",
+    "actualValue": "'pricingTier' property value is set to Free",
+    "issueType": "IncorrectValue",
+    "similarityID": "88c04e18403265fc1b54ffd401ccf912cf0e8da44b3b9f1e6b268671dea3e967",
+    "search_line": 27
+  },
+  {
+    "queryName": "Standard Price Is Not Selected",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Security/pricings",
+    "resourceName": "Princing",
+    "searchKey": "resources.name=Princing.properties.pricingTier",
+    "searchValue": "",
+    "expectedValue": "'pricingTier' should be set to standard",
+    "actualValue": "'pricingTier' property value is set to Free",
+    "issueType": "IncorrectValue",
+    "similarityID": "4930bb73094fc199d9623c63fe8b712683d0ff8e18bd560b5df08e58f3fba0fe",
+    "search_line": 18
   },
   {
     "queryName": "Standard Price Is Not Selected",
     "severity": "LOW",
     "line": 29,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Standard Price Is Not Selected",
-    "severity": "LOW",
-    "line": 23,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Standard Price Is Not Selected",
-    "severity": "LOW",
-    "line": 18,
-    "filename": "positive1.bicep"
-  },
-  {
-    "queryName": "Standard Price Is Not Selected",
-    "severity": "LOW",
-    "line": 18,
-    "filename": "positive2.bicep"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Security/pricings",
+    "resourceName": "Princing",
+    "searchKey": "properties.template.resources.name=Princing.properties.pricingTier",
+    "searchValue": "",
+    "expectedValue": "'pricingTier' should be set to standard",
+    "actualValue": "'pricingTier' property value is set to Free",
+    "issueType": "IncorrectValue",
+    "similarityID": "d81b68f0f08b1d86a5c013a77eb135499c12f543672eb6c8173831836d001841",
+    "search_line": 29
   },
   {
     "queryName": "Standard Price Is Not Selected",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive3.bicep"
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.Security/pricings",
+    "resourceName": "VirtualMachines",
+    "searchKey": "resources.name=VirtualMachines.properties.pricingTier",
+    "searchValue": "",
+    "expectedValue": "'pricingTier' should be set to standard",
+    "actualValue": "'pricingTier' parameter default value is set to Free",
+    "issueType": "IncorrectValue",
+    "similarityID": "19a512d37e8eabbe7555231569180b8c7d67c942d154d14090acce1a055f9467",
+    "search_line": 10
+  },
+  {
+    "queryName": "Standard Price Is Not Selected",
+    "severity": "LOW",
+    "line": 23,
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.Security/pricings",
+    "resourceName": "VirtualMachines",
+    "searchKey": "resources.name=VirtualMachines.properties.pricingTier",
+    "searchValue": "",
+    "expectedValue": "'pricingTier' should be set to standard",
+    "actualValue": "'pricingTier' parameter default value is set to Free",
+    "issueType": "IncorrectValue",
+    "similarityID": "cdda7be84e8d73d555bebe41ced11e0ee25158aa8b88814153fc623291b6e83f",
+    "search_line": 23
   }
 ]

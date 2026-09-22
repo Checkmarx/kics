@@ -3,48 +3,120 @@
     "queryName": "API Gateway Without Configured Authorizer",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive3.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ApiGatewayV2::Api",
+    "resourceName": "TL-Dev-WebSocket-API",
+    "searchKey": "Resources.DevWebSocket",
+    "searchValue": "",
+    "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue",
+    "similarityID": "8af5fd710e83cc0860cd1fb0bb2763f5d050dff6da3e39cd6b9718db5b2ab670",
+    "search_line": 3
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive4.yaml"
-  },
-  {
-    "queryName": "API Gateway Without Configured Authorizer",
-    "severity": "MEDIUM",
-    "line": 4,
-    "fileName": "positive7.json"
-  },
-  {
-    "queryName": "API Gateway Without Configured Authorizer",
-    "severity": "MEDIUM",
-    "line": 4,
-    "fileName": "positive8.json"
-  },
-  {
-    "queryName": "API Gateway Without Configured Authorizer",
-    "severity": "MEDIUM",
-    "line": 3,
-    "fileName": "positive1.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::ApiGatewayV2::Api",
+    "resourceName": "TL-Dev-WebSocket-API",
+    "searchKey": "Resources.DevWebSocket5",
+    "searchValue": "",
+    "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue",
+    "similarityID": "f4aa457538e4257632d3e3831e99d8334d341e431a9e01be831ec3cc896d0a80",
+    "search_line": 3
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive2.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myRestApi",
+    "searchKey": "Resources.MyRestApi6",
+    "searchValue": "",
+    "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue",
+    "similarityID": "a2ac757bc8a19a5dcb481c5e80705bd8731f4fd447e82c792b5024a76ce40d29",
+    "search_line": 3
+  },
+  {
+    "queryName": "API Gateway Without Configured Authorizer",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive4.yaml",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myRestApi",
+    "searchKey": "Resources.MyRestApi7",
+    "searchValue": "",
+    "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue",
+    "similarityID": "c7aa5529cd2fc09df85162b821a46fdde23acbbecbc04eff6bf5de5ceba704e9",
+    "search_line": 3
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "AWS::ApiGatewayV2::Api",
+    "resourceName": "TL-Dev-WebSocket-API",
+    "searchKey": "Resources.DevWebSocket8",
+    "searchValue": "",
+    "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue",
+    "similarityID": "19f593ac5cec0dc069c911c213a2eecacd7261a6b4c550a1543f9565f74bc208",
+    "search_line": 4
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::ApiGatewayV2::Api",
+    "resourceName": "TL-Dev-WebSocket-API",
+    "searchKey": "Resources.DevWebSocket9",
+    "searchValue": "",
+    "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue",
+    "similarityID": "1fefca9a40eac51505ccf8ac0709fe5556b4937874a0141d4fd0c60a20e6c49d",
+    "search_line": 20
+  },
+  {
+    "queryName": "API Gateway Without Configured Authorizer",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive7.json",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myRestApi",
+    "searchKey": "Resources.MyRestApi10",
+    "searchValue": "",
+    "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue",
+    "similarityID": "b55972b5c1022371977da0d672629509bcf62f582eb1180ecea12f88f70f1d2b",
+    "search_line": 4
+  },
+  {
+    "queryName": "API Gateway Without Configured Authorizer",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive8.json",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myRestApi",
+    "searchKey": "Resources.MyRestApi11",
+    "searchValue": "",
+    "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue",
+    "similarityID": "bb9fbdb85fc5bc154e4d9305fff97fe98aca8a6c7cedae41cab729c60ddfa485",
+    "search_line": 4
   }
 ]

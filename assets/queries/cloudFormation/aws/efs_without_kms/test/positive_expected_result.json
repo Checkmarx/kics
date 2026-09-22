@@ -3,18 +3,45 @@
     "queryName": "EFS Without KMS",
     "severity": "LOW",
     "line": 82,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EFS::FileSystem",
+    "resourceName": "test-VPC-EFS",
+    "searchKey": "Resources.EFSFileSystem01",
+    "searchValue": "",
+    "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys",
+    "actualValue": "EFS resource 'EFSFileSystem01' is not encrypted using KMS CMK customer-managed keys instead of AWS managed-keys",
+    "issueType": "MissingAttribute",
+    "similarityID": "bc4451341477cb129e71b931c361338f562acc2aff996d3001dcafd3f062068a",
+    "search_line": -1
   },
   {
     "queryName": "EFS Without KMS",
     "severity": "LOW",
     "line": 157,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EFS::FileSystem",
+    "resourceName": "test-VPC-EFS",
+    "searchKey": "Resources.EFSFileSystem01",
+    "searchValue": "",
+    "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys",
+    "actualValue": "EFS resource 'EFSFileSystem01' is not encrypted using KMS CMK customer-managed keys instead of AWS managed-keys",
+    "issueType": "MissingAttribute",
+    "similarityID": "732c4ee452d49dbb2aff7fd44c6503e0771feacee1b9f5bc5fd51a64b3b40beb",
+    "search_line": -1
   },
   {
     "queryName": "EFS Without KMS",
     "severity": "LOW",
     "line": 82,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::EFS::FileSystem",
+    "resourceName": "test-VPC-EFS",
+    "searchKey": "Resources.EFSFileSystem01",
+    "searchValue": "",
+    "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys",
+    "actualValue": "EFS resource 'EFSFileSystem01' is not encrypted using KMS CMK customer-managed keys instead of AWS managed-keys",
+    "issueType": "MissingAttribute",
+    "similarityID": "ac60fd76f83a516128298d000cee439e93584349a9b95176e9d9a3dea029b3bc",
+    "search_line": -1
   }
 ]

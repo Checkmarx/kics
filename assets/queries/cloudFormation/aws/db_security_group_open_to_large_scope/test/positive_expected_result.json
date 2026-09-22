@@ -3,72 +3,180 @@
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBSecurityGroup",
+    "resourceName": "DbSecurity",
+    "searchKey": "Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP",
+    "searchValue": "",
+    "expectedValue": "'Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP' should not have more than 256 hosts.",
+    "actualValue": "'Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP' has more than 256 hosts.",
+    "issueType": "IncorrectValue",
+    "similarityID": "5c0ba6b70197ec49b356c09bb2334fe639e40d14c7515d6f158683cd35331fee",
+    "search_line": 8
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "DbSecurityByEC2SecurityGroup1",
+    "searchKey": "Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp",
+    "searchValue": "",
+    "expectedValue": "'Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp' should not have more than 256 hosts.",
+    "actualValue": "'Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp' has more than 256 hosts.",
+    "issueType": "IncorrectValue",
+    "similarityID": "0275eda19f07cd30f406b1d4d30df40d3586cba872f35ad684cb2a81051473c1",
+    "search_line": 15
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
     "line": 22,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "DbSecurityByEC2SecurityGroup2",
+    "searchKey": "Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "'Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6' should not have more than 256 hosts.",
+    "actualValue": "'Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6' has more than 256 hosts.",
+    "issueType": "IncorrectValue",
+    "similarityID": "f077a590a68528d77ec0b71fa8f5578aa982a6c5128ca2f725bdf8fbfd29aeff",
+    "search_line": 22
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::RDS::DBSecurityGroupIngress",
+    "resourceName": "MyDBSecurityGroupIngress",
+    "searchKey": "Resources.MyDBSecurityGroupIngress.Properties.CIDRIP",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBSecurityGroupIngress.Properties.CIDRIP' should not have more than 256 hosts.",
+    "actualValue": "'Resources.MyDBSecurityGroupIngress.Properties.CIDRIP' has more than 256 hosts.",
+    "issueType": "IncorrectValue",
+    "similarityID": "eadcfc43a4a0bdcd49a5efd8b7093bece14857a5a13f40d6565da7504d1bd272",
+    "search_line": 7
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "StandaloneIngressIPv4",
+    "searchKey": "Resources.StandaloneIngressIPv4.Properties.CidrIp",
+    "searchValue": "",
+    "expectedValue": "'Resources.StandaloneIngressIPv4.Properties.CidrIp' should not have more than 256 hosts.",
+    "actualValue": "'Resources.StandaloneIngressIPv4.Properties.CidrIp' has more than 256 hosts.",
+    "issueType": "IncorrectValue",
+    "similarityID": "66955022a45da12369a9e151e39362e417d71dfb610d125209477d968885ff35",
+    "search_line": 13
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
     "line": 19,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "StandaloneIngressIPv6",
+    "searchKey": "Resources.StandaloneIngressIPv6.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "'Resources.StandaloneIngressIPv6.Properties.CidrIpv6' should not have more than 256 hosts.",
+    "actualValue": "'Resources.StandaloneIngressIPv6.Properties.CidrIpv6' has more than 256 hosts.",
+    "issueType": "IncorrectValue",
+    "similarityID": "f96929965191a3a19d90d549e09591557d59330fa7a0e7707e81ccf958959746",
+    "search_line": 19
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::RDS::DBSecurityGroup",
+    "resourceName": "DbSecurity",
+    "searchKey": "Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP",
+    "searchValue": "",
+    "expectedValue": "'Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP' should not have more than 256 hosts.",
+    "actualValue": "'Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP' has more than 256 hosts.",
+    "issueType": "IncorrectValue",
+    "similarityID": "6e2eb7ea9bff6a1ab35293d6cc59c212a1eaaca74aef67a703855f56ce3e13f1",
+    "search_line": 9
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
     "line": 20,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "DbSecurityByEC2SecurityGroup1",
+    "searchKey": "Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp",
+    "searchValue": "",
+    "expectedValue": "'Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp' should not have more than 256 hosts.",
+    "actualValue": "'Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp' has more than 256 hosts.",
+    "issueType": "IncorrectValue",
+    "similarityID": "5191804cb2969109158bfc8684c0f2e08b5496a7e5910fffab036344ee964659",
+    "search_line": 20
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
     "line": 31,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "DbSecurityByEC2SecurityGroup2",
+    "searchKey": "Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "'Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6' should not have more than 256 hosts.",
+    "actualValue": "'Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6' has more than 256 hosts.",
+    "issueType": "IncorrectValue",
+    "similarityID": "a3ead9fe7b9f509cdb4a46a2920eb7fba13e2757208ecdedb72c81945cdda8f0",
+    "search_line": 31
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::RDS::DBSecurityGroupIngress",
+    "resourceName": "MyDBSecurityGroupIngress",
+    "searchKey": "Resources.MyDBSecurityGroupIngress.Properties.CIDRIP",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBSecurityGroupIngress.Properties.CIDRIP' should not have more than 256 hosts.",
+    "actualValue": "'Resources.MyDBSecurityGroupIngress.Properties.CIDRIP' has more than 256 hosts.",
+    "issueType": "IncorrectValue",
+    "similarityID": "b1eca0c00a83cd9ac7bef7bce80aa1e7411ba0a5d91d52d8f9855c1c4045aa75",
+    "search_line": 9
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "StandaloneIngressIPv4",
+    "searchKey": "Resources.StandaloneIngressIPv4.Properties.CidrIp",
+    "searchValue": "",
+    "expectedValue": "'Resources.StandaloneIngressIPv4.Properties.CidrIp' should not have more than 256 hosts.",
+    "actualValue": "'Resources.StandaloneIngressIPv4.Properties.CidrIp' has more than 256 hosts.",
+    "issueType": "IncorrectValue",
+    "similarityID": "f082ae4a79f70c2dd446682b2f6edacf5c5bea121315dfd9abc3c45ff6ebe360",
+    "search_line": 18
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
     "line": 27,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "StandaloneIngressIPv6",
+    "searchKey": "Resources.StandaloneIngressIPv6.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "'Resources.StandaloneIngressIPv6.Properties.CidrIpv6' should not have more than 256 hosts.",
+    "actualValue": "'Resources.StandaloneIngressIPv6.Properties.CidrIpv6' has more than 256 hosts.",
+    "issueType": "IncorrectValue",
+    "similarityID": "ceb759c76e7c65930c163d52d98c3d296263577b187e55f87f9f25c0d3a177b5",
+    "search_line": 27
   }
 ]

@@ -1,152 +1,377 @@
 [
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 10,
-        "fileName": "positive1.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 19,
-        "fileName": "positive1.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 28,
-        "fileName": "positive1.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 11,
-        "fileName": "positive2.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 21,
-        "fileName": "positive2.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 31,
-        "fileName": "positive2.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 9,
-        "fileName": "positive3.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 18,
-        "fileName": "positive3.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 27,
-        "fileName": "positive3.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 5,
-        "fileName": "positive4.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 10,
-        "fileName": "positive4.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 15,
-        "fileName": "positive4.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 9,
-        "fileName": "positive5.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 18,
-        "fileName": "positive5.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 27,
-        "fileName": "positive5.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 10,
-        "fileName": "positive6.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 19,
-        "fileName": "positive6.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 11,
-        "fileName": "positive7.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 21,
-        "fileName": "positive7.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 9,
-        "fileName": "positive8.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 18,
-        "fileName": "positive8.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 5,
-        "fileName": "positive9.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 13,
-        "fileName": "positive9.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 9,
-        "fileName": "positive10.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 18,
-        "fileName": "positive10.tf"
-    }
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive1_1",
+    "searchKey": "aws_instance[positive1_1].metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'aws_instance[positive1_1].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'aws_instance[positive1_1].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "acc6b57bb29f346f56b1f15e6ecdea91b48cb6d803a6ddf85a13893327772fdd",
+    "search_line": 10
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 19,
+    "fileName": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive1_2",
+    "searchKey": "aws_launch_configuration[positive1_2].metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'aws_launch_configuration[positive1_2].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'aws_launch_configuration[positive1_2].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "97aed452212d326ebcdf701adaf7eb2aebea5c3dcfc72ac3cda25d07c6015ccf",
+    "search_line": 19
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 28,
+    "fileName": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive1_3",
+    "searchKey": "aws_launch_template[positive1_3].metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'aws_launch_template[positive1_3].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'aws_launch_template[positive1_3].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8b86bbb44946391a9747a15f5a7ddf04bd1290c0e08303a93156495ebfbb6e19",
+    "search_line": 28
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive2.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive2_1",
+    "searchKey": "aws_instance[positive2_1].metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'aws_instance[positive2_1].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'aws_instance[positive2_1].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d141de68b7c8f26461339067e7715320ea4f5b63d442a0e339dde85e4cdd61ed",
+    "search_line": 11
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 21,
+    "fileName": "positive2.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive2_2",
+    "searchKey": "aws_launch_configuration[positive2_2].metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'aws_launch_configuration[positive2_2].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'aws_launch_configuration[positive2_2].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6438cade595f4ab22f9da61b6d6ffa17555d92e69abdfa85255c2ca99521d61b",
+    "search_line": 21
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 31,
+    "fileName": "positive2.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive2_3",
+    "searchKey": "aws_launch_template[positive2_3].metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'aws_launch_template[positive2_3].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'aws_launch_template[positive2_3].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6ef3900aac2dd5e155e005a6b46072cfd0b1de7dbc92e499f9caad4b99d973eb",
+    "search_line": 31
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive3.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive3_1",
+    "searchKey": "aws_instance[positive3_1].metadata_options",
+    "searchValue": "",
+    "expectedValue": "'aws_instance[positive3_1].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'aws_instance[positive3_1].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "038a246c42cf330c9ef79fe929218e6d801ef6282dea3544f05e6774ce929825",
+    "search_line": 9
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive3.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive3_2",
+    "searchKey": "aws_launch_configuration[positive3_2].metadata_options",
+    "searchValue": "",
+    "expectedValue": "'aws_launch_configuration[positive3_2].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'aws_launch_configuration[positive3_2].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9e9bfb0a352872b04651954983bf590078148eeda748f2267129dd206bda0c26",
+    "search_line": 18
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 27,
+    "fileName": "positive3.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive3_3",
+    "searchKey": "aws_launch_template[positive3_3].metadata_options",
+    "searchValue": "",
+    "expectedValue": "'aws_launch_template[positive3_3].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'aws_launch_template[positive3_3].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a741d1bb463cf07cb780b1f272fcef493b49e61fff70987214b3e2dfbecb0b08",
+    "search_line": 27
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive4.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive4_1",
+    "searchKey": "aws_instance[positive4_1]",
+    "searchValue": "",
+    "expectedValue": "'aws_instance[positive4_1].metadata_options' should be defined with 'http_tokens' field set to 'required'",
+    "actualValue": "'aws_instance[positive4_1].metadata_options' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "67d5fb29b87420a01820a75c49ec00898302d5a70870a60af7c188284bceccec",
+    "search_line": 5
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive4.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive4_2",
+    "searchKey": "aws_launch_configuration[positive4_2]",
+    "searchValue": "",
+    "expectedValue": "'aws_launch_configuration[positive4_2].metadata_options' should be defined with 'http_tokens' field set to 'required'",
+    "actualValue": "'aws_launch_configuration[positive4_2].metadata_options' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8707e9655dbf194ae1f5c0338181879a94113cc133d23409f354eca172d0c41a",
+    "search_line": 10
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 15,
+    "fileName": "positive4.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive4_3",
+    "searchKey": "aws_launch_template[positive4_3]",
+    "searchValue": "",
+    "expectedValue": "'aws_launch_template[positive4_3].metadata_options' should be defined with 'http_tokens' field set to 'required'",
+    "actualValue": "'aws_launch_template[positive4_3].metadata_options' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f051fbc3e2ca2384d5e50b0e4df02f5448534221677253a291ad233be3c3deb7",
+    "search_line": 15
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive5.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive5_1",
+    "searchKey": "aws_instance[positive5_1].metadata_options",
+    "searchValue": "",
+    "expectedValue": "'aws_instance[positive5_1].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'aws_instance[positive5_1].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d2aae6533c086d790471e4f5b69c743073c1d914d77535bce1c8cc5f6c883e98",
+    "search_line": 9
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive5.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive5_2",
+    "searchKey": "aws_launch_configuration[positive5_2].metadata_options",
+    "searchValue": "",
+    "expectedValue": "'aws_launch_configuration[positive5_2].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'aws_launch_configuration[positive5_2].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "21fb08d2717dd3726cb62d505d441314918b03cd12001bb3040041f39501f371",
+    "search_line": 18
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 27,
+    "fileName": "positive5.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive5_3",
+    "searchKey": "aws_launch_template[positive5_3].metadata_options",
+    "searchValue": "",
+    "expectedValue": "'aws_launch_template[positive5_3].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'aws_launch_template[positive5_3].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9fd5d6d3a6620061974a1b36586cc8eb90265f4e65b7c0fc942ab5a79ed1bb29",
+    "search_line": 27
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive6.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive6_instance].metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'module[positive6_instance].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'module[positive6_instance].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2285f3b1157b5477fc53410b48264b3d81857b40d0b6505aefe92987df58fe87",
+    "search_line": 10
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 19,
+    "fileName": "positive6.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive6_launch_config].metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'module[positive6_launch_config].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'module[positive6_launch_config].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ed51f3abce36e17aa8894da473213c4127f5babed97724d8e97e7435ea3a3c67",
+    "search_line": 19
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive7.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive7_instance].metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'module[positive7_instance].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'module[positive7_instance].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d896645139c49664620c995f7178d85f433f74ba64291ab0873c53fb646c9978",
+    "search_line": 11
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 21,
+    "fileName": "positive7.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive7_launch_config].metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'module[positive7_launch_config].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'module[positive7_launch_config].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5ee2111f255f7d43d4180f065266effd095d19c059c9ee08aa36e24ccbdcfdc3",
+    "search_line": 21
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive8.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive8_instance].metadata_options",
+    "searchValue": "",
+    "expectedValue": "'module[positive8_instance].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'module[positive8_instance].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "71e18b01b98195bcf59e3e85252d168b3d4a4fc7ec7bc52bb72cb39b9e64e453",
+    "search_line": 9
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive8.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive8_launch_config].metadata_options",
+    "searchValue": "",
+    "expectedValue": "'module[positive8_launch_config].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'module[positive8_launch_config].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "08b7a3c5be5ca53081809a96054897fd1ab6e24e485d054d77d2ec98f3729d54",
+    "search_line": 18
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive9.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive9_instance]",
+    "searchValue": "",
+    "expectedValue": "'module[positive9_instance].metadata_options' should be defined with 'http_tokens' field set to 'required'",
+    "actualValue": "'module[positive9_instance].metadata_options' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "09aa11fcdde959f75955d32188eaa32ccde7e13ecaf1ece4a740aa5afc440690",
+    "search_line": 5
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 13,
+    "fileName": "positive9.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive9_launch_config]",
+    "searchValue": "",
+    "expectedValue": "'module[positive9_launch_config].metadata_options' should be defined with 'http_tokens' field set to 'required'",
+    "actualValue": "'module[positive9_launch_config].metadata_options' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "85014796ba5160f7e0b53e68d447495c7aaf71c3e292277e1ba2fbb0eed9dc67",
+    "search_line": 13
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive10.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive10_instance].metadata_options",
+    "searchValue": "",
+    "expectedValue": "'module[positive10_instance].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'module[positive10_instance].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b88a0160d74f8fb9a752f1676df853afeb491b12ff896cc0500a0925f24b7055",
+    "search_line": 9
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive10.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive10_launch_config].metadata_options",
+    "searchValue": "",
+    "expectedValue": "'module[positive10_launch_config].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'module[positive10_launch_config].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "40e2d6633a05df4752fecf197a5ec2df69b69b0b629a93c4bd8858b08f467d20",
+    "search_line": 18
+  }
 ]

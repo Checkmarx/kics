@@ -3,36 +3,90 @@
     "queryName": "ELB Using Weak Ciphers",
     "severity": "HIGH",
     "line": 27,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy.Attributes.Name=TLS_RSA_NULL_SHA1",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.TLS_RSA_NULL_SHA1' should not be a weak cipher",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.TLS_RSA_NULL_SHA1' is a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "94c170e9478848d655ae44fa705140a2281a30c2157de0f862d26535c034953a",
+    "search_line": -1
   },
   {
     "queryName": "ELB Using Weak Ciphers",
     "severity": "HIGH",
     "line": 29,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy.Attributes.Name=DHE-DSS-DES-CBC3-SHA",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.DHE-DSS-DES-CBC3-SHA' should not be a weak cipher",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.DHE-DSS-DES-CBC3-SHA' is a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "6e37b87e0ad1b7eb474aa3e7dec8501ea2894f296e3dbb9526882ba1e992218d",
+    "search_line": -1
   },
   {
     "queryName": "ELB Using Weak Ciphers",
     "severity": "HIGH",
     "line": 34,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy2.Attributes.Name=TLS_DHE_PSK_WITH_NULL_SHA256",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.TLS_DHE_PSK_WITH_NULL_SHA256' should not be a weak cipher",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.TLS_DHE_PSK_WITH_NULL_SHA256' is a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "44e688c5b8195098158e86cb5bb19820011f06047c6cf5495f3e30981c3908b1",
+    "search_line": -1
   },
   {
     "queryName": "ELB Using Weak Ciphers",
     "severity": "HIGH",
     "line": 35,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy.Attributes.Name=TLS_RSA_NULL_SHA1",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.TLS_RSA_NULL_SHA1' should not be a weak cipher",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.TLS_RSA_NULL_SHA1' is a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "27046d2cb4c284a099c585b355ec3b00aa4b04cb564e4c98f46d7aa81b721b26",
+    "search_line": -1
   },
   {
     "queryName": "ELB Using Weak Ciphers",
     "severity": "HIGH",
     "line": 40,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy.Attributes.Name=DHE-DSS-DES-CBC3-SHA",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.DHE-DSS-DES-CBC3-SHA' should not be a weak cipher",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.DHE-DSS-DES-CBC3-SHA' is a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "022461b13034ed21ce0cdf83016611656ff0fad15547678f593a991e5a855c4a",
+    "search_line": -1
   },
   {
     "queryName": "ELB Using Weak Ciphers",
     "severity": "HIGH",
     "line": 49,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy2.Attributes.Name=TLS_DHE_PSK_WITH_NULL_SHA256",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.TLS_DHE_PSK_WITH_NULL_SHA256' should not be a weak cipher",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.TLS_DHE_PSK_WITH_NULL_SHA256' is a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "a7ff7f3251ef9c1f2c047375a855f57af019b1cd5b784f1101cd5cc01d2b7019",
+    "search_line": -1
   }
 ]

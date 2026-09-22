@@ -3,36 +3,90 @@
     "queryName": "ALB Deletion Protection Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_alb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_alb[positive1].enable_deletion_protection",
+    "searchValue": "",
+    "expectedValue": "'enable_deletion_protection' should be set to true",
+    "actualValue": "'enable_deletion_protection' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "5aaad6cd94edb2a2ef8b50d228fa2fc454f8dd26f33fa2e1284ab306ca6a0c2a",
+    "search_line": 7
   },
   {
     "queryName": "ALB Deletion Protection Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_alb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_alb[positive2]",
+    "searchValue": "",
+    "expectedValue": "'enable_deletion_protection' should be defined and set to true",
+    "actualValue": "'enable_deletion_protection' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "6b7aada979ceb196eb73858cb5edc9eb9834ac3f4e6a5f53a176c2a8cc85ecc6",
+    "search_line": 1
   },
   {
     "queryName": "ALB Deletion Protection Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_lb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_lb[positive3].enable_deletion_protection",
+    "searchValue": "",
+    "expectedValue": "'enable_deletion_protection' should be set to true",
+    "actualValue": "'enable_deletion_protection' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a8de2c151ae26099380254a65087898d8ed67c051cb0d4afdd1c71c2f5aa32a2",
+    "search_line": 7
   },
   {
     "queryName": "ALB Deletion Protection Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_lb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_lb[positive4]",
+    "searchValue": "",
+    "expectedValue": "'enable_deletion_protection' should be defined and set to true",
+    "actualValue": "'enable_deletion_protection' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1d3bea95909fde2bf72d22b10ecb32b29218e1d78cf9d5102aa08fa422feb043",
+    "search_line": 1
   },
   {
     "queryName": "ALB Deletion Protection Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[alb].enable_deletion_protection",
+    "searchValue": "",
+    "expectedValue": "'enable_deletion_protection' should be set to true",
+    "actualValue": "'enable_deletion_protection' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "84a50095049b5bf5cbf78d6c4140ad163a2894924d19c471e051dea3fbadfa13",
+    "search_line": 9
   },
   {
     "queryName": "ALB Deletion Protection Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[alb]",
+    "searchValue": "",
+    "expectedValue": "'enable_deletion_protection' should be defined and set to true",
+    "actualValue": "'enable_deletion_protection' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "5a7d668a762e98d1f62c79bcd27c6539bd56c7a38cc122636d5f4455486f5386",
+    "search_line": 1
   }
 ]

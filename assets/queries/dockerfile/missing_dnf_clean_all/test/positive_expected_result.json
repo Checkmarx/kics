@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Missing Dnf Clean All",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Missing Dnf Clean All",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Missing Dnf Clean All",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:27}}.RUN={{set -uex &&     dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo &&     sed -i 's/\\$releasever/26/g' /etc/yum.repos.d/docker-ce.repo &&     dnf install -vy docker-ce}}",
+    "searchValue": "",
+    "expectedValue": "After installing a package with dnf, command 'dnf clean all' should run.",
+    "actualValue": "Command `dnf clean all` is not being run after installing packages.",
+    "issueType": "IncorrectValue",
+    "similarityID": "6bd9699a68a24a2d4f21b9d2199a279de7876f9d56d07661c48ecd40e02711cd",
+    "search_line": -1
+  },
+  {
+    "queryName": "Missing Dnf Clean All",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{fedora:27}}.run={{set -uex &&     dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo &&     sed -i 's/\\$releasever/26/g' /etc/yum.repos.d/docker-ce.repo &&     dnf install -vy docker-ce}}",
+    "searchValue": "",
+    "expectedValue": "After installing a package with dnf, command 'dnf clean all' should run.",
+    "actualValue": "Command `dnf clean all` is not being run after installing packages.",
+    "issueType": "IncorrectValue",
+    "similarityID": "a625ff29ab8e0448e7a1ade9abf6c73156b0bb89b398adf1c5c1b1782376c46b",
+    "search_line": -1
+  }
 ]

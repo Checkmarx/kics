@@ -1,20 +1,47 @@
 [
-	{
-		"queryName": "Healthcheck Instruction Missing",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Healthcheck Instruction Missing",
-		"severity": "LOW",
-		"line": 7,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Healthcheck Instruction Missing",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive3.dockerfile"
-	}
+  {
+    "queryName": "Healthcheck Instruction Missing",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:alpine}}",
+    "searchValue": "",
+    "expectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
+    "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",
+    "issueType": "MissingAttribute",
+    "similarityID": "d7d4fd7583b95718cc631738859bedcc2cbdbb60bceec0dd6f3f20d96024fbab",
+    "search_line": -1
+  },
+  {
+    "queryName": "Healthcheck Instruction Missing",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:latest}}",
+    "searchValue": "",
+    "expectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
+    "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",
+    "issueType": "MissingAttribute",
+    "similarityID": "9650bc5e3bc83c1446bde43fbd02297adf63983b4fca0a831ff484cec1f81115",
+    "search_line": -1
+  },
+  {
+    "queryName": "Healthcheck Instruction Missing",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{node:alpine}}",
+    "searchValue": "",
+    "expectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
+    "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",
+    "issueType": "MissingAttribute",
+    "similarityID": "29df14afa1b94e75aa1e72ded74391ca911c6ca2590d3b9a0180c8f75fed2ab0",
+    "search_line": -1
+  }
 ]

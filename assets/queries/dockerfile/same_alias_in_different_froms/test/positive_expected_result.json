@@ -1,26 +1,62 @@
 [
-	{
-		"queryName": "Same Alias In Different Froms",
-		"severity": "LOW",
-		"line": 4,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Same Alias In Different Froms",
-		"severity": "LOW",
-		"line": 7,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Same Alias In Different Froms",
-		"severity": "LOW",
-		"line": 4,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Same Alias In Different Froms",
-		"severity": "LOW",
-		"line": 7,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Same Alias In Different Froms",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{build}}",
+    "searchValue": "",
+    "expectedValue": "Different FROM commands don't have the same alias defined",
+    "actualValue": "Different FROM commands with the same alias 'build' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "2e8f74e8cba792f695444a6b5b617f3696a4947eba2439bbfc395ec63aef661a",
+    "search_line": -1
+  },
+  {
+    "queryName": "Same Alias In Different Froms",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{build}}",
+    "searchValue": "",
+    "expectedValue": "Different FROM commands don't have the same alias defined",
+    "actualValue": "Different FROM commands with the same alias 'build' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "2e8f74e8cba792f695444a6b5b617f3696a4947eba2439bbfc395ec63aef661a",
+    "search_line": -1
+  },
+  {
+    "queryName": "Same Alias In Different Froms",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{build}}",
+    "searchValue": "",
+    "expectedValue": "Different FROM commands don't have the same alias defined",
+    "actualValue": "Different FROM commands with the same alias 'build' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "996efe796ebf7696f2904b9fd6a7320ae0cb097a6435c49c2fcdc43bdfeae207",
+    "search_line": -1
+  },
+  {
+    "queryName": "Same Alias In Different Froms",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{build}}",
+    "searchValue": "",
+    "expectedValue": "Different FROM commands don't have the same alias defined",
+    "actualValue": "Different FROM commands with the same alias 'build' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "996efe796ebf7696f2904b9fd6a7320ae0cb097a6435c49c2fcdc43bdfeae207",
+    "search_line": -1
+  }
 ]

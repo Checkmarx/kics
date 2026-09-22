@@ -1,20 +1,47 @@
 [
-	{
-		"queryName": "Ingress Controller Exposes Workload",
-		"severity": "MEDIUM",
-		"line": 28,
-    "fileName": "positive1.tf"
-	},
   {
-		"queryName": "Ingress Controller Exposes Workload",
-		"severity": "MEDIUM",
-		"line": 32,
-    "fileName": "positive2.tf"
-	},
+    "queryName": "Ingress Controller Exposes Workload",
+    "severity": "MEDIUM",
+    "line": 28,
+    "fileName": "positive1.tf",
+    "resourceType": "kubernetes_ingress",
+    "resourceName": "example",
+    "searchKey": "kubernetes_ingress[example].spec.rule.http.path.backend",
+    "searchValue": "",
+    "expectedValue": "kubernetes_ingress[example] should not be exposing the workload",
+    "actualValue": "kubernetes_ingress[example] is exposing the workload",
+    "issueType": "IncorrectValue",
+    "similarityID": "0dfd538850f66817f2b65671315061f84e81dac9fa4ccc096ec3cf6b6b198f51",
+    "search_line": -1
+  },
   {
-		"queryName": "Ingress Controller Exposes Workload",
-		"severity": "MEDIUM",
-		"line": 28,
-    "fileName": "positive3.tf"
-	}
+    "queryName": "Ingress Controller Exposes Workload",
+    "severity": "MEDIUM",
+    "line": 32,
+    "fileName": "positive2.tf",
+    "resourceType": "kubernetes_ingress",
+    "resourceName": "example-ingress",
+    "searchKey": "kubernetes_ingress[example-ingress-2].spec.rule.http.path.backend",
+    "searchValue": "",
+    "expectedValue": "kubernetes_ingress[example-ingress-2] should not be exposing the workload",
+    "actualValue": "kubernetes_ingress[example-ingress-2] is exposing the workload",
+    "issueType": "IncorrectValue",
+    "similarityID": "c209b59b6a48fc5f02ce9017e8919416b6b54a243378b7166742e7fd2a851377",
+    "search_line": -1
+  },
+  {
+    "queryName": "Ingress Controller Exposes Workload",
+    "severity": "MEDIUM",
+    "line": 28,
+    "fileName": "positive3.tf",
+    "resourceType": "kubernetes_ingress",
+    "resourceName": "example-4",
+    "searchKey": "kubernetes_ingress[example-4].spec.rule.http.path.backend",
+    "searchValue": "",
+    "expectedValue": "kubernetes_ingress[example-4] should not be exposing the workload",
+    "actualValue": "kubernetes_ingress[example-4] is exposing the workload",
+    "issueType": "IncorrectValue",
+    "similarityID": "8cfa36b2c5a191933af21784c46d08b1d07cea9601595793a792c176cbf6576c",
+    "search_line": -1
+  }
 ]

@@ -1,26 +1,62 @@
 [
-	{
-		"queryName": "Copy With More Than Two Arguments Not Ending With Slash",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Copy With More Than Two Arguments Not Ending With Slash",
-		"severity": "LOW",
-		"fileName": "positive2.dockerfile",
-		"line": 3
-	},
-	{
-		"queryName": "Copy With More Than Two Arguments Not Ending With Slash",
-		"severity": "LOW",
-		"fileName": "positive3.dockerfile",
-		"line": 4
-	},
-	{
-		"queryName": "Copy With More Than Two Arguments Not Ending With Slash",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive4.dockerfile"
-	}
+  {
+    "queryName": "Copy With More Than Two Arguments Not Ending With Slash",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:carbon2}}.COP={{package.json}}",
+    "searchValue": "",
+    "expectedValue": "When COPY command has more than two arguments, the last one should end with a slash",
+    "actualValue": "COPY command has more than two arguments and the last one does not end with a slash",
+    "issueType": "IncorrectValue",
+    "similarityID": "6a6db0fc2e0217fe567bfb69e1daa5f3ce17a87d9ea1783f43036e533cc8c5b1",
+    "search_line": -1
+  },
+  {
+    "queryName": "Copy With More Than Two Arguments Not Ending With Slash",
+    "severity": "LOW",
+    "line": 3,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{${ANY_IMAGE}}}.COP={{readme.md}}",
+    "searchValue": "",
+    "expectedValue": "When COPY command has more than two arguments, the last one should end with a slash",
+    "actualValue": "COPY command has more than two arguments and the last one does not end with a slash",
+    "issueType": "IncorrectValue",
+    "similarityID": "9f653a669ae27970b780b1b7ac158dce49d11fc8e989f4ab5cfc1f37e340ad70",
+    "search_line": -1
+  },
+  {
+    "queryName": "Copy With More Than Two Arguments Not Ending With Slash",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{${ANY_IMAGE}}}.COP={{readme.md}}",
+    "searchValue": "",
+    "expectedValue": "When COPY command has more than two arguments, the last one should end with a slash",
+    "actualValue": "COPY command has more than two arguments and the last one does not end with a slash",
+    "issueType": "IncorrectValue",
+    "similarityID": "ab1a7a0a082091ed64811a69ab83370330632ca7570aba09d271acf27f4b20d6",
+    "search_line": -1
+  },
+  {
+    "queryName": "Copy With More Than Two Arguments Not Ending With Slash",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive4.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{node:carbon2}}.cop={{package.json}}",
+    "searchValue": "",
+    "expectedValue": "When COPY command has more than two arguments, the last one should end with a slash",
+    "actualValue": "COPY command has more than two arguments and the last one does not end with a slash",
+    "issueType": "IncorrectValue",
+    "similarityID": "2e9b78b61f313be500287937c3a7caff399f990049478b93dbb5b72f7f9225d7",
+    "search_line": -1
+  }
 ]

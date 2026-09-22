@@ -3,48 +3,120 @@
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 18,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' should be defined",
+    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d246b41a091955b5986c00faec8315576f91a6ab4231f4c7688cafc015990ec2",
+    "search_line": -1
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 42,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB2.Properties.AutoMinorVersionUpgrade",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' should be true",
+    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "237103b5a3ac5aca971e921a2616c81389fd4b2455dd667e40a1aaaced5f5412",
+    "search_line": -1
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' should be defined",
+    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "73155dae4ba991dfad609aa735a3314649d09c183953ccbcddaee5ec0e0173b9",
+    "search_line": -1
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 44,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB2.Properties.AutoMinorVersionUpgrade",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' should be true",
+    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "0323a19db9ab707ea870175676d74a3f8a26660948b830c475f38faff8ac17a6",
+    "search_line": -1
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 18,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' should be defined",
+    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0c3d5fbde079c8b029759cbc1d9ca166156754305a53b8b3d6ce9991529b5691",
+    "search_line": -1
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 42,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB2.Properties.AutoMinorVersionUpgrade",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' should be true",
+    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "afadffe55c7df200199604ac1297b0f3c57d8c8450fcc6382fa812e038a861e6",
+    "search_line": -1
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' should be defined",
+    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "bf491bb3acc04c35202db332813e2df5be7dda48014c118b29c65cacc2cafe7f",
+    "search_line": -1
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 44,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB2.Properties.AutoMinorVersionUpgrade",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' should be true",
+    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a5895e83c3df2a2d4ece13a0bbffffba3f113aa1536225bea0af13c6c7dc4c35",
+    "search_line": -1
   }
 ]

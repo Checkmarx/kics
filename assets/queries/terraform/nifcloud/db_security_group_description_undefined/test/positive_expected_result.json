@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Nifcloud RDB Undefined Description To DB Security Group",
-		"severity": "INFO",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud RDB Undefined Description To DB Security Group",
+    "severity": "INFO",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "nifcloud_db_security_group",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_db_security_group[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_db_security_group[positive]' should include a description for auditing purposes.",
+    "actualValue": "'nifcloud_db_security_group[positive]' does not have a description.",
+    "issueType": "MissingAttribute",
+    "similarityID": "45d28b4a92701d3780a87bbb9cd4b5bf83a8d5b0bfd6130b3f27f849c8be5564",
+    "search_line": -1
+  }
 ]

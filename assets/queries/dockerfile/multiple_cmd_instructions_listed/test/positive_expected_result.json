@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Multiple CMD Instructions Listed",
-		"severity": "LOW",
-		"line": 11,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Multiple CMD Instructions Listed",
-		"severity": "LOW",
-		"line": 11,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Multiple CMD Instructions Listed",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:latest}}.{{CMD [\"./app\"] }}",
+    "searchValue": "",
+    "expectedValue": "There should be only one CMD instruction",
+    "actualValue": "There are 2 CMD instructions",
+    "issueType": "RedundantAttribute",
+    "similarityID": "28288805557cb66bfa14eddb2deb97be6cf554653b04742e7e036301f550cb94",
+    "search_line": -1
+  },
+  {
+    "queryName": "Multiple CMD Instructions Listed",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:latest}}.{{cmd [\"./app\"] }}",
+    "searchValue": "",
+    "expectedValue": "There should be only one CMD instruction",
+    "actualValue": "There are 2 CMD instructions",
+    "issueType": "RedundantAttribute",
+    "similarityID": "6a0bd24437e2e8eab7a97139a476ad98c63620962ebb82a2f5c4d2d105f6150f",
+    "search_line": -1
+  }
 ]

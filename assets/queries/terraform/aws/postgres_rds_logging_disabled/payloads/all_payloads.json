@@ -1,0 +1,136 @@
+{
+	"document": [
+		{
+			"file": "/home/ricardo/kics/assets/queries/terraform/aws/postgres_rds_logging_disabled/test/negative1.tf",
+			"id": "5717f835-1181-4cd9-bd27-e497bc35b997",
+			"resource": {
+				"aws_db_parameter_group": {
+					"postgres_logging": {
+						"family": "postgres14",
+						"name": "postgres-logging",
+						"parameter": [
+							{
+								"name": "log_statement",
+								"value": "all"
+							},
+							{
+								"name": "log_min_duration_statement",
+								"value": "1"
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"file": "/home/ricardo/kics/assets/queries/terraform/aws/postgres_rds_logging_disabled/test/positive1.tf",
+			"id": "5c55adda-bcdd-4cdb-b866-c3ca78cdc986",
+			"resource": {
+				"aws_db_parameter_group": {
+					"postgres_logging": {
+						"family": "postgres14",
+						"name": "postgres-logging",
+						"parameter": [
+							{
+								"name": "log_statement",
+								"value": "not_all"
+							},
+							{
+								"name": "log_min_duration_statement",
+								"value": "not_1"
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"file": "/home/ricardo/kics/assets/queries/terraform/aws/postgres_rds_logging_disabled/test/positive2.tf",
+			"id": "c2784f78-fe62-4a3f-8270-14c9b47e5b60",
+			"resource": {
+				"aws_db_parameter_group": {
+					"postgres_logging": {
+						"family": "postgres14",
+						"name": "postgres-logging",
+						"parameter": [
+							{
+								"name": "log_statement",
+								"value": "not_all"
+							},
+							{
+								"name": "log_min_duration_statement",
+								"value": "1"
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"file": "/home/ricardo/kics/assets/queries/terraform/aws/postgres_rds_logging_disabled/test/positive3.tf",
+			"id": "cdc3eec0-5194-41d1-aaa8-082effe06d98",
+			"resource": {
+				"aws_db_parameter_group": {
+					"postgres_logging": {
+						"family": "postgres14",
+						"name": "postgres-logging",
+						"parameter": [
+							{
+								"name": "log_statement",
+								"value": "all"
+							},
+							{
+								"name": "log_min_duration_statement",
+								"value": "not_1"
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"file": "/home/ricardo/kics/assets/queries/terraform/aws/postgres_rds_logging_disabled/test/positive4.tf",
+			"id": "a3a39e6a-932d-4fc0-96c2-dd49ec30224b",
+			"resource": {
+				"aws_db_parameter_group": {
+					"postgres_logging": {
+						"family": "postgres14",
+						"name": "postgres-logging"
+					}
+				}
+			}
+		},
+		{
+			"file": "/home/ricardo/kics/assets/queries/terraform/aws/postgres_rds_logging_disabled/test/positive5.tf",
+			"id": "2c019856-1d4d-4c33-a88c-36f5b30ce7c2",
+			"resource": {
+				"aws_db_parameter_group": {
+					"example": {
+						"family": "postgres14",
+						"name": "postgres-logging",
+						"parameter": {
+							"name": "log_statement",
+							"value": "all"
+						}
+					}
+				}
+			}
+		},
+		{
+			"file": "/home/ricardo/kics/assets/queries/terraform/aws/postgres_rds_logging_disabled/test/positive6.tf",
+			"id": "a503ec97-328a-4afb-b73b-fa86c9d8c21d",
+			"resource": {
+				"aws_db_parameter_group": {
+					"example": {
+						"family": "postgres14",
+						"name": "postgres-logging",
+						"parameter": {
+							"name": "log_min_duration_statement",
+							"value": "1"
+						}
+					}
+				}
+			}
+		}
+	]
+}

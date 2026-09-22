@@ -3,18 +3,45 @@
     "queryName": "Glue Security Configuration Encryption Disabled",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_glue_security_configuration",
+    "resourceName": "example",
+    "searchKey": "aws_glue_security_configuration[positive1].encryption_configuration.cloudwatch_encryption",
+    "searchValue": "",
+    "expectedValue": "aws_glue_security_configuration[positive1].encryption_configuration.cloudwatch_encryption has 'kms_key_arn' defined and not null",
+    "actualValue": "aws_glue_security_configuration[positive1].encryption_configuration.cloudwatch_encryption has 'kms_key_arn' undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "bc1a7aa53739880a967c0528dd854c5fc488adc603b55f6ff8b4bdd271208dc3",
+    "search_line": 5
   },
   {
     "queryName": "Glue Security Configuration Encryption Disabled",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_glue_security_configuration",
+    "resourceName": "example",
+    "searchKey": "aws_glue_security_configuration[positive2].encryption_configuration.job_bookmarks_encryption.job_bookmarks_encryption_mode",
+    "searchValue": "",
+    "expectedValue": "'job_bookmarks_encryption_mode' should be set to 'CSE-KMS'",
+    "actualValue": "'job_bookmarks_encryption_mode' is not set to 'CSE-KMS'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f5568afb77fb95f8ef4ffd30d56fbc45453e6c01d91c18a539d149f360c9f664",
+    "search_line": -1
   },
   {
     "queryName": "Glue Security Configuration Encryption Disabled",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_glue_security_configuration",
+    "resourceName": "example",
+    "searchKey": "aws_glue_security_configuration[positive2].job_bookmarks_encryption",
+    "searchValue": "",
+    "expectedValue": "aws_glue_security_configuration[positive2].job_bookmarks_encryption has 'job_bookmarks_encryption_mode' defined and not null",
+    "actualValue": "aws_glue_security_configKeyiguration[positive2].job_bookmarks_encryption has 'job_bookmarks_encryption_mode' undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1ce618c25f7c9549f6b24c325fa4d58432031dfc3e9e68f1b1bd078aa97ca788",
+    "search_line": -1
   }
 ]

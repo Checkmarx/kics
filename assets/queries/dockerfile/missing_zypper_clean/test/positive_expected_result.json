@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Missing Zypper Clean",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Missing Zypper Clean",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Missing Zypper Clean",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox:1.0}}.{{RUN zypper install}}",
+    "searchValue": "",
+    "expectedValue": "There should be a zypper clean after a zypper usage",
+    "actualValue": "The command 'zypper install' does not have a zypper clean after it",
+    "issueType": "MissingAttribute",
+    "similarityID": "ba3f216bcd27e2983e27a984adeb471869ac9d1cd5c6de15ca876083d7648098",
+    "search_line": -1
+  },
+  {
+    "queryName": "Missing Zypper Clean",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{busybox:1.0}}.{{run zypper install}}",
+    "searchValue": "",
+    "expectedValue": "There should be a zypper clean after a zypper usage",
+    "actualValue": "The command 'zypper install' does not have a zypper clean after it",
+    "issueType": "MissingAttribute",
+    "similarityID": "419ec98b22ca5914439c4f5f585a235626ce46c12edc7880eb686bc46fd23280",
+    "search_line": -1
+  }
 ]

@@ -3,6 +3,15 @@
     "queryName": "OSS Bucket Allows Delete Action From All Principals",
     "severity": "CRITICAL",
     "line": 5,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-1-policy",
+    "searchKey": "alicloud_oss_bucket[bucket-policy1].policy",
+    "searchValue": "",
+    "expectedValue": "alicloud_oss_bucket[bucket-policy1].policy to not accept delete action from all principals",
+    "actualValue": "alicloud_oss_bucket[bucket-policy1].policy accepts delete action from all principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "cb6787063c3a41f67d7afbc606ce6032c9dfe3ac3e35f8fff0e0832418c31ff0",
+    "search_line": 5
   }
 ]

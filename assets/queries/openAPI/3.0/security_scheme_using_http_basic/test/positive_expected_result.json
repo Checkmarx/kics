@@ -3,12 +3,30 @@
     "queryName": "Security Scheme Using HTTP Basic",
     "severity": "LOW",
     "line": 57,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}.scheme",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use 'basic' authentication",
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses 'basic' authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "4c64f9129c8a5c15dd0cc147924acfc38d3d2c03e49b310b5cf35dcd027ccf5f",
+    "search_line": -1
   },
   {
     "queryName": "Security Scheme Using HTTP Basic",
     "severity": "LOW",
     "line": 33,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}.scheme",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use 'basic' authentication",
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses 'basic' authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "b5ea5664eecf7e9c544fe8b8ef3f2e20f19cc549c0d1341efcb94e07bd8f00f1",
+    "search_line": -1
   }
 ]

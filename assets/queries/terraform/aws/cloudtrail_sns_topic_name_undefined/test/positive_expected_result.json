@@ -2,11 +2,31 @@
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "positive1",
+    "searchKey": "aws_cloudtrail[positive1]",
+    "searchValue": "",
+    "expectedValue": "'aws_cloudtrail[positive1].sns_topic_name' should be set and should not be null",
+    "actualValue": "'aws_cloudtrail[positive1].sns_topic_name' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "819fd1953ca1ace4afbe67d2dfab9f1fe6559670d7d04a3f38f74a5f1a6fb743",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
     "severity": "LOW",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "positive2",
+    "searchKey": "aws_cloudtrail[positive2]",
+    "searchValue": "",
+    "expectedValue": "'aws_cloudtrail[positive2].sns_topic_name' should be set and should not be null",
+    "actualValue": "'aws_cloudtrail[positive2].sns_topic_name' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "63ce17570bf55f5d156276419f791d59c19476a7aa73240d5ca7228f0aee53be",
+    "search_line": -1
   }
 ]

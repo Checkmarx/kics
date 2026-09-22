@@ -3,6 +3,15 @@
     "queryName": "Shielded GKE Nodes Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "my-gke-cluster",
+    "searchKey": "google_container_cluster[false].enable_shielded_nodes",
+    "searchValue": "",
+    "expectedValue": "google_container_cluster.enable_shielded_nodes should be set to true",
+    "actualValue": "google_container_cluster.enable_shielded_nodes is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "53fa78491249cbae079da63b22abfc193febf654dc61a3a44d5dc191db71e6e5",
+    "search_line": -1
   }
 ]

@@ -3,36 +3,90 @@
     "queryName": "Audit Log Maxsize Not Properly Set",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxsize flag should be set to 100 or more MegaBytes",
+    "actualValue": "--audit-log-maxsize flag is set to less than 100 MegaBytes",
+    "issueType": "IncorrectValue",
+    "similarityID": "e8b2327d3731a9c1fcd2329eb370490d73a525bfd00eb538e588a93b00aa33d0",
+    "search_line": 11
   },
   {
     "queryName": "Audit Log Maxsize Not Properly Set",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxsize flag should be defined and set to 100 or more MegaBytes",
+    "actualValue": "--audit-log-maxsize flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f5d689760403aaa9c5c5fe86d371750efc1b90b32da28ec67374137386ae384e",
+    "search_line": 11
   },
   {
     "queryName": "Audit Log Maxsize Not Properly Set",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "Service",
+    "resourceName": "dummy",
+    "searchKey": "metadata.name={{dummy}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxsize flag should be set to 100 or more MegaBytes",
+    "actualValue": "--audit-log-maxsize flag is set to less than 100 MegaBytes",
+    "issueType": "IncorrectValue",
+    "similarityID": "0a8317854149251c533e2330c87fb3be158a9412a9ce8974afde14b2f5bc5d9d",
+    "search_line": 12
   },
   {
     "queryName": "Audit Log Maxsize Not Properly Set",
     "severity": "LOW",
     "line": 27,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "Configuration",
+    "resourceName": "dummy-config",
+    "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxsize flag should be set to 100 or more MegaBytes",
+    "actualValue": "--audit-log-maxsize flag is set to less than 100 MegaBytes",
+    "issueType": "IncorrectValue",
+    "similarityID": "8320a048d57a8befb5fec6cce39aa2bd1ade61d68c5935397e59ad39b0b3dec5",
+    "search_line": 27
   },
   {
     "queryName": "Audit Log Maxsize Not Properly Set",
     "severity": "LOW",
     "line": 40,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "Revision",
+    "resourceName": "dummy-rev",
+    "searchKey": "metadata.name={{dummy-rev}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxsize flag should be set to 100 or more MegaBytes",
+    "actualValue": "--audit-log-maxsize flag is set to less than 100 MegaBytes",
+    "issueType": "IncorrectValue",
+    "similarityID": "ff04a6fa68686c8ac3b881eb651ad56795ff64fdf5616f08f0cb5eb6dac7f75b",
+    "search_line": 40
   },
   {
     "queryName": "Audit Log Maxsize Not Properly Set",
     "severity": "LOW",
     "line": 55,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "ContainerSource",
+    "resourceName": "dummy-cs",
+    "searchKey": "metadata.name={{dummy-cs}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxsize flag should be set to 100 or more MegaBytes",
+    "actualValue": "--audit-log-maxsize flag is set to less than 100 MegaBytes",
+    "issueType": "IncorrectValue",
+    "similarityID": "354c6b013d2c26ffbea074bbaac5293e9c39471f75f78772a33339b0e514003b",
+    "search_line": 55
   }
 ]

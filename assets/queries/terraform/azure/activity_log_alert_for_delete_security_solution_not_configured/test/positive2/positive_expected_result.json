@@ -3,42 +3,105 @@
     "queryName": "Beta - Activity Log Alert For Delete Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_1].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_1]' resource monitors 'delete security solution' events but sets 1 filter(s): caller",
+    "issueType": "IncorrectValue",
+    "similarityID": "ca99662b7aafa1801e1626733e81f8ecec7083b0343eb737357456ae402f28d4",
+    "search_line": 9
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_2].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_2]' resource monitors 'delete security solution' events but sets 1 filter(s): level",
+    "issueType": "IncorrectValue",
+    "similarityID": "7cda8111876aec9651d7ade31b0294c25e76593cd379b5e2a28e328cf49ae2b0",
+    "search_line": 28
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_3].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_3]' resource monitors 'delete security solution' events but sets 1 filter(s): levels",
+    "issueType": "IncorrectValue",
+    "similarityID": "96fc7a360dfb21da0ef1fb193d24d6eccdf0139fbc8adace6f0e6a1e4b039874",
+    "search_line": 47
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 66,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_4].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_4]' resource monitors 'delete security solution' events but sets 1 filter(s): status",
+    "issueType": "IncorrectValue",
+    "similarityID": "cde173faaf44f4fac8408da10bf61138ef77178d6c98f63f77d0daf9074811ce",
+    "search_line": 66
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_5].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_5]' resource monitors 'delete security solution' events but sets 1 filter(s): statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "5b6730ec1ddc34ae4ef68da86dc23ad6ca6b6e8f985f9a3aa56717b76381dffd",
+    "search_line": 8
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_6].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_6]' resource monitors 'delete security solution' events but sets 1 filter(s): sub_status",
+    "issueType": "IncorrectValue",
+    "similarityID": "044e5b046dd8006fb92e88bb8d07af1877739f364212c89b4b7cac88a9d26071",
+    "search_line": 27
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 46,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_7].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_7]' resource monitors 'delete security solution' events but sets 1 filter(s): sub_statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "c1cb62de2a4f663f96f894786eb955ddb6544709124e8169501b8a4ae3edcd51",
+    "search_line": 46
   }
 ]

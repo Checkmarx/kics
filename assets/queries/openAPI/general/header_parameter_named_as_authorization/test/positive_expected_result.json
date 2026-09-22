@@ -3,60 +3,150 @@
     "queryName": "Header Parameter Named as 'Authorization' (v3)",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/}}.parameters.name=Authorization is 'Authorization'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2958f0e8ca3a428bef82a88ba5e5e2fa9ea9dd52b45a56139bc9911f46aab54c",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v3)",
     "severity": "INFO",
     "line": 58,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.get.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/users/{id}}}.get.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Authorization is 'Authorization'",
+    "issueType": "IncorrectValue",
+    "similarityID": "39c896be2009b684ef00bc9c8b2be0fa684f60026e9ca3eeda9d2ed9ec898fe3",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/}}.parameters.name=Authorization is 'Authorization'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4838b4093fb4a7daab703b0473b2249cecd0011e64f0c890a8896caf476cde76",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v3)",
     "severity": "INFO",
     "line": 36,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.get.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/users/{id}}}.get.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Authorization is 'Authorization'",
+    "issueType": "IncorrectValue",
+    "similarityID": "846131deeb5878cfcecb2bd34d48b97423763d85f58f35f123e4855349f39dfd",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v3)",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/}}.parameters.name=Authorization is 'Authorization'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6643d7a19b2620476da08bc5b7b4b5e37bf5bb7b8ed8ca104437fd36cd474e67",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/}}.parameters.name=Authorization is 'Authorization'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6da74ddd69dbe8d8347e9f7c1d100136ed207e83b3dd37d5cdc9761db3957a34",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v2)",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "Header Parameter Named as 'Authorization' (v2)",
-    "severity": "INFO",
-    "line": 14,
-    "filename": "positive6.yaml"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/}}.parameters.name=Authorization is 'Authorization'",
+    "issueType": "IncorrectValue",
+    "similarityID": "95c30f563472221a0d4b71fe8703fae02ed79f0d2246bed56bbd87f2d627e810",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v2)",
     "severity": "INFO",
     "line": 38,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.limitParam.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "parameters.limitParam.name=Authorization should not be 'Authorization",
+    "actualValue": "parameters.limitParam.name=Authorization is 'Authorization'",
+    "issueType": "IncorrectValue",
+    "similarityID": "93ed15fcc8edd50974768ed3135c106a1855372c37d879981d01cda46233b11a",
+    "search_line": -1
+  },
+  {
+    "queryName": "Header Parameter Named as 'Authorization' (v2)",
+    "severity": "INFO",
+    "line": 14,
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/}}.parameters.name=Authorization is 'Authorization'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3536df1b785b3f1db1c83099859918708260cd6b5c98a41a15668ba9e518e907",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v2)",
     "severity": "INFO",
     "line": 23,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.limitParam.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "parameters.limitParam.name=Authorization should not be 'Authorization",
+    "actualValue": "parameters.limitParam.name=Authorization is 'Authorization'",
+    "issueType": "IncorrectValue",
+    "similarityID": "cb788b8cf60ebde9a12dae8e6ab619062122d158973555354738d76ae819307f",
+    "search_line": -1
   }
 ]

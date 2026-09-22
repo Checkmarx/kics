@@ -2,16 +2,46 @@
   {
     "queryName": "ELB Using Weak Ciphers",
     "severity": "HIGH",
-    "line": 41
+    "line": 41,
+    "fileName": "positive.tf",
+    "resourceType": "aws_load_balancer_policy",
+    "resourceName": "positive4",
+    "searchKey": "aws_load_balancer_policy[positive4]",
+    "searchValue": "",
+    "expectedValue": "'aws_load_balancer_policy[positive4].policy_attribute[TLS_RSA_ARCFOUR_128_SHA1].name' should not be a weak cipher",
+    "actualValue": "'aws_load_balancer_policy[positive4].policy_attribute[TLS_RSA_ARCFOUR_128_SHA1].name' is a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "a7cab99baf972fcffb259d69f5e73d9e472ce35687c0f8e78f961e81c49d6f0e",
+    "search_line": -1
   },
   {
     "queryName": "ELB Using Weak Ciphers",
     "severity": "HIGH",
-    "line": 63
+    "line": 63,
+    "fileName": "positive.tf",
+    "resourceType": "aws_load_balancer_policy",
+    "resourceName": "positive5",
+    "searchKey": "aws_load_balancer_policy[positive5].policy_attribute.name",
+    "searchValue": "",
+    "expectedValue": "'aws_load_balancer_policy[positive5].policy_attribute[DES-CBC3-SHA].name' should not be a weak cipher",
+    "actualValue": "'aws_load_balancer_policy[positive5].policy_attribute[DES-CBC3-SHA].name' is a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "4924947c01da7899adbfe44f26e478f75dded599c4fe76574c894cb640f46be5",
+    "search_line": -1
   },
   {
     "queryName": "ELB Using Weak Ciphers",
     "severity": "HIGH",
-    "line": 74
+    "line": 74,
+    "fileName": "positive.tf",
+    "resourceType": "aws_load_balancer_policy",
+    "resourceName": "positive6",
+    "searchKey": "aws_load_balancer_policy[positive6].policy_attribute.name",
+    "searchValue": "",
+    "expectedValue": "'aws_load_balancer_policy[positive6].policy_attribute[TLS_ECDHE_ECDSA_WITH_ARIA_256_GCM_SHA384].name' should not be a weak cipher",
+    "actualValue": "'aws_load_balancer_policy[positive6].policy_attribute[TLS_ECDHE_ECDSA_WITH_ARIA_256_GCM_SHA384].name' is a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "44a3591bd1149bfd0dbbe304e8a44902db2dda4feffed852e7364ebff4b66f13",
+    "search_line": -1
   }
 ]

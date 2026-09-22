@@ -1,12 +1,32 @@
 [
-	{
-		"queryName": "CloudWatch Logging Disabled",
-		"severity": "MEDIUM",
-		"line": 1
-	},
-	{
-		"queryName": "CloudWatch Logging Disabled",
-		"severity": "MEDIUM",
-		"line": 10
-	}
+  {
+    "queryName": "CloudWatch Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_route53_zone",
+    "resourceName": "example.com",
+    "searchKey": "aws_route53_zone[no_query_log]",
+    "searchValue": "",
+    "expectedValue": "'aws_route53_query_log' should be set for respective 'aws_route53_zone'",
+    "actualValue": "'aws_route53_query_log' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "92742e6566deb2d86b83ce796215196e1b9316363298601a424524b969b8e4ae",
+    "search_line": -1
+  },
+  {
+    "queryName": "CloudWatch Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive.tf",
+    "resourceType": "aws_route53_query_log",
+    "resourceName": "log_group_mismatch",
+    "searchKey": "aws_route53_query_log[log_group_mismatch].cloudwatch_log_group_arn",
+    "searchValue": "",
+    "expectedValue": "'aws_route53_query_log' log group refers to the query log",
+    "actualValue": "'aws_route53_query_log' log group does not match with the log name",
+    "issueType": "IncorrectValue",
+    "similarityID": "9daa6f3dbe2e76a2d74fa869c85f901289cf4043489112a9e74d36c4ea9d9a1e",
+    "search_line": -1
+  }
 ]

@@ -2,97 +2,241 @@
   {
     "queryName": "PostgreSQL Database Server Log Connections Disabled",
     "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer1",
+    "searchKey": "resources.name={{MyDBServer1}}.resources.name=log_connections",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_connections' set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_connections' value undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "38042a0dcb6b558bafab21224a886eda23435dc26b08e939d0fc32a6ad3e002f",
+    "search_line": -1
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Connections Disabled",
+    "severity": "MEDIUM",
     "line": 40,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer1",
+    "searchKey": "resources.name={{MyDBServer1}}.resources.name=log_connections",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_connections' set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_connections' value undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2aca6a9e533e4b1461b46facfe061d91874fdd4def6b52b99e59f9fcd3040e39",
+    "search_line": -1
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Connections Disabled",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer2",
+    "searchKey": "resources.name={{MyDBServer2}}.resources.name=log_connections.properties.value",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_connections' property value set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_connections' set to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f3e516726ed0c1037ebf654ed386531e00c05d09f23665aa70bc8d9674ff0b9b",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Database Server Log Connections Disabled",
     "severity": "MEDIUM",
     "line": 45,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer2",
+    "searchKey": "resources.name={{MyDBServer2}}.resources.name=log_connections.properties.value",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_connections' property value set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_connections' set to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d4535e1d333690a413c7665335774a0b8f22b1d373276a6101f57ed8701bfbc4",
+    "search_line": -1
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Connections Disabled",
+    "severity": "MEDIUM",
+    "line": 32,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_connections",
+    "searchKey": "resources.name={{MyDBServer/log_connections}}.properties.value",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_connections' property value set to 'on'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_connections' property set to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c942c4dba2be3af47a59aed80ef9f9d78e9e862b22bea40e0239b43c399e771d",
+    "search_line": 32
   },
   {
     "queryName": "PostgreSQL Database Server Log Connections Disabled",
     "severity": "MEDIUM",
     "line": 44,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_connections",
+    "searchKey": "resources.name={{MyDBServer/log_connections}}.properties.value",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_connections' property value set to 'on'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_connections' property set to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5c61fafb936e57e6116debf9814cdd7814096ffd0fc887e5991abd0f2c2984e1",
+    "search_line": 44
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Connections Disabled",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_connections",
+    "searchKey": "resources.name={{MyDBServer/log_connections}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_connections' property set to 'on'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_connections' value undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8388b0fb1fb455931a8c27bd3b1edcf37cb4a1f697a8b904682f902f57a29a48",
+    "search_line": 31
   },
   {
     "queryName": "PostgreSQL Database Server Log Connections Disabled",
     "severity": "MEDIUM",
     "line": 43,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_connections",
+    "searchKey": "resources.name={{MyDBServer/log_connections}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_connections' property set to 'on'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_connections' value undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2c42cb8d901a75efcb2f7ee0d6674f998cf8967488f37ea15d773246260b91a4",
+    "search_line": 43
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Connections Disabled",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive5.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer1",
+    "searchKey": "resources.name={{MyDBServer1}}.resources.name=log_connections",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_connections' set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_connections' value undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2979ba7fcfc031b5087ffcd2faa3e08e2bbb99c2fe7a2b27a3d85fc0b670a97d",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Database Server Log Connections Disabled",
     "severity": "MEDIUM",
     "line": 42,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer1",
+    "searchKey": "properties.template.resources.name={{MyDBServer1}}.resources.name=log_connections",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_connections' set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_connections' value undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "1e03f1977ca0764f532dbf2a6652085727ffc002054c2582459048fc7079fcd3",
+    "search_line": -1
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Connections Disabled",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive6.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer2",
+    "searchKey": "resources.name={{MyDBServer2}}.resources.name=log_connections.properties.value",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_connections' property value set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_connections' set to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6e9df547b87aa88a2c854dc0efbbe7ff467fef9ab49521a3fd96d1fe53f2aa92",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Database Server Log Connections Disabled",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer2",
+    "searchKey": "properties.template.resources.name={{MyDBServer2}}.resources.name=log_connections.properties.value",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_connections' property value set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_connections' set to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8d7ef052ad1612380aeb14c9863a6795efa3fbeb432569d09a31387299ba58a7",
+    "search_line": -1
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Connections Disabled",
+    "severity": "MEDIUM",
+    "line": 32,
+    "fileName": "positive7.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_connections",
+    "searchKey": "resources.name={{MyDBServer/log_connections}}.properties.value",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_connections' property value set to 'on'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_connections' property set to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "32555302e734b8011daabebacfaa32e14bdd79b15da7d2582af5d82c786a8a0a",
+    "search_line": 32
   },
   {
     "queryName": "PostgreSQL Database Server Log Connections Disabled",
     "severity": "MEDIUM",
     "line": 46,
-    "fileName": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_connections",
+    "searchKey": "properties.template.resources.name={{MyDBServer/log_connections}}.properties.value",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_connections' property value set to 'on'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_connections' property set to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "aca14855741e143fd23f540f6c32ee576c5bbe23405e9127d10ad200198e98fd",
+    "search_line": 46
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Connections Disabled",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive8.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_connections",
+    "searchKey": "resources.name={{MyDBServer/log_connections}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_connections' property set to 'on'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_connections' value undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "310c0cd70bc2bfec4932d99986f1bae72994e70f32ebb695980b4cd2a8f9c2cf",
+    "search_line": 31
   },
   {
     "queryName": "PostgreSQL Database Server Log Connections Disabled",
     "severity": "MEDIUM",
     "line": 45,
-    "fileName": "positive8.json"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Connections Disabled",
-    "severity": "MEDIUM",
-    "line": 31,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Connections Disabled",
-    "severity": "MEDIUM",
-    "line": 33,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Connections Disabled",
-    "severity": "MEDIUM",
-    "line": 32,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Connections Disabled",
-    "severity": "MEDIUM",
-    "line": 31,
-    "fileName": "positive4.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Connections Disabled",
-    "severity": "MEDIUM",
-    "line": 31,
-    "fileName": "positive5.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Connections Disabled",
-    "severity": "MEDIUM",
-    "line": 33,
-    "fileName": "positive6.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Connections Disabled",
-    "severity": "MEDIUM",
-    "line": 32,
-    "fileName": "positive7.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Connections Disabled",
-    "severity": "MEDIUM",
-    "line": 31,
-    "fileName": "positive8.bicep"
+    "fileName": "positive8.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_connections",
+    "searchKey": "properties.template.resources.name={{MyDBServer/log_connections}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_connections' property set to 'on'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_connections' value undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8314b967c583a4380884181082f6318438987471a9de802bb11fe32c200d0570",
+    "search_line": 45
   }
 ]

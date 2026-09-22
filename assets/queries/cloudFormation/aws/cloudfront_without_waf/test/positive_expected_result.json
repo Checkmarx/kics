@@ -3,24 +3,60 @@
     "queryName": "CloudFront Without WAF",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId should be defined",
+    "actualValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d127886b4eb55e1258450a7e88f668387f7c789a6127254c45528a65133c0d44",
+    "search_line": -1
   },
   {
+    "queryName": "CloudFront Without WAF",
+    "severity": "MEDIUM",
+    "line": 13,
     "fileName": "positive2.json",
-    "queryName": "CloudFront Without WAF",
-    "severity": "MEDIUM",
-    "line": 13
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId should be defined",
+    "actualValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "70c0efe7b2b71380dfaa51c851d9c1608ff3fe875775956803ecee0be891db2b",
+    "search_line": -1
   },
   {
+    "queryName": "CloudFront Without WAF",
+    "severity": "MEDIUM",
+    "line": 21,
     "fileName": "positive3.yaml",
-    "queryName": "CloudFront Without WAF",
-    "severity": "MEDIUM",
-    "line": 21
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId",
+    "searchValue": "",
+    "expectedValue": "Resources..Properties.DistributionConfig.WebACLId should be properly defined",
+    "actualValue": "Resources..Properties.DistributionConfig.WebACLId contains invalid value",
+    "issueType": "IncorrectValue",
+    "similarityID": "a30624ec18326f80a08cb8cdb6d1ac4bfa047d7541e564a0f921bcf13cffa452",
+    "search_line": -1
   },
   {
-    "fileName": "positive4.json",
     "queryName": "CloudFront Without WAF",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 36,
+    "fileName": "positive4.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId",
+    "searchValue": "",
+    "expectedValue": "Resources..Properties.DistributionConfig.WebACLId should be properly defined",
+    "actualValue": "Resources..Properties.DistributionConfig.WebACLId contains invalid value",
+    "issueType": "IncorrectValue",
+    "similarityID": "046e5496bc6b6e8bcc4b2910295bc09f1513b4646b116444a6815da56ae4f92e",
+    "search_line": -1
   }
 ]

@@ -1,26 +1,62 @@
 [
-	{
-		"queryName": "Shell Running A Pipe Without Pipefail Flag",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Shell Running A Pipe Without Pipefail Flag",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Shell Running A Pipe Without Pipefail Flag",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Shell Running A Pipe Without Pipefail Flag",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Shell Running A Pipe Without Pipefail Flag",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:12}}.{{RUN zsh ./some_output | ./some_script}}",
+    "searchValue": "zsh",
+    "expectedValue": "'RUN zsh ./some_output | ./some_script' has pipefail option set for pipe command with shell zsh.",
+    "actualValue": "'RUN zsh ./some_output | ./some_script' does not have pipefail option set for pipe command with shell zsh.",
+    "issueType": "MissingAttribute",
+    "similarityID": "2af0e60d827c590ecf4a0f1510676fdd9abf1350f7a6012e2b8027a31a954b57",
+    "search_line": -1
+  },
+  {
+    "queryName": "Shell Running A Pipe Without Pipefail Flag",
+    "severity": "LOW",
+    "line": 3,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:12}}.{{RUN [ \"/bin/bash\", \"./some_output\", \"|\", \"./some_script\" ]}}",
+    "searchValue": "/bin/bash",
+    "expectedValue": "'RUN [ '/bin/bash', './some_output', '|', './some_script' ]' has pipefail option set for pipe command with shell /bin/bash.",
+    "actualValue": "'RUN [ '/bin/bash', './some_output', '|', './some_script' ]' does not have pipefail option set for pipe command with shell /bin/bash.",
+    "issueType": "MissingAttribute",
+    "similarityID": "7f56ed8e808af1852559cf26e105cd8dc17026fff9011910253a9c2f34ff2dcf",
+    "search_line": -1
+  },
+  {
+    "queryName": "Shell Running A Pipe Without Pipefail Flag",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{node:12}}.{{run zsh ./some_output | ./some_script}}",
+    "searchValue": "zsh",
+    "expectedValue": "'run zsh ./some_output | ./some_script' has pipefail option set for pipe command with shell zsh.",
+    "actualValue": "'run zsh ./some_output | ./some_script' does not have pipefail option set for pipe command with shell zsh.",
+    "issueType": "MissingAttribute",
+    "similarityID": "cb66ae8464bec243f72a48b5690559285f772b697dbdede2dc5d3cfe7e8e7ab5",
+    "search_line": -1
+  },
+  {
+    "queryName": "Shell Running A Pipe Without Pipefail Flag",
+    "severity": "LOW",
+    "line": 3,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{node:12}}.{{run [ \"/bin/bash\", \"./some_output\", \"|\", \"./some_script\" ]}}",
+    "searchValue": "/bin/bash",
+    "expectedValue": "'run [ '/bin/bash', './some_output', '|', './some_script' ]' has pipefail option set for pipe command with shell /bin/bash.",
+    "actualValue": "'run [ '/bin/bash', './some_output', '|', './some_script' ]' does not have pipefail option set for pipe command with shell /bin/bash.",
+    "issueType": "MissingAttribute",
+    "similarityID": "99cb7701e67d23d1b9a31b172c82613478e79f648c1cc6eb3d6ec922b8803535",
+    "search_line": -1
+  }
 ]

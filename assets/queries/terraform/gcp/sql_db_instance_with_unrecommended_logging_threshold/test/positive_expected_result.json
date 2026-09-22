@@ -2,16 +2,46 @@
   {
     "queryName": "Beta - SQL DB Instance With Unrecommended Logging Threshold",
     "severity": "LOW",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_1].settings.database_flags[1].name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should set 'log_min_messages' to 'WARNING' or a higher severity",
+    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'log_min_messages' to 'NOTICE'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1d23cb7d94c760ee9f9e048dfacba96b99321bba188a6cda97a4acf4bfef3e93",
+    "search_line": 13
   },
   {
     "queryName": "Beta - SQL DB Instance With Unrecommended Logging Threshold",
     "severity": "LOW",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should set 'log_min_messages' to 'WARNING' or a higher severity",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'log_min_messages' to 'DEBUG5'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b7eccedb9abeb77cda5ebb51500e1c89a6d1f4b90148e26730fd1ed3ef81a233",
+    "search_line": 31
   },
   {
     "queryName": "Beta - SQL DB Instance With Unrecommended Logging Threshold",
     "severity": "LOW",
-    "line": 44
+    "line": 44,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_3].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_3].settings.database_flags' should set 'log_min_messages' to 'WARNING' or a higher severity",
+    "actualValue": "'google_sql_database_instance[positive_3].settings.database_flags' sets 'log_min_messages' to 'INFO'",
+    "issueType": "IncorrectValue",
+    "similarityID": "92b2af82e22164bec7481589dfc958cdb86c2871bb1ecc6741fe4ba3c130dc97",
+    "search_line": 44
   }
 ]

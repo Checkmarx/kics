@@ -2,11 +2,31 @@
   {
     "queryName": "Workload Host Port Not Specified",
     "severity": "LOW",
-    "line": 9
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "firstpod",
+    "searchKey": "metadata.name=firstpod.spec.containers.name=container.ports",
+    "searchValue": "",
+    "expectedValue": "spec[firstpod].containers[container].ports[10.0.0.1].hostPort should not be defined",
+    "actualValue": "spec[firstpod].containers[container].ports[10.0.0.1].hostPort is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "5aba0c663de7177ffb869b3bea44ddd355160db00fe7d0ddcea792ae3c745a13",
+    "search_line": -1
   },
   {
     "queryName": "Workload Host Port Not Specified",
     "severity": "LOW",
-    "line": 24
+    "line": 24,
+    "fileName": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "secondpod",
+    "searchKey": "metadata.name=secondpod.spec.template.spec.containers.name=container2.ports",
+    "searchValue": "",
+    "expectedValue": "spec[secondpod].template.spec.containers[container2].ports[10.0.0.2].hostPort should not be defined",
+    "actualValue": "spec[secondpod].template.spec.containers[container2].ports[10.0.0.2].hostPort is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "372c5a94ef0ccaf6f9195847a882d51ee32e97c743c3207fcbab99440603f503",
+    "search_line": -1
   }
 ]

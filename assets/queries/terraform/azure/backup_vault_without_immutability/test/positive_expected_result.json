@@ -2,11 +2,31 @@
   {
     "queryName": "Beta - Backup Vault Without Immutability",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_data_protection_backup_vault",
+    "resourceName": "positive1-backup-vault",
+    "searchKey": "azurerm_data_protection_backup_vault[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_data_protection_backup_vault[positive1].immutability' should be set and enabled",
+    "actualValue": "'azurerm_data_protection_backup_vault[positive1].immutability' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "0afd47d808175f82583e1d69ede3f91dc5c5739cc4120fd72a945ab6d68b4f9d",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Backup Vault Without Immutability",
     "severity": "HIGH",
-    "line": 18
+    "line": 18,
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_data_protection_backup_vault",
+    "resourceName": "positive2-backup-vault",
+    "searchKey": "azurerm_data_protection_backup_vault[positive2].immutability",
+    "searchValue": "",
+    "expectedValue": "'azurerm_data_protection_backup_vault[positive2].immutability' should be set and enabled",
+    "actualValue": "'azurerm_data_protection_backup_vault[positive2].immutability' is set to 'Disabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "44e7c828fd790b194e75eff3d0beea0bbc8bc9c87261be7f108fcac1edbd8028",
+    "search_line": 18
   }
 ]

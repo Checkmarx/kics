@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Terminated Pod Garbage Collector Threshold Not Properly Set",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Terminated Pod Garbage Collector Threshold Not Properly Set",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive2.yaml"
-	}
+  {
+    "queryName": "Terminated Pod Garbage Collector Threshold Not Properly Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--terminated-pod-gc-threshold flag should be set between 0 and 12501",
+    "actualValue": "--terminated-pod-gc-threshold flag is set to a incorrect value",
+    "issueType": "IncorrectValue",
+    "similarityID": "0b942395a930d45e478d770927d3d4d948fe46cc3087de828bf6b8bbfe972e3f",
+    "search_line": 11
+  },
+  {
+    "queryName": "Terminated Pod Garbage Collector Threshold Not Properly Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--terminated-pod-gc-threshold flag should be set between 0 and 12501",
+    "actualValue": "--terminated-pod-gc-threshold flag is set to a incorrect value",
+    "issueType": "IncorrectValue",
+    "similarityID": "94d78e3858ed42790cf3cfb89d72da8cebfb2be373c37d1573a279aca1b33ba6",
+    "search_line": 11
+  }
 ]

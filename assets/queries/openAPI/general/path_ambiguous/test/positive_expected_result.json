@@ -3,48 +3,120 @@
     "queryName": "Path Is Ambiguous (v3)",
     "severity": "INFO",
     "line": 6,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue",
+    "similarityID": "ee9c4f500266aa62f847668e4386f03989d1f55d439d2e119b07ed81aa5fb930",
+    "search_line": -1
   },
   {
     "queryName": "Path Is Ambiguous (v3)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{ids}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue",
+    "similarityID": "d378e78df4a376c4b80f196f85e00d318a2cf6a5e3ffb6e9f10c85b5335f27ef",
+    "search_line": -1
   },
   {
     "queryName": "Path Is Ambiguous (v3)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue",
+    "similarityID": "2639137869955267dddc09478b74ff5a255eb2073018e0789a7a7a8a67b551fb",
+    "search_line": -1
   },
   {
     "queryName": "Path Is Ambiguous (v3)",
     "severity": "INFO",
     "line": 29,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{ids}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue",
+    "similarityID": "f0b3370dd0868ccd46244654f32988f1a84c0aa160a5156b82b84017fc480ae4",
+    "search_line": -1
   },
   {
     "queryName": "Path Is Ambiguous (v2)",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue",
+    "similarityID": "b8871f4686df9e14491902a05214c7a867d9cdd98e92667dc8236f2533305411",
+    "search_line": -1
   },
   {
     "queryName": "Path Is Ambiguous (v2)",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{ids}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue",
+    "similarityID": "aacfd8f553a483f9a4298e85dd9df22a57a3e9f6f7323f800643ef4f174e5f20",
+    "search_line": -1
   },
   {
     "queryName": "Path Is Ambiguous (v2)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue",
+    "similarityID": "133d13892b8bd0de894a7f0dfb1847d92155d0c0328d5f4182265e76dc62cf9b",
+    "search_line": -1
   },
   {
     "queryName": "Path Is Ambiguous (v2)",
     "severity": "INFO",
     "line": 31,
-    "filename": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{ids}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue",
+    "similarityID": "4258b159263c459647ae0e4ecffcc9a7bdd50cf8e522ef08ff0a185106437220",
+    "search_line": -1
   }
 ]

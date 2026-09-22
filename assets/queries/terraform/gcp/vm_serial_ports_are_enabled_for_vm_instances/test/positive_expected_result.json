@@ -1,17 +1,47 @@
 [
-	{
-		"queryName": "Serial Ports Are Enabled For VM Instances",
-		"severity": "MEDIUM",
-		"line": 26
-	},
-	{
-		"queryName": "Serial Ports Are Enabled For VM Instances",
-		"severity": "MEDIUM",
-		"line": 38
-	},
-	{
-		"queryName": "Serial Ports Are Enabled For VM Instances",
-		"severity": "MEDIUM",
-		"line": 44
-	}
+  {
+    "queryName": "Serial Ports Are Enabled For VM Instances",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_instance",
+    "resourceName": "test",
+    "searchKey": "google_compute_instance[positive1].metadata.serial-port-enable",
+    "searchValue": "",
+    "expectedValue": "google_compute_instance[positive1].metadata.serial-port-enable should be set to false or undefined",
+    "actualValue": "google_compute_instance[positive1].metadata.serial-port-enable is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "c9c86d13770d795fbbef91d238cb07701951c8919df1112b95b7e7f35c02f343",
+    "search_line": -1
+  },
+  {
+    "queryName": "Serial Ports Are Enabled For VM Instances",
+    "severity": "MEDIUM",
+    "line": 38,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_project_metadata",
+    "resourceName": "positive2",
+    "searchKey": "google_compute_project_metadata[positive2].metadata.serial-port-enable",
+    "searchValue": "",
+    "expectedValue": "google_compute_project_metadata[positive2].metadata.serial-port-enable should be set to false or undefined",
+    "actualValue": "google_compute_project_metadata[positive2].metadata.serial-port-enable is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "82e965959c37d4aeadac8e9748012c8849c5bb36231f25f9304d6da768e153d2",
+    "search_line": -1
+  },
+  {
+    "queryName": "Serial Ports Are Enabled For VM Instances",
+    "severity": "MEDIUM",
+    "line": 44,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_project_metadata_item",
+    "resourceName": "positive3",
+    "searchKey": "google_compute_project_metadata_item[positive3].value",
+    "searchValue": "",
+    "expectedValue": "google_compute_project_metadata[positive3].value should be set to false",
+    "actualValue": "google_compute_project_metadata[positive3].value is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "97550b5c00fbe572679c16c5d41e56ac83e4ff8a311e6b9e17555473f094e192",
+    "search_line": -1
+  }
 ]

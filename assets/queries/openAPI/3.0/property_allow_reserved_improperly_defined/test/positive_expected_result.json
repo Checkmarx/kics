@@ -2,37 +2,91 @@
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
     "severity": "INFO",
-    "line": 59,
-    "filename": "positive1.json"
+    "line": 43,
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
+    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "ad2e0bb7f992c63675bdee8ef8880f2936e6aff2d3c002825cc223ad04efd1e0",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
     "severity": "INFO",
-    "line": 43,
-    "filename": "positive1.json"
+    "line": 59,
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths./users/{id}.get.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
+    "actualValue": "paths./users/{id}.get.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "6867862047ed51ec25d11bc3d75df48fa1bcca0c1a78164458dd9c554f390516",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
+    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "ca04fe13fc405b17fd34bce05d7069de0b44e9a61466a8a0f1faffe781c31f87",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths./users/{id}.get.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
+    "actualValue": "paths./users/{id}.get.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "f73f947ca2e5c8bae85677733ea700d24d1c2b4cdb239f0cd183e8c56d0f6cc8",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
+    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "5ca5e00be5c08af6d5add5e946f1f400a1cdfe0181392609162cf89561b69ff8",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
+    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "62973c4250aeeb1288b7bc0b91a13579c7e785c957caa777d93b6e9ee8462a0a",
+    "search_line": -1
   }
 ]

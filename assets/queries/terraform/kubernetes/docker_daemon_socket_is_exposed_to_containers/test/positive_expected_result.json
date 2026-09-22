@@ -2,31 +2,91 @@
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
-    "line": 9
+    "line": 9,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[test].spec.volume",
+    "searchValue": "",
+    "expectedValue": "spec.volume[0].host_path.path should not be '/var/run/docker.sock'",
+    "actualValue": "spec.volume[0].host_path.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue",
+    "similarityID": "23436c58ef3e2f7cc3222bc1098de237621de07bd8cf8cbae3b42e7cc8856d9e",
+    "search_line": 9
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
-    "line": 16
+    "line": 16,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[test].spec.volume",
+    "searchValue": "",
+    "expectedValue": "spec.volume[1].host_path.path should not be '/var/run/docker.sock'",
+    "actualValue": "spec.volume[1].host_path.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6669779ee94391590b46951dfe23c9a5135ba0970d387ba41a4418a6a33c7e56",
+    "search_line": 16
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
-    "line": 96
+    "line": 96,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "example",
+    "searchKey": "kubernetes_deployment[example].spec.template.spec.volume",
+    "searchValue": "",
+    "expectedValue": "spec.template.spec.volume[0].host_path.path should not be '/var/run/docker.sock'",
+    "actualValue": "spec.template.spec.volume[0].host_path.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0492093cfcb491fba9653d027f9e8d92d0ef7b028382ac3ae7d8b38ca5885de2",
+    "search_line": 96
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
-    "line": 103
+    "line": 103,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "example",
+    "searchKey": "kubernetes_deployment[example].spec.template.spec.volume",
+    "searchValue": "",
+    "expectedValue": "spec.template.spec.volume[1].host_path.path should not be '/var/run/docker.sock'",
+    "actualValue": "spec.template.spec.volume[1].host_path.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a252de2ef039c7fc18b4bca64f6c01753ccacc842e16b283659574cdde059694",
+    "search_line": 103
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
-    "line": 164
+    "line": 164,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_cron_job",
+    "resourceName": "demo",
+    "searchKey": "kubernetes_cron_job[demo2].spec.job_template.spec.template.spec.volume",
+    "searchValue": "",
+    "expectedValue": "spec.job_template.spec.template.spec.volume[0].host_path.path should not be '/var/run/docker.sock'",
+    "actualValue": "spec.job_template.spec.template.spec.volume[0].host_path.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1bf3253fcf7aa2570750a0f6e650a62d60caa15facf4a6d3ee7c3a709404c45e",
+    "search_line": 164
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
-    "line": 171
+    "line": 171,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_cron_job",
+    "resourceName": "demo",
+    "searchKey": "kubernetes_cron_job[demo2].spec.job_template.spec.template.spec.volume",
+    "searchValue": "",
+    "expectedValue": "spec.job_template.spec.template.spec.volume[1].host_path.path should not be '/var/run/docker.sock'",
+    "actualValue": "spec.job_template.spec.template.spec.volume[1].host_path.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue",
+    "similarityID": "881f616ad8b0008d7313e1f0ab370f0446d721a3ad8be3bf16357a983db294c5",
+    "search_line": 171
   }
 ]

@@ -3,24 +3,60 @@
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::SNS::TopicPolicy",
+    "resourceName": "snsPolicy",
+    "searchKey": "Resources.snsPolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement shouldn't contain '*' for an AWS Principal",
+    "actualValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement contains '*' in an AWS Principal",
+    "issueType": "IncorrectValue",
+    "similarityID": "7b52b45c8d619e3b53dd7ce107cc865b54899bbd75e429327732ad2bfd97e39e",
+    "search_line": 7
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 7,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::SNS::TopicPolicy",
+    "resourceName": "snsPolicy",
+    "searchKey": "Resources.snsPolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement shouldn't contain '*' for an AWS Principal",
+    "actualValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement contains '*' in an AWS Principal",
+    "issueType": "IncorrectValue",
+    "similarityID": "896e32ac0bb04e176241c80dea59d361e17bfb3a93d025133da7b5486210cd99",
+    "search_line": 7
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 8,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::SNS::TopicPolicy",
+    "resourceName": "mysnspolicy0",
+    "searchKey": "Resources.mysnspolicy0.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.mysnspolicy0.Properties.PolicyDocument.Statement shouldn't contain '*' for an AWS Principal",
+    "actualValue": "Resources.mysnspolicy0.Properties.PolicyDocument.Statement contains '*' in an AWS Principal",
+    "issueType": "IncorrectValue",
+    "similarityID": "2cad517ef475fcadff86153283207ce476f1b76da920dea6337621a95ac8d14f",
+    "search_line": 8
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 8,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::SNS::TopicPolicy",
+    "resourceName": "snsPolicy",
+    "searchKey": "Resources.snsPolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement shouldn't contain '*' for an AWS Principal",
+    "actualValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement contains '*' in an AWS Principal",
+    "issueType": "IncorrectValue",
+    "similarityID": "03f1ad193c7e0b51920a73691286385dceec0bb6c2b74e421b76cb8d8dda5e9a",
+    "search_line": 8
   }
 ]

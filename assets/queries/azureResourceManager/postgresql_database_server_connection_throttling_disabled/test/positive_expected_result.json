@@ -2,73 +2,181 @@
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
     "severity": "MEDIUM",
+    "line": 36,
+    "fileName": "positive1.bicep",
+    "resourceType": "configurations",
+    "resourceName": "connection_throttling",
+    "searchKey": "resources.resources.name=connection_throttling.properties.value",
+    "searchValue": "",
+    "expectedValue": "resource 'property value' should have an 'auditingsettings' servers1 resource enabled",
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "f33b94c1fe968cf50608b01cc06e28a2562ce5b32768601b3e4b5295ffb78fdc",
+    "search_line": 36
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
     "line": 45,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "configurations",
+    "resourceName": "connection_throttling",
+    "searchKey": "resources.resources.name=connection_throttling.properties.value",
+    "searchValue": "",
+    "expectedValue": "resource 'property value' should have an 'auditingsettings' servers1 resource enabled",
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "682c84181c9fc1c66866c45f96bf5cea3f7a5f827fb8ecac7131d192d026d4ef",
+    "search_line": 45
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "servers1",
+    "searchKey": "resources.name=servers1",
+    "searchValue": "",
+    "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "47ecf57f2f817bc2ddcbb2994bc1c38c100cee6fb5742ae90ee7593613d834a2",
+    "search_line": 2
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "servers1",
+    "searchKey": "resources.name=servers1",
+    "searchValue": "",
+    "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "d6c5ba1adce5cab077fc3c0c779df4fe484a435427d67071a163e7e1c38d5f04",
+    "search_line": 9
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "servers1",
+    "searchKey": "resources.name=servers1",
+    "searchValue": "",
+    "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "173a14247858671851fc14072d3a246f59100d9d0e57509c2c31f9d6f3582c28",
+    "search_line": 2
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "servers1",
+    "searchKey": "resources.name=servers1",
+    "searchValue": "",
+    "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "575cdc9cf5bdb96d53a83b986df710146d6c471f9e84fc9a88958bbeb96ea7e0",
+    "search_line": 9
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 36,
+    "fileName": "positive4.bicep",
+    "resourceType": "configurations",
+    "resourceName": "connection_throttling",
+    "searchKey": "resources.resources.name=connection_throttling.properties.value",
+    "searchValue": "",
+    "expectedValue": "resource 'property value' should have an 'auditingsettings' servers1 resource enabled",
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "aadac90f6b0448b7a0a68df5469576c63ed9a868507ecc233408a762c10756e5",
+    "search_line": 36
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "configurations",
+    "resourceName": "connection_throttling",
+    "searchKey": "properties.template.resources.resources.name=connection_throttling.properties.value",
+    "searchValue": "",
+    "expectedValue": "resource 'property value' should have an 'auditingsettings' servers1 resource enabled",
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "2128c18e25a82ee1be80f164182a752cb5cd4c5655098476b1dc383ab8391dc2",
+    "search_line": 47
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive5.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "servers1",
+    "searchKey": "resources.name=servers1",
+    "searchValue": "",
+    "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "4bf07d28ed6782109256eaa2f3f65a8b9f7378604a068c71fa09cf5ce09b502a",
+    "search_line": 2
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "servers1",
+    "searchKey": "properties.template.resources.name=servers1",
+    "searchValue": "",
+    "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "a79431485e39295c3afd9ed3895b4e7e944ff22370d93215730212efbbc0963c",
+    "search_line": 11
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive6.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "servers1",
+    "searchKey": "resources.name=servers1",
+    "searchValue": "",
+    "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "d53b192015fccecdac1dd666581a3a1339778ee5468e68e93bfb47e9d320abe5",
+    "search_line": 2
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive6.json"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
-    "severity": "MEDIUM",
-    "line": 36,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
-    "severity": "MEDIUM",
-    "line": 2,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
-    "severity": "MEDIUM",
-    "line": 2,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
-    "severity": "MEDIUM",
-    "line": 36,
-    "fileName": "positive4.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
-    "severity": "MEDIUM",
-    "line": 2,
-    "fileName": "positive5.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
-    "severity": "MEDIUM",
-    "line": 2,
-    "fileName": "positive6.bicep"
+    "fileName": "positive6.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "servers1",
+    "searchKey": "properties.template.resources.name=servers1",
+    "searchValue": "",
+    "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "44a9a48084aaeab024640de9b9c98f919e54d54077cf1aea984d5ba958508450",
+    "search_line": 11
   }
 ]

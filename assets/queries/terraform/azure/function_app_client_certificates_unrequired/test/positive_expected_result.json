@@ -3,36 +3,90 @@
     "queryName": "Function App Client Certificates Unrequired",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_function_app[positive1-1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_function_app[positive1-1].client_cert_mode' should be defined and not null",
+    "actualValue": "'azurerm_function_app[positive1-1].client_cert_mode' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "912dc6e95a6795a8eaa6e84328b515c9cce68036bc1732107cfe29f4a19ee65e",
+    "search_line": 1
   },
   {
     "queryName": "Function App Client Certificates Unrequired",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_function_app[positive1-2].client_cert_mode",
+    "searchValue": "",
+    "expectedValue": "'azurerm_function_app[positive1-2].client_cert_mode' should be set to 'Required'",
+    "actualValue": "'azurerm_function_app[positive1-2].client_cert_mode' is not set to 'Required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8b0f4aacd89a651366d7cb35a943819ccdf48bcbc0d15e47701cea281eff9d88",
+    "search_line": 14
   },
   {
     "queryName": "Function App Client Certificates Unrequired",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_linux_function_app[positive2-1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[positive2-1].client_certificate_mode' should be defined and not null",
+    "actualValue": "'azurerm_linux_function_app[positive2-1].client_certificate_mode' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "f3aea577b8e42b55c48740a3c1baec155f97f279c6ebd723fbd49a4c819764fa",
+    "search_line": 1
   },
   {
     "queryName": "Function App Client Certificates Unrequired",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_linux_function_app[positive2-2].client_certificate_mode",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[positive2-2].client_certificate_mode' should be set to 'Required'",
+    "actualValue": "'azurerm_linux_function_app[positive2-2].client_certificate_mode' is not set to 'Required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6bc1a242ff70d9b3faa862bba0b0293a245b45ca06da7da486cd7a9861298ba1",
+    "search_line": 14
   },
   {
     "queryName": "Function App Client Certificates Unrequired",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_windows_function_app[positive3-1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_function_app[positive3-1].client_certificate_mode' should be defined and not null",
+    "actualValue": "'azurerm_windows_function_app[positive3-1].client_certificate_mode' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "493133506b56125d5d839796e81d5b6e0e296160edb4971caeb911f996112abf",
+    "search_line": 1
   },
   {
     "queryName": "Function App Client Certificates Unrequired",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_windows_function_app[positive3-2].client_certificate_mode",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_function_app[positive3-2].client_certificate_mode' should be set to 'Required'",
+    "actualValue": "'azurerm_windows_function_app[positive3-2].client_certificate_mode' is not set to 'Required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3f6b3c96b1ec02b55da0aaad5d47c8c5d336b3fdcea05500632ea3b132d8b14d",
+    "search_line": 14
   }
 ]

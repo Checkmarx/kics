@@ -2,16 +2,46 @@
   {
     "queryName": "Container Is Privileged",
     "severity": "HIGH",
-    "line": 14
+    "line": 14,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container.name={{example22}}.security_context.privileged",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].security_context.privileged should be set to false",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].security_context.privileged is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "1c7673e4b997eb2240582f80877f8bbd3da974ffc0864e21742a47cea3449578",
+    "search_line": -1
   },
   {
     "queryName": "Container Is Privileged",
     "severity": "HIGH",
-    "line": 47
+    "line": 47,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container.name={{example22222}}.security_context.privileged",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].security_context.privileged should be set to false",
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].security_context.privileged is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "23886e7fb6765cb5ebbf864f7e379ec3d236994f4506235044407d53baaa3324",
+    "search_line": -1
   },
   {
     "queryName": "Container Is Privileged",
     "severity": "HIGH",
-    "line": 108
+    "line": 108,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container.security_context.privileged",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.security_context.privileged should not be set to true",
+    "actualValue": "kubernetes_pod[positive2].spec.container.security_context.privileged is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "5d23cec1bf9498e33da5553b0177b46c6f68519936ae9776751c7340588f4aa8",
+    "search_line": -1
   }
 ]

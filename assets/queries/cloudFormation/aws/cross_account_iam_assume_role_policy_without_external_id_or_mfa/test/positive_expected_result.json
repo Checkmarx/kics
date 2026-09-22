@@ -3,36 +3,90 @@
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA",
+    "issueType": "IncorrectValue",
+    "similarityID": "3c9d2b161e434ee7d16c1a2ac3df892c71052fcd2dfd4c2b8bf369910f420fe0",
+    "search_line": 6
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA",
+    "issueType": "IncorrectValue",
+    "similarityID": "2fc30a8683375ea30483bba974ac892e748c65d11e9149958e2ddc104ef656dd",
+    "search_line": 7
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA",
+    "issueType": "IncorrectValue",
+    "similarityID": "b3dc04613ba893e99107d46507828a3ff8ef0095bbfd3e9200d3c2a1affa9a00",
+    "search_line": 6
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA",
+    "issueType": "IncorrectValue",
+    "similarityID": "eefa97bd3ef7bce9f0707d77d3b4638df51b075c5fcc5e39860d3119ea0ca126",
+    "search_line": 7
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA",
+    "issueType": "IncorrectValue",
+    "similarityID": "b4da666e992a90832eb6774f1d4dca1be6ff95018f7decb3df68f7603fa4e031",
+    "search_line": 6
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA",
+    "issueType": "IncorrectValue",
+    "similarityID": "5b88327a9e371265986920664140607227ab54d408d973a66d9a1cb2044a37c1",
+    "search_line": 7
   }
 ]

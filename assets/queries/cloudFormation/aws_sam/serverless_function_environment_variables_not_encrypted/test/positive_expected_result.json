@@ -3,6 +3,15 @@
     "queryName": "Serverless Function Environment Variables Not Encrypted",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Serverless::Function",
+    "resourceName": "Function",
+    "searchKey": "Resources.Function.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Function.Properties.KmsKeyArn' should be defined and not null",
+    "actualValue": "'Resources.Function.Properties.KmsKeyArn' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "a583be9e24108ff188498d3dc740138ce5f71f1cc6bdf35cb11f7d171dcbeb03",
+    "search_line": 7
   }
 ]

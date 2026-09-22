@@ -3,24 +3,60 @@
     "queryName": "Server URL Not Absolute",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url has an absolute URL",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url does not have an absolute URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "3b637a7bc99d1df6be3f177435c1c0af3ab7c88824e7b4e69737ff002cade631",
+    "search_line": 30
   },
   {
     "queryName": "Server URL Not Absolute",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.servers.url=/development.gigantic-server.com/v1",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.servers.{{0}}.url has an absolute URL",
+    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not have an absolute URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "1958f89cafca799cfa009cce30c0ed64161acfd506748a5ded98dd8d63d3088f",
+    "search_line": 32
   },
   {
     "queryName": "Server URL Not Absolute",
     "severity": "INFO",
     "line": 24,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url has an absolute URL",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url does not have an absolute URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "3c647ec39d705fe421d80cab0c9f304f75d27e6d72aea42905a4c49212572307",
+    "search_line": 24
   },
   {
     "queryName": "Server URL Not Absolute",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.servers.url=/development.gigantic-server.com/v1",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.servers.{{0}}.url has an absolute URL",
+    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not have an absolute URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "31d689fa8365b0387481082d0045f8f67ffb0af0485fd5e0dcf5a060d9332c48",
+    "search_line": 22
   }
 ]

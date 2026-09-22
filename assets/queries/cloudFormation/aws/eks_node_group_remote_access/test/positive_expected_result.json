@@ -3,12 +3,30 @@
     "queryName": "EKS node group remote access",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EKS::Nodegroup",
+    "resourceName": "EKSNodegroup",
+    "searchKey": "Resources.EKSNodegroup.Properties.RemoteAccess",
+    "searchValue": "",
+    "expectedValue": "'Resources.EKSNodegroup.Properties.RemoteAccess.SourceSecurityGroups' should be defined and not null",
+    "actualValue": "'Resources.EKSNodegroup.Properties.RemoteAccess.Source SecurityGroups' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "49ef9d0890c6e4e8aea29d7dd464ed5c349afa820549918d8aacf8e22113f4a4",
+    "search_line": -1
   },
   {
     "queryName": "EKS node group remote access",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EKS::Nodegroup",
+    "resourceName": "EKSNodegroup",
+    "searchKey": "Resources.EKSNodegroup.Properties.RemoteAccess",
+    "searchValue": "",
+    "expectedValue": "'Resources.EKSNodegroup.Properties.RemoteAccess.SourceSecurityGroups' should be defined and not null",
+    "actualValue": "'Resources.EKSNodegroup.Properties.RemoteAccess.Source SecurityGroups' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "a91cdcf97cad0535476919491270af56adb4c9c14e00b3793934e1da10505d4b",
+    "search_line": -1
   }
 ]

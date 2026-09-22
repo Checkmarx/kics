@@ -3,12 +3,30 @@
     "queryName": "PostgreSQL Server Threat Detection Policy Disabled",
     "severity": "MEDIUM",
     "line": 22,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_postgresql_server",
+    "resourceName": "example-psqlserver",
+    "searchKey": "azurerm_postgresql_server[positive1].threat_detection_policy.enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_server[positive1].threat_detection_policy.enabled' should be set to true",
+    "actualValue": "'azurerm_postgresql_server[positive1].threat_detection_policy.enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "3fe8273ae8fb79cc34c969baec7bc73b357bfbb5933a6346fc286388d033cf06",
+    "search_line": 22
   },
   {
     "queryName": "PostgreSQL Server Threat Detection Policy Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_postgresql_server",
+    "resourceName": "example-psqlserver",
+    "searchKey": "azurerm_postgresql_server[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_server[positive2].threat_detection_policy' is a defined object",
+    "actualValue": "'azurerm_postgresql_server[positive2].threat_detection_policy' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1fbbffae4eba5f62c0286de5d377e6d654be0d083c1c4c9c3b4e904ebeec83b3",
+    "search_line": 1
   }
 ]

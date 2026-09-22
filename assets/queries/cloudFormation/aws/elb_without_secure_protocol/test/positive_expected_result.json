@@ -3,24 +3,60 @@
     "queryName": "ELB Without Secure Protocol",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Listeners",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' should be set to 'SSL' or 'HTTPS'",
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' isn't set to 'SSL' or 'HTTPS'",
+    "issueType": "IncorrectValue",
+    "similarityID": "96b16cbd99efbafc3b3e85e9b60825685c1dbe0384c050237042382e0d14a128",
+    "search_line": 11
   },
   {
     "queryName": "ELB Without Secure Protocol",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Listeners",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Listeners.Protocol' should be set to 'SSL' or 'HTTPS'",
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.Protocol' isn't set to 'SSL' or 'HTTPS'",
+    "issueType": "IncorrectValue",
+    "similarityID": "cb72aa611ae2ae34bc9fe02f54bb5e6cdf50e3ef9fd4ecff7e556b1c41ce4857",
+    "search_line": 13
   },
   {
     "queryName": "ELB Without Secure Protocol",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Listeners",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' should be set to 'SSL' or 'HTTPS'",
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' isn't set to 'SSL' or 'HTTPS'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c89167dfefbf2e5ac05fcc221cc3cdcdf91399af071b47bb865bc36d7b78b3b9",
+    "search_line": 9
   },
   {
     "queryName": "ELB Without Secure Protocol",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Listeners",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Listeners.Protocol' should be set to 'SSL' or 'HTTPS'",
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.Protocol' isn't set to 'SSL' or 'HTTPS'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5f84c05ff07da52dcbe003854dea6585ab5e300e70cc2e186efe91be5c286dd8",
+    "search_line": 11
   }
 ]

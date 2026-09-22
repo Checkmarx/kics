@@ -3,12 +3,30 @@
     "queryName": "ALB Listening on HTTP",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_lb_listener",
+    "resourceName": "listener5",
+    "searchKey": "aws_lb_listener[listener5].default_action.redirect.protocol",
+    "searchValue": "",
+    "expectedValue": "'default_action.redirect.protocol' should be equal to 'HTTPS'",
+    "actualValue": "'default_action.redirect.protocol' is equal 'HTTP'",
+    "issueType": "IncorrectValue",
+    "similarityID": "49ed37f2f2aebdb26d6ac7f8750b37c2402b2677b692878870c4cea3cc3913d0",
+    "search_line": 9
   },
   {
     "queryName": "ALB Listening on HTTP",
     "severity": "MEDIUM",
     "line": 70,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_lb_listener",
+    "resourceName": "listener",
+    "searchKey": "aws_lb_listener[listener].default_action",
+    "searchValue": "",
+    "expectedValue": "'default_action.redirect.protocol' should be equal to 'HTTPS'",
+    "actualValue": "'default_action.redirect' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "365bd11c2c64f5e1ef3c3048d471c711e3f95c440997d2e6b5830797ace8d280",
+    "search_line": 70
   }
 ]

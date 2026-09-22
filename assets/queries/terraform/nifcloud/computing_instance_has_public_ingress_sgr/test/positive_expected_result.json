@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Nifcloud Computing Has Public Ingress Security Group Rule",
-		"severity": "HIGH",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud Computing Has Public Ingress Security Group Rule",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "nifcloud_security_group_rule",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_security_group_rule[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_security_group_rule[positive]' set a more restrictive cidr range",
+    "actualValue": "'nifcloud_security_group_rule[positive]' allows traffic from /0",
+    "issueType": "IncorrectValue",
+    "similarityID": "610742077d6b3109a3e8605a9c4dd383b9f27c8f9284f4d3ad02d3740e852c39",
+    "search_line": -1
+  }
 ]

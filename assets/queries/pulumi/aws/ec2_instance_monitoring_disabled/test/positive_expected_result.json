@@ -3,12 +3,30 @@
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "aws:ec2:Instance",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties",
+    "searchValue": "",
+    "expectedValue": "Attribute 'monitoring' should be defined and set to true",
+    "actualValue": "Attribute 'monitoring' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6424ea29d4a7fe638a1e0c92e00e9917b0b1567a22551eb7598814915a2550d0",
+    "search_line": 7
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 16,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "aws:ec2:Instance",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties.monitoring",
+    "searchValue": "",
+    "expectedValue": "Attribute 'monitoring' should be set to true",
+    "actualValue": "Attribute 'monitoring' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "b7798b65c72be4a2e21b04b97cdf3b4ba10fd17be6d4e8017385f014df6f799f",
+    "search_line": 16
   }
 ]

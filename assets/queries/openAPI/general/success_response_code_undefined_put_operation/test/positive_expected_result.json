@@ -3,36 +3,90 @@
     "queryName": "Success Response Code Undefined for Put Operation (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.put.responses",
+    "searchValue": "",
+    "expectedValue": "Put should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Put does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "9f8796147fd07206b833757655d6407a1cfbc2caba7ad96b282a770984c33ce3",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Put Operation (v3)",
     "severity": "LOW",
     "line": 24,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.put.responses",
+    "searchValue": "",
+    "expectedValue": "Put should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Put does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "c78ad00db0d7244e93a57bbe136f4393a2d5f0e7a129387cbb302551ddb1106c",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Put Operation (v3)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.put.responses",
+    "searchValue": "",
+    "expectedValue": "Put should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Put does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "8c80855a552a8489f08a451772e10af1dbc9e081be557e9550d614810cae577f",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Put Operation (v3)",
     "severity": "LOW",
     "line": 18,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.put.responses",
+    "searchValue": "",
+    "expectedValue": "Put should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Put does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "9411bded58844f1c97fefb590cd3ebe3d25ed00c26c5e5ac4df25b18440fc4a6",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Put Operation (v2)",
     "severity": "LOW",
     "line": 24,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.put.responses",
+    "searchValue": "",
+    "expectedValue": "Put should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Put does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "5017966e032b00b20a8f257fa06e0fded67f968b3931a3be1266974df1e357c9",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Put Operation (v2)",
     "severity": "LOW",
     "line": 18,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.put.responses",
+    "searchValue": "",
+    "expectedValue": "Put should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Put does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "e2ec4561303c27d9d0ec5d85829f75c4bcccafb670a4637e349176c5ce2944c8",
+    "search_line": -1
   }
 ]

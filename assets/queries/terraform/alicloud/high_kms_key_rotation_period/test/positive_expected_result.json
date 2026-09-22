@@ -2,25 +2,61 @@
   {
     "queryName": "High KMS Key Rotation Period",
     "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive.tf"
+    "line": 6,
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_kms_key",
+    "resourceName": "keypos1",
+    "searchKey": "alicloud_kms_key[keypos1].rotation_interval",
+    "searchValue": "",
+    "expectedValue": "'rotation_interval' value should not be higher than a year",
+    "actualValue": "'rotation_interval' value is higher than a year",
+    "issueType": "IncorrectValue",
+    "similarityID": "bb64e7acabfc1f8a996a206810a24b15347a1b2b8a01bc4fcd0d45d62b2f79f7",
+    "search_line": 6
   },
   {
     "queryName": "High KMS Key Rotation Period",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "High KMS Key Rotation Period",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "alicloud_kms_key",
+    "resourceName": "keypos1",
+    "searchKey": "alicloud_kms_key[keypos1].rotation_interval",
+    "searchValue": "",
+    "expectedValue": "'rotation_interval' value should not be higher than a year",
+    "actualValue": "'rotation_interval' value is higher than a year",
+    "issueType": "IncorrectValue",
+    "similarityID": "d7a1eabd26342bdfa7dc3a55f7f4baf1fafb34221e3a78ed0c7413d00813c5cf",
+    "search_line": 6
   },
   {
     "queryName": "High KMS Key Rotation Period",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "alicloud_kms_key",
+    "resourceName": "keypos1",
+    "searchKey": "alicloud_kms_key[keypos1].rotation_interval",
+    "searchValue": "",
+    "expectedValue": "'automatic_rotation' should be defined and set to Enabled",
+    "actualValue": "'automatic_rotation' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8a05653c5bed28c9a61b215aa3a89f4669e764c56b53f3e85be6110a69776549",
+    "search_line": 1
+  },
+  {
+    "queryName": "High KMS Key Rotation Period",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "alicloud_kms_key",
+    "resourceName": "keypos1",
+    "searchKey": "alicloud_kms_key[keypos1].rotation_interval",
+    "searchValue": "",
+    "expectedValue": "'automatic_rotation' should be set to Enabled",
+    "actualValue": "'automatic_rotation' is set to Disabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "c3d12420bac2176ef3fa9e4c81d582acad36859579d220436e199c80ef410f49",
+    "search_line": 5
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "Operation Summary Too Long",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.summary",
+    "searchValue": "",
+    "expectedValue": "Operation summary should not be less than 120 characters",
+    "actualValue": "Operation summary is less than 120 characters",
+    "issueType": "IncorrectValue",
+    "similarityID": "09dcd010e37ff15f4c3bb5cc57d8643e2d904ce1379432c90b0e35c848170345",
+    "search_line": -1
   },
   {
     "queryName": "Operation Summary Too Long",
     "severity": "INFO",
     "line": 9,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.summary",
+    "searchValue": "",
+    "expectedValue": "Operation summary should not be less than 120 characters",
+    "actualValue": "Operation summary is less than 120 characters",
+    "issueType": "IncorrectValue",
+    "similarityID": "a2d900dc25b9eeee02efc1e84a1d7752ac466eba02a8a261a7c8c7dc323be8ed",
+    "search_line": -1
   }
 ]

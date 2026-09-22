@@ -1,12 +1,32 @@
 [
-	{
-		"queryName": "Shared Service Account",
-		"severity": "MEDIUM",
-		"line": 6
-	},
-	{
-		"queryName": "Shared Service Account",
-		"severity": "MEDIUM",
-		"line": 16
-	}
+  {
+    "queryName": "Shared Service Account",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod1",
+    "searchKey": "metadata.name={{pod1}}.spec.serviceAccountName",
+    "searchValue": "",
+    "expectedValue": "'spec.serviceAccountName' should not be shared with other workloads",
+    "actualValue": "'spec.serviceAccountName' is shared with other workloads",
+    "issueType": "IncorrectValue",
+    "similarityID": "85454d142604bae625465bcdb00e54b5364edbdab94da52830273e93cdf98e99",
+    "search_line": -1
+  },
+  {
+    "queryName": "Shared Service Account",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod2",
+    "searchKey": "metadata.name={{pod2}}.spec.serviceAccountName",
+    "searchValue": "",
+    "expectedValue": "'spec.serviceAccountName' should not be shared with other workloads",
+    "actualValue": "'spec.serviceAccountName' is shared with other workloads",
+    "issueType": "IncorrectValue",
+    "similarityID": "a97db366ec3f14636c00d786b5437cae9f231c8909d307de1370c42353275a73",
+    "search_line": -1
+  }
 ]

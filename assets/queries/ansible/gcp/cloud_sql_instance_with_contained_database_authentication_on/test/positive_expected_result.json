@@ -2,6 +2,16 @@
   {
     "queryName": "Cloud SQL Instance With Contained Database Authentication On",
     "severity": "HIGH",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "sql_instance",
+    "searchKey": "name={{sql_instance}}.{{google.cloud.gcp_sql_instance}}.settings.database_flags",
+    "searchValue": "",
+    "expectedValue": "cloud_gcp_sql_instance.settings.database_flags should be correct",
+    "actualValue": "cloud_gcp_sql_instance.settings.database_flags.name is 'contained database authentication' and cloud_gcp_sql_instance.settings.database_flags.value is not 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "cafb04c25a4a29306b68f516c01416f448439287239f3a9eb5fcdbcddd40fdd8",
+    "search_line": -1
   }
 ]

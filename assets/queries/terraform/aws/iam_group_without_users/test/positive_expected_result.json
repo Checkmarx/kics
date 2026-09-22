@@ -2,13 +2,31 @@
   {
     "queryName": "IAM Group Without Users",
     "severity": "MEDIUM",
+    "line": 12,
     "fileName": "positive1.tf",
-    "line": 12
+    "resourceType": "aws_iam_group",
+    "resourceName": "test-group",
+    "searchKey": "aws_iam_group[group2]",
+    "searchValue": "",
+    "expectedValue": "aws_iam_group[group2] should be associated with an aws_iam_group_membership that has at least one user set",
+    "actualValue": "aws_iam_group[group2] is not associated with an aws_iam_group_membership that has at least one user set",
+    "issueType": "MissingAttribute",
+    "similarityID": "7084ae70a8adf6772099d00a303edb6f62ec9ee40396c18b70b30f65cef0633d",
+    "search_line": 12
   },
   {
     "queryName": "IAM Group Without Users",
     "severity": "MEDIUM",
+    "line": 33,
     "fileName": "positive1.tf",
-    "line": 33
+    "resourceType": "aws_iam_group",
+    "resourceName": "test-group",
+    "searchKey": "aws_iam_group[group3]",
+    "searchValue": "",
+    "expectedValue": "aws_iam_group[group3] should be associated with an aws_iam_group_membership that has at least one user set",
+    "actualValue": "aws_iam_group[group3] is not associated with an aws_iam_group_membership that has at least one user set",
+    "issueType": "MissingAttribute",
+    "similarityID": "1dbe2a8c5de9f97f381661d49bc406f639d3254842d1c415f56a4dc6ff35b4db",
+    "search_line": 33
   }
 ]

@@ -3,36 +3,90 @@
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "RDSCluster",
+    "searchKey": "Resources.RDSCluster.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.RDSCluster.Properties.StorageEncrypted should be set to true",
+    "actualValue": "Resources.RDSCluster.Properties.StorageEncrypted is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "713398b4f4d47110fcd7005898362a978f6a8daa3808a55d16fb878540764f2f",
+    "search_line": -1
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "RDSCluster1",
+    "searchKey": "Resources.RDSCluster1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RDSCluster1.Properties.StorageEncrypted should be defined",
+    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ba5b954159812ec1dfa69f1420a0f80f364b41ebf7abf05317eca596cca0d4a4",
+    "search_line": -1
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "RDSCluster",
+    "searchKey": "Resources.RDSCluster.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.RDSCluster.Properties.StorageEncrypted should be set to true",
+    "actualValue": "Resources.RDSCluster.Properties.StorageEncrypted is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8920a528c036f6dd145ca6402aa5cb75a16fbb04561bcabbad6a07fb1c7680fd",
+    "search_line": -1
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "HIGH",
     "line": 59,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "RDSCluster1",
+    "searchKey": "Resources.RDSCluster1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RDSCluster1.Properties.StorageEncrypted should be defined",
+    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "24077dfdcc33eda2b04c1f3207afa44f1b591881040991380dce9ad355a3b8b5",
+    "search_line": -1
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "NoEncryption",
+    "searchKey": "Resources.NoEncryption.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.NoEncryption.Properties.StorageEncrypted should be defined",
+    "actualValue": "Resources.NoEncryption.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8afc92749918b877505b93f9677c8e35b7bc503055703703af307b8fae0a3c56",
+    "search_line": -1
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "RDSCluster",
+    "searchKey": "Resources.RDSCluster.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.RDSCluster.Properties.StorageEncrypted should be set to true",
+    "actualValue": "Resources.RDSCluster.Properties.StorageEncrypted is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "7c5ddb21884d458bc019fc8f7fd89e72a1e204bbc36f12d99d85d0774d2e1578",
+    "search_line": -1
   }
 ]

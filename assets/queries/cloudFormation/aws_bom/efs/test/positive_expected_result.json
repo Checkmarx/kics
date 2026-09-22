@@ -3,24 +3,60 @@
     "queryName": "BOM - AWS EFS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.FileSystemResource",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "af951e8e5af038270bede70ee43979e390751208d0c1d1fecb81a0daa9aba768",
+    "search_line": 4
   },
   {
     "queryName": "BOM - AWS EFS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.FileSystemResource",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "281d6dc7bf72ca31cd66458bf94794080bf6652ec4008b2575bae2d9fb83ad3f",
+    "search_line": 4
   },
   {
     "queryName": "BOM - AWS EFS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.FileSystemResource",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "83a72f83d55f2156c4460a9a6cfe9793351271aa569c545883ef0f62f5a5812a",
+    "search_line": 4
   },
   {
     "queryName": "BOM - AWS EFS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.FileSystemResource",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "5a4bb3ec29536ca9e4e0c26c709e1917085de2e85ae6d9bc1435a0b434c171b0",
+    "search_line": 4
   }
 ]

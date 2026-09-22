@@ -3,60 +3,150 @@
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod-0",
+    "searchKey": "metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-0}}",
+    "searchValue": "PodreadOnly",
+    "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-0}} should be defined and set to true and Enabled, respectively",
+    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-0}}%!(EXTRA string=pod-0, string=spec, string=containers, string=pod-0, string=vol-0)",
+    "issueType": "MissingAttribute",
+    "similarityID": "704c83080d731542b728638055d79d63b500a37fd361025d648f85a12a9a8157",
+    "search_line": 10
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod-0",
+    "searchKey": "metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-1}}",
+    "searchValue": "PodreadOnly",
+    "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-1}} should be defined and set to true and Enabled, respectively",
+    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-1}}%!(EXTRA string=pod-0, string=spec, string=containers, string=pod-0, string=vol-1)",
+    "issueType": "MissingAttribute",
+    "similarityID": "09e134b3e6d9c5a59aecefaf0ae97454ed1a6f3040ce967863b53ef2631942a9",
+    "search_line": 12
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod-0",
+    "searchKey": "metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-1}}",
+    "searchValue": "PodrecursiveReadOnly",
+    "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-1}} are set to true and Enabled, respectively",
+    "actualValue": "The properties readOnly or recursiveReadOnly in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-1}} are set to false or Disabled, respectively",
+    "issueType": "IncorrectValue",
+    "similarityID": "e9e66737a4332aadf3e12f1e2e74747867b7d9231493b437f9ce8e8a3b233667",
+    "search_line": 12
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 36,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod-1",
+    "searchKey": "metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}}",
+    "searchValue": "PodreadOnly",
+    "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}} should be defined and set to true and Enabled, respectively",
+    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}}%!(EXTRA string=pod-1, string=spec, string=containers, string=pod-1, string=vol-0)",
+    "issueType": "MissingAttribute",
+    "similarityID": "db51896005d822563aef097cd9cdbc1ec1647d924900a0998bb366a4552b6f62",
+    "search_line": 36
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 39,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod-1",
+    "searchKey": "metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-1}}",
+    "searchValue": "PodreadOnly",
+    "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-1}} are set to true and Enabled, respectively",
+    "actualValue": "The properties readOnly or recursiveReadOnly in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-1}} are set to false or Disabled, respectively",
+    "issueType": "IncorrectValue",
+    "similarityID": "7360b6d140c8086bb1626f47d7a53dd77f9283d54c5bb3a0e19da929fd73460e",
+    "search_line": 39
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 39,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod-1",
+    "searchKey": "metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-1}}",
+    "searchValue": "PodrecursiveReadOnly",
+    "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-1}} should be defined and set to true and Enabled, respectively",
+    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-1}}%!(EXTRA string=pod-1, string=spec, string=containers, string=pod-1, string=vol-1)",
+    "issueType": "MissingAttribute",
+    "similarityID": "eb0e5b47601c001b102f1b28f0350aa6488e475da37901131c2404f260978b47",
+    "search_line": 39
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod-0",
+    "searchKey": "metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-0}}",
+    "searchValue": "PodreadOnly",
+    "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-0}} are set to true and Enabled, respectively",
+    "actualValue": "The properties readOnly or recursiveReadOnly in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-0}} are set to false or Disabled, respectively",
+    "issueType": "IncorrectValue",
+    "similarityID": "81ccbe024b4c7c448941ec3b8174126ddf5831af121de0db8968968819bd727e",
+    "search_line": 10
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 14,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod-0",
+    "searchKey": "metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-1}}",
+    "searchValue": "PodreadOnly",
+    "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-1}} are set to true and Enabled, respectively",
+    "actualValue": "The properties readOnly or recursiveReadOnly in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-1}} are set to false or Disabled, respectively",
+    "issueType": "IncorrectValue",
+    "similarityID": "cdb11f600e4eafbf7217b0a45bdac182085cd44d70c8ffe06ea1778ada027ba2",
+    "search_line": 14
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 33,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod-1",
+    "searchKey": "metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}}",
+    "searchValue": "PodrecursiveReadOnly",
+    "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}} should be defined and set to true and Enabled, respectively",
+    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}}%!(EXTRA string=pod-1, string=spec, string=containers, string=pod-1, string=vol-0)",
+    "issueType": "MissingAttribute",
+    "similarityID": "6076f7c1881a55c85c48404343228840121551f5b5685fbefc174e63bf47277d",
+    "search_line": 33
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 36,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod-1",
+    "searchKey": "metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-1}}",
+    "searchValue": "PodrecursiveReadOnly",
+    "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-1}} are set to true and Enabled, respectively",
+    "actualValue": "The properties readOnly or recursiveReadOnly in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-1}} are set to false or Disabled, respectively",
+    "issueType": "IncorrectValue",
+    "similarityID": "ed19a8b6a170387eb553caae9ff3ac43d112072b8a3e957f058975028955436f",
+    "search_line": 36
   }
 ]

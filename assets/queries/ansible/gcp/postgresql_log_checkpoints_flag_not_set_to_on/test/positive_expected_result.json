@@ -1,12 +1,32 @@
 [
-	{
-		"queryName": "PostgreSQL log_checkpoints Flag Not Set To ON",
-		"severity": "MEDIUM",
-		"line": 5
-	},
-	{
-		"queryName": "PostgreSQL log_checkpoints Flag Not Set To ON",
-		"severity": "MEDIUM",
-		"line": 16
-	}
+  {
+    "queryName": "PostgreSQL log_checkpoints Flag Not Set To ON",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create instance",
+    "searchKey": "name={{create instance}}.{{google.cloud.gcp_sql_instance}}.settings.databaseFlags",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.databaseFlags should have 'log_checkpoints' flag set to 'on'",
+    "actualValue": "gcp_sql_instance.settings.databaseFlags has 'log_checkpoints' flag set to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ed50766e47e2af6e1ec23de0cdf27883a49eeee47451729e065267b7ec4c7d6b",
+    "search_line": -1
+  },
+  {
+    "queryName": "PostgreSQL log_checkpoints Flag Not Set To ON",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create another instance",
+    "searchKey": "name={{create another instance}}.{{google.cloud.gcp_sql_instance}}",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.databaseFlags should be defined",
+    "actualValue": "gcp_sql_instance.settings.databaseFlags is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "109d678b962f49c12cd3c4e4781050f9549cb8f5c436dd53b384d2efc0438654",
+    "search_line": -1
+  }
 ]

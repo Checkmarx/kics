@@ -1,12 +1,32 @@
 [
   {
+    "queryName": "CloudTrail Not Integrated With CloudWatch",
     "severity": "LOW",
     "line": 1,
-    "queryName": "CloudTrail Not Integrated With CloudWatch"
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "tf-trail-foobar",
+    "searchKey": "aws_cloudtrail[positive1]",
+    "searchValue": "cloud_watch_logs_group_arn",
+    "expectedValue": "aws_cloudtrail[positive1].cloud_watch_logs_group_arn should be defined and not null",
+    "actualValue": "aws_cloudtrail[positive1].cloud_watch_logs_group_arn is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "64792d916f4a3d76bea1054a16bc58742190071d7ab625f5a366bf5296272a6d",
+    "search_line": 1
   },
   {
+    "queryName": "CloudTrail Not Integrated With CloudWatch",
     "severity": "LOW",
     "line": 1,
-    "queryName": "CloudTrail Not Integrated With CloudWatch"
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "tf-trail-foobar",
+    "searchKey": "aws_cloudtrail[positive1]",
+    "searchValue": "cloud_watch_logs_role_arn",
+    "expectedValue": "aws_cloudtrail[positive1].cloud_watch_logs_role_arn should be defined and not null",
+    "actualValue": "aws_cloudtrail[positive1].cloud_watch_logs_role_arn is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "d001c0970ec78c3d34d5e7d57a11c0812e8599224ca1fae1087cbaed40420c87",
+    "search_line": 1
   }
 ]

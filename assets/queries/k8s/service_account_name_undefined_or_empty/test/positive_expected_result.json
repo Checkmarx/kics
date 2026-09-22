@@ -1,17 +1,47 @@
 [
-	{
-		"queryName": "Service Account Name Undefined Or Empty",
-		"severity": "MEDIUM",
-		"line": 6
-	},
-	{
-		"queryName": "Service Account Name Undefined Or Empty",
-		"severity": "MEDIUM",
-		"line": 28
-	},
-	{
-		"queryName": "Service Account Name Undefined Or Empty",
-		"severity": "MEDIUM",
-		"line": 58
-	}
+  {
+    "queryName": "Service Account Name Undefined Or Empty",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "nginx.container",
+    "searchKey": "metadata.name={{nginx.container}}.spec",
+    "searchValue": "",
+    "expectedValue": "metadata.name=nginx.container.spec.serviceAccountName should be defined",
+    "actualValue": "metadata.name=nginx.container.spec.serviceAccountName is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b74efe83d1948378454e25cb9c3ade0fa44339916affa64c2fc03b6645a7c6ef",
+    "search_line": -1
+  },
+  {
+    "queryName": "Service Account Name Undefined Or Empty",
+    "severity": "MEDIUM",
+    "line": 28,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "nginx2.container.group",
+    "searchKey": "metadata.name={{nginx2.container.group}}.spec",
+    "searchValue": "",
+    "expectedValue": "metadata.name=nginx2.container.group.spec.serviceAccountName should be defined",
+    "actualValue": "metadata.name=nginx2.container.group.spec.serviceAccountName is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d476665d4376c7a50f736fc57e0b4dfbd703a0f40618d478634472f37107200e",
+    "search_line": -1
+  },
+  {
+    "queryName": "Service Account Name Undefined Or Empty",
+    "severity": "MEDIUM",
+    "line": 58,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "nginx3",
+    "searchKey": "metadata.name={{nginx3}}.spec.serviceAccountName",
+    "searchValue": "",
+    "expectedValue": "metadata.name=nginx3.spec.serviceAccountName should not be empty",
+    "actualValue": "metadata.name=nginx3.spec.serviceAccountName is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "0fe8bc86637d7a130019169b2901ec4292a00a85fa3115a50f90935c75b569f8",
+    "search_line": -1
+  }
 ]

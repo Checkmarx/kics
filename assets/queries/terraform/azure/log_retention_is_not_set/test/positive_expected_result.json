@@ -2,16 +2,46 @@
   {
     "queryName": "Log Retention Is Not Set",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_retention",
+    "searchKey": "azurerm_postgresql_configuration[positive1].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive1.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive1.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d4f3ab9ea2edb266d61075c0737d577ddd81a49d5b7644fbdf4080a92cc8443f",
+    "search_line": 5
   },
   {
     "queryName": "Log Retention Is Not Set",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_retention",
+    "searchKey": "azurerm_postgresql_configuration[positive2].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive2.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive2.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "445c2925f93c44c27f319fa2407ec1cdd1a68b5ce6544cfbb00c887ce5d195bd",
+    "search_line": 12
   },
   {
     "queryName": "Log Retention Is Not Set",
     "severity": "MEDIUM",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_retention",
+    "searchKey": "azurerm_postgresql_configuration[positive3].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive3.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive3.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "75260292996c9800f48cb3ba8a47d942e4ae24630ecd0f880e22a0b9c4905edd",
+    "search_line": 19
   }
 ]

@@ -3,66 +3,165 @@
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive1_1",
+    "searchKey": "google_sql_database_instance[positive1_1].settings",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration' should be defined and not null",
+    "actualValue": "'settings.ip_configuration' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "544e81d136f2382d54a529bb63ead12563e729c371215cb9bdb0af16ffa203b3",
+    "search_line": 10
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
     "line": 26,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive1_2",
+    "searchKey": "google_sql_database_instance[positive1_2].settings.ip_configuration",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration.ssl_mode' should be defined and not null",
+    "actualValue": "'settings.ip_configuration.ssl_mode' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "574fb758b9dd5ed5d124374fcc2cc5c6d068a9a24ae881280850d4e9a52d4e4c",
+    "search_line": 26
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
     "line": 48,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive1_3",
+    "searchKey": "google_sql_database_instance[positive1_3].settings.ip_configuration.require_ssl",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration.require_ssl' should be true",
+    "actualValue": "'settings.ip_configuration.require_ssl' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "89bc30834bfd71240cd73798b311621458c38cab96a5e3c67ba5aa2d54726f16",
+    "search_line": 48
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive2_1",
+    "searchKey": "google_sql_database_instance[positive2_1].settings.ip_configuration",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration.ssl_mode' should be defined and not null",
+    "actualValue": "'settings.ip_configuration.ssl_mode' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "d0a89a30bac7cccc14b76213ddf416b6792a7a5c03534d4290951b00806b5b97",
+    "search_line": 12
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
     "line": 33,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive2_2",
+    "searchKey": "google_sql_database_instance[positive2_2].settings.ip_configuration.ssl_mode",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration.ssl_mode' should be set to 'ENCRYPTED_ONLY' or 'TRUSTED_CLIENT_CERTIFICATE_REQUIRED'",
+    "actualValue": "'settings.ip_configuration.ssl_mode' is set to 'SSL_MODE_UNSPECIFIED'",
+    "issueType": "IncorrectValue",
+    "similarityID": "636dd40d99471cc3f3be0469cbf7f201c9683924b15089289cc3ce32febe229f",
+    "search_line": 33
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
     "line": 51,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive2_3",
+    "searchKey": "google_sql_database_instance[positive2_3].settings.ip_configuration.ssl_mode",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration.ssl_mode' should be set to 'ENCRYPTED_ONLY' or 'TRUSTED_CLIENT_CERTIFICATE_REQUIRED'",
+    "actualValue": "'settings.ip_configuration.ssl_mode' is set to 'ALLOW_UNENCRYPTED_AND_ENCRYPTED'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ba270fe570943c0fc32f84d04ff377d518c4126a23f1f964aad94f51a4c66f8e",
+    "search_line": 51
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive3_1",
+    "searchKey": "google_sql_database_instance[positive3_1].settings",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration' should be defined and not null",
+    "actualValue": "'settings.ip_configuration' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "0e36622288f74c850f33384c42387cd473da2e530e80928e58bc6c6f96fb2ade",
+    "search_line": 10
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
     "line": 25,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive3_2",
+    "searchKey": "google_sql_database_instance[positive3_2].settings.ip_configuration",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration.ssl_mode' should be defined and not null",
+    "actualValue": "'settings.ip_configuration.ssl_mode' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "256b1ae962b16005c19eaaf273a7972edc97b10defe70259d453ec50d81e3fb1",
+    "search_line": 25
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
     "line": 46,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive3_3",
+    "searchKey": "google_sql_database_instance[positive3_3].settings.ip_configuration.ssl_mode",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration.ssl_mode' should be set to 'ENCRYPTED_ONLY'",
+    "actualValue": "'settings.ip_configuration.ssl_mode' is set to 'SSL_MODE_UNSPECIFIED'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4a14102cd798f71d258b97372b310bae784054afe82c8573a7d4f93e20c17d6c",
+    "search_line": 46
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
     "line": 64,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive3_4",
+    "searchKey": "google_sql_database_instance[positive3_4].settings.ip_configuration.ssl_mode",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration.ssl_mode' should be set to 'ENCRYPTED_ONLY'",
+    "actualValue": "'settings.ip_configuration.ssl_mode' is set to 'ALLOW_UNENCRYPTED_AND_ENCRYPTED'",
+    "issueType": "IncorrectValue",
+    "similarityID": "cfe6a412961196c25696dae67e5af1bc551e516c04b097b78efe3837fe501ffa",
+    "search_line": 64
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
     "line": 82,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive3_5",
+    "searchKey": "google_sql_database_instance[positive3_5].settings.ip_configuration.ssl_mode",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration.ssl_mode' should be set to 'ENCRYPTED_ONLY'",
+    "actualValue": "'settings.ip_configuration.ssl_mode' is set to 'TRUSTED_CLIENT_CERTIFICATE_REQUIRED'",
+    "issueType": "IncorrectValue",
+    "similarityID": "98a653db68a1184291052b351f504f995550162289af5b572401aae70da366f7",
+    "search_line": 82
   }
 ]

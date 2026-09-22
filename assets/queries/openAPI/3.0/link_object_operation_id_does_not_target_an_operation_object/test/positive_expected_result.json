@@ -3,36 +3,90 @@
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
     "line": 71,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.{{200}}.links.{{address}}.operationId",
+    "searchValue": "",
+    "expectedValue": "components.responses.200.links.address.operationId points to an operationId of an operation object",
+    "actualValue": "components.responses.200.links.address.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue",
+    "similarityID": "991ea7cc71ede346917412f8a42e398ed3abd40f4082a1098f8a8d0dc1d66767",
+    "search_line": -1
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/test}}.{{get}}.responses.{{200}}.links.{{address}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths/test.get.responses.200.links.address.operationId points to an operationId of an operation object",
+    "actualValue": "paths./test.get.responses.200.links.address.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue",
+    "similarityID": "f3de5389f333a2a9866c6aefbae7a76bacf88785c07d4e3b11154eaea5fb9d85",
+    "search_line": -1
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
     "line": 68,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.links.{{address}}.operationId",
+    "searchValue": "",
+    "expectedValue": "components.links.{{address}}.operationId points to an operationId of an operation object",
+    "actualValue": "components.links.{{address}}.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue",
+    "similarityID": "2decb2a44529bf8c517c895bba42c7afa962855f94e5576ced22e3f7a56c9b2d",
+    "search_line": -1
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
     "line": 51,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.{{200}}.links.{{address}}.operationId",
+    "searchValue": "",
+    "expectedValue": "components.responses.200.links.address.operationId points to an operationId of an operation object",
+    "actualValue": "components.responses.200.links.address.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue",
+    "similarityID": "aab1386eeba2640d6e80d0a68cd6e0da1da58364d81a04ff33299afd8df79700",
+    "search_line": -1
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/test}}.{{get}}.responses.{{200}}.links.{{address}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths/test.get.responses.200.links.address.operationId points to an operationId of an operation object",
+    "actualValue": "paths./test.get.responses.200.links.address.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue",
+    "similarityID": "f649bd4e15cbab1dc37dd6a38ab94b2c6b14d4027712202431359328f3dc0169",
+    "search_line": -1
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.links.{{address}}.operationId",
+    "searchValue": "",
+    "expectedValue": "components.links.{{address}}.operationId points to an operationId of an operation object",
+    "actualValue": "components.links.{{address}}.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue",
+    "similarityID": "b8e45d1e3dfaf0fd47afc9aa5b080c24ce448e87f0ddcb702fe7d30bce29531d",
+    "search_line": -1
   }
 ]

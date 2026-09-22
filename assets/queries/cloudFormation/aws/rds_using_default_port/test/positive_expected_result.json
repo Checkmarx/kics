@@ -3,24 +3,60 @@
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDB",
+    "searchKey": "Resources.MyDB.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.Port' should not be set to 1521",
+    "actualValue": "'Resources.MyDB.Properties.Port' is set to 1521",
+    "issueType": "IncorrectValue",
+    "similarityID": "3a758ad71f2e7bf8c99e9862b441b9f18dfe79fbf20147f443ce9978aae9ba52",
+    "search_line": 15
   },
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 21,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDB",
+    "searchKey": "Resources.MyDB.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.Port' should not be set to 1521",
+    "actualValue": "'Resources.MyDB.Properties.Port' is set to 1521",
+    "issueType": "IncorrectValue",
+    "similarityID": "c437f08ebb62944e6903566a61c960a7d4ff16d040dc29640ce310392f3101e3",
+    "search_line": 21
   },
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDB",
+    "searchKey": "Resources.MyDB.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.Port' should not be set to 3306",
+    "actualValue": "'Resources.MyDB.Properties.Port' is set to 3306",
+    "issueType": "IncorrectValue",
+    "similarityID": "ad11986f8d07c34b09aeeb54c8beab14abac1f7631c37eea879e0e0b031a3729",
+    "search_line": 15
   },
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 21,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDB",
+    "searchKey": "Resources.MyDB.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.Port' should not be set to 3306",
+    "actualValue": "'Resources.MyDB.Properties.Port' is set to 3306",
+    "issueType": "IncorrectValue",
+    "similarityID": "4a73748f9df321718f1b49c5c337dfe938cc36f0c67dc6f40a4e187acaf7c847",
+    "search_line": 21
   }
 ]

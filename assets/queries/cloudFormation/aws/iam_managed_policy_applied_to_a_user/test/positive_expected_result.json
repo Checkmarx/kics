@@ -3,12 +3,30 @@
     "queryName": "IAM Managed Policy Applied to a User",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::ManagedPolicy",
+    "resourceName": "CreateTestDBPolicy",
+    "searchKey": "Resources.CreateTestDBPolicy.Properties.Users",
+    "searchValue": "",
+    "expectedValue": "Resources.CreateTestDBPolicy is assigned to a set of users",
+    "actualValue": "Resources.CreateTestDBPolicy should be assigned to a set of groups",
+    "issueType": "IncorrectValue",
+    "similarityID": "bd47994a730800e678cd751b9aef3a8a9dff6e96fa354cd341330416dbb637e1",
+    "search_line": -1
   },
   {
     "queryName": "IAM Managed Policy Applied to a User",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::ManagedPolicy",
+    "resourceName": "CreateTestDBPolicy",
+    "searchKey": "Resources.CreateTestDBPolicy.Properties.Users",
+    "searchValue": "",
+    "expectedValue": "Resources.CreateTestDBPolicy is assigned to a set of users",
+    "actualValue": "Resources.CreateTestDBPolicy should be assigned to a set of groups",
+    "issueType": "IncorrectValue",
+    "similarityID": "6fd2bb9fb971ae7fd137cf8320bbffa2abff7a5eec6967bb9a64223bb0d94bbe",
+    "search_line": -1
   }
 ]

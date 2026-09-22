@@ -2,6 +2,16 @@
   {
     "queryName": "StatefulSet Without PodDisruptionBudget",
     "severity": "LOW",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "web",
+    "searchKey": "metadata.name={{web}}.spec.selector.matchLabels",
+    "searchValue": "",
+    "expectedValue": "metadata.name=web is targeted by a PodDisruptionBudget",
+    "actualValue": "metadata.name=web is not targeted by a PodDisruptionBudget",
+    "issueType": "MissingAttribute",
+    "similarityID": "4f7eea0e886f11332c1fb558fbb6d67dd5edcc0dd22690c433cb651e7d966b75",
+    "search_line": -1
   }
 ]

@@ -2,6 +2,16 @@
   {
     "queryName": "Cluster Labels Disabled",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'resource_labels' should be defined",
+    "actualValue": "Attribute 'resource_labels' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "77c078b2e2976e3e1a22703da90b673bfe30dc48fa1f56f954e718d9329aaf8f",
+    "search_line": -1
   }
 ]

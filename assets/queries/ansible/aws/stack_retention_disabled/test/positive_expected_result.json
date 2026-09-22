@@ -2,11 +2,31 @@
   {
     "queryName": "Stack Retention Disabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.cloudformation_stack_set",
+    "resourceName": "Create a stack set with instances in two accounts",
+    "searchKey": "name={{Create a stack set with instances in two accounts}}.{{community.aws.cloudformation_stack_set}}",
+    "searchValue": "",
+    "expectedValue": "cloudformation_stack_set.purge_stacks should be set",
+    "actualValue": "cloudformation_stack_set.purge_stacks is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0dfca63641a83836cc0a2c8b172abab80e3a786d974fc575e634ef6ab9c366ef",
+    "search_line": -1
   },
   {
     "queryName": "Stack Retention Disabled",
     "severity": "MEDIUM",
-    "line": 23
+    "line": 23,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.cloudformation_stack_set",
+    "resourceName": "on subsequent calls, templates are optional but parameters and tags can be altered",
+    "searchKey": "name={{on subsequent calls, templates are optional but parameters and tags can be altered}}.{{community.aws.cloudformation_stack_set}}.purge_stacks",
+    "searchValue": "",
+    "expectedValue": "cloudformation_stack_set.purge_stacks should be set to false",
+    "actualValue": "cloudformation_stack_set.purge_stacks is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "f28f94f94f999df50e6904c68ce440c58b7c1f5b122226a3ec27f85ec55c433d",
+    "search_line": -1
   }
 ]

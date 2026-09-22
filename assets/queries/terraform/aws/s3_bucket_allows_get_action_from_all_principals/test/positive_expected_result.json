@@ -3,18 +3,45 @@
     "queryName": "S3 Bucket Allows Get Action From All Principals",
     "severity": "HIGH",
     "line": 17,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${aws_s3_bucket.b.id}",
+    "searchKey": "aws_s3_bucket_policy[positive2].policy.Action",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[positive2].policy.Action should not be a 'Get' action",
+    "actualValue": "aws_s3_bucket_policy[positive2].policy.Action is a 'Get' action",
+    "issueType": "IncorrectValue",
+    "similarityID": "0968989b05ee62d1c41c3e388e097f87df570579e2e29c88c9716105770db7c6",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
     "severity": "HIGH",
     "line": 42,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${aws_s3_bucket.b.id}",
+    "searchKey": "aws_s3_bucket_policy[positive3].policy.Action",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[positive3].policy.Action should not be a 'Get' action",
+    "actualValue": "aws_s3_bucket_policy[positive3].policy.Action is a 'Get' action",
+    "issueType": "IncorrectValue",
+    "similarityID": "f5c6decad240116ed60566c7dcd953736d97880cb7768b4bd24b8caab4633214",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
     "severity": "HIGH",
     "line": 23,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].policy.Action",
+    "searchValue": "",
+    "expectedValue": "module[s3_bucket].policy.Action should not be a 'Get' action",
+    "actualValue": "module[s3_bucket].policy.Action is a 'Get' action",
+    "issueType": "IncorrectValue",
+    "similarityID": "efa9f36bbfd0f12a76346fc316dab471a3770c5c5c74bf6244703811c371a2c9",
+    "search_line": -1
   }
 ]

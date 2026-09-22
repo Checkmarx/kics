@@ -3,12 +3,30 @@
     "queryName": "Security Scheme Using Oauth 1.0",
     "severity": "LOW",
     "line": 55,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use oauth 1.0 security scheme",
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses oauth 1.0 security scheme",
+    "issueType": "IncorrectValue",
+    "similarityID": "52bc1b7442f01f01ed7831d6bbb4ea85644c6ec8b0e5d0e39e55e1361340cb76",
+    "search_line": -1
   },
   {
     "queryName": "Security Scheme Using Oauth 1.0",
     "severity": "LOW",
     "line": 31,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use oauth 1.0 security scheme",
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses oauth 1.0 security scheme",
+    "issueType": "IncorrectValue",
+    "similarityID": "c64457f72225b84fcb457eacd7d704f107a14674c69c0a9a058c492cce23208a",
+    "search_line": -1
   }
 ]

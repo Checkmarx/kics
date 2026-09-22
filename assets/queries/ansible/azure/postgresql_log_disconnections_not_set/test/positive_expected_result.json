@@ -2,31 +2,91 @@
   {
     "queryName": "PostgreSQL Log Disconnections Not Set",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting",
+    "searchKey": "name={{Update PostgreSQL Server setting}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_disconnections'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b8cf392dd25e80c349cf3089aad2523f861da65d8457b18288880a3b5bf28b20",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Disconnections Not Set",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting2",
+    "searchKey": "name={{Update PostgreSQL Server setting2}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_disconnections'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d596db8e109939b863cfee6e9041e67edf18cf5f4521cac34c53913f2e59e642",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Disconnections Not Set",
     "severity": "MEDIUM",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting3",
+    "searchKey": "name={{Update PostgreSQL Server setting3}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_disconnections'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "118c3ef6073e799e8677f36e1cfec714a0c071c6ccfa864387e91a29ee6a40c0",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Disconnections Not Set",
     "severity": "MEDIUM",
-    "line": 25
+    "line": 25,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting4",
+    "searchKey": "name={{Update PostgreSQL Server setting4}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_disconnections'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9330a737bd664a7b09f94728db93160bda41b6fe8b177e294acbfd2be9041710",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Disconnections Not Set",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting5",
+    "searchKey": "name={{Update PostgreSQL Server setting5}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_disconnections'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c2f2b56c8470e8f172928c08489e8f52e19d4e2bc4228d31799af68b147dc86f",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Disconnections Not Set",
     "severity": "MEDIUM",
-    "line": 37
+    "line": 37,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting6",
+    "searchKey": "name={{Update PostgreSQL Server setting6}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_disconnections'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "70f7c94066d629ddb4974e5ee28aa6bb21ec4a1d0cc58e748a6747cca73b438c",
+    "search_line": -1
   }
 ]

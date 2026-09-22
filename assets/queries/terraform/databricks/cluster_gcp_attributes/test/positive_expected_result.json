@@ -3,6 +3,15 @@
     "queryName": "Check Databricks Cluster GCP Attribute Best Practices",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "databricks_cluster",
+    "resourceName": "positive",
+    "searchKey": "databricks_cluster[positive].gcp_attributes.availability",
+    "searchValue": "",
+    "expectedValue": "'databricks_cluster[positive].gcp_attributes.availability' should not be equal to 'SPOT'",
+    "actualValue": "'databricks_cluster[positive].gcp_attributes.availability' is equal to 'SPOT'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c818d11a74b07b0ab82819f991e7faf386c2924e624af9ba8b9b00388ab97192",
+    "search_line": -1
   }
 ]

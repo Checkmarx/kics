@@ -3,18 +3,45 @@
     "queryName": "CloudTrail Log Files S3 Bucket is Publicly Accessible",
     "severity": "HIGH",
     "line": 25,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[b].acl",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket[b] to not be publicly accessible",
+    "actualValue": "aws_s3_bucket[b] is publicly accessible",
+    "issueType": "IncorrectValue",
+    "similarityID": "1ac3e78817a71314e571ab6443e57176fc7c85d2d11b7c8ce658ec0fd6fd800e",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Log Files S3 Bucket is Publicly Accessible",
     "severity": "HIGH",
     "line": 23,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].acl",
+    "searchValue": "",
+    "expectedValue": "module[s3_bucket] to not be publicly accessible",
+    "actualValue": "module[s3_bucket] is publicly accessible",
+    "issueType": "IncorrectValue",
+    "similarityID": "880eba88f283595e71e1f81e985dd20c75c983430fea9c1775c0138ec1faa9aa",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Log Files S3 Bucket is Publicly Accessible",
     "severity": "HIGH",
     "line": 24,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].acl",
+    "searchValue": "",
+    "expectedValue": "module[s3_bucket] to not be publicly accessible",
+    "actualValue": "module[s3_bucket] is publicly accessible",
+    "issueType": "IncorrectValue",
+    "similarityID": "1fe4f8b775122a9831d4dccdcfb7a6f5437975c0df3d0bf50a4ca08a0b20e733",
+    "search_line": -1
   }
 ]

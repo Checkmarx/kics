@@ -3,12 +3,30 @@
     "queryName": "Responses JSON Reference Does Not Exists (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/responses/Succes",
+    "searchValue": "",
+    "expectedValue": "Succes from #/responses/Succes should be declared on responses",
+    "actualValue": "Succes from #/responses/Succes is not declared on responses",
+    "issueType": "MissingAttribute",
+    "similarityID": "d6e29657c7a41446464b7eb4454a35bd01a99fc05b289fb1cd3b39ce34ba62b0",
+    "search_line": 0
   },
   {
     "queryName": "Responses JSON Reference Does Not Exists (v2)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/responses/Succes",
+    "searchValue": "",
+    "expectedValue": "Succes from #/responses/Succes should be declared on responses",
+    "actualValue": "Succes from #/responses/Succes is not declared on responses",
+    "issueType": "MissingAttribute",
+    "similarityID": "915956362427ce50cf46380ecf0145ae4316deba1caec2d5811eadd8dfb0022b",
+    "search_line": 0
   }
 ]

@@ -3,18 +3,45 @@
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_rds_cluster_instance[cluster_instances]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "a4ec3ee0e21bff46ac0e7774c08be83fa59de514f6896d0a8ba04e022f8d003a",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 23,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_db_instance[default]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "f96374e23f0656a0cdf362857cea8a0a4bcc42aa71e67927bcb51ba02d4aac9d",
+    "search_line": 23
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 35,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_db_instance[sample3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "ecc401c273b49f3b4f16cd9aed51be897fb49661ae3182169c3d5815d139a334",
+    "search_line": 35
   }
 ]

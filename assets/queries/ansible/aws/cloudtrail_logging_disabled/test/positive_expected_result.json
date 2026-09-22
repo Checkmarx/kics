@@ -2,6 +2,16 @@
   {
     "queryName": "CloudTrail Logging Disabled",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.cloudtrail",
+    "resourceName": "example",
+    "searchKey": "name={{example}}.{{community.aws.cloudtrail}}.enable_logging",
+    "searchValue": "",
+    "expectedValue": "cloudtrail.enable_logging should be true",
+    "actualValue": "cloudtrail.enable_logging is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "9ec673320b4aac5f721fbea1afb094187686f40251d15bc06d8bcc22709d153a",
+    "search_line": -1
   }
 ]

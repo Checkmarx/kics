@@ -3,12 +3,30 @@
     "queryName": "Elasticsearch Log Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_elasticsearch_domain",
+    "resourceName": "positive1",
+    "searchKey": "aws_elasticsearch_domain[{{positive1}}].log_publishing_options.enabled",
+    "searchValue": "",
+    "expectedValue": "'log_publishing_options.enabled' should be true",
+    "actualValue": "'log_publishing_options.enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "055e9a6e5743c7bc6b1e73cf8462f074d24695ad09012e24fbefc86014b6535b",
+    "search_line": 6
   },
   {
     "queryName": "Elasticsearch Log Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_elasticsearch_domain",
+    "resourceName": "positive2",
+    "searchKey": "aws_elasticsearch_domain[{{positive2}}]",
+    "searchValue": "",
+    "expectedValue": "'log_publishing_options' should be defined and not null",
+    "actualValue": "'log_publishing_options' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c8677cd129c390f99d9f7e6dcec06485c5fa816f7af33e0c2889ea3ecc6029fc",
+    "search_line": 1
   }
 ]

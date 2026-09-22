@@ -77,6 +77,9 @@ var (
 	blueprintRegexTargetScope                       = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
 	blueprintRegexProperties                        = regexp.MustCompile(`("properties"|properties)\s*:`)
 	buildahRegex                                    = regexp.MustCompile(`buildah\s*from\s*\w+`)
+	cniK8sNameRegex                                 = regexp.MustCompile("\\s*\"?name\"?\\s*:")
+	cniK8sVersionRegex                              = regexp.MustCompile("\\s*\"?cniVersion\"?\\s*:")
+	cniK8sPluginsRegex                              = regexp.MustCompile("\\s*\"?plugins\"?\\s*:")
 	dockerComposeServicesRegex                      = regexp.MustCompile(`(^|\n)\s*"?services"?\s*:[\w\W]*\n\s*"?(image|build)"?\s*:`)
 	crossPlaneRegex                                 = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
 	knativeRegex                                    = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
@@ -124,7 +127,7 @@ var (
 		"crossplane":           {"crossplane"},
 		"dockercompose":        {"dockercompose"},
 		"knative":              {"knative"},
-		"kubernetes":           {"kubernetes"},
+		"kubernetes":           {"kubernetes", "cniK8s"},
 		"openapi":              {"openapi"},
 		"terraform":            {"terraform", "cdkTf"},
 		"pulumi":               {"pulumi"},
@@ -294,6 +297,13 @@ var types = map[string]regexSlice{
 			cicdOnRegex,
 			cicdJobsRegex,
 			cicdStepsRegex,
+		},
+	},
+	"cniK8s": {
+		regex: []*regexp.Regexp{
+			cniK8sNameRegex,
+			cniK8sVersionRegex,
+			cniK8sPluginsRegex,
 		},
 	},
 }
@@ -624,6 +634,9 @@ func checkReturnType(path, returnType, ext string, content []byte) string {
 	if returnType != "" {
 		if returnType == "cdkTf" {
 			return terraform
+		}
+		if returnType == "cniK8s" {
+			return kubernetes
 		}
 		if utils.Contains(returnType, armRegexTypes) {
 			return arm

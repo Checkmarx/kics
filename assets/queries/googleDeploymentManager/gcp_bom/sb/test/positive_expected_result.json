@@ -1,32 +1,77 @@
 [
-	{
-		"queryName": "BOM - GCP SB",
-		"severity": "TRACE",
-		"line": 2,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "BOM - GCP SB",
-		"severity": "TRACE",
-		"line": 12,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "BOM - GCP SB",
-		"severity": "TRACE",
-		"line": 20,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "BOM - GCP SB",
-		"severity": "TRACE",
-		"line": 33,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "BOM - GCP SB",
-		"severity": "TRACE",
-		"line": 44,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "BOM - GCP SB",
+    "severity": "TRACE",
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{sample-input}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "7360bb0aba73109350d129e7fac4b0cd489d6ef3d59cdf92a9eb0277840f217e",
+    "search_line": -1
+  },
+  {
+    "queryName": "BOM - GCP SB",
+    "severity": "TRACE",
+    "line": 12,
+    "fileName": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{sample-input2}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "4b12c79af6155ce5d694533bdf40647979149faffce796a52db2c20d16949c37",
+    "search_line": -1
+  },
+  {
+    "queryName": "BOM - GCP SB",
+    "severity": "TRACE",
+    "line": 20,
+    "fileName": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{sample-input3}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "4f5446a3311cca4599ecb0f8c834c78b44e895281bff83d364bfb0caf3e37e8b",
+    "search_line": -1
+  },
+  {
+    "queryName": "BOM - GCP SB",
+    "severity": "TRACE",
+    "line": 33,
+    "fileName": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{sample-input4}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "0a4cbace231c952b1f3ebb4afc9c80da0f1e462a5d1a81ff7b524624ad8fae89",
+    "search_line": -1
+  },
+  {
+    "queryName": "BOM - GCP SB",
+    "severity": "TRACE",
+    "line": 44,
+    "fileName": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{sample-input5}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "d6565a595a1196e0bac0fbbaa51c5a1b240d693ca1e2b179bf5bf4548ffa92cf",
+    "search_line": -1
+  }
 ]

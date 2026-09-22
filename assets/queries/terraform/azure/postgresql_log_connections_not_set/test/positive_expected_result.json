@@ -2,16 +2,46 @@
   {
     "queryName": "PostgreSQL Log Connections Not Set",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_connections",
+    "searchKey": "azurerm_postgresql_configuration[positive1].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive1.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive1.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "02b5c18fd1639bad86ecc51486b486b32e197161aba5829744e1d6b5a3049035",
+    "search_line": 5
   },
   {
     "queryName": "PostgreSQL Log Connections Not Set",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_connections",
+    "searchKey": "azurerm_postgresql_configuration[positive2].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive2.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive2.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b1c3e3297adebb572fbefa494832c5a4b95b5136bcbb168d4f55e78cd20cbc6e",
+    "search_line": 12
   },
   {
     "queryName": "PostgreSQL Log Connections Not Set",
     "severity": "MEDIUM",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_connections",
+    "searchKey": "azurerm_postgresql_configuration[positive3].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive3.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive3.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ccd027f9661bfafd74b914622c396faae4423d48e8d0b0915654d6ea0425e174",
+    "search_line": 19
   }
 ]

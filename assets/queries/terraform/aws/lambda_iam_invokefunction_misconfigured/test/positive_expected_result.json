@@ -1,38 +1,92 @@
 [
-    {
-      "queryName": "Lambda IAM InvokeFunction Misconfigured",
-      "severity": "LOW",
-      "line": 8,
-      "filename": "positive1.tf"
-    },
-    {
-      "queryName": "Lambda IAM InvokeFunction Misconfigured",
-      "severity": "LOW",
-      "line": 8,
-      "filename": "positive2.tf"
-    },
-    {
-      "queryName": "Lambda IAM InvokeFunction Misconfigured",
-      "severity": "LOW",
-      "line": 8,
-      "filename": "positive3.tf"
-    },
-    {
-      "queryName": "Lambda IAM InvokeFunction Misconfigured",
-      "severity": "LOW",
-      "line": 5,
-      "filename": "positive4.tf"
-    },
-    {
-      "queryName": "Lambda IAM InvokeFunction Misconfigured",
-      "severity": "LOW",
-      "line": 8,
-      "filename": "positive5.tf"
-    },
-    {
-      "queryName": "Lambda IAM InvokeFunction Misconfigured",
-      "severity": "LOW",
-      "line": 8,
-      "filename": "positive6.tf"
-    }
+  {
+    "queryName": "Lambda IAM InvokeFunction Misconfigured",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive1policy",
+    "searchKey": "aws_iam_policy[positive1policy].policy",
+    "searchValue": "",
+    "expectedValue": "[positive1policy].policy should be misconfigured",
+    "actualValue": "[positive1policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name",
+    "issueType": "IncorrectValue",
+    "similarityID": "a0ba36953c9836056c21a95a71b60a5b0cc559b659b94c48fe077879bd25b044",
+    "search_line": -1
+  },
+  {
+    "queryName": "Lambda IAM InvokeFunction Misconfigured",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive2.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive2policy",
+    "searchKey": "aws_iam_policy[positive2policy].policy",
+    "searchValue": "",
+    "expectedValue": "[positive2policy].policy should be misconfigured",
+    "actualValue": "[positive2policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name",
+    "issueType": "IncorrectValue",
+    "similarityID": "3779e20958e132a63d17fe864587434a32b5cf644ae331ad78430bbd4934d73f",
+    "search_line": -1
+  },
+  {
+    "queryName": "Lambda IAM InvokeFunction Misconfigured",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive3.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive3policy",
+    "searchKey": "aws_iam_policy[positive3policy].policy",
+    "searchValue": "",
+    "expectedValue": "[positive3policy].policy should be misconfigured",
+    "actualValue": "[positive3policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name",
+    "issueType": "IncorrectValue",
+    "similarityID": "866270da9775226c6d60eefeeb382905cf065201c4d8488a6f180f553478d947",
+    "search_line": -1
+  },
+  {
+    "queryName": "Lambda IAM InvokeFunction Misconfigured",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive4.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive4policy",
+    "searchKey": "aws_iam_policy[positive4policy].policy",
+    "searchValue": "",
+    "expectedValue": "[positive4policy].policy should be misconfigured",
+    "actualValue": "[positive4policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name",
+    "issueType": "IncorrectValue",
+    "similarityID": "86b0f67e3349f362d9929c1ee302f594924255fc451b174da7371ac724ed3caa",
+    "search_line": -1
+  },
+  {
+    "queryName": "Lambda IAM InvokeFunction Misconfigured",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive5.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive5policy",
+    "searchKey": "aws_iam_policy[positive5policy].policy",
+    "searchValue": "",
+    "expectedValue": "[positive5policy].policy should be misconfigured",
+    "actualValue": "[positive5policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name",
+    "issueType": "IncorrectValue",
+    "similarityID": "a5b1363280c9289ebf0993f07684307aa902ac1c5c2840b8c8392b24877a626d",
+    "search_line": -1
+  },
+  {
+    "queryName": "Lambda IAM InvokeFunction Misconfigured",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive6.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive6policy",
+    "searchKey": "aws_iam_policy[positive6policy].policy",
+    "searchValue": "",
+    "expectedValue": "[positive6policy].policy should be misconfigured",
+    "actualValue": "[positive6policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name",
+    "issueType": "IncorrectValue",
+    "similarityID": "cf42107e12ffc8b17f7d295b46287c1433f8bc4386197a15af82c39dae7c809b",
+    "search_line": -1
+  }
 ]

@@ -1,26 +1,62 @@
 [
-	{
-		"queryName": "Pod or Container Without ResourceQuota",
-		"severity": "LOW",
-		"line": 5,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Pod or Container Without ResourceQuota",
-		"severity": "LOW",
-		"line": 4,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Pod or Container Without ResourceQuota",
-		"severity": "LOW",
-		"line": 5,
-		"fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Pod or Container Without ResourceQuota",
-		"severity": "LOW",
-		"line": 5,
-		"fileName": "positive4.yaml"
-	}
+  {
+    "queryName": "Pod or Container Without ResourceQuota",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod1",
+    "searchKey": "metadata.name={{pod1}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{pod1}} has a 'ResourceQuota' policy associated",
+    "actualValue": "metadata.name={{pod1}} does not have a 'ResourceQuota' policy associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "cc57d61b8558602f78c9cd959d280aacf66bea4e81ff073ec6cea4f629864e42",
+    "search_line": 5
+  },
+  {
+    "queryName": "Pod or Container Without ResourceQuota",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod2",
+    "searchKey": "metadata.name={{pod2}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{pod2}} has a 'ResourceQuota' policy associated",
+    "actualValue": "metadata.name={{pod2}} does not have a 'ResourceQuota' policy associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "9ce619f6c5bbf584f937a094b422c723dc513a96aa5a2bfeef72ccc386f24b9d",
+    "search_line": -1
+  },
+  {
+    "queryName": "Pod or Container Without ResourceQuota",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive3.yaml",
+    "resourceType": "DaemonSet",
+    "resourceName": "fluentd-elasticsearch",
+    "searchKey": "metadata.name={{fluentd-elasticsearch}}",
+    "searchValue": "DaemonSet",
+    "expectedValue": "metadata.name={{fluentd-elasticsearch}} has a 'ResourceQuota' policy associated",
+    "actualValue": "metadata.name={{fluentd-elasticsearch}} does not have a 'ResourceQuota' policy associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "ee583fbc73b9cc69cc6d09dcb098a4dd258fe0e9bd983d3c125db956fe77dd61",
+    "search_line": 5
+  },
+  {
+    "queryName": "Pod or Container Without ResourceQuota",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive4.yaml",
+    "resourceType": "PersistentVolumeClaim",
+    "resourceName": "webcontent",
+    "searchKey": "metadata.name={{webcontent}}",
+    "searchValue": "PersistentVolumeClaim",
+    "expectedValue": "metadata.name={{webcontent}} has a 'ResourceQuota' policy associated",
+    "actualValue": "metadata.name={{webcontent}} does not have a 'ResourceQuota' policy associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "532d778315d6ce3e7924181fdab2715840d289c7f4aa15fd9d69ccfe2bf85a4d",
+    "search_line": 5
+  }
 ]

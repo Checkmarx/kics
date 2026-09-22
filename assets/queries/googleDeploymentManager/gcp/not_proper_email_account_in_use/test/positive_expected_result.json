@@ -3,6 +3,15 @@
     "queryName": "Not Proper Email Account In Use",
     "severity": "LOW",
     "line": 9,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "pubsub.v1.topic",
+    "resourceName": "a-new-pubsub-topic",
+    "searchKey": "accessControl.gcpIamPolicy.bindings[%!s(int=0)].members.user:jane@gmail.com",
+    "searchValue": "",
+    "expectedValue": "'members' cannot contain Gmail account addresses",
+    "actualValue": "'members' has email address: user:jane@gmail.com",
+    "issueType": "IncorrectValue",
+    "similarityID": "fcc32782aa847dc8aeea4457c4944ff261565135b245c5ff5aef1450fa119ed1",
+    "search_line": 9
   }
 ]

@@ -2,16 +2,46 @@
   {
     "queryName": "Small Activity Log Retention Period",
     "severity": "LOW",
-    "line": 20
+    "line": 20,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_monitor_log_profile",
+    "resourceName": "default",
+    "searchKey": "azurerm_monitor_log_profile[positive1].retention_policy.days",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_log_profile[positive1].retention_policy.days' should be greater than or equal to 365 days or 0 (indefinitely)",
+    "actualValue": "'azurerm_monitor_log_profile[positive1].retention_policy.days' is less than 365 days or different than 0 (indefinitely)",
+    "issueType": "IncorrectValue",
+    "similarityID": "dc903c6d0679b6d9dd466a717187ef5ad80657219285e672f0ba7f30c64b4147",
+    "search_line": 20
   },
   {
     "queryName": "Small Activity Log Retention Period",
     "severity": "LOW",
-    "line": 41
+    "line": 41,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_monitor_log_profile",
+    "resourceName": "default",
+    "searchKey": "azurerm_monitor_log_profile[positive2].retention_policy",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_log_profile[positive2].retention_policy.days' should be defined and not null",
+    "actualValue": "'azurerm_monitor_log_profile[positive2].retention_policy.days' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "150c0d1fb2c77f8528b87ea5b6b023abe73ca4ca2a7f4d00df3d042330464154",
+    "search_line": 41
   },
   {
     "queryName": "Small Activity Log Retention Period",
     "severity": "LOW",
-    "line": 64
+    "line": 64,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_monitor_log_profile",
+    "resourceName": "default",
+    "searchKey": "azurerm_monitor_log_profile[positive3].retention_policy.enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_log_profile[positive3].retention_policy.enabled' should be set to true",
+    "actualValue": "'azurerm_monitor_log_profile[positive3].retention_policy.enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "c01bb677a151fa6cd715ad4aa502f9daf8834ebf3f7053f2d16d89fe9d5e68ef",
+    "search_line": 64
   }
 ]

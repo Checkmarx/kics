@@ -2,11 +2,31 @@
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive1",
+    "searchKey": "aws_api_gateway_stage[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_stage[positive1] has a 'aws_api_gateway_usage_plan' resource associated. ",
+    "actualValue": "aws_api_gateway_stage[positive1] doesn't have a 'aws_api_gateway_usage_plan' resource associated.",
+    "issueType": "IncorrectValue",
+    "similarityID": "80dafc8b65a6ada9f21edcd36cb7d5eab8079193f0657b48798c784d924f8395",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive2",
+    "searchKey": "aws_api_gateway_stage[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_stage[positive2] has a 'aws_api_gateway_usage_plan' resource associated. ",
+    "actualValue": "aws_api_gateway_stage[positive2] doesn't have a 'aws_api_gateway_usage_plan' resource associated.",
+    "issueType": "IncorrectValue",
+    "similarityID": "3165726482d810e306333ff9cc77875f7a1bd38e3acd199107778147284c6315",
+    "search_line": -1
   }
 ]
