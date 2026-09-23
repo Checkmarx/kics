@@ -3,7 +3,7 @@
 # it does not define an ENTRYPOINT as this is a requirement described here:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops#linux-based-containers
 #
-FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.26.2-bookworm@sha256:47ce5636e9936b2c5cbf708925578ef386b4f8872aec74a67bd13a627d242b19 AS build_env
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.26.3-bookworm@sha256:386d475a660466863d9f8c766fec64d7fdad3edac2c6a05020c09534d71edb4b AS build_env
 
 # Create a group and user
 RUN groupadd checkmarx && useradd -g checkmarx -M -s /bin/bash checkmarx
