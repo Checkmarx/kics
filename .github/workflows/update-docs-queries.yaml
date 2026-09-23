@@ -56,7 +56,7 @@ jobs:
           title: "docs(queries): update queries catalog"
           commit-message: "docs(queries): update queries catalog"
           delete-branch: true
-          branch: feature/update-queries-docs
+          branch: feature/kicsbot-update-queries-catalog
           body: |
             **Automated Changes**
             Updating queries' documentation.
