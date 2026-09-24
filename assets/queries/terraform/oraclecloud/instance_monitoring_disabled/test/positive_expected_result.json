@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Instance Monitoring Disabled",
+    "severity": "LOW",
+    "line": 6,
+    "fileName": "positive.tf"
+  }
+]
