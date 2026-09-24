@@ -8,7 +8,7 @@ Resources:
       Role: arn:aws:iam::123456789012:role/lambda-role
       Environment:
         Variables:
-          foo: "12345678901234567890123456789012345678901234567890123456789012345678901234567890$"
+          AWS_SECRET_ACCESS_KEY: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
       Code:
         S3Bucket: my-bucket
         S3Key: function.zip
