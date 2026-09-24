@@ -1,0 +1,14 @@
+{
+  "id": "ab2bf277-cd73-451c-8a34-70ea5c7ee258",
+  "queryName": "Beta - Container Seccomp Profile Not Set",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Containers should have a seccomp profile set to 'RuntimeDefault' or 'Localhost' in their security context. Without it, the container has an unconfined syscall profile, increasing the attack surface if a container breakout occurs.",
+  "descriptionUrl": "https://kubernetes.io/docs/tutorials/security/seccomp/",
+  "platform": "Kubernetes",
+  "descriptionID": "30a7f7cc",
+  "cloudProvider": "common",
+  "cwe": "250",
+  "riskScore": "5.5",
+  "experimental": "true"
+}

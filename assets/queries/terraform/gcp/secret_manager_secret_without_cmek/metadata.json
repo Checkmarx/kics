@@ -1,0 +1,14 @@
+{
+  "id": "fe0ff686-f344-4d06-ba0c-84321161aebb",
+  "queryName": "Beta - Secret Manager Secret Without CMEK",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "GCP Secret Manager secrets should use customer-managed encryption keys (CMEK) for enhanced key control. Without a 'customer_managed_encryption.kms_key_name' in the replication config, secrets are encrypted with Google-managed keys.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/secret_manager_secret#customer_managed_encryption",
+  "platform": "Terraform",
+  "descriptionID": "9be17ab9",
+  "cloudProvider": "gcp",
+  "cwe": "311",
+  "riskScore": "5.0",
+  "experimental": "true"
+}

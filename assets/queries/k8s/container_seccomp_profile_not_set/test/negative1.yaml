@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: negative-pod-container-level
+spec:
+  containers:
+  - name: app
+    image: nginx:1.21
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+      runAsNonRoot: true
