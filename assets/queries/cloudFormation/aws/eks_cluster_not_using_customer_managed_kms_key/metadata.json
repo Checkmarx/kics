@@ -1,0 +1,14 @@
+{
+  "id": "8e5ef52b-e673-4c3f-9b2e-99cdd0139059",
+  "queryName": "EKS Cluster Not Using Customer Managed KMS Key",
+  "severity": "LOW",
+  "category": "Encryption",
+  "descriptionText": "EKS clusters running Kubernetes 1.28 or later envelope encrypt all Kubernetes API data by default with an AWS owned KMS key. EKS clusters should be associated with a customer managed KMS key to meet stricter security and compliance requirements (e.g. CIS Amazon EKS Benchmark 5.3.1) on key ownership, rotation, key policy and audit visibility",
+  "descriptionUrl": "https://docs.aws.amazon.com/eks/latest/userguide/envelope-encryption.html",
+  "platform": "CloudFormation",
+  "descriptionID": "8e5ef52b",
+  "cloudProvider": "aws",
+  "cwe": "311",
+  "riskScore": "3.6",
+  "oldSeverity": "HIGH"
+}
