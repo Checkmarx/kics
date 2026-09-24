@@ -1,0 +1,14 @@
+{
+  "id": "263277ae-2584-437a-ab56-207476ea8311",
+  "queryName": "Beta - Lambda Function Not In VPC",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "AWS Lambda functions should be configured to run inside a VPC to restrict network access and reduce the attack surface.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#vpc_config",
+  "platform": "Terraform",
+  "descriptionID": "a1b2c3d4",
+  "cloudProvider": "aws",
+  "cwe": "668",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

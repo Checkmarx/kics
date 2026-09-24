@@ -1,0 +1,14 @@
+{
+  "id": "643aefc9-043e-44d7-bb3d-21fe6c879310",
+  "queryName": "Beta - Ansible pip Uses Extra Index URL Without Hash Verification",
+  "severity": "HIGH",
+  "category": "Supply Chain",
+  "descriptionText": "When Ansible pip tasks use --extra-index-url, they should also specify --require-hashes to prevent dependency confusion attacks where a malicious package on PyPI could shadow a private package.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html#parameter-extra_args",
+  "platform": "Ansible",
+  "descriptionID": "b0c1d2e3",
+  "cloudProvider": "common",
+  "cwe": "494",
+  "riskScore": "7.0",
+  "experimental": "true"
+}
