@@ -1,0 +1,23 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "MyLoadBalancerV2c": {
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+      "Properties": {
+        "Name": "myloadbalancerv2c",
+        "Scheme": "internet-facing"
+      }
+    },
+    "MyWebACLAssociation": {
+      "Type": "AWS::WAFv2::WebACLAssociation",
+      "Properties": {
+        "ResourceArn": {
+          "Fn::GetAtt": ["MyLoadBalancerV2c", "LoadBalancerArn"]
+        },
+        "WebACLArn": {
+          "Ref": "MyWebACL"
+        }
+      }
+    }
+  }
+}

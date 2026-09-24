@@ -140,6 +140,49 @@ get_name(targetName) = name {
 	name := targetName
 }
 
+# Check if WAF ResourceArn uses a Ref object to point to the target load balancer
+waf_resource_arn_matches_ref(resource_arn, target_alb) {
+	resource_arn.Ref == target_alb
+}
+
+# Check if WAF ResourceArn is a direct string equal to the target load balancer logical ID
+waf_resource_arn_matches_name(resource_arn, target_alb) {
+	is_string(resource_arn)
+	resource_arn == target_alb
+}
+
+# Check if WAF ResourceArn uses Fn::GetAtt array syntax for the target load balancer
+waf_resource_arn_matches_getatt(resource_arn, target_alb) {
+	resource_arn["Fn::GetAtt"][0] == target_alb
+}
+
+# Check if WAF ResourceArn is a YAML GetAtt-resolved string (LogicalId.Attribute)
+waf_resource_arn_matches_getatt_string(resource_arn, target_alb) {
+	is_string(resource_arn)
+	startswith(resource_arn, sprintf("%s.", [target_alb]))
+}
+
+# Check if a WAF association resource targets the given load balancer with supported syntax
+waf_association_targets_load_balancer(resource, target_alb) {
+	resource_arn := resource.Properties.ResourceArn
+	waf_resource_arn_matches_ref(resource_arn, target_alb)
+}
+
+waf_association_targets_load_balancer(resource, target_alb) {
+	resource_arn := resource.Properties.ResourceArn
+	waf_resource_arn_matches_name(resource_arn, target_alb)
+}
+
+waf_association_targets_load_balancer(resource, target_alb) {
+	resource_arn := resource.Properties.ResourceArn
+	waf_resource_arn_matches_getatt(resource_arn, target_alb)
+}
+
+waf_association_targets_load_balancer(resource, target_alb) {
+	resource_arn := resource.Properties.ResourceArn
+	waf_resource_arn_matches_getatt_string(resource_arn, target_alb)
+}
+
 get_resource_accessibility(nameRef, type, key) = info {
 	document := input.document
 	policy := document[_].Resources[_]
