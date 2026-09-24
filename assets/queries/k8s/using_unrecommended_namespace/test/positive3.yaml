@@ -2,4 +2,4 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: mongo.db.collection.com
-  namespace: kube-public
+  namespace: kube-system

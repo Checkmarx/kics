@@ -1,0 +1,76 @@
+# These should NOT be flagged - intentional public buckets
+
+Resources:
+  # Website bucket with public name pattern
+  WebsiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: my-website-static-files
+      # Should not be flagged - name indicates website use
+      
+  # Bucket with website configuration
+  StaticSiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: my-static-site
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+      # Should not be flagged - has website configuration
+      
+  # CDN bucket with CloudFront integration
+  CDNBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: my-cdn-assets
+      
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+          - Id: S3Origin
+            DomainName: !GetAtt CDNBucket.DomainName
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+        DefaultCacheBehavior:
+          TargetOriginId: S3Origin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD]
+          CachedMethods: [GET, HEAD]
+        Enabled: true
+        # CDN bucket should not be flagged due to CloudFront integration
+        
+  # Bucket with CORS configuration
+  CORSBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: my-cors-enabled-bucket
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders: ['*']
+            AllowedMethods: [GET, PUT, POST]
+            AllowedOrigins: ['*']
+            MaxAge: 3000
+      # Should not be flagged - has CORS configuration
+      
+  # Bucket with conditional public access policy
+  ConditionalPublicBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: conditional-public-bucket
+      
+  ConditionalPublicPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref ConditionalPublicBucket
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal: "*"
+            Action: "s3:GetObject"
+            Resource: !Sub "${ConditionalPublicBucket}/*"
+            Condition:
+              StringEquals:
+                "s3:ExistingObjectTag/public": "true"
+      # Should not be flagged - conditional public access (controlled)

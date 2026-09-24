@@ -1,0 +1,93 @@
+# Cases that should NOT be flagged by the improved rule - functions with similar permission needs
+
+service: similar-functions-service
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  environment:
+    STAGE: ${self:custom.stage}
+
+custom:
+  stage: ${opt:stage, 'dev'}
+
+functions:
+  # Functions with same event types - legitimate role sharing
+  getUserById:
+    handler: handlers/users.getById
+    role: arn:aws:iam::123456789012:role/UserReadRole
+    events:
+      - http:
+          path: /users/{id}
+          method: get
+    environment:
+      TABLE_NAME: users
+
+  getUserByEmail:
+    handler: handlers/users.getByEmail
+    role: arn:aws:iam::123456789012:role/UserReadRole
+    events:
+      - http:
+          path: /users/email/{email}
+          method: get
+    environment:
+      TABLE_NAME: users
+
+  listUsers:
+    handler: handlers/users.list
+    role: arn:aws:iam::123456789012:role/UserReadRole
+    events:
+      - http:
+          path: /users
+          method: get
+    environment:
+      TABLE_NAME: users
+
+  # Functions with same environment variables - similar permissions
+  processOrderPayment:
+    handler: handlers/orders.processPayment
+    role: arn:aws:iam::123456789012:role/OrderProcessingRole
+    events:
+      - http:
+          path: /orders/{id}/payment
+          method: post
+    environment:
+      PAYMENT_SERVICE_URL: https://payments.example.com
+      ORDER_TABLE: orders
+
+  processOrderShipping:
+    handler: handlers/orders.processShipping
+    role: arn:aws:iam::123456789012:role/OrderProcessingRole
+    events:
+      - http:
+          path: /orders/{id}/shipping
+          method: post
+    environment:
+      SHIPPING_SERVICE_URL: https://shipping.example.com
+      ORDER_TABLE: orders
+
+  # Functions with no events - can share roles
+  utilityFunction1:
+    handler: handlers/utils.function1
+    role: arn:aws:iam::123456789012:role/UtilityRole
+
+  utilityFunction2:
+    handler: handlers/utils.function2
+    role: arn:aws:iam::123456789012:role/UtilityRole
+
+  # Functions with same SQS event type
+  processQueue1:
+    handler: handlers/queue.process1
+    role: arn:aws:iam::123456789012:role/QueueProcessorRole
+    events:
+      - sqs:
+          arn: arn:aws:sqs:us-east-1:123456789012:queue1
+
+  processQueue2:
+    handler: handlers/queue.process2
+    role: arn:aws:iam::123456789012:role/QueueProcessorRole
+    events:
+      - sqs:
+          arn: arn:aws:sqs:us-east-1:123456789012:queue2

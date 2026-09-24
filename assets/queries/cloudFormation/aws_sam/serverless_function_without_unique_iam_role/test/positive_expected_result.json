@@ -2,25 +2,55 @@
   {
     "queryName": "Serverless Function Without Unique IAM Role",
     "severity": "HIGH",
-    "line": 19,
+    "line": 11,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "Serverless Function Without Unique IAM Role",
     "severity": "HIGH",
-    "line": 34,
+    "line": 24,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "Serverless Function Without Unique IAM Role",
     "severity": "HIGH",
-    "line": 19,
-    "fileName": "positive2.yaml"
+    "line": 37,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Serverless Function Without Unique IAM Role",
     "severity": "HIGH",
-    "line": 34,
-    "fileName": "positive2.yaml"
+    "line": 13,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "HIGH",
+    "line": 30,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "HIGH",
+    "line": 47,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "HIGH",
+    "line": 64,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "HIGH",
+    "line": 82,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "HIGH",
+    "line": 99,
+    "fileName": "positive3.yaml"
   }
 ]
