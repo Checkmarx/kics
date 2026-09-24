@@ -1,0 +1,14 @@
+{
+  "id": "2fb51f09-ac2b-4424-a394-a20c61fdde77",
+  "queryName": "Beta - ECS Task Definition Without Read-Only Root Filesystem",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "ECS container definitions should set readonlyRootFilesystem to true to prevent containers from writing to the root filesystem, limiting the blast radius of a container compromise and preventing persistent malware installation.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definition_security",
+  "platform": "Terraform",
+  "descriptionID": "c9d0e1f2",
+  "cloudProvider": "aws",
+  "cwe": "732",
+  "riskScore": "7.0",
+  "experimental": "true"
+}
