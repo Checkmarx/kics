@@ -1,6 +1,6 @@
 {
-  "id": "2b1836f1-dcce-416e-8e16-da8c71920633",
-  "queryName": "Workload Host Port Not Specified",
+  "id": "cfe96671-84e4-4f25-b349-bea992f590a2",
+  "queryName": "Workload Host Port Specified",
   "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "Verifies if Kubernetes workload's host port is specified",
