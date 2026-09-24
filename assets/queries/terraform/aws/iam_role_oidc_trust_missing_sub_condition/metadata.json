@@ -1,0 +1,13 @@
+{
+  "id": "4d8b6e2a-9f3c-4a1d-b7e5-8c2f0d6a3b9e",
+  "queryName": "IAM Role OIDC Trust Missing Sub Condition",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "An AWS IAM role that trusts an OIDC provider via 'sts:AssumeRoleWithWebIdentity' must include a condition that restricts the 'sub' (subject) claim. Without this condition, any identity that can obtain a token from the OIDC provider (any repository, project, or user) can assume the role.",
+  "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html",
+  "platform": "Terraform",
+  "descriptionID": "4d8b6e2a",
+  "cloudProvider": "aws",
+  "cwe": "284",
+  "riskScore": "8.5"
+}
