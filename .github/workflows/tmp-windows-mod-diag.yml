@@ -1,0 +1,51 @@
+name: tmp-windows-mod-diag
+
+# TEMPORARY: diagnose which Go modules are fetched via git (and trigger the credential helper) on Windows.
+# Lives outside go-ci.yml because go-ci.yml is an org-ruleset required workflow that always runs from master.
+# Remove once the Mozilla/Firefox traffic during "go mod vendor" is explained.
+
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  diagnose-module-fetch:
+    name: diagnose-module-fetch (cx-public-windows-2022-x64)
+    runs-on: cx-public-windows-2022-x64
+    permissions:
+      contents: read  # for actions/checkout to fetch code
+    steps:
+      - name: Setup Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          go-version: 1.26.x
+          cache: false
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Diagnose module fetch
+        shell: bash
+        env:
+          GIT_TRACE: "1"
+        run: |
+          go env GOPROXY GOPRIVATE GONOPROXY GONOSUMDB GOFLAGS GOMODCACHE
+          git --version
+          git config --show-origin --get-all credential.helper || true
+          go mod download -x 2>&1 | tee mod-download.log | grep -iE 'git(\.exe)? |credential|clone|ls-remote' || echo "no git invocations detected"
+      - name: Get Modules
+        run: |
+          go mod vendor
+      - name: Archive module download log
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: mod-download-windows-${{ github.event.pull_request.head.sha }}.log
+          path: mod-download.log
