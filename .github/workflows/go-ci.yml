@@ -89,6 +89,17 @@ jobs:
             ${{ runner.OS }}-build-${{ env.cache-name }}
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
+      # TEMPORARY: diagnose which modules are fetched via git (and trigger the credential helper) on Windows
+      - name: Diagnose module fetch (Windows only)
+        if: matrix.os == 'cx-public-windows-2022-x64'
+        shell: bash
+        env:
+          GIT_TRACE: "1"
+        run: |
+          go env GOPROXY GOPRIVATE GONOPROXY GONOSUMDB GOFLAGS
+          git --version
+          git config --show-origin --get-all credential.helper || true
+          go mod download -x 2>&1 | tee mod-download.log | grep -iE 'git(\.exe)? |credential|clone|ls-remote' || echo "no git invocations detected"
       - name: Get Modules
         run: |
           go mod vendor
