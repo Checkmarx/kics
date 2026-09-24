@@ -1,0 +1,14 @@
+{
+  "id": "92440d0d-889c-49c5-a0e6-13c5f326b872",
+  "queryName": "Beta - IBM Container Registry VA Alerts Missing (Automated)",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that IBM Kubernetes Service (IKS) clusters have a Vulnerability Advisor notification resource (ibm_container_va_notification) configured, enabling container vulnerability alerts from IBM Cloud Container Registry.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/container_cluster",
+  "platform": "Terraform",
+  "descriptionID": "92440d0d",
+  "cloudProvider": "ibm",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
