@@ -7,8 +7,8 @@
         "StageName": "Prod",
         "Description": "Prod Stage",
         "AccessLogSetting": {
-            "DestinationArn": "dest",
-            "Format": "format"
+          "DestinationArn": "dest",
+          "Format": "format"
         },
         "DeploymentId": {
           "Ref": "MyDeployment"
@@ -26,14 +26,13 @@
           },
           {
             "DetailedMetricsEnabled": true,
-            "LoggingLevel": "",
+            "LoggingLevel": "INFO",
             "DataTraceEnabled": false,
             "ThrottlingBurstLimit": 10,
             "ThrottlingRateLimit": 10
           },
           {
             "DetailedMetricsEnabled": true,
-            "LoggingLevel": "INFO",
             "DataTraceEnabled": false,
             "ThrottlingBurstLimit": 10,
             "ThrottlingRateLimit": 10

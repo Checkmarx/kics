@@ -18,7 +18,8 @@ Resources:
           HttpMethod: GET
           MetricsEnabled: false
           DataTraceEnabled: false
-        - ResourcePath: /stack
+        - LoggingLevel: "OFF"
+          ResourcePath: /stack
           HttpMethod: POST
           MetricsEnabled: false
           DataTraceEnabled: false
@@ -26,3 +27,4 @@ Resources:
           HttpMethod: GET
           MetricsEnabled: true
           DataTraceEnabled: false
+          LoggingLevel: "INFO"

@@ -10,7 +10,7 @@ resources:
         destinationArn: sampleArn
         format: CLF
       defaultRouteSettings:
-        loggingLevel: INFO
+        loggingLevel: "OFF"
   exampleV1:
     type: aws:apigateway:Stage
     properties:
@@ -18,8 +18,3 @@ resources:
       stageName: prod
       accessLogSettings:
         destinationArn: sampleArn
-      methodSettings:
-        - loggingLevel: INFO
-          dataTraceEnabled: false
-        - dataTraceEnabled: false
-          loggingLevel: ERROR

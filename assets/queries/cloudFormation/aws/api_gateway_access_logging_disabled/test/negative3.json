@@ -13,13 +13,22 @@
                 "DeploymentId": {
                     "Ref": "MyDeployment"
                 },
-                "MethodSettings": {
-                  "DetailedMetricsEnabled": true,
-                  "LoggingLevel": "INFO",
-                  "DataTraceEnabled": false,
-                  "ThrottlingBurstLimit": 10,
-                  "ThrottlingRateLimit": 10
-                },
+                "MethodSettings": [
+                  {
+                    "DetailedMetricsEnabled": true,
+                    "LoggingLevel": "INFO",
+                    "DataTraceEnabled": false,
+                    "ThrottlingBurstLimit": 10,
+                    "ThrottlingRateLimit": 10
+                  },
+                  {
+                    "DetailedMetricsEnabled": true,
+                    "LoggingLevel": "ERROR",
+                    "DataTraceEnabled": false,
+                    "ThrottlingBurstLimit": 10,
+                    "ThrottlingRateLimit": 10
+                  }
+                ],
                 "RestApiId": {
                     "Ref": "CFNWebSocket"
                 }

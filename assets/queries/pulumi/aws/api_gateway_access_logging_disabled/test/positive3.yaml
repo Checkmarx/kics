@@ -2,16 +2,7 @@ name: aws-eks
 runtime: yaml
 description: An EKS cluster
 resources:
-  exampleV2:
-    type: aws:apigatewayv2:Stage
-    properties:
-      apiId: ${aws_apigatewayv2_api.example.id}
-      accessLogSettings:
-        destinationArn: sampleArn
-        format: CLF
-      defaultRouteSettings:
-        loggingLevel: INFO
-  exampleV1:
+  example:
     type: aws:apigateway:Stage
     properties:
       restApiId: ${aws_api_gateway_rest_api.example.id}
@@ -19,7 +10,7 @@ resources:
       accessLogSettings:
         destinationArn: sampleArn
       methodSettings:
-        - loggingLevel: INFO
+        - loggingLevel: "OFF"
           dataTraceEnabled: false
         - dataTraceEnabled: false
-          loggingLevel: ERROR
+          loggingLevel: "INFO"
