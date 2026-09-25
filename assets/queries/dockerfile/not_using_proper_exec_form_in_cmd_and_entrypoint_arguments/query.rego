@@ -15,8 +15,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("{{%s}} should be in the JSON Notation", [resource.Original]),
-		"keyActualValue": sprintf("{{%s}} isn't in JSON Notation", [resource.Original]),
+		"keyExpectedValue": sprintf("{{%s}} should be in proper exec form", [resource.Original]),
+		"keyActualValue": sprintf("{{%s}} isn't in proper exec form", [resource.Original]),
 	}
 }
 
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("{{%s}} should be in the JSON Notation", [resource.Original]),
-        "keyActualValue": sprintf("{{%s}} isn't in JSON Notation", [resource.Original]),
+		"keyExpectedValue": sprintf("{{%s}} should be in proper exec form", [resource.Original]),
+		"keyActualValue": sprintf("{{%s}} isn't in proper exec form", [resource.Original]),
 	}
 }
