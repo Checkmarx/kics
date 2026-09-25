@@ -1,12 +1,12 @@
 {
-  "id": "b86987e1-6397-4619-81d5-8807f2387c79",
-  "queryName": "Not Using proper exec form In CMD And ENTRYPOINT Arguments",
+  "id": "34945ae8-730d-424c-8279-b064d9f108de",
+  "queryName": "Not Using Proper Exec Form In CMD And ENTRYPOINT Arguments",
   "severity": "MEDIUM",
   "category": "Build Process",
   "descriptionText": "Ensure that we are using proper exec form in the CMD and ENTRYPOINT Arguments",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#entrypoint",
   "platform": "Dockerfile",
-  "descriptionID": "070b84da",
+  "descriptionID": "9dbd509c",
   "cwe": "573",
   "riskScore": "5.2"
 }
