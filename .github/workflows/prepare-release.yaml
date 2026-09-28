@@ -51,7 +51,7 @@ jobs:
           title: "docs: preparing for release ${{ env.GIT_VERSION }}"
           commit-message: "docs: preparing for release ${{ env.GIT_VERSION }}"
           delete-branch: true
-          branch: feature/update-docs-index
+          branch: feature/kicsbot-update-docs-index
           base: master
           body: |
             **Automated Changes**
