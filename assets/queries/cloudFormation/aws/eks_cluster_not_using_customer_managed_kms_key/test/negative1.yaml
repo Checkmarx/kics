@@ -16,3 +16,5 @@ Resources:
       EncryptionConfig:
         - Resources:
           - secrets
+          Provider:
+            KeyArn: arn:aws:kms:us-east-1:012345678910:key/1234abcd-12ab-34cd-56ef-1234567890ab

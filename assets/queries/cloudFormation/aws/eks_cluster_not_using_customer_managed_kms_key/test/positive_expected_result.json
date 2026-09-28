@@ -1,0 +1,26 @@
+[
+  {
+    "severity": "LOW",
+    "line": 5,
+    "queryName": "EKS Cluster Not Using Customer Managed KMS Key",
+    "fileName": "positive1.yaml"
+  },
+  {
+    "severity": "LOW",
+    "line": 6,
+    "queryName": "EKS Cluster Not Using Customer Managed KMS Key",
+    "fileName": "positive2.json"
+  },
+  {
+    "severity": "LOW",
+    "line": 16,
+    "queryName": "EKS Cluster Not Using Customer Managed KMS Key",
+    "fileName": "positive3.yaml"
+  },
+  {
+    "severity": "LOW",
+    "line": 19,
+    "queryName": "EKS Cluster Not Using Customer Managed KMS Key",
+    "fileName": "positive4.json"
+  }
+]
