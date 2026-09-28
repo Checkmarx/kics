@@ -2,16 +2,46 @@
   {
     "queryName": "SQL Server Predictable Admin Account Name",
     "severity": "LOW",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_sqlserver",
+    "resourceName": "Create (or update) SQL Server1",
+    "searchKey": "name={{Create (or update) SQL Server1}}.{{azure_rm_sqlserver}}.admin_username",
+    "searchValue": "",
+    "expectedValue": "azure_rm_sqlserver.admin_username should not be empty",
+    "actualValue": "azure_rm_sqlserver.admin_username is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "be44737fdbe449bbe5c1922e3693c1c6af6432af31486973e5014217fa1b9dad",
+    "search_line": -1
   },
   {
     "queryName": "SQL Server Predictable Admin Account Name",
     "severity": "LOW",
-    "line": 14
+    "line": 14,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_sqlserver",
+    "resourceName": "Create (or update) SQL Server2",
+    "searchKey": "name={{Create (or update) SQL Server2}}.{{azure_rm_sqlserver}}.admin_username",
+    "searchValue": "",
+    "expectedValue": "azure_rm_sqlserver.admin_username should not be empty",
+    "actualValue": "azure_rm_sqlserver.admin_username is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "4d2398b9de95e2f54ee1907aca7385fd16d20c0a1e6aaad8a730561c335cfa78",
+    "search_line": -1
   },
   {
     "queryName": "SQL Server Predictable Admin Account Name",
     "severity": "LOW",
-    "line": 21
+    "line": 21,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_sqlserver",
+    "resourceName": "Create (or update) SQL Server3",
+    "searchKey": "name={{Create (or update) SQL Server3}}.{{azure_rm_sqlserver}}.admin_username",
+    "searchValue": "",
+    "expectedValue": "azure_rm_sqlserver.admin_username should not be predictable",
+    "actualValue": "azure_rm_sqlserver.admin_username is predictable",
+    "issueType": "IncorrectValue",
+    "similarityID": "eff6cd6e474e04ed1847df5fb0ca171cb568d9a428d46ce1eec4d1c5337ae76c",
+    "search_line": -1
   }
 ]

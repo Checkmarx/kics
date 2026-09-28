@@ -3,12 +3,30 @@
     "queryName": "Components Callback Definition Is Unused",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.callbacks.{{inProgress}}",
+    "searchValue": "",
+    "expectedValue": "Callback should be used as reference somewhere",
+    "actualValue": "Callback is not used as reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "165a28aa8735312c16445191ce08253e6a476bc9d53cac055221ccb76bd1da0a",
+    "search_line": 0
   },
   {
     "queryName": "Components Callback Definition Is Unused",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.callbacks.{{inProgress}}",
+    "searchValue": "",
+    "expectedValue": "Callback should be used as reference somewhere",
+    "actualValue": "Callback is not used as reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "72c57c403a5bcc7c1b38d23a8451b00fdc4fb5a024ea423b1d0feeea42b25e14",
+    "search_line": 0
   }
 ]

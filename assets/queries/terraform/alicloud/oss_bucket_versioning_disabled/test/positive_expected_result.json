@@ -1,14 +1,32 @@
 [
-    {
-      "queryName": "OSS Bucket Versioning Disabled",
-      "severity": "MEDIUM",
-      "line": 6,
-      "fileName": "positive1.tf"
-    },
-    {
-        "queryName": "OSS Bucket Versioning Disabled",
-        "severity": "MEDIUM",
-        "line": 1,
-        "fileName": "positive2.tf"
-      }
-  ]
+  {
+    "queryName": "OSS Bucket Versioning Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-170309-versioning",
+    "searchKey": "alicloud_oss_bucket[bucket-versioning2].versioning.status",
+    "searchValue": "",
+    "expectedValue": "'versioning.status' should be enabled",
+    "actualValue": "'versioning.status' is suspended",
+    "issueType": "IncorrectValue",
+    "similarityID": "c764bbff0eafedaa53e7046351f9fa451a2cb1489e121d083ed5262a20a944d0",
+    "search_line": 6
+  },
+  {
+    "queryName": "OSS Bucket Versioning Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-170309-versioning",
+    "searchKey": "alicloud_oss_bucket[bucket-versioning3]",
+    "searchValue": "",
+    "expectedValue": "'versioning.status' should be defined and set to enabled",
+    "actualValue": "'versioning' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "70b0cdda098b54b038cfc4d51432351cfe45ba7341da4fd945f61c5761a9e763",
+    "search_line": 1
+  }
+]

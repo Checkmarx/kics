@@ -3,12 +3,30 @@
     "queryName": "Public Security Group Rule Unknown Port",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].port_range",
+    "searchValue": "",
+    "expectedValue": "port_range should not contain unknown ports and should not be exposed to the entire Internet",
+    "actualValue": "port_range contains unknown ports and are exposed to the entire Internet",
+    "issueType": "IncorrectValue",
+    "similarityID": "4432ce69ff4e6a472778edc73632ce6822b4c5e91ed7cc7e1eafd6504693b984",
+    "search_line": 10
   },
   {
     "queryName": "Public Security Group Rule Unknown Port",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].port_range",
+    "searchValue": "",
+    "expectedValue": "port_range should not contain ports unknown and should not be exposed to the entire Internet",
+    "actualValue": "port_range contains ports unknown and are exposed to the entire Internet",
+    "issueType": "IncorrectValue",
+    "similarityID": "d6fe041bc14de9e24cd1f7479fcbb405d33d0337805109eac1b3164efab09ecb",
+    "search_line": 10
   }
 ]

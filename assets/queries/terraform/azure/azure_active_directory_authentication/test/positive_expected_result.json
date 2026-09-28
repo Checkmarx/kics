@@ -3,12 +3,30 @@
     "queryName": "Azure Active Directory Authentication",
     "severity": "LOW",
     "line": 19,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_service_fabric_cluster",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_service_fabric_cluster[positive1].azure_active_directory",
+    "searchValue": "",
+    "expectedValue": "'azurerm_service_fabric_cluster[positive1].azure_active_directory.tenant_id' should be defined and not null",
+    "actualValue": "'azurerm_service_fabric_cluster[positive1].azure_active_directory.tenant_id' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "bcde9f7f274ae9a3d0920ec05d374376c230571bf0191c998ef343af2b5cfad7",
+    "search_line": 19
   },
   {
     "queryName": "Azure Active Directory Authentication",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_service_fabric_cluster",
+    "resourceName": "example-servicefabric",
+    "searchKey": "azurerm_service_fabric_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_service_fabric_cluster[positive2].azure_active_directory' should be defined and not null",
+    "actualValue": "'azurerm_service_fabric_cluster[positive2].azure_active_directory' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "b86a7042457bdbf02da458989b5e6c4bf0299cbc7e1ce0255eb26010c85c65f9",
+    "search_line": 1
   }
 ]

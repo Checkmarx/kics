@@ -3,12 +3,30 @@
     "queryName": "BOM - AWS Kinesis",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_kinesis_stream[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "62e9f6b4858ff9a8b77482714ce70d441344a7e7208e0d4dd1a6e6ef4eab8e63",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS Kinesis",
     "severity": "TRACE",
     "line": 20,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_kinesis_stream[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "bfcecc9e850dcbcb73f18201b369388930eb4d3eeaf02b19a892baa6bacf2651",
+    "search_line": 20
   }
 ]

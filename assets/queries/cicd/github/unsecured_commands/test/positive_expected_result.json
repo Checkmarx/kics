@@ -1,20 +1,47 @@
 [
-    {
-		"queryName": "Unsecured Commands",
-		"severity": "MEDIUM",
-		"line": 8,
-		"fileName": "positive1.yaml"
-	},
-    {
-		"queryName": "Unsecured Commands",
-		"severity": "MEDIUM",
-		"line": 11,
-		"fileName": "positive2.yaml"
-	},
-    {
-		"queryName": "Unsecured Commands",
-		"severity": "MEDIUM",
-		"line": 16,
-		"fileName": "positive3.yaml"
-	}
+  {
+    "queryName": "Unsecured Commands",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "env.actions_allow_unsecure_commands={{true}}",
+    "searchValue": "",
+    "expectedValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is not set as true.",
+    "actualValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is set as true.",
+    "issueType": "IncorrectValue",
+    "similarityID": "85b60386025039f46b4f6f518f66af453d2854f5c3a90e7d5e065a6489b8f00f",
+    "search_line": 8
+  },
+  {
+    "queryName": "Unsecured Commands",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "env.actions_allow_unsecure_commands={{true}}",
+    "searchValue": "",
+    "expectedValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is not set as true.",
+    "actualValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is set as true.",
+    "issueType": "IncorrectValue",
+    "similarityID": "bea11b836744fcf58ed143d0f4fac2887fbf48cd05ea4bbb842e59324d9b8482",
+    "search_line": 11
+  },
+  {
+    "queryName": "Unsecured Commands",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "env.actions_allow_unsecure_commands={{true}}",
+    "searchValue": "",
+    "expectedValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is not set as true.",
+    "actualValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is set as true.",
+    "issueType": "IncorrectValue",
+    "similarityID": "a4f11028626902511f4ab9e50109138b858dd201e91fb6417918d81de5a699d9",
+    "search_line": 16
+  }
 ]

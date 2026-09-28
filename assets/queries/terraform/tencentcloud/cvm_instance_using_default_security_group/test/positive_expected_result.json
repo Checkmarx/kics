@@ -3,12 +3,30 @@
     "queryName": "CVM Instance Using Default Security Group",
     "severity": "LOW",
     "line": 18,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "tencentcloud_instance",
+    "resourceName": "cvm_postpaid",
+    "searchKey": "tencentcloud_instance[cvm_postpaid].orderly_security_groups",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_instance[cvm_postpaid].orderly_security_groups should not contain 'default'",
+    "actualValue": "tencentcloud_instance[cvm_postpaid].orderly_security_groups contains 'default'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4255bf625b2f25fe7f036646b08b434d39fae7bef8a357bd33ecb5e308513bf8",
+    "search_line": 18
   },
   {
     "queryName": "CVM Instance Using Default Security Group",
     "severity": "LOW",
     "line": 18,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "tencentcloud_instance",
+    "resourceName": "cvm_postpaid",
+    "searchKey": "tencentcloud_instance[cvm_postpaid].security_groups",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_instance[cvm_postpaid].security_groups should not contain 'default'",
+    "actualValue": "tencentcloud_instance[cvm_postpaid].security_groups contains 'default'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0d5e3459c5ce2552a5575b25fbc0cebcd4e1c06e097f7129c936922672023510",
+    "search_line": 18
   }
 ]

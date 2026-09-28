@@ -3,36 +3,90 @@
     "queryName": "Auto Scaling Group With No Associated ELB",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_autoscaling_group",
+    "resourceName": "bar",
+    "searchKey": "aws_autoscaling_group[bar]",
+    "searchValue": "",
+    "expectedValue": "aws_autoscaling_group[bar].load_balancers should be set and not empty",
+    "actualValue": "aws_autoscaling_group[bar].load_balancers is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "cee4eb377203162aa8ee37c881d29a19dbab254b8191fc60bbbf12562477b87d",
+    "search_line": 1
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_autoscaling_group",
+    "resourceName": "positive2",
+    "searchKey": "aws_autoscaling_group[positive2].load_balancers",
+    "searchValue": "",
+    "expectedValue": "aws_autoscaling_group[positive2].load_balancers should be set and not empty",
+    "actualValue": "aws_autoscaling_group[positive2].load_balancers is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "e78d0ae0844ef83dd7dd742f8f49997de290077ec2843c802e6109fec9e324da",
+    "search_line": 12
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive3]",
+    "searchValue": "",
+    "expectedValue": "'load_balancers' should be set and not empty",
+    "actualValue": "'load_balancers' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "38528b242d39820c13948f9780d1305c890554f54b819f8d1731e0c78d908dbf",
+    "search_line": 1
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive4].load_balancers",
+    "searchValue": "",
+    "expectedValue": "'load_balancers' should be set and not empty",
+    "actualValue": "'load_balancers' is undefined",
+    "issueType": "IncorrectValue",
+    "similarityID": "52265c95dd14af9747622e444a116ec1a61d188544b57913b28ff6b1253685fc",
+    "search_line": 14
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_autoscaling_group",
+    "resourceName": "bar-<unknown-sufix>",
+    "searchKey": "aws_autoscaling_group[foo]",
+    "searchValue": "",
+    "expectedValue": "aws_autoscaling_group[foo].load_balancers should be set and not empty",
+    "actualValue": "aws_autoscaling_group[foo].load_balancers is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c47d78efd0d110432c9e8baf296854230a9b7de66fa18c5baa9d0d66f07e005b",
+    "search_line": 1
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "aws_autoscaling_group",
+    "resourceName": "bar-<unknown-sufix>",
+    "searchKey": "aws_autoscaling_group[foo]",
+    "searchValue": "",
+    "expectedValue": "aws_autoscaling_group[foo].load_balancers should be set and not empty",
+    "actualValue": "aws_autoscaling_group[foo].load_balancers is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7d836cb35fc583b128128ca1bf8ad7dc1e3f686c3053677e2fc179273a771e3c",
+    "search_line": 1
   }
 ]

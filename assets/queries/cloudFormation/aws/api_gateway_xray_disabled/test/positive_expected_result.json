@@ -3,24 +3,60 @@
     "queryName": "API Gateway X-Ray Disabled",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos3.Properties.TracingEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos3.Properties.TracingEnabled should be true",
+    "actualValue": "Resources.ProdPos3.Properties.TracingEnabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1d8f6af2d4e6b351b9ed4c34ccfc9e98bdf630009369d71c2605a11b653063e2",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway X-Ray Disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos4.Properties.TracingEnabled should be defined",
+    "actualValue": "Resources.ProdPos4.Properties.TracingEnabled is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "cc82edc6709bd3b49a3077f7a47c86e8ceebde2c10f8d9911ab06edc335e8caa",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway X-Ray Disabled",
     "severity": "LOW",
     "line": 23,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos1.Properties.TracingEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos1.Properties.TracingEnabled should be true",
+    "actualValue": "Resources.ProdPos1.Properties.TracingEnabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "00b03350ff58c06882f864988bb4be39014019cbcfab64aae7cb545f853a6a9e",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway X-Ray Disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos2.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos2.Properties.TracingEnabled should be defined",
+    "actualValue": "Resources.ProdPos2.Properties.TracingEnabled is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b6f2b464acf02473142ea2134ee45c8161a8b0258763b0de49f0e90092020290",
+    "search_line": -1
   }
 ]

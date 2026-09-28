@@ -3,42 +3,105 @@
     "queryName": "IAM User Without Password Reset",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.LoginProfile.PasswordResetRequired",
+    "searchValue": "",
+    "expectedValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' should be configured as true",
+    "actualValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' is configured as false",
+    "issueType": "IncorrectValue",
+    "similarityID": "576195591b068ad30964cd6f403766b279ab0c2c2bb61dd637f7156effdb659f",
+    "search_line": -1
   },
   {
     "queryName": "IAM User Without Password Reset",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "newuser",
+    "searchKey": "Resources.newuser.Properties.LoginProfile",
+    "searchValue": "",
+    "expectedValue": "'Resources.newuser.Properties.LoginProfile' should also include PasswordResetRequired property set to true",
+    "actualValue": "'Resources.newuser.Properties.LoginProfile' contains only Password property",
+    "issueType": "MissingAttribute",
+    "similarityID": "ebcb377acbeea095c36f3427a49c73bd8922dac6fbe10f548df0d1f585846003",
+    "search_line": -1
   },
   {
     "queryName": "IAM User Without Password Reset",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "topuser",
+    "searchKey": "Resources.topuser.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.topuser.Properties' should be configured with LoginProfile with PasswordResetRequired property set to true",
+    "actualValue": "'Resources.topuser.Properties' does not include LoginProfile",
+    "issueType": "MissingAttribute",
+    "similarityID": "fe089cdff11a40c0306bdf0be63f2e1c4f364671ea4f33914a85caa564216428",
+    "search_line": -1
   },
   {
     "queryName": "IAM User Without Password Reset",
     "severity": "MEDIUM",
     "line": 38,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.LoginProfile.PasswordResetRequired",
+    "searchValue": "",
+    "expectedValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' should be configured as true",
+    "actualValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' is configured as false",
+    "issueType": "IncorrectValue",
+    "similarityID": "b96e74542d30a8d319bea0e8bc048eb091efd336c41953eb246fd641743c7866",
+    "search_line": -1
   },
   {
     "queryName": "IAM User Without Password Reset",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "newuser",
+    "searchKey": "Resources.newuser.Properties.LoginProfile",
+    "searchValue": "",
+    "expectedValue": "'Resources.newuser.Properties.LoginProfile' should also include PasswordResetRequired property set to true",
+    "actualValue": "'Resources.newuser.Properties.LoginProfile' contains only Password property",
+    "issueType": "MissingAttribute",
+    "similarityID": "1ee952d64c8f77813f8e19666a2586e22216700a944989297b47ed3292be7466",
+    "search_line": -1
   },
   {
     "queryName": "IAM User Without Password Reset",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "topuser",
+    "searchKey": "Resources.topuser.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.topuser.Properties' should be configured with LoginProfile with PasswordResetRequired property set to true",
+    "actualValue": "'Resources.topuser.Properties' does not include LoginProfile",
+    "issueType": "MissingAttribute",
+    "similarityID": "d2e42f0d5e396c2f77fac84af9d7022d9849f1dff27b42f14fdbe8d28943667f",
+    "search_line": -1
   },
   {
     "queryName": "IAM User Without Password Reset",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.LoginProfile.PasswordResetRequired",
+    "searchValue": "",
+    "expectedValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' should be configured as true",
+    "actualValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' is configured as false",
+    "issueType": "IncorrectValue",
+    "similarityID": "7af34ef5dd3d5d2dbd655e4fdee8865f450cea1ca08393ba8c0198b8bee46070",
+    "search_line": -1
   }
 ]

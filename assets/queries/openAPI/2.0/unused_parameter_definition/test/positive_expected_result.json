@@ -3,12 +3,30 @@
     "queryName": "Global Parameter Definition Not Being Used",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.{{limitParam}}",
+    "searchValue": "",
+    "expectedValue": "parameter definition 'limitParam' is used",
+    "actualValue": "parameter definition 'limitParam' is not being used",
+    "issueType": "MissingAttribute",
+    "similarityID": "834f477c1daead90b74399556711a920ea3c94e8f487e4d5154a540a98a12db5",
+    "search_line": 0
   },
   {
     "queryName": "Global Parameter Definition Not Being Used",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.{{limitParam}}",
+    "searchValue": "",
+    "expectedValue": "parameter definition 'limitParam' is used",
+    "actualValue": "parameter definition 'limitParam' is not being used",
+    "issueType": "MissingAttribute",
+    "similarityID": "50834dab124b84f41e1a719f907a4a8d8a7b7c5139813aa287a7cfda7d815d6a",
+    "search_line": 0
   }
 ]

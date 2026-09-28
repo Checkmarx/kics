@@ -3,12 +3,30 @@
     "queryName": "Schema JSON Reference Does Not Exist (v3)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref",
+    "searchValue": "",
+    "expectedValue": "MyWrongObject from #/components/schemas/MyWrongObject should be declared on components.schemas",
+    "actualValue": "MyWrongObject from #/components/schemas/MyWrongObject is not declared on components.schemas",
+    "issueType": "MissingAttribute",
+    "similarityID": "48bec6aabe9e8229c8dbd6f5b3dbd5c80fd479fd7e50c96227dfc7fbed3519af",
+    "search_line": 0
   },
   {
     "queryName": "Schema JSON Reference Does Not Exist (v3)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref",
+    "searchValue": "",
+    "expectedValue": "MyWrongObject from #/components/schemas/MyWrongObject should be declared on components.schemas",
+    "actualValue": "MyWrongObject from #/components/schemas/MyWrongObject is not declared on components.schemas",
+    "issueType": "MissingAttribute",
+    "similarityID": "364b5e3ee1045f69964a8eaab9623a0fc12ffc9e0fd9970044e4227c7b01c593",
+    "search_line": 0
   }
 ]

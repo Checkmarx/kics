@@ -3,18 +3,45 @@
     "queryName": "Secure Ciphers Disabled",
     "severity": "MEDIUM",
     "line": 26,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion is TLSv1.1 or TLSv1.2",
+    "actualValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion isn't TLSv1.1 or TLSv1.2",
+    "issueType": "IncorrectValue",
+    "similarityID": "c103fa2d5b0e993d1ffe85c5123d74dae548f2666647781506bfc763aeff6fb3",
+    "search_line": -1
   },
   {
     "queryName": "Secure Ciphers Disabled",
     "severity": "MEDIUM",
     "line": 44,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion is TLSv1.1 or TLSv1.2",
+    "actualValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion isn't TLSv1.1 or TLSv1.2",
+    "issueType": "IncorrectValue",
+    "similarityID": "fd13fdf9ecf8fa83527fa74e2e3ae17ec185da73b537044ef0ea0486f60ada86",
+    "search_line": -1
   },
   {
     "queryName": "Secure Ciphers Disabled",
     "severity": "MEDIUM",
     "line": 26,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion is TLSv1.1 or TLSv1.2",
+    "actualValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion isn't TLSv1.1 or TLSv1.2",
+    "issueType": "IncorrectValue",
+    "similarityID": "91fcb02b5c34d9e263ac3f8eed5a475d3103691ef4dd652b7d9cdd0da7238359",
+    "search_line": -1
   }
 ]

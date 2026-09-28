@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "BOM - GCP Dataflow",
-		"severity": "TRACE",
-		"line": 1,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP Dataflow",
-		"severity": "TRACE",
-		"line": 17,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "BOM - GCP Dataflow",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_dataflow_job[pubsub_stream]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "622447c94949e17cea33d190d7d5e892121993254e1035e2e3f7398777b6f320",
+    "search_line": 1
+  },
+  {
+    "queryName": "BOM - GCP Dataflow",
+    "severity": "TRACE",
+    "line": 17,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_dataflow_job[pubsub_stream2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "83ace12a4c1e05f315f3b6b573037828ad82c758f2ca129431a91fc8e07fc5a4",
+    "search_line": 17
+  }
 ]

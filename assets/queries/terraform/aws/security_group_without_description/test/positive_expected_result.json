@@ -3,24 +3,60 @@
     "queryName": "Security Group Without Description",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1-1",
+    "searchKey": "aws_security_group[positive1-1]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-1] description should be defined and not null",
+    "actualValue": "aws_security_group[positive1-1] description is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "960de85fdf1c4db8375f9b248a031bfc0367113fdac8d6c818f222ef74382907",
+    "search_line": 1
   },
   {
     "queryName": "Security Group Without Description",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1-2",
+    "searchKey": "aws_security_group[positive1-2]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-2] description should be defined and not null",
+    "actualValue": "aws_security_group[positive1-2] description is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "681a8f97ac1b877046bd99b549b785ca8a8e44891d5f9939bb46ea121bf78221",
+    "search_line": 7
   },
   {
     "queryName": "Security Group Without Description",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive2-1]",
+    "searchValue": "",
+    "expectedValue": "module[positive2-1] description should be defined and not null",
+    "actualValue": "module[positive2-1] description is undefined or null",
+    "issueType": "IncorrectValue",
+    "similarityID": "4a69f3682342a52de2beb7256a7fac28bfc828f9ee777bd9d66da6d86bc694f1",
+    "search_line": 1
   },
   {
     "queryName": "Security Group Without Description",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive2-2]",
+    "searchValue": "",
+    "expectedValue": "module[positive2-2] description should be defined and not null",
+    "actualValue": "module[positive2-2] description is undefined or null",
+    "issueType": "IncorrectValue",
+    "similarityID": "3e654d209ab4a20f7bf46e32f751f2e8330c62685eac489676c7fa5826986101",
+    "search_line": 10
   }
 ]

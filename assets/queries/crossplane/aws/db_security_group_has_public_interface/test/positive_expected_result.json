@@ -3,12 +3,30 @@
     "queryName": "DB Security Group Has Public Interface",
     "severity": "HIGH",
     "line": 17,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "SecurityGroup",
+    "resourceName": "ec2-rule2",
+    "searchKey": "metadata.name={{ec2-rule2}}.spec.forProvider.ingress.ipRanges.cidrIp={{0.0.0.0/0}}",
+    "searchValue": "",
+    "expectedValue": "ingress rule should not contain '0.0.0.0/0'",
+    "actualValue": "ingress rule contains '0.0.0.0/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d6442b66ba25e6ddd9ccbf9095eed59d6afe4499eabaeb23e536c9498b58eab2",
+    "search_line": 17
   },
   {
     "queryName": "DB Security Group Has Public Interface",
     "severity": "HIGH",
     "line": 55,
-    "fileName": "positive.yaml"
-  }  
+    "fileName": "positive.yaml",
+    "resourceType": "SecurityGroup",
+    "resourceName": "ec2-rule5",
+    "searchKey": "spec.resources.base.metadata.name={{ec2-rule5}}.spec.forProvider.ingress.ipRanges.cidrIp={{0.0.0.0/0}}",
+    "searchValue": "",
+    "expectedValue": "ingress rule should not contain '0.0.0.0/0'",
+    "actualValue": "ingress rule contains '0.0.0.0/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "15821ed74d67709039a59cbbef5e0eec66e130765b7a84e0f701e41a8a344050",
+    "search_line": 55
+  }
 ]

@@ -3,6 +3,15 @@
     "queryName": "Role With Privilege Escalation By Actions 'glue:UpdateDevEndpoint'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_role[cosmic]",
+    "searchValue": "",
+    "expectedValue": "role cosmic shouldn't be associated with a policy that has Action set to 'glue:UpdateDevEndpoint' and Resource set to '*'",
+    "actualValue": "role cosmic is associated with a policy that has Action set to 'glue:UpdateDevEndpoint' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "73ba99a21b218c2922bb96d05409c1309f70ac26fd342b11d6edeb824c800de5",
+    "search_line": 1
   }
 ]

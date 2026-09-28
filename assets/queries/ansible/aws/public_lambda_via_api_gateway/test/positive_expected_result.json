@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "Public Lambda via API Gateway",
-		"severity": "MEDIUM",
-		"line": 9
-	}
+  {
+    "queryName": "Public Lambda via API Gateway",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "lambda_policy",
+    "resourceName": "Lambda S3 event notification",
+    "searchKey": "name={{Lambda S3 event notification}}.{{lambda_policy}}.source_arn",
+    "searchValue": "",
+    "expectedValue": "lambda_policy.source_arn should not equal to '/*/*'",
+    "actualValue": "lambda_policy.source_arn is equal to '/*/*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "771e465e0deef547d2a94820f06c91e8f50d7db138524ef3b2f90e7a954b95b8",
+    "search_line": -1
+  }
 ]

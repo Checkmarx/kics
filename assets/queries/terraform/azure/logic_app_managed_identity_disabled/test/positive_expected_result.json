@@ -3,6 +3,15 @@
     "queryName": "Beta - Logic App Managed Identity Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_logic_app_standard",
+    "resourceName": "example-logic-app",
+    "searchKey": "azurerm_logic_app_standard[positive]",
+    "searchValue": "",
+    "expectedValue": "'type' field should have the values 'SystemAssigned' or 'UserAssigned' defined inside the 'identity' block",
+    "actualValue": "'identity' block is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "25802d6ee6eebfd9c5e012f5634ea38e52e0214b9d98c2ba76960fa64e8ad5cf",
+    "search_line": 1
   }
 ]

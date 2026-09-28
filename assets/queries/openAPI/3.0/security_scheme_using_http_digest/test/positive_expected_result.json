@@ -3,12 +3,30 @@
     "queryName": "Security Scheme Using HTTP Digest",
     "severity": "LOW",
     "line": 57,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}.scheme",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use 'digest' authentication",
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses 'digest' authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "dd3ff81622421726124d88e2dfc2c21cf498dda6fa719361f342e050d30ad5b0",
+    "search_line": -1
   },
   {
     "queryName": "Security Scheme Using HTTP Digest",
     "severity": "LOW",
     "line": 33,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}.scheme",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use 'digest' authentication",
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses 'digest' authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "98b00dca6111c78f1fff2c12b693121c70e20164b0927fa7f01ea8c681991f8d",
+    "search_line": -1
   }
 ]

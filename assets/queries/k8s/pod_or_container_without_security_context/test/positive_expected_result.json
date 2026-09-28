@@ -1,13 +1,32 @@
 [
-	{
-		"queryName": "Pod or Container Without Security Context",
-		"severity": "LOW",
-		"line": 5
-	},
-
-	{
-		"queryName": "Pod or Container Without Security Context",
-		"severity": "LOW",
-		"line": 19
-	}
+  {
+    "queryName": "Pod or Container Without Security Context",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "frontend",
+    "searchKey": "metadata.name={{frontend}}.spec",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{frontend}}.spec has a security context",
+    "actualValue": "metadata.name={{frontend}}.spec does not have a security context",
+    "issueType": "MissingAttribute",
+    "similarityID": "61923990f3ed22f82f7dae18d5237380a9d87702da6e38b9139721d874cf8940",
+    "search_line": 5
+  },
+  {
+    "queryName": "Pod or Container Without Security Context",
+    "severity": "LOW",
+    "line": 19,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "frontend",
+    "searchKey": "metadata.name={{frontend}}.spec.containers.name=log-aggregator",
+    "searchValue": "Pod",
+    "expectedValue": "spec.containers.name=log-aggregator has a security context",
+    "actualValue": "spec.containers.name=log-aggregator does not have a security context",
+    "issueType": "MissingAttribute",
+    "similarityID": "aae17741cb99480b6fae71a7d29e5b1383495146939a8358738793d7ba3dd1da",
+    "search_line": 19
+  }
 ]

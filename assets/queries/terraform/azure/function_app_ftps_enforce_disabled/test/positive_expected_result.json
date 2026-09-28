@@ -3,30 +3,75 @@
     "queryName": "Function App FTPS Enforce Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_function_app[positive1-1].site_config.ftps_state",
+    "searchValue": "",
+    "expectedValue": "'azurerm_function_app[positive1-1].site_config.ftps_state' should not be set to 'AllAllowed'",
+    "actualValue": "'azurerm_function_app[positive1-1].site_config.ftps_state' is set to 'AllAllowed'",
+    "issueType": "IncorrectValue",
+    "similarityID": "77bba5972d6d26cf843de7fdb61b0a97419452110739c80a906f09a11486c275",
+    "search_line": 9
   },
   {
     "queryName": "Function App FTPS Enforce Disabled",
     "severity": "MEDIUM",
     "line": 19,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_function_app[positive1-2].site_config'",
+    "searchValue": "",
+    "expectedValue": "'azurerm_function_app[positive1-2].site_config.ftps_state' should be defined and not null",
+    "actualValue": "'azurerm_function_app[positive1-2].site_config.ftps_state' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "719b5794023cef448812bb00f9c2e9afcf3a06023dc65df5b03de67c12bfaace",
+    "search_line": 19
   },
   {
     "queryName": "Function App FTPS Enforce Disabled",
     "severity": "MEDIUM",
     "line": 24,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_function_app[positive1-3]'",
+    "searchValue": "",
+    "expectedValue": "'azurerm_function_app[positive1-3].site_config.ftps_state' should be defined and not null",
+    "actualValue": "'azurerm_function_app[positive1-3].site_config.ftps_state' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "0f14a7497421fb1a5e646b15d068f626130b0af7a214adccd01ddb7fc540b403",
+    "search_line": 24
   },
   {
     "queryName": "Function App FTPS Enforce Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_linux_function_app[positive2].site_config.ftps_state",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[positive2].site_config.ftps_state' should not be set to 'AllAllowed'",
+    "actualValue": "'azurerm_linux_function_app[positive2].site_config.ftps_state' is set to 'AllAllowed'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0140c0913d7e7d34d199959f4a61db51e91aa4dd8f39f3286c1375842c4ce008",
+    "search_line": 9
   },
   {
     "queryName": "Function App FTPS Enforce Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_windows_function_app[positive3].site_config.ftps_state",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_function_app[positive3].site_config.ftps_state' should not be set to 'AllAllowed'",
+    "actualValue": "'azurerm_windows_function_app[positive3].site_config.ftps_state' is set to 'AllAllowed'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3da0252f6baeb2fe79c777912bbda20d50b89af2c452c3d6f49a25b8aa95678f",
+    "search_line": 9
   }
 ]

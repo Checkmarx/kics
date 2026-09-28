@@ -3,12 +3,30 @@
     "queryName": "RDS Storage Not Encrypted",
     "severity": "HIGH",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_rds_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_rds_cluster.storage_encrypted should be set to true",
+    "actualValue": "aws_rds_cluster.storage_encrypted is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "223dd21b966a389a8c91a9c14230f63e549ff8047e80963f1afb9c73cc089dc1",
+    "search_line": 1
   },
   {
     "queryName": "RDS Storage Not Encrypted",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "positive3",
+    "searchKey": "aws_rds_cluster[positive3].storage_encrypted",
+    "searchValue": "",
+    "expectedValue": "aws_rds_cluster.storage_encrypted should be set to true",
+    "actualValue": "aws_rds_cluster.storage_encrypted is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "15c814be92da6266eb196371fffade27d3ca6ce35ccdac53f9df59e67807619b",
+    "search_line": 10
   }
 ]

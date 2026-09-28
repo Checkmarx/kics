@@ -3,24 +3,60 @@
     "queryName": "Kubelet Read Only Port Is Not Set To Zero",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--read-only-port flag should be '0'",
+    "actualValue": "--read-only-port flag is not set to '0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f82628f2fa3964a741aed1535bf4dd20173cd5ed847e6ecac65d05260de27ab2",
+    "search_line": -1
   },
   {
     "queryName": "Kubelet Read Only Port Is Not Set To Zero",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--read-only-port flag should be '0'",
+    "actualValue": "--read-only-port flag is not set to '0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f5a76a826529a77bb31a5edadcfc44d913f5f070b5dbd2d4d465ca28530d0e56",
+    "search_line": -1
   },
   {
     "queryName": "Kubelet Read Only Port Is Not Set To Zero",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.readOnlyPort",
+    "searchValue": "",
+    "expectedValue": "readOnlyPort attribute to have value of 0",
+    "actualValue": "readOnlyPort attribute has value of 1",
+    "issueType": "IncorrectValue",
+    "similarityID": "3fc5943118c41c5ccf33c0f92f31141f813ba42dacc1f30aafc10a0051a71876",
+    "search_line": -1
   },
   {
     "queryName": "Kubelet Read Only Port Is Not Set To Zero",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.readOnlyPort",
+    "searchValue": "",
+    "expectedValue": "readOnlyPort attribute to have value of 0",
+    "actualValue": "readOnlyPort attribute has value of 1",
+    "issueType": "IncorrectValue",
+    "similarityID": "d8a3d1d2d466905384c3935a9946a2c805a4494da8606314e5674f844c80b442",
+    "search_line": -1
   }
 ]

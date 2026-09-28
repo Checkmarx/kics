@@ -2,73 +2,181 @@
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
     "severity": "LOW",
+    "line": 12,
+    "fileName": "positive1.bicep",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "resources.name=string.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue",
+    "similarityID": "2c33f32839383c876d5bc32116d1f03deb90ab16fbc710cae088d5bf16ee0a42",
+    "search_line": 12
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "LOW",
     "line": 26,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "resources.name=string.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue",
+    "similarityID": "71e3ffff843f02eff4d190c027ca43fb1d2c324b583a62f80a68e5b593dd8527",
+    "search_line": 26
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive2.bicep",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "resources.name=string.properties.retentionPolicy.enabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'enabled' property value set to true",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'enabled' set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "12aaf8ce2b29d67de8a1cb7a2ff6cb5ed33a9258c957351c63a03157e2d11158",
+    "search_line": 11
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive2.bicep",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "resources.name=string.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue",
+    "similarityID": "682ee38e74bfb3dff179ae3096c7ba57c316a6772b83a102da240bcf17934cd7",
+    "search_line": 12
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
     "severity": "LOW",
     "line": 25,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "resources.name=string.properties.retentionPolicy.enabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'enabled' property value set to true",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'enabled' set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "3223bb36a0de50bbb48f4d1a24ddb544cb1e35ecb155c4defe10af6a5cd8fd4e",
+    "search_line": 25
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
     "severity": "LOW",
     "line": 26,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "resources.name=string.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue",
+    "similarityID": "b8b9c275bfe74b8d2a17dd097752c5e13ca11461eae3fef886c59c6cc740f884",
+    "search_line": 26
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive3.bicep",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "resources.name=string.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue",
+    "similarityID": "0299a74f67c94a1f533f229098736b490a3df94d3f65b4580754a67ecb89e1d3",
+    "search_line": 12
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
     "severity": "LOW",
     "line": 28,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "properties.template.resources.name=string.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue",
+    "similarityID": "0526a8dd8c55c37145368b52e1792711f77d28a0f63b9a7e93cd4adf5cf59cf0",
+    "search_line": 28
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive4.bicep",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "resources.name=string.properties.retentionPolicy.enabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'enabled' property value set to true",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'enabled' set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "159780a7a1564ed475022e0869b0a405c6d81b2e11f632c1d62e3b33506ccea3",
+    "search_line": 11
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive4.bicep",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "resources.name=string.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue",
+    "similarityID": "d556905d1b8a771fcfc89367e3df22dbf9803a7a79aa0f5206cbdc40e772a24f",
+    "search_line": 12
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
     "severity": "LOW",
     "line": 27,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "properties.template.resources.name=string.properties.retentionPolicy.enabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'enabled' property value set to true",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'enabled' set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "43506242ff52ec5ac671cab3bd805fad0ac6a838c8e22e782f61e71e60e419f6",
+    "search_line": 27
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
     "severity": "LOW",
     "line": 28,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "Unrecommended Log Profile Retention Policy",
-    "severity": "LOW",
-    "line": 12,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Unrecommended Log Profile Retention Policy",
-    "severity": "LOW",
-    "line": 12,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Unrecommended Log Profile Retention Policy",
-    "severity": "LOW",
-    "line": 11,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Unrecommended Log Profile Retention Policy",
-    "severity": "LOW",
-    "line": 12,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "Unrecommended Log Profile Retention Policy",
-    "severity": "LOW",
-    "line": 11,
-    "fileName": "positive4.bicep"
-  },
-  {
-    "queryName": "Unrecommended Log Profile Retention Policy",
-    "severity": "LOW",
-    "line": 12,
-    "fileName": "positive4.bicep"
+    "fileName": "positive4.json",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "properties.template.resources.name=string.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue",
+    "similarityID": "20e80817917b95520d6b0190355a4dbe5161ec2116910c0058f04755dd121b69",
+    "search_line": 28
   }
 ]

@@ -2,11 +2,31 @@
   {
     "queryName": "Password Without Reuse Prevention",
     "severity": "LOW",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_account_password_policy",
+    "resourceName": "positive1",
+    "searchKey": "aws_iam_account_password_policy[positive1].password_reuse_prevention",
+    "searchValue": "",
+    "expectedValue": "'password_reuse_prevention' should be 24",
+    "actualValue": "'password_reuse_prevention' is lower than 24",
+    "issueType": "IncorrectValue",
+    "similarityID": "d1dba111178e8377ef4dd2428437cba39fa7d6856d5776e195b981e8378332df",
+    "search_line": 7
   },
   {
     "queryName": "Password Without Reuse Prevention",
     "severity": "LOW",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_account_password_policy",
+    "resourceName": "positive2",
+    "searchKey": "aws_iam_account_password_policy[positive2]",
+    "searchValue": "",
+    "expectedValue": "'password_reuse_prevention' should be set with value 24",
+    "actualValue": "'password_reuse_prevention' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "403b498455a4cdde1300135d3d0dc85bf251aed8cd1477b1386a2707fb0c5778",
+    "search_line": 10
   }
 ]

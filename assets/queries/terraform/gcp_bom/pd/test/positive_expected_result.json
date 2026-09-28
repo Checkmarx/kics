@@ -1,38 +1,92 @@
 [
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 1,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 12,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 28,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 44,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 60,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 76,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_compute_disk[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "b291439751ddb2136adda3b8012dd1ef5fc8492ffe0ff8a7af6d79a2616c41e8",
+    "search_line": 1
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 12,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_compute_disk[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "79e802c22afa7c1a3217e3d0dd1e182d28fdb79516b343fd6dae89f74b767b29",
+    "search_line": 12
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 28,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_compute_disk[positive3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "ee4159d16a8b84a0c0a7d4b2386a508e41b41a9617e9ca18e46400284cf49fa8",
+    "search_line": 28
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 44,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_compute_disk[positive4]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "e344287f3d71af1f6ff6b4d69dfa9ebfdfcf223fa30d1dc949ef05c3d4466176",
+    "search_line": 44
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 60,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_compute_disk[negative1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "89c6b394e9c6d7619bf39224ee5d973efb1db5427811131921e17dfed64b09e6",
+    "search_line": 60
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 76,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_compute_disk[negative2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "f377c3c6e423c2ecdd1e527869a55c2acea5ea766457313e8874dc1301634ba5",
+    "search_line": 76
+  }
 ]

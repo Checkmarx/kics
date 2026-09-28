@@ -3,30 +3,75 @@
     "queryName": "ELBv2 ALB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 22,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "resourceName": "EnvironmentName",
+    "searchKey": "Resources.LoadBalancer.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.LoadBalancer.Properties' has LoadBalancerAttributes defined",
+    "actualValue": "'Resources.LoadBalancer.Properties' doesn't have LoadBalancerAttributes defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9e986beb118a4b83fce06a98055481ffe2bc6d0e159fdadecdfbc473ccb4a2d9",
+    "search_line": -1
   },
   {
     "queryName": "ELBv2 ALB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 30,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "resourceName": "EnvironmentName",
+    "searchKey": "Resources.LoadBalancertest.Properties.LoadBalancerAttributes",
+    "searchValue": "",
+    "expectedValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' has access_logs.s3.enabled with Value true",
+    "actualValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' doesn't have access_logs.s3.enabled with Value true",
+    "issueType": "IncorrectValue",
+    "similarityID": "e1e611e560b5dd81ae41702b08a84010c64eac3c7d935dc050e61d5cdd843b8a",
+    "search_line": -1
   },
   {
     "queryName": "ELBv2 ALB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 23,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "resourceName": "EnvironmentName",
+    "searchKey": "Resources.LoadBalancer.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.LoadBalancer.Properties' has LoadBalancerAttributes defined",
+    "actualValue": "'Resources.LoadBalancer.Properties' doesn't have LoadBalancerAttributes defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d0f1733eae15da2e2a71eea5ad04f5d5629a126220ef923dac44418713ff60c1",
+    "search_line": -1
   },
   {
     "queryName": "ELBv2 ALB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 36,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "resourceName": "EnvironmentName",
+    "searchKey": "Resources.LoadBalancertest.Properties.LoadBalancerAttributes",
+    "searchValue": "",
+    "expectedValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' has access_logs.s3.enabled with Value true",
+    "actualValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' doesn't have access_logs.s3.enabled with Value true",
+    "issueType": "IncorrectValue",
+    "similarityID": "2e3eb5d8fdbf80f73fddf7384ffabf382478357c2814d60dd2b57e720935c758",
+    "search_line": -1
   },
   {
     "queryName": "ELBv2 ALB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 30,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "resourceName": "EnvironmentName",
+    "searchKey": "Resources.LoadBalancertest.Properties.LoadBalancerAttributes",
+    "searchValue": "",
+    "expectedValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' has access_logs.s3.enabled with Value true",
+    "actualValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' doesn't have access_logs.s3.enabled with Value true",
+    "issueType": "IncorrectValue",
+    "similarityID": "e426c92f62d352737998fafde067ac9809ba8b9a4d8b7a11d6e177d7f7be3545",
+    "search_line": -1
   }
 ]

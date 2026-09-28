@@ -3,12 +3,30 @@
     "queryName": "Serverless API X-Ray Tracing Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.yml"
+    "fileName": "positive1.yml",
+    "resourceType": "AWS::ApiGateway",
+    "resourceName": "my-service",
+    "searchKey": "provider.tracing.apiGateway",
+    "searchValue": "",
+    "expectedValue": "tracing should have 'apiGateway' set to true",
+    "actualValue": "'apiGateway' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "431ae2a7668cb699bbe6dc8f3b43ec1e0cf2fe7d3dee1559f7bcbff39850c20f",
+    "search_line": 8
   },
   {
     "queryName": "Serverless API X-Ray Tracing Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.yml"
+    "fileName": "positive2.yml",
+    "resourceType": "AWS::ApiGateway",
+    "resourceName": "my-service",
+    "searchKey": "provider.tracing",
+    "searchValue": "",
+    "expectedValue": "tracing should have 'apiGateway' defined and set to true",
+    "actualValue": "'apiGateway' is not defined within tracing",
+    "issueType": "MissingAttribute",
+    "similarityID": "5a0a4ef1c4ae66411c769c29dad2e91335e4a5bccd6e501e959fbe58dc99d4fc",
+    "search_line": 7
   }
 ]

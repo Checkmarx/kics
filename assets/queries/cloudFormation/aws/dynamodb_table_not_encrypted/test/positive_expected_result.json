@@ -3,18 +3,45 @@
     "queryName": "DynamoDB Table Not Encrypted",
     "severity": "HIGH",
     "line": 18,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "my-table",
+    "searchKey": "Resources.MyDynamoDBTable.Properties.SSESpecification.SSEEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled should be 'true'",
+    "actualValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled is 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f8107ab6da5aea6a546e91f2c1dfe8816812a8292709c4379559b6cd2c336c40",
+    "search_line": -1
   },
   {
     "queryName": "DynamoDB Table Not Encrypted",
     "severity": "HIGH",
     "line": 17,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "my-table",
+    "searchKey": "Resources.MyDynamoDBTable.Properties.SSESpecification",
+    "searchValue": "",
+    "expectedValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled should be set and to 'true'",
+    "actualValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled is not set",
+    "issueType": "MissingAttribute",
+    "similarityID": "94c22350b87e85d747228e3c42bff602473661919a7694efea41d07193e40250",
+    "search_line": -1
   },
   {
     "queryName": "DynamoDB Table Not Encrypted",
     "severity": "HIGH",
     "line": 8,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "AuthorsTable_prod",
+    "searchKey": "Resources.OrdersTable.Properties.SSESpecification.SSEEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources[OrdersTable].Properties.SSESpecification.SSEEnabled should be 'true'",
+    "actualValue": "Resources[OrdersTable].Properties.SSESpecification.SSEEnabled is 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "527496487f7e956604665a2ddd08b5cd2cb7819192e48a76185edc4bf0f1fc48",
+    "search_line": -1
   }
 ]

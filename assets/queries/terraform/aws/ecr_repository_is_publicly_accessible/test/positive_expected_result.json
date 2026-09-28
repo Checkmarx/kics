@@ -2,6 +2,16 @@
   {
     "queryName": "ECR Repository Is Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "aws_ecr_repository_policy",
+    "resourceName": "positive2",
+    "searchKey": "aws_ecr_repository_policy[positive2].policy",
+    "searchValue": "",
+    "expectedValue": "'Statement.Principal' shouldn't contain '*'",
+    "actualValue": "'Statement.Principal' contains '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3c30985462d930ca29310dc0e8534ff2a279f46252c3fcf7d514a3983a58e2db",
+    "search_line": 8
   }
 ]

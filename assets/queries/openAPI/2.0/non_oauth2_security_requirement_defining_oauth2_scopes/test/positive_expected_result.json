@@ -3,12 +3,30 @@
     "queryName": "Non OAuth2 Security Requirement Defining OAuth2 Scopes",
     "severity": "MEDIUM",
     "line": 33,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "security scheme petstore_auth should specify scopes for type 'basic'",
+    "actualValue": "security scheme petstore_auth doesn't specify scopes for type 'basic'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d4966b910d92dd1edd8f5f8c7f005e62969ad90299f05f7a8d8b48a48ab12ee2",
+    "search_line": -1
   },
   {
     "queryName": "Non OAuth2 Security Requirement Defining OAuth2 Scopes",
     "severity": "MEDIUM",
     "line": 21,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "security scheme petstore_auth should specify scopes for type 'basic'",
+    "actualValue": "security scheme petstore_auth doesn't specify scopes for type 'basic'",
+    "issueType": "IncorrectValue",
+    "similarityID": "672322e7b91f8e352188a12493ce9c77ada87f4ee18b27062d1a16a55e6bbc8c",
+    "search_line": -1
   }
 ]

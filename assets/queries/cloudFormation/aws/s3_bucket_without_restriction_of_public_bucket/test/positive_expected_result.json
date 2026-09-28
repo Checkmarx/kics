@@ -3,42 +3,105 @@
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket11",
+    "searchKey": "Resources.Bucket11.Properties",
+    "searchValue": "",
+    "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
+    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)",
+    "issueType": "MissingAttribute",
+    "similarityID": "657ce8a447da016b3e52ad6e76da581a61a444736595e36d083b90555c72131c",
+    "search_line": 4
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket12",
+    "searchKey": "Resources.Bucket12.Properties.PublicAccessBlockConfiguration",
+    "searchValue": "",
+    "expectedValue": "'RestrictPublicBuckets' should be defined and set to true in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "actualValue": "'RestrictPublicBuckets' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "issueType": "MissingAttribute",
+    "similarityID": "b03e64ec149d38a6d9488b906d6561f06feee5bf646d85aadedc63eda508c9dc",
+    "search_line": 10
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
     "line": 21,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket13",
+    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.RestrictPublicBuckets",
+    "searchValue": "",
+    "expectedValue": "'RestrictPublicBuckets' should be set to true%!(EXTRA string=Bucket13)",
+    "actualValue": "'RestrictPublicBuckets' is set to false%!(EXTRA string=Bucket13)",
+    "issueType": "IncorrectValue",
+    "similarityID": "bf6a847c333dc95cd0770e578430a20a3943289b4081d1c2b4e3864118af3a93",
+    "search_line": 21
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket1",
+    "searchKey": "Resources.Bucket1.Properties.PublicAccessBlockConfiguration.RestrictPublicBuckets",
+    "searchValue": "",
+    "expectedValue": "'RestrictPublicBuckets' should be set to true%!(EXTRA string=Bucket1)",
+    "actualValue": "'RestrictPublicBuckets' is set to false%!(EXTRA string=Bucket1)",
+    "issueType": "IncorrectValue",
+    "similarityID": "19ac6251b5e61cadc53bf7543c47fff589a1eae89ee0855876fadf0de931a952",
+    "search_line": 10
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket11",
+    "searchKey": "Resources.Bucket11.Properties",
+    "searchValue": "",
+    "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
+    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)",
+    "issueType": "MissingAttribute",
+    "similarityID": "8b6e98ccb6c863aaafb3a805f9203ee0e42e6453f4bd4870a3e3c79c11a796df",
+    "search_line": 4
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket12",
+    "searchKey": "Resources.Bucket12.Properties.PublicAccessBlockConfiguration",
+    "searchValue": "",
+    "expectedValue": "'RestrictPublicBuckets' should be defined and set to true in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "actualValue": "'RestrictPublicBuckets' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "issueType": "MissingAttribute",
+    "similarityID": "bcc7c17c8187564e7affe6ff4f3811c1910ce31765ca5510361aa5cc02ab55b7",
+    "search_line": 10
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
     "line": 21,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket13",
+    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.RestrictPublicBuckets",
+    "searchValue": "",
+    "expectedValue": "'RestrictPublicBuckets' should be set to true%!(EXTRA string=Bucket13)",
+    "actualValue": "'RestrictPublicBuckets' is set to false%!(EXTRA string=Bucket13)",
+    "issueType": "IncorrectValue",
+    "similarityID": "4b0dbdd938ce4cb6d5e450bb0f852d18d829727dbd12561a9ca1535686c6fe85",
+    "search_line": 21
   }
 ]

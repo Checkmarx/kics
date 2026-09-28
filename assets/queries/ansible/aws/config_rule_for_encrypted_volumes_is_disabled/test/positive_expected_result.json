@@ -2,6 +2,16 @@
   {
     "queryName": "Config Rule For Encrypted Volumes Disabled",
     "severity": "HIGH",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.aws_config_rule",
+    "resourceName": "foo",
+    "searchKey": "name={{foo}}",
+    "searchValue": "",
+    "expectedValue": "There should be a aws_config_rule with source.identifier equal to 'ENCRYPTED_VOLUMES'",
+    "actualValue": "There is no aws_config_rule with source.identifier equal to 'ENCRYPTED_VOLUMES'",
+    "issueType": "MissingAttribute",
+    "similarityID": "f153f3db27338e3063c0a11876300da3f19dce82c4863b97bb54d6398865bf2b",
+    "search_line": -1
   }
 ]

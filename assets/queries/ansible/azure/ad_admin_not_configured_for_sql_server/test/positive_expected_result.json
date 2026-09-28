@@ -2,6 +2,16 @@
   {
     "queryName": "AD Admin Not Configured For SQL Server",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_sqlserver",
+    "resourceName": "Create (or update) SQL Server",
+    "searchKey": "name={{Create (or update) SQL Server}}.{{azure_rm_sqlserver}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_sqlserver.ad_user should be defined",
+    "actualValue": "azure_rm_sqlserver.ad_user is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b090ffa57f59ae72c31108929483b70f97a7b906ca506c771672aa112a054405",
+    "search_line": -1
   }
 ]

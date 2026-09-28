@@ -2,16 +2,46 @@
   {
     "queryName": "PostgreSQL Log Checkpoints Disabled",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_checkpoints",
+    "searchKey": "azurerm_postgresql_configuration[positive1].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive1.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive1.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b07f94b1e9e4b2ada0b6386b920d374f58deb0140dff988740ec63d42286858c",
+    "search_line": 5
   },
   {
     "queryName": "PostgreSQL Log Checkpoints Disabled",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_checkpoints",
+    "searchKey": "azurerm_postgresql_configuration[positive2].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive2.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive2.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b3406fb6006cf89dde7fa9dea810d51d0667c3aa1e3c98bae526f073bf430270",
+    "search_line": 12
   },
   {
     "queryName": "PostgreSQL Log Checkpoints Disabled",
     "severity": "MEDIUM",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_checkpoints",
+    "searchKey": "azurerm_postgresql_configuration[positive3].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive3.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive3.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "dd93c45370ace22bb7bb9485d614843bf5771d9afcd2ddc475468f515d6df206",
+    "search_line": 19
   }
 ]

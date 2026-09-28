@@ -3,12 +3,30 @@
     "queryName": "Implicit Flow in OAuth2 (v2)",
     "severity": "MEDIUM",
     "line": 27,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "securityDefinitions.oAuth2AuthCodeNeg2.flow=implicit",
+    "searchValue": "",
+    "expectedValue": "OAuth2 security definitions flow should not use implicit flow",
+    "actualValue": "OAuth2 security definitions flow is using implicit flow",
+    "issueType": "IncorrectValue",
+    "similarityID": "f2db30baf690bdd021d17a8535083ffbbe580225398823a817b1ca17cc4dcd88",
+    "search_line": -1
   },
   {
     "queryName": "Implicit Flow in OAuth2 (v2)",
     "severity": "MEDIUM",
     "line": 19,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "securityDefinitions.oAuth2AuthCodeNeg2.flow=implicit",
+    "searchValue": "",
+    "expectedValue": "OAuth2 security definitions flow should not use implicit flow",
+    "actualValue": "OAuth2 security definitions flow is using implicit flow",
+    "issueType": "IncorrectValue",
+    "similarityID": "48de4270295a4054f336fd5e04305d0b333b5cfe60fcf83e0645fb153b96af2e",
+    "search_line": -1
   }
 ]

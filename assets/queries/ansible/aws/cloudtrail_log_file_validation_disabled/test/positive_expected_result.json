@@ -2,11 +2,31 @@
   {
     "queryName": "CloudTrail Log File Validation Disabled",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.cloudtrail",
+    "resourceName": "create multi-region trail with validation and tags",
+    "searchKey": "name={{create multi-region trail with validation and tags}}.{{community.aws.cloudtrail}}",
+    "searchValue": "",
+    "expectedValue": "cloudtrail.enable_log_file_validation or cloudtrail.log_file_validation_enabled should be defined",
+    "actualValue": "cloudtrail.enable_log_file_validation and cloudtrail.log_file_validation_enabled are undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6d085c2a5e9578f3fc6aff55e7be89c4c7fbf876f457886ff1b28a2f2fe4108c",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
     "severity": "LOW",
-    "line": 21
+    "line": 21,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.cloudtrail",
+    "resourceName": "create multi-region trail with validation and tags v7",
+    "searchKey": "name={{create multi-region trail with validation and tags v7}}.{{community.aws.cloudtrail}}.enable_log_file_validation",
+    "searchValue": "",
+    "expectedValue": "cloudtrail.enable_log_file_validation should be set to true or yes",
+    "actualValue": "cloudtrail.enable_log_file_validation is not set to true nor yes",
+    "issueType": "IncorrectValue",
+    "similarityID": "d2161003bcc6780e59adaacf790c0b0e0fae5c58af3d0bd16778bf4429d60b94",
+    "search_line": -1
   }
 ]

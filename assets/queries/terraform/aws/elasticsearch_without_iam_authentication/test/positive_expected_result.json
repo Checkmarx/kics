@@ -3,12 +3,30 @@
     "queryName": "Elasticsearch Without IAM Authentication",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_elasticsearch_domain",
+    "resourceName": "example",
+    "searchKey": "aws_elasticsearch_domain[example]",
+    "searchValue": "",
+    "expectedValue": "Elasticsearch Domain ensure IAM Authentication",
+    "actualValue": "Elasticsearch Domain does not ensure IAM Authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "1b5e23235b839762174e5046dbbc88640835a42561ff69f5a7149281f3c1d6b4",
+    "search_line": 1
   },
   {
     "queryName": "Elasticsearch Without IAM Authentication",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_elasticsearch_domain",
+    "resourceName": "example2",
+    "searchKey": "aws_elasticsearch_domain[example2]",
+    "searchValue": "",
+    "expectedValue": "Elasticsearch Domain ensure IAM Authentication",
+    "actualValue": "Elasticsearch Domain does not ensure IAM Authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "422d370c177dd5ee1ad604a29ebb37ebd18d7951158f3fa5d1e5deea84faa318",
+    "search_line": 1
   }
 ]

@@ -2,11 +2,31 @@
   {
     "queryName": "Cloud Storage Bucket Is Publicly Accessible",
     "severity": "MEDIUM",
-    "line": 4
+    "line": 4,
+    "fileName": "positive.tf",
+    "resourceType": "google_storage_bucket_iam_member",
+    "resourceName": "positive1",
+    "searchKey": "google_storage_bucket_iam_member[positive1].member",
+    "searchValue": "",
+    "expectedValue": "'member' not equal to 'allUsers' nor 'allAuthenticatedUsers'",
+    "actualValue": "'member' equal to 'allUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1d17171c18b20b36083dac51d95266a1602e1df4c65bb6457199b404a750684c",
+    "search_line": -1
   },
   {
     "queryName": "Cloud Storage Bucket Is Publicly Accessible",
     "severity": "MEDIUM",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.tf",
+    "resourceType": "google_storage_bucket_iam_member",
+    "resourceName": "positive2",
+    "searchKey": "google_storage_bucket_iam_member[positive2].members",
+    "searchValue": "",
+    "expectedValue": "None of the 'members' equal to 'allUsers' nor 'allAuthenticatedUsers'",
+    "actualValue": "One of the 'members' equal to 'allUsers' or 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c05b3a5dda1c89aacc93c0e213fa925372f1cc8c368123e7a42a889756b66468",
+    "search_line": -1
   }
 ]

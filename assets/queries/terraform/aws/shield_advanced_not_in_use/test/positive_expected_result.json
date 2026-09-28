@@ -3,12 +3,30 @@
     "queryName": "Shield Advanced Not In Use",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_eip",
+    "resourceName": "positive1",
+    "searchKey": "aws_eip[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_eip has shield advanced associated",
+    "actualValue": "aws_eip does not have shield advanced associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "4ab175a0230164a1d2d3060fac7ede0ea0651ad2075ef47fc3fc1d1f7e0fad37",
+    "search_line": 5
   },
   {
     "queryName": "Shield Advanced Not In Use",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_route53_zone",
+    "resourceName": "example.com",
+    "searchKey": "aws_route53_zone[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_route53_zone has shield advanced associated",
+    "actualValue": "aws_route53_zone does not have shield advanced associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "27cf6d4aff829eef51e68d92ff5e900a96b3b7aec147bfcc7f7083d222afc7be",
+    "search_line": 1
   }
 ]

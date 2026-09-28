@@ -3,24 +3,60 @@
     "queryName": "S3 Bucket Allows List Action From All Principals",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy3",
+    "searchKey": "Resources.SampleBucketPolicy3.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement should not allow a 'List' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement allows a 'List' action from all principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "9a452bcbf8951754ce79fa3101622bf72e4ca7d70a035da6427b082819221f0a",
+    "search_line": 7
   },
   {
     "queryName": "S3 Bucket Allows List Action From All Principals",
     "severity": "HIGH",
     "line": 22,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy4",
+    "searchKey": "Resources.SampleBucketPolicy4.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement should not allow a 'List' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement allows a 'List' action from all principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "704fe3e4e160f10b58dc4f1ba9f64e66edad53ef7c50648db9968ff53d3b10c8",
+    "search_line": 22
   },
   {
     "queryName": "S3 Bucket Allows List Action From All Principals",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy5",
+    "searchKey": "Resources.SampleBucketPolicy5.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy5.Properties.PolicyDocument.Statement should not allow a 'List' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy5.Properties.PolicyDocument.Statement allows a 'List' action from all principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "9a629413469f8481d1502bcc6722bc77d1dd1babfc2fb0902e3c8fd42647b09a",
+    "search_line": 9
   },
   {
     "queryName": "S3 Bucket Allows List Action From All Principals",
     "severity": "HIGH",
     "line": 35,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy6",
+    "searchKey": "Resources.SampleBucketPolicy6.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement should not allow a 'List' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement allows a 'List' action from all principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "7c68019d1603dea913b19226db491d8da6ccde3abdb1282144e085a1f7890550",
+    "search_line": 35
   }
 ]

@@ -3,30 +3,75 @@
     "queryName": "ElastiCache With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "ReplicationGroup",
+    "searchKey": "Resources.ReplicationGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled should be defined",
+    "actualValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d49736b2abf2619fa34edfa4ad67a124ca682e93756d898390102bfe6598083c",
+    "search_line": -1
   },
   {
     "queryName": "ElastiCache With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 26,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "MyReplicationGroup",
+    "searchKey": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled should be true",
+    "actualValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "076febe7d552a7748139ddaaed4d57b6fafef8d2ac8c43d857084685dfdd7f16",
+    "search_line": -1
   },
   {
     "queryName": "ElastiCache With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "ReplicationGroup",
+    "searchKey": "Resources.ReplicationGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled should be defined",
+    "actualValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2f168f8851b854dec7ae352367ee050bb731fcbfd5132f16d5a9059211d7b53a",
+    "search_line": -1
   },
   {
     "queryName": "ElastiCache With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "MyReplicationGroup",
+    "searchKey": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled should be true",
+    "actualValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "829d76ef13a70fc1284ec88a182b679eda0e98852f9a129b13529d10f8462900",
+    "search_line": -1
   },
   {
     "queryName": "ElastiCache With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "ReplicationGroup",
+    "searchKey": "Resources.ReplicationGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled should be defined",
+    "actualValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "dc1e6c79fe6544b0fbfecf3f682aa8ee933f6410d22cf2fee6fb149475550eb9",
+    "search_line": -1
   }
 ]

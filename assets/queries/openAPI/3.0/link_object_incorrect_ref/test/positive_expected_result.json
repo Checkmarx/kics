@@ -3,24 +3,60 @@
     "queryName": "Link Object Incorrect Ref",
     "severity": "INFO",
     "line": 52,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.NotFound.links.{{l}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Link ref points to '#/components/links'",
+    "actualValue": "Link ref does not point to '#/components/links'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d86abf40b958324c2e82ba1b07cc070692d55cb7c2b1f6fecd3e3d5b9d670e2f",
+    "search_line": 0
   },
   {
     "queryName": "Link Object Incorrect Ref",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.links.{{l}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Link ref points to '#/components/links'",
+    "actualValue": "Link ref does not point to '#/components/links'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6ed8b0dc8d7c661deae5ae4cab4bb7eccfaaa99e129c68f4cc2570725ee6816f",
+    "search_line": 0
   },
   {
     "queryName": "Link Object Incorrect Ref",
     "severity": "INFO",
     "line": 34,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.NotFound.links.{{l}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Link ref points to '#/components/links'",
+    "actualValue": "Link ref does not point to '#/components/links'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9a01d146298e799fe88162a5dde930f23a683d2fb36fd0a17442fe43da39b13e",
+    "search_line": 0
   },
   {
     "queryName": "Link Object Incorrect Ref",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.links.{{l}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Link ref points to '#/components/links'",
+    "actualValue": "Link ref does not point to '#/components/links'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6b116bac276c37ef586dcf7ce977793e8385b344c7743c768a36aaed47d1c92a",
+    "search_line": 0
   }
 ]

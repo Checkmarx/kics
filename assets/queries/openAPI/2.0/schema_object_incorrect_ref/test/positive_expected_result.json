@@ -3,12 +3,30 @@
     "queryName": "Schema Object Incorrect Ref (v2)",
     "severity": "INFO",
     "line": 29,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.Success.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema ref points to '#/definitions'",
+    "actualValue": "Schema ref doesn't point to '#/definitions'",
+    "issueType": "IncorrectValue",
+    "similarityID": "87719e1f53f5c99aebc483bf8048600e163d0bf4073acc705e81125c3ba2a59e",
+    "search_line": 0
   },
   {
     "queryName": "Schema Object Incorrect Ref (v2)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.Success.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema ref points to '#/definitions'",
+    "actualValue": "Schema ref doesn't point to '#/definitions'",
+    "issueType": "IncorrectValue",
+    "similarityID": "854b8b0c02a37599d8b53064031b1f870c090e25e22c9bf1e02f9b7727922fee",
+    "search_line": 0
   }
 ]

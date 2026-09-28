@@ -2,16 +2,46 @@
   {
     "queryName": "EC2 Instance Has Public IP",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2",
+    "resourceName": "example",
+    "searchKey": "name={{example}}.{{amazon.aws.ec2}}.assign_public_ip",
+    "searchValue": "",
+    "expectedValue": "ec2.assign_public_ip should be set to false, 'no' or undefined",
+    "actualValue": "ec2.assign_public_ip is 'yes'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5123aaacae434949dece62fb54db57ea1eb3cad33f62dc0383b8387c43e4d7e8",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Instance Has Public IP",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 15,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.ec2_launch_template",
+    "resourceName": "Create an ec2 launch template",
+    "searchKey": "name={{Create an ec2 launch template}}.{{community.aws.ec2_launch_template}}.network_interfaces.associate_public_ip_address",
+    "searchValue": "",
+    "expectedValue": "ec2_launch_template.network_interfaces.associate_public_ip_address should be set to false, 'no' or undefined",
+    "actualValue": "ec2_launch_template.network_interfaces.associate_public_ip_address is 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4fdbb169956852a32f254f98057c6745cfbd4cdbaa592c8315eadd3a41c47983",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Instance Has Public IP",
     "severity": "MEDIUM",
-    "line": 24
+    "line": 24,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.ec2_instance",
+    "resourceName": "start an instance with a public IP address",
+    "searchKey": "name={{start an instance with a public IP address}}.{{community.aws.ec2_instance}}.network.assign_public_ip",
+    "searchValue": "",
+    "expectedValue": "ec2_instance.network.assign_public_ip should be set to false, 'no' or undefined",
+    "actualValue": "ec2_instance.network.assign_public_ip is 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "554c07fc19f434d85e5bef4f17f3a4816d088b5cea6a111e5ea8350d0c3bd061",
+    "search_line": -1
   }
 ]

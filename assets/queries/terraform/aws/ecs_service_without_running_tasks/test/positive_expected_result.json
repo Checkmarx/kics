@@ -3,6 +3,15 @@
     "queryName": "ECS Service Without Running Tasks",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_ecs_service",
+    "resourceName": "positive1",
+    "searchKey": "aws_ecs_service[positive1]",
+    "searchValue": "",
+    "expectedValue": "'aws_ecs_service[positive1]' has at least 1 task running",
+    "actualValue": "'aws_ecs_service[positive1]' must have at least 1 task running",
+    "issueType": "IncorrectValue",
+    "similarityID": "fc9998edc42ae08dfd1bb00f164958eb73e2cfecc063cde665be5a9ec5a23875",
+    "search_line": -1
   }
 ]

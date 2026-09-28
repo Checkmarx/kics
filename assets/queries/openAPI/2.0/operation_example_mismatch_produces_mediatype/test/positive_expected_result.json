@@ -3,12 +3,30 @@
     "queryName": "Operation Example Mismatch Produces MimeType",
     "severity": "INFO",
     "line": 34,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.{{200}}.examples.{{text/csv}}",
+    "searchValue": "",
+    "expectedValue": "Example MimeType should be listed on produces",
+    "actualValue": "Example MimeType is not listed on produces",
+    "issueType": "MissingAttribute",
+    "similarityID": "de47ff889476732481f0d14d57617a42b9d6f4437fccfaea1f4ca0e6aaca4c16",
+    "search_line": -1
   },
   {
     "queryName": "Operation Example Mismatch Produces MimeType",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.{{200}}.examples.{{text/csv}}",
+    "searchValue": "",
+    "expectedValue": "Example MimeType should be listed on produces",
+    "actualValue": "Example MimeType is not listed on produces",
+    "issueType": "MissingAttribute",
+    "similarityID": "6ac643bb27c4b042bf8eaca488ce65415bf0173c2348d8f672a1568a9bb4a499",
+    "search_line": -1
   }
 ]

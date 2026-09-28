@@ -3,36 +3,90 @@
     "queryName": "Amplify App Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 16,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "NewAmpApp",
+    "searchKey": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "239c2c8e6c89e124160850f3d46e120c64ae0b8e5a5e7c19be25fdf0ee928404",
+    "search_line": -1
   },
   {
     "queryName": "Amplify App Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentPassword.Default should be defined",
+    "actualValue": "Parameters.ParentPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "bc47097cea1a6a2470c2ced22a37dffdb89bc21dd3b68df4520bd369461157fe",
+    "search_line": -1
   },
   {
     "queryName": "Amplify App Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "NewAmpApp",
+    "searchKey": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "a701766bb99b939bc6d14deadf64be1f91fcc90d92f89de92298600f5e2c1ff2",
+    "search_line": -1
   },
   {
     "queryName": "Amplify App Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentPassword.Default should be defined",
+    "actualValue": "Parameters.ParentPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "98c6a01ca4463f2b7e1363f148c827ab6a37a9808a16eae7398301e8bc80c83b",
+    "search_line": -1
   },
   {
     "queryName": "Amplify App Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentPassword.Default should be defined",
+    "actualValue": "Parameters.ParentPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "a34f0e7680113e01216da492d78d92c6503c778678cdabdd44f0d9081be8d0cf",
+    "search_line": -1
   },
   {
     "queryName": "Amplify App Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "NewAmpApp",
+    "searchKey": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "f2997bede2637b0756b56a43ef0026e0824109b839f2a2a2778293377f5197fc",
+    "search_line": -1
   }
 ]

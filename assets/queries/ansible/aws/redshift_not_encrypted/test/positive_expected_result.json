@@ -2,16 +2,46 @@
   {
     "queryName": "Redshift Not Encrypted",
     "severity": "HIGH",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.redshift",
+    "resourceName": "Basic cluster provisioning example",
+    "searchKey": "name={{Basic cluster provisioning example}}.{{community.aws.redshift}}",
+    "searchValue": "",
+    "expectedValue": "redshift.encrypted should be set to true",
+    "actualValue": "redshift.encrypted is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0f887705cd2a1898fb474002a2252f157262a24c2b11aa85c3d5d82bd5c50f53",
+    "search_line": -1
   },
   {
     "queryName": "Redshift Not Encrypted",
     "severity": "HIGH",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.redshift",
+    "resourceName": "Basic cluster provisioning example2",
+    "searchKey": "name={{Basic cluster provisioning example2}}.{{community.aws.redshift}}.encrypted",
+    "searchValue": "",
+    "expectedValue": "redshift.encrypted should be set to true",
+    "actualValue": "redshift.encrypted is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "4cac5bf10f1dc3f3630caed018a72ddd5bfd303b287974f5a95d9bcef295bad2",
+    "search_line": -1
   },
   {
     "queryName": "Redshift Not Encrypted",
     "severity": "HIGH",
-    "line": 29
+    "line": 29,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.redshift",
+    "resourceName": "Basic cluster provisioning example3",
+    "searchKey": "name={{Basic cluster provisioning example3}}.{{community.aws.redshift}}.encrypted",
+    "searchValue": "",
+    "expectedValue": "redshift.encrypted should be set to true",
+    "actualValue": "redshift.encrypted is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a63a00c55c6c6ca74d1834494cb160506a4de41dc94d02176749c324df3611a0",
+    "search_line": -1
   }
 ]

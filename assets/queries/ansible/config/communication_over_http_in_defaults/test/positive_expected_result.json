@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "Communication Over HTTP In Defaults",
-		"severity": "MEDIUM",
-		"line": 5
-	}
+  {
+    "queryName": "Communication Over HTTP In Defaults",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive1.cfg",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "[galaxy].server",
+    "searchValue": "",
+    "expectedValue": "'server' from galaxy group should be accessed via the HTTPS protocol",
+    "actualValue": "'server' from galaxy group is accessed via the HTTP protocol'",
+    "issueType": "IncorrectValue",
+    "similarityID": "10281adcd5e0413dfa9e0d9c4feb847ac71860308bc035a02dc42bec79eb749b",
+    "search_line": -1
+  }
 ]

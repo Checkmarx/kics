@@ -2,11 +2,31 @@
   {
     "queryName": "Cloud Storage Bucket Versioning Disabled",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.tf",
+    "resourceType": "google_storage_bucket",
+    "resourceName": "foo",
+    "searchKey": "google_storage_bucket[positive1].versioning.enabled",
+    "searchValue": "",
+    "expectedValue": "'versioning.enabled' should be true",
+    "actualValue": "'versioning.enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "2899ea3ba237818d1a31b2386501e9ab5175f8fe944435c7f569ea338ea4aa44",
+    "search_line": -1
   },
   {
     "queryName": "Cloud Storage Bucket Versioning Disabled",
     "severity": "MEDIUM",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.tf",
+    "resourceType": "google_storage_bucket",
+    "resourceName": "foo",
+    "searchKey": "google_storage_bucket[positive2]",
+    "searchValue": "",
+    "expectedValue": "'versioning' should be defined and not null",
+    "actualValue": "'versioning' it undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "dacc501958515d88d26db5715946a688b647aac62882b162baa16a3120117a89",
+    "search_line": 10
   }
 ]

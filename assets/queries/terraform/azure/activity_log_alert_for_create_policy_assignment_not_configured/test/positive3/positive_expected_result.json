@@ -3,12 +3,30 @@
     "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive3_1.tf"
+    "fileName": "positive3_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive3_1].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create policy assignment' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive3_1]' resource monitors 'create policy assignment' events but is missing an 'action.action_group_id' field",
+    "issueType": "MissingAttribute",
+    "similarityID": "667f2ef9afe1374fef80204ae9b35c1211c563a2ac985560d52a6da6a600e1df",
+    "search_line": 9
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive3_2.tf"
+    "fileName": "positive3_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive3_2].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create policy assignment' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive3_2]' resource monitors 'create policy assignment' events but is missing an 'action.action_group_id' field",
+    "issueType": "MissingAttribute",
+    "similarityID": "98ad4f8875ba4193a50f1d77186d3a79e73edd8a7f49e517d994ca4f655b81bc",
+    "search_line": 9
   }
 ]

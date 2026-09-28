@@ -2,79 +2,196 @@
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Network/networkSecurityGroups",
+    "resourceName": "security group",
+    "searchKey": "resources.name={{security group}}.properties.securityRules",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' restricts access to SSH",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to SSH",
+    "issueType": "IncorrectValue",
+    "similarityID": "6599ffac54afd7084137d06cef8401e1766f25e746fdc6e520a107795b5404c8",
+    "search_line": 9
+  },
+  {
+    "queryName": "Network Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
     "line": 19,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Network/networkSecurityGroups",
+    "resourceName": "security group",
+    "searchKey": "resources.name={{security group}}.properties.securityRules",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' restricts access to SSH",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to SSH",
+    "issueType": "IncorrectValue",
+    "similarityID": "fb50e9c36cb0632b5ad75f05ff70fadbe6da1e3cf219eca8513ad34c51eb5c50",
+    "search_line": 19
+  },
+  {
+    "queryName": "Network Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Network/networkSecurityGroups/securityRules",
+    "resourceName": "sample/securitygroup",
+    "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' restricts access to SSH",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue",
+    "similarityID": "0118efb3baa21f4dba4cf754567cd76e31642aa7ba4c10215444a4f82308dea6",
+    "search_line": 3
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Network/networkSecurityGroups/securityRules",
+    "resourceName": "sample/securitygroup",
+    "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' restricts access to SSH",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue",
+    "similarityID": "fbece59fb53f3eabe161b2ed2ad921b1c060ceb309eabb2424a02a30db429f6a",
+    "search_line": 13
+  },
+  {
+    "queryName": "Network Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive3.bicep",
+    "resourceType": "securityRules",
+    "resourceName": "sr",
+    "searchKey": "resources.type={{securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'securityRules' restricts access to SSH",
+    "actualValue": "resource with type 'securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue",
+    "similarityID": "894f1af95a7173648c1d470ae0ae72663cc704101be9daeae384a873d564205c",
+    "search_line": 10
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "securityRules",
+    "resourceName": "sr",
+    "searchKey": "resources.type={{securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'securityRules' restricts access to SSH",
+    "actualValue": "resource with type 'securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue",
+    "similarityID": "9631ff1bdbe165202a39ef272700697f45c1183d1071a5f71d9294fd9205d897",
+    "search_line": 20
+  },
+  {
+    "queryName": "Network Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.Network/networkSecurityGroups",
+    "resourceName": "security group",
+    "searchKey": "resources.name={{security group}}.properties.securityRules",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' restricts access to SSH",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to SSH",
+    "issueType": "IncorrectValue",
+    "similarityID": "c217e7d4ef56dc6c40f4aa25a32fa60a875c14ab92b18011999e121020779b93",
+    "search_line": 9
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.Network/networkSecurityGroups",
+    "resourceName": "security group",
+    "searchKey": "properties.template.resources.name={{security group}}.properties.securityRules",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' restricts access to SSH",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to SSH",
+    "issueType": "IncorrectValue",
+    "similarityID": "b3ada20157e787743c201261e41b0a7c5f44c845ed238840d5e5e7fd7d1b1802",
+    "search_line": 21
+  },
+  {
+    "queryName": "Network Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive5.bicep",
+    "resourceType": "Microsoft.Network/networkSecurityGroups/securityRules",
+    "resourceName": "sample/securitygroup",
+    "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' restricts access to SSH",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue",
+    "similarityID": "1d1efceb5d4e7bad649558fc1e6c17878cd4a17acf240007b56d0a2eea828db9",
+    "search_line": 3
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive5.json"
-  },
-  {
-    "queryName": "Network Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 22,
-    "fileName": "positive6.json"
-  },
-  {
-    "queryName": "Network Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 22,
-    "fileName": "positive7.json"
-  },
-  {
-    "queryName": "Network Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Network Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 3,
-    "fileName": "positive2.bicep"
+    "fileName": "positive5.json",
+    "resourceType": "Microsoft.Network/networkSecurityGroups/securityRules",
+    "resourceName": "sample/securitygroup",
+    "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' restricts access to SSH",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue",
+    "similarityID": "55f2c6bf93e05450dd0c1a6dba2f2c199e3b98ceb298f1c6bda2c2458b6808ba",
+    "search_line": 15
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive3.bicep"
+    "fileName": "positive6.bicep",
+    "resourceType": "securityRules",
+    "resourceName": "sr",
+    "searchKey": "resources.type={{securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'securityRules' restricts access to SSH",
+    "actualValue": "resource with type 'securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue",
+    "similarityID": "a3d9a3b04755b84c6f61e7a72e8475d039cde6844841fa5e4fceca500a254cb0",
+    "search_line": 10
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive4.bicep"
+    "line": 22,
+    "fileName": "positive6.json",
+    "resourceType": "securityRules",
+    "resourceName": "sr",
+    "searchKey": "resources.type={{securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'securityRules' restricts access to SSH",
+    "actualValue": "resource with type 'securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue",
+    "similarityID": "4fcf24426c4c7fa5fee759ea80e442f4740ac42137aded6997c92f79953d5715",
+    "search_line": 22
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 3,
-    "fileName": "positive5.bicep"
-  },
-  {
-    "queryName": "Network Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive6.bicep"
+    "line": 22,
+    "fileName": "positive7.json",
+    "resourceType": "securityRules",
+    "resourceName": "sr",
+    "searchKey": "resources.type={{securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'securityRules' restricts access to SSH",
+    "actualValue": "resource with type 'securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue",
+    "similarityID": "fbb3950ada678f91872f4d7379e970d4244594d1f0c4aa8648f8169b828837a3",
+    "search_line": 22
   }
 ]

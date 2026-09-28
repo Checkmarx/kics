@@ -3,42 +3,105 @@
     "queryName": "Beta - Activity Log Alert For Delete Policy Assignment Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_1].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete policy assignment' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_1]' resource monitors 'delete policy assignment' events but sets 1 filter(s): caller",
+    "issueType": "IncorrectValue",
+    "similarityID": "72e3e91def92e0322a51dd415275d5941aca729e1498a1b63af8508733de0a87",
+    "search_line": 9
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Policy Assignment Not Configured",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_2].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete policy assignment' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_2]' resource monitors 'delete policy assignment' events but sets 1 filter(s): level",
+    "issueType": "IncorrectValue",
+    "similarityID": "4238006f33d68d68e3adf4bbc30ff39cdc40b0019fb9d094949f012b99ca19e6",
+    "search_line": 28
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Policy Assignment Not Configured",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_3].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete policy assignment' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_3]' resource monitors 'delete policy assignment' events but sets 1 filter(s): levels",
+    "issueType": "IncorrectValue",
+    "similarityID": "07a739c3002f2541914dfc6c8a6658c891010979b1789ee5c5d05414992bb9c2",
+    "search_line": 47
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Policy Assignment Not Configured",
     "severity": "MEDIUM",
     "line": 66,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_4].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete policy assignment' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_4]' resource monitors 'delete policy assignment' events but sets 1 filter(s): status",
+    "issueType": "IncorrectValue",
+    "similarityID": "b2a6d5092210653954700be9fa433b259dc69736f439eb6fd2d30357f9f9effd",
+    "search_line": 66
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Policy Assignment Not Configured",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_5].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete policy assignment' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_5]' resource monitors 'delete policy assignment' events but sets 1 filter(s): statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "0fc7f0651c6aed80d12807db302813f0f2c6f8a90a33518736e8857b55ff6ffd",
+    "search_line": 8
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Policy Assignment Not Configured",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_6].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete policy assignment' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_6]' resource monitors 'delete policy assignment' events but sets 1 filter(s): sub_status",
+    "issueType": "IncorrectValue",
+    "similarityID": "fd8eb0238128e8dd9653edf3ed3579f1fd968ae745576c78273dd890960661c7",
+    "search_line": 27
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Policy Assignment Not Configured",
     "severity": "MEDIUM",
     "line": 46,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_7].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete policy assignment' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_7]' resource monitors 'delete policy assignment' events but sets 1 filter(s): sub_statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "00bf1bfb206d0ce88dd1a89ef36778d47acf83c0ff8d3b3b7fd634b878307ebd",
+    "search_line": 46
   }
 ]

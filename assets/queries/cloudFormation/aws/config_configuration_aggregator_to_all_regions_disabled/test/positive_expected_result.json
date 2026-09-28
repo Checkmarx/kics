@@ -3,54 +3,135 @@
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Config::ConfigurationAggregator",
+    "resourceName": "ConfigurationAggregator1",
+    "searchKey": "Resources.ConfigurationAggregator1.Properties.AccountAggregationSources",
+    "searchValue": "",
+    "expectedValue": "'Resources.ConfigurationAggregator1.Properties.AccountAggregationSources' have all configurations with AllAwsRegions",
+    "actualValue": "'Resources.ConfigurationAggregator1.Properties.AccountAggregationSources' has a configuration without AllAwsRegions",
+    "issueType": "MissingAttribute",
+    "similarityID": "12e5a137ee3040a562af2edd76ea25f19ec9959100d8f0f2e727c0cf12ab0802",
+    "search_line": -1
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
     "line": 21,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Config::ConfigurationAggregator",
+    "resourceName": "ConfigurationAggregator2",
+    "searchKey": "Resources.ConfigurationAggregator2.Properties.AccountAggregationSources",
+    "searchValue": "",
+    "expectedValue": "'Resources.ConfigurationAggregator2.Properties.AccountAggregationSources' have all configurations with AllAwsRegions set to true",
+    "actualValue": "'Resources.ConfigurationAggregator2.Properties.AccountAggregationSources' has a configuration with AllAwsRegions set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "bd2f99f723b638829fc79fa03bba8bf30a754778a54f295f2902e933e1719fcf",
+    "search_line": -1
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
     "line": 33,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Config::ConfigurationAggregator",
+    "resourceName": "MyConfigurationAggregator",
+    "searchKey": "Resources.ConfigurationAggregator3.Properties.OrganizationAggregationSource",
+    "searchValue": "",
+    "expectedValue": "'Resources.ConfigurationAggregator3.Properties.OrganizationAggregationSource.AllAwsRegions' should be set",
+    "actualValue": "'Resources.ConfigurationAggregator3.Properties.OrganizationAggregationSource.AllAwsRegions' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a3d5600d887a1a857e3e562baedfa7b643e4142201f8514c356785780f52a43b",
+    "search_line": -1
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
     "line": 49,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Config::ConfigurationAggregator",
+    "resourceName": "MyConfigurationAggregator",
+    "searchKey": "Resources.ConfigurationAggregator4.Properties.OrganizationAggregationSource.AllAwsRegions",
+    "searchValue": "",
+    "expectedValue": "'Resources.ConfigurationAggregator4.Properties.OrganizationAggregationSource.AllAwsRegions' is true",
+    "actualValue": "'Resources.ConfigurationAggregator4.Properties.OrganizationAggregationSource.AllAwsRegions' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "89445fc12edae2316c53fbf9d6ddc3cbec9fbe864bd6bd679f55186baa4c056b",
+    "search_line": -1
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Config::ConfigurationAggregator",
+    "resourceName": "MyConfigurationAggregator",
+    "searchKey": "Resources.ConfigurationAggregator5.Properties.AccountAggregationSources",
+    "searchValue": "",
+    "expectedValue": "'Resources.ConfigurationAggregator5.Properties.AccountAggregationSources' have all configurations with AllAwsRegions",
+    "actualValue": "'Resources.ConfigurationAggregator5.Properties.AccountAggregationSources' has a configuration without AllAwsRegions",
+    "issueType": "MissingAttribute",
+    "similarityID": "1e281756019672cf57db1c5a749a36fd0928fe3941b7397688aea13d14ed3668",
+    "search_line": -1
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
     "line": 24,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Config::ConfigurationAggregator",
+    "resourceName": "MyConfigurationAggregator",
+    "searchKey": "Resources.ConfigurationAggregator6.Properties.AccountAggregationSources",
+    "searchValue": "",
+    "expectedValue": "'Resources.ConfigurationAggregator6.Properties.AccountAggregationSources' have all configurations with AllAwsRegions set to true",
+    "actualValue": "'Resources.ConfigurationAggregator6.Properties.AccountAggregationSources' has a configuration with AllAwsRegions set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "02e83ab8f7a9672777d2331c3246d83b285bbac9bb2bb56ccef32feca7f7060e",
+    "search_line": -1
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
     "line": 43,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Config::ConfigurationAggregator",
+    "resourceName": "MyConfigurationAggregator",
+    "searchKey": "Resources.ConfigurationAggregator7.Properties.OrganizationAggregationSource",
+    "searchValue": "",
+    "expectedValue": "'Resources.ConfigurationAggregator7.Properties.OrganizationAggregationSource.AllAwsRegions' should be set",
+    "actualValue": "'Resources.ConfigurationAggregator7.Properties.OrganizationAggregationSource.AllAwsRegions' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "770780fbe8698290a6fcc78b85fcc2181a3f391d1acb3591b5c812824ef05dd4",
+    "search_line": -1
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
     "line": 62,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Config::ConfigurationAggregator",
+    "resourceName": "MyConfigurationAggregator",
+    "searchKey": "Resources.ConfigurationAggregator8.Properties.OrganizationAggregationSource.AllAwsRegions",
+    "searchValue": "",
+    "expectedValue": "'Resources.ConfigurationAggregator8.Properties.OrganizationAggregationSource.AllAwsRegions' is true",
+    "actualValue": "'Resources.ConfigurationAggregator8.Properties.OrganizationAggregationSource.AllAwsRegions' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "c2b4c3c2c6200887a66c987a7200b1f12e17dfaea51a099ff9bfe37f433e3088",
+    "search_line": -1
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::Config::ConfigurationAggregator",
+    "resourceName": "ConfigurationAggregator2",
+    "searchKey": "Resources.ConfigurationAggregator2.Properties.AccountAggregationSources",
+    "searchValue": "",
+    "expectedValue": "'Resources.ConfigurationAggregator2.Properties.AccountAggregationSources' have all configurations with AllAwsRegions set to true",
+    "actualValue": "'Resources.ConfigurationAggregator2.Properties.AccountAggregationSources' has a configuration with AllAwsRegions set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "bd1db9ba2424a35ac59c05700d047641f4485c5228774c52ad3063f9d883db3a",
+    "search_line": -1
   }
 ]

@@ -3,18 +3,45 @@
     "queryName": "CloudWatch Route Table Changes Alarm Missing",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = CreateRoute) || ($.eventName = CreateRouteTable) || ($.eventName = ReplaceRoute) || ($.eventName = ReplaceRouteTableAssociation) || ($.eventName = DeleteRouteTable) || ($.eventName = DeleteRoute) || ($.eventName = DisassociateRouteTable) } and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = CreateRoute) || ($.eventName = CreateRouteTable) || ($.eventName = ReplaceRoute) || ($.eventName = ReplaceRouteTableAssociation) || ($.eventName = DeleteRouteTable) || ($.eventName = DeleteRoute) || ($.eventName = DisassociateRouteTable) } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "6d03656438848f5079bbd9c3248e8b042369d3471ba1813571bf77e607f19552",
+    "search_line": 1
   },
   {
     "queryName": "CloudWatch Route Table Changes Alarm Missing",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = CreateRoute) || ($.eventName = CreateRouteTable) || ($.eventName = ReplaceRoute) || ($.eventName = ReplaceRouteTableAssociation) || ($.eventName = DeleteRouteTable) || ($.eventName = DeleteRoute) || ($.eventName = DisassociateRouteTable) } and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = CreateRoute) || ($.eventName = CreateRouteTable) || ($.eventName = ReplaceRoute) || ($.eventName = ReplaceRouteTableAssociation) || ($.eventName = DeleteRouteTable) || ($.eventName = DeleteRoute) || ($.eventName = DisassociateRouteTable) } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "691fc641fc7d06372a008f6cb54909f05d67df6346d54e1cb95ad308178146b5",
+    "search_line": 1
   },
   {
     "queryName": "CloudWatch Route Table Changes Alarm Missing",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = CreateRoute) || ($.eventName = CreateRouteTable) || ($.eventName = ReplaceRoute) || ($.eventName = ReplaceRouteTableAssociation) || ($.eventName = DeleteRouteTable) || ($.eventName = DeleteRoute) || ($.eventName = DisassociateRouteTable) } and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = CreateRoute) || ($.eventName = CreateRouteTable) || ($.eventName = ReplaceRoute) || ($.eventName = ReplaceRouteTableAssociation) || ($.eventName = DeleteRouteTable) || ($.eventName = DeleteRoute) || ($.eventName = DisassociateRouteTable) } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "11b5ecb9045ac2c381411430610e9759f6b57500d59be06621154f94b907acc0",
+    "search_line": 1
   }
 ]

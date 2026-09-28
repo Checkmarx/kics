@@ -3,78 +3,195 @@
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive10",
+    "searchKey": "aws_api_gateway_stage[positive10]",
+    "searchValue": "access_log_settings",
+    "expectedValue": "'access_log_settings' should be defined",
+    "actualValue": "'access_log_settings' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0ad0efed31c812bbb41e5a047fff86e5fcc00337a43e9f2ea62ab8ab60e2df11",
+    "search_line": 1
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_apigatewayv2_stage",
+    "resourceName": "positive11",
+    "searchKey": "aws_apigatewayv2_stage[positive11]",
+    "searchValue": "access_log_settings",
+    "expectedValue": "'access_log_settings' should be defined",
+    "actualValue": "'access_log_settings' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d635514c94a2a794257c370c8fb9c3a062680a9c0f5832a7b0abc44bfa8cf8e3",
+    "search_line": 15
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive20",
+    "searchKey": "aws_api_gateway_method_settings[allpositive2].settings.logging_level",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_method_settings[allpositive2].settings.logging_level should be defined and not null",
+    "actualValue": "aws_api_gateway_method_settings[allpositive2].settings.logging_level isn't defined or is null",
+    "issueType": "IncorrectValue",
+    "similarityID": "1711c3591eda0c7d7a51b14cc4c5bab566fedcce84adc21971b979fa3107c5c0",
+    "search_line": 15
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 28,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_apigatewayv2_stage",
+    "resourceName": "positive21",
+    "searchKey": "aws_apigatewayv2_stage[positive21].default_route_settings.logging_level",
+    "searchValue": "",
+    "expectedValue": "aws_apigatewayv2_stage[positive21].default_route_settings.logging_level should be defined and not null",
+    "actualValue": "aws_apigatewayv2_stage[positive21].default_route_settings.logging_level isn't defined or is null",
+    "issueType": "IncorrectValue",
+    "similarityID": "a75f080fe15d220a13bc06c41e06cabb01f5e35ee29111ce8b2bb72aa6c55ed4",
+    "search_line": 28
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive30",
+    "searchKey": "aws_api_gateway_method_settings[allpositive3].settings",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_method_settings[allpositive3].settings.logging_level should be defined and not null",
+    "actualValue": "aws_api_gateway_method_settings[allpositive3].settings.logging_level isn't defined or is null",
+    "issueType": "MissingAttribute",
+    "similarityID": "9e5600eabdd40af33a7828434ba91a964c524a085704730951775f6e541f95db",
+    "search_line": 14
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 27,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_apigatewayv2_stage",
+    "resourceName": "positive31",
+    "searchKey": "aws_apigatewayv2_stage[positive31].default_route_settings",
+    "searchValue": "",
+    "expectedValue": "aws_apigatewayv2_stage[positive31].default_route_settings.logging_level should be defined and not null",
+    "actualValue": "aws_apigatewayv2_stage[positive31].default_route_settings.logging_level isn't defined or is null",
+    "issueType": "MissingAttribute",
+    "similarityID": "11a3725a560e6b77b4ea4e532c5790da1ab87bf295cc04ec9c7cee88c799a546",
+    "search_line": 27
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive40",
+    "searchKey": "aws_api_gateway_method_settings[allpositive4]",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_method_settings[allpositive4].settings should be defined and not null",
+    "actualValue": "aws_api_gateway_method_settings[allpositive4].settings isn't defined or is null",
+    "issueType": "MissingAttribute",
+    "similarityID": "ed35ea3625f682a9135d78f29365722bd09b90b33e7befe554a26e5f86c8559c",
+    "search_line": 10
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_apigatewayv2_stage",
+    "resourceName": "positive41",
+    "searchKey": "aws_apigatewayv2_stage[positive41]",
+    "searchValue": "default_route_settings",
+    "expectedValue": "aws_apigatewayv2_stage[positive41].default_route_settings should be defined and not null",
+    "actualValue": "aws_apigatewayv2_stage[positive41].default_route_settings isn't defined or is null",
+    "issueType": "MissingAttribute",
+    "similarityID": "657a7ebe09243d5866c11e6040e3da911f8a2ba7b35fe7a1d664a1613353a9c7",
+    "search_line": 15
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive50",
+    "searchKey": "aws_api_gateway_method_settings[allpositive5].settings.logging_level",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_method_settings[allpositive5].settings.logging_level should not be set to OFF",
+    "actualValue": "aws_api_gateway_method_settings[allpositive5].settings.logging_level is set to OFF",
+    "issueType": "IncorrectValue",
+    "similarityID": "972c4558608cfecca65f33ee26a700110b7eb0a92ffcc13d0ce2477646aa9b49",
+    "search_line": 15
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 28,
-    "filename": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_apigatewayv2_stage",
+    "resourceName": "positive51",
+    "searchKey": "aws_apigatewayv2_stage[positive51].default_route_settings.logging_level",
+    "searchValue": "",
+    "expectedValue": "aws_apigatewayv2_stage[positive51].default_route_settings.logging_level should not be set to OFF",
+    "actualValue": "aws_apigatewayv2_stage[positive51].default_route_settings.logging_level is set to OFF",
+    "issueType": "IncorrectValue",
+    "similarityID": "666b6ae8c492253731bf3f7869265068578cbce73200c0753c42b44b032cc31c",
+    "search_line": 28
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive60",
+    "searchKey": "aws_api_gateway_method_settings[allpositive6].settings",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_method_settings[allpositive6].settings.logging_level should be defined and not null",
+    "actualValue": "aws_api_gateway_method_settings[allpositive6].settings.logging_level isn't defined or is null",
+    "issueType": "MissingAttribute",
+    "similarityID": "b5ba10c9495c196ae85de82a6d747f16b4fa2d793cca9da463eb184789e71609",
+    "search_line": 14
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 27,
-    "filename": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "aws_apigatewayv2_stage",
+    "resourceName": "positive61",
+    "searchKey": "aws_apigatewayv2_stage[positive61].default_route_settings",
+    "searchValue": "",
+    "expectedValue": "aws_apigatewayv2_stage[positive61].default_route_settings.logging_level should be defined and not null",
+    "actualValue": "aws_apigatewayv2_stage[positive61].default_route_settings.logging_level isn't defined or is null",
+    "issueType": "MissingAttribute",
+    "similarityID": "ee46e36a8e055e8ec4cf632b8c5071cd713939180c9826b1fb400e2f74346735",
+    "search_line": 27
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive7.tf"
+    "fileName": "positive7.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive70",
+    "searchKey": "aws_api_gateway_stage[positive70]",
+    "searchValue": "aws_api_gateway_method_settings",
+    "expectedValue": "aws_api_gateway_stage[positive70]'s corresponding aws_api_gateway_method_settings should be defined and not null",
+    "actualValue": "aws_api_gateway_stage[positive70]'s corresponding aws_api_gateway_method_settings isn't defined or is null",
+    "issueType": "MissingAttribute",
+    "similarityID": "d0310a2e2aa8a9407b4f391bdaf46810b199346a049a12b6403c02d0f640488a",
+    "search_line": 1
   }
 ]

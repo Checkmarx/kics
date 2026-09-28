@@ -3,6 +3,15 @@
     "queryName": "Kubelet Certificate Authority Not Set",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--kubelet-certificate-authority flag should be set",
+    "actualValue": "--kubelet-certificate-authority flag is not set",
+    "issueType": "MissingAttribute",
+    "similarityID": "05903bf632b31fd772f6257baf640cd3d545bea726ad3fe7d374386e593c3ca6",
+    "search_line": 11
   }
 ]

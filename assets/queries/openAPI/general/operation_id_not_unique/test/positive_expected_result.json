@@ -3,48 +3,120 @@
     "queryName": "OperationId Not Unique (v3)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique",
+    "issueType": "IncorrectValue",
+    "similarityID": "d0203eebcd337a6ace42bacdddf05f4fd3d285e926cd27e1780d33d9b4abb6e8",
+    "search_line": -1
   },
   {
     "queryName": "OperationId Not Unique (v3)",
     "severity": "INFO",
     "line": 46,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{post}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{post}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique",
+    "issueType": "IncorrectValue",
+    "similarityID": "4e77bcab5f3dd45fdb31b727a40c76dc38b33925515ad7d9d32f93e89474c045",
+    "search_line": -1
   },
   {
     "queryName": "OperationId Not Unique (v3)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique",
+    "issueType": "IncorrectValue",
+    "similarityID": "2a702c8a40071414d267ce77a2c47adbe03ce54f97f9d8ca1b99507b431c24e1",
+    "search_line": -1
   },
   {
     "queryName": "OperationId Not Unique (v3)",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{post}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{post}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique",
+    "issueType": "IncorrectValue",
+    "similarityID": "deaee8a473ac0b4e219e41d07b99ef94d65794dc273b13669e4c6e18086500c1",
+    "search_line": -1
   },
   {
     "queryName": "OperationId Not Unique (v2)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique",
+    "issueType": "IncorrectValue",
+    "similarityID": "03cdb95e7ee4371dd151e174a13277d8b2af8358d18bb31a68f03294df982a43",
+    "search_line": -1
   },
   {
     "queryName": "OperationId Not Unique (v2)",
     "severity": "INFO",
     "line": 23,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{post}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{post}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique",
+    "issueType": "IncorrectValue",
+    "similarityID": "961a02873e52dbf38cfb95e1ad6e300de9073476ac432c772c2bade900c9cb38",
+    "search_line": -1
   },
   {
     "queryName": "OperationId Not Unique (v2)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique",
+    "issueType": "IncorrectValue",
+    "similarityID": "6f7b82e25a7a59ae09156a896af4cb3872928007feabe0086b70496a5559e709",
+    "search_line": -1
   },
   {
     "queryName": "OperationId Not Unique (v2)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{post}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{post}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique",
+    "issueType": "IncorrectValue",
+    "similarityID": "a64f0f81d64900a0199436741f4865075900158a391b1addd924b05f8ea8e734",
+    "search_line": -1
   }
 ]

@@ -1,20 +1,47 @@
 [
-    {
-      "queryName": "Kubelet Not Managing Ip Tables",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Kubelet Not Managing Ip Tables",
-      "severity": "MEDIUM",
-      "line": 8,
-      "filename": "positive2.yaml"
-    },
-    {
-      "queryName": "Kubelet Not Managing Ip Tables",
-      "severity": "MEDIUM",
-      "line": 7,
-      "filename": "positive3.json"
-    }
-  ]
+  {
+    "queryName": "Kubelet Not Managing Ip Tables",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--make-iptables-util-chains flag should be true",
+    "actualValue": "--make-iptables-util-chains= flag is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "66d00c08a2d052f089362394139b459f7e6c38f6d8db79c28df4fb3b291fc48b",
+    "search_line": 11
+  },
+  {
+    "queryName": "Kubelet Not Managing Ip Tables",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive2.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.makeIPTablesUtilChains",
+    "searchValue": "",
+    "expectedValue": "makeIPTablesUtilChains should be true",
+    "actualValue": "makeIPTablesUtilChains is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "0b1af0fb9803f01bf2c1984c186dd44638202dad444a9da71eff13fff8a0f9f7",
+    "search_line": -1
+  },
+  {
+    "queryName": "Kubelet Not Managing Ip Tables",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive3.json",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.makeIPTablesUtilChains",
+    "searchValue": "",
+    "expectedValue": "makeIPTablesUtilChains should be true",
+    "actualValue": "makeIPTablesUtilChains is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "e8d02073774bb21ada667a88fd04d25c82433df5fb6b129d1f8abba4ff5f56ca",
+    "search_line": -1
+  }
+]

@@ -3,6 +3,15 @@
     "queryName": "Lambda With Vulnerable Policy",
     "severity": "HIGH",
     "line": 35,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_lambda_permission",
+    "resourceName": "all",
+    "searchKey": "aws_lambda_permission[all].action",
+    "searchValue": "",
+    "expectedValue": "aws_lambda_permission[all].action should not have wildcard",
+    "actualValue": "aws_lambda_permission[all].action has wildcard",
+    "issueType": "IncorrectValue",
+    "similarityID": "7407677c5289cdf7a8c339406ac9984e0c78d6e11a61a1d946ec0db2a6209159",
+    "search_line": -1
   }
 ]

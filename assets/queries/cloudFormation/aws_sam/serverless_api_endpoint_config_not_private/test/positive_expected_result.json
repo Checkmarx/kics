@@ -3,18 +3,45 @@
     "queryName": "Serverless API Endpoint Config Not Private",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi",
+    "searchKey": "Resources.ApiGatewayApi.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.ApiGatewayApi.EndpointConfiguration' should be defined and not null",
+    "actualValue": "'Resources.ApiGatewayApi.EndpointConfiguration' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c47c6f916e7769ad3d73efc717545a8c787485f6a2d88a3015ee65c3ee1ad51e",
+    "search_line": 7
   },
   {
     "queryName": "Serverless API Endpoint Config Not Private",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi2",
+    "searchKey": "Resources.ApiGatewayApi2.Properties.EndpointConfiguration",
+    "searchValue": "",
+    "expectedValue": "'Resources.ApiGatewayApi2.EndpointConfiguration.Types' should be defined and not null",
+    "actualValue": "'Resources.ApiGatewayApi2.EndpointConfiguration.Types' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "dee5386863b1209d74fe435410a4b5b8d91b761da099b111e571414b3eb5f475",
+    "search_line": 11
   },
   {
     "queryName": "Serverless API Endpoint Config Not Private",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi3",
+    "searchKey": "Resources.ApiGatewayApi3.Properties.EndpointConfiguration.Types",
+    "searchValue": "",
+    "expectedValue": "'Resources.ApiGatewayApi3.EndpointConfiguration.Types' should contain 'PRIVATE'",
+    "actualValue": "'Resources.ApiGatewayApi3.EndpointConfiguration.Types' does not contain 'PRIVATE'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5714aa60d09e56969be9131f04d27447ef101546a8b02d68068dd18aa5aa3d97",
+    "search_line": 12
   }
 ]

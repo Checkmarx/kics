@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "PSP Allows Containers To Share The Host Network Namespace",
-		"severity": "HIGH",
-		"line": 14
-	}
+  {
+    "queryName": "PSP Allows Containers To Share The Host Network Namespace",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "privileged",
+    "searchKey": "metadata.name={{privileged}}.spec.hostNetwork",
+    "searchValue": "",
+    "expectedValue": "'spec.hostNetwork' should be set to false or undefined",
+    "actualValue": "'spec.hostNetwork' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "49a5b83ef9899ef78241040a117ad1375e1b69052f1c96e704071bf347aa7007",
+    "search_line": -1
+  }
 ]

@@ -2,11 +2,31 @@
   {
     "queryName": "Beta - Storage Account With Shared Access Key",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_storage_account[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive1].shared_access_key_enabled' should be defined and set to false",
+    "actualValue": "'azurerm_storage_account[positive1].shared_access_key_enabled' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "938dce08769c4f197198b1581a0befd47eb7c424a52e914d8ad50aa4b34604f2",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Storage Account With Shared Access Key",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive2",
+    "searchKey": "azurerm_storage_account[positive2].shared_access_key_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive2].shared_access_key_enabled' should be defined and set to false",
+    "actualValue": "'azurerm_storage_account[positive2].shared_access_key_enabled' is set to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b777a806c7b67eaf455ffd5dae3e36d997729aeb96f55baba23b4324c3d20d55",
+    "search_line": 18
   }
 ]

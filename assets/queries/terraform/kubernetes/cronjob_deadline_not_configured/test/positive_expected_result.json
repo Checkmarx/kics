@@ -2,6 +2,16 @@
   {
     "queryName": "CronJob Deadline Not Configured",
     "severity": "LOW",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_cron_job",
+    "resourceName": "demo",
+    "searchKey": "kubernetes_cron_job[demo].spec",
+    "searchValue": "",
+    "expectedValue": "kubernetes_cron_job[demo].spec.starting_deadline_seconds should be set",
+    "actualValue": "kubernetes_cron_job[demo].spec.starting_deadline_seconds is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "252a589029fd7ed7f691abb8271070db14bd3dd9dea1ff6915509f4d7df41031",
+    "search_line": -1
   }
 ]

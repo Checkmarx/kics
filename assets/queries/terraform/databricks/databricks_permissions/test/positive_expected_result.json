@@ -3,24 +3,60 @@
     "queryName": "Databricks Cluster or Job With None Or Insecure Permission(s)",
     "severity": "HIGH",
     "line": 16,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "databricks_job",
+    "resourceName": "Featurization",
+    "searchKey": "databricks_job[positive1_error]",
+    "searchValue": "",
+    "expectedValue": "'databricks_job[positive1_error]' should have permissions",
+    "actualValue": "'databricks_job[positive1_error]' doesn't have permission associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "1ddf5ba943f3d7a9084347f15974247ac5359bf571b534147967f79ae58b19ed",
+    "search_line": -1
   },
   {
     "queryName": "Databricks Cluster or Job With None Or Insecure Permission(s)",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "databricks_cluster",
+    "resourceName": "positive2_error",
+    "searchKey": "databricks_cluster[positive2_error]",
+    "searchValue": "",
+    "expectedValue": "'databricks_cluster[positive2_error]' should have permissions",
+    "actualValue": "'databricks_cluster[positive2_error]' doesn't have permission associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "f08df77247d7d982f5a1cf7cd28cc1200d88e58abe274ab8a9569beb7cb7e183",
+    "search_line": -1
   },
   {
     "queryName": "Databricks Cluster or Job With None Or Insecure Permission(s)",
     "severity": "HIGH",
     "line": 16,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "databricks_permissions",
+    "resourceName": "positive3",
+    "searchKey": "databricks_permissions.[positive3]",
+    "searchValue": "",
+    "expectedValue": "'databricks_permissions[positive3]' should not have permission_level == 'IS_OWNER' without service_principal_name associated",
+    "actualValue": "'databricks_permissions[positive3]' have permission_level == 'IS_OWNER' without service_principal_name associated",
+    "issueType": "IncorrectValue",
+    "similarityID": "9f253e06b42b4359599bbe23ba6adf6fc9cb18fef6c750603042b1f9f2f53aa6",
+    "search_line": -1
   },
   {
     "queryName": "Databricks Cluster or Job With None Or Insecure Permission(s)",
     "severity": "HIGH",
     "line": 16,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "databricks_permissions",
+    "resourceName": "positive4",
+    "searchKey": "databricks_permissions.[positive4]",
+    "searchValue": "",
+    "expectedValue": "'databricks_permissions[positive4]' should not have permission_level == 'IS_OWNER' without service_principal_name associated",
+    "actualValue": "'databricks_permissions[positive4]' have permission_level == 'IS_OWNER' without service_principal_name associated",
+    "issueType": "IncorrectValue",
+    "similarityID": "2b997cf934211734f5e6e4d0827b138e5fa6ea54bdd24e55da9b83763a63d0fc",
+    "search_line": -1
   }
 ]

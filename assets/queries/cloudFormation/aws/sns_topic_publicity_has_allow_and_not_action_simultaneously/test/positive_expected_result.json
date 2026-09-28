@@ -3,12 +3,30 @@
     "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::SNS::TopicPolicy",
+    "resourceName": "mysnspolicy",
+    "searchKey": "Resources.mysnspolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and Action",
+    "actualValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and NotAction",
+    "issueType": "IncorrectValue",
+    "similarityID": "630d0dd1f0b9316d558da723aca74347c805a2f20643736dde433c60e1285c15",
+    "search_line": -1
   },
   {
     "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::SNS::TopicPolicy",
+    "resourceName": "mysnspolicy",
+    "searchKey": "Resources.mysnspolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and Action",
+    "actualValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and NotAction",
+    "issueType": "IncorrectValue",
+    "similarityID": "ec6f4880cbb881e7bebaa79da62bc3450b15a2f5f8d81a16721ef06320305d71",
+    "search_line": -1
   }
 ]

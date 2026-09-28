@@ -2,11 +2,31 @@
   {
     "queryName": "Beta - Google DNS Policy Logging Disabled",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "google_dns_policy",
+    "resourceName": "example-policy",
+    "searchKey": "google_dns_policy[example-policy]",
+    "searchValue": "",
+    "expectedValue": "'google_dns_policy[example-policy].enable_logging' should be defined and set to true",
+    "actualValue": "'google_dns_policy[example-policy].enable_logging' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "002e65879768d1bc83215b7016a3e3851de05f331bb2aa53c4448682643b7a54",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Google DNS Policy Logging Disabled",
     "severity": "MEDIUM",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.tf",
+    "resourceType": "google_dns_policy",
+    "resourceName": "example-policy-2",
+    "searchKey": "google_dns_policy[example-policy-2].enable_logging",
+    "searchValue": "",
+    "expectedValue": "'google_dns_policy[example-policy-2].enable_logging' should be defined and set to true",
+    "actualValue": "'google_dns_policy[example-policy-2].enable_logging' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "99a6bfa8fb840671294f1a73d87a2c09e772f36ce81940b21c54acfa02d7fc48",
+    "search_line": 11
   }
 ]

@@ -1,26 +1,62 @@
 [
-	{
-		"queryName": "Kubelet Client Periodic Certificate Switch Disabled",
-		"severity": "MEDIUM",
-		"line": 2,
-        "filename": "positive4.yaml"
-	},
-    {
-		"queryName": "Kubelet Client Periodic Certificate Switch Disabled",
-		"severity": "MEDIUM",
-		"line": 8,
-        "filename": "positive2.yaml"
-	},
-    {
-		"queryName": "Kubelet Client Periodic Certificate Switch Disabled",
-		"severity": "MEDIUM",
-		"line": 11,
-        "filename": "positive1.yaml"
-	},
-    {
-		"queryName": "Kubelet Client Periodic Certificate Switch Disabled",
-		"severity": "MEDIUM",
-		"line": 6,
-        "filename": "positive3.json"
-	}
+  {
+    "queryName": "Kubelet Client Periodic Certificate Switch Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--rotate-certificates flag should be true",
+    "actualValue": "--rotate-certificates flag is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "b28a49f0a5651109e472c8b683ad55ab4381f0ca7fd4b03708c37cc8024f6cab",
+    "search_line": 11
+  },
+  {
+    "queryName": "Kubelet Client Periodic Certificate Switch Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive2.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.rotateCertificates",
+    "searchValue": "",
+    "expectedValue": "rotateCertificates should be true",
+    "actualValue": "rotateCertificates is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "19cc1bb4015adcfe4f19a213ead6e72a34597a69811fdba50bc1de7c6a646be6",
+    "search_line": -1
+  },
+  {
+    "queryName": "Kubelet Client Periodic Certificate Switch Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive3.json",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.rotateCertificates",
+    "searchValue": "",
+    "expectedValue": "rotateCertificates should be true",
+    "actualValue": "rotateCertificates is not set (default is false)",
+    "issueType": "MissingAttribute",
+    "similarityID": "5e19a8a0d33685183357c92278dd4a13665e39a6b881a786661fa275d109831b",
+    "search_line": -1
+  },
+  {
+    "queryName": "Kubelet Client Periodic Certificate Switch Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive4.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.rotateCertificates",
+    "searchValue": "",
+    "expectedValue": "rotateCertificates should be true",
+    "actualValue": "rotateCertificates is not set (default is false)",
+    "issueType": "MissingAttribute",
+    "similarityID": "2f1bb68313da0a53fb78677fd45598cdec07cc8bba238b02cd5ef4c43a53bb05",
+    "search_line": -1
+  }
 ]

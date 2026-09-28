@@ -1,20 +1,47 @@
 [
-    {
-        "queryName": "Public Security Group Rule All Ports or Protocols",
-        "severity": "HIGH",
-        "line": 13,
-        "fileName": "positive1.tf"
-    },
-    {
-        "queryName": "Public Security Group Rule All Ports or Protocols",
-        "severity": "HIGH",
-        "line": 13,
-        "fileName": "positive2.tf"
-    },
-    {
-        "queryName": "Public Security Group Rule All Ports or Protocols",
-        "severity": "HIGH",
-        "line": 13,
-        "fileName": "positive3.tf"
-    }
+  {
+    "queryName": "Public Security Group Rule All Ports or Protocols",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].cidr_ip",
+    "searchValue": "",
+    "expectedValue": "cidr_ip should not be '0.0.0.0/0' when ip_protocol is equal to all",
+    "actualValue": "cidr_ip is '0.0.0.0/0' when ip_protocol is equal to all",
+    "issueType": "IncorrectValue",
+    "similarityID": "c301fe9adae9c2afc8168113fca171c6c35ac9518d2b6cfb5c8111ef9f466e52",
+    "search_line": 13
+  },
+  {
+    "queryName": "Public Security Group Rule All Ports or Protocols",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].cidr_ip",
+    "searchValue": "",
+    "expectedValue": "cidr_ip should not be '0.0.0.0/0' for the specified protocol",
+    "actualValue": "cidr_ip '0.0.0.0/0' exposes all ports for the gre protocol",
+    "issueType": "IncorrectValue",
+    "similarityID": "87237f75bddb95b42d0d3c58bd9daf939a9703d1aacdf584147e00352581e659",
+    "search_line": 13
+  },
+  {
+    "queryName": "Public Security Group Rule All Ports or Protocols",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive3.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].cidr_ip",
+    "searchValue": "",
+    "expectedValue": "cidr_ip should not be '0.0.0.0/0' for the specified protocol",
+    "actualValue": "cidr_ip '0.0.0.0/0' exposes all ports for the tcp protocol",
+    "issueType": "IncorrectValue",
+    "similarityID": "150d6ec3267a8ac00391069e23e0f3ebb65e29c351360f8153cfa4e68aa0da65",
+    "search_line": 13
+  }
 ]

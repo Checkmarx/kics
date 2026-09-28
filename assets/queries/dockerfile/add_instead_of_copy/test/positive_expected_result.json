@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Add Instead of Copy",
-		"severity": "MEDIUM",
-		"line": 8,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Add Instead of Copy",
-		"severity": "MEDIUM",
-		"line": 8,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Add Instead of Copy",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{openjdk:10-jdk}}.{{ADD ${JAR_FILE} app.jar}}",
+    "searchValue": "",
+    "expectedValue": "'COPY' ${JAR_FILE}",
+    "actualValue": "'ADD' ${JAR_FILE}",
+    "issueType": "IncorrectValue",
+    "similarityID": "36c0bb20bdf14539faf21bdc98b5247a22dd07bd58a87216138cefacdb5fee06",
+    "search_line": -1
+  },
+  {
+    "queryName": "Add Instead of Copy",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{openjdk:10-jdk}}.{{add ${JAR_FILE} app.jar}}",
+    "searchValue": "",
+    "expectedValue": "'COPY' ${JAR_FILE}",
+    "actualValue": "'ADD' ${JAR_FILE}",
+    "issueType": "IncorrectValue",
+    "similarityID": "db351795a915c2ad294d780dc6b609afc5cf0c790cc8b56a739d23ca8538d460",
+    "search_line": -1
+  }
 ]

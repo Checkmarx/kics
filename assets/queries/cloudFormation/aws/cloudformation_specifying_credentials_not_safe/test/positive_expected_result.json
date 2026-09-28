@@ -1,38 +1,92 @@
 [
   {
+    "queryName": "CloudFormation Specifying Credentials Not Safe",
     "severity": "MEDIUM",
     "line": 33,
     "fileName": "positive1.yaml",
-    "queryName": "CloudFormation Specifying Credentials Not Safe"
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "WebServer",
+    "searchKey": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.accessKeyId",
+    "searchValue": "",
+    "expectedValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.accessKeyId should not exist",
+    "actualValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.accessKeyId exists",
+    "issueType": "MissingAttribute",
+    "similarityID": "a52999d0f3fe9657104bb9bd1bc67585fd8820446bfbfb2a542b11d9ea97f9e3",
+    "search_line": -1
   },
   {
     "queryName": "CloudFormation Specifying Credentials Not Safe",
     "severity": "MEDIUM",
     "line": 35,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "WebServer",
+    "searchKey": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.secretKey",
+    "searchValue": "",
+    "expectedValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.secretKey should not exist",
+    "actualValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.secretKey exists",
+    "issueType": "MissingAttribute",
+    "similarityID": "8e23886c676ffdaf40425647f945bfe5fdd261d33094daf67614c375efee2529",
+    "search_line": -1
   },
   {
     "queryName": "CloudFormation Specifying Credentials Not Safe",
     "severity": "MEDIUM",
     "line": 71,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "WebServer2",
+    "searchKey": "Resources.WebServer2.Metadata.AWS::CloudFormation::Authentication.BasicAccessCreds.password",
+    "searchValue": "",
+    "expectedValue": "Resources.WebServer2.Metadata.AWS::CloudFormation::Authentication.BasicAccessCreds.password should not exist",
+    "actualValue": "Resources.WebServer2.Metadata.AWS::CloudFormation::Authentication.BasicAccessCreds.password exists",
+    "issueType": "MissingAttribute",
+    "similarityID": "4ef0eb694c10cd1b5c2b0b50a7d46c6f70415d1ad4fe91cac85cba14866a0e11",
+    "search_line": -1
   },
   {
     "queryName": "CloudFormation Specifying Credentials Not Safe",
     "severity": "MEDIUM",
     "line": 48,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "WebServer",
+    "searchKey": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.accessKeyId",
+    "searchValue": "",
+    "expectedValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.accessKeyId should not exist",
+    "actualValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.accessKeyId exists",
+    "issueType": "MissingAttribute",
+    "similarityID": "bf1f3a2fa1218895110e88731ade87e91e148dc5520d2f57ad9de09bc9725dc7",
+    "search_line": -1
   },
   {
+    "queryName": "CloudFormation Specifying Credentials Not Safe",
+    "severity": "MEDIUM",
     "line": 51,
     "fileName": "positive2.json",
-    "queryName": "CloudFormation Specifying Credentials Not Safe",
-    "severity": "MEDIUM"
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "WebServer",
+    "searchKey": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.secretKey",
+    "searchValue": "",
+    "expectedValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.secretKey should not exist",
+    "actualValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.secretKey exists",
+    "issueType": "MissingAttribute",
+    "similarityID": "e623c2af59901d88a39bcdb53406affb93ce566d25a5721b7971ddccafde6635",
+    "search_line": -1
   },
   {
     "queryName": "CloudFormation Specifying Credentials Not Safe",
     "severity": "MEDIUM",
     "line": 112,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "WebServer2",
+    "searchKey": "Resources.WebServer2.Metadata.AWS::CloudFormation::Authentication.BasicAccessCreds.password",
+    "searchValue": "",
+    "expectedValue": "Resources.WebServer2.Metadata.AWS::CloudFormation::Authentication.BasicAccessCreds.password should not exist",
+    "actualValue": "Resources.WebServer2.Metadata.AWS::CloudFormation::Authentication.BasicAccessCreds.password exists",
+    "issueType": "MissingAttribute",
+    "similarityID": "d21e0bce906390f2220030399cecacfde6a88e70ec26377fb7b11cacc0b856ee",
+    "search_line": -1
   }
 ]

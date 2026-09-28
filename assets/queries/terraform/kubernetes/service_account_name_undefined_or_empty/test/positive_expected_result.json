@@ -1,20 +1,47 @@
 [
-	{
-		"queryName": "Service Account Name Undefined Or Empty",
-		"severity": "MEDIUM",
-		"line": 6,
-    "fileName": "positive1.tf"
-	},
   {
-		"queryName": "Service Account Name Undefined Or Empty",
-		"severity": "MEDIUM",
-		"line": 6,
-    "fileName": "positive2.tf"
-	},
+    "queryName": "Service Account Name Undefined Or Empty",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[test1].spec",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test1].spec.service_account_name should be defined and not null",
+    "actualValue": "kubernetes_pod[test1].spec.service_account_name is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "e34f60a48bbeaf16b8b7190d1dc81141a7b6812ca8eadc15cfc28e129d797507",
+    "search_line": -1
+  },
   {
-		"queryName": "Service Account Name Undefined Or Empty",
-		"severity": "MEDIUM",
-		"line": 36,
-    "fileName": "positive3.tf"
-	}
+    "queryName": "Service Account Name Undefined Or Empty",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[test2].spec",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test2].spec.service_account_name should be defined and not null",
+    "actualValue": "kubernetes_pod[test2].spec.service_account_name is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "bd9abd715947e5473e39e6331863a9266b7995062b73e3769b05a23be542b3a7",
+    "search_line": -1
+  },
+  {
+    "queryName": "Service Account Name Undefined Or Empty",
+    "severity": "MEDIUM",
+    "line": 36,
+    "fileName": "positive3.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[test3].spec.service_account_name",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test3].spec.service_account_name is correct",
+    "actualValue": "kubernetes_pod[test3].spec.service_account_name is null or empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "06aacb9776bddfb218db90f55c1a81acca8d4c4d6c12a5b25676a36a71ca857a",
+    "search_line": -1
+  }
 ]

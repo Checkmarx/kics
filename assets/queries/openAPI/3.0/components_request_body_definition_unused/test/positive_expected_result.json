@@ -3,12 +3,30 @@
     "queryName": "Components Request Body Definition Is Unused",
     "severity": "INFO",
     "line": 35,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.{{MyObjectBody}}",
+    "searchValue": "",
+    "expectedValue": "Request body should be used as reference somewhere",
+    "actualValue": "Request body is not used as reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "85d6071c691fbab1da7114f27e6c125f84a2a0a0ee946674b9a8c38cfe42e73a",
+    "search_line": 0
   },
   {
     "queryName": "Components Request Body Definition Is Unused",
     "severity": "INFO",
     "line": 23,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.{{MyObjectBody}}",
+    "searchValue": "",
+    "expectedValue": "Request body should be used as reference somewhere",
+    "actualValue": "Request body is not used as reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "4960ef33ddc3e8cc5138c1f1d8dd19da7e0340f1b628c56ed721bdd69bbce0e5",
+    "search_line": 0
   }
 ]

@@ -3,24 +3,60 @@
     "queryName": "API Gateway Endpoint Config is Not Private",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myRestApi",
+    "searchKey": "Resources.MyRestApi.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRestApi.EndpointConfiguration' should be defined",
+    "actualValue": "'Resources.MyRestApi.EndpointConfiguration' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "dbbbe7ec889e7f0b6ff104110df23a80b2d60946e0f6d45119f71e4c7a12166a",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway Endpoint Config is Not Private",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myRestApi2",
+    "searchKey": "Resources.MyRestApi2.Properties.EndpointConfiguration.Types",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRestApi2.EndpointConfiguration.Types' should contain 'PRIVATE'",
+    "actualValue": "'Resources.MyRestApi2.EndpointConfiguration.Types' does not contain 'PRIVATE'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e548570aec53d28a9fe5ec4d3b149eea83bf03218124cd775cde0dde4c24c55b",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway Endpoint Config is Not Private",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myRestApi",
+    "searchKey": "Resources.MyRestApi.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRestApi.EndpointConfiguration' should be defined",
+    "actualValue": "'Resources.MyRestApi.EndpointConfiguration' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0b8fbd578b8e31d0de6702695362ca3575a56bdbf7152724a42526d924266599",
+    "search_line": -1
   },
   {
+    "queryName": "API Gateway Endpoint Config is Not Private",
+    "severity": "MEDIUM",
     "line": 14,
     "fileName": "positive2.json",
-    "queryName": "API Gateway Endpoint Config is Not Private",
-    "severity": "MEDIUM"
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myRestApi2",
+    "searchKey": "Resources.MyRestApi2.Properties.EndpointConfiguration.Types",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRestApi2.EndpointConfiguration.Types' should contain 'PRIVATE'",
+    "actualValue": "'Resources.MyRestApi2.EndpointConfiguration.Types' does not contain 'PRIVATE'",
+    "issueType": "IncorrectValue",
+    "similarityID": "32d54a5f03d33802bace15efaa264b60474c934c5a4506ebf250c6494d14dd77",
+    "search_line": -1
   }
 ]

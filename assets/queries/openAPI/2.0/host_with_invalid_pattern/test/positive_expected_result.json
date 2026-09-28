@@ -3,12 +3,30 @@
     "queryName": "Host With Invalid Pattern",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "host",
+    "searchValue": "",
+    "expectedValue": "Host should be a valid name or IP",
+    "actualValue": "kics.io/test is not valid IP or name",
+    "issueType": "IncorrectValue",
+    "similarityID": "22b36f4e991cea557f559d40a3fd8085064fcf40da797dd871485edbece15625",
+    "search_line": -1
   },
   {
     "queryName": "Host With Invalid Pattern",
     "severity": "INFO",
     "line": 6,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "host",
+    "searchValue": "",
+    "expectedValue": "Host should be a valid name or IP",
+    "actualValue": "kics.io/test is not valid IP or name",
+    "issueType": "IncorrectValue",
+    "similarityID": "7bb0ee95489e40deff3d3758f6eecab26be650935233e586b28744e59de4a5dc",
+    "search_line": -1
   }
 ]

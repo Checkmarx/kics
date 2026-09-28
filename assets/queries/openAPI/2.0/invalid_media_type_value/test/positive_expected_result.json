@@ -3,24 +3,60 @@
     "queryName": "Invalid Media Type Value (v2)",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.produces.image/ png",
+    "searchValue": "",
+    "expectedValue": "The Media Type should be a valid value",
+    "actualValue": "The Media Type is a invalid value",
+    "issueType": "IncorrectValue",
+    "similarityID": "3645ae135871540f5411373f4e8106a96634ef429fc804125337040781678559",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Media Type Value (v2)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.consumes.application/ x-www-form-urlencoded",
+    "searchValue": "",
+    "expectedValue": "The Media Type should be a valid value",
+    "actualValue": "The Media Type is a invalid value",
+    "issueType": "IncorrectValue",
+    "similarityID": "2b4012b3c3e460c5a0aa92e0c1dab87cd9b7dca3e55e640bfa905a97df029d8f",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Media Type Value (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.produces.image/ png",
+    "searchValue": "",
+    "expectedValue": "The Media Type should be a valid value",
+    "actualValue": "The Media Type is a invalid value",
+    "issueType": "IncorrectValue",
+    "similarityID": "ffd906a42ab214fac971e178fc91d0c29ae29516a3c7e897d844da9794bef497",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Media Type Value (v2)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.consumes.application/ x-www-form-urlencoded",
+    "searchValue": "",
+    "expectedValue": "The Media Type should be a valid value",
+    "actualValue": "The Media Type is a invalid value",
+    "issueType": "IncorrectValue",
+    "similarityID": "5daf310353634d7e5f47c976e4c1e5b0bf91155150fcc977b89d1560449b755e",
+    "search_line": -1
   }
 ]

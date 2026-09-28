@@ -3,36 +3,90 @@
     "queryName": "Object Using Enum With Keyword (v3)",
     "severity": "INFO",
     "line": 42,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.Cat.allOf.huntingSkill",
+    "searchValue": "",
+    "expectedValue": "Cat.allOf.components.schemas.properties.huntingSkill should not contain 'enum' and schema keyword",
+    "actualValue": "Cat.allOf.components.schemas.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue",
+    "similarityID": "dd2d899684a6592f6b0faa2c12a0285874a27d2aed87c3bd951bc88d85f442a1",
+    "search_line": 0
   },
   {
     "queryName": "Object Using Enum With Keyword (v3)",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.Cat.allOf.huntingSkill",
+    "searchValue": "",
+    "expectedValue": "Cat.allOf.components.schemas.properties.huntingSkill should not contain 'enum' and schema keyword",
+    "actualValue": "Cat.allOf.components.schemas.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue",
+    "similarityID": "bc974c4f155fc1bd0488163ce5f55db8d1b0531a501d6fcd03520b6514b70948",
+    "search_line": 0
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
     "line": 39,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.Cat.allOf.huntingSkill",
+    "searchValue": "",
+    "expectedValue": "Cat.allOf.definitions.properties.huntingSkill should not contain 'enum' and schema keyword",
+    "actualValue": "Cat.allOf.definitions.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e3a7d673c0d9a8c3c1e3cbfe885eca19d4bb1a2b4f32ec0840fef4bd40b6506c",
+    "search_line": 0
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
     "line": 29,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.Cat.allOf.huntingSkill",
+    "searchValue": "",
+    "expectedValue": "Cat.allOf.definitions.properties.huntingSkill should not contain 'enum' and schema keyword",
+    "actualValue": "Cat.allOf.definitions.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue",
+    "similarityID": "96636c546f440569d5a0c23ba081f14e07885035131fe51efa095a2e5421aaed",
+    "search_line": 0
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
     "line": 29,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.huntingSkill",
+    "searchValue": "",
+    "expectedValue": "/.get.parameters.paths.schema.properties.huntingSkill should not contain 'enum' and schema keyword",
+    "actualValue": "/.get.parameters.paths.schema.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue",
+    "similarityID": "460318ffe96e96f3e93a8fd5be6520a18ef51b5a9b9b53e73ef6f68013fa9d4e",
+    "search_line": 29
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
     "line": 31,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.huntingSkill",
+    "searchValue": "",
+    "expectedValue": "/.get.parameters.paths.schema.properties.huntingSkill should not contain 'enum' and schema keyword",
+    "actualValue": "/.get.parameters.paths.schema.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue",
+    "similarityID": "87428d238cc1892f855bbfea093df05d043332122355f9243995412f2326e93f",
+    "search_line": 31
   }
 ]

@@ -3,60 +3,150 @@
     "queryName": "API Key Exposed In Global Security (v3)",
     "severity": "LOW",
     "line": 45,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.apiKey2",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "019762aa77002b695ec1a164259c6e17922aef8d4e6098e8bf1f58cd686f9c48",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security (v3)",
     "severity": "LOW",
     "line": 46,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.apiKey3",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "f3d781ad032f2a2b339579bc56509eeadd0101506e87d97f34922943e945e3c9",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security (v3)",
     "severity": "LOW",
     "line": 47,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.apiKey1",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "0cf843ad33bb76ae9c2139ce2f6f88093117c3c51dde3559421585339fa71aac",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security (v3)",
     "severity": "LOW",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.apiKey1",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "5bf0235f92a75673f53f5d4ffccb50f20095a59ad667a87a6ba4788bb6f64a4b",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security (v3)",
     "severity": "LOW",
     "line": 27,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.apiKey2",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "f7ec415ea2c405c22756846bb6414983167827abfab44e44452017888e0d2b21",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security (v3)",
     "severity": "LOW",
     "line": 28,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.apiKey3",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "9bdacf97bd2d0895f5fa8c6aab44af6b2045b86b6a764c2950c68bf3e0d9f831",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security (v2)",
     "severity": "LOW",
     "line": 22,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.apiKey3",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "4129fde34df00c895f65617eabbb12df8a539158a4348c4e26dd104b830cc68b",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security (v2)",
     "severity": "LOW",
     "line": 23,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.apiKey1",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "29566538f424da5b6b3662c351f4eaf1f3ec79630e6ba75fd3d59af6e46fa9a0",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security (v2)",
     "severity": "LOW",
     "line": 14,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.apiKey1",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "7f6b0ee49ef4c2b2b85358420a4cf820798dc1bd2c58b6834df9c06ac9830dea",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security (v2)",
     "severity": "LOW",
     "line": 15,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.apiKey3",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "78d7264ecb9cbfdde17e75e161ce6eb33e0708aa056d0c1369f99888f9cdcd76",
+    "search_line": -1
   }
 ]

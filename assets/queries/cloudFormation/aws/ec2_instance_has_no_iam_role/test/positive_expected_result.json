@@ -3,54 +3,135 @@
     "queryName": "EC2 Instance Has No IAM Role",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Test",
+    "searchKey": "Resources.NoIAM.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.NoIAM.Properties.IamInstanceProfile' should be set",
+    "actualValue": "'Resources.NoIAM.Properties.IamInstanceProfile' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "dfce532d6a94c4097e7e3a755510faded324510d0f8eb6d20741d034ba69141e",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Instance Has No IAM Role",
     "severity": "MEDIUM",
     "line": 29,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Test",
+    "searchKey": "Resources.IAM_Missing.Properties.IamInstanceProfile",
+    "searchValue": "",
+    "expectedValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' should have a matching IamInstanceProfile resource",
+    "actualValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource",
+    "issueType": "MissingAttribute",
+    "similarityID": "3daa6cbb648645c48578508a518502bd7e4cf80107897a3e1401a08524b71047",
+    "search_line": -1
   },
   {
+    "queryName": "EC2 Instance Has No IAM Role",
     "severity": "MEDIUM",
     "line": 55,
     "fileName": "positive1.yaml",
-    "queryName": "EC2 Instance Has No IAM Role"
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Test",
+    "searchKey": "Resources.NoRolesProfile.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.NoRolesProfile.Properties.Roles' should be set",
+    "actualValue": "'Resources.NoRolesProfile.Properties.Roles' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7b17f4ab2c3b70e4b0961a8c496c4bf800c8ac58f8caa120defcacd2fed69f70",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Instance Has No IAM Role",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Test",
+    "searchKey": "Resources.NoIAM.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.NoIAM.Properties.IamInstanceProfile' should be set",
+    "actualValue": "'Resources.NoIAM.Properties.IamInstanceProfile' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "10ae56832e930fc000d3191d8868f8ca4586839e3b1628b869c3c88e5c46c3cc",
+    "search_line": -1
   },
   {
-    "line": 47,
-    "fileName": "positive2.json",
-    "queryName": "EC2 Instance Has No IAM Role",
-    "severity": "MEDIUM"
-  },
-  {
-    "fileName": "positive2.json",
     "queryName": "EC2 Instance Has No IAM Role",
     "severity": "MEDIUM",
-    "line": 94
+    "line": 47,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Test",
+    "searchKey": "Resources.IAM_Missing.Properties.IamInstanceProfile",
+    "searchValue": "",
+    "expectedValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' should have a matching IamInstanceProfile resource",
+    "actualValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource",
+    "issueType": "MissingAttribute",
+    "similarityID": "16bf055f45c9fbb75dccc1a8ef195a026ea3253156296754abd0210dff227f89",
+    "search_line": -1
   },
   {
-    "line": 53,
-    "fileName": "positive3.yaml",
     "queryName": "EC2 Instance Has No IAM Role",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 94,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Test",
+    "searchKey": "Resources.NoRolesProfile.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.NoRolesProfile.Properties.Roles' should be set",
+    "actualValue": "'Resources.NoRolesProfile.Properties.Roles' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8c23f6a279beec37b19d77b04952a6f0482600f4fceba49d8553b9093ddb3ddf",
+    "search_line": -1
   },
   {
+    "queryName": "EC2 Instance Has No IAM Role",
+    "severity": "MEDIUM",
     "line": 4,
     "fileName": "positive3.yaml",
-    "queryName": "EC2 Instance Has No IAM Role",
-    "severity": "MEDIUM"
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Test",
+    "searchKey": "Resources.NoIAM.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.NoIAM.Properties.IamInstanceProfile' should be set",
+    "actualValue": "'Resources.NoIAM.Properties.IamInstanceProfile' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "91be4ebaa3d22ae299ff65eb99ff97d60dd1420c162e85eca83659fe0d55eb7a",
+    "search_line": -1
   },
   {
+    "queryName": "EC2 Instance Has No IAM Role",
+    "severity": "MEDIUM",
     "line": 29,
     "fileName": "positive3.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Test",
+    "searchKey": "Resources.IAM_Missing.Properties.IamInstanceProfile",
+    "searchValue": "",
+    "expectedValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' should have a matching IamInstanceProfile resource",
+    "actualValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource",
+    "issueType": "MissingAttribute",
+    "similarityID": "0a32f1e1bac09a8e6a26164d144f95b329046ddb252f4462eac6aff5045c1025",
+    "search_line": -1
+  },
+  {
     "queryName": "EC2 Instance Has No IAM Role",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 53,
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Test",
+    "searchKey": "Resources.NoRolesProfile.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.NoRolesProfile.Properties.Roles' should be set",
+    "actualValue": "'Resources.NoRolesProfile.Properties.Roles' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b5feba9bfea540846ef3d238d7fb3bec876865cc4793453a543b1135a668408d",
+    "search_line": -1
   }
 ]

@@ -3,18 +3,45 @@
     "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
     "severity": "HIGH",
     "line": 16,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "bucket-with-public-acl-3",
+    "searchKey": "aws_s3_bucket[public-bucket].acl",
+    "searchValue": "",
+    "expectedValue": "S3 Bucket public ACL to not be overridden by S3 bucket Public Access Block",
+    "actualValue": "S3 Bucket public ACL is overridden by S3 bucket Public Access Block",
+    "issueType": "IncorrectValue",
+    "similarityID": "c85d14b73aaf1412a898721d41ac09028ed148806cdb92ba963e18cb65421921",
+    "search_line": 16
   },
   {
     "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
     "severity": "HIGH",
     "line": 7,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].acl",
+    "searchValue": "",
+    "expectedValue": "S3 Bucket public ACL to not be overridden by public access block",
+    "actualValue": "S3 Bucket public ACL is overridden by public access block",
+    "issueType": "IncorrectValue",
+    "similarityID": "308300e0223f5983f09bbc50bc5a337a314e8112416418c9499a748ab323bc55",
+    "search_line": 7
   },
   {
     "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
     "severity": "HIGH",
     "line": 20,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_s3_bucket_acl",
+    "resourceName": "example_bucket_acl",
+    "searchKey": "aws_s3_bucket_acl[example_bucket_acl].acl",
+    "searchValue": "",
+    "expectedValue": "S3 Bucket public ACL to not be overridden by S3 bucket Public Access Block",
+    "actualValue": "S3 Bucket public ACL is overridden by S3 bucket Public Access Block",
+    "issueType": "IncorrectValue",
+    "similarityID": "34713cc0137b5858667fd676d3d0c43374fe5f54d907b6413ac320deea2ba89b",
+    "search_line": 20
   }
 ]

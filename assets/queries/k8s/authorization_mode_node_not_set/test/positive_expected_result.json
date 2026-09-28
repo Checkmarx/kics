@@ -3,12 +3,30 @@
     "queryName": "Authorization Mode Node Not Set",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--authorization-mode flag should contain 'Node' mode",
+    "actualValue": "--authorization-mode flag does not contain 'Node' mode",
+    "issueType": "MissingAttribute",
+    "similarityID": "f587def11145da806de84bf6b0404eb99eda439b27f99f3c071a03e4b8ec97d2",
+    "search_line": 11
   },
   {
     "queryName": "Authorization Mode Node Not Set",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--authorization-mode flag should contain 'Node' mode",
+    "actualValue": "--authorization-mode flag does not contain 'Node' mode",
+    "issueType": "MissingAttribute",
+    "similarityID": "abf30a2a06ffeac3ec03927b16bbf05da8d637da61f05d95dbc0bd001390d10d",
+    "search_line": 11
   }
 ]

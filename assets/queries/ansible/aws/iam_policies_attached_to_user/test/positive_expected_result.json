@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "IAM Policies Attached To User",
-		"severity": "MEDIUM",
-		"line": 3
-	}
+  {
+    "queryName": "IAM Policies Attached To User",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.iam_policy",
+    "resourceName": "Assign a policy called Admin to user",
+    "searchKey": "name={{Assign a policy called Admin to user}}.{{community.aws.iam_policy}}.iam_type",
+    "searchValue": "",
+    "expectedValue": "iam_policy.iam_type should be configured with group or role",
+    "actualValue": "iam_policy.iam_type is configured with user",
+    "issueType": "IncorrectValue",
+    "similarityID": "60f3e48b15650cc25c97711539111452662beca790d3c200a33208abf2ea6039",
+    "search_line": -1
+  }
 ]

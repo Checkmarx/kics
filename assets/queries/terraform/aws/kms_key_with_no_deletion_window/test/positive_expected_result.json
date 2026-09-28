@@ -2,11 +2,31 @@
   {
     "queryName": "KMS Key With No Deletion Window",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive1",
+    "searchKey": "aws_kms_key[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive1].deletion_window_in_days should be set and valid",
+    "actualValue": "aws_kms_key[positive1].deletion_window_in_days is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2a6c3811dccd6726d4158bcc8b17651fa463d2de9e6fac286acffa7726df4175",
+    "search_line": 1
   },
   {
     "queryName": "KMS Key With No Deletion Window",
     "severity": "LOW",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive2",
+    "searchKey": "aws_kms_key[positive2].deletion_window_in_days",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive2].deletion_window_in_days should be set and valid",
+    "actualValue": "aws_kms_key[positive2].deletion_window_in_days is set but invalid",
+    "issueType": "IncorrectValue",
+    "similarityID": "fff7459d623f66fdcff1004b94c15e3a67899a891a8ed68c4fdd88f7a658f9b5",
+    "search_line": 18
   }
 ]

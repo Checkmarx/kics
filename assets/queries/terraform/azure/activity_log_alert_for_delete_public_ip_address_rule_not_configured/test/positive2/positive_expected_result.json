@@ -3,42 +3,105 @@
     "queryName": "Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_1].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_1]' resource monitors 'delete public ip address rule' events but sets 1 filter(s): caller",
+    "issueType": "IncorrectValue",
+    "similarityID": "9bba42cfb1ec3df6535b1fd8fa957a2870f09b78f30c7bd06295e988393d6155",
+    "search_line": 9
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_2].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_2]' resource monitors 'delete public ip address rule' events but sets 1 filter(s): level",
+    "issueType": "IncorrectValue",
+    "similarityID": "124e73f81970f1157ef5fc677ab1d01030c8777fd7786f1766ca22843b303464",
+    "search_line": 28
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_3].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_3]' resource monitors 'delete public ip address rule' events but sets 1 filter(s): levels",
+    "issueType": "IncorrectValue",
+    "similarityID": "282118dc1263c80ee2051ff53ac679d8c5e2ac2c5b8457f35883b6511a1b7b95",
+    "search_line": 47
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 66,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_4].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_4]' resource monitors 'delete public ip address rule' events but sets 1 filter(s): status",
+    "issueType": "IncorrectValue",
+    "similarityID": "92f44501ad9edd63fd86a848d4a4110245f14aefbc5960a5c75b5df4317411ad",
+    "search_line": 66
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_5].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_5]' resource monitors 'delete public ip address rule' events but sets 1 filter(s): statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "979069d388f945b049501b46e8f2f9c2571974be586f007e8ac4935b54d69923",
+    "search_line": 8
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_6].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_6]' resource monitors 'delete public ip address rule' events but sets 1 filter(s): sub_status",
+    "issueType": "IncorrectValue",
+    "similarityID": "b8349eb1673c9b3b48485a9f0fe0618a54d45fa623adf030609e1bdc35adb2f4",
+    "search_line": 27
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 46,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_7].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_7]' resource monitors 'delete public ip address rule' events but sets 1 filter(s): sub_statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "901623189c3f5c4da0c4b3ce305ad17efae819786ce0781c0d4575262c7b3a6c",
+    "search_line": 46
   }
 ]

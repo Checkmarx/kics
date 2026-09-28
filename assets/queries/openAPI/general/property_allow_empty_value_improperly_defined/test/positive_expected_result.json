@@ -2,49 +2,121 @@
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
     "severity": "INFO",
-    "line": 59,
-    "filename": "positive1.json"
+    "line": 43,
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "15cf86268233614cb3f6a23ed86f8d3eb4fc9523bb009fe81b13d23c013c39b0",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
     "severity": "INFO",
-    "line": 43,
-    "filename": "positive1.json"
+    "line": 59,
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "0bfdf42346d49e46422fff49f09a1bd0fbfcd59693800e552f32a62cfb9fa1ce",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "d6863fdfe326f82cc44bc71befb516bbc7c9247a993d981ba5f361c8455109b8",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "adbec3d934f30acfc20d716f004c54e71f209e47e3e002b7a0e1b0107aa75081",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "faf41a336bb60a834aa14d62ab218999b91db71f9a3d2a29afbd833834b245e6",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "81040601ec96b1d2a3421a8e511f97f68e4079ed423737be9facedcf804ef5b5",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v2)",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{metadata}}",
+    "searchValue": "",
+    "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "317b387b02749800baff6d4558f46e47d90bedc9f01a959112354e2f3a726fae",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v2)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{metadata}}",
+    "searchValue": "",
+    "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "c9892b771c4b6c9159fd0650b29114d475209730022b0a2db78d03917f8cd69b",
+    "search_line": -1
   }
 ]

@@ -3,60 +3,150 @@
     "queryName": "Default Response Undefined On Operations (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{patch}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute",
+    "similarityID": "2a050fe0bd5698572ca20a550b46c551c03fdb6416f6c5a6cef03688117d456d",
+    "search_line": -1
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{delete}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute",
+    "similarityID": "956c5b9235c4b83a47c03c45e8dc5b5d884cf66c0a03639ad4af0566808b8446",
+    "search_line": -1
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
     "severity": "LOW",
     "line": 21,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{patch}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute",
+    "similarityID": "ff61cfd190e638e12d288013cdc02b1458e7186f4ac70a0b63a83d05546bf448",
+    "search_line": -1
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{patch}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute",
+    "similarityID": "a38cbee597524be3d3d2034d04020a1911c9112903b67838c7f064f73fbfa178",
+    "search_line": -1
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{delete}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute",
+    "similarityID": "387c565a802c09748e082ffd95e646c7750e91c09e77b33a808841315806098b",
+    "search_line": -1
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
     "severity": "LOW",
     "line": 16,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{patch}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute",
+    "similarityID": "c3e920d67d211bea9aadfd0732320b4bc9aadd9984534e72e6a9e2306dae52ec",
+    "search_line": -1
   },
   {
     "queryName": "Default Response Undefined On Operations (v2)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{delete}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute",
+    "similarityID": "25ea96e3fa7b99c2d245c24467e7ec2b782cdbdb2da234bf47f413d713ddb389",
+    "search_line": -1
   },
   {
     "queryName": "Default Response Undefined On Operations (v2)",
     "severity": "LOW",
     "line": 21,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{patch}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute",
+    "similarityID": "d950203c3db71fc304641ace6478d1ab54ff23aee15c8718a3ac3e8a7c81f5d0",
+    "search_line": -1
   },
   {
     "queryName": "Default Response Undefined On Operations (v2)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{delete}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute",
+    "similarityID": "1f950d6242b6c2edde70f41178b7ff64880fab6140aec03eafa78699b190d3e1",
+    "search_line": -1
   },
   {
     "queryName": "Default Response Undefined On Operations (v2)",
     "severity": "LOW",
     "line": 16,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{patch}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute",
+    "similarityID": "5450be43d633ff01218892b8a3b4240a07339f25339668a9a9e8b6440f1f04f4",
+    "search_line": -1
   }
 ]

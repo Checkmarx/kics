@@ -1,26 +1,62 @@
 [
-	{
-		"queryName": "BOM - GCP PST",
-		"severity": "TRACE",
-		"line": 34,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PST",
-		"severity": "TRACE",
-		"line": 39,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PST",
-		"severity": "TRACE",
-		"line": 44,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PST",
-		"severity": "TRACE",
-		"line": 54,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "BOM - GCP PST",
+    "severity": "TRACE",
+    "line": 34,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_pubsub_topic[example1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "6b6a9a09aeaaa94fa5afe7213a36ed098a96696de998d2112ad2200fe434c5f7",
+    "search_line": 34
+  },
+  {
+    "queryName": "BOM - GCP PST",
+    "severity": "TRACE",
+    "line": 39,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_pubsub_topic[example2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "265bccb785b56ea5528ebb8d949b2443b4c1d974719f06b62faf93a24c00232f",
+    "search_line": 39
+  },
+  {
+    "queryName": "BOM - GCP PST",
+    "severity": "TRACE",
+    "line": 44,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_pubsub_topic[example3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "d66b8395fcfbbc5f6d14f9e100941f55cd602b2a426362f9d270b889d1a46ca5",
+    "search_line": 44
+  },
+  {
+    "queryName": "BOM - GCP PST",
+    "severity": "TRACE",
+    "line": 54,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_pubsub_topic[example4]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "78dd12a0eaee4fd52890fbf54ccfd8e16f764738b23c043066ce9d0ab3d9a6f6",
+    "search_line": 54
+  }
 ]

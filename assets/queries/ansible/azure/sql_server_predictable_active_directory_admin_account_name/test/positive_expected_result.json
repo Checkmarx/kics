@@ -2,16 +2,46 @@
   {
     "queryName": "SQL Server Predictable Active Directory Account Name",
     "severity": "LOW",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_ad_serviceprincipal",
+    "resourceName": "create ad sp",
+    "searchKey": "name={{create ad sp}}.{{azure_ad_serviceprincipal}}.ad_user",
+    "searchValue": "",
+    "expectedValue": "azure_ad_serviceprincipal.ad_user should not be predictable",
+    "actualValue": "azure_ad_serviceprincipal.ad_user is predictable",
+    "issueType": "IncorrectValue",
+    "similarityID": "276bfdcbff1763bbf26e333a6b9921e2a80b1f783289c9222f8622748e66b13b",
+    "search_line": -1
   },
   {
     "queryName": "SQL Server Predictable Active Directory Account Name",
     "severity": "LOW",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_ad_serviceprincipal",
+    "resourceName": "create ad sp2",
+    "searchKey": "name={{create ad sp2}}.{{azure_ad_serviceprincipal}}.ad_user",
+    "searchValue": "",
+    "expectedValue": "azure_ad_serviceprincipal.ad_user should be neither empty nor null",
+    "actualValue": "azure_ad_serviceprincipal.ad_user is empty or null",
+    "issueType": "IncorrectValue",
+    "similarityID": "b01bfc2e2dfa95ccc563c11974aefb055b48845418079db41523c32d7ac7936c",
+    "search_line": -1
   },
   {
     "queryName": "SQL Server Predictable Active Directory Account Name",
     "severity": "LOW",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_ad_serviceprincipal",
+    "resourceName": "create ad sp3",
+    "searchKey": "name={{create ad sp3}}.{{azure_ad_serviceprincipal}}.ad_user",
+    "searchValue": "",
+    "expectedValue": "azure_ad_serviceprincipal.ad_user should be neither empty nor null",
+    "actualValue": "azure_ad_serviceprincipal.ad_user is empty or null",
+    "issueType": "IncorrectValue",
+    "similarityID": "c62a94aea161b9f99634aa16d58732d367c6256288fd9886b4ff50c9fb86e5a6",
+    "search_line": -1
   }
 ]

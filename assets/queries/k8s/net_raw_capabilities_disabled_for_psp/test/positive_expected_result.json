@@ -2,11 +2,31 @@
   {
     "queryName": "NET_RAW Capabilities Disabled for PSP",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.requiredDropCapabilities",
+    "searchValue": "",
+    "expectedValue": "spec.requiredDropCapabilities 'is ALL or NET_RAW'",
+    "actualValue": "spec.requiredDropCapabilities 'is not ALL or NET_RAW'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c9e81a6f74d5ee0b71848ce319cee49713d33bc6b7ab3293c49399d99d7e34a1",
+    "search_line": -1
   },
   {
     "queryName": "NET_RAW Capabilities Disabled for PSP",
     "severity": "MEDIUM",
-    "line": 57
+    "line": 57,
+    "fileName": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted2",
+    "searchKey": "metadata.name={{restricted2}}.spec.requiredDropCapabilities",
+    "searchValue": "",
+    "expectedValue": "spec.requiredDropCapabilities 'is ALL or NET_RAW'",
+    "actualValue": "spec.requiredDropCapabilities 'is not ALL or NET_RAW'",
+    "issueType": "IncorrectValue",
+    "similarityID": "cfa59fbc824c205a190be28b057803bf15ba913c83e71a969c630bab2ac069b0",
+    "search_line": -1
   }
 ]

@@ -3,24 +3,60 @@
     "queryName": "Success Response Code Undefined for Get Operation (v2)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.get.responses",
+    "searchValue": "",
+    "expectedValue": "Get should have at least one successful code (200 or 202)",
+    "actualValue": "Get does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "86b2ca84117245001b9e4a70cedf4389e172e018395143c045357fd9d6bf3f2c",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Get Operation (v2)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.get.responses",
+    "searchValue": "",
+    "expectedValue": "Get should have at least one successful code (200 or 202)",
+    "actualValue": "Get does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "01d79aeba965780854cf3318153df63a7fcc6bc0bc7fa36d34a0fd44decd9f5b",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Get Operation (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.get.responses",
+    "searchValue": "",
+    "expectedValue": "Get should have at least one successful code (200 or 202)",
+    "actualValue": "Get does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "7e4a0cc7cb20b05746c53a0ed2fe80f88f5fb306ef4cac4a98be530cb0824d6b",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Get Operation (v3)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.get.responses",
+    "searchValue": "",
+    "expectedValue": "Get should have at least one successful code (200 or 202)",
+    "actualValue": "Get does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "72e5398bc7651b8dcd4787ee48740787e00ee991821c7d8712982beabf33fd31",
+    "search_line": -1
   }
 ]

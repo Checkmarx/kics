@@ -3,24 +3,60 @@
     "queryName": "Network ACL With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 30,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_network_acl",
+    "resourceName": "main",
+    "searchKey": "aws_network_acl[positive1].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[positive1].ingress[0] 'SSH' (Port:22) should not be public",
+    "actualValue": "aws_network_acl[positive1].ingress[0] 'SSH' (Port:22) is public",
+    "issueType": "IncorrectValue",
+    "similarityID": "b164b0ae57fb72acd9ff3dc5aeb03f9cbca8edf3971ee691afd32c923f1f37ff",
+    "search_line": 30
   },
   {
     "queryName": "Network ACL With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 22,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aaws_network_acl_rule",
+    "resourceName": "postive2",
+    "searchKey": "aws_network_acl_rule[postive2]",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[postive2] 'SSH' (TCP:22) should not be public",
+    "actualValue": "aws_network_acl[postive2] 'SSH' (TCP:22) is public",
+    "issueType": "IncorrectValue",
+    "similarityID": "92ff56c8d27129a18e96e9a32b0c1bf55f8aae728f08ad854f1c489c2e9f2e5e",
+    "search_line": 22
   },
   {
     "queryName": "Network ACL With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 26,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_network_acl",
+    "resourceName": "main",
+    "searchKey": "aws_network_acl[positive3].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[positive3].ingress 'SSH' (TCP:22) should not be public",
+    "actualValue": "aws_network_acl[positive3].ingress 'SSH' (TCP:22) is public",
+    "issueType": "IncorrectValue",
+    "similarityID": "a664f46d53fa538763ba12ba76c5088451eeda72479db0fa79e849870213d625",
+    "search_line": 26
   },
   {
     "queryName": "Network ACL With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vpc].default_network_acl_ingress",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[vpc].ingress[0] 'SSH' (Port:22) should not be public",
+    "actualValue": "aws_network_acl[vpc].ingress[0] 'SSH' (Port:22) is public",
+    "issueType": "IncorrectValue",
+    "similarityID": "ecb1c3a83a1eecc0195d92117a7522480b6a20077403d13fb3c9d71cdcd9f389",
+    "search_line": 14
   }
 ]

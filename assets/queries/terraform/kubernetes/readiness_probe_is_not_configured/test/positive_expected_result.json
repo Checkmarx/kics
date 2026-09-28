@@ -2,16 +2,46 @@
   {
     "queryName": "Readiness Probe Is Not Configured",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test",
+    "searchKey": "kubernetes_pod[test].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test].spec.container.readiness_probe should be set",
+    "actualValue": "kubernetes_pod[test].spec.container.readiness_probe is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "38a2749f1389aee6613ad399113f160603928bcdc51ad19dd8b60cb2219c0a08",
+    "search_line": 7
   },
   {
     "queryName": "Readiness Probe Is Not Configured",
     "severity": "MEDIUM",
-    "line": 60
+    "line": 60,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test2",
+    "searchKey": "kubernetes_pod[test2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test2].spec.container[0].readiness_probe should be set",
+    "actualValue": "kubernetes_pod[test2].spec.container[0].readiness_probe is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f0381154c7d290f0390998888231b1e80ddb0d54322d0c403e9f951e908cb2cd",
+    "search_line": 60
   },
   {
     "queryName": "Readiness Probe Is Not Configured",
     "severity": "MEDIUM",
-    "line": 89
+    "line": 89,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test2",
+    "searchKey": "kubernetes_pod[test2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test2].spec.container[1].readiness_probe should be set",
+    "actualValue": "kubernetes_pod[test2].spec.container[1].readiness_probe is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2f80a8c5e10752405ac0a79f22c4f388115c3d0aec90135d0a704c41df1ddec2",
+    "search_line": 89
   }
 ]

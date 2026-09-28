@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Pod Security Policy Admission Control Plugin Not Set",
-		"severity": "HIGH",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	}
+  {
+    "queryName": "Pod Security Policy Admission Control Plugin Not Set",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--enable-admission-plugins flag should contain 'PodSecurityPolicy' plugin",
+    "actualValue": "--enable-admission-plugins flag does not contain 'PodSecurityPolicy' plugin",
+    "issueType": "MissingAttribute",
+    "similarityID": "272a53c0315631bb5c14755bd64c26ab280942e11d23efeadfa4d0b09a6a421f",
+    "search_line": 11
+  }
 ]

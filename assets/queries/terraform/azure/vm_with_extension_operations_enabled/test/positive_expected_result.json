@@ -3,48 +3,120 @@
     "queryName": "Beta - VM With Extension Operations Enabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_linux_virtual_machine",
+    "resourceName": "positive1_1-machine",
+    "searchKey": "azurerm_linux_virtual_machine[positive1_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine[positive1_1].allow_extension_operations' should be defined and set to 'false'",
+    "actualValue": "'azurerm_linux_virtual_machine[positive1_1].allow_extension_operations' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "193e11fd1bf74c4b2013282e48a4ec38b48eb74f22360adc0889b93108f86dc2",
+    "search_line": 1
   },
   {
     "queryName": "Beta - VM With Extension Operations Enabled",
     "severity": "MEDIUM",
     "line": 24,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_linux_virtual_machine",
+    "resourceName": "positive1_2-machine",
+    "searchKey": "azurerm_linux_virtual_machine[positive1_2].allow_extension_operations",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine[positive1_2].allow_extension_operations' should be defined and set to 'false'",
+    "actualValue": "'azurerm_linux_virtual_machine[positive1_2].allow_extension_operations' is set to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "28ab49418c20ee065d0c8bc3e862b67e695ba1ebcf802ace9519d19c176457fb",
+    "search_line": 24
   },
   {
     "queryName": "Beta - VM With Extension Operations Enabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_virtual_machine_scale_set",
+    "resourceName": "positive2_1-vmss",
+    "searchKey": "azurerm_linux_virtual_machine_scale_set[positive2_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine_scale_set[positive2_1].extension_operations_enabled' should be defined and set to 'false'",
+    "actualValue": "'azurerm_linux_virtual_machine_scale_set[positive2_1].extension_operations_enabled' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "57003f2fb67bd7e46bca38a19a34477efd4fb1f0b58e31064ae99e091ec5fcf9",
+    "search_line": 1
   },
   {
     "queryName": "Beta - VM With Extension Operations Enabled",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_virtual_machine_scale_set",
+    "resourceName": "positive2_2-vmss",
+    "searchKey": "azurerm_linux_virtual_machine_scale_set[positive2_2].extension_operations_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine_scale_set[positive2_2].extension_operations_enabled' should be defined and set to 'false'",
+    "actualValue": "'azurerm_linux_virtual_machine_scale_set[positive2_2].extension_operations_enabled' is set to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "57e70e3f111f0f68993683e8369584843fbae329021748568c46d43b02555d7f",
+    "search_line": 20
   },
   {
     "queryName": "Beta - VM With Extension Operations Enabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_virtual_machine",
+    "resourceName": "positive3_1-machine",
+    "searchKey": "azurerm_windows_virtual_machine[positive3_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine[positive3_1].allow_extension_operations' should be defined and set to 'false'",
+    "actualValue": "'azurerm_windows_virtual_machine[positive3_1].allow_extension_operations' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "05098d1f981350d4e74e76f7ac20689ed7ed080aec1b3cff59cf04ac80dd97fa",
+    "search_line": 1
   },
   {
     "queryName": "Beta - VM With Extension Operations Enabled",
     "severity": "MEDIUM",
     "line": 22,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_virtual_machine",
+    "resourceName": "positive3_2-machine",
+    "searchKey": "azurerm_windows_virtual_machine[positive3_2].allow_extension_operations",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine[positive3_2].allow_extension_operations' should be defined and set to 'false'",
+    "actualValue": "'azurerm_windows_virtual_machine[positive3_2].allow_extension_operations' is set to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "dfa972d598b0c8115066157d9ff2944f0559fef50fb5aa1af9fa295cd042f38f",
+    "search_line": 22
   },
   {
     "queryName": "Beta - VM With Extension Operations Enabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "azurerm_windows_virtual_machine_scale_set",
+    "resourceName": "positive4_1-vmss",
+    "searchKey": "azurerm_windows_virtual_machine_scale_set[positive4_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine_scale_set[positive4_1].extension_operations_enabled' should be defined and set to 'false'",
+    "actualValue": "'azurerm_windows_virtual_machine_scale_set[positive4_1].extension_operations_enabled' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "cdfd5c2e1d000d30f2cbfece322ead43560e7aef17c3f2cd1920d014f4bfcdad",
+    "search_line": 1
   },
   {
     "queryName": "Beta - VM With Extension Operations Enabled",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "azurerm_windows_virtual_machine_scale_set",
+    "resourceName": "positive4_2-machine",
+    "searchKey": "azurerm_windows_virtual_machine_scale_set[positive4_2].extension_operations_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine_scale_set[positive4_2].extension_operations_enabled' should be defined and set to 'false'",
+    "actualValue": "'azurerm_windows_virtual_machine_scale_set[positive4_2].extension_operations_enabled' is set to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9324b66a9389b8080761bc401e534dbfc1c4447c4baa45276d767af8acf807e0",
+    "search_line": 20
   }
 ]

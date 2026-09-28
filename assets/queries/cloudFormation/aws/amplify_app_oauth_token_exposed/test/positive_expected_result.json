@@ -2,25 +2,61 @@
   {
     "queryName": "Amplify App OAuth Token Exposed",
     "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive2.yaml"
-  },
-  {
     "line": 4,
     "fileName": "positive1.yaml",
-    "queryName": "Amplify App OAuth Token Exposed",
-    "severity": "HIGH"
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "NewAmpApp",
+    "searchKey": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "c312512ca9fa0e5b4c084e073cf6b956ba20a296d38f570e064f5a64f3301f12",
+    "search_line": -1
   },
   {
     "queryName": "Amplify App OAuth Token Exposed",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive3.json"
+    "fileName": "positive2.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentPassword.Default should be defined",
+    "actualValue": "Parameters.ParentPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "25a13228940fb3a61514558e3856ece7a7facaa0964050360d4d27b863a97c57",
+    "search_line": -1
+  },
+  {
+    "queryName": "Amplify App OAuth Token Exposed",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive3.json",
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "NewAmpApp",
+    "searchKey": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "fbe9fae1a769964f6d1532f8b003cde2042f1fc340fea8a66c14c612e74ce1af",
+    "search_line": -1
   },
   {
     "queryName": "Amplify App OAuth Token Exposed",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentPassword.Default should be defined",
+    "actualValue": "Parameters.ParentPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "bd2a5ee36b34463bf3ae3056c8b87ae388d3b8782e518a61a456d9f82926123d",
+    "search_line": -1
   }
 ]

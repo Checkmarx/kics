@@ -3,12 +3,30 @@
     "queryName": "Shield Advanced Not In Use",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Route53::HostedZone",
+    "resourceName": "HostedZone",
+    "searchKey": "Resources.HostedZone",
+    "searchValue": "",
+    "expectedValue": "Resources.HostedZone has shield advanced associated",
+    "actualValue": "Resources.HostedZone does not have shield advanced associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "33f56597433e88e396f6c2b8fbb71ad45b4425387c0736eb2b2bebf0f610d8cf",
+    "search_line": -1
   },
   {
     "queryName": "Shield Advanced Not In Use",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Route53::HostedZone",
+    "resourceName": "HostedZone",
+    "searchKey": "Resources.HostedZone",
+    "searchValue": "",
+    "expectedValue": "Resources.HostedZone has shield advanced associated",
+    "actualValue": "Resources.HostedZone does not have shield advanced associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "bd2d722f3b7ed06d1464d3833a3ee458027ba7dec79fd2b16de451252fa79a07",
+    "search_line": -1
   }
 ]

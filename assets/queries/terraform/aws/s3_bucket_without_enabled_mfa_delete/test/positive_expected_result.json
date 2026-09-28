@@ -3,60 +3,150 @@
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 23,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive1].versioning",
+    "searchValue": "mfa_delete",
+    "expectedValue": "'mfa_delete' should be set to true",
+    "actualValue": "'mfa_delete' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "719c52e4706ea454d85d771e9e8d1efe5dea7eb31aa3487aed885e3f9954719b",
+    "search_line": 23
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 25,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "S3 Bucket Without Enabled MFA Delete",
-    "severity": "LOW",
-    "line": 24,
-    "fileName": "positive3.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive2].versioning.mfa_delete",
+    "searchValue": "",
+    "expectedValue": "'mfa_delete' should be set to true",
+    "actualValue": "'mfa_delete' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "4076573afd078bc0ef09cfdebac5aabe43bc5db291326aef66518491dbff8009",
+    "search_line": 25
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 23,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive3].versioning",
+    "searchValue": "mfa_delete",
+    "expectedValue": "'mfa_delete' should be set to true",
+    "actualValue": "'mfa_delete' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "35a835fc7e376e00c4ad7cec9b7ab901da659d0d8081dbf69ba8fa906f7ec9c6",
+    "search_line": 23
+  },
+  {
+    "queryName": "S3 Bucket Without Enabled MFA Delete",
+    "severity": "LOW",
+    "line": 24,
+    "fileName": "positive3.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive3].versioning.enabled",
+    "searchValue": "",
+    "expectedValue": "'enabled' should be set to true",
+    "actualValue": "'enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8d41fa8b1832f56958c0b99fe97d539ee30c4dbac4c60e32f6044990304a5350",
+    "search_line": 24
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].versioning",
+    "searchValue": "mfa_delete",
+    "expectedValue": "'mfa_delete' should be set to true",
+    "actualValue": "'mfa_delete' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "d3588b5603b38f03cff3ddefcf83314e321605af98628f4fa60f4565172e2ad8",
+    "search_line": 8
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].versioning.mfa_delete",
+    "searchValue": "",
+    "expectedValue": "'mfa_delete' should be set to true",
+    "actualValue": "'mfa_delete' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "3a08983d73b2256c635a41c27bbca59d0b66cc302e266768d2d806a6424763f3",
+    "search_line": 10
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].versioning",
+    "searchValue": "mfa_delete",
+    "expectedValue": "'mfa_delete' should be set to true",
+    "actualValue": "'mfa_delete' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "47ac51036c392670f500ccf5d70f0076fe3e207ffb28968958c1c466f23923e9",
+    "search_line": 8
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].versioning.enabled",
+    "searchValue": "",
+    "expectedValue": "'enabled' should be set to true",
+    "actualValue": "'enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "6835fc2e4136365668b1c357809f614a982642d1e8f61aff531b06134c9d9fd2",
+    "search_line": 9
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 28,
-    "fileName": "positive7.tf"
+    "fileName": "positive7.tf",
+    "resourceType": "aws_s3_bucket_versioning",
+    "resourceName": "example2",
+    "searchKey": "aws_s3_bucket_versioning[example2].versioning_configuration.mfa_delete",
+    "searchValue": "",
+    "expectedValue": "'versioning_configuration.mfa_delete' should be set to 'Enabled'",
+    "actualValue": "'versioning_configuration.mfa_delete' is set to 'Disabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "29c41e9081fda8c24325940fdae505a5b818babe9119562372ee5f089bde449c",
+    "search_line": 28
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 27,
-    "fileName": "positive8.tf"
+    "fileName": "positive8.tf",
+    "resourceType": "aws_s3_bucket_versioning",
+    "resourceName": "example",
+    "searchKey": "aws_s3_bucket_versioning[example].versioning_configuration.status",
+    "searchValue": "",
+    "expectedValue": "'versioning_configuration.status' should be set to 'Enabled'",
+    "actualValue": "'versioning_configuration.status' is set to 'Disabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c065d470e7e1cd2a88b979969509298d45dc02f178729689f93d6c522dad9d52",
+    "search_line": 27
   }
 ]

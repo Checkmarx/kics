@@ -2,25 +2,61 @@
   {
     "queryName": "Phone Number Not Set For Security Contacts",
     "severity": "LOW",
+    "line": 3,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Security/securityContacts",
+    "resourceName": "security contact",
+    "searchKey": "resources.name={{security contact}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'phone' property defined",
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "08dd22f9116c4f591a3dc1129910ddf045dd603953854fb6ae6dd58f87d6f131",
+    "search_line": 3
+  },
+  {
+    "queryName": "Phone Number Not Set For Security Contacts",
+    "severity": "LOW",
     "line": 13,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Security/securityContacts",
+    "resourceName": "security contact",
+    "searchKey": "resources.name={{security contact}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'phone' property defined",
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "13c2167e0e256476fa939953dff21a8b906a9a69dc64bde84bc99285e7f9739a",
+    "search_line": 13
+  },
+  {
+    "queryName": "Phone Number Not Set For Security Contacts",
+    "severity": "LOW",
+    "line": 3,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Security/securityContacts",
+    "resourceName": "security contact",
+    "searchKey": "resources.name={{security contact}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'phone' property defined",
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b4d59baee0194232430d33ca0e442f6666e4ffc442b4f20b7b18b1cbeb7798aa",
+    "search_line": 3
   },
   {
     "queryName": "Phone Number Not Set For Security Contacts",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "Phone Number Not Set For Security Contacts",
-    "severity": "LOW",
-    "line": 3,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Phone Number Not Set For Security Contacts",
-    "severity": "LOW",
-    "line": 3,
-    "fileName": "positive2.bicep"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Security/securityContacts",
+    "resourceName": "security contact",
+    "searchKey": "properties.template.resources.name={{security contact}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'phone' property defined",
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "cea6e08e93a921a2306291d5972e6217aaaec6b9bff067427e290330b18932e7",
+    "search_line": 15
   }
 ]

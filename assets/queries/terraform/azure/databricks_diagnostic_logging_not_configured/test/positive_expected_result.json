@@ -3,30 +3,75 @@
     "queryName": "Beta - Databricks Diagnostic Logging Not Configured",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "secure-databricks-ws",
+    "searchKey": "azurerm_databricks_workspace[example_pos1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace' should be associated with 'azurerm_monitor_diagnostic_setting' resources that log all required logs to valid destinations",
+    "actualValue": "'azurerm_databricks_workspace' is not associated with an 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute",
+    "similarityID": "516690994a6331ee6da6438a8c9b76d9f47ef463c2c652ce19d14c3767abf993",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Databricks Diagnostic Logging Not Configured",
     "severity": "MEDIUM",
     "line": 36,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "secure-databricks-ws",
+    "searchKey": "azurerm_databricks_workspace[example_pos2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace' should be associated with 'azurerm_monitor_diagnostic_setting' resources that log all required logs to valid destinations",
+    "actualValue": "'azurerm_databricks_workspace' is associated with 3 'azurerm_monitor_diagnostic_setting' resource(s), but is missing logs for 3 category(s): 'Filesystem', 'jobs', 'notebook'",
+    "issueType": "MissingAttribute",
+    "similarityID": "766e4c3db796175cf344ca2f990cb83de6dba61131f2ef366e974f1acdb52e3a",
+    "search_line": 36
   },
   {
     "queryName": "Beta - Databricks Diagnostic Logging Not Configured",
     "severity": "MEDIUM",
     "line": 73,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "secure-databricks-ws",
+    "searchKey": "azurerm_databricks_workspace[example_pos3]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace' should be associated with 'azurerm_monitor_diagnostic_setting' resources that log all required logs to valid destinations",
+    "actualValue": "'azurerm_databricks_workspace' is associated with 4 'azurerm_monitor_diagnostic_setting' resource(s), but is missing logs for 1 category(s): 'notebook'",
+    "issueType": "MissingAttribute",
+    "similarityID": "fefc36e73250d40a7ba5b472e0c1b16942780b1860b339010af6de8a8efae10e",
+    "search_line": 73
   },
   {
     "queryName": "Beta - Databricks Diagnostic Logging Not Configured",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "secure-databricks-ws",
+    "searchKey": "azurerm_databricks_workspace[example_pos4]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace' should be associated with 'azurerm_monitor_diagnostic_setting' resources that log all required logs to valid destinations",
+    "actualValue": "'azurerm_databricks_workspace' is not associated with an 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute",
+    "similarityID": "0037c4b1dd4cc29ca3441eceddce8c167312a624edb343bf089edd81fac69e01",
+    "search_line": 27
   },
   {
     "queryName": "Beta - Databricks Diagnostic Logging Not Configured",
     "severity": "MEDIUM",
     "line": 60,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "secure-databricks-ws",
+    "searchKey": "azurerm_databricks_workspace[example_pos5]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace' should be associated with 'azurerm_monitor_diagnostic_setting' resources that log all required logs to valid destinations",
+    "actualValue": "'azurerm_databricks_workspace' is associated with 2 'azurerm_monitor_diagnostic_setting' resource(s), but is missing logs for 5 category(s): 'Filesystem', 'accounts', 'clusters', 'jobs', 'notebook'",
+    "issueType": "MissingAttribute",
+    "similarityID": "9a211a184b83d33fb83dbf6ff487ab1e037a517b1f7a1d3fda1f164d65054073",
+    "search_line": 60
   }
 ]

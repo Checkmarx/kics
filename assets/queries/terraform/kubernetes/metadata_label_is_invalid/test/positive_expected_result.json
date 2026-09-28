@@ -2,6 +2,16 @@
   {
     "queryName": "Metadata Label Is Invalid",
     "severity": "LOW",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test",
+    "searchKey": "kubernetes_pod[test].metadata.labels",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test].metada.labels[app] has valid label",
+    "actualValue": "kubernetes_pod[test].metada.labels[app] has invalid label",
+    "issueType": "IncorrectValue",
+    "similarityID": "492229a77b8a5748549cb362058e5641aa077173997c84cfc013a4f3b294bd35",
+    "search_line": -1
   }
 ]

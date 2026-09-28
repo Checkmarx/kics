@@ -3,6 +3,15 @@
     "queryName": "VPC Flow Logs Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_vpc",
+    "resourceName": "main",
+    "searchKey": "alicloud_vpc[main]",
+    "searchValue": "",
+    "expectedValue": "alicloud_vpc[main] is associated with an 'alicloud_vpc_flow_log'",
+    "actualValue": "alicloud_vpc[main] is not associated with an 'alicloud_vpc_flow_log'",
+    "issueType": "IncorrectValue",
+    "similarityID": "98afdc5c9768d51987e94865e830b6f582cbe5561a39c6838ee7dd15bfdc4bd6",
+    "search_line": 1
   }
 ]

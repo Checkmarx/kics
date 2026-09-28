@@ -3,6 +3,15 @@
     "queryName": "User With Privilege Escalation By Actions 'iam:PutGroupPolicy'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_user",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_user[cosmic]",
+    "searchValue": "",
+    "expectedValue": "user cosmic should not be associated with a policy that has Action set to 'iam:PutGroupPolicy' and Resource set to '*'",
+    "actualValue": "user cosmic is associated with a policy that has Action set to 'iam:PutGroupPolicy' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "34a317c183ba95f0152de3da1e783fe6c25f4c508fefd93247404e477ef8bdc7",
+    "search_line": 1
   }
 ]

@@ -1,50 +1,122 @@
 [
   {
-    "fileName": "positive1.yaml",
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
     "severity": "MEDIUM",
-    "line": 33
-  },
-  {
     "line": 18,
     "fileName": "positive1.yaml",
-    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
-    "severity": "MEDIUM"
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule2",
+    "searchKey": "Resources.InboundRule2.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule2.Properties.PortRange.To should be set",
+    "actualValue": "Resources.InboundRule2.Properties.PortRange.To is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9a79577448b61292a14b47992e8af039473bf546b415598ba1388190b38edffb",
+    "search_line": -1
   },
   {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
     "severity": "MEDIUM",
     "line": 29,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule3",
+    "searchKey": "Resources.InboundRule3.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule3.Properties.PortRange.From should be set",
+    "actualValue": "Resources.InboundRule3.Properties.PortRange.From is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "afcfd46de277de8932c36043842e0c54807028907a5c04487cf3cc13b53883ef",
+    "search_line": -1
+  },
+  {
+    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule4",
+    "searchKey": "Resources.InboundRule4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule4.Properties.PortRange should be set",
+    "actualValue": "Resources.InboundRule4.Properties.PortRange is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2cf01a154f93093503a760de6214c62c00814215231d30b698a076463f8235d1",
+    "search_line": -1
   },
   {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
     "severity": "MEDIUM",
     "line": 49,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule5",
+    "searchKey": "Resources.InboundRule5.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule5.Properties.PortRange should not allow all ports",
+    "actualValue": "Resources.InboundRule5.Properties.PortRange allows all ports",
+    "issueType": "MissingAttribute",
+    "similarityID": "aa65c58228687d179efd1f2b948e7539ae9805fd20e5acbbbff58eb9cc0ce535",
+    "search_line": -1
   },
   {
-    "severity": "MEDIUM",
-    "line": 47,
-    "fileName": "positive2.json",
-    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports"
-  },
-  {
+    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
     "severity": "MEDIUM",
     "line": 21,
     "fileName": "positive2.json",
-    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports"
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule2",
+    "searchKey": "Resources.InboundRule2.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule2.Properties.PortRange.To should be set",
+    "actualValue": "Resources.InboundRule2.Properties.PortRange.To is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7f8516668357414a28b76f7e71b334bd9e4697b12459bed208661b95bb7d284a",
+    "search_line": -1
   },
   {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
     "severity": "MEDIUM",
     "line": 40,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule3",
+    "searchKey": "Resources.InboundRule3.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule3.Properties.PortRange.From should be set",
+    "actualValue": "Resources.InboundRule3.Properties.PortRange.From is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "93dac5b5aeed76cee84e133a469c7e66a8187751b77f42d8f55ffe471f355833",
+    "search_line": -1
+  },
+  {
+    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
+    "severity": "MEDIUM",
+    "line": 47,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule4",
+    "searchKey": "Resources.InboundRule4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule4.Properties.PortRange should be set",
+    "actualValue": "Resources.InboundRule4.Properties.PortRange is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d3a1c3289a7de50e4f4679d075fd8b7d7be697a35e05caabb2977df0d75bba2e",
+    "search_line": -1
   },
   {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
     "severity": "MEDIUM",
     "line": 61,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule5",
+    "searchKey": "Resources.InboundRule5.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule5.Properties.PortRange should not allow all ports",
+    "actualValue": "Resources.InboundRule5.Properties.PortRange allows all ports",
+    "issueType": "MissingAttribute",
+    "similarityID": "6cf244909eca1ea3e497a75fbb109e34aedefc71568a963e30a63a2a17ecc4ee",
+    "search_line": -1
   }
 ]

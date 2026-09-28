@@ -2,6 +2,16 @@
   {
     "queryName": "Lambda Permission Misconfigured",
     "severity": "LOW",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.lambda_policy",
+    "resourceName": "Lambda S3 notification positive",
+    "searchKey": "name={{Lambda S3 notification positive}}.{{community.aws.lambda_policy}}.action",
+    "searchValue": "",
+    "expectedValue": "name={{Lambda S3 notification positive}}.{{community.aws.lambda_policy}}.action should be 'lambda:InvokeFunction'",
+    "actualValue": "name={{Lambda S3 notification positive}}.{{community.aws.lambda_policy}}.action is lambda:CreateFunction",
+    "issueType": "IncorrectValue",
+    "similarityID": "c8953c8e7863da810706a82801bd21827910ffbcb87d4c6696362efc11efeb46",
+    "search_line": -1
   }
 ]

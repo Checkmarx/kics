@@ -3,12 +3,30 @@
     "queryName": "SQS VPC Endpoint Without DNS Resolution",
     "severity": "LOW",
     "line": 95,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_vpc_endpoint",
+    "resourceName": "sqs-vpc-endpoint",
+    "searchKey": "aws_vpc_endpoint[sqs-vpc-endpoint].vpc_id",
+    "searchValue": "",
+    "expectedValue": "'enable_dns_support' should be set to true or undefined",
+    "actualValue": "'enable_dns_support' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "b2ccd35897345723f316b494a71e26e1b976b573031b96a7fc048736de08d7f3",
+    "search_line": 95
   },
   {
     "queryName": "SQS VPC Endpoint Without DNS Resolution",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vpc].enable_dns_support",
+    "searchValue": "",
+    "expectedValue": "'enable_dns_support' should be set to true or undefined",
+    "actualValue": "'enable_dns_support' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f001cb4b4900659052d80d0ef42c861c074a9f56977e775a860b82dc48674561",
+    "search_line": -1
   }
 ]

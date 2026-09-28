@@ -2,6 +2,16 @@
   {
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "aws_db_security_group",
+    "resourceName": "positive1",
+    "searchKey": "aws_db_security_group[positive1].ingress.cidr",
+    "searchValue": "",
+    "expectedValue": "'aws_db_security_group.ingress.cidr' > 24",
+    "actualValue": "'aws_db_security_group.ingress.cidr' <= 24",
+    "issueType": "IncorrectValue",
+    "similarityID": "4ce3380e1525dabddbca152201bbb283345f1fcfb2cd177136add5a9a3070e55",
+    "search_line": -1
   }
 ]

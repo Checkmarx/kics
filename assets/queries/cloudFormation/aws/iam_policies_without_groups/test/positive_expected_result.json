@@ -1,14 +1,32 @@
 [
   {
-    "fileName": "positive1.yaml",
     "queryName": "IAM Policies Without Groups",
     "severity": "LOW",
-    "line": 25
+    "line": 25,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.Policies.Users",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.Policies.Users should be replaced by Groups",
+    "actualValue": "'Resources.Properties.Policies.Users' is not the correct definition.",
+    "issueType": "IncorrectValue",
+    "similarityID": "11234c6f3166c79adce559fd6caf857c47311205b910eda3191aa87a7eb1550f",
+    "search_line": -1
   },
   {
     "queryName": "IAM Policies Without Groups",
     "severity": "LOW",
     "line": 38,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.Policies.Users",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.Policies.Users should be replaced by Groups",
+    "actualValue": "'Resources.Properties.Policies.Users' is not the correct definition.",
+    "issueType": "IncorrectValue",
+    "similarityID": "92ddb3f7ac2d7ef5874ee1dfa3edf476627335b17c370e47940995110e7bb565",
+    "search_line": -1
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "Parameter JSON Reference Does Not Exist (v3)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.$ref={{#/components/parameters/wrongParameter}}",
+    "searchValue": "",
+    "expectedValue": "wrongParameter from #/components/parameters/wrongParameter should be declared on components.parameters",
+    "actualValue": "wrongParameter from #/components/parameters/wrongParameter is not declared on components.parameters",
+    "issueType": "MissingAttribute",
+    "similarityID": "5e0cb99e99cbc01db669c239d2b3e599ce5a1c8a56f9eb69e849d5a074f199fa",
+    "search_line": 0
   },
   {
     "queryName": "Parameter JSON Reference Does Not Exist (v3)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.$ref={{#/components/parameters/wrongParameter}}",
+    "searchValue": "",
+    "expectedValue": "wrongParameter from #/components/parameters/wrongParameter should be declared on components.parameters",
+    "actualValue": "wrongParameter from #/components/parameters/wrongParameter is not declared on components.parameters",
+    "issueType": "MissingAttribute",
+    "similarityID": "01022ae5547c45ceccea9b2a5805a9c219390e23c0a867bc67f7f8ae018aa829",
+    "search_line": 0
   }
 ]

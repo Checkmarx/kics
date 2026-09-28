@@ -3,12 +3,30 @@
     "queryName": "API Gateway Method Settings Cache Not Encrypted",
     "severity": "HIGH",
     "line": 40,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_api_gateway_method_settings",
+    "resourceName": "path_specific",
+    "searchKey": "aws_api_gateway_method_settings[{{path_specific}}].settings.cache_data_encrypted",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_method_settings.settings.cache_data_encrypted should be set to true",
+    "actualValue": "aws_api_gateway_method_settings.settings.cache_data_encrypted is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "869486058e3d24ee42205e5cc33835a053cba325a2f4c4ae85854bf8d7018f50",
+    "search_line": 40
   },
   {
     "queryName": "API Gateway Method Settings Cache Not Encrypted",
     "severity": "HIGH",
     "line": 48,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_api_gateway_method_settings",
+    "resourceName": "path_specific_2",
+    "searchKey": "aws_api_gateway_method_settings[{{path_specific_2}}].settings",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_method_settings.settings.cache_data_encrypted should be set to true",
+    "actualValue": "aws_api_gateway_method_settings.settings.cache_data_encrypted is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "8ddb79c8b565b373b168cf67b2a3137c7ca8afd4fc83f76b57d300fca99875ed",
+    "search_line": 48
   }
 ]

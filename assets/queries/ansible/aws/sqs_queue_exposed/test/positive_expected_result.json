@@ -3,12 +3,30 @@
     "queryName": "SQS Queue Exposed",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.sqs_queue",
+    "resourceName": "example",
+    "searchKey": "name={{example}}.{{community.aws.sqs_queue}}.policy",
+    "searchValue": "",
+    "expectedValue": "sqs_queue.policy.Principal shouldn't get the queue publicly accessible",
+    "actualValue": "sqs_queue.policy.Principal does get the queue publicly accessible",
+    "issueType": "IncorrectValue",
+    "similarityID": "6806b222e964a13a5ae3cf01a512fc5bd8aaf8aa4148100bcfd518df613d81bb",
+    "search_line": 10
   },
   {
     "queryName": "SQS Queue Exposed",
     "severity": "HIGH",
     "line": 31,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.sqs_queue",
+    "resourceName": "example with list",
+    "searchKey": "name={{example with list}}.{{community.aws.sqs_queue}}.policy",
+    "searchValue": "",
+    "expectedValue": "sqs_queue.policy.Principal shouldn't get the queue publicly accessible",
+    "actualValue": "sqs_queue.policy.Principal does get the queue publicly accessible",
+    "issueType": "IncorrectValue",
+    "similarityID": "76a626a24b5356c465b3a9f43b059d41f154bd036772ba32eddbde5babc2b41b",
+    "search_line": 31
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "Components Object Fixed Field Key Improperly Named",
     "severity": "INFO",
     "line": 45,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.{{schemas}}.{{General Error}}",
+    "searchValue": "",
+    "expectedValue": "components.{{schemas}}.{{General Error}} is properly named",
+    "actualValue": "components.{{schemas}}.{{General Error}}is improperly named",
+    "issueType": "IncorrectValue",
+    "similarityID": "dfb64c8c31794d816130e2fefc09531b121fa68ffe70775681c058e6eb063d50",
+    "search_line": -1
   },
   {
     "queryName": "Components Object Fixed Field Key Improperly Named",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.{{schemas}}.{{General Error}}",
+    "searchValue": "",
+    "expectedValue": "components.{{schemas}}.{{General Error}} is properly named",
+    "actualValue": "components.{{schemas}}.{{General Error}}is improperly named",
+    "issueType": "IncorrectValue",
+    "similarityID": "8e28f5ad1f8234ab4996dfc524ad93d0e883f693df2832a0eada27b0437d340f",
+    "search_line": -1
   }
 ]

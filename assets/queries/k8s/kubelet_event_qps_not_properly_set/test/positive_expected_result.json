@@ -1,26 +1,62 @@
 [
-	{
-		"queryName": "Kubelet Event QPS Not Properly Set",
-		"severity": "LOW",
-		"line": 11,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Kubelet Event QPS Not Properly Set",
-		"severity": "LOW",
-		"line": 11,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Kubelet Event QPS Not Properly Set",
-		"severity": "LOW",
-		"line": 5,
-		"fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Kubelet Event QPS Not Properly Set",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive4.yaml"
-	}
+  {
+    "queryName": "Kubelet Event QPS Not Properly Set",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--event-qps flag should be set to 0",
+    "actualValue": "--event-qps flag is not set to 0",
+    "issueType": "IncorrectValue",
+    "similarityID": "36d7497999b18ef7ec51d3c0da754f06799c5370fdc58e8fca2c16870c13110b",
+    "search_line": 11
+  },
+  {
+    "queryName": "Kubelet Event QPS Not Properly Set",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--event-qps flag should be set to 0",
+    "actualValue": "--event-qps flag is not set to 0",
+    "issueType": "IncorrectValue",
+    "similarityID": "ee01aa576d297875b801200d80b0501b143f84db3d4d41fd2aa649fb9ce47584",
+    "search_line": 11
+  },
+  {
+    "queryName": "Kubelet Event QPS Not Properly Set",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive3.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.eventRecordQPS",
+    "searchValue": "",
+    "expectedValue": "eventRecordQPS flag should set to 0",
+    "actualValue": "eventRecordQPS flag is not set to 0",
+    "issueType": "IncorrectValue",
+    "similarityID": "89de8b6c823261d9c786b6827f7915edf45b60c2dc8be799743003cd5cd88f53",
+    "search_line": -1
+  },
+  {
+    "queryName": "Kubelet Event QPS Not Properly Set",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive4.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}",
+    "searchValue": "",
+    "expectedValue": "eventRecordQPS flag should set to 0",
+    "actualValue": "eventRecordQPS flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "84e8c2505fb4fd36cda04b9fc4d6ce3d85cdebbe8b7bd544fab09a5a103c485d",
+    "search_line": -1
+  }
 ]

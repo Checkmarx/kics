@@ -3,24 +3,60 @@
     "queryName": "Security Definitions Undefined or Empty",
     "severity": "HIGH",
     "line": 2,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "swagger",
+    "searchValue": "",
+    "expectedValue": "'securityDefinitions' should be set and not empty",
+    "actualValue": "'securityDefinitions' is undefined or empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "bdf80a45dc42895d3524c878cb911d07dd21dd564c3020a09addc696d60f669b",
+    "search_line": -1
   },
   {
     "queryName": "Security Definitions Undefined or Empty",
     "severity": "HIGH",
     "line": 1,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "swagger",
+    "searchValue": "",
+    "expectedValue": "'securityDefinitions' should be set and not empty",
+    "actualValue": "'securityDefinitions' is undefined or empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "c9acfc57893871ca447269e0d7a6cdd9fc508ee0237921b7beb8cde980f1f929",
+    "search_line": -1
   },
   {
     "queryName": "Security Definitions Undefined or Empty",
     "severity": "HIGH",
     "line": 2,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "swagger",
+    "searchValue": "",
+    "expectedValue": "'securityDefinitions' should be set and not empty",
+    "actualValue": "'securityDefinitions' is undefined or empty",
+    "issueType": "MissingAttribute",
+    "similarityID": "d7a29dae614eefcd7036abfa40e6c1c5640e6b9dcdc80e6b64ff2cb05d477a08",
+    "search_line": -1
   },
   {
     "queryName": "Security Definitions Undefined or Empty",
     "severity": "HIGH",
     "line": 1,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "swagger",
+    "searchValue": "",
+    "expectedValue": "'securityDefinitions' should be set and not empty",
+    "actualValue": "'securityDefinitions' is undefined or empty",
+    "issueType": "MissingAttribute",
+    "similarityID": "e9b91cfc6c452c92b721b7f9785a6edb5b51c27a9287f9f03123bc36a1acd2a6",
+    "search_line": -1
   }
 ]

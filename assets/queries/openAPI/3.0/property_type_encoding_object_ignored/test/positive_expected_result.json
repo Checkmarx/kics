@@ -3,24 +3,60 @@
     "queryName": "Property 'style' of Encoding Object Ignored",
     "severity": "INFO",
     "line": 49,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.{{NewItem}}.content.{{multipart/data}}",
+    "searchValue": "",
+    "expectedValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} should be 'application/x-www-form-urlencoded' when 'style' is set",
+    "actualValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'style' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "0b35c793fc991b46bfabf7e882a961c92cc745bb6f792cd66dff1f50b6db84a5",
+    "search_line": 0
   },
   {
     "queryName": "Property 'style' of Encoding Object Ignored",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}} should be 'application/x-www-form-urlencoded' when 'style' is set",
+    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'style' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "796ddc41864879c22a6684360662c480e47342518fa742563cfc1ad42130a972",
+    "search_line": -1
   },
   {
     "queryName": "Property 'style' of Encoding Object Ignored",
     "severity": "INFO",
     "line": 31,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.{{NewItem}}.content.{{multipart/data}}",
+    "searchValue": "",
+    "expectedValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} should be 'application/x-www-form-urlencoded' when 'style' is set",
+    "actualValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'style' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "bb9125c30ec7a8e44cb82c21a56f14f56eb1bf66d953cd3c00179ae9fadfd495",
+    "search_line": 0
   },
   {
     "queryName": "Property 'style' of Encoding Object Ignored",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}} should be 'application/x-www-form-urlencoded' when 'style' is set",
+    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'style' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "62ad06afd90a3a024814d660d3f030ede4666fff243bb496559637de7165d014",
+    "search_line": -1
   }
 ]

@@ -2,16 +2,46 @@
   {
     "queryName": "Small Activity Log Retention Period",
     "severity": "LOW",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_monitorlogprofile",
+    "resourceName": "Create a log profile",
+    "searchKey": "name={{Create a log profile}}.{{azure_rm_monitorlogprofile}}.retention_policy.enabled",
+    "searchValue": "",
+    "expectedValue": "azure_rm_monitorlogprofile.retention_policy.enabled should be true or yes",
+    "actualValue": "azure_rm_monitorlogprofile.retention_policy.enabled is false or no",
+    "issueType": "IncorrectValue",
+    "similarityID": "20ab4fb49cd51c508ade9c9fa66e7896fb773a8ee9d3064578bc25c86a10968c",
+    "search_line": -1
   },
   {
     "queryName": "Small Activity Log Retention Period",
     "severity": "LOW",
-    "line": 20
+    "line": 20,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_monitorlogprofile",
+    "resourceName": "Create a log profile2",
+    "searchKey": "name={{Create a log profile2}}.{{azure_rm_monitorlogprofile}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_monitorlogprofile.retention_policy should be defined",
+    "actualValue": "azure_rm_monitorlogprofile.retention_policy is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4616d37f9f9a5f604cf00f47f91fb0a1e15704ab5f9ff8fb4de759314ccae2d1",
+    "search_line": -1
   },
   {
     "queryName": "Small Activity Log Retention Period",
     "severity": "LOW",
-    "line": 46
+    "line": 46,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_monitorlogprofile",
+    "resourceName": "Create a log profile3",
+    "searchKey": "name={{Create a log profile3}}.{{azure_rm_monitorlogprofile}}.retention_policy.days",
+    "searchValue": "",
+    "expectedValue": "azure_rm_monitorlogprofile.retention_policy.days should be greater than or equal to 365 days or 0 (indefinitely)",
+    "actualValue": "azure_rm_monitorlogprofile.retention_policy.days is less than 365 days or different than 0 (indefinitely)",
+    "issueType": "IncorrectValue",
+    "similarityID": "141bb5eee1cdfc46b3f6c0f0d327acc213dc706f04087ae21c3ee8dc7145162e",
+    "search_line": -1
   }
 ]

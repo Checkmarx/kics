@@ -2,25 +2,61 @@
   {
     "queryName": "AKS Dashboard Is Enabled",
     "severity": "LOW",
+    "line": 8,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1.properties.addonProfiles.kubeDashboard.enabled",
+    "searchValue": "",
+    "expectedValue": "'addonProfiles.kubeDashboard.enabled' should be defined and false",
+    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "9a69fa1621ac02a403f1738c05119db657a3e4dea68f0a965fa0f790140feeb8",
+    "search_line": 8
+  },
+  {
+    "queryName": "AKS Dashboard Is Enabled",
+    "severity": "LOW",
     "line": 14,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1.properties.addonProfiles.kubeDashboard.enabled",
+    "searchValue": "",
+    "expectedValue": "'addonProfiles.kubeDashboard.enabled' should be defined and false",
+    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "b49a8c02b3df8a091743209aca0d8afd4176eeea2928ca73f6845c915ed08338",
+    "search_line": 14
+  },
+  {
+    "queryName": "AKS Dashboard Is Enabled",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1.properties.addonProfiles.kubeDashboard.enabled",
+    "searchValue": "",
+    "expectedValue": "'addonProfiles.kubeDashboard.enabled' should be defined and false",
+    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "737a67133139236a3e5223e1784f0266e12478345400262b710fe6e0992dad34",
+    "search_line": 8
   },
   {
     "queryName": "AKS Dashboard Is Enabled",
     "severity": "LOW",
     "line": 16,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "AKS Dashboard Is Enabled",
-    "severity": "LOW",
-    "line": 8,
-    "filename": "positive1.bicep"
-  },
-  {
-    "queryName": "AKS Dashboard Is Enabled",
-    "severity": "LOW",
-    "line": 8,
-    "filename": "positive2.bicep"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "properties.template.resources.name=aksCluster1.properties.addonProfiles.kubeDashboard.enabled",
+    "searchValue": "",
+    "expectedValue": "'addonProfiles.kubeDashboard.enabled' should be defined and false",
+    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "d8aa9b754c205cd0eea952cc3867ef3fca0b7456544ba9b670bfeeb9347383ec",
+    "search_line": 16
   }
 ]

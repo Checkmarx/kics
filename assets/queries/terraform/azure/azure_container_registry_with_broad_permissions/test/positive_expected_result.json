@@ -2,11 +2,31 @@
   {
     "queryName": "Beta - Azure Container Registry With Broad Permissions",
     "severity": "HIGH",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_role_assignment[positive1].role_definition_name",
+    "searchValue": "",
+    "expectedValue": "'azurerm_role_assignment[positive1].role_definition_name' should be set to 'AcrPull'",
+    "actualValue": "'azurerm_role_assignment[positive1].role_definition_name' is set to 'AcrPush'",
+    "issueType": "IncorrectValue",
+    "similarityID": "cd4320bb6877dc750076dcb5732fe31b9f58b6062ccd51cd24aeca20ead5386f",
+    "search_line": 11
   },
   {
     "queryName": "Beta - Azure Container Registry With Broad Permissions",
     "severity": "HIGH",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive2",
+    "searchKey": "azurerm_role_assignment[positive2].role_definition_id",
+    "searchValue": "",
+    "expectedValue": "'azurerm_role_assignment[positive2].role_definition_id' should be set to '7f951dda-4ed3-4680-a7ca-43fe172d538d'",
+    "actualValue": "'azurerm_role_assignment[positive2].role_definition_id' is set to '8311e382-0749-4cb8-b61a-304f252e45ec'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3133a26a2e8dd363627004d9df4b824ed14cae5f8b0189a25da89685bb1132d2",
+    "search_line": 17
   }
 ]

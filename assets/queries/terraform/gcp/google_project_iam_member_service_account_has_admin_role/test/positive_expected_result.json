@@ -2,11 +2,31 @@
   {
     "queryName": "Google Project IAM Member Service Account Has Admin Role",
     "severity": "HIGH",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.tf",
+    "resourceType": "google_project_iam_member",
+    "resourceName": "positive1",
+    "searchKey": "google_project_iam_member[positive1].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_member[positive1].role should not be admin",
+    "actualValue": "google_project_iam_member[positive1].role is admin",
+    "issueType": "IncorrectValue",
+    "similarityID": "e277478ddeb67265253edd47f1ec110811b91ebeda7cea287f35b96f914dfa5e",
+    "search_line": -1
   },
   {
     "queryName": "Google Project IAM Member Service Account Has Admin Role",
     "severity": "HIGH",
-    "line": 9
+    "line": 9,
+    "fileName": "positive.tf",
+    "resourceType": "google_project_iam_member",
+    "resourceName": "positive2",
+    "searchKey": "google_project_iam_member[positive2].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_member[positive2].role should not be admin",
+    "actualValue": "google_project_iam_member[positive2].role is admin",
+    "issueType": "IncorrectValue",
+    "similarityID": "4683307d598f19ed6b0366c04aeeb8f5f2e00c2c4e83d0dd308595ae3b1d4525",
+    "search_line": -1
   }
 ]

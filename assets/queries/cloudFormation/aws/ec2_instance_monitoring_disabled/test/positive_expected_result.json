@@ -3,18 +3,45 @@
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.Monitoring",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyEC2Instance.Properties.Monitoring' should be set to 'true'",
+    "actualValue": "'Resources.MyEC2Instance.Properties.Monitoring' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c9cd34a5393cc62e1a4517d74e8df6e0b585cac89ac400786b523354630b67ff",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.Monitoring",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyEC2Instance.Properties.Monitoring' should be set and to 'true'",
+    "actualValue": "'Resources.MyEC2Instance.Properties.Monitoring' is not set",
+    "issueType": "MissingAttribute",
+    "similarityID": "7317427e95d7f07f55f0b2a90b5781bc6f5e68ab1d6c73ed2cb99d89c3008d7a",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.Monitoring",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyEC2Instance.Properties.Monitoring' should be set to 'true'",
+    "actualValue": "'Resources.MyEC2Instance.Properties.Monitoring' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2c8740f0e26cb781b13b5cf3441696a0adbeedc6a998179fc41a077b29430555",
+    "search_line": -1
   }
 ]

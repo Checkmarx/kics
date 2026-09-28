@@ -3,48 +3,120 @@
     "queryName": "Unknown Property (v2)",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.descripption",
+    "searchValue": "",
+    "expectedValue": "The field 'descripption' is known in the parameters object",
+    "actualValue": "The field 'descripption' is unknown in the parameters object",
+    "issueType": "IncorrectValue",
+    "similarityID": "198c45f255348adb568f877c6ea6d692d2172d6bcd2c7a125e692d0d34f30d83",
+    "search_line": 20
   },
   {
     "queryName": "Unknown Property (v2)",
     "severity": "INFO",
     "line": 40,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.ErrorModel.propppperties",
+    "searchValue": "",
+    "expectedValue": "The field 'propppperties' is known in the definitions object",
+    "actualValue": "The field 'propppperties' is unknown in the definitions object",
+    "issueType": "IncorrectValue",
+    "similarityID": "fcfcfd11bedb67a0f6ebeba51b2a439d1ed621c1a2967c7e765227d43c0fb67c",
+    "search_line": 40
   },
   {
     "queryName": "Unknown Property (v2)",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.nameee",
+    "searchValue": "",
+    "expectedValue": "The field 'nameee' is known in the contact object",
+    "actualValue": "The field 'nameee' is unknown in the contact object",
+    "issueType": "IncorrectValue",
+    "similarityID": "459f9c426c81c82a8f6fa2476df45526a7588b6a1a0eecd52ecb30b263735b61",
+    "search_line": 7
   },
   {
     "queryName": "Unknown Property (v2)",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "taggs",
+    "searchValue": "",
+    "expectedValue": "The field 'taggs' is known in the openapi object",
+    "actualValue": "The field 'taggs' is unknown in the openapi object",
+    "issueType": "IncorrectValue",
+    "similarityID": "6f6256f78a87eeb336939814728b1e9290e3275d1d795c20cb16763d519c09ca",
+    "search_line": 25
   },
   {
     "queryName": "Unknown Property (v2)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.descripption",
+    "searchValue": "",
+    "expectedValue": "The field 'descripption' is known in the parameters object",
+    "actualValue": "The field 'descripption' is unknown in the parameters object",
+    "issueType": "IncorrectValue",
+    "similarityID": "bc328d2ad7815617638faf29056814c35904249c6bbe4e0abdade74b0176c27a",
+    "search_line": 16
   },
   {
     "queryName": "Unknown Property (v2)",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.ErrorModel.propppperties",
+    "searchValue": "",
+    "expectedValue": "The field 'propppperties' is known in the definitions object",
+    "actualValue": "The field 'propppperties' is unknown in the definitions object",
+    "issueType": "IncorrectValue",
+    "similarityID": "62f1fdfefc0b7aaf4c4251996838442fcf1d40ed9d8e24afc617d85958964736",
+    "search_line": 28
   },
   {
     "queryName": "Unknown Property (v2)",
     "severity": "INFO",
     "line": 6,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.nameee",
+    "searchValue": "",
+    "expectedValue": "The field 'nameee' is known in the contact object",
+    "actualValue": "The field 'nameee' is unknown in the contact object",
+    "issueType": "IncorrectValue",
+    "similarityID": "ce2e62dc999eceb5d426894bf101a3a1d082dace9e682a07da7a23acc9fb11e7",
+    "search_line": 6
   },
   {
     "queryName": "Unknown Property (v2)",
     "severity": "INFO",
     "line": 17,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "taggs",
+    "searchValue": "",
+    "expectedValue": "The field 'taggs' is known in the openapi object",
+    "actualValue": "The field 'taggs' is unknown in the openapi object",
+    "issueType": "IncorrectValue",
+    "similarityID": "996796c7defacc24c13c11e2ca4815e3774318ea3c0861911789e77e6cad1726",
+    "search_line": 17
   }
 ]

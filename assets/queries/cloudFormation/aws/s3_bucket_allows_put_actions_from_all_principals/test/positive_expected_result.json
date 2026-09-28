@@ -3,24 +3,60 @@
     "queryName": "S3 Bucket Allows Put Action From All Principals",
     "severity": "CRITICAL",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy3",
+    "searchKey": "Resources.SampleBucketPolicy3.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement should not allow a 'Put' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement allows a 'Put' action from all principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "7ec3b2d9aebbb4aab2d09158d7bd23366c115bd6c5e39d65f65d1ff9071276df",
+    "search_line": 7
   },
   {
     "queryName": "S3 Bucket Allows Put Action From All Principals",
     "severity": "CRITICAL",
     "line": 22,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy4",
+    "searchKey": "Resources.SampleBucketPolicy4.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement should not allow a 'Put' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement allows a 'Put' action from all principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "653c96dcbeb39b54eff981331a4b30541a0dcea058b96e001532812cd41ba555",
+    "search_line": 22
   },
   {
     "queryName": "S3 Bucket Allows Put Action From All Principals",
     "severity": "CRITICAL",
     "line": 9,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy5",
+    "searchKey": "Resources.SampleBucketPolicy5.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy5.Properties.PolicyDocument.Statement should not allow a 'Put' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy5.Properties.PolicyDocument.Statement allows a 'Put' action from all principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "012853553403ac2890d63c8ca76c213fc99205b28d5afb5e1200e37a6f1baebe",
+    "search_line": 9
   },
   {
     "queryName": "S3 Bucket Allows Put Action From All Principals",
     "severity": "CRITICAL",
     "line": 35,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy6",
+    "searchKey": "Resources.SampleBucketPolicy6.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement should not allow a 'Put' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement allows a 'Put' action from all principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "102abbd7ef8f66f8d86dd911b215e0b1101ade42e0ef88dd7e81122fa9de76f7",
+    "search_line": 35
   }
 ]

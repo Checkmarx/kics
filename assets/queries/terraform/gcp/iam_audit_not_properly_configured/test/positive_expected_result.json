@@ -2,21 +2,61 @@
   {
     "queryName": "IAM Audit Not Properly Configured",
     "severity": "LOW",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.tf",
+    "resourceType": "google_project_iam_audit_config",
+    "resourceName": "positive1",
+    "searchKey": "google_project_iam_audit_config[positive1].service",
+    "searchValue": "",
+    "expectedValue": "'service' must be 'allServices'",
+    "actualValue": "'service' is 'some_specific_service'",
+    "issueType": "IncorrectValue",
+    "similarityID": "74fa72f0533345a3f54c907e7c28b298013105f82e7caa3716c94cd109829f23",
+    "search_line": -1
   },
   {
     "queryName": "IAM Audit Not Properly Configured",
     "severity": "LOW",
-    "line": 9
+    "line": 9,
+    "fileName": "positive.tf",
+    "resourceType": "google_project_iam_audit_config",
+    "resourceName": "positive1",
+    "searchKey": "google_project_iam_audit_config[positive1].audit_log_config.exempted_members",
+    "searchValue": "",
+    "expectedValue": "'exempted_members' should be empty",
+    "actualValue": "'exempted_members' is not empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "899c6d7d34c21f6487e25d0f10eaa3c33e4dea9b043d7cd6fdaf7b75f428004a",
+    "search_line": -1
   },
   {
     "queryName": "IAM Audit Not Properly Configured",
     "severity": "LOW",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.tf",
+    "resourceType": "google_project_iam_audit_config",
+    "resourceName": "positive2",
+    "searchKey": "google_project_iam_audit_config[positive2].audit_log_config.log_type",
+    "searchValue": "",
+    "expectedValue": "'log_type' must be one of 'DATA_READ', 'DATA_WRITE', or 'ADMIN_READ'",
+    "actualValue": "'log_type' is INVALID_TYPE",
+    "issueType": "IncorrectValue",
+    "similarityID": "79f8f3d56d982ed9667009653f4c1042c617486e7d6b88ff35d0cf7809a37e2c",
+    "search_line": -1
   },
   {
     "queryName": "IAM Audit Not Properly Configured",
     "severity": "LOW",
-    "line": 23
+    "line": 23,
+    "fileName": "positive.tf",
+    "resourceType": "google_project_iam_audit_config",
+    "resourceName": "positive2",
+    "searchKey": "google_project_iam_audit_config[positive2].audit_log_config.exempted_members",
+    "searchValue": "",
+    "expectedValue": "'exempted_members' should be empty",
+    "actualValue": "'exempted_members' is not empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "0f2ab19c0c666d8ff72402852b331cbccb4a84ed5b63540756b2f05554cbe7a0",
+    "search_line": -1
   }
 ]

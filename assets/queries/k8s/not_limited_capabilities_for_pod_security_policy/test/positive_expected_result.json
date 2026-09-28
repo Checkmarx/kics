@@ -2,6 +2,16 @@
   {
     "queryName": "Not Limited Capabilities For Pod Security Policy",
     "severity": "INFO",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{restricted}}.spec.requiredDropCapabilities should be defined",
+    "actualValue": "metadata.name={{restricted}}.spec.requiredDropCapabilities is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "11d4a5de4ec532f43adcf6fa99bb00e4f1f636315cf996e7ca85c58a9691962e",
+    "search_line": -1
   }
 ]

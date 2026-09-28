@@ -3,6 +3,15 @@
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "CRITICAL",
     "line": 4,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.s3_bucket",
+    "resourceName": "Create a simple s3 bucket with a policy",
+    "searchKey": "name={{Create a simple s3 bucket with a policy}}.{{amazon.aws.s3_bucket}}.policy",
+    "searchValue": "",
+    "expectedValue": "s3_bucket.policy.Statement shouldn't make the bucket accessible to all AWS Accounts",
+    "actualValue": "s3_bucket.policy.Statement does make the bucket accessible to all AWS Accounts",
+    "issueType": "IncorrectValue",
+    "similarityID": "effcffb03bc23addb0b24e2d3ceeeb43a5760f03a233b966fd4446bb7c5f64d2",
+    "search_line": 4
   }
 ]

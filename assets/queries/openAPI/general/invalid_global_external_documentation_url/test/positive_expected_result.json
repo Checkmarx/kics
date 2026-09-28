@@ -3,24 +3,60 @@
     "queryName": "Invalid Global External Documentation URL (v3)",
     "severity": "INFO",
     "line": 49,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "externalDocs.url has a valid URL",
+    "actualValue": "externalDocs.url does not have a valid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "67e9448c038ae988eccc99f71af8ee93c63a507e015e8420c618c3aacb2ff7ac",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Global External Documentation URL (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "externalDocs.url has a valid URL",
+    "actualValue": "externalDocs.url does not have a valid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "6200f00b4f0c669865efe0e8aeab65a95fdead19a845d4376ae6712c44306fb3",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Global External Documentation URL (v2)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "externalDocs.url has a valid URL",
+    "actualValue": "externalDocs.url does not have a valid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "f423c220e7288b34de360d8f0cdc8fc8043fcc1816ebe16c1b14a952eeced659",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Global External Documentation URL (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "externalDocs.url has a valid URL",
+    "actualValue": "externalDocs.url does not have a valid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "cc74ccb3d3b0a60f0011abaf1ca6e4c90a23361b222ed67c87e60e10b0a86d0a",
+    "search_line": -1
   }
 ]

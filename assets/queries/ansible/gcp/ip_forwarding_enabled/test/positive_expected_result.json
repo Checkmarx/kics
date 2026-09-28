@@ -2,6 +2,16 @@
   {
     "queryName": "IP Forwarding Enabled",
     "severity": "MEDIUM",
-    "line": 22
+    "line": 22,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance",
+    "searchKey": "name={{create a instance}}.{{google.cloud.gcp_compute_instance}}.can_ip_forward",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.can_ip_forward should be set to false",
+    "actualValue": "gcp_compute_instance.can_ip_forward is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "21eca875e7a7e787b1e7d96f46214c77af02d11abc97158dee484ec040da3f7c",
+    "search_line": -1
   }
 ]

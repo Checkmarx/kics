@@ -2,6 +2,16 @@
   {
     "queryName": "Beta - Storage Account With Cross Tenant Replication Enabled",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_storage_account[positive1].cross_tenant_replication_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive1].cross_tenant_replication_enabled' should be set to false",
+    "actualValue": "'azurerm_storage_account[positive1].cross_tenant_replication_enabled' is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "544665403aeb95ec2f3bbaad2d21afc80f8ba868bbf64c8313bc75816f0fc208",
+    "search_line": 8
   }
 ]

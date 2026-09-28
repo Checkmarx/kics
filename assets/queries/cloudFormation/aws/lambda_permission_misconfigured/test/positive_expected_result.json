@@ -3,12 +3,30 @@
     "queryName": "Lambda Permission Misconfigured",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Lambda::Permission",
+    "resourceName": "s3Permission",
+    "searchKey": "Resources.s3Permission.Properties.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.s3Permission.Properties.Action' should be lambda:InvokeFunction ",
+    "actualValue": "'Resources.s3Permission.Properties.Action' is not lambda:InvokeFunction",
+    "issueType": "IncorrectValue",
+    "similarityID": "d9c32db1774355d73800756ffc97b31fad163ad9fa46e44c7ad2c9226a4058cf",
+    "search_line": -1
   },
   {
+    "queryName": "Lambda Permission Misconfigured",
+    "severity": "LOW",
     "line": 8,
     "fileName": "positive2.json",
-    "queryName": "Lambda Permission Misconfigured",
-    "severity": "LOW"
+    "resourceType": "AWS::Lambda::Permission",
+    "resourceName": "s3Permission",
+    "searchKey": "Resources.s3Permission.Properties.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.s3Permission.Properties.Action' should be lambda:InvokeFunction ",
+    "actualValue": "'Resources.s3Permission.Properties.Action' is not lambda:InvokeFunction",
+    "issueType": "IncorrectValue",
+    "similarityID": "daea3b3465327d5f88ee567a2e6186d5ad7c452b48957b1c027b368a4a6de4c0",
+    "search_line": -1
   }
 ]

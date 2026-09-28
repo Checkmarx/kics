@@ -2,6 +2,16 @@
   {
     "queryName": "PSP Allows Containers To Share The Host Network Namespace",
     "severity": "HIGH",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod_security_policy",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod_security_policy[example].spec.host_network",
+    "searchValue": "",
+    "expectedValue": "'spec.hostNetwork' should be set to false or undefined",
+    "actualValue": "'spec.hostNetwork' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "03bd24bac5377450ee89daf7c57577834f49acac9ffd5b2716d623c2c20f9f01",
+    "search_line": -1
   }
 ]

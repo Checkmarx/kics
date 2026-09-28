@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Google Compute SSL Policy Weak Cipher In Use",
-		"severity": "MEDIUM",
-		"line": 7,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "Google Compute SSL Policy Weak Cipher In Use",
-		"severity": "MEDIUM",
-		"line": 16,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "Google Compute SSL Policy Weak Cipher In Use",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "gcp:compute:SSLPolicy",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties",
+    "searchValue": "",
+    "expectedValue": "SSLPolicy should have 'minTlsVersion' defined and set to 'TLS_1_2'",
+    "actualValue": "SSLPolicy 'minTlsVersion' attribute is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2fd803a384fe45498255e6dffb5de542e94ff73c41537f8bbb10005f9c827e9f",
+    "search_line": 7
+  },
+  {
+    "queryName": "Google Compute SSL Policy Weak Cipher In Use",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive.yaml",
+    "resourceType": "gcp:compute:SSLPolicy",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties.minTlsVersion",
+    "searchValue": "",
+    "expectedValue": "SSLPolicy should have 'minTlsVersion' set to 'TLS_1_2'",
+    "actualValue": "SSLPolicy 'minTlsVersion' attribute is set to TLS_1_1",
+    "issueType": "IncorrectValue",
+    "similarityID": "c5a4a4440b9f3b1f15f63dc9afd41335960ea3fec0e1dce6c8c8ce13383569d1",
+    "search_line": 16
+  }
 ]

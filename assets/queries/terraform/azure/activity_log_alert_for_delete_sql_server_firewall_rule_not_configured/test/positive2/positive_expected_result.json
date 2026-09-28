@@ -3,42 +3,105 @@
     "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_1].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_1]' resource monitors 'delete SQL server firewall rule' events but sets 1 filter(s): caller",
+    "issueType": "IncorrectValue",
+    "similarityID": "75155fdb73326eacb7d2144f8e67dd551940ef0f1987ec4cb09a333cb728fc57",
+    "search_line": 9
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_2].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_2]' resource monitors 'delete SQL server firewall rule' events but sets 1 filter(s): level",
+    "issueType": "IncorrectValue",
+    "similarityID": "78210989791881f41949b1d6b5dede597a2beecf9a7728645a281734fb4e817e",
+    "search_line": 28
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_3].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_3]' resource monitors 'delete SQL server firewall rule' events but sets 1 filter(s): levels",
+    "issueType": "IncorrectValue",
+    "similarityID": "871fc35e72f4da8745f653b854343a8930fea3719324a980760bd2ef0a50ab1e",
+    "search_line": 47
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 66,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_4].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_4]' resource monitors 'delete SQL server firewall rule' events but sets 1 filter(s): status",
+    "issueType": "IncorrectValue",
+    "similarityID": "ad6a25081db95d1f6d747f60824c2350639a98c7a00660d103d10753d0706994",
+    "search_line": 66
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_5].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_5]' resource monitors 'delete SQL server firewall rule' events but sets 1 filter(s): statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "bbc856949ed2713bbdd2f6e3615e5d2d93240cf94f1315c47b4c18192fddaf8e",
+    "search_line": 8
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_6].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_6]' resource monitors 'delete SQL server firewall rule' events but sets 1 filter(s): sub_status",
+    "issueType": "IncorrectValue",
+    "similarityID": "a50c7eca744b4b9d7d17580c221e985bf4276ac397351d4f661fd0338e8dfcc6",
+    "search_line": 27
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 46,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_7].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_7]' resource monitors 'delete SQL server firewall rule' events but sets 1 filter(s): sub_statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "e33b0317c2291a6980e7791ca9849fff561ee870865d96c906ea831b2bc090ad",
+    "search_line": 46
   }
 ]

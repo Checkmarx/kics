@@ -3,12 +3,30 @@
     "queryName": "IAM Role Allows All Principals To Assume",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS should not contain ':root'",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS contains ':root'",
+    "issueType": "IncorrectValue",
+    "similarityID": "948e314a1119934a67d46c44ce8c96d1f91f1fe640d5ce7a9ce1e73017b94d6c",
+    "search_line": 6
   },
   {
     "queryName": "IAM Role Allows All Principals To Assume",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS should not contain ':root'",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS contains ':root'",
+    "issueType": "IncorrectValue",
+    "similarityID": "dff558d87f86586dc7b1aa2a2cfad54462caf2b3fc4135c794750111529cdb96",
+    "search_line": 7
   }
 ]

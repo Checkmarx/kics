@@ -3,18 +3,45 @@
     "queryName": "App Service Without Latest Python Version",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example4-app-service",
+    "searchKey": "azurerm_app_service[example4].site_config.python_version",
+    "searchValue": "",
+    "expectedValue": "attribute 'python_version' should be the latest avaliable stable version (3.10)",
+    "actualValue": "'python_version' is not the latest avaliable stable version (3.10)",
+    "issueType": "IncorrectValue",
+    "similarityID": "9619487608a0b984b6fdfff8bcc27f93011f4f6f8db3f742164f88e372a65465",
+    "search_line": 11
   },
   {
     "queryName": "App Service Without Latest Python Version",
     "severity": "LOW",
     "line": 25,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example5",
+    "searchKey": "azurerm_windows_web_app[example5].site_config.application_stack.python_version",
+    "searchValue": "",
+    "expectedValue": "attribute 'python_version' should be the latest avaliable stable version (3.10)",
+    "actualValue": "'python_version' is not the latest avaliable stable version (3.10)",
+    "issueType": "IncorrectValue",
+    "similarityID": "02aeb20721f8d20db0dd3093fa7e0956eebbd14fce3f239e634cf5291ca701d5",
+    "search_line": 25
   },
   {
     "queryName": "App Service Without Latest Python Version",
     "severity": "LOW",
     "line": 26,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example6",
+    "searchKey": "azurerm_linux_web_app[example6].site_config.application_stack.python_version",
+    "searchValue": "",
+    "expectedValue": "attribute 'python_version' should be the latest avaliable stable version (3.10)",
+    "actualValue": "'python_version' is not the latest avaliable stable version (3.10)",
+    "issueType": "IncorrectValue",
+    "similarityID": "e6d055dab4ca8619800f4aa00cb5ef1488cae14284bd33bcee84cf94aefd77e5",
+    "search_line": 26
   }
 ]
