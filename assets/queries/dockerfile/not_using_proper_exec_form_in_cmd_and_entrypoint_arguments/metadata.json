@@ -6,7 +6,7 @@
   "descriptionText": "Ensure that we are using proper exec form in the CMD and ENTRYPOINT Arguments",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#entrypoint",
   "platform": "Dockerfile",
-  "descriptionID": "9dbd509c",
+  "descriptionID": "34945ae8",
   "cwe": "573",
   "riskScore": "5.2"
 }
