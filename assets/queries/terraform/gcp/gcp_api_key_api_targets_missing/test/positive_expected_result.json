@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Google API Key API Targets Missing",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Google API Key API Targets Missing",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.tf"
+  }
+]
