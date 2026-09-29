@@ -40,12 +40,25 @@
         "category",
         "descriptionText",
         "descriptionUrl",
-        "cloudProvider",
         "platform",
         "descriptionID",
         "cwe",
         "riskScore"
     ],
+    "if": {
+        "not": {
+            "properties": {
+                "platform": {
+                    "const": "Dockerfile"
+                }
+            }
+        }
+    },
+    "then": {
+        "required": [
+            "cloudProvider"
+        ]
+    },
     "properties": {
         "id": {
             "$ref": "#/definitions/query_id_pattern"
