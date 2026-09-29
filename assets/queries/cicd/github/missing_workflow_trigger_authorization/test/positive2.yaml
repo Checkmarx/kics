@@ -1,0 +1,20 @@
+# Minimal example: a single deploy-on-comment job with no authorization check.
+# Any GitHub user can comment "/deploy staging" on any PR to trigger deployment.
+
+name: Deploy On Comment
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  deploy:
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/deploy')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.issue.pull_request.head.sha }}
+
+      - name: Deploy to staging
+        run: ./scripts/deploy.sh staging

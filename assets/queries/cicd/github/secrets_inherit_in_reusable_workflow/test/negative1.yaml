@@ -1,0 +1,15 @@
+# Safe: only the exact secrets needed are passed to the external workflow.
+# The external workflow cannot access any other repository secrets.
+
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    uses: external-org/deploy-workflows/.github/workflows/deploy.yml@abc1234567890abcdef1234567890abcdef12345678
+    secrets:
+      DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+      REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
