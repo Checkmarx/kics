@@ -239,7 +239,6 @@ func (s *FileSystemSourceProvider) isExcluded(info os.FileInfo) bool {
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
 	path string, resolved bool) (bool, error) {
-
 	if info.IsDir() {
 		// exclude terraform cache folders
 		if queryRegexExcludeTerraCache.MatchString(path) {
