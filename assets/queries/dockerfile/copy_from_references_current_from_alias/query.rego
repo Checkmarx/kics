@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "copy"
@@ -9,9 +11,11 @@ CxPolicy[result] {
 
 	isAliasCurrentFromAlias(name, aux_split[1])
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "COPY --from should not reference the current FROM alias",
 		"keyActualValue": "COPY --from references the current FROM alias",
