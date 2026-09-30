@@ -61,7 +61,7 @@ func getCertificateInfo(filePath string) (certInfo, error) {
 }
 
 // AddCertificateInfo gets and adds certificate information of a certificate file
-func AddCertificateInfo(path, content string) map[string]interface{} {
+func AddCertificateInfo(path, content string, validBases []string, strictSourceResolution bool) map[string]interface{} {
 	var filePath string
 
 	_, err := os.Stat(content)
@@ -71,6 +71,12 @@ func AddCertificateInfo(path, content string) map[string]interface{} {
 		filePath = filepath.Join(filepath.Dir(path), content)
 	} else { // content is a full valid path
 		filePath = content
+	}
+
+	if strictSourceResolution {
+		if _, sanitizeErr := SanitizePath(validBases, filePath); sanitizeErr != nil {
+			return nil
+		}
 	}
 
 	date, err := getCertificateInfo(filePath)

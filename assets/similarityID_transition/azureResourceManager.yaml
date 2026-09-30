@@ -7,3 +7,7 @@ similarityIDChangeList:
       queryName: Website with 'Http20Enabled' Disabled
       observations: ""
       change: 1
+    - queryId: e055285c-bc01-48b4-8aa5-8a54acdd29df
+      queryName: SQL Server Database Without Auditing
+      observations: "Added to fix the -1 value on search_line on nested resources"
+      change: 1

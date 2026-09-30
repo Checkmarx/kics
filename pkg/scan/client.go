@@ -2,20 +2,29 @@ package scan
 
 import (
 	"context"
+	"encoding/json"
+	"io"
+	"net/http"
+	"strings"
 	"time"
 
+	"github.com/rs/zerolog/log"
+
+	"github.com/Checkmarx/kics/v2/internal/constants"
 	"github.com/Checkmarx/kics/v2/internal/storage"
 	"github.com/Checkmarx/kics/v2/internal/tracker"
-	"github.com/Checkmarx/kics/v2/pkg/descriptions"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
 	"github.com/Checkmarx/kics/v2/pkg/progress"
-	"github.com/rs/zerolog/log"
 )
+
+var versionHTTPClient = &http.Client{
+	Timeout: 20 * time.Second,
+}
 
 // Parameters represents all available scan parameters
 type Parameters struct {
 	CloudProvider               []string
-	DisableFullDesc             bool
 	ExcludeCategories           []string
 	ExcludePaths                []string
 	ExcludeQueries              []string
@@ -50,6 +59,7 @@ type Parameters struct {
 	UseOldSeverities            bool
 	MaxResolverDepth            int
 	KicsComputeNewSimID         bool
+	StrictSourceResolution      bool
 }
 
 // Client represents a scan client
@@ -71,7 +81,7 @@ func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, customPrin
 		return nil, err
 	}
 
-	descriptions.CheckVersion(t)
+	CheckVersion(t)
 
 	store := storage.NewMemoryStorage()
 
@@ -85,6 +95,52 @@ func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, customPrin
 		ExcludeResultsMap: excludeResultsMap,
 		Printer:           customPrint,
 	}, nil
+}
+
+func CheckVersion(t *tracker.CITracker) {
+	baseVersionInfo := model.Version{Latest: true}
+
+	if constants.Version == "development" {
+		t.TrackVersion(baseVersionInfo)
+		return
+	}
+
+	resp, err := versionHTTPClient.Get(constants.GitHubReleasesURL)
+	if err != nil {
+		t.TrackVersion(baseVersionInfo)
+		return
+	}
+
+	defer func() {
+		if err := resp.Body.Close(); err != nil {
+			log.Err(err)
+		}
+	}()
+
+	if resp.StatusCode == http.StatusNotFound {
+		t.TrackVersion(baseVersionInfo)
+		return
+	}
+
+	b, err := io.ReadAll(resp.Body)
+	if err != nil {
+		t.TrackVersion(baseVersionInfo)
+		return
+	}
+
+	var release struct {
+		TagName string `json:"tag_name"`
+	}
+	if err := json.Unmarshal(b, &release); err != nil {
+		t.TrackVersion(baseVersionInfo)
+		return
+	}
+
+	latestVersionTag := strings.TrimPrefix(release.TagName, "v")
+	t.TrackVersion(model.Version{
+		Latest:           constants.Version == latestVersionTag,
+		LatestVersionTag: latestVersionTag,
+	})
 }
 
 // PerformScan executes executeScan and postScan

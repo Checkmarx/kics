@@ -1,0 +1,31 @@
+Resources:
+  taskdefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        -
+          Name: "container1"
+          Image: "amazonlinux:2"
+          MountPoints:
+            -
+              SourceVolume: "efs-vol-good"
+              ContainerPath: "/mount/efs1"
+            -
+              SourceVolume: "efs-vol-bad"
+              ContainerPath: "/mount/efs2"
+      Volumes:
+        -
+          Name: "efs-vol-good"
+          EFSVolumeConfiguration:
+            FileSystemId: "fs-1234"
+            RootDirectory: "/path/to/data1"
+            TransitEncryption: ENABLED
+            TransitEncryptionPort: 2999
+        -
+          Name: "efs-vol-bad"
+          EFSVolumeConfiguration:
+            FileSystemId: "fs-5678"
+            RootDirectory: "/path/to/data2"
+            TransitEncryption: DISABLED
+            TransitEncryptionPort: 2999
+

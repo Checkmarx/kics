@@ -1,16 +1,24 @@
 package kuberneter
 
 import (
+	"bytes"
 	"context"
+	"encoding/base64"
+	"encoding/pem"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
+	"text/template"
 
 	"github.com/stretchr/testify/require"
 	"k8s.io/client-go/rest"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 )
+
+const mockK8sAPITokenValue = "sample-mock-bearer-token"
 
 type envVar struct {
 	name  string
@@ -285,7 +293,52 @@ func Test_HasServiceAccountToken_envVars(t *testing.T) {
 	}
 }
 
+// newMockK8sAPIServer starts a local TLS server standing in for a real k8s API server.
+// It rejects every request with 401, which is what a cluster does when the presented
+// bearer token is invalid, so getK8sClient exercises a real TLS handshake and a real
+// token exchange instead of a bare connection failure.
+func newMockK8sAPIServer(t *testing.T) *httptest.Server {
+	server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if got := r.Header.Get("Authorization"); got != "Bearer "+mockK8sAPITokenValue {
+			t.Errorf("mock k8s API server: unexpected Authorization header %q", got)
+		}
+		w.WriteHeader(http.StatusUnauthorized)
+	}))
+	t.Cleanup(server.Close)
+	return server
+}
+
+// renderKubeconfig fills in the sample_K8S_CONFIG_FILE.yaml template with the mock
+// server's own URL and certificate, so the rendered kubeconfig points at a real,
+// locally-reachable endpoint instead of a hardcoded fake host.
+func renderKubeconfig(t *testing.T, server *httptest.Server) string {
+	caPEM := pem.EncodeToMemory(&pem.Block{Type: "CERTIFICATE", Bytes: server.Certificate().Raw})
+
+	tmplPath := getValidCertPath([]string{"..", "..", "test", "assets", "sample_K8S_CONFIG_FILE.yaml"})
+	tmpl, err := template.ParseFiles(tmplPath)
+	require.NoError(t, err)
+
+	var rendered bytes.Buffer
+	err = tmpl.Execute(&rendered, struct {
+		CAData string
+		Server string
+		Token  string
+	}{
+		CAData: base64.StdEncoding.EncodeToString(caPEM),
+		Server: server.URL,
+		Token:  mockK8sAPITokenValue,
+	})
+	require.NoError(t, err)
+
+	configPath := filepath.Join(t.TempDir(), "rendered_K8S_CONFIG_FILE.yaml")
+	require.NoError(t, os.WriteFile(configPath, rendered.Bytes(), 0o600))
+	return configPath
+}
+
 func Test_GetClient(t *testing.T) {
+	mockServer := newMockK8sAPIServer(t)
+	renderedConfigPath := renderKubeconfig(t, mockServer)
+
 	tests := []struct {
 		name    string
 		args    []envVar
@@ -296,7 +349,7 @@ func Test_GetClient(t *testing.T) {
 			args: []envVar{
 				{
 					name:  "K8S_CONFIG_FILE",
-					value: getValidCertPath([]string{"..", "..", "test", "assets", "sample_K8S_CONFIG_FILE.yaml"}),
+					value: renderedConfigPath,
 				},
 			},
 			wantErr: true,
@@ -320,8 +373,8 @@ func Test_GetClient(t *testing.T) {
 			name: "has_K8S_HOST",
 			args: []envVar{
 				{
-					name:  "K8S_K8S_HOST",
-					value: "https://f037947b-2b72-470f-b606-8601055974c7.eu-west-2.linodelke.net:443",
+					name:  "K8S_HOST",
+					value: "https://127.0.0.1:1",
 				},
 			},
 			wantErr: true,
@@ -331,7 +384,7 @@ func Test_GetClient(t *testing.T) {
 			args: []envVar{
 				{
 					name:  "K8S_HOST",
-					value: "https://f037947b-2b72-470f-b606-8601055974c7.eu-west-2.linodelke.net:443",
+					value: "https://127.0.0.1:1",
 				},
 				{
 					name:  "K8S_CA_FILE",
@@ -349,7 +402,7 @@ func Test_GetClient(t *testing.T) {
 			args: []envVar{
 				{
 					name:  "K8S_HOST",
-					value: "https://f037947b-2b72-470f-b606-8601055974c7.eu-west-2.linodelke.net:443",
+					value: "https://127.0.0.1:1",
 				},
 				{
 					name:  "K8S_CA_FILE",
