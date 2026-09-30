@@ -1,10 +1,10 @@
-#ansible test
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test (ansible)
 - name: create a cluster1
   google.cloud.gcp_container_cluster:
     name: my-cluster1
     initial_node_count: 2
     master_auth:
-      password: root
+      password: root  # positive1
     node_config:
       machine_type: n1-standard-4
       disk_size_gb: 500
