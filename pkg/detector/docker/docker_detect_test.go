@@ -49,6 +49,25 @@ RUN apk update \
 	&& rm -rf /var/cache/apk/*
 ENTRYPOINT ["kubectl"]`
 
+var OriginalData4 = `FROM openjdk:10-jdk
+VOLUME /tmp
+ADD http://source.file/package.file.tar.gz /temp
+RUN tar -xjf /temp/package.file.tar.gz \
+	&& make -C /tmp/package.file \
+	&& rm /tmp/ package.file.tar.gz
+ARG JAR_FILE
+ADD ${JAR_FILE} apps.jar
+
+FROM openjdk:10-jdk
+VOLUME /tmp
+ADD http://source.file/package.file.tar.gz /temp
+RUN tar -xjf /temp/package.file.tar.gz \
+	&& make -C /tmp/package.file \
+	&& rm /tmp/ package.file.tar.gz
+ARG JAR_FILE
+ADD ${JAR_FILE} apps.jar
+`
+
 // TestDetectDockerLine tests the functions [DetectDockerLine()] and all the methods called by them
 func TestDetectDockerLine(t *testing.T) { //nolint
 	testCases := []struct {
@@ -101,7 +120,7 @@ func TestDetectDockerLine(t *testing.T) { //nolint
 					},
 				},
 			},
-			searchKey: "FROM=openjdk:11-jdk.{{ADD ${JAR_FILE} apps.jar}}",
+			searchKey: "FROM={{openjdk:11-jdk}}.{{ADD ${JAR_FILE} apps.jar}}",
 			file: &model.FileMetadata{
 				ScanID:            "Test3",
 				ID:                "Test3",
@@ -135,6 +154,33 @@ func TestDetectDockerLine(t *testing.T) { //nolint
 				Kind:              model.KindDOCKER,
 				OriginalData:      OriginalData3,
 				LinesOriginalData: utils.SplitLines(OriginalData3),
+			},
+		},
+		{
+			expected: model.VulnerabilityLines{
+				Line: 17,
+				VulnLines: &[]model.CodeLine{
+					{
+						Position: 16,
+						Line:     "ARG JAR_FILE",
+					},
+					{
+						Position: 17,
+						Line:     "ADD ${JAR_FILE} apps.jar",
+					},
+					{
+						Position: 18,
+						Line:     "",
+					},
+				},
+			},
+			searchKey: "FROM={{openjdk:10-jdk(1)}}.{{ADD ${JAR_FILE} apps.jar}}^8",
+			file: &model.FileMetadata{
+				ScanID:            "Test4",
+				ID:                "Test4",
+				Kind:              model.KindDOCKER,
+				OriginalData:      OriginalData4,
+				LinesOriginalData: utils.SplitLines(OriginalData4),
 			},
 		},
 	}

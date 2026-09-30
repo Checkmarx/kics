@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "publicNetworkAccess": {
+            "type": "string",
+            "defaultValue": "Enabled"
+        }
+    },
+    "resources": [
+        {
+            "apiVersion": "2021-06-01",
+            "dependsOn": [],
+            "kind": "Storage",
+            "location": "[variables('computeLocation')]",
+            "name": "positive5",
+            "properties": {
+                "publicNetworkAccess": "[parameters('publicNetworkAccess')]"
+            },
+            "sku": {
+                "name": "[parameters('supportLogStorageAccountType')]"
+            },
+            "tags": {},
+            "type": "Microsoft.Storage/storageAccounts"
+        }
+    ]
+}

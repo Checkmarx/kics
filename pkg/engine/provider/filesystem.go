@@ -182,7 +182,7 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 		}
 		// -----------------------------------------------------------------
 
-		c, err := os.Open(filepath.Clean(path))
+		c, err := os.Open(filepath.Clean(path)) //nolint:gosec
 		if err != nil {
 			if ignoreDamagedFiles(filepath.Clean(path)) {
 				return nil

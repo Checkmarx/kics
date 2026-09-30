@@ -46,11 +46,148 @@
         {{ if eq $val.TestLog.Action "fail" }}
           <details>
             <summary>View Details</summary>
-            <div class="code-box">
-              {{ range $failLine := $val.FailLog }}
-                <span class="code">{{ $failLine }}</span>
-              {{ end }}
-            </div>
+            {{ if and $val.ExpectedActual.Messages.ExpectedContent $val.ExpectedActual.Messages.ActualContent (not (and $val.ExpectedActual.ExtraElements.ExpectedContent $val.ExpectedActual.ExtraElements.ActualContent)) }}
+              <div class="code-box test-info">
+                {{ range $line := $val.ExpectedActual.TestInfo }}
+                  <span>{{ $line }}</span>
+                {{ end }}
+              </div>
+              <div class="code-box test-info">
+                {{ range $line := $val.ExpectedActual.FailOutput }}
+                  <span>{{ $line }}</span>
+                {{ end }}
+              </div>
+              <details>
+                <summary class="sub-summary">Show additional information</summary>
+                <div class="code-box side-by-side">
+                  <div class="code-box first">
+                    <summary class="summary expected-actual">Expected in fixtures:</summary>
+                    {{ range $ec := $val.ExpectedActual.Messages.ExpectedContent }}
+                      {{ if $ec.Status }}
+                        <span class="code diff">{{ $ec.Line }}</span>
+                      {{ else }}
+                        <span class="code">{{ $ec.Line }}</span>
+                      {{ end }}
+                    {{ end }}
+                  </div>
+                  <div class="code-box first">
+                    <summary class="summary expected-actual">Actual output:</summary>
+                    {{ range $ac := $val.ExpectedActual.Messages.ActualContent }}
+                      {{ if $ac.Status }}
+                        <span class="code diff">{{ $ac.Line }}</span>
+                      {{ else }}
+                        <span class="code">{{ $ac.Line }}</span>
+                      {{ end }}
+                    {{ end }}
+                  </div>
+                </div>
+              </details>
+            {{ else if and $val.ExpectedActual.Messages.ExpectedContent $val.ExpectedActual.Messages.ActualContent }}
+              <div class="code-box test-info">
+                {{ range $line := $val.ExpectedActual.TestInfo }}
+                  <span>{{ $line }}</span>
+                {{ end }}
+              </div>
+              <div class="code-box test-info">
+                {{ range $line := $val.ExpectedActual.FailOutput }}
+                  <span>{{ $line }}</span>
+                {{ end }}
+              </div>
+              {{ if and $val.ExpectedActual.ExtraElements.ExpectedContent $val.ExpectedActual.ExtraElements.ActualContent }}
+                <details>
+                  <summary class="sub-summary">View extra elements</summary>
+                  <div class="code-box side-by-side">
+                    <div class="code-box first">
+                      <summary class="summary expected-actual">Expected in fixtures:</summary>
+                      {{ range $ec := $val.ExpectedActual.ExtraElements.ExpectedContent }}
+                        {{ if $ec.Status }}
+                          <span class="code diff">{{ $ec.Line }}</span>
+                        {{ else }}
+                          <span class="code">{{ $ec.Line }}</span>
+                        {{ end }}
+                      {{ end }}
+                    </div>
+                    <div class="code-box second">
+                      <summary class="summary expected-actual">Actual output</summary>
+                      {{ range $ac := $val.ExpectedActual.ExtraElements.ActualContent }}
+                        {{ if $ac.Status }}
+                          <span class="code diff">{{ $ac.Line }}</span>
+                        {{ else }}
+                          <span class="code">{{ $ac.Line }}</span>
+                        {{ end }}
+                      {{ end }}
+                    </div>
+                  </div>
+                  </details>
+                {{ end }}
+                <details>
+                <summary class="sub-summary">Show full Actual and Expected</summary>
+                <div class="code-box side-by-side">
+                  <div class="code-box first">
+                    <summary class="summary expected-actual">Expected in fixtures:</summary>
+                    {{ range $ec := $val.ExpectedActual.Messages.ExpectedContent }}
+                      {{ if $ec.Status }}
+                        <span class="code diff">{{ $ec.Line }}</span>
+                      {{ else }}
+                        <span class="code">{{ $ec.Line }}</span>
+                      {{ end }}
+                    {{ end }}
+                  </div>
+                  <div class="code-box first">
+                    <summary class="summary expected-actual">Actual output:</summary>
+                    {{ range $ac := $val.ExpectedActual.Messages.ActualContent }}
+                      {{ if $ac.Status }}
+                        <span class="code diff">{{ $ac.Line }}</span>
+                      {{ else }}
+                        <span class="code">{{ $ac.Line }}</span>
+                      {{ end }}
+                    {{ end }}
+                  </div>
+                </div>
+              </details>
+            {{ else if and $val.ExpectedActual.ExtraElements.ExpectedContent $val.ExpectedActual.ExtraElements.ActualContent }}
+              <div class="code-box test-info">
+                {{ range $line := $val.ExpectedActual.TestInfo }}
+                  <span>{{ $line }}</span>
+                {{ end }}
+              </div>
+              <div class="code-box test-info">
+                {{ range $line := $val.ExpectedActual.FailOutput }}
+                  <span>{{ $line }}</span>
+                {{ end }}
+              </div>
+              <details>
+                <summary class="sub-summary">View extra elements</summary>
+                <div class="code-box side-by-side">
+                  <div class="code-box first">
+                    <summary class="summary expected-actual">Expected in fixtures:</summary>
+                    {{ range $ec := $val.ExpectedActual.ExtraElements.ExpectedContent }}
+                      {{ if $ec.Status }}
+                        <span class="code diff">{{ $ec.Line }}</span>
+                      {{ else }}
+                        <span class="code">{{ $ec.Line }}</span>
+                      {{ end }}
+                    {{ end }}
+                  </div>
+                  <div class="code-box second">
+                    <summary class="summary expected-actual">Actual output:</summary>
+                    {{ range $ac := $val.ExpectedActual.ExtraElements.ActualContent }}
+                      {{ if $ac.Status }}
+                        <span class="code diff">{{ $ac.Line }}</span>
+                      {{ else }}
+                        <span class="code">{{ $ac.Line }}</span>
+                      {{ end }}
+                    {{ end }}
+                  </div>
+                </div>
+              </details>
+            {{ else }}
+              <div class="code-box">
+                {{ range $failLine := $val.FailLog }}
+                  <span class="code">{{ $failLine }}</span>
+                {{ end }}
+              </div>
+            {{ end }}
           </details>
         {{ end }}
       </div>

@@ -8,10 +8,10 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--fail-on", "info,low",
-					"-s", "-p", "/path/assets/queries/dockerfile/apk_add_using_local_cache_path/test/positive.dockerfile"},
+					"-s", "-p", "/path/assets/queries/dockerfile/apk_add_using_local_cache_path/test/positive1.dockerfile"},
 
 				[]string{"scan", "--fail-on", "info",
-					"-s", "-p", "/path/assets/queries/dockerfile/apk_add_using_local_cache_path/test/positive.dockerfile"},
+					"-s", "-p", "/path/assets/queries/dockerfile/apk_add_using_local_cache_path/test/positive1.dockerfile"},
 			},
 		},
 		WantStatus: []int{30, 20},

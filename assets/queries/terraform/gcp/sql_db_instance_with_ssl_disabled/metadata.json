@@ -4,7 +4,7 @@
   "severity": "HIGH",
   "category": "Encryption",
   "descriptionText": "Cloud SQL Database Instance should have SSL enabled",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#require_ssl",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#ssl_mode-1",
   "platform": "Terraform",
   "descriptionID": "8983549e",
   "cloudProvider": "gcp",

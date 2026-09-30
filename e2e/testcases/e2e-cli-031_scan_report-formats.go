@@ -11,7 +11,7 @@ func init() { //nolint
 					"--report-formats", "json,SARIF,glsast,Html,SonarQUBE,Junit,cyclonedx,asff,csv,CodeClimate",
 					"-p", "/path/e2e/fixtures/samples/positive.yaml"},
 
-				[]string{"scan", "--output-path", "/path/e2e/output", "--output-name", "E2E_CLI_031_RESULT_CIS",
+				[]string{"scan", "--output-path", "/path/e2e/output", "--output-name", "E2E_CLI_031_RESULT_2",
 					"--report-formats", "json,JUnit,CSV", "--include-queries", "275a3217-ca37-40c1-a6cf-bb57d245ab32",
 					"-p", "/path/e2e/fixtures/samples/positive.yaml"},
 			},
@@ -21,8 +21,8 @@ func init() { //nolint
 					ResultsFormats: []string{"json", "sarif", "glsast", "html", "sonarqube", "junit", "cyclonedx", "asff", "csv", "codeclimate"},
 				},
 				{
-					ResultsFile:    "E2E_CLI_031_RESULT_CIS",
-					ResultsFormats: []string{"junit", "json-cis", "csv-cis"},
+					ResultsFile:    "E2E_CLI_031_RESULT_2",
+					ResultsFormats: []string{"junit", "json", "csv"},
 				},
 			},
 			UseMock: []bool{false, true},

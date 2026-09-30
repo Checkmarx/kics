@@ -1,0 +1,14 @@
+{
+  "id": "ced11de2-e701-4e63-83ab-4fdb1ab8c5dd",
+  "queryName": "Beta - Kubernetes Web UI Is Not Disabled",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Web UI (Dashboard) should be disabled when running on Kubernetes Engine",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/2.20.3/docs/resources/container_cluster#kubernetes_dashboard-4",
+  "platform": "Terraform",
+  "descriptionID": "ced11de2",
+  "cloudProvider": "gcp",
+  "cwe": "1188",
+  "riskScore": "1.0",
+  "experimental": "true"
+}

@@ -20,7 +20,7 @@ resource "google_monitoring_alert_policy" "audit_config_alert" {
     condition_matched_log {
       filter = <<-FILTER
         resource.type="iam_role"
-        AND (protoPayload.methodName = "google.iam.admin.v1.RandomMethod" OR
+        AND (protoPayload.methodName = "google.iam.admin.v1.INCORRECT_METHOD" OR
         protoPayload.methodName="google.iam.admin.v1.DeleteRole" OR
         protoPayload.methodName="google.iam.admin.v1.UpdateRole" OR
         protoPayload.methodName="google.iam.admin.v1.UndeleteRole")

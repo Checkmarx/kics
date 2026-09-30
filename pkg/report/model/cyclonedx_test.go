@@ -49,6 +49,7 @@ func TestInitCycloneDxReport(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			got := InitCycloneDxReport()
 			got.SerialNumber = "urn:uuid:" // set to "urn:uuid:" because it will be different for every report
+			got.Metadata.Timestamp = tt.want.Metadata.Timestamp // set to want's value because it depends on the current time and would otherwise be flaky
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("InitCycloneDxReport() = %v, want %v", got, tt.want)
 			}

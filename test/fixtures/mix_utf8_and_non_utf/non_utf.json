@@ -1,0 +1,4 @@
+{
+  "name": "Invalid UTF-8 ÿş test",
+  "data": "€‚"
+}

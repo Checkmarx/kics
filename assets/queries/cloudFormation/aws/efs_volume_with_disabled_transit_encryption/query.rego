@@ -7,60 +7,76 @@ CxPolicy[result] {
 	resource_list := input.document[i].Resources
 	resource := resource_list[name]
 	resource.Type == "AWS::ECS::TaskDefinition"
-    results := is_transit_encryption_disabled(resource,name)
+	volume := resource.Properties.Volumes[j]
+	common_lib.valid_key(volume.EFSVolumeConfiguration, "TransitEncryption")
+	volume.EFSVolumeConfiguration.TransitEncryption != "ENABLED"
 
-    result := {
+	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": results.sk,
-		"issueType": results.issueT,
-		"keyExpectedValue": results.kev,
-		"keyActualValue": results.kav,
-		"searchLine": results.sl,
+		"searchKey": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption", [name, j]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption should be enabled", [name, j]),
+		"keyActualValue": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption is disabled", [name, j]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "Volumes", j, "EFSVolumeConfiguration", "TransitEncryption"], []),
 	}
 }
 
-is_transit_encryption_disabled(taskDefinition, name) = res {
-	volume := taskDefinition.Properties.Volumes[j]
-    common_lib.valid_key(volume.EFSVolumeConfiguration, "TransitEncryption") 
-    volume.EFSVolumeConfiguration.TransitEncryption != "ENABLED"
-    res := {
-		"sk": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption", [name, j]),
-    	"issueT": "IncorrectValue",
-    	"kev": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption should be enabled", [name, j]),
-		"kav": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption is disabled", [name, j]),
-		"sl" : common_lib.build_search_line(["Resources",name,"Properties","Volumes", j,"EFSVolumeConfiguration","TransitEncryption"], []),
-    }
-} else = res { 
-	volume := taskDefinition.Properties.Volumes[j]
-    efsVolumeConfiguration := volume.EFSVolumeConfiguration
-    not common_lib.valid_key(efsVolumeConfiguration, "TransitEncryption")
-    res := {
-		"sk": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration", [name, j]),
-    	"issueT": "MissingAttribute",
-    	"kev": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption should be defined", [name, j]),
-        "kav": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption is not defined (set to DISABLED by default)", [name, j]),
-		"sl" : common_lib.build_search_line(["Resources",name,"Properties","Volumes", j,"EFSVolumeConfiguration"], []),
-    }
-} else = res {
-	volume := taskDefinition.Properties.Volumes[j]
-	not common_lib.valid_key(volume, "EFSVolumeConfiguration")
-	res := {
-		"sk": sprintf("Resources.%s.Properties.Volumes[%d]", [name, j]),
-		"issueT": "MissingAttribute",
-		"kev": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration should be defined", [name, j]),
-		"kav": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration is not defined", [name, j]),
-		"sl" : common_lib.build_search_line(["Resources",name,"Properties","Volumes", j], []),
-	}
-} else = res {
-	not common_lib.valid_key(taskDefinition.Properties, "Volumes")
-	res := {
-		"sk": sprintf("Resources.%s.Properties", [name]),
-		"issueT": "MissingAttribute",
-		"kev": sprintf("Resources.%s.Properties.Volumes should be defined", [name]),
-		"kav": sprintf("Resources.%s.Properties.Volumes is not defined", [name]),
-		"sl" : common_lib.build_search_line(["Resources",name,"Properties"], []),
-	}
-} 
+CxPolicy[result] {
+	resource_list := input.document[i].Resources
+	resource := resource_list[name]
+	resource.Type == "AWS::ECS::TaskDefinition"
+	volume := resource.Properties.Volumes[j]
+	efsVolumeConfiguration := volume.EFSVolumeConfiguration
+	efsVolumeConfiguration != null
+	not common_lib.valid_key(efsVolumeConfiguration, "TransitEncryption")
 
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration", [name, j]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption should be defined", [name, j]),
+		"keyActualValue": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption is not defined (set to DISABLED by default)", [name, j]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "Volumes", j, "EFSVolumeConfiguration"], []),
+	}
+}
+
+CxPolicy[result] {
+	resource_list := input.document[i].Resources
+	resource := resource_list[name]
+	resource.Type == "AWS::ECS::TaskDefinition"
+	volume := resource.Properties.Volumes[j]
+	not common_lib.valid_key(volume, "EFSVolumeConfiguration")
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("Resources.%s.Properties.Volumes[%d]", [name, j]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration should be defined", [name, j]),
+		"keyActualValue": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration is not defined", [name, j]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "Volumes", j], []),
+	}
+}
+
+CxPolicy[result] {
+	resource_list := input.document[i].Resources
+	resource := resource_list[name]
+	resource.Type == "AWS::ECS::TaskDefinition"
+	not common_lib.valid_key(resource.Properties, "Volumes")
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("Resources.%s.Properties", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Volumes should be defined", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.Volumes is not defined", [name]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties"], []),
+	}
+}

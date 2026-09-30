@@ -1,0 +1,14 @@
+name: Issue Comment User Login Workflow
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  process_issue_comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Commenter Login
+        run: |
+          echo "Commenter: ${{ github.event.comment.user.login }}"
