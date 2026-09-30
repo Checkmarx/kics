@@ -28,6 +28,7 @@ file:/
 
 # ci/cd binaries
 .bin
+.github/scripts/report/e2e-report
 
 # kics configuration file
 kics.config

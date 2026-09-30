@@ -1,0 +1,21 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+        {
+            "apiVersion": "[variables('storageApiVersion')]",
+            "dependsOn": [],
+            "kind": "Storage",
+            "location": "[variables('computeLocation')]",
+            "name": "positive7",
+            "properties": {
+                "publicNetworkAccess": "SecuredByPerimeter"
+            },
+            "sku": {
+                "name": "[parameters('supportLogStorageAccountType')]"
+            },
+            "tags": {},
+            "type": "Microsoft.Storage/storageAccounts"
+        }
+    ]
+}

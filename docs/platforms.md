@@ -86,7 +86,9 @@ Note that KICS recognizes this technology as Azure Resource Manager (for queries
 
 ## Docker
 
-KICS supports scanning Docker files with any name (but with no extension) and files with `.dockerfile` extension.
+KICS supports scanning Dockerfile configurations with any name (but with no extension) and files matched by either name (`Dockerfile`, `Dockerfile.<something>`), extension (`<something>.dockerfile`,`<something>.ubi8`,`<something>.debian`), or by location inside directories named `docker`, `dockerfile`, or `dockerfiles`, where all text files are verified for a valid configuration regardless of extension. 
+
+Note that every check is matched case-insensitively with the exception of the `.ubi8` and `.debian` extensions.
 
 ## Docker Compose
 

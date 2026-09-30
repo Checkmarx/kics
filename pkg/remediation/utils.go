@@ -6,9 +6,10 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/rs/zerolog/log"
+
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
-	"github.com/rs/zerolog/log"
 )
 
 // Summary represents the information about the number of selected remediation and remediation done
@@ -56,15 +57,12 @@ func willRemediate(
 	remediation *Remediation,
 	openAPIResolveReferences bool,
 	maxResolverDepth int) bool {
-	filepath.Clean(originalFileName)
-	// create temporary file
-	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+"-"+filepath.Base(originalFileName))
-	f, err := os.OpenFile(filepath.Clean(tmpFile), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, FilePermMode)
-
+	f, err := os.CreateTemp("", "temporary-remediation-*-"+filepath.Base(originalFileName))
 	if err != nil {
 		log.Error().Msgf("failed to open temporary file for remediation '%s': %s", remediation.SimilarityID, err)
 		return false
 	}
+	tmpFile := f.Name()
 
 	content := []byte(strings.Join(remediated, "\n"))
 
@@ -115,14 +113,21 @@ func removedResult(results []model.Vulnerability, remediation *Remediation) bool
 func CreateTempFile(filePathCopyFrom, tmpFilePath string) string {
 	filepath.Clean(filePathCopyFrom)
 	filepath.Clean(tmpFilePath)
-	f, err := os.OpenFile(tmpFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, FilePermMode)
+
+	info, err := os.Stat(filePathCopyFrom)
+	if err != nil {
+		log.Error().Msgf("failed to stat file '%s': %s", filePathCopyFrom, err)
+		return ""
+	}
+
+	f, err := os.OpenFile(tmpFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, info.Mode().Perm()) //nolint:gosec
 
 	if err != nil {
 		log.Error().Msgf("failed to open file '%s': %s", tmpFilePath, err)
 		return ""
 	}
 
-	content, err := os.ReadFile(filePathCopyFrom)
+	content, err := os.ReadFile(filePathCopyFrom) //nolint:gosec
 
 	defer func(f *os.File) {
 		err = f.Close()

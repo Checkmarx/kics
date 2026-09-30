@@ -1,12 +1,12 @@
-ARG GO_BASE_IMAGE=checkmarx/go:1.26.4@sha256:a02d4ceced26a475e3f576c54de34589c72908a663e584d9cdba80aa7161bc06
-ARG GIT_BASE_IMAGE=checkmarx/git:2.55.0@sha256:e9633ad5531cfa0bb1b010bc28d04092a48e0dba91027686dbd7217e555739d5
+ARG GO_BASE_IMAGE=checkmarx/go:1.27.1@sha256:6517002d2adbef3d75dfde0cee3a93c832637faea64c0d9398d418cda3eecde4
+ARG GIT_BASE_IMAGE=checkmarx/git:2.55.0@sha256:45a7c2e9a6e903b4fe5b2c20e373d23ba305625fa09dc5bdcbaac6eb2af884c7
 FROM ${GO_BASE_IMAGE} AS build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
 
 ENV GOPRIVATE=github.com/Checkmarx/*
-ARG VERSION="development"
+ARG ENGINE_VERSION="development"
 ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
@@ -25,7 +25,7 @@ COPY . .
 
 # Build the Go app
 RUN CGO_ENABLED=${CGO_ENABLED} GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
-    -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
+    -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${ENGINE_VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
 

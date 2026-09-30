@@ -1,0 +1,8 @@
+type: object
+description: This payload lives outside the scan root. With --strict-source-resolution it must NOT be inlined into the resolved openapi document.
+properties:
+  leaked_field:
+    type: string
+    example: should-not-appear-when-strict
+required:
+  - leaked_field
