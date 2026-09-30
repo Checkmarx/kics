@@ -1,0 +1,16 @@
+[
+  {
+    "offer": "sample-webservices",
+    "publisher": "checkmarx",
+    "sku": "sku1",
+    "urn": "checkmarx:sample-webservices:sku1:1.0.0",
+    "version": "1.0.0"
+  },
+  {
+    "offer": "sample-image",
+    "publisher": "checkmarx",
+    "sku": "sku2",
+    "urn": "checkmarx:sample-image:sku2:1.0.0",
+    "version": "1.0.0"
+  }
+]

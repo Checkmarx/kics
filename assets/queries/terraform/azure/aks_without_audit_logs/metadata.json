@@ -1,0 +1,14 @@
+{
+  "id": "0493b840-50e8-430c-93bc-d794d72931a9",
+  "queryName": "Beta - AKS Without Audit Logs",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Kubernets Clusters should register 'audit logs' for analysis following security events",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster",
+  "platform": "Terraform",
+  "descriptionID": "0493b840",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

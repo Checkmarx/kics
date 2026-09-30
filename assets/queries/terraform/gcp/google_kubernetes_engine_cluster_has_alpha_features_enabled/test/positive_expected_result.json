@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - Google Kubernetes Engine Cluster Has Alpha Features Enabled",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive.tf"
+  }
+]

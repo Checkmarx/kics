@@ -6,12 +6,13 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/pkg/errors"
 	"helm.sh/helm/v3/pkg/chart"
 	"helm.sh/helm/v3/pkg/cli/values"
 	"helm.sh/helm/v3/pkg/release"
+
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
 // Resolver is an instance of the helm resolver
@@ -102,7 +103,7 @@ func splitManifestYAML(template *release.Release) (*[]splitManifest, error) {
 		}
 		path := strings.Split(strings.TrimPrefix(splited, "\n# Source: "), "\n") // get source of split yaml
 		// ignore auxiliary files used to render chart
-		if path[0] == "" {
+		if path[0] == "" || isEmptyFileRender(path) {
 			continue
 		}
 		if origData[filepath.FromSlash(path[0])] == nil {
@@ -184,4 +185,14 @@ func getPathSeparator(path string) string {
 		return "\\"
 	}
 	return ""
+}
+
+func isEmptyFileRender(fileLines []string) bool {
+	for _, line := range fileLines[1:] {
+		trimmedLine := strings.TrimSpace(line)
+		if trimmedLine != "" && !strings.HasPrefix(trimmedLine, "#") {
+			return false
+		}
+	}
+	return true
 }

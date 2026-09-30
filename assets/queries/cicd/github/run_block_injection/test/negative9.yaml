@@ -1,0 +1,15 @@
+name: Push Safe Context Vars Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  process_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Safe Context Vars
+        run: |
+          echo "SHA: ${{ github.sha }}"
+          echo "Ref: ${{ github.ref }}"

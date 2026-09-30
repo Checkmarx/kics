@@ -4,7 +4,7 @@ package testcases
 // should perform the scan successfully detect ansible and return result 40
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should perform a valid scan and and detect ansible [E2E-CLI-075]",
+		Name: "should perform a valid scan and detect ansible [E2E-CLI-075]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",

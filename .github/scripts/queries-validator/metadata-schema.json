@@ -21,6 +21,16 @@
             "type": "string",
             "minLength": 1,
             "pattern": "^[a-f0-9]{8}$"
+        },
+        "cwe_pattern": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[0-9]+$"
+        },
+        "risk_score_pattern": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(10\\.0|[0-9]\\.[0-9])$"
         }
     },
     "required": [
@@ -30,12 +40,25 @@
         "category",
         "descriptionText",
         "descriptionUrl",
-        "cloudProvider",
         "platform",
         "descriptionID",
         "cwe",
         "riskScore"
     ],
+    "if": {
+        "not": {
+            "properties": {
+                "platform": {
+                    "const": "Dockerfile"
+                }
+            }
+        }
+    },
+    "then": {
+        "required": [
+            "cloudProvider"
+        ]
+    },
     "properties": {
         "id": {
             "$ref": "#/definitions/query_id_pattern"
@@ -177,10 +200,10 @@
             ]
         },
         "cwe": {
-            "type": "string"
+            "$ref": "#/definitions/cwe_pattern"
         },
         "riskScore": {
-            "type": "string"
+            "$ref": "#/definitions/risk_score_pattern"
         }
     }
 }

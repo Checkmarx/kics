@@ -15,17 +15,28 @@ CxPolicy[result] {
 	yum != null
 
 	packages = dockerLib.getPackages(commands, yum)
-    refactorPackages = [ x | x := packages[_]; x != ""]
-    length := count(refactorPackages)
+	refactorPackages = [ x | x := packages[_]; x != ""]
 
 	count({x | x := refactorPackages[_]; x == flags[_]}) == 0
 
-	some j
-	analyzePackages(j, refactorPackages[j], packages, length)
+	cleanPackages = [ p |
+		some k
+		p := refactorPackages[k]
+		not startswith(p, "-")
+		not contains(p, "://")
+		not contains(p, "/")
+		not isFlagArgument(refactorPackages, k)
+	]
+	length := count(cleanPackages)
 
+	some j
+	analyzePackages(j, cleanPackages[j], cleanPackages, length)
+
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
 		"keyActualValue": sprintf("RUN instruction %s does not use package pinning form", [commands]),
@@ -44,12 +55,18 @@ CxPolicy[result] {
 	resource.Value[j] != "pip"
 	resource.Value[j] != "pip3"
 
+	not contains(resource.Value[j], "://")
+	not contains(resource.Value[j], "/")
+	not isFlagArgument(resource.Value, j)
+
 	regex.match("^[a-zA-Z]", resource.Value[j]) == true
 	not dockerLib.withVersion(resource.Value[j])
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
 		"keyActualValue": sprintf("RUN instruction %s does not use package pinning form", [resource.Value[j]]),
@@ -73,4 +90,11 @@ analyzePackages(j, currentPackage, packages, length) {
 	regex.match("^[a-zA-Z]", currentPackage) == true
 	packages[plus(j, 1)] != "-v"
 	not dockerLib.withVersion(currentPackage)
+}
+
+isFlagArgument(arr, k) {
+	k > 0
+	regex.match("^-", arr[k - 1])
+	not startswith(arr[k], "-")
+	regex.match(`[.:/]`, arr[k])
 }

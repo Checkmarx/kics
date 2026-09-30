@@ -1,0 +1,13 @@
+{
+  "id": "e22e5620-3679-418e-bb74-c9f71731ab0f",
+  "queryName": "Beta - Redis Cache Not Using Latest TLS Encryption Version",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensure Redis Cache is using the latest version of TLS encryption",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache",
+  "platform": "Terraform",
+  "descriptionID": "e22e5620",
+  "cloudProvider": "azure",
+  "cwe": "326",
+  "riskScore": "3.0"
+}

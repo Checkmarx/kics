@@ -1,3 +1,4 @@
+# "K8s Environment Variable Password" - 4b2b5fd3-364d-4093-bac2-17391b2a5297  positive-test
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -31,8 +32,8 @@ spec:
             - name: DB_NAME_BD
               value: "dbx"
             - name: DB_PASS_BD
-              value: "passx"
+              value: "passx"          # positive1
             - name: DB_PASS_BD_2
-              value: "passx"
+              value: "passx"          # positive2
             - name: DB_USER_BD
               value: "userx"

@@ -92,14 +92,16 @@ if __name__ == '__main__':
         'Platform', 'Count'], tablefmt='orgtbl'))
     print("::endgroup::")
     print()
-    print(f"::set-output name=total_queries::{summary['total']}")
+    with open(os.environ['GITHUB_OUTPUT'], 'a') as fd:
+        fd.write(f"total_queries={summary['total']}\n")
     print()
     print("::group::Rego File Metrics")
     print(tabulate([[key, value] for key, value in rego_summary.items()], headers=[
         'Platform', 'Count'], tablefmt='orgtbl'))
     print("::endgroup::")
     print()
-    print(f"::set-output name=total_rego_files::{rego_summary['total']}")
+    with open(os.environ['GITHUB_OUTPUT'], 'a') as fd:
+        fd.write(f"total_rego_files={rego_summary['total']}\n")
     print()
     print("::group::Sample File Metrics")
     print(tabulate([[key, value] for key, value in samples_summary.items()], headers=[
