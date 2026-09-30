@@ -1,4 +1,4 @@
-#this is a problematic code where the query should report a result(s)
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test
 resource "google_container_cluster" "primary1" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
@@ -6,7 +6,7 @@ resource "google_container_cluster" "primary1" {
 
   master_auth {
     username = ""
-    password = "root"
+    password = "root" # positive1
 
     client_certificate_config {
       issue_client_certificate = true
