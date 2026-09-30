@@ -1,3 +1,4 @@
+# Generic Negative Test - arbitrary git "token" references (dockerfile)
 FROM baseImage
 
 RUN apk add --no-cache git \

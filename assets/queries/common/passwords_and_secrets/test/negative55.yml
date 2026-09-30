@@ -1,3 +1,4 @@
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Github id-token Default Values"  allow-rule-test
 jobs:
   release:
     if: github.event.pull_request.merged == true || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
@@ -9,10 +10,10 @@ jobs:
        actions: write # for createWorkflowDispatch
        issues: write # for comments on issues
        pull-requests: write # for comments on pull requests
-       #id-token: write # for oidc npm provenance
-       #"id-token": read 
-       #'id-token': none
-       #permissions: {id-token: write, contents: read, pull-requests: write} 
+       #id-token: write # for oidc npm provenance                             # negative1
+       #"id-token": read                                                      # negative2
+       #'id-token': none                                                      # negative3
+       #permissions: {id-token: write, contents: read, pull-requests: write}  # negative4
     steps:
       - name: debug
         shell: bash
