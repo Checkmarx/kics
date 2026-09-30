@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
-		"searchKey": sprintf("%s.metadata.name={{%s}}.spec.forProvider", [cp_lib.getPath(path), resource.metadata.name]),
+		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "storageEncrypted should be defined and set to true",
 		"keyActualValue": "storageEncrypted is not defined",

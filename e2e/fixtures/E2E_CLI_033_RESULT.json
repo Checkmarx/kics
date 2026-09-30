@@ -173,12 +173,12 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/terraform-single.tf",
-          "similarity_id": "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
+          "similarity_id": "77363db6350f38d12d51eae554b988852f3f7da1f7a05c030d51002492561cbd",
           "line": 1,
           "resource_type": "aws_redshift_cluster",
           "resource_name": "default1",
           "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[{{default1}}]",
+          "search_key": "aws_redshift_cluster.default1",
           "search_line": -1,
           "search_value": "",
           "expected_value": "aws_redshift_cluster[{{default1}}].tags should be defined and not null",

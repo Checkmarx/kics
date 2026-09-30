@@ -54,7 +54,7 @@ prepare_issues(resource, type, name) = res { # auth_settings not defined for azu
 	common_lib.valid_key(resource, "auth_settings")
 	resource.auth_settings.enabled == false
 	res := {
-		"sk": sprintf("'%s[%s].auth_settings.enabled'", [type, name]),
+		"sk": sprintf("%s[%s].auth_settings.enabled", [type, name]),
 		"sl": common_lib.build_search_line(["resource", type, name, "auth_settings", "enabled"], []),
 		"it": "IncorrectValue",
 		"kev": sprintf("'%s[%s].auth_settings.enabled' should be defined to 'true'", [type, name]),

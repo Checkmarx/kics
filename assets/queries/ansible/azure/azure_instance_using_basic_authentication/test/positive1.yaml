@@ -1,8 +1,8 @@
 ---
-- name: Create a VM with a custom image
+- name: neither ssh_password_enabled nor linux_config defined
   azure_rm_virtualmachine:
     resource_group: myResourceGroup
-    name: testvm001
+    name: positive1
     vm_size: Standard_DS1_v2
     admin_username: adminUser
     admin_password: password01

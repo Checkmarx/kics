@@ -59,7 +59,7 @@ http_tokens_undefined_or_not_required(resource, name, type, path) = res {
     res := {
         "kev": sprintf("'%s[%s].metadata_options' should be defined with 'http_tokens' field set to 'required'", [type, name]),
         "kav": sprintf("'%s[%s].metadata_options' is not defined", [type, name]),
-        "sk": sprintf("%s[%s]",[type, name]),
+        "sk": sprintf("%s.%s",[type, name]),
         "sl": common_lib.build_search_line(path, [name]),
         "it": "MissingAttribute",
     }
@@ -70,7 +70,7 @@ http_tokens_undefined_or_not_required(resource, name, type, path) = res {
     res := {
         "kev": sprintf("'%s[%s].metadata_options.http_tokens' should be defined to 'required'", [type, name]),
         "kav": sprintf("'%s[%s].metadata_options.http_tokens' is not defined", [type, name]),
-        "sk": sprintf("%s[%s].metadata_options", [type, name]),
+        "sk": sprintf("%s.%s.metadata_options", [type, name]),
         "sl": common_lib.build_search_line(path, [name, "metadata_options"]),
         "it": "MissingAttribute",
     }
@@ -81,7 +81,7 @@ http_tokens_undefined_or_not_required(resource, name, type, path) = res {
     res := {
         "kev": sprintf("'%s[%s].metadata_options.http_tokens' should be defined to 'required'", [type, name]),
         "kav": sprintf("'%s[%s].metadata_options.http_tokens' is not defined to 'required'", [type, name]),
-        "sk": sprintf("%s[%s].metadata_options.http_tokens", [type, name]),
+        "sk": sprintf("%s.%s.metadata_options.http_tokens", [type, name]),
         "sl": common_lib.build_search_line(path, [name, "metadata_options", "http_tokens"]),
         "it": "IncorrectValue",
     }
