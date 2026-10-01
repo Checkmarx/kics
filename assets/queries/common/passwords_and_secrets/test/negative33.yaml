@@ -1,46 +1,13 @@
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding TF resource access" allow-rule-test - #1 (line 10)
+# Global allow rule  - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding Boolean's"          allow-rule-test - #2 (line 11)
 Resources:
   LambdaFunctionV2:
     Type: 'AWS::Lambda::Function'
     Properties:
-      Code:
+      Code:       #1 & #2:
         ZipFile: |
-          'use strict';
-          const AWS = require('aws-sdk');
-          const response = require('cfn-response');
-          const iam = new AWS.IAM({apiVersion: '2010-05-08'});
-          exports.handler = (event, context, cb) => {
-            console.log(`Invoke: ${JSON.stringify(event)}`);
-            function done(err) {
-              if (err) {
-                console.log(`Error: ${JSON.stringify(err)}`);
-                response.send(event, context, response.FAILED, {});
-              } else {
-                response.send(event, context, response.SUCCESS, {});
-              }
-            }
-            if (event.RequestType === 'Delete') {
-              iam.deleteAccountPasswordPolicy({}, done);
-            } else if (event.RequestType === 'Create' || event.RequestType === 'Update') {
-              const params = {
-                MinimumPasswordLength: parseInt(event.ResourceProperties.MinimumPasswordLength, 10),
-                RequireSymbols: event.ResourceProperties.RequireSymbols === 'true',
-                RequireNumbers: event.ResourceProperties.RequireNumbers === 'true',
-                RequireUppercaseCharacters: event.ResourceProperties.RequireUppercaseCharacters === 'true',
-                RequireLowercaseCharacters: event.ResourceProperties.RequireLowercaseCharacters === 'true',
                 AllowUsersToChangePassword: event.ResourceProperties.AllowUsersToChangePassword === 'true',
-                HardExpiry: event.ResourceProperties.HardExpiry === 'true'
-              };
-              if (parseInt(event.ResourceProperties.MaxPasswordAge, 10) > 0) {
-                params.MaxPasswordAge = parseInt(event.ResourceProperties.MaxPasswordAge, 10);
-              }
-              if (parseInt(event.ResourceProperties.PasswordReusePrevention, 10) > 0) {
-                params.PasswordReusePrevention = parseInt(event.ResourceProperties.PasswordReusePrevention, 10);
-              }
-              iam.updateAccountPasswordPolicy(params, done);
-            } else {
-              cb(new Error(`unsupported RequestType: ${event.RequestType}`));
-            }
-          };
+                AllowUsersToChangePassword: false,
       Handler: 'index.handler'
       MemorySize: 128
       Role: !GetAtt 'LambdaRole.Arn'
