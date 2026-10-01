@@ -1,28 +1,28 @@
 [
-	{
-		"queryName": "Last User Is 'root'",
-		"severity": "HIGH",
-		"line": 2,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Last User Is 'root'",
-		"severity": "HIGH",
-		"line": 2,
-		"fileName": "positive2.dockerfile"
-	},
   {
-		"queryName": "Last User Is 'root'",
-		"severity": "HIGH",
-		"line": 2,
-		"fileName": "positive3.dockerfile"
-	},
-	{
-		"queryName": "Last User Is 'root'",
-		"severity": "HIGH",
-		"line": 2,
-		"fileName": "positive4.dockerfile"
-	},
+    "queryName": "Last User Is 'root'",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive1.dockerfile"
+  },
+  {
+    "queryName": "Last User Is 'root'",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive2.dockerfile"
+  },
+  {
+    "queryName": "Last User Is 'root'",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive3.dockerfile"
+  },
+  {
+    "queryName": "Last User Is 'root'",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive4.dockerfile"
+  },
   {
     "queryName": "Last User Is 'root'",
     "severity": "HIGH",
@@ -40,5 +40,17 @@
     "severity": "HIGH",
     "line": 2,
     "fileName": "positive7.dockerfile"
+  },
+  {
+    "queryName": "Last User Is 'root'",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive8.dockerfile"
+  },
+  {
+    "queryName": "Last User Is 'root'",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive9.dockerfile"
   }
 ]

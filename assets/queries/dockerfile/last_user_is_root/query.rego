@@ -7,7 +7,7 @@ CxPolicy[result] {
 	dockerLib.check_multi_stage(name, input.document[i].command)
 
 	userCmd := [x | resource[j].Cmd == "user"; x := resource[j]]
-	userCmd[minus(count(userCmd), 1)].Value[0] == ["root","0","root:root","root:0","0:0","0:root"][_]
+	is_root_user(userCmd[minus(count(userCmd), 1)].Value[0])
 
 	from_command := dockerLib.get_original_from_command(resource)
 	result := {
@@ -17,4 +17,10 @@ CxPolicy[result] {
 		"keyExpectedValue": "Last User shouldn't be root",
 		"keyActualValue": "Last User is root",
 	}
+}
+
+# Root privileges come from UID 0 alone - USER <user>:<group>
+is_root_user(value) {
+	user := split(value, ":")[0]
+	user == ["root", "0"][_]
 }
