@@ -126,7 +126,7 @@
 			"files": [
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "5f948e5c0c97f3e7c43cd531de50c6c54a2cec221a45f113a34a571165d30553",
+					"similarity_id": "aa3fd914f960f2ee04950affedb46169e1feb602f3501370da9acdafe288c407",
 					"line": 273,
 					"issue_type": "RedundantAttribute",
 					"search_key": "",

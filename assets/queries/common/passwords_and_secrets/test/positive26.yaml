@@ -1,3 +1,4 @@
+# "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258  positive-test
 Resources:
   PinpointApp:
     Type: AWS::Pinpoint::App
@@ -6,4 +7,4 @@ Resources:
   PinpointAPNSChannel:
     Type: AWS::Pinpoint::APNSChannel
     Properties:
-      PrivateKey: b@d0@u7H70K3n
+      PrivateKey: b@d0@u7H70K3n # positive1
