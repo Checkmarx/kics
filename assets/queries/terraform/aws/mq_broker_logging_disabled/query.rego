@@ -20,6 +20,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'general' and 'audit' logging should be set to true",
 		"keyActualValue": sprintf("'%s' is set to false", [type]),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true",
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -41,6 +46,8 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'general' and 'audit' logging should be set to true",
 		"keyActualValue": "'general' and/or 'audit' is undefined",
+		"remediation": sprintf("%s = true", [type]),
+		"remediationType": "addition",
 	}
 }
 
@@ -57,6 +64,8 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'logs' should be set and enabling general AND audit logging",
 		"keyActualValue": "'logs' is undefined",
+		"remediation": "logs {\n\t\tgeneral = true\n\t\taudit   = true\n\t}",
+		"remediationType": "addition",
 	}
 }
 

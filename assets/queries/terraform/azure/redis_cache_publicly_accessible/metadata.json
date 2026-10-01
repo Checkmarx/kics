@@ -1,0 +1,14 @@
+{
+  "id": "5c1a5d5f-5c87-4e13-b3fe-1822a3612dfb",
+  "queryName": "Beta - Redis Cache Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Azure Redis Cache instances should disable public network access so they are only reachable through private endpoints, preventing direct internet access to cached data.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache#public_network_access_enabled",
+  "platform": "Terraform",
+  "descriptionID": "c1d2e3f4",
+  "cloudProvider": "azure",
+  "cwe": "668",
+  "riskScore": "7.0",
+  "experimental": "true"
+}
