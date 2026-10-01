@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"reflect"
 	"testing"
+	"time"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
@@ -625,6 +626,102 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 			}
 		})
 	}
+}
+
+// TestFileSystemSourceProvider_checkConditions tests for no Deadlock
+func TestFileSystemSourceProvider_checkConditions_NoDeadlock(t *testing.T) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Errorf("failed to change dir: %s", err)
+	}
+
+	t.Chdir(filepath.FromSlash("test/fixtures/test_terra_cache"))
+	infoTerraCacheFolder, errTerraCacheFolder := os.Stat(filepath.FromSlash(".terraform"))
+	if errTerraCacheFolder != nil {
+		t.Fatalf("failed to get info: %s", errTerraCacheFolder)
+	}
+
+	type fields struct {
+		paths    []string
+		excludes map[string][]os.FileInfo
+	}
+	type args struct {
+		info       os.FileInfo
+		extensions model.Extensions
+		path       string
+	}
+	type want struct {
+		got bool
+		err error
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   want
+	}{
+		{
+			name: "no_deadlock_on_excluded_folder",
+			fields: fields{
+				paths:    []string{filepath.FromSlash(".terraform")},
+				excludes: map[string][]os.FileInfo{},
+			},
+			args: args{
+				info:       infoTerraCacheFolder,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash(".terraform"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "no_deadlock_on_excluded_folder_with_excludes_paths",
+			fields: fields{
+				paths: []string{filepath.FromSlash(".terraform")},
+				excludes: map[string][]os.FileInfo{
+					".terraform": {infoTerraCacheFolder},
+				},
+			},
+			args: args{
+				info:       infoTerraCacheFolder,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash(".terraform"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+
+			s := &FileSystemSourceProvider{
+				paths:    tt.fields.paths,
+				excludes: tt.fields.excludes,
+			}
+			type result struct {
+				got bool
+				err error
+			}
+			done := make(chan result, 1)
+			go func() {
+				got, err := s.checkConditions(tt.args.info, tt.args.extensions, tt.args.path, false)
+				done <- result{got, err}
+			}()
+
+			select {
+			case r := <-done:
+				if r.got != tt.want.got || r.err != tt.want.err {
+					t.Errorf("FileSystemSourceProvider.checkConditions() = %v, want %v", r, tt.want)
+				}
+			case <-time.After(time.Second):
+				t.Fatalf("checkConditions() deadlock")
+			}
+		})
+	}
+
 }
 
 // TestFileSystemSourceProvider_AddExcluded tests the functions [AddExcluded()] and all the methods called by them
