@@ -47,3 +47,28 @@ resource "azurerm_kubernetes_cluster" "negative2" {
     network_policy = "calico"
   }
 }
+
+resource "azurerm_kubernetes_cluster" "negative3" {
+  name                = "example-aks3"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  dns_prefix          = "exampleaks3"
+
+  default_node_pool {
+    name       = "default"
+    node_count = 1
+    vm_size    = "Standard_D2_v2"
+  }
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+  tags = {
+    Environment = "Production"
+  }
+
+  network_profile {
+    network_policy = "cilium"
+  }
+}
