@@ -1,0 +1,23 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "LambdaFunctionSafe2": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Role": "arn:aws:iam::123456789012:role/lambda-role",
+        "Environment": {
+          "Variables": {
+            "foo": "12345678901234567890",
+            "DATA_HASH": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+          }
+        },
+        "Code": {
+          "S3Bucket": "my-bucket",
+          "S3Key": "function.zip"
+        },
+        "Runtime": "nodejs18.x"
+      }
+    }
+  }
+}
