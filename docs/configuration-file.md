@@ -103,7 +103,7 @@ KICS also accepts environment variables to fill flags values. To use it you just
 
 ## Flags precedence
 
-KICS will use the following precende to fill flags:
+KICS will use the following precedence to fill flags:
 
 -   CLI flags
 -   Environment variables
