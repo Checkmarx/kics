@@ -1,4 +1,4 @@
-# Caso Negativo 2: Configuración correcta en un pool de nodos independiente
+# Negative Case 2: Correct configuration on a standalone node pool
 resource "google_container_node_pool" "pass_pool" {
   name    = "secure-untrusted-pool"
   cluster = "my-cluster"

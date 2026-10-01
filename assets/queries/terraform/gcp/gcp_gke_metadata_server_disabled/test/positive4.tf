@@ -4,7 +4,7 @@ resource "google_container_node_pool" "fail_pool_wrong_mode" {
 
   node_config {
     workload_metadata_config {
-      mode = "GCE_METADATA" # FALLO: Debe ser GKE_METADATA
+      mode = "GCE_METADATA" # FAIL: Should be GKE_METADATA
     }
   }
 }

@@ -6,5 +6,5 @@ resource "azurerm_monitor_diagnostic_setting" "fail_partial" {
   enabled_log {
     category = "StorageRead"
   }
-  # Faltan Write y Delete. Solo debe saltar 1 vez.
+  # Missing Write and Delete. Should only flag once.
 }

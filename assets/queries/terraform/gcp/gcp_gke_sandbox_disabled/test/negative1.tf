@@ -1,4 +1,4 @@
-# Caso Negativo 1: Configuración correcta en un clúster principal
+# Negative Case 1: Correct configuration on a primary cluster
 resource "google_container_cluster" "pass_cluster" {
   name     = "secure-main-cluster"
   location = "us-central1"

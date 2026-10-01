@@ -3,7 +3,7 @@ resource "google_container_cluster" "fail_cluster_wrong_type" {
   
   node_config {
     sandbox_config {
-      sandbox_type = "other_runtime" # FALLO: Debe ser gvisor
+      sandbox_type = "other_runtime" # FAIL: Should be gvisor
     }
   }
 }
