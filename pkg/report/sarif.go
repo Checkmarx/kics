@@ -18,12 +18,16 @@ func PrintSarifReport(path, filename string, body interface{}) error {
 		}
 
 		sarifReport := reportModel.NewSarifReport()
+		seenCWEs := map[string]bool{}
 		auxID := []string{}
 		auxGUID := map[string]string{}
 		for idx := range summary.Queries {
 			x := sarifReport.BuildSarifIssue(&summary.Queries[idx])
 			if x != "" {
-				auxID = append(auxID, x)
+				if !seenCWEs[x] {
+					seenCWEs[x] = true
+					auxID = append(auxID, x)
+				}
 				guid := sarifReport.GetGUIDFromRelationships(idx, x)
 				auxGUID[x] = guid
 			}
