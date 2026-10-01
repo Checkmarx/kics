@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Network Policy Ingress Not Restricted",
+    "severity": "HIGH",
+    "line": 11
+  },
+  {
+    "queryName": "Network Policy Ingress Not Restricted",
+    "severity": "HIGH",
+    "line": 22
+  }
+]

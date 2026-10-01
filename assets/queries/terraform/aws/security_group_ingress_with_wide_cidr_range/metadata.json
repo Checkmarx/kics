@@ -1,0 +1,13 @@
+{
+  "id": "9b848928-9211-4bbe-9a7f-6bb651447593",
+  "queryName": "Security Group Ingress With Wide CIDR Range",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "AWS Security Group ingress rules should not use overly broad CIDR blocks. A CIDR prefix length of /8 or shorter (e.g., 10.0.0.0/1, 0.0.0.0/8) allows millions to billions of IP addresses to reach your resources. Use the most specific CIDR range required.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
+  "platform": "Terraform",
+  "descriptionID": "9b848928",
+  "cloudProvider": "aws",
+  "cwe": "668",
+  "riskScore": "7.2"
+}
