@@ -10,6 +10,7 @@ waf_resources := [
 CxPolicy[result] {
 	lb := {"aws_alb", "aws_lb"}
 	resource := input.document[i].resource[lb[idx]][name]
+	is_application_load_balancer(lb[idx], resource)
 	not is_internal_alb(resource)
 	count({x | x := associated_waf(name)}) == 0
 
@@ -22,6 +23,16 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'%s[%s]' should not be 'internal' and has a 'aws_wafregional_web_acl_association' associated", [lb[idx], name]),
 		"keyActualValue": sprintf("'%s[%s]' is not 'internal' and does not have a 'aws_wafregional_web_acl_association' associated", [lb[idx], name]),
 	}
+}
+
+is_application_load_balancer(lb_type, resource) {
+	# Both aws_alb and aws_lb with load_balancer_type "application" or not specified (defaults to application)
+	not resource.load_balancer_type
+}
+
+is_application_load_balancer(lb_type, resource) {
+	# Both aws_alb and aws_lb with load_balancer_type explicitly set to "application"
+	resource.load_balancer_type == "application"
 }
 
 is_internal_alb(resource) {
