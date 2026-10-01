@@ -10,7 +10,7 @@ func init() { //nolint
 				[]string{"scan", "-o", "/path/e2e/output",
 					"--output-name", "E2E_CLI_083_RESULT",
 					"-p", "\"/path/test/fixtures/helm_ignore\"",
-					"-i", "b7652612-de4e-4466-a0bf-1cd81f0c6063",
+					"-i", "7c81d34c-8e5a-402b-9798-9f442630e678",
 				},
 			},
 			ExpectedResult: []ResultsValidation{
