@@ -24,6 +24,5 @@ CxPolicy[result] {
         "issueType": "IncorrectValue",
         "keyExpectedValue": sprintf("%s using --extra-index-url should also specify --require-hashes", [mod]),
         "keyActualValue": sprintf("%s uses --extra-index-url without --require-hashes, allowing dependency confusion attacks", [mod]),
-        "searchLine": common_lib.build_search_line(["playbooks", t, mod, "extra_args"], []),
     }
 }

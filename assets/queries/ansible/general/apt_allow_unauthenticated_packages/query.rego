@@ -20,6 +20,5 @@ CxPolicy[result] {
         "issueType": "IncorrectValue",
         "keyExpectedValue": sprintf("%s.allow_unauthenticated should be false or omitted (defaults to false)", [mod]),
         "keyActualValue": sprintf("%s.allow_unauthenticated is true, allowing unsigned packages to be installed", [mod]),
-        "searchLine": common_lib.build_search_line(["playbooks", t, mod, "allow_unauthenticated"], []),
     }
 }

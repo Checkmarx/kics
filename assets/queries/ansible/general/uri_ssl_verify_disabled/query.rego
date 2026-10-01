@@ -20,6 +20,5 @@ CxPolicy[result] {
         "issueType": "IncorrectValue",
         "keyExpectedValue": sprintf("%s.validate_certs should be true or omitted (defaults to true)", [mod]),
         "keyActualValue": sprintf("%s.validate_certs is false, disabling SSL certificate validation", [mod]),
-        "searchLine": common_lib.build_search_line(["playbooks", t, mod, "validate_certs"], []),
     }
 }

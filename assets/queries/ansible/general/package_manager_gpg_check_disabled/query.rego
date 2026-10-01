@@ -20,6 +20,5 @@ CxPolicy[result] {
         "issueType": "IncorrectValue",
         "keyExpectedValue": sprintf("%s.disable_gpg_check should be false or omitted (defaults to false)", [mod]),
         "keyActualValue": sprintf("%s.disable_gpg_check is true, skipping GPG signature verification", [mod]),
-        "searchLine": common_lib.build_search_line(["playbooks", t, mod, "disable_gpg_check"], []),
     }
 }
