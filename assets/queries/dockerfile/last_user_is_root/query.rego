@@ -21,6 +21,10 @@ CxPolicy[result] {
 
 # Root privileges come from UID 0 alone - USER <user>:<group>
 is_root_user(value) {
-	user := split(value, ":")[0]
-	user == ["root", "0"][_]
+	split(value, ":")[0] == "root"
+}
+
+# Docker parses numeric users as integers, so "00", "+0" and "-0" also resolve to UID 0
+is_root_user(value) {
+	regex.match(`^[+-]?0+$`, split(value, ":")[0])
 }
