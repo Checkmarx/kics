@@ -4,5 +4,53 @@
 		"severity": "MEDIUM",
 		"line": 7,
 		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "API Gateway Access Logging Disabled",
+		"severity": "MEDIUM",
+		"line": 7,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "API Gateway Access Logging Disabled",
+		"severity": "MEDIUM",
+		"line": 13,
+		"fileName": "positive2.yaml"
+	},
+	{
+		"queryName": "API Gateway Access Logging Disabled",
+		"severity": "MEDIUM",
+		"line": 16,
+		"fileName": "positive2.yaml"
+	},
+	{
+		"queryName": "API Gateway Access Logging Disabled",
+		"severity": "MEDIUM",
+		"line": 13,
+		"fileName": "positive3.yaml"
+	},
+	{
+		"queryName": "API Gateway Access Logging Disabled",
+		"severity": "MEDIUM",
+		"line": 12,
+		"fileName": "positive4.yaml"
+	},
+	{
+		"queryName": "API Gateway Access Logging Disabled",
+		"severity": "MEDIUM",
+		"line": 22,
+		"fileName": "positive4.yaml"
+	},
+	{
+		"queryName": "API Gateway Access Logging Disabled",
+		"severity": "MEDIUM",
+		"line": 31,
+		"fileName": "positive4.yaml"
+	},
+	{
+		"queryName": "API Gateway Access Logging Disabled",
+		"severity": "MEDIUM",
+		"line": 32,
+		"fileName": "positive4.yaml"
 	}
 ]
