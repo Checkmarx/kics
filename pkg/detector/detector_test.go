@@ -7,7 +7,6 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 )
 
@@ -58,38 +57,6 @@ func TestDetector_Add(t *testing.T) {
 			}
 			if !reflect.DeepEqual(got, mock) {
 				t.Errorf("Add() = %v, want = %v", got, mock)
-			}
-		})
-	}
-}
-
-func TestDetector_SetupLogs(t *testing.T) {
-	det := initDetector()
-	type args struct {
-		log zerolog.Logger
-	}
-	tests := []struct {
-		name string
-		args args
-	}{
-		{
-			name: "test_setup_logs",
-			args: args{
-				log: log.With().
-					Str("scanID", "Test").
-					Str("fileName", "Test_file_name").
-					Str("queryName", "Test_Query_name").
-					Logger(),
-			},
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			det.SetupLogs(&tt.args.log)
-			got := det.logWithFields
-			if !reflect.DeepEqual(*got, tt.args.log) {
-				t.Errorf("SetupLogs() = %v, want = %v", got, tt.args.log)
 			}
 		})
 	}

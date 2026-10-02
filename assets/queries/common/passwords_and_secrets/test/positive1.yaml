@@ -1,8 +1,8 @@
-#k8s test
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test (k8s)
 apiVersion: v1
 kind: Secret
 metadata:
   name: secret-basic-auth
 type: kubernetes.io/basic-auth
 stringData:
-  password: "root"
+  password: "root"  # positive1

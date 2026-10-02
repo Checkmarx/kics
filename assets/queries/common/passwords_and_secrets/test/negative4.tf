@@ -1,4 +1,4 @@
-#this code is a correct code for which the query should not find any result
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding TF variables" allow-rule-test
 resource "google_container_cluster" "primary" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
@@ -17,7 +17,7 @@ resource "google_container_cluster" "primary" {
 }
 
 resource "google_secret_manager_secret_version" "secret-version-basic" {
-  secret = var.my_google_secret
+  secret = var.my_google_secret # negative1
 
   secret_data = "secret-data"
 }
