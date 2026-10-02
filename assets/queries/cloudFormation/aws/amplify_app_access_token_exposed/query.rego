@@ -49,7 +49,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.AccessToken", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.AccessToken must not be in plain text string", [key]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.AccessToken must be defined as a parameter or have a secret manager referenced", [key]),
 		"keyActualValue": sprintf("Resources.%s.Properties.AccessToken is defined as a plaintext value", [key]),
 	}
 }
@@ -74,7 +74,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.AccessToken", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.AccessToken must not be in plain text string", [key]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.AccessToken must be defined as a parameter or have a secret manager referenced", [key]),
 		"keyActualValue": sprintf("Resources.%s.Properties.AccessToken is defined as a plaintext value", [key]),
 	}
 }

@@ -48,7 +48,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.OauthToken", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.OauthToken must not be in plain text string", [key]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.OauthToken must be defined as a parameter or have a secret manager referenced", [key]),
 		"keyActualValue": sprintf("Resources.%s.Properties.OauthToken is defined as a plaintext value", [key]),
 	}
 }
@@ -73,7 +73,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.OauthToken", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.OauthToken must not be in plain text string", [key]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.OauthToken must be defined as a parameter or have a secret manager referenced", [key]),
 		"keyActualValue": sprintf("Resources.%s.Properties.OauthToken is defined as a plaintext value", [key]),
 	}
 }
