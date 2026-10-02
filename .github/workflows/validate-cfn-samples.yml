@@ -22,6 +22,16 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
+          fetch-depth: 0
+      - name: Detect changed cloudformation samples
+        uses: step-security/paths-filter@5c5241b8233e77b55b9046daf88f1cb7560281de # v4.0.1
+        id: filter
+        with:
+          list-files: json
+          filters: |
+            samples:
+              - "assets/queries/cloudFormation/**/test/*.yaml"
+              - "assets/queries/cloudFormation/**/test/*.json"
       - name: Setup python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
@@ -32,11 +42,15 @@ jobs:
         run: |
           pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip3 install -U cfn-lint --user
-      - name: Validate cloudformation template samples
+      - name: Validate changed cloudformation template samples
+        env:
+          CHANGED_SAMPLES: ${{ steps.filter.outputs.samples_files }}
         run: |
+          echo "${CHANGED_SAMPLES}" > "${RUNNER_TEMP}/changed-cfn-samples.json"
           python3 -u .github/scripts/samples-linters/validate-syntax.py \
             "assets/queries/cloudFormation/**/test/*.yaml" \
             "assets/queries/cloudFormation/**/test/*.json" \
+            --diff "${RUNNER_TEMP}/changed-cfn-samples.json" \
             --linter /home/runner/.local/bin/cfn-lint \
             --extra " --info --config-file .github/scripts/samples-linters/.cfnlintrc.yml" \
             --skip ".github/scripts/samples-linters/ignore-list/cloudformation" \
