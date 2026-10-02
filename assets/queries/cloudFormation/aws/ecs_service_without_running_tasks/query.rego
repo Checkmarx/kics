@@ -34,8 +34,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.DeploymentConfiguration", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DeploymentConfiguration should have at least 1 task running", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.DeploymentConfiguration must have at least 1 task running", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DeploymentConfiguration should have MaximumPercent, MinimumHealthyPercent or DeploymentCircuitBreaker defined", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.DeploymentConfiguration doesn't have MaximumPercent, MinimumHealthyPercent or DeploymentCircuitBreaker defined", [name]),
 	}
 }
 

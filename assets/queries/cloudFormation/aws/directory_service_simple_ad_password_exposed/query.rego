@@ -21,8 +21,8 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("Parameters.%s.Default", [paramName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Parameters.%s.Default should be defined", [paramName]),
-		"keyActualValue": sprintf("Parameters.%s.Default shouldn't be defined", [paramName]),
+		"keyExpectedValue": sprintf("Parameters.%s.Default should not be defined", [paramName]),
+		"keyActualValue": sprintf("Parameters.%s.Default is defined", [paramName]),
 	}
 }
 
@@ -46,8 +46,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.Password", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Password must not be in plain text string", [key]),
-		"keyActualValue": sprintf("Resources.%s.Properties.Password must be defined as a parameter or have a secret manager referenced", [key]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Password must be defined as a parameter or have a secret manager referenced", [key]),
+		"keyActualValue": sprintf("Resources.%s.Properties.Password is defined as a plaintext value", [key]),
 	}
 }
 
@@ -72,7 +72,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.Password", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Password must not be in plain text string", [key]),
-		"keyActualValue": sprintf("Resources.%s.Properties.Password must be defined as a parameter or have a secret manager referenced", [key]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Password must be defined as a parameter or have a secret manager referenced", [key]),
+		"keyActualValue": sprintf("Resources.%s.Properties.Password is defined as a plaintext value", [key]),
 	}
 }

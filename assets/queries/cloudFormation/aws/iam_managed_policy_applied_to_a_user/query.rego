@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Users", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s is assigned to a set of users", [name]),
-		"keyActualValue": sprintf("Resources.%s should be assigned to a set of groups", [name]),
+		"keyExpectedValue": sprintf("Resources.%s should be assigned to a set of groups", [name]),
+		"keyActualValue": sprintf("Resources.%s is assigned to a set of users", [name]),
 	}
 }
