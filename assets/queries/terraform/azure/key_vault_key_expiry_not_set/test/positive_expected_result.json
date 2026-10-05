@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Key Vault Key Expiry Not Set",
+        "severity": "MEDIUM",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]
