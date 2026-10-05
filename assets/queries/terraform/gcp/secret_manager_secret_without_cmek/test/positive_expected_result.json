@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Secret Manager Secret Without CMEK",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Secret Manager Secret Without CMEK",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  }
+]

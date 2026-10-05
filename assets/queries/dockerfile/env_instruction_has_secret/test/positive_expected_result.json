@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Beta - ENV Instruction Contains Secret",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive.dockerfile"
+  },
+  {
+    "queryName": "Beta - ENV Instruction Contains Secret",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive.dockerfile"
+  },
+  {
+    "queryName": "Beta - ENV Instruction Contains Secret",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive.dockerfile"
+  }
+]

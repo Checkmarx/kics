@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Ansible get_url Module SSL Verification Disabled",
+        "severity": "HIGH",
+        "line": 6,
+        "filename": "positive1.yaml"
+    }
+]

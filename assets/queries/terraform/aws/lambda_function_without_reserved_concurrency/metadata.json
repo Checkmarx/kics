@@ -1,0 +1,14 @@
+{
+  "id": "1cbb2230-1df8-4908-871d-b7ca2f935c09",
+  "queryName": "Beta - Lambda Function Without Reserved Concurrency",
+  "severity": "LOW",
+  "category": "Availability",
+  "descriptionText": "Lambda functions should have a reserved concurrency limit set to prevent a single function from consuming all available concurrency and causing denial of service for other functions.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#reserved_concurrent_executions",
+  "platform": "Terraform",
+  "descriptionID": "d4e5f6a7",
+  "cloudProvider": "aws",
+  "cwe": "400",
+  "riskScore": "3.5",
+  "experimental": "true"
+}

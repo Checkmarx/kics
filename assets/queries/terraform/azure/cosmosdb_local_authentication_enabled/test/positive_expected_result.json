@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - CosmosDB Local Authentication Enabled",
+        "severity": "MEDIUM",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]
