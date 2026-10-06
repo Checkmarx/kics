@@ -71,3 +71,7 @@ similarityIDChangeList:
       queryName: EFS Volume With Disabled Transit Encryption
       observations: "Changed search line to account with multiple Volume cases"
       change: 1
+    - queryId: 0b93729a-d882-4803-bdc3-ac429a21f158
+      queryName: EC2 Instance Using API Keys
+      observations: "Added searchLine to the query"
+      change: 4
