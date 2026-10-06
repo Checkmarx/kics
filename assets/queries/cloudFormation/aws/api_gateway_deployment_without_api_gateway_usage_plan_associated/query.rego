@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the %s resource", [name, name]),
-		"keyActualValue": sprintf("Resources.%s should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the %s resource", [name, name]),
+		"keyActualValue": sprintf("Resources.%s doesn't have a AWS::ApiGateway::UsagePlan whose RestApiId and StageName match the %s resource", [name, name]),
 		"searchLine": common_lib.build_search_line(["Resources", name], []),
 	}
 }

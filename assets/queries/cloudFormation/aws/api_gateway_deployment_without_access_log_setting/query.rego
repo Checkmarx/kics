@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same as the ApiGateway::Stage resource", [name]),
-		"keyActualValue": sprintf("Resources.%s should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same in the ApiGateway::Stage resource", [name]),
+		"keyActualValue": sprintf("Resources.%s doesn't have a AWS::ApiGateway::Stage whose DeploymentId.Ref matches this resource", [name]),
 	}
 }
 

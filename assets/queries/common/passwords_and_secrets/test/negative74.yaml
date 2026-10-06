@@ -1,0 +1,13 @@
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding CF resolve" allow-rule-test
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Example showing ambiguous secretsmanager resolve syntax
+
+Resources:
+  MyDatabase:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: !Sub '${Environment}-myapp-db'
+      DBInstanceClass: !Ref DBInstanceClass
+      Engine: postgres
+      EngineVersion: '15.4'
+      MasterUserPassword: '{{resolve:secretsmanager:prod/db/creds:SecretString:password:number1:value}}'  # negative1
