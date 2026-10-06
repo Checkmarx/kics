@@ -98,23 +98,31 @@ CxPolicy[result] {
 }
 
 # sub condition exists in inline JSON Condition block
+# Only operators that actually restrict to an allow-list of subs count;
+# "Not" operators (e.g. StringNotEquals) exclude specific subs but still
+# allow every other identity, so they must not satisfy this check.
 has_sub_condition_json(statement) {
-	statement.Condition[_][key]
+	statement.Condition[op][key]
+	not contains(op, "Not")
 	endswith(key, ":sub")
 }
 
 has_sub_condition_json(statement) {
-	statement.condition[_][key]
+	statement.condition[op][key]
+	not contains(op, "Not")
 	endswith(key, ":sub")
 }
 
 # sub condition exists in HCL aws_iam_policy_document condition block
 has_sub_condition_hcl(statement) {
 	not is_array(statement.condition)
+	not contains(statement.condition.test, "Not")
 	endswith(statement.condition.variable, ":sub")
 }
 
 has_sub_condition_hcl(statement) {
 	is_array(statement.condition)
-	endswith(statement.condition[_].variable, ":sub")
+	cond := statement.condition[_]
+	not contains(cond.test, "Not")
+	endswith(cond.variable, ":sub")
 }
