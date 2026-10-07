@@ -6,7 +6,7 @@
     "fileName": "positive2.yaml"
   },
   {
-    "line": 4,
+    "line": 12,
     "fileName": "positive1.yaml",
     "queryName": "Amplify App OAuth Token Exposed",
     "severity": "HIGH"
@@ -14,7 +14,7 @@
   {
     "queryName": "Amplify App OAuth Token Exposed",
     "severity": "HIGH",
-    "line": 5,
+    "line": 8,
     "fileName": "positive3.json"
   },
   {
