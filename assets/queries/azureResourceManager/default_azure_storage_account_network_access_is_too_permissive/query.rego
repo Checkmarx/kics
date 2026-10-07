@@ -82,14 +82,14 @@ prepare_issue(val1, val2) = issue {
 } else = issue {
     val2 == "not defined"
     issue := {
-    	"kav": sprintf("resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is set to '%s')", [val1]),
+    	"kav": sprintf("resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is set to '%s'", [val1]),
         "sk": ".properties.publicNetworkAccess",
         "sl": ["properties", "publicNetworkAccess"],
         "issueType": "IncorrectValue"
     }
 } else = issue {
     issue := {
-    	"kav": sprintf("resource with type 'Microsoft.Storage/storageAccounts' networkAcls.defaultAction is set to '%s')", [val2]),
+    	"kav": sprintf("resource with type 'Microsoft.Storage/storageAccounts' networkAcls.defaultAction is set to '%s'", [val2]),
         "sk": ".properties.networkAcls",
         "sl": ["properties", "networkAcls"],
         "issueType": "IncorrectValue"

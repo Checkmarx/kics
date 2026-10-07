@@ -1,4 +1,5 @@
 {
+  "metadata": "'Generic Password' - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test (line 55)",
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {

@@ -26,7 +26,7 @@ CxPolicy[result] {
 		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Package version should be specified when using 'dnf install'",
-		"keyActualValue": "Package version should be pinned when running ´dnf install´",
+		"keyActualValue": sprintf("Package '%s' has no version specified", [packages[j]]),
 	}
 }
 
@@ -51,7 +51,7 @@ CxPolicy[result] {
 		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Package version should be specified when using 'dnf install'",
-		"keyActualValue": "Package version should be pinned when running ´dnf install´",
+		"keyActualValue": sprintf("Package '%s' has no version specified", [resource.Value[j]]),
 	}
 }
 
