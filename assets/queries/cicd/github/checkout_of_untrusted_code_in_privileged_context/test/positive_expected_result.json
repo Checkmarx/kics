@@ -10,5 +10,17 @@
     "severity": "HIGH",
     "line": 35,
     "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Beta - Checkout Of Untrusted Code In Privileged Context",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Beta - Checkout Of Untrusted Code In Privileged Context",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive4.yaml"
   }
 ]

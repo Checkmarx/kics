@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cicd as cicdLib
 
 # Detect issue_comment triggered jobs that use slash commands without
 # verifying the commenter's authorization.
@@ -20,7 +21,7 @@ import data.generic.common as common_lib
 # This restricts command execution to trusted contributors only.
 
 CxPolicy[result] {
-	input.document[i].on["issue_comment"]
+	cicdLib.has_trigger(input.document[i].on, "issue_comment")
 
 	job := input.document[i].jobs[j]
 	jobIf := job["if"]

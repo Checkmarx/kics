@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cicd as cicdLib
 
 # Detect write permissions granted at the workflow level in a pull_request_target workflow.
 #
@@ -15,7 +16,7 @@ import data.generic.common as common_lib
 # Unsafe pattern: workflow-level pull-requests: write or contents: write.
 
 CxPolicy[result] {
-	input.document[i].on["pull_request_target"]
+	cicdLib.has_trigger(input.document[i].on, "pull_request_target")
 
 	perm := input.document[i].permissions
 

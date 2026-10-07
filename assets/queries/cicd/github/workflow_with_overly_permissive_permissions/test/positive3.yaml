@@ -1,0 +1,13 @@
+name: PR Quality Check (list on)
+
+on: [pull_request_target, push]
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4

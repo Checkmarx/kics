@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cicd as cicdLib
 
 # Detect actions/checkout steps in pull_request_target workflows that do not
 # set persist-credentials: false.
@@ -17,7 +18,7 @@ import data.generic.common as common_lib
 # disk, limiting the blast radius of any compromised step.
 
 CxPolicy[result] {
-	input.document[i].on["pull_request_target"]
+	cicdLib.has_trigger(input.document[i].on, "pull_request_target")
 
 	step := input.document[i].jobs[j].steps[k]
 	startswith(step.uses, "actions/checkout")

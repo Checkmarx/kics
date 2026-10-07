@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cicd as cicdLib
 
 # Detect untrusted user-controlled context variables written to $GITHUB_ENV
 # or $GITHUB_PATH in run blocks.
@@ -15,7 +16,7 @@ import data.generic.common as common_lib
 
 # pull_request_target: PR head ref, branch, title and body are attacker-controlled
 CxPolicy[result] {
-	input.document[i].on["pull_request_target"]
+	cicdLib.has_trigger(input.document[i].on, "pull_request_target")
 	run := input.document[i].jobs[j].steps[k].run
 
 	writesToGithubEnvOrPath(run)
@@ -42,7 +43,7 @@ CxPolicy[result] {
 
 # issue_comment: comment body is fully attacker-controlled
 CxPolicy[result] {
-	input.document[i].on["issue_comment"]
+	cicdLib.has_trigger(input.document[i].on, "issue_comment")
 	run := input.document[i].jobs[j].steps[k].run
 
 	writesToGithubEnvOrPath(run)
@@ -68,7 +69,7 @@ CxPolicy[result] {
 
 # issues: issue title and body are attacker-controlled
 CxPolicy[result] {
-	input.document[i].on["issues"]
+	cicdLib.has_trigger(input.document[i].on, "issues")
 	run := input.document[i].jobs[j].steps[k].run
 
 	writesToGithubEnvOrPath(run)
@@ -93,7 +94,7 @@ CxPolicy[result] {
 
 # workflow_run: head branch and commit metadata are attacker-controlled
 CxPolicy[result] {
-	input.document[i].on["workflow_run"]
+	cicdLib.has_trigger(input.document[i].on, "workflow_run")
 	run := input.document[i].jobs[j].steps[k].run
 
 	writesToGithubEnvOrPath(run)

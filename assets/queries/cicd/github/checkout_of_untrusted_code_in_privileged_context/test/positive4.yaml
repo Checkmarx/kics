@@ -1,0 +1,11 @@
+name: PR Quality Check (list on)
+
+on: [pull_request_target, push]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}

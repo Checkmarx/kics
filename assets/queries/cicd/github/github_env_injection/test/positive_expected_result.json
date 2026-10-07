@@ -10,5 +10,17 @@
     "severity": "HIGH",
     "line": 12,
     "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Beta - GitHub Environment File Injection",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Beta - GitHub Environment File Injection",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive4.yaml"
   }
 ]

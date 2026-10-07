@@ -10,5 +10,17 @@
     "severity": "HIGH",
     "line": 9,
     "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Beta - Self-hosted Runner Used in Pull Request Workflow",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Beta - Self-hosted Runner Used in Pull Request Workflow",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive4.yaml"
   }
 ]

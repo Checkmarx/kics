@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cicd as cicdLib
 
 # Detect self-hosted runners used in workflows that can be triggered by
 # fork pull requests (pull_request or pull_request_target events).
@@ -33,8 +34,8 @@ CxPolicy[result] {
 	}
 }
 
-isForkPRTrigger(on) { on["pull_request"] }
-isForkPRTrigger(on) { on["pull_request_target"] }
+isForkPRTrigger(on) { cicdLib.has_trigger(on, "pull_request") }
+isForkPRTrigger(on) { cicdLib.has_trigger(on, "pull_request_target") }
 
 # String form: runs-on: self-hosted
 isSelfHosted(runOn) { runOn == "self-hosted" }

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cicd as cicdLib
 
 # Detect checkout of attacker-controlled code in a pull_request_target workflow.
 #
@@ -12,7 +13,7 @@ import data.generic.common as common_lib
 # Unsafe patterns include: pull_request.head.sha, pull_request.head.ref, head_ref, etc.
 
 CxPolicy[result] {
-	input.document[i].on["pull_request_target"]
+	cicdLib.has_trigger(input.document[i].on, "pull_request_target")
 
 	step := input.document[i].jobs[j].steps[k]
 	startswith(step.uses, "actions/checkout")
