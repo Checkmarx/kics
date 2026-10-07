@@ -1,0 +1,62 @@
+[
+  {
+    "queryName": "Not Using Proper Exec Form In CMD And ENTRYPOINT Arguments",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{CMD [python, /usr/src/app/app.py] }}",
+    "searchValue": "",
+    "expectedValue": "{{CMD [python, /usr/src/app/app.py] }} should be in proper exec form",
+    "actualValue": "{{CMD [python, /usr/src/app/app.py] }} isn't in proper exec form",
+    "issueType": "IncorrectValue",
+    "similarityID": "4678d030637d256e33deee236d09d1e99ae4673593cb1ca97b5b47f09ed68ed2",
+    "search_line": -1
+  },
+  {
+    "queryName": "Not Using Proper Exec Form In CMD And ENTRYPOINT Arguments",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{ENTRYPOINT [top, -b]}}",
+    "searchValue": "",
+    "expectedValue": "{{ENTRYPOINT [top, -b]}} should be in proper exec form",
+    "actualValue": "{{ENTRYPOINT [top, -b]}} isn't in proper exec form",
+    "issueType": "IncorrectValue",
+    "similarityID": "8f811d958df37ca9c70502dbd9cc051e673de058278bc4da8c67684eccd96647",
+    "search_line": -1
+  },
+  {
+    "queryName": "Not Using Proper Exec Form In CMD And ENTRYPOINT Arguments",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:3.5}}.{{cmd [python, /usr/src/app/app.py] }}",
+    "searchValue": "",
+    "expectedValue": "{{cmd [python, /usr/src/app/app.py] }} should be in proper exec form",
+    "actualValue": "{{cmd [python, /usr/src/app/app.py] }} isn't in proper exec form",
+    "issueType": "IncorrectValue",
+    "similarityID": "054cff7e96630971a4a560f7681c10a6a117d040855837aafd849f0f87b49b47",
+    "search_line": -1
+  },
+  {
+    "queryName": "Not Using Proper Exec Form In CMD And ENTRYPOINT Arguments",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:3.5}}.{{entrypoint [top, -b]}}",
+    "searchValue": "",
+    "expectedValue": "{{entrypoint [top, -b]}} should be in proper exec form",
+    "actualValue": "{{entrypoint [top, -b]}} isn't in proper exec form",
+    "issueType": "IncorrectValue",
+    "similarityID": "ffb29e16b54b9dbb0b98e666a5d8c79d07fb0a7207b852b8b6a37f0b3936c959",
+    "search_line": -1
+  }
+]

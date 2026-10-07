@@ -1,9 +1,10 @@
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding Boolean's"  allow-rule-test
 apiVersion: v1
 kind: Pod
 metadata:
   name: security-context-demo
 spec:
-  automountServiceAccountToken: false
+  automountServiceAccountToken: false # negative1
   securityContext:
     runAsUser: 1000
     runAsGroup: 3000

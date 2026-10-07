@@ -1,3 +1,4 @@
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding arn"  allow-rule-test
 - name: 'aws_codebuild integration tests'
   collections:
     - amazon.aws
@@ -22,7 +23,7 @@
           packaging: NONE
           type: CODEPIPELINE
           name: test
-        encryption_key: 'arn:aws:kms:{{ aws_region }}:{{ aws_account_id }}:alias/aws/s3'
+        encryption_key: 'arn:aws:kms:{{ aws_region }}:{{ aws_account_id }}:alias/aws/s3'  # negative1
         environment:
           compute_type: BUILD_GENERAL1_SMALL
           privileged_mode: true
