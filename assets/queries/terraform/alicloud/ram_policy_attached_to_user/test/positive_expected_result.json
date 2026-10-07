@@ -3,6 +3,15 @@
     "queryName": "Ram Policy Attached to User",
     "severity": "MEDIUM",
     "line": 35,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_ram_user_policy_attachment",
+    "resourceName": "attach",
+    "searchKey": "alicloud_ram_user_policy_attachment[attach]",
+    "searchValue": "",
+    "expectedValue": "alicloud_ram_user_policy_attachment[attach] should be undefined",
+    "actualValue": "alicloud_ram_user_policy_attachment[attach] is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "6133204632552094612bfb67cf63448298b6f680f4d6837daf17d300a58e9e72",
+    "search_line": -1
   }
 ]

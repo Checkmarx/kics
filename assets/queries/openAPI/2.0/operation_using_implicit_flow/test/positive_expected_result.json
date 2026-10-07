@@ -3,12 +3,30 @@
     "queryName": "Operation Using Implicit Flow",
     "severity": "MEDIUM",
     "line": 22,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
+    "searchValue": "",
+    "expectedValue": "Operation Object should not be using implicit flow",
+    "actualValue": "Operation Object is using implicit flow",
+    "issueType": "IncorrectValue",
+    "similarityID": "dead50c3370795234286b37d8081daf53585354c843d597a33e44d3f27be1536",
+    "search_line": -1
   },
   {
     "queryName": "Operation Using Implicit Flow",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
+    "searchValue": "",
+    "expectedValue": "Operation Object should not be using implicit flow",
+    "actualValue": "Operation Object is using implicit flow",
+    "issueType": "IncorrectValue",
+    "similarityID": "b759832a1e942442c926a9ca9e527859975399d93a2eb3739ac9d21b0c447b23",
+    "search_line": -1
   }
 ]

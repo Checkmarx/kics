@@ -3,12 +3,30 @@
     "queryName": "Permissive Web ACL Default Action",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::WAF::WebACL",
+    "resourceName": "WebACL to with three rules",
+    "searchKey": "Resources.MyWebACL.Properties.DefaultAction.Type",
+    "searchValue": "",
+    "expectedValue": "Resources.MyWebACL.Properties.DefaultAction.Type should not be ALLOW",
+    "actualValue": "Resources.MyWebACL.Properties.DefaultAction.Type is set to ALLOW",
+    "issueType": "IncorrectValue",
+    "similarityID": "59a6689c3e60504ff30de1a575996ed9e1e41e61fa6e2877e8facdaf5780453f",
+    "search_line": -1
   },
   {
-    "fileName": "positive2.json",
     "queryName": "Permissive Web ACL Default Action",
     "severity": "HIGH",
-    "line": 8
+    "line": 8,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::WAF::WebACL",
+    "resourceName": "WebACL to with three rules",
+    "searchKey": "Resources.MyWebACL.Properties.DefaultAction.Type",
+    "searchValue": "",
+    "expectedValue": "Resources.MyWebACL.Properties.DefaultAction.Type should not be ALLOW",
+    "actualValue": "Resources.MyWebACL.Properties.DefaultAction.Type is set to ALLOW",
+    "issueType": "IncorrectValue",
+    "similarityID": "29ad1ad49dcc4e6ddc3e35075ffdc7d95f7db199acf555f16ca82635c8a8d265",
+    "search_line": -1
   }
 ]

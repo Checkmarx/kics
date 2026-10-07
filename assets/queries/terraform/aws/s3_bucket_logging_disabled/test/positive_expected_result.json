@@ -3,18 +3,45 @@
     "queryName": "S3 Bucket Logging Disabled",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive1]",
+    "searchValue": "",
+    "expectedValue": "'logging' should be defined and not null",
+    "actualValue": "'logging' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c5bfbfcfbeb892b33511a79a6bffd823bb9b9b490a7d11925bcd1e59209181c2",
+    "search_line": 14
   },
   {
     "queryName": "S3 Bucket Logging Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket]",
+    "searchValue": "",
+    "expectedValue": "'logging' should be defined and not null",
+    "actualValue": "'logging' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c7d2bb1acaea85f3a4af934dce4b08f3020e233c6908b238458204c872d15acc",
+    "search_line": 1
   },
   {
     "queryName": "S3 Bucket Logging Disabled",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-example-bucket",
+    "searchKey": "aws_s3_bucket[examplee]",
+    "searchValue": "",
+    "expectedValue": "'logging' should be defined and not null",
+    "actualValue": "'logging' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "f8a13afed64df0b67eedf5b80a23c7a84a345552e9ca92d87a7eee46f39839dc",
+    "search_line": 14
   }
 ]

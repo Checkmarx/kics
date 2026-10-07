@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Nifcloud ELB Has Common Private Network",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Nifcloud ELB Has Common Private Network",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive2.tf"
-	}
+  {
+    "queryName": "Nifcloud ELB Has Common Private Network",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive1.tf",
+    "resourceType": "nifcloud_elb",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_elb[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_elb[positive]' should use a private LAN to isolate the private side network from the shared network",
+    "actualValue": "'nifcloud_elb[positive]' has common private network",
+    "issueType": "IncorrectValue",
+    "similarityID": "714cacc3ae5b4c5bdd82735aba2a5db543de6ec1b28c99b5798f00b3bfb66415",
+    "search_line": -1
+  },
+  {
+    "queryName": "Nifcloud ELB Has Common Private Network",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive2.tf",
+    "resourceType": "nifcloud_elb",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_elb[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_elb[positive]' should use a private LAN to isolate the private side network from the shared network",
+    "actualValue": "'nifcloud_elb[positive]' has common private network",
+    "issueType": "IncorrectValue",
+    "similarityID": "5a99248c8f0736e858b7f015e2020d70344f07a393f710b3843e6a5bbe305673",
+    "search_line": -1
+  }
 ]

@@ -3,12 +3,30 @@
     "queryName": "EC2 Instance Using Default Security Group",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.SecurityGroups",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyEC2Instance.Properties.SecurityGroups' should not be using default security group",
+    "actualValue": "'Resources.MyEC2Instance.Properties.SecurityGroups' is using default security group",
+    "issueType": "IncorrectValue",
+    "similarityID": "a97f18d5c1784385f3956a284030963cdaad4dcb5c93478f2d90f0eb11c632c5",
+    "search_line": 8
   },
   {
     "queryName": "EC2 Instance Using Default Security Group",
     "severity": "MEDIUM",
     "line": 23,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.SecurityGroups",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyEC2Instance.Properties.SecurityGroups' should not be using default security group",
+    "actualValue": "'Resources.MyEC2Instance.Properties.SecurityGroups' is using default security group",
+    "issueType": "IncorrectValue",
+    "similarityID": "880a5051d5ce313d84369fce20037124d7cff9d402f61b709f8d62d38b2bed9e",
+    "search_line": 23
   }
 ]

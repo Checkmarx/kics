@@ -2,16 +2,46 @@
   {
     "queryName": "Kinesis Not Encrypted With KMS",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_kinesis_stream",
+    "resourceName": "terraform-kinesis-test",
+    "searchKey": "aws_kinesis_stream[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_kinesis_stream[positive1].encryption_type should be set",
+    "actualValue": "aws_kinesis_stream[positive1].encryption_type is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fbe88529a8fd1060f45a6f59d0a653583764dce1815ee410eda667a664bb9d00",
+    "search_line": -1
   },
   {
     "queryName": "Kinesis Not Encrypted With KMS",
     "severity": "HIGH",
-    "line": 34
+    "line": 34,
+    "fileName": "positive.tf",
+    "resourceType": "aws_kinesis_stream",
+    "resourceName": "terraform-kinesis-test",
+    "searchKey": "aws_kinesis_stream[positive2].encryption_type",
+    "searchValue": "",
+    "expectedValue": "aws_kinesis_stream[positive2].encryption_type should be set and not NONE",
+    "actualValue": "aws_kinesis_stream[positive2].encryption_type is set but NONE",
+    "issueType": "IncorrectValue",
+    "similarityID": "43ec41aa40492e0de63e3741df6c47311dcae88ad4da6e58640b188b6dbb9b1e",
+    "search_line": -1
   },
   {
     "queryName": "Kinesis Not Encrypted With KMS",
     "severity": "HIGH",
-    "line": 41
+    "line": 41,
+    "fileName": "positive.tf",
+    "resourceType": "aws_kinesis_stream",
+    "resourceName": "terraform-kinesis-test",
+    "searchKey": "aws_kinesis_stream[positive3]",
+    "searchValue": "",
+    "expectedValue": "aws_kinesis_stream[positive3].kms_key_id should be set",
+    "actualValue": "aws_kinesis_stream[positive3].kms_key_id is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "dd55b927bd9a0916a6cd61ac2eb03ebdc9c31e9a234cdc44d2c437498d7ce62e",
+    "search_line": -1
   }
 ]

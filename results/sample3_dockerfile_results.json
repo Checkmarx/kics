@@ -1,0 +1,56 @@
+{
+	"kics_version": "development",
+	"files_scanned": 1,
+	"lines_scanned": 45,
+	"files_parsed": 1,
+	"lines_parsed": 40,
+	"lines_ignored": 5,
+	"files_failed_to_scan": 0,
+	"queries_total": 1,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 0,
+		"INFO": 0,
+		"LOW": 0,
+		"MEDIUM": 1,
+		"TRACE": 0
+	},
+	"total_counter": 1,
+	"total_bom_resources": 0,
+	"start": "2026-08-05T16:38:40.827320219+01:00",
+	"end": "2026-08-05T16:38:41.968333933+01:00",
+	"paths": [
+		"samples_to_test/Dockerfile"
+	],
+	"queries": [
+		{
+			"query_name": "Unpinned Package Version in Pip Install",
+			"query_id": "02d9c71f-3ee8-4986-9c27-1a20d0d19bfc",
+			"query_url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+			"severity": "MEDIUM",
+			"platform": "Dockerfile",
+			"cwe": "1357",
+			"risk_score": "5.7",
+			"category": "Supply-Chain",
+			"experimental": false,
+			"description": "Package version pinning reduces the range of versions that can be installed, reducing the chances of failure due to unanticipated changes",
+			"description_id": "37db3a53",
+			"files": [
+				{
+					"file_name": "samples_to_test/Dockerfile",
+					"similarity_id": "26a7517d6884c7beaa9f2c7c34eec680ff71db7a66adbd47e87c93de97b6caa1",
+					"line": 13,
+					"issue_type": "IncorrectValue",
+					"search_key": "FROM={{group-docker-61.nexuscloud.aws.rabo.cloud/python:3.12-slim AS builder}}.{{RUN pip install     --no-cache-dir     --index-url https://nexus3.rabobank.nl/repository/pypi-proxy/simple     --trusted-host nexus3.rabobank.nl     poetry=2.1}}",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "RUN instruction with 'pip/pip3 install \u003cpackage\u003e' should use package pinning form 'pip/pip3 install \u003cpackage\u003e=\u003cversion\u003e'",
+					"actual_value": "RUN instruction pip install     --no-cache-dir     --index-url https://nexus3.rabobank.nl/repository/pypi-proxy/simple     --trusted-host nexus3.rabobank.nl     poetry=2.1 does not use package pinning form"
+				}
+			]
+		}
+	]
+}

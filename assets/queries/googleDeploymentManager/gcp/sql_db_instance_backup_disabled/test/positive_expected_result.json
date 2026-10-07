@@ -3,18 +3,45 @@
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "sqladmin.v1beta4.instance",
+    "resourceName": "sql-instance",
+    "searchKey": "resources.name={{sql-instance}}.properties.settings",
+    "searchValue": "",
+    "expectedValue": "'settings.backupConfiguration' should be defined and not null",
+    "actualValue": "'settings.backupConfiguration' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "23b3fcf139fc56121b56ab5c46207e13352b4970fbec6d80004d034232e541f4",
+    "search_line": 5
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "sqladmin.v1beta4.instance",
+    "resourceName": "sql-instance",
+    "searchKey": "resources.name={{sql-instance}}.properties.settings.backupConfiguration",
+    "searchValue": "",
+    "expectedValue": "'settings.backupConfiguration.enabled' should be defined and not null",
+    "actualValue": "'settings.backupConfiguration.enabled' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "e5fcc53b3af0cf77b0e320801941a535e360758ee3d1d14d80a62f51b505c44c",
+    "search_line": 7
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "sqladmin.v1beta4.instance",
+    "resourceName": "sql-instance",
+    "searchKey": "resources.name={{sql-instance}}.properties.settings.backupConfiguration.enabled",
+    "searchValue": "",
+    "expectedValue": "'settings.backupConfiguration.enabled' should be true",
+    "actualValue": "'settings.backupConfiguration.enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8acfd4c0344c4869b26c49c35fcf65d3e42a5fa2198eaeb22efd80c928c4929d",
+    "search_line": 8
   }
 ]

@@ -2,11 +2,31 @@
   {
     "queryName": "Beta - SQL DB Instance With Minimum Log Duration",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_1].settings.database_flags[1].name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should set 'log_min_duration_statement' to '-1'",
+    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'log_min_duration_statement' to '2'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a965825e8c79811338f749241abce59eeb08933bdb1467b0e4134c0e980b778b",
+    "search_line": 13
   },
   {
     "queryName": "Beta - SQL DB Instance With Minimum Log Duration",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should set 'log_min_duration_statement' to '-1'",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'log_min_duration_statement' to '3'",
+    "issueType": "IncorrectValue",
+    "similarityID": "32ee7ad2e11af071aa31a594ff5acecfe7cc6513ae25b6ec72375d04116f89fe",
+    "search_line": 31
   }
 ]

@@ -3,18 +3,45 @@
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "azure.azcollection.azure_rm_storageaccount",
+    "resourceName": "create an account",
+    "searchKey": "name={{create an account}}.{{azure.azcollection.azure_rm_storageaccount}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount.public_network_access should be set to 'Disabled'",
+    "actualValue": "azure_rm_storageaccount.public_network_access is set to 'Enabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c9f1787cc33c6e0e375bd20b26fcde0c8e259e053f4efb309825982800af0878",
+    "search_line": -1
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "azure.azcollection.azure_rm_storageaccount",
+    "resourceName": "create an account",
+    "searchKey": "name={{create an account}}.{{azure.azcollection.azure_rm_storageaccount}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount.public_network_access should be set to 'Disabled'",
+    "actualValue": "azure_rm_storageaccount.public_network_access is not set (default is 'Enabled')",
+    "issueType": "MissingAttribute",
+    "similarityID": "9d6f34c45fe0ff5a059770c5ed0e0353f3ae901d5582c10efd5c06902938dcc4",
+    "search_line": -1
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "azure.azcollection.azure_rm_storageaccount",
+    "resourceName": "create an account",
+    "searchKey": "name={{create an account}}.{{azure.azcollection.azure_rm_storageaccount}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccountnetworkAcls.network_acls.default_action should be set to 'Deny'",
+    "actualValue": "azure_rm_storageaccountnetworkAcls.network_acls.default_action is set to 'Allow'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c10c2504ec85c94eb612b04d3d4ef4dd25287f0d6bea2bda6cb9412f2239a658",
+    "search_line": -1
   }
 ]

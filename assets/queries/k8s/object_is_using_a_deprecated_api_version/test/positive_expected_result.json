@@ -1,27 +1,77 @@
 [
-	{
-		"queryName": "Object Is Using A Deprecated API Version",
-		"severity": "LOW",
-		"line": 1
-	},
-	{
-		"queryName": "Object Is Using A Deprecated API Version",
-		"severity": "LOW",
-		"line": 23
-	},
-	{
-		"queryName": "Object Is Using A Deprecated API Version",
-		"severity": "LOW",
-		"line": 58
-	},
-	{
-		"queryName": "Object Is Using A Deprecated API Version",
-		"severity": "LOW",
-		"line": 76
-	},
-	{
-		"queryName": "Object Is Using A Deprecated API Version",
-		"severity": "LOW",
-		"line": 94
-	}
+  {
+    "queryName": "Object Is Using A Deprecated API Version",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "nginx-deployment",
+    "searchKey": "apiVersion={{apps/v1beta1}}",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{nginx-deployment}}.apiVersion of Deployment should be {{apps/v1}}",
+    "actualValue": "metadata.name={{nginx-deployment}}.apiVersion of Deployment  is deprecated and is {{apps/v1beta1}}",
+    "issueType": "IncorrectValue",
+    "similarityID": "b8ff5d222f4d9c8630740b83d9b4210f7b1e8ef4a297bb92950c737bddde33dc",
+    "search_line": 1
+  },
+  {
+    "queryName": "Object Is Using A Deprecated API Version",
+    "severity": "LOW",
+    "line": 23,
+    "fileName": "positive.yaml",
+    "resourceType": "DaemonSet",
+    "resourceName": "fluentd-elasticsearch",
+    "searchKey": "apiVersion={{apps/v1beta2}}",
+    "searchValue": "DaemonSet",
+    "expectedValue": "metadata.name={{fluentd-elasticsearch}}.apiVersion of DaemonSet should be {{apps/v1}}",
+    "actualValue": "metadata.name={{fluentd-elasticsearch}}.apiVersion of DaemonSet  is deprecated and is {{apps/v1beta2}}",
+    "issueType": "IncorrectValue",
+    "similarityID": "e5b47515feb3d5ec75864f09aa81ed76d72f0f47a0935177fc1830ce116bf11f",
+    "search_line": 23
+  },
+  {
+    "queryName": "Object Is Using A Deprecated API Version",
+    "severity": "LOW",
+    "line": 58,
+    "fileName": "positive.yaml",
+    "resourceType": "Ingress",
+    "resourceName": "minimal-ingress",
+    "searchKey": "apiVersion={{extensions/v1beta1}}",
+    "searchValue": "Ingress",
+    "expectedValue": "metadata.name={{minimal-ingress}}.apiVersion of Ingress should be {{networking.k8s.io/v1}}",
+    "actualValue": "metadata.name={{minimal-ingress}}.apiVersion of Ingress  is deprecated and is {{extensions/v1beta1}}",
+    "issueType": "IncorrectValue",
+    "similarityID": "a989e9a03124306f489b7e26adb001470440b2eb02ad3812d4d56d77a060eccf",
+    "search_line": 58
+  },
+  {
+    "queryName": "Object Is Using A Deprecated API Version",
+    "severity": "LOW",
+    "line": 76,
+    "fileName": "positive.yaml",
+    "resourceType": "Ingress",
+    "resourceName": "minimal-ingress1",
+    "searchKey": "apiVersion={{networking.k8s.io/v1beta1}}",
+    "searchValue": "Ingress",
+    "expectedValue": "metadata.name={{minimal-ingress1}}.apiVersion of Ingress should be {{networking.k8s.io/v1}}",
+    "actualValue": "metadata.name={{minimal-ingress1}}.apiVersion of Ingress  is deprecated and is {{networking.k8s.io/v1beta1}}",
+    "issueType": "IncorrectValue",
+    "similarityID": "67b7de037bbd7b7d0b73a77f3fd62a3acc2e974c5ae805dfc5e3138354d2a80e",
+    "search_line": 76
+  },
+  {
+    "queryName": "Object Is Using A Deprecated API Version",
+    "severity": "LOW",
+    "line": 94,
+    "fileName": "positive.yaml",
+    "resourceType": "CronJob",
+    "resourceName": "hello",
+    "searchKey": "apiVersion={{batch/v1beta1}}",
+    "searchValue": "CronJob",
+    "expectedValue": "metadata.name={{hello}}.apiVersion of CronJob should be {{batch/v1}}",
+    "actualValue": "metadata.name={{hello}}.apiVersion of CronJob  is deprecated and is {{batch/v1beta1}}",
+    "issueType": "IncorrectValue",
+    "similarityID": "d9f78c9c0176bfeb00f216fc09790a179fd5933f91baac3b9f152bf9ce427f84",
+    "search_line": 94
+  }
 ]

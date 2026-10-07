@@ -1,20 +1,47 @@
 [
-    {
-      "queryName": "Host Namespace is Shared",
-      "severity": "MEDIUM",
-      "line": 10,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Host Namespace is Shared",
-      "severity": "MEDIUM",
-      "line": 6,
-      "filename": "positive2.yaml"
-    },
-    {
-      "queryName": "Host Namespace is Shared",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive3.yaml"
-    }
-  ]
+  {
+    "queryName": "Host Namespace is Shared",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.service_name_1.pid",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be pid mode declared as host",
+    "actualValue": "There is a pid mode declared as host",
+    "issueType": "IncorrectValue",
+    "similarityID": "88dc148e3d6283fd97bc9370101cd1aec52070b78bf1d8bc71e8e4cc068e4bb0",
+    "search_line": 10
+  },
+  {
+    "queryName": "Host Namespace is Shared",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.service_name_2.pid",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be pid mode declared as host",
+    "actualValue": "There is a pid mode declared as host",
+    "issueType": "IncorrectValue",
+    "similarityID": "72e73c0d3096425995e8e057b4f0ff08aed4375ff206ba0d85a71b13a2e647cf",
+    "search_line": 6
+  },
+  {
+    "queryName": "Host Namespace is Shared",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.internal.pid",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be pid mode declared as host",
+    "actualValue": "There is a pid mode declared as host",
+    "issueType": "IncorrectValue",
+    "similarityID": "e26feec2f2659bca4653c12b861979292e9cf99e0b304f542cf21555ae17aa2f",
+    "search_line": 11
+  }
+]

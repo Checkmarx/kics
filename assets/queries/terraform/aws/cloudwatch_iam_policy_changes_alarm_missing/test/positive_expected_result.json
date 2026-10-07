@@ -3,12 +3,30 @@
     "queryName": "CloudWatch IAM Policy Changes Alarm Missing",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern {($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)} and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern {($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)} or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "b7985eb22eaa71afbf95ea73daf72b4fddc1f18a67193d17b344f0122f0bc975",
+    "search_line": 1
   },
   {
     "queryName": "CloudWatch IAM Policy Changes Alarm Missing",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern {($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)} and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern {($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)} or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "d9d68ba795e2c4990aea41d6dc348b2b36bf97b47b621d60949c21f323ce79d2",
+    "search_line": 1
   }
 ]

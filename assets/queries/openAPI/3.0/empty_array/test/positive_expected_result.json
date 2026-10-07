@@ -3,12 +3,30 @@
     "queryName": "Empty Array",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "The array should not be empty",
+    "actualValue": "The array is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "fd82b65e84464a61d150babb136395506b887b8c73a1125c9ea0cd2cda6bf29f",
+    "search_line": -1
   },
   {
     "queryName": "Empty Array",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "The array should not be empty",
+    "actualValue": "The array is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "7a66892cfad376d518ba015315258e277ac50d6141fdfc3c797fe698688f87a6",
+    "search_line": -1
   }
 ]

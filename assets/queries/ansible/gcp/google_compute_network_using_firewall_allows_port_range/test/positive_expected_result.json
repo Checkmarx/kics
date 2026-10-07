@@ -3,6 +3,15 @@
     "queryName": "Google Compute Network Using Firewall Rule that Allows Port Range",
     "severity": "LOW",
     "line": 19,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_network",
+    "resourceName": "create a network2",
+    "searchKey": "name={{create a network2}}.{{google.cloud.gcp_compute_network}}",
+    "searchValue": "",
+    "expectedValue": "'google.cloud.gcp_compute_network' should not be using a firewall rule that allows access to port range",
+    "actualValue": "'google.cloud.gcp_compute_network' is using a firewall rule that allows access to port range",
+    "issueType": "IncorrectValue",
+    "similarityID": "be1dc234a1ef9b2f1f5b902438f38f2edb7cb22f528d84de790672129b0cd6e2",
+    "search_line": -1
   }
 ]

@@ -3,60 +3,150 @@
     "queryName": "Path Parameter Not Required (v3)",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "IncorrectValue",
+    "similarityID": "18f5421aea5a93da4fdf4e6c28134a640df7065b7a325148320878d6fa686d05",
+    "search_line": -1
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a801be006dbf59a609624528cb572603e65ba0ce0b0c1c169f10aa8126789b44",
+    "search_line": -1
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute",
+    "similarityID": "5565a18790d8bb57184917a4d6fa696f9c15cdd844e591ab30858b444389e99e",
+    "search_line": -1
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute",
+    "similarityID": "40539c65aad1ccbeb54080f534a4a9b9b470a64fedf5ddbe42a9b6a6e0dc6a8e",
+    "search_line": -1
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "Path Parameter Not Required (v3)",
-    "severity": "INFO",
-    "line": 8,
-    "filename": "positive6.yaml"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9e91875cc12f95f8de7acaa24e712d00d621dfc03524a69ce1d7457a5b94e8e6",
+    "search_line": 0
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.name={{nameAPI}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute",
+    "similarityID": "3c7bbfbb1a9f23f2edd74031256a2bc70facaf245c27cf2751fcf01c2be4388a",
+    "search_line": 0
+  },
+  {
+    "queryName": "Path Parameter Not Required (v3)",
+    "severity": "INFO",
+    "line": 8,
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e10fe13d2c2b14600714884ab8c4d5ff731a702d96fa4e3f79eb241d29703cf7",
+    "search_line": 0
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.name={{nameAPI}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute",
+    "similarityID": "2fc365917b106447fee71d1db632b798f3fcb6687f6107ca1de4f356a67ef7f9",
+    "search_line": 0
   },
   {
     "queryName": "Path Parameter Not Required (v2)",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute",
+    "similarityID": "a93f62c5937f75657088cd5a8923dcd29ae9e582728cb6d25a92c54cdb1d9298",
+    "search_line": -1
   },
   {
     "queryName": "Path Parameter Not Required (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive8.yaml"
+    "fileName": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute",
+    "similarityID": "8d7b489651d9af89218e4665aedda0b69a99333f38561f2ab770dca13841f3a7",
+    "search_line": -1
   }
 ]

@@ -2,16 +2,46 @@
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "aws_sqs_queue_policy",
+    "resourceName": "test",
+    "searchKey": "aws_sqs_queue_policy[test].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Principal.AWS' should not equal '*'",
+    "actualValue": "'policy.Statement.Principal.AWS' is equal '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "43b56f3d679637409e5a920ae2b481cfc8b19a3b4e62ebb5d02b999d0de63737",
+    "search_line": 8
   },
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "line": 39
+    "line": 39,
+    "fileName": "positive.tf",
+    "resourceType": "aws_sqs_queue_policy",
+    "resourceName": "test_aws",
+    "searchKey": "aws_sqs_queue_policy[test_aws].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Principal.AWS' should not equal '*'",
+    "actualValue": "'policy.Statement.Principal.AWS' is equal '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ae5613e51a60bf36866c59de1a03f0138ea6c31843e3020a553e5786639de33d",
+    "search_line": 39
   },
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "line": 64
+    "line": 64,
+    "fileName": "positive.tf",
+    "resourceType": "aws_sqs_queue_policy",
+    "resourceName": "test_aws_array",
+    "searchKey": "aws_sqs_queue_policy[test_aws_array].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Principal.AWS' should not equal '*'",
+    "actualValue": "'policy.Statement.Principal.AWS' is equal '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c045bde33bcc9aff29ee47c0ff12f348ae79ed7686465efe0fd55a26e00af6f3",
+    "search_line": 64
   }
 ]

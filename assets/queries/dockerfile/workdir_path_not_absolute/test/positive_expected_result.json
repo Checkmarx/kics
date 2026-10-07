@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "WORKDIR Path Not Absolute",
-		"severity": "LOW",
-		"line": 5,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "WORKDIR Path Not Absolute",
-		"severity": "LOW",
-		"line": 5,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "WORKDIR Path Not Absolute",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.WORKDIR={{workdir}}",
+    "searchValue": "",
+    "expectedValue": "'WORKDIR' Command has absolute path",
+    "actualValue": "'WORKDIR' Command doesn't have absolute path",
+    "issueType": "IncorrectValue",
+    "similarityID": "09acd02347b443229640ee7dfcd04dee306a9138106f0d34e8ea2b52ff3f0a93",
+    "search_line": -1
+  },
+  {
+    "queryName": "WORKDIR Path Not Absolute",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:3.5}}.workdir={{workdir}}",
+    "searchValue": "",
+    "expectedValue": "'WORKDIR' Command has absolute path",
+    "actualValue": "'WORKDIR' Command doesn't have absolute path",
+    "issueType": "IncorrectValue",
+    "similarityID": "1b133adc251266286a4c27b6b38423832559cd771f45eb96e18fd3c65778c5c7",
+    "search_line": -1
+  }
 ]

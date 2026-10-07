@@ -3,6 +3,15 @@
     "queryName": "GKE Legacy Authorization Enabled",
     "severity": "HIGH",
     "line": 7,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.legacyAbac.enabled",
+    "searchValue": "",
+    "expectedValue": "'legacyAbac.enabled' should be false",
+    "actualValue": "'legacyAbac.enabled' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "90796cff77b65607e043a5a5e3b41ecc8fef0593bd3d3265364960031418fdd6",
+    "search_line": 7
   }
 ]

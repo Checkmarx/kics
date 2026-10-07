@@ -2,11 +2,31 @@
   {
     "queryName": "ECR Repository Is Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 4
+    "line": 4,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.ecs_ecr",
+    "resourceName": "set-policy as object",
+    "searchKey": "name={{set-policy as object}}.{{community.aws.ecs_ecr}}.policy",
+    "searchValue": "",
+    "expectedValue": "ecs_ecr.policy.Principal should not equal to '*'",
+    "actualValue": "ecs_ecr.policy.Principal is equal to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5ddcfb29ab1360a3d1c6ca7877075a1c698d386de6d7c9cca25387f178de2575",
+    "search_line": 4
   },
   {
     "queryName": "ECR Repository Is Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.ecs_ecr",
+    "resourceName": "set-policy as string",
+    "searchKey": "name={{set-policy as string}}.{{community.aws.ecs_ecr}}.policy",
+    "searchValue": "",
+    "expectedValue": "ecs_ecr.policy.Principal should not equal to '*'",
+    "actualValue": "ecs_ecr.policy.Principal is equal to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f965589bbd954a7eb8f31f68391f0e16f0a8e8a8c212de390329c9cca22b64b2",
+    "search_line": 17
   }
 ]

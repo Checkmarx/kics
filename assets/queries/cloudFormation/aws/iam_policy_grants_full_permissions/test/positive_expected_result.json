@@ -3,24 +3,60 @@
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "mygrouppolicy",
+    "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
+    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "811944ab87d92b36a5e031a74187a969782a558429b177e7455b3f48603f36fd",
+    "search_line": -1
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
     "line": 21,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "IAM Policy Grants Full Permissions",
-    "severity": "HIGH",
-    "line": 29,
-    "fileName": "positive2.json"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "mygrouppolicy",
+    "searchKey": "Resources.mypolicy2.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
+    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "52e44ae5217bdecad501335d1a9aa8747d82eed0873a6ada3e2593ff28699b0e",
+    "search_line": -1
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "mygrouppolicy",
+    "searchKey": "Resources.mypolicy2.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
+    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a9b96aeb41f3623308fa96eb364ff5b9f01c53038af83e406b2064aa5008900e",
+    "search_line": -1
+  },
+  {
+    "queryName": "IAM Policy Grants Full Permissions",
+    "severity": "HIGH",
+    "line": 29,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "mygrouppolicy",
+    "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
+    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d27d97e3dfcef04b74f4c28aaedd1e24760927ab71b2e5d8c30442ef1eb4df4b",
+    "search_line": -1
   }
 ]

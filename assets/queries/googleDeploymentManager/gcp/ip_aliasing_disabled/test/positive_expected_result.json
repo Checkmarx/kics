@@ -3,18 +3,45 @@
     "queryName": "IP Aliasing Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "",
+    "expectedValue": "'ipAllocationPolicy' should be defined and not null",
+    "actualValue": "'ipAllocationPolicy' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "e64039504421b769560b0a039ca6e563ec89453641c95b8d820291103a4e2f1b",
+    "search_line": 4
   },
   {
     "queryName": "IP Aliasing Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.ipAllocationPolicy",
+    "searchValue": "",
+    "expectedValue": "'ipAllocationPolicy.useIpAliases' should be defined and not null",
+    "actualValue": "'ipAllocationPolicy.useIpAliases' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "9e5f34d8dddb68a7228ff41c42bb5d02bbca5244de6c6de85cccc999bc6824ce",
+    "search_line": 6
   },
   {
     "queryName": "IP Aliasing Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.ipAllocationPolicy.useIpAliases",
+    "searchValue": "",
+    "expectedValue": "'ipAllocationPolicy.useIpAliases' should be true",
+    "actualValue": "'ipAllocationPolicy.useIpAliases' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8fa6b068700b8dfac2a8a5cec844c8590b10723aa3cf16fedd6142a3d6ff9d18",
+    "search_line": 8
   }
 ]

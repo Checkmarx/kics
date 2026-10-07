@@ -3,60 +3,150 @@
     "queryName": "Unknown Property (v3)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.descrinnption",
+    "searchValue": "",
+    "expectedValue": "The field 'descrinnption' is known in the responses object",
+    "actualValue": "The field 'descrinnption' is unknown in the responses object",
+    "issueType": "IncorrectValue",
+    "similarityID": "b3348c3598f12f25118cc3934d4be93b26889e2d4e36779302455566fb7f3345",
+    "search_line": -1
   },
   {
     "queryName": "Unknown Property (v3)",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.desdddcription",
+    "searchValue": "",
+    "expectedValue": "The field 'desdddcription' is known in the tags object",
+    "actualValue": "The field 'desdddcription' is unknown in the tags object",
+    "issueType": "IncorrectValue",
+    "similarityID": "2cae14ade56c1daa95c5dc6f518c98f3b9748323a3e95997b3f8317ee7867d25",
+    "search_line": -1
   },
   {
     "queryName": "Unknown Property (v3)",
     "severity": "INFO",
     "line": 3,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "infjnjnjno",
+    "searchValue": "",
+    "expectedValue": "The field 'infjnjnjno' is known in the openapi object",
+    "actualValue": "The field 'infjnjnjno' is unknown in the openapi object",
+    "issueType": "IncorrectValue",
+    "similarityID": "defde2ee0ea1091be7e086202d37fa10b68f16e80f14d11c0cede2be661a1b9b",
+    "search_line": -1
   },
   {
     "queryName": "Unknown Property (v3)",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.tybhbhbpe:",
+    "searchValue": "",
+    "expectedValue": "The field 'tybhbhbpe:' is known in the schema object",
+    "actualValue": "The field 'tybhbhbpe:' is unknown in the schema object",
+    "issueType": "IncorrectValue",
+    "similarityID": "88b5f567b74dc67a6b0d2986aac482c2947e9edf75d6551804416070dd55941f",
+    "search_line": -1
   },
   {
     "queryName": "Unknown Property (v3)",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.callbacks.inProgress.{{{$request.body#/inProgressUrl}}}.pbhbhbost",
+    "searchValue": "",
+    "expectedValue": "The field 'pbhbhbost' is known in the callbacks object",
+    "actualValue": "The field 'pbhbhbost' is unknown in the callbacks object",
+    "issueType": "IncorrectValue",
+    "similarityID": "b061cf6df98dcf4ed60a8d0497be80ee5a62e77a24ace37b1086057dbbc2198d",
+    "search_line": 0
   },
   {
     "queryName": "Unknown Property (v3)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.descrinnption",
+    "searchValue": "",
+    "expectedValue": "The field 'descrinnption' is known in the responses object",
+    "actualValue": "The field 'descrinnption' is unknown in the responses object",
+    "issueType": "IncorrectValue",
+    "similarityID": "48611d5a2e69f9528267c58f3fc101da62dcc2723b14d53999a51a9133d7aca5",
+    "search_line": -1
   },
   {
     "queryName": "Unknown Property (v3)",
     "severity": "INFO",
     "line": 17,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.desdddcription",
+    "searchValue": "",
+    "expectedValue": "The field 'desdddcription' is known in the tags object",
+    "actualValue": "The field 'desdddcription' is unknown in the tags object",
+    "issueType": "IncorrectValue",
+    "similarityID": "e1de908ce5aa5b18c45becd0bc264b7ce741c9c0a61d80ccb3b56e6ca2754438",
+    "search_line": -1
   },
   {
     "queryName": "Unknown Property (v3)",
     "severity": "INFO",
     "line": 2,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "infjnjnjno",
+    "searchValue": "",
+    "expectedValue": "The field 'infjnjnjno' is known in the openapi object",
+    "actualValue": "The field 'infjnjnjno' is unknown in the openapi object",
+    "issueType": "IncorrectValue",
+    "similarityID": "fcf745044bc3fc14cbf77f876046286d11a8ef44bbc1ebe7b2d5c38ad57592fb",
+    "search_line": -1
   },
   {
     "queryName": "Unknown Property (v3)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.tybhbhbpe",
+    "searchValue": "",
+    "expectedValue": "The field 'tybhbhbpe' is known in the schema object",
+    "actualValue": "The field 'tybhbhbpe' is unknown in the schema object",
+    "issueType": "IncorrectValue",
+    "similarityID": "41074cac26a1512363bb43b0ed807c9f63ba71ae88299c5d9225fcf23c5582a7",
+    "search_line": -1
   },
   {
     "queryName": "Unknown Property (v3)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.callbacks.inProgress.{{{$request.body#/inProgressUrl}}}.pbhbhbost",
+    "searchValue": "",
+    "expectedValue": "The field 'pbhbhbost' is known in the callbacks object",
+    "actualValue": "The field 'pbhbhbost' is unknown in the callbacks object",
+    "issueType": "IncorrectValue",
+    "similarityID": "d2acee442578dc3437d4fdc2c7bd4ac5e67e29a23505027b7901e469977a7be2",
+    "search_line": 0
   }
 ]

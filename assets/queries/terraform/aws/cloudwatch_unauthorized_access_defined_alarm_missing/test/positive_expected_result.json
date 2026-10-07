@@ -3,24 +3,60 @@
     "queryName": "CloudWatch Unauthorized Access Alarm Missing",
     "severity": "CRITICAL",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { $.errorCode = *UnauthorizedOperation || $.errorCode = AccessDenied* } and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { $.errorCode = *UnauthorizedOperation || $.errorCode = AccessDenied* } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "7d60e0bc7466d6943b37b8db51569b3bcaed0ba92456c47946bb9097532b73a1",
+    "search_line": 1
   },
   {
     "queryName": "CloudWatch Unauthorized Access Alarm Missing",
     "severity": "CRITICAL",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { $.errorCode = *UnauthorizedOperation || $.errorCode = AccessDenied* } and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { $.errorCode = *UnauthorizedOperation || $.errorCode = AccessDenied* } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "414830b096564463853f5dce9d53dc2bbc97d88d2ed6e4adbb47058d5c905352",
+    "search_line": 1
   },
   {
     "queryName": "CloudWatch Unauthorized Access Alarm Missing",
     "severity": "CRITICAL",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { $.errorCode = *UnauthorizedOperation || $.errorCode = AccessDenied* } and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { $.errorCode = *UnauthorizedOperation || $.errorCode = AccessDenied* } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "ba5cea4a1e99e5902010ccd0e4c973457c7cc124c039d6fe1266c5fefb962aee",
+    "search_line": 1
   },
   {
     "queryName": "CloudWatch Unauthorized Access Alarm Missing",
     "severity": "CRITICAL",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { $.errorCode = *UnauthorizedOperation || $.errorCode = AccessDenied* } and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { $.errorCode = *UnauthorizedOperation || $.errorCode = AccessDenied* } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "26da72708a74111f442b46a626ef5f1a0f888b9ae0b5f04a05fd31d9211de8a1",
+    "search_line": 1
   }
 ]

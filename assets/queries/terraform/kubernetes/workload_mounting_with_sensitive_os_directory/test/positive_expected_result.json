@@ -2,11 +2,31 @@
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
     "severity": "HIGH",
-    "line": 53
+    "line": 53,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example1",
+    "searchKey": "kubernetes_pod[test1].spec.volume.host_path.path",
+    "searchValue": "",
+    "expectedValue": "Workload name 'terraform-example1' should not mount a host sensitive OS directory '/var/log' with host_path",
+    "actualValue": "Workload name 'terraform-example1' is mounting a host sensitive OS directory '/var/log' with host_path",
+    "issueType": "IncorrectValue",
+    "similarityID": "b39e6cc18beaa928225e9f3d34491b71dd605999cf6a6121ded187c1307b385c",
+    "search_line": -1
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
     "severity": "HIGH",
-    "line": 112
+    "line": 112,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_persistent_volume",
+    "resourceName": "terraform-example2",
+    "searchKey": "kubernetes_persistent_volume[test2].spec.volume.host_path.path",
+    "searchValue": "",
+    "expectedValue": "Workload name 'terraform-example2' should not mount a host sensitive OS directory '/var/log' with host_path",
+    "actualValue": "Workload name 'terraform-example2' is mounting a host sensitive OS directory '/var/log' with host_path",
+    "issueType": "IncorrectValue",
+    "similarityID": "e63b92f6410d04c5f67b499e67c24563835211aeaf920fd1b1d1a40ffdbe15f9",
+    "search_line": -1
   }
 ]

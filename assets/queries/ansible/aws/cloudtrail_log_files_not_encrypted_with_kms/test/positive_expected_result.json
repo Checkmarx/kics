@@ -2,6 +2,16 @@
   {
     "queryName": "CloudTrail Log Files Not Encrypted With KMS",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.cloudtrail",
+    "resourceName": "no sns topic name",
+    "searchKey": "name={{no sns topic name}}.{{community.aws.cloudtrail}}",
+    "searchValue": "",
+    "expectedValue": "cloudtrail.kms_key_id should be set",
+    "actualValue": "cloudtrail.kms_key_id is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0b266385091bf46d58a859af45ce3c5bfb27cf4e9e2b56b91e9133a7be99ecac",
+    "search_line": -1
   }
 ]

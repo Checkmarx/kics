@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "ECS Service Admin Role Is Present",
-		"severity": "HIGH",
-		"line": 9
-	}
+  {
+    "queryName": "ECS Service Admin Role Is Present",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.ecs_service",
+    "resourceName": "ECS Service",
+    "searchKey": "name={{ECS Service}}.{{community.aws.ecs_service}}.role",
+    "searchValue": "",
+    "expectedValue": "ecs_service.role should not be an admin role",
+    "actualValue": "ecs_service.role is an admin role",
+    "issueType": "IncorrectValue",
+    "similarityID": "263d85c6d8b3e8d013beafe65de16b2446fc7cce1dedfef4142689de50130ead",
+    "search_line": -1
+  }
 ]

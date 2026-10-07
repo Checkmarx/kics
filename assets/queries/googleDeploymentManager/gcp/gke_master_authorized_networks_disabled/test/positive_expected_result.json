@@ -3,12 +3,30 @@
     "queryName": "GKE Master Authorized Networks Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "my-cluster",
+    "searchKey": "resources.name={{my-cluster}}.properties",
+    "searchValue": "",
+    "expectedValue": "'masterAuthorizedNetworksConfig' should be defined and not null",
+    "actualValue": "'masterAuthorizedNetworksConfig' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c2254fd4b764838a96b0fe6eca2824b3b3df417f041537029f58668079d21230",
+    "search_line": 4
   },
   {
     "queryName": "GKE Master Authorized Networks Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "my-cluster",
+    "searchKey": "resources.name={{my-cluster}}.properties.masterAuthorizedNetworksConfig.enabled",
+    "searchValue": "",
+    "expectedValue": "'masterAuthorizedNetworksConfig.enabled' should be true",
+    "actualValue": "'masterAuthorizedNetworksConfig.enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "508f0825e6a890d5e9581a1bcf74bc717babc4e6e38d404b9c80d1a9b7822b53",
+    "search_line": 7
   }
 ]

@@ -1,14 +1,32 @@
 [
   {
-    "fileName": "positive1.yaml",
     "queryName": "Alexa Skill Plaintext Client Secret Exposed",
     "severity": "MEDIUM",
-    "line": 17
+    "line": 17,
+    "fileName": "positive1.yaml",
+    "resourceType": "Alexa::ASK::Skill",
+    "resourceName": "MySkill",
+    "searchKey": "Resources.MySkill.Properties.AuthenticationConfiguration.ClientSecret",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySkill.Properties.ClientSecret' should start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'",
+    "actualValue": "'Resources.MySkill.Properties.ClientSecret' does not start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'",
+    "issueType": "IncorrectValue",
+    "similarityID": "92e364a9a0879b59aeadebd0917f203a9f2a870c7bb0e1ef2f7324a3d52cbe39",
+    "search_line": -1
   },
   {
     "queryName": "Alexa Skill Plaintext Client Secret Exposed",
     "severity": "MEDIUM",
     "line": 24,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Alexa::ASK::Skill",
+    "resourceName": "MySkill",
+    "searchKey": "Resources.MySkill.Properties.AuthenticationConfiguration.ClientSecret",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySkill.Properties.ClientSecret' should start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'",
+    "actualValue": "'Resources.MySkill.Properties.ClientSecret' does not start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'",
+    "issueType": "IncorrectValue",
+    "similarityID": "838b5c96610cb38832c38ffe6d81e13b1cbb19ed6adf8a744fe6a63dd13e9b17",
+    "search_line": -1
   }
 ]

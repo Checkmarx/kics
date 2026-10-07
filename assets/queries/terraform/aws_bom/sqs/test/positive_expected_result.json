@@ -3,30 +3,75 @@
     "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sqs_queue[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "2e63546226d2fb661b60d65cba4958fca56f4784a562402324a10e997f0714bf",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sqs_queue[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "3e3a9634b243f858032680f73fd507677eb53031fc69d2ba106f3a12a57fdf47",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sqs_queue[positive3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "16caac312f6bfb001590c626b28b7d079f376ecc0d7e685ebe97e51c1788caba",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sqs_queue[positive4]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "8e76924560ccedc82d1e04276b5d1a5c2f4020ca5cdb20e0f820274369e65109",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sqs_queue[positive5]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "0921d240285a046df8784b8e2fbdf1911dedc123632d87d3970f683aea6672bd",
+    "search_line": 1
   }
 ]

@@ -3,18 +3,45 @@
     "queryName": "S3 Bucket Allows Put Action From All Principals",
     "severity": "CRITICAL",
     "line": 4,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${aws_s3_bucket.b.id}",
+    "searchKey": "aws_s3_bucket_policy[positive1].policy",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[positive1].policy.Statement.Action should not be a 'Put' action",
+    "actualValue": "aws_s3_bucket_policy[positive1].policy.Statement.Action is a 'Put' action",
+    "issueType": "IncorrectValue",
+    "similarityID": "52128128ad8a85bb10dd521772c5f8b2af9e6a898e7ce2063da125cfc089538d",
+    "search_line": 4
   },
   {
     "queryName": "S3 Bucket Allows Put Action From All Principals",
     "severity": "CRITICAL",
     "line": 5,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${aws_s3_bucket.b.id}",
+    "searchKey": "aws_s3_bucket_policy[positive2].policy",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[positive2].policy.Statement.Action should not be a 'Put' action",
+    "actualValue": "aws_s3_bucket_policy[positive2].policy.Statement.Action is a 'Put' action",
+    "issueType": "IncorrectValue",
+    "similarityID": "63394e035fa1f40cda95cb9b16b99f9b044a9112ab6e51a423c1c4053de5ee4e",
+    "search_line": 5
   },
   {
     "queryName": "S3 Bucket Allows Put Action From All Principals",
     "severity": "CRITICAL",
     "line": 12,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Action' should not be a 'Put' action",
+    "actualValue": "'policy.Statement.Action' is a 'Put' action",
+    "issueType": "IncorrectValue",
+    "similarityID": "05bc13108c0a6f60d3808975001550af2ca7d04cdf26ba71d7d94a4f44762ddf",
+    "search_line": 12
   }
 ]

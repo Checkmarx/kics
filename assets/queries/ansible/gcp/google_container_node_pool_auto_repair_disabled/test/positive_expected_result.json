@@ -2,16 +2,46 @@
   {
     "queryName": "Google Container Node Pool Auto Repair Disabled",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_node_pool",
+    "resourceName": "create a node pool",
+    "searchKey": "name={{create a node pool}}.{{google.cloud.gcp_container_node_pool}}.management.auto_repair",
+    "searchValue": "",
+    "expectedValue": "gcp_container_node_pool.management.auto_repair should be set to true",
+    "actualValue": "gcp_container_node_poolmanagement.auto_repair is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "0060f8fd8173476f1772a0599773f1d82f84844ff038b625fd6c79b8bb9a0258",
+    "search_line": -1
   },
   {
     "queryName": "Google Container Node Pool Auto Repair Disabled",
     "severity": "MEDIUM",
-    "line": 26
+    "line": 26,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_node_pool",
+    "resourceName": "create a node pool2",
+    "searchKey": "name={{create a node pool2}}.{{google.cloud.gcp_container_node_pool}}.management.auto_repair",
+    "searchValue": "",
+    "expectedValue": "gcp_container_node_pool.management.auto_repair should be set to true",
+    "actualValue": "gcp_container_node_poolmanagement.auto_repair is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f4d0a3e4f08e8175d4ac6af87af2a22f0ec0ea4908a95f9eeeea74b01a03e1c0",
+    "search_line": -1
   },
   {
     "queryName": "Google Container Node Pool Auto Repair Disabled",
     "severity": "MEDIUM",
-    "line": 29
+    "line": 29,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_node_pool",
+    "resourceName": "create a node pool3",
+    "searchKey": "name={{create a node pool3}}.{{google.cloud.gcp_container_node_pool}}",
+    "searchValue": "",
+    "expectedValue": "gcp_container_node_pool.management should be defined",
+    "actualValue": "gcp_container_node_pool.management is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "73ed1e3f1925d2a5d703dfc408c1a7fad4192a2bc60b38c837d935b082e039eb",
+    "search_line": -1
   }
 ]

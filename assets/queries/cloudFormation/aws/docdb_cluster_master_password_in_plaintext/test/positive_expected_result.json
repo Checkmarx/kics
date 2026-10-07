@@ -1,38 +1,92 @@
 [
   {
+    "queryName": "DocDB Cluster Master Password In Plaintext",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::DocDB::DBCluster",
+    "resourceName": "NewAmpApp",
+    "searchKey": "Resources.NewAmpApp.Properties.MasterUserPassword",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp.Properties.MasterUserPassword must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp.Properties.MasterUserPassword must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "5499d6c7b0370102d44806e800da49e1a84d8067b78856451171450c11aca616",
+    "search_line": -1
+  },
+  {
+    "queryName": "DocDB Cluster Master Password In Plaintext",
     "severity": "HIGH",
     "line": 5,
     "fileName": "positive2.yaml",
-    "queryName": "DocDB Cluster Master Password In Plaintext"
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentMasterPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentMasterPassword.Default should be defined",
+    "actualValue": "Parameters.ParentMasterPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "84996c0182eff5176aef01adf7771e635c5dddba341cf4ced49eddb751166dc2",
+    "search_line": -1
   },
   {
     "queryName": "DocDB Cluster Master Password In Plaintext",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive1.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::DocDB::DBCluster",
+    "resourceName": "NewAmpApp03",
+    "searchKey": "Resources.NewAmpApp03.Properties.MasterUserPassword",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp03.Properties.MasterUserPassword must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp03.Properties.MasterUserPassword must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "8d4b9b6e07c26b128688829b28c739d110cb3068e2a9e9b9abc3140fce231448",
+    "search_line": -1
   },
   {
     "queryName": "DocDB Cluster Master Password In Plaintext",
-    "severity": "HIGH",
-    "line": 12,
-    "fileName": "positive3.yaml"
-  },
-  {
     "severity": "HIGH",
     "line": 17,
     "fileName": "positive4.json",
-    "queryName": "DocDB Cluster Master Password In Plaintext"
+    "resourceType": "AWS::DocDB::DBCluster",
+    "resourceName": "NewAmpApp",
+    "searchKey": "Resources.NewAmpApp.Properties.MasterUserPassword",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp.Properties.MasterUserPassword must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp.Properties.MasterUserPassword must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "95c06ac2572dd5dc6fe62f450ac683fad6d563c634dd144d4f28f89585e4193a",
+    "search_line": -1
   },
   {
     "queryName": "DocDB Cluster Master Password In Plaintext",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentMasterPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentMasterPassword.Default should be defined",
+    "actualValue": "Parameters.ParentMasterPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "b9fec10d4a817d58bc0f2683fd03794f0750af09891020d8736bd86b02a3f4f9",
+    "search_line": -1
   },
   {
     "queryName": "DocDB Cluster Master Password In Plaintext",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::DocDB::DBCluster",
+    "resourceName": "NewAmpApp03",
+    "searchKey": "Resources.NewAmpApp03.Properties.MasterUserPassword",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp03.Properties.MasterUserPassword must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp03.Properties.MasterUserPassword must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "277eee3093b60c16858c1bc783d7f2f74948899ccc6d05f4ab6fa5295c7ff8cb",
+    "search_line": -1
   }
 ]

@@ -3,6 +3,15 @@
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_virtualmachine",
+    "resourceName": "testvm001",
+    "searchKey": "azure_rm_virtualmachine[testvm001].ssh_public_keys",
+    "searchValue": "",
+    "expectedValue": "'azure_rm_virtualmachine[testvm001]' should be using SSH keys for authentication",
+    "actualValue": "'azure_rm_virtualmachine[testvm001]' is using username and password for authentication",
+    "issueType": "MissingAttribute",
+    "similarityID": "5b0474f3c900f98007240187715be0761e8e61ab74bc8e9c89bd94e014d91945",
+    "search_line": -1
   }
 ]

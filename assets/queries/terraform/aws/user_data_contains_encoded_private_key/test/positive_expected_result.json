@@ -3,18 +3,45 @@
     "queryName": "User Data Contains Encoded Private Key",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_launch_configuration",
+    "resourceName": "positive1",
+    "searchKey": "aws_launch_configuration[positive1].user_data_base64",
+    "searchValue": "",
+    "expectedValue": "aws_launch_configuration[positive1].user_data_base64 shouldn't contain RSA Private Key",
+    "actualValue": "aws_launch_configuration[positive1].user_data_base64 contains RSA Private Key",
+    "issueType": "IncorrectValue",
+    "similarityID": "4546afc8042eb58d377bc5be783ac14398aa9852c2b158ffbb3ff7e8e122f825",
+    "search_line": 5
   },
   {
     "queryName": "User Data Contains Encoded Private Key",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive2].user_data_base64",
+    "searchValue": "",
+    "expectedValue": "'user_data_base64' shouldn't contain RSA Private Key",
+    "actualValue": "'user_data_base64' contains RSA Private Key",
+    "issueType": "IncorrectValue",
+    "similarityID": "0d4463d83ee1491b2b549c6b353f56bdde047e7e4e49baeaefaa4211e982cb82",
+    "search_line": 11
   },
   {
     "queryName": "User Data Contains Encoded Private Key",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive3].user_data_base64",
+    "searchValue": "",
+    "expectedValue": "'user_data_base64' shouldn't contain RSA Private Key",
+    "actualValue": "'user_data_base64' contains RSA Private Key",
+    "issueType": "IncorrectValue",
+    "similarityID": "a132ddd8ec371b695670bcf12b74a6603e2279207e9ee35f968660f6d96961e6",
+    "search_line": 11
   }
 ]

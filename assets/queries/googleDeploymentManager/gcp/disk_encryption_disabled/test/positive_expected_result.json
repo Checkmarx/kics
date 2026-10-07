@@ -3,36 +3,90 @@
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive1.yaml"
-  },
-  {
-    "queryName": "Disk Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Disk Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 16,
-    "filename": "positive3.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template",
+    "searchKey": "resources.name={{vm-template}}.properties.disks",
+    "searchValue": "",
+    "expectedValue": "'diskEncryptionKey' should be defined and not null",
+    "actualValue": "'diskEncryptionKey' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "ff814dfdb3f42492751002a5c937dcc56080c79d5c44b268e5df6b5d3a87657f",
+    "search_line": 8
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "compute.v1.disk",
+    "resourceName": "disk-3-data",
+    "searchKey": "resources.name={{disk-3-data}}.properties.disks",
+    "searchValue": "",
+    "expectedValue": "'diskEncryptionKey' should be defined and not null",
+    "actualValue": "'diskEncryptionKey' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "37e4dd40edf9f1b1d43341277a7f8c1182b7d413221389ba29eab585e7a3e7f0",
+    "search_line": 18
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive2.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template2",
+    "searchKey": "resources.name={{vm-template2}}.properties.disks.diskEncryptionKey",
+    "searchValue": "",
+    "expectedValue": "'disk_encryption_key.rawKey' or 'disk_encryption_key.kmsKeyName' should be defined and not null",
+    "actualValue": "'disk_encryption_key.rawKey' and 'disk_encryption_key.kmsKeyName' are undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "0ec5ba3b16b1fddffa3555617ee1579b602ead49846d4ce46528d6ca62129330",
+    "search_line": 14
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 23,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "compute.v1.disk",
+    "resourceName": "disk-4-data",
+    "searchKey": "resources.name={{disk-4-data}}.properties.diskEncryptionKey",
+    "searchValue": "",
+    "expectedValue": "'disk_encryption_key.rawKey' or 'disk_encryption_key.kmsKeyName' should be defined and not null",
+    "actualValue": "'disk_encryption_key.rawKey' and 'disk_encryption_key.kmsKeyName' are undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1875ce085db37c4e2b2e9a9faf147de8adc1b319abe982e4510565eb71421664",
+    "search_line": 23
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive3.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template3",
+    "searchKey": "resources.name={{vm-template3}}.properties.disks.diskEncryptionKey.rawKey",
+    "searchValue": "",
+    "expectedValue": "'diskEncryptionKey.rawKey' should not be empty",
+    "actualValue": "'diskEncryptionKey.rawKey' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "ed972ba592060a3f97f779752af6dbb3555a989a1813a33d94703c487bf733d7",
+    "search_line": 16
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "compute.v1.disk",
+    "resourceName": "disk-5-data",
+    "searchKey": "resources.name={{disk-5-data}}.properties.diskEncryptionKey.rawKey",
+    "searchValue": "",
+    "expectedValue": "'diskEncryptionKey.rawKey' should not be empty",
+    "actualValue": "'diskEncryptionKey.rawKey' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "436ea9e053a8695915ef100f0e0ad776f6d3ba5cc44e9c33b70a2faf3586b7c5",
+    "search_line": 26
   }
 ]

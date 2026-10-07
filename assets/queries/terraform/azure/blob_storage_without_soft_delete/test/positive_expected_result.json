@@ -2,16 +2,46 @@
   {
     "queryName": "Beta - Blob Storage Without Soft Delete",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_storage_account[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive1].blob_properties.delete_retention_policy' should be defined and not null",
+    "actualValue": "'azurerm_storage_account[positive1].blob_properties' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "53cd03350753996c65a5fa736d1a2720576b90757ab1a6a3c95554e5fb6454af",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Blob Storage Without Soft Delete",
     "severity": "HIGH",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive2",
+    "searchKey": "azurerm_storage_account[positive2].blob_properties",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive2].blob_properties.delete_retention_policy' should be defined and not null",
+    "actualValue": "'azurerm_storage_account[positive2].blob_properties.delete_retention_policy' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "f3c2a55aee0263fd42b00840c36d32f2ce618fce55fd345a2f070f5e71e0eee7",
+    "search_line": 18
   },
   {
     "queryName": "Beta - Blob Storage Without Soft Delete",
     "severity": "HIGH",
-    "line": 32
+    "line": 32,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive3",
+    "searchKey": "azurerm_storage_account[positive3].blob_properties.delete_retention_policy.days",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive3].blob_properties.delete_retention_policy.days' should be set to a value higher than '6'",
+    "actualValue": "'azurerm_storage_account[positive3].blob_properties.delete_retention_policy.days' is set to '5'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4321cc0d20b3fb4cba1acac3eb4a9e6d8eef42211dda4ceb74df54aafb7614c8",
+    "search_line": 32
   }
 ]

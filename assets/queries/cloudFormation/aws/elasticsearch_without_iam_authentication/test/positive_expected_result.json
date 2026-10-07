@@ -3,12 +3,30 @@
     "queryName": "Elasticsearch Without IAM Authentication",
     "severity": "MEDIUM",
     "line": 24,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "test",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.AccessPolicies.Statement",
+    "searchValue": "",
+    "expectedValue": "Elasticsearch Domain should ensure IAM Authentication",
+    "actualValue": "Elasticsearch Domain does not ensure IAM Authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "c075b4ea15a2f1713ecd4f399b6e57df5cf57a3ed3e2119e2820da52976a91ec",
+    "search_line": 24
   },
   {
     "queryName": "Elasticsearch Without IAM Authentication",
     "severity": "MEDIUM",
     "line": 26,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "test",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.AccessPolicies.Statement",
+    "searchValue": "",
+    "expectedValue": "Elasticsearch Domain should ensure IAM Authentication",
+    "actualValue": "Elasticsearch Domain does not ensure IAM Authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "257acf14ffb2d6f15167d004151f7a45df6422d1652f83f24472d31153b1c8c3",
+    "search_line": 26
   }
 ]

@@ -3,18 +3,45 @@
     "queryName": "App Service Without Latest PHP Version",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example4-app-service",
+    "searchKey": "azurerm_app_service[example4].site_config.php_version",
+    "searchValue": "",
+    "expectedValue": "for the attribute 'php_version' should be the latest avaliable stable version (8.1)",
+    "actualValue": "'php_version' is not the latest avaliable stable version (8.1)",
+    "issueType": "IncorrectValue",
+    "similarityID": "d9e5c6407aed9a8fd7ded9e306939cde70a51570f505a02e38501378bf5051f0",
+    "search_line": 11
   },
   {
     "queryName": "App Service Without Latest PHP Version",
     "severity": "LOW",
     "line": 25,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example5",
+    "searchKey": "azurerm_windows_web_app[example5].site_config.application_stack.php_version",
+    "searchValue": "",
+    "expectedValue": "for the attribute 'php_version' should be the latest avaliable stable version (8.1)",
+    "actualValue": "'php_version' is not the latest avaliable stable version (8.1)",
+    "issueType": "IncorrectValue",
+    "similarityID": "ca81496de452e61c0e0f75571b7551df72212d3dce9cf6fbb95e57b8d927b2f6",
+    "search_line": 25
   },
   {
     "queryName": "App Service Without Latest PHP Version",
     "severity": "LOW",
     "line": 26,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example6",
+    "searchKey": "azurerm_linux_web_app[example6].site_config.application_stack.php_version",
+    "searchValue": "",
+    "expectedValue": "for the attribute 'php_version' should be the latest avaliable stable version (8.1)",
+    "actualValue": "'php_version' is not the latest avaliable stable version (8.1)",
+    "issueType": "IncorrectValue",
+    "similarityID": "f7979369e7b38df23b43154cb9eaf1455b8fe9cd9435dd14e18b589fa2623238",
+    "search_line": 26
   }
 ]

@@ -1,20 +1,47 @@
 [
-	{
-		"queryName": "Apk Add Using Local Cache Path",
-		"severity": "INFO",
-		"line": 2,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Apk Add Using Local Cache Path",
-		"severity": "INFO",
-		"line": 2,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Apk Add Using Local Cache Path",
-		"severity": "INFO",
-		"line": 2,
-		"fileName": "positive3.dockerfile"
-	}
+  {
+    "queryName": "Apk Add Using Local Cache Path",
+    "severity": "INFO",
+    "line": 2,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{gliderlabs/alpine:3.3}}.{{RUN apk add --update-cache python}}",
+    "searchValue": "",
+    "expectedValue": "'RUN' should not contain 'apk add' command without '--no-cache' switch",
+    "actualValue": "'RUN' contains 'apk add' command without '--no-cache' switch",
+    "issueType": "IncorrectValue",
+    "similarityID": "692829dfed64947729f95c7cf35de86230e5f363d343a3e15c8ae663e6917f4b",
+    "search_line": -1
+  },
+  {
+    "queryName": "Apk Add Using Local Cache Path",
+    "severity": "INFO",
+    "line": 2,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{gliderlabs/alpine:3.3}}.{{RUN apk add --update-cache python}}",
+    "searchValue": "",
+    "expectedValue": "'RUN' should not contain 'apk add' command without '--no-cache' switch",
+    "actualValue": "'RUN' contains 'apk add' command without '--no-cache' switch",
+    "issueType": "IncorrectValue",
+    "similarityID": "f872f5a089d6884f57e9305b5ce8b42055dac9ad71eef7bd7d4ee6485cd59543",
+    "search_line": -1
+  },
+  {
+    "queryName": "Apk Add Using Local Cache Path",
+    "severity": "INFO",
+    "line": 2,
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{gliderlabs/alpine:3.3}}.{{run apk add --update-cache python}}",
+    "searchValue": "",
+    "expectedValue": "'RUN' should not contain 'apk add' command without '--no-cache' switch",
+    "actualValue": "'RUN' contains 'apk add' command without '--no-cache' switch",
+    "issueType": "IncorrectValue",
+    "similarityID": "d9dd5dc891333b5a55593bd76caa4a0133d038dddd18be35bf82a201ac3d8697",
+    "search_line": -1
+  }
 ]

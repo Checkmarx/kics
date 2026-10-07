@@ -2,11 +2,31 @@
   {
     "queryName": "Missing App Armor Config",
     "severity": "MEDIUM",
-    "line": 4
+    "line": 4,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example1",
+    "searchKey": "kubernetes_pod[example1].metadata.annotations",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[example1].metadata.annotations should contain AppArmor profile config: 'container.apparmor.security.beta.kubernetes.io'",
+    "actualValue": "kubernetes_pod[example1].metadata.annotations doesn't contain AppArmor profile config: 'container.apparmor.security.beta.kubernetes.io'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c0c121edfb2016fefd5773c16d37cb6090025b615abd618669481905367f36ae",
+    "search_line": -1
   },
   {
     "queryName": "Missing App Armor Config",
     "severity": "MEDIUM",
-    "line": 58
+    "line": 58,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example2",
+    "searchKey": "kubernetes_pod[example2].metadata",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[example2].metadata should include annotations for AppArmor profile config",
+    "actualValue": "kubernetes_pod[example2].metadata doesn't contain AppArmor profile config in annotations",
+    "issueType": "MissingAttribute",
+    "similarityID": "90a0f73beac9b9fe3bbf7079dd3d1d3c7e8c49b1eb2afe56df60958e744fa2c9",
+    "search_line": -1
   }
 ]

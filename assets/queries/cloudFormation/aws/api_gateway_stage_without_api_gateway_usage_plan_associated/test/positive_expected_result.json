@@ -1,38 +1,92 @@
 [
   {
+    "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 4,
     "fileName": "positive1.yaml",
-    "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated"
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod should have UsagePlan defined",
+    "actualValue": "Resources.Prod doesn't have UsagePlan defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "16399bc3e4d59cc8b5303be83bcf3080fac7566012fa5a1f40e47219c68bc3c3",
+    "search_line": 4
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod1",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod1 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the Prod1 resource",
+    "actualValue": "Resources.Prod1 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the Prod1 resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "306001988694c536f6a8b9c47786a6280d33c2c8eb3f12173a065617bff3a8b3",
+    "search_line": 4
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod2",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod2 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the Prod2 resource",
+    "actualValue": "Resources.Prod2 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the Prod2 resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "d85734bbda9214a852e950c023a262181a15bdc73a4fb225a772fb2b1d76eb0c",
+    "search_line": 4
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod should have UsagePlan defined",
+    "actualValue": "Resources.Prod doesn't have UsagePlan defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "91c4523996eb5dfc788a400776c8727307bcc5b0ea5f23991a5c0f663f5ef8a4",
+    "search_line": 5
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod1",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod1 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the Prod1 resource",
+    "actualValue": "Resources.Prod1 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the Prod1 resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "5b57591f7101490d29e1b37019c794581a53f194b0a463cd193f1eb8f0ca8afe",
+    "search_line": 5
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod2",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod2 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the Prod2 resource",
+    "actualValue": "Resources.Prod2 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the Prod2 resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "dcab5ecc21ae9821adb441df1e6116aac1ca191dbad5b4476e82f20eac61e95f",
+    "search_line": 5
   }
 ]

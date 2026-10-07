@@ -3,36 +3,90 @@
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_elasticache_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "f5185ba36fcea0fa9be4e90d9ea969df518b9a0482932082d23c09fa85baf3b6",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_elasticache_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "a02c56cb293db7c5d151c541bd87e944bbbe2b7f5cb8945fa88ae91df57c00a4",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 33,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_elasticache_cluster[positive3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "b5ac31f1067e40b4179a9f36163981b6bf3f58537628d84b1025b1ee44ddb8ea",
+    "search_line": 33
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 33,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_elasticache_cluster[positive4]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "29ce55a6ac55b7a412f48fa91f7a2a48ce6eab9ac0070a5bc0fff5dc84271395",
+    "search_line": 33
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 13,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_elasticache_cluster[positive5]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "05b6b63827b91b9e655bfbe478c4ad93d50d8e91cc312038d949275c6b498a8a",
+    "search_line": 13
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 13,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_elasticache_cluster[positive6]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "08598d5c4e9bf11eedfc14e2f497348a580924174f7305b5023c731433d38536",
+    "search_line": 13
   }
 ]

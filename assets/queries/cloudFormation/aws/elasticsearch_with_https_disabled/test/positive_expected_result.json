@@ -3,24 +3,60 @@
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "OpenSearchDomain",
+    "searchKey": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS",
+    "searchValue": "",
+    "expectedValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be set to 'true'",
+    "actualValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "bbf2cb8312f4d48653d0445725c6d2e40a072c6899442cc238fda6ed5e9231b8",
+    "search_line": -1
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
     "line": 24,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "my-elasticsearch-domain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is not set",
+    "issueType": "MissingAttribute",
+    "similarityID": "b850cb96e5e402030eb76cb6daedf2fd6962993055dff77407cbf92484b2dad8",
+    "search_line": -1
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "my-elasticsearch-domain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is not set",
+    "issueType": "MissingAttribute",
+    "similarityID": "2dde1e15555b405dbf6465cf5bd9e29cbccbf71b25f277936b80ce2c9a40eebf",
+    "search_line": -1
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "OpenSearchDomain",
+    "searchKey": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS",
+    "searchValue": "",
+    "expectedValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be set to 'true'",
+    "actualValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "902085ca73cdc744053e67273333577ead73c2d85308506587f019538f86c437",
+    "search_line": -1
   }
 ]

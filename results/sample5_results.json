@@ -1,0 +1,59 @@
+{
+	"kics_version": "development",
+	"files_scanned": 1,
+	"lines_scanned": 27,
+	"files_parsed": 1,
+	"lines_parsed": 27,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 1,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 0,
+		"INFO": 0,
+		"LOW": 1,
+		"MEDIUM": 0,
+		"TRACE": 0
+	},
+	"total_counter": 1,
+	"total_bom_resources": 0,
+	"start": "2026-08-05T17:55:51.927371022+01:00",
+	"end": "2026-08-05T17:55:53.572167321+01:00",
+	"paths": [
+		"samples_to_test/sample5.bicep"
+	],
+	"queries": [
+		{
+			"query_name": "Website Azure Active Directory Disabled",
+			"query_id": "e9c133e5-c2dd-4b7b-8fff-40f2de367b56",
+			"query_url": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/2019-08-01/sites?tabs=json#ManagedServiceIdentity",
+			"severity": "LOW",
+			"platform": "AzureResourceManager",
+			"cwe": "287",
+			"risk_score": "2.9",
+			"cloud_provider": "AZURE",
+			"category": "Access Control",
+			"experimental": false,
+			"description": "WebApp should have Azure Active Directory enabled with 'identity.type' set to 'SystemAssigned' or 'userAssignedIdentities' set to 'true'",
+			"description_id": "f50ec4cb",
+			"files": [
+				{
+					"file_name": "samples_to_test/sample5.bicep",
+					"similarity_id": "d44e7b738ad7c33cda1258672f5f0a7ae89fb67570d53b0d279c0e10141ef923",
+					"line": 17,
+					"resource_type": "Microsoft.Web/sites",
+					"resource_name": "[parameters('webAppName')]",
+					"issue_type": "IncorrectValue",
+					"search_key": "resources.name={{[parameters('webAppName')]}}.identity",
+					"search_line": 17,
+					"search_value": "",
+					"expected_value": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+					"actual_value": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'"
+				}
+			]
+		}
+	]
+}

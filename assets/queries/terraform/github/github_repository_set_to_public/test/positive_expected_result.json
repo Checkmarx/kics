@@ -2,16 +2,46 @@
   {
     "queryName": "GitHub Repository Set To Public",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "github_repository",
+    "resourceName": "example",
+    "searchKey": "github_repository[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'private' or Attribute 'visibility' should be defined and not null",
+    "actualValue": "Attribute 'private' and Attribute 'visibility' are undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "d61b5cf48ae2f2e855f412d64d349a1aedaa36c107eb22c06119911a8193502c",
+    "search_line": -1
   },
   {
     "queryName": "GitHub Repository Set To Public",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 15,
+    "fileName": "positive.tf",
+    "resourceType": "github_repository",
+    "resourceName": "example",
+    "searchKey": "github_repository[positive2].private",
+    "searchValue": "",
+    "expectedValue": "Attribute 'private' should be true",
+    "actualValue": "Attribute 'private' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "924778f64fed8c19417b247c029f7853f297f063fd4497b730ab60c19fafdf8e",
+    "search_line": -1
   },
   {
     "queryName": "GitHub Repository Set To Public",
     "severity": "MEDIUM",
-    "line": 28
+    "line": 28,
+    "fileName": "positive.tf",
+    "resourceType": "github_repository",
+    "resourceName": "example",
+    "searchKey": "github_repository[positive3].visibility",
+    "searchValue": "",
+    "expectedValue": "Attribute 'visibility' should be 'private'",
+    "actualValue": "Attribute 'visibility' is 'public'",
+    "issueType": "IncorrectValue",
+    "similarityID": "94006e06e0fe7f1018adb80726238071dcc3fa39d7f68777e92374cb1a612d4d",
+    "search_line": -1
   }
 ]

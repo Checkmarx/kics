@@ -2,49 +2,121 @@
   {
     "queryName": "Website Not Forcing HTTPS",
     "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6a0de17efd4b187a0b8d5bb42a21f0a415cc75f7c19b0e97370ba84678f7e540",
+    "search_line": 5
+  },
+  {
+    "queryName": "Website Not Forcing HTTPS",
+    "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "eb986030ef010a28c9f733765ce8316da4487936ffadf70d56df63dd0c2f766b",
+    "search_line": 15
+  },
+  {
+    "queryName": "Website Not Forcing HTTPS",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties.httpsOnly",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "0592b62d8f508ab67cf563a4c8fc1a62552e3e50031e33a12143a6023186d4e2",
+    "search_line": 7
   },
   {
     "queryName": "Website Not Forcing HTTPS",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties.httpsOnly",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "d60f877c98cabde6301c2122a69afbc3d234bd8b5523cc30a4479aced1cffcaa",
+    "search_line": 17
+  },
+  {
+    "queryName": "Website Not Forcing HTTPS",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c51736661d296721187ced005f67d61b3a2327a0fa29cda1d337acaaa2ba0e92",
+    "search_line": 5
   },
   {
     "queryName": "Website Not Forcing HTTPS",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "properties.template.resources.name={{webSite}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e70b2445310b195475b5f2a87b0a578ebc364ad629fdffca11ee2cec57294bed",
+    "search_line": 17
+  },
+  {
+    "queryName": "Website Not Forcing HTTPS",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties.httpsOnly",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "f65f30160ead619397a3c16b66c4d855544ad2b01379cb9d5be3fa963b64f5fc",
+    "search_line": 7
   },
   {
     "queryName": "Website Not Forcing HTTPS",
     "severity": "MEDIUM",
     "line": 19,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "Website Not Forcing HTTPS",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Website Not Forcing HTTPS",
-    "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Website Not Forcing HTTPS",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "Website Not Forcing HTTPS",
-    "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive4.bicep"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "properties.template.resources.name={{webSite}}.properties.httpsOnly",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "8ccb7d2d6da5b3d4c44a6a51d70278bf4070187b05340049f902fbc2a1a27bb6",
+    "search_line": 19
   }
 ]

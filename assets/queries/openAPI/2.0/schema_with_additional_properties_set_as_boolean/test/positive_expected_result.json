@@ -3,36 +3,90 @@
     "queryName": "Schema with 'additionalProperties' set as Boolean",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set as an object value",
+    "actualValue": "'additionalProperties' is set as a boolean value",
+    "issueType": "IncorrectValue",
+    "similarityID": "47d1cb46bdef7f9151959785a21e2486e7c5ec7dcbc3ea9d6a295bfd9b7cc2b7",
+    "search_line": -1
   },
   {
     "queryName": "Schema with 'additionalProperties' set as Boolean",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set as an object value",
+    "actualValue": "'additionalProperties' is set as a boolean value",
+    "issueType": "IncorrectValue",
+    "similarityID": "79314d17ab6df809b6274a9cdf6987806430c9d8b558bbc03728ad7d5e20679f",
+    "search_line": -1
   },
   {
     "queryName": "Schema with 'additionalProperties' set as Boolean",
     "severity": "INFO",
     "line": 29,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties.$ref=#/definitions/User",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set as an object value",
+    "actualValue": "'additionalProperties' is set as a boolean value",
+    "issueType": "IncorrectValue",
+    "similarityID": "54018ffce30e7cd40d0135f88c55ab611b04aa22b21b5f0e17a5d8f445cd67b0",
+    "search_line": 0
   },
   {
     "queryName": "Schema with 'additionalProperties' set as Boolean",
     "severity": "INFO",
     "line": 51,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.User.additionalProperties",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set as an object value",
+    "actualValue": "'additionalProperties' is set as a boolean value",
+    "issueType": "IncorrectValue",
+    "similarityID": "e9a7e407ec14743c973a8936ebda6f588b2984ca838112b2d7f09cf850e71340",
+    "search_line": 0
   },
   {
     "queryName": "Schema with 'additionalProperties' set as Boolean",
     "severity": "INFO",
     "line": 23,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties.$ref=#/definitions/User",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set as an object value",
+    "actualValue": "'additionalProperties' is set as a boolean value",
+    "issueType": "IncorrectValue",
+    "similarityID": "41a83e2d5b4cf0dc380f8a4d7d8966fe76887e04e26a8f36d09f35567723ff45",
+    "search_line": 0
   },
   {
     "queryName": "Schema with 'additionalProperties' set as Boolean",
     "severity": "INFO",
     "line": 34,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.User.additionalProperties",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set as an object value",
+    "actualValue": "'additionalProperties' is set as a boolean value",
+    "issueType": "IncorrectValue",
+    "similarityID": "6056c091b5bdc167fc91749c72bee0c71b71a80f56f7b6f303f716830533bf1c",
+    "search_line": 0
   }
 ]

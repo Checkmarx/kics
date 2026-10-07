@@ -2,6 +2,16 @@
   {
     "queryName": "S3 Bucket With All Permissions",
     "severity": "CRITICAL",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.s3_bucket",
+    "resourceName": "Create s3 bucket",
+    "searchKey": "name={{Create s3 bucket}}.{{amazon.aws.s3_bucket}}.policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement' should not allow all actions to all principal",
+    "actualValue": "'policy.Statement' allows all actions to all principal",
+    "issueType": "IncorrectValue",
+    "similarityID": "f2c568c77e5c179d39f65daf7f4f5334c72a4de0be8ceeea2f8345c18e7ca065",
+    "search_line": 5
   }
 ]

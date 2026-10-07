@@ -3,24 +3,60 @@
     "queryName": "CloudTrail SNS Topic Name Undefined",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail3",
+    "searchKey": "Resources.myTrail3.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail3.Properties.SnsTopicName' should be set",
+    "actualValue": "'Resources.myTrail3.Properties.SnsTopicName' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "24da60e19b14247b32472ef98935749ff1d264ede98af7d87b47e1fe5de8bb26",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
     "severity": "LOW",
     "line": 22,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail4",
+    "searchKey": "Resources.myTrail4.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail4.Properties.SnsTopicName' should be set",
+    "actualValue": "'Resources.myTrail4.Properties.SnsTopicName' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2b56ba9209bdc63569afb5ad3c9c7d82a21ce108b73c01f352c226f9726f0712",
+    "search_line": -1
   },
   {
+    "queryName": "CloudTrail SNS Topic Name Undefined",
+    "severity": "LOW",
     "line": 9,
     "fileName": "positive2.json",
-    "queryName": "CloudTrail SNS Topic Name Undefined",
-    "severity": "LOW"
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail5",
+    "searchKey": "Resources.myTrail5.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail5.Properties.SnsTopicName' should be set",
+    "actualValue": "'Resources.myTrail5.Properties.SnsTopicName' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5f5e08c0ebd642d38c4562f6b0acd480046a1a24a68b41a8a8db85518cf4e686",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
     "severity": "LOW",
     "line": 23,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail6",
+    "searchKey": "Resources.myTrail6.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail6.Properties.SnsTopicName' should be set",
+    "actualValue": "'Resources.myTrail6.Properties.SnsTopicName' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4c0a28a5ca8688cab5da72c0a6ee3477fe1adc7fe2ff48eef5609244d94f36a2",
+    "search_line": -1
   }
 ]

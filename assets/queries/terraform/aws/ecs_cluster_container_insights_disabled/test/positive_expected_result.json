@@ -2,6 +2,16 @@
   {
     "queryName": "ECS Cluster with Container Insights Disabled",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_ecs_cluster",
+    "resourceName": "white-hart",
+    "searchKey": "aws_ecs_cluster[foo]",
+    "searchValue": "",
+    "expectedValue": "'aws_ecs_cluster[foo].setting.name' should be set to 'containerInsights' and 'aws_ecs_cluster[foo].setting.value' should be set to 'enabled'",
+    "actualValue": "'aws_ecs_cluster[foo].setting.name' is not set to 'containerInsights' and/or 'aws_ecs_cluster[foo].setting.value' is not set to 'enabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1c969081093b3aac33b217a9c778d2ee8a5fdde6249647c04a59fdb1d22b6a32",
+    "search_line": -1
   }
 ]

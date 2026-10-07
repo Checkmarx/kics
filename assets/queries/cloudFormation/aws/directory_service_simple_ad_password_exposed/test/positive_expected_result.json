@@ -1,38 +1,92 @@
 [
   {
-    "fileName": "positive3.yaml",
-    "queryName": "Directory Service Simple AD Password Exposed",
-    "severity": "HIGH",
-    "line": 5
-  },
-  {
-    "severity": "HIGH",
-    "line": 9,
-    "fileName": "positive2.yaml",
-    "queryName": "Directory Service Simple AD Password Exposed"
-  },
-  {
     "queryName": "Directory Service Simple AD Password Exposed",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::DirectoryService::SimpleAD",
+    "resourceName": "String",
+    "searchKey": "Resources.NewAmpApp4.Properties.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp4.Properties.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp4.Properties.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "3ff87ea6f39a95e27d777bfbbfb9db3a9e4a2e2598fd85800bc3810c0f2edefc",
+    "search_line": -1
   },
   {
+    "queryName": "Directory Service Simple AD Password Exposed",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::DirectoryService::SimpleAD",
+    "resourceName": "String",
+    "searchKey": "Resources.NewAmpApp5.Properties.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp5.Properties.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp5.Properties.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "b60cc505b4b0322cca37603bd12318b8530c7b53c00c3aec8e16fb7decebc65d",
+    "search_line": -1
+  },
+  {
+    "queryName": "Directory Service Simple AD Password Exposed",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive3.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentMasterPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentMasterPassword.Default should be defined",
+    "actualValue": "Parameters.ParentMasterPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "76dff54f5c6bb181e68ba556b29adf6981f284825586f94d4af2111a7d2e7676",
+    "search_line": -1
+  },
+  {
+    "queryName": "Directory Service Simple AD Password Exposed",
     "severity": "HIGH",
     "line": 20,
     "fileName": "positive4.json",
-    "queryName": "Directory Service Simple AD Password Exposed"
+    "resourceType": "AWS::DirectoryService::SimpleAD",
+    "resourceName": "String",
+    "searchKey": "Resources.NewAmpApp4.Properties.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp4.Properties.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp4.Properties.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "56f8682d933662e78e3dc03424c5d78af9b161f8301d993a22dd9cd28d0cfbdf",
+    "search_line": -1
   },
   {
-    "fileName": "positive5.json",
     "queryName": "Directory Service Simple AD Password Exposed",
     "severity": "HIGH",
-    "line": 12
+    "line": 12,
+    "fileName": "positive5.json",
+    "resourceType": "AWS::DirectoryService::SimpleAD",
+    "resourceName": "String",
+    "searchKey": "Resources.NewAmpApp5.Properties.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp5.Properties.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp5.Properties.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "3135fcbdb15ff557be91c30425a2741a9e003866b514d77ab9ef46b3eb499d6f",
+    "search_line": -1
   },
   {
     "queryName": "Directory Service Simple AD Password Exposed",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentMasterPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentMasterPassword.Default should be defined",
+    "actualValue": "Parameters.ParentMasterPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "97afc49d5a2273bc748385edab58aaccb978819d9aee475fe87aed47ac6b4e40",
+    "search_line": -1
   }
 ]

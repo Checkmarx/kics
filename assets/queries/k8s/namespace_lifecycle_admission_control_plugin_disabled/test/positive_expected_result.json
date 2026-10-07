@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Namespace Lifecycle Admission Control Plugin Disabled",
-		"severity": "LOW",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Namespace Lifecycle Admission Control Plugin Disabled",
-		"severity": "LOW",
-		"line": 11,
-        "fileName": "positive2.yaml"
-	}	
+  {
+    "queryName": "Namespace Lifecycle Admission Control Plugin Disabled",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--disable-admission-plugins flag should not contain 'NamespaceLifecycle' plugin",
+    "actualValue": "--disable-admission-plugins flag contains 'NamespaceLifecycle' plugin",
+    "issueType": "IncorrectValue",
+    "similarityID": "9b0490bd6ff77df2a2e7fe45a39debb6da228e414fadf64ca2dfe856489318be",
+    "search_line": 11
+  },
+  {
+    "queryName": "Namespace Lifecycle Admission Control Plugin Disabled",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--disable-admission-plugins flag should not contain 'NamespaceLifecycle' plugin",
+    "actualValue": "--disable-admission-plugins flag contains 'NamespaceLifecycle' plugin",
+    "issueType": "IncorrectValue",
+    "similarityID": "05556d767913bd81ec216206bcbcebe8a7f8a7fd7a1aa77ae2da4da5e96c170e",
+    "search_line": 11
+  }
 ]

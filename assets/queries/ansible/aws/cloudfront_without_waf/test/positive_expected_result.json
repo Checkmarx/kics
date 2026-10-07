@@ -2,6 +2,16 @@
   {
     "queryName": "CloudFront Without WAF",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.cloudfront_distribution",
+    "resourceName": "create a basic distribution with defaults and tags",
+    "searchKey": "name={{create a basic distribution with defaults and tags}}.{{community.aws.cloudfront_distribution}}",
+    "searchValue": "",
+    "expectedValue": "cloudfront_distribution.web_acl_id should be defined",
+    "actualValue": "cloudfront_distribution.web_acl_id is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6165853314a4dc9452476e590cde691ba175d16a4b1d0941f9d077c16e45d06f",
+    "search_line": -1
   }
 ]

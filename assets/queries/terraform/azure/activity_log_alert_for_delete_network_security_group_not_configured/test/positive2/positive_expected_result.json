@@ -3,42 +3,105 @@
     "queryName": "Beta - Activity Log Alert For Delete Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_1].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_1]' resource monitors 'delete network security group' events but sets 1 filter(s): caller",
+    "issueType": "IncorrectValue",
+    "similarityID": "64b244924f2a58c4902d8d75988ed3ac617585ca1ab0aaa799c33db4bc682b9f",
+    "search_line": 9
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_2].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_2]' resource monitors 'delete network security group' events but sets 1 filter(s): level",
+    "issueType": "IncorrectValue",
+    "similarityID": "4ffc640ebff515a578e9ee0264b48bba725ea7ab46b7fe97f0f7054e64f8d959",
+    "search_line": 28
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_3].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_3]' resource monitors 'delete network security group' events but sets 1 filter(s): levels",
+    "issueType": "IncorrectValue",
+    "similarityID": "388432cd48dac600dc22e51754c13af7ba40a29a69077e78abf5d350e6bf4ad5",
+    "search_line": 47
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 66,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_4].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_4]' resource monitors 'delete network security group' events but sets 1 filter(s): status",
+    "issueType": "IncorrectValue",
+    "similarityID": "97417870e322548628d1738d9091758230b4c096442ce618f025349d78e72b96",
+    "search_line": 66
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_5].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_5]' resource monitors 'delete network security group' events but sets 1 filter(s): statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "3d2c6d31662ee2e2844a4ae8c1d4f598fe251df7e4b218a3ad7bd03ea65018e9",
+    "search_line": 8
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_6].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_6]' resource monitors 'delete network security group' events but sets 1 filter(s): sub_status",
+    "issueType": "IncorrectValue",
+    "similarityID": "fbee015a1c0f667681b5c878939aee6a97f97ff5d765e2e4ba461e942f697d90",
+    "search_line": 27
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 46,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_7].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_7]' resource monitors 'delete network security group' events but sets 1 filter(s): sub_statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "b7fab856625bfb1e54fdfd1ff114564fb4d837bbe389f56b7f401585f63a3aaf",
+    "search_line": 46
   }
 ]

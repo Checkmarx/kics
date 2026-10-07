@@ -3,48 +3,120 @@
     "queryName": "Security Group Not Used",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[allow_tls]",
+    "searchValue": "",
+    "expectedValue": "'aws_security_group[allow_tls]' should be used",
+    "actualValue": "'aws_security_group[allow_tls]' is not used",
+    "issueType": "IncorrectValue",
+    "similarityID": "81168bb1a9d1c26ffa9d8b0e93648dd001c6262b380fb661f05821e5e7d239b8",
+    "search_line": -1
   },
   {
     "queryName": "Security Group Not Used",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "unused-sg",
+    "searchKey": "aws_security_group[unused-sg]",
+    "searchValue": "",
+    "expectedValue": "'aws_security_group[unused-sg]' should be used",
+    "actualValue": "'aws_security_group[unused-sg]' is not used",
+    "issueType": "IncorrectValue",
+    "similarityID": "e348068d6878c5e78f3a30606a3101a4cd5f5dbbdf16a67f26efe48605482a87",
+    "search_line": -1
   },
   {
     "queryName": "Security Group Not Used",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "unused-sg",
+    "searchKey": "aws_security_group[unused_sg]",
+    "searchValue": "",
+    "expectedValue": "'aws_security_group[unused_sg]' should be used",
+    "actualValue": "'aws_security_group[unused_sg]' is not used",
+    "issueType": "IncorrectValue",
+    "similarityID": "25ca04b9b6ff0637b9412159c71bdfa456acc437b0c9f8ec3c8d46badc7715f6",
+    "search_line": -1
   },
   {
     "queryName": "Security Group Not Used",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "unused-sg",
+    "searchKey": "aws_security_group[unused_sg]",
+    "searchValue": "",
+    "expectedValue": "'aws_security_group[unused_sg]' should be used",
+    "actualValue": "'aws_security_group[unused_sg]' is not used",
+    "issueType": "IncorrectValue",
+    "similarityID": "94683f50317f67355fb3f69c5be85e4e3be2bb857c29f17cfe03ed8be782d4d1",
+    "search_line": -1
   },
   {
     "queryName": "Security Group Not Used",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "example",
+    "searchKey": "aws_security_group[example]",
+    "searchValue": "",
+    "expectedValue": "'aws_security_group[example]' should be used",
+    "actualValue": "'aws_security_group[example]' is not used",
+    "issueType": "IncorrectValue",
+    "similarityID": "1d376de713d1b2c112d6dafe11ab9ad9261bd1e5c05f0c844a21878df377c169",
+    "search_line": -1
   },
   {
     "queryName": "Security Group Not Used",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "default_name",
+    "searchKey": "aws_security_group[default_name]",
+    "searchValue": "",
+    "expectedValue": "'aws_security_group[default_name]' should be used",
+    "actualValue": "'aws_security_group[default_name]' is not used",
+    "issueType": "IncorrectValue",
+    "similarityID": "37cd8cdd71d846cf251a68b83a619b574fa0b13564bdb3001e6f7bac3fcdd5c2",
+    "search_line": -1
   },
   {
     "queryName": "Security Group Not Used",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive7.tf"
+    "fileName": "positive7.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "unused-sg",
+    "searchKey": "aws_security_group[unused_sg]",
+    "searchValue": "",
+    "expectedValue": "'aws_security_group[unused_sg]' should be used",
+    "actualValue": "'aws_security_group[unused_sg]' is not used",
+    "issueType": "IncorrectValue",
+    "similarityID": "01a7238bf31d2e9f8665d91c556bf9678cccda16f7bf2faae58fe303e88a08ef",
+    "search_line": -1
   },
   {
     "queryName": "Security Group Not Used",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive8.tf"
+    "fileName": "positive8.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "default_name",
+    "searchKey": "aws_security_group[default_name]",
+    "searchValue": "",
+    "expectedValue": "'aws_security_group[default_name]' should be used",
+    "actualValue": "'aws_security_group[default_name]' is not used",
+    "issueType": "IncorrectValue",
+    "similarityID": "1e979882e388fb1b811ee73e3cb87883414bced891014d0eb659a400cb85aa55",
+    "search_line": -1
   }
 ]

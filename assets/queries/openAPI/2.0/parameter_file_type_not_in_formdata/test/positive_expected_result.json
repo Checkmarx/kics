@@ -3,24 +3,60 @@
     "queryName": "Parameter File Type Not In 'formData'",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Parameter File Type Not In 'formData'",
-    "severity": "INFO",
-    "line": 10,
-    "filename": "positive2.yaml"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=limit2",
+    "searchValue": "",
+    "expectedValue": "'schema' should be set",
+    "actualValue": "'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ae8c4296a939c3f594372431ce700e7f5720e173c26ae697a29d4ecb4ce56a75",
+    "search_line": -1
   },
   {
     "queryName": "Parameter File Type Not In 'formData'",
     "severity": "INFO",
     "line": 31,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.name=limit",
+    "searchValue": "",
+    "expectedValue": "'schema' should be set",
+    "actualValue": "'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "53620cfe0540ece2241321bb84547e323d8ea092d5999cd81eb2db998fe3f494",
+    "search_line": -1
+  },
+  {
+    "queryName": "Parameter File Type Not In 'formData'",
+    "severity": "INFO",
+    "line": 10,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=limit2",
+    "searchValue": "",
+    "expectedValue": "'schema' should be set",
+    "actualValue": "'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f3ddfe3e18baf362da99ebf28eb22ad7726cc001a520b832971c21fc67e89540",
+    "search_line": -1
   },
   {
     "queryName": "Parameter File Type Not In 'formData'",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.name=limit",
+    "searchValue": "",
+    "expectedValue": "'schema' should be set",
+    "actualValue": "'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fef16b52361a3990fe473b4ff35a3266f51d984ba251f7955998644edf52ce5e",
+    "search_line": -1
   }
 ]

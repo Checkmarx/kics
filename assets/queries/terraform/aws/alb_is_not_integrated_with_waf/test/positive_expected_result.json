@@ -3,12 +3,30 @@
     "queryName": "ALB Is Not Integrated With WAF",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_alb",
+    "resourceName": "foo",
+    "searchKey": "aws_alb[foo]",
+    "searchValue": "",
+    "expectedValue": "'aws_alb[foo]' should not be 'internal' and has a 'aws_wafregional_web_acl_association' associated",
+    "actualValue": "'aws_alb[foo]' is not 'internal' and does not have a 'aws_wafregional_web_acl_association' associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "b33d55a182d1ab6d16c419fe459e09f8560f5947acacd19b87f940c012055cbd",
+    "search_line": -1
   },
   {
     "queryName": "ALB Is Not Integrated With WAF",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_lb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_lb[alb]",
+    "searchValue": "",
+    "expectedValue": "'aws_lb[alb]' should not be 'internal' and has a 'aws_wafregional_web_acl_association' associated",
+    "actualValue": "'aws_lb[alb]' is not 'internal' and does not have a 'aws_wafregional_web_acl_association' associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "2271993c6a2a87b5c95e9016952071bc2c07171ad77b9c1f4b503d4edac1ef0b",
+    "search_line": -1
   }
 ]

@@ -2,16 +2,46 @@
   {
     "queryName": "IP Aliasing Disabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attributes 'ip_allocation_policy' and 'networking_mode' should be defined",
+    "actualValue": "Attributes 'ip_allocation_policy' and 'networking_mode' are undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "eda024c6109958733760a5badf118983ce179dcaf22bdc6d00cc6321bc2c7ed1",
+    "search_line": -1
   },
   {
     "queryName": "IP Aliasing Disabled",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'ip_allocation_policy' should be defined",
+    "actualValue": "Attribute 'ip_allocation_policy' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5d93149d456b3b9b942e93c2504cd46f67f2206ed1aa457c2a0b69e6bf4bd3b9",
+    "search_line": -1
   },
   {
     "queryName": "IP Aliasing Disabled",
     "severity": "MEDIUM",
-    "line": 26
+    "line": 26,
+    "fileName": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive3]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'networking_mode' should be VPC_NATIVE",
+    "actualValue": "Attribute 'networking_mode' is ROUTES",
+    "issueType": "IncorrectValue",
+    "similarityID": "803089d69f97701ad280287f85a9f102798aba6b3494eed6e3e7bdfdeda70a75",
+    "search_line": -1
   }
 ]

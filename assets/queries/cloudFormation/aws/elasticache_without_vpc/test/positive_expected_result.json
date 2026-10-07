@@ -3,12 +3,30 @@
     "queryName": "ElastiCache Without VPC",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElastiCache::CacheCluster",
+    "resourceName": "ElasticacheCluster",
+    "searchKey": "Resources.ElasticacheCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticacheCluster.Properties.CacheSubnetGroupName should be defined and not null",
+    "actualValue": "Resources.ElasticacheCluster.Properties.CacheSubnetGroupName is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "090112d4e7ee690638d4d257825628d2aa0d102e473aba83a9267e056c6f3517",
+    "search_line": 4
   },
   {
     "queryName": "ElastiCache Without VPC",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ElastiCache::CacheCluster",
+    "resourceName": "ElasticacheCluster",
+    "searchKey": "Resources.ElasticacheCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticacheCluster.Properties.CacheSubnetGroupName should be defined and not null",
+    "actualValue": "Resources.ElasticacheCluster.Properties.CacheSubnetGroupName is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "a1e3227d59979966544e1b91bea05de04cde08febc80926b98bab41397d0b1f3",
+    "search_line": 5
   }
 ]

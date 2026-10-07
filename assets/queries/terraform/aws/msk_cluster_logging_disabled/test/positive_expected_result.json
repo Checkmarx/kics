@@ -2,16 +2,46 @@
   {
     "queryName": "MSK Cluster Logging Disabled",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "aws_msk_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_msk_cluster[positive1].logging_info.broker_logs.cloudwatch_logs.enabled",
+    "searchValue": "",
+    "expectedValue": "'rule.logging_info.broker_logs.enabled' should be 'true' in every entry",
+    "actualValue": "msk_cluster[positive1].logging_info.broker_logs.cloudwatch_logs.enabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "eaa9ef12ede4868f337a87b330ba2c84390c3d505b56cccd6afeae27a3cacbaf",
+    "search_line": -1
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "aws_msk_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_msk_cluster[positive1].logging_info.broker_logs.firehose",
+    "searchValue": "",
+    "expectedValue": "'rule.logging_info.broker_logs.enabled' should be 'true' in every entry",
+    "actualValue": "msk_cluster[positive1].logging_info.broker_logs.firehose.enabled is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "f55201ea9486c9615623a3619e9054ba784da846abaeccd387380a805d12fc4c",
+    "search_line": -1
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 15,
+    "fileName": "positive.tf",
+    "resourceType": "aws_msk_cluster",
+    "resourceName": "positive2",
+    "searchKey": "aws_msk_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "'rule.logging_info' should exist",
+    "actualValue": "'rule.logging_info' does not exist",
+    "issueType": "MissingAttribute",
+    "similarityID": "29f1906cd31f80338ce31b8ac4aa0274e8fab03229959ea290a89da27545be29",
+    "search_line": -1
   }
 ]

@@ -3,30 +3,75 @@
     "queryName": "Service With External Load Balancer",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "kubernetes_service",
+    "resourceName": "terraform-example1",
+    "searchKey": "kubernetes_service[example1].metadata.name.annotations",
+    "searchValue": "",
+    "expectedValue": "metadata.annotations using an external Load Balancer provider by cloud provider%!(EXTRA string=example1)",
+    "actualValue": "metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider%!(EXTRA string=example1)",
+    "issueType": "IncorrectValue",
+    "similarityID": "cdefdc35f2f779dfd9624e085e9687424bc4680751fcf8d2c365b32ea0b98f15",
+    "search_line": -1
   },
   {
     "queryName": "Service With External Load Balancer",
     "severity": "MEDIUM",
     "line": 24,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "kubernetes_service",
+    "resourceName": "terraform-example2",
+    "searchKey": "kubernetes_service[example2].metadata.name",
+    "searchValue": "",
+    "expectedValue": "'metadata.annotations' should be set",
+    "actualValue": "'metadata.annotations' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e0296c46103423ec4c7caabfcbf18a42b9eec1322090c3de47ad18fbbff0fa78",
+    "search_line": -1
   },
   {
     "queryName": "Service With External Load Balancer",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "kubernetes_service",
+    "resourceName": "terraform-example2",
+    "searchKey": "kubernetes_service[example2].metadata.name.annotations",
+    "searchValue": "",
+    "expectedValue": "metadata.annotations using an external Load Balancer provider by cloud provider%!(EXTRA string=example2)",
+    "actualValue": "metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider%!(EXTRA string=example2)",
+    "issueType": "IncorrectValue",
+    "similarityID": "904cc78e385255371b7e46a212208f4dcb2ddb2f5b34fbde979fc30a8d2faabd",
+    "search_line": -1
   },
   {
     "queryName": "Service With External Load Balancer",
     "severity": "MEDIUM",
     "line": 25,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "kubernetes_service",
+    "resourceName": "terraform-example3",
+    "searchKey": "kubernetes_service[example3].metadata.name.annotations",
+    "searchValue": "",
+    "expectedValue": "metadata.annotations using an external Load Balancer provider by cloud provider%!(EXTRA string=example3)",
+    "actualValue": "metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider%!(EXTRA string=example3)",
+    "issueType": "IncorrectValue",
+    "similarityID": "3d4678b12cfb230bf1a8b1cfccc6cd38b2bc9f3058f1e0ba2a6964d37a7cde21",
+    "search_line": -1
   },
   {
     "queryName": "Service With External Load Balancer",
     "severity": "MEDIUM",
     "line": 46,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "kubernetes_service",
+    "resourceName": "terraform-example4",
+    "searchKey": "kubernetes_service[example4].metadata.name.annotations",
+    "searchValue": "",
+    "expectedValue": "metadata.annotations using an external Load Balancer provider by cloud provider%!(EXTRA string=example4)",
+    "actualValue": "metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider%!(EXTRA string=example4)",
+    "issueType": "IncorrectValue",
+    "similarityID": "a21de6ac58438c0916ae6d2dbf45f38a1aea3e4948d22cbdc48f9de684f60c9b",
+    "search_line": -1
   }
 ]

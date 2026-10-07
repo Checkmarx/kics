@@ -1,26 +1,62 @@
 [
   {
+    "queryName": "Secretsmanager Secret Without KMS",
     "severity": "MEDIUM",
     "line": 5,
-    "queryName": "Secretsmanager Secret Without KMS",
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "AWS::SecretsManager::Secret",
+    "resourceName": "MySecret",
+    "searchKey": "Resources.MySecret.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySecret.Properties.KmsKeyId' should be defined and not null",
+    "actualValue": "'Resources.MySecret.Properties.KmsKeyId' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "9d4d12a6b5672e88e7cc7e6c5d0f96f07a323a5f96080802692f97f42b178e59",
+    "search_line": 5
   },
   {
+    "queryName": "Secretsmanager Secret Without KMS",
     "severity": "MEDIUM",
     "line": 4,
-    "queryName": "Secretsmanager Secret Without KMS",
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::SecretsManager::Secret",
+    "resourceName": "MySecret",
+    "searchKey": "Resources.MySecret.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySecret.Properties.KmsKeyId' should be defined and not null",
+    "actualValue": "'Resources.MySecret.Properties.KmsKeyId' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "cdba9f5f35d4e45fb338f35b108460500b09dd4a652d03443cb32f99b3304f3d",
+    "search_line": 4
   },
   {
+    "queryName": "Secretsmanager Secret Without KMS",
     "severity": "MEDIUM",
     "line": 8,
-    "queryName": "Secretsmanager Secret Without KMS",
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::SecretsManager::Secret",
+    "resourceName": "MySecretForAppB",
+    "searchKey": "Resources.MySecretB.Properties.KmsKeyId",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySecretB.Properties.KmsKeyId' should be defined and not null",
+    "actualValue": "'Resources.MySecretB.Properties.KmsKeyId' is undefined or null",
+    "issueType": "IncorrectValue",
+    "similarityID": "dbe4de605f120f7aef8c465ba1f1b32b7273b49a15bae80f26af29b4f4bbd7a6",
+    "search_line": 8
   },
   {
+    "queryName": "Secretsmanager Secret Without KMS",
     "severity": "MEDIUM",
     "line": 7,
-    "queryName": "Secretsmanager Secret Without KMS",
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "AWS::SecretsManager::Secret",
+    "resourceName": "MySecretForAppB",
+    "searchKey": "Resources.MySecretB.Properties.KmsKeyId",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySecretB.Properties.KmsKeyId' should be defined and not null",
+    "actualValue": "'Resources.MySecretB.Properties.KmsKeyId' is undefined or null",
+    "issueType": "IncorrectValue",
+    "similarityID": "cfdb76ebbbdba53d46a1c5a30dbd6df23031c3bb59c1e9513c9bee0520ff6ef4",
+    "search_line": 7
   }
 ]

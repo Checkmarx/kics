@@ -3,6 +3,15 @@
     "queryName": "Run Using apt",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive.sh"
+    "fileName": "positive.sh",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from[{{fedora}}].{{buildah run ${c} apt install python3-setuptools -y}}",
+    "searchValue": "",
+    "expectedValue": "RUN instructions should not use the 'apt' program",
+    "actualValue": "RUN instruction is invoking the 'apt' program",
+    "issueType": "IncorrectValue",
+    "similarityID": "679a316442efb4312fedfc9118696c4243b334bf86530dad2fd947394fe61a9c",
+    "search_line": -1
   }
 ]

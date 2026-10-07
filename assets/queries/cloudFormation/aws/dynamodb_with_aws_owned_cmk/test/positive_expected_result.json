@@ -3,42 +3,105 @@
     "queryName": "DynamoDB With Aws Owned CMK",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "dynamodb-kms-0",
+    "searchKey": "Resources.DynamoDBOnDemandTable2.properties;",
+    "searchValue": "",
+    "expectedValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled should be true",
+    "actualValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "4dc914e358a900f65820277abdf8e319d47e8d02f59df55c11f2a893454b0d9d",
+    "search_line": -1
   },
   {
     "queryName": "DynamoDB With Aws Owned CMK",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "dynamodb-kms-3",
+    "searchKey": "Resources.DynamoDBOnDemandTable5.properties;",
+    "searchValue": "",
+    "expectedValue": "Resources.DynamoDBOnDemandTable5.properties.SSESpecification should be set",
+    "actualValue": "Resources.DynamoDBOnDemandTable5.properties.SSESpecification is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d520716336c01df98c465ed633cb2ed41c0a3f26868871cde3ce3279cacf8536",
+    "search_line": -1
   },
   {
     "queryName": "DynamoDB With Aws Owned CMK",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "dynamodb-kms-2",
+    "searchKey": "Resources.DynamoDBOnDemandTable4.properties;",
+    "searchValue": "",
+    "expectedValue": "Resources.DynamoDBOnDemandTable4.properties.SSESpecification.SSEEnabled should be set",
+    "actualValue": "Resources.DynamoDBOnDemandTable4.properties.SSESpecification.SSEEnabled is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "87c57d1fb82da77497645f4d9c6bf6b04887625f2caa9af5a374dc0ddcc54168",
+    "search_line": -1
   },
   {
     "queryName": "DynamoDB With Aws Owned CMK",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "dynamodb-kms-0",
+    "searchKey": "Resources.DynamoDBOnDemandTable2.properties;",
+    "searchValue": "",
+    "expectedValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled should be true",
+    "actualValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "ba0ce772f8e65144828ccee15d5dfbdf7847aa269b279dfb82e29a34506b5ac6",
+    "search_line": -1
   },
   {
     "queryName": "DynamoDB With Aws Owned CMK",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "dynamodb-kms-2",
+    "searchKey": "Resources.DynamoDBOnDemandTable4.properties;",
+    "searchValue": "",
+    "expectedValue": "Resources.DynamoDBOnDemandTable4.properties.SSESpecification.SSEEnabled should be set",
+    "actualValue": "Resources.DynamoDBOnDemandTable4.properties.SSESpecification.SSEEnabled is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8489b972ab734b7ee51a76789e4de2349ee534b4261c34caf72ab0a69ad104ea",
+    "search_line": -1
   },
   {
     "queryName": "DynamoDB With Aws Owned CMK",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "dynamodb-kms-3",
+    "searchKey": "Resources.DynamoDBOnDemandTable5.properties;",
+    "searchValue": "",
+    "expectedValue": "Resources.DynamoDBOnDemandTable5.properties.SSESpecification should be set",
+    "actualValue": "Resources.DynamoDBOnDemandTable5.properties.SSESpecification is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6f4599709c27a98488682bd296ea12e9a8a9ad8a6a5f0b0e5b89d532a35a53d2",
+    "search_line": -1
   },
   {
     "queryName": "DynamoDB With Aws Owned CMK",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "dynamodb-kms-0",
+    "searchKey": "Resources.DynamoDBOnDemandTable2.properties;",
+    "searchValue": "",
+    "expectedValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled should be true",
+    "actualValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "6a80e43902d299677d443ecc439d6743ebd37f95ebb5163f0f4b4d31befc36c6",
+    "search_line": -1
   }
 ]

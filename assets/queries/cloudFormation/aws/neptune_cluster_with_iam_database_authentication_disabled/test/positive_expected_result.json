@@ -3,36 +3,90 @@
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "NeptuneDBCluster",
+    "searchKey": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled should be set to true",
+    "actualValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "72c973ed31a4ae86d8074a0fd904ef745960e76f28ea44871c725c29061342b4",
+    "search_line": -1
   },
   {
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "NeptuneDBCluster2",
+    "searchKey": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled should be set to true",
+    "actualValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a62c7e424d8b89a56086132fb7a5c6bf3229e62e8458de3bc3cc2cb63827cd60",
+    "search_line": -1
   },
   {
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "NeptuneDBCluster",
+    "searchKey": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled should be set to true",
+    "actualValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "ddc4da400a31c7d584002f68095d8c3f4306d0c6b0883da0d1fc7e797f286dc3",
+    "search_line": -1
   },
   {
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "NeptuneDBCluster2",
+    "searchKey": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled should be set to true",
+    "actualValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f207a32ae85eba1f1c4bfb914e58e69831fa239e7521b2b9acfa2730ac6e606c",
+    "search_line": -1
   },
   {
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "NeptuneDBCluster",
+    "searchKey": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled should be set to true",
+    "actualValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "624661d8f9d584e52ef960fa1d28feb65e2cefd452d88672351e9187e8ad1865",
+    "search_line": -1
   },
   {
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "NeptuneDBCluster2",
+    "searchKey": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled should be set to true",
+    "actualValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "0b1b8e15097f466ffb74a444a49633935e0928ff42bab8e38602004ff51479e4",
+    "search_line": -1
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "EC2 Permissive Network ACL Protocols",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties.Protocol",
+    "searchValue": "",
+    "expectedValue": "'Resources.OutboundRule.Properties.Protocol' should be either 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)",
+    "actualValue": "'Resources.OutboundRule.Properties.Protocol' is configured with a protocol different than 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)",
+    "issueType": "IncorrectValue",
+    "similarityID": "924aefbb48bcf7045e2b99a1c2fd533dcd435455f07b2b27ee92b0292975f6ef",
+    "search_line": -1
   },
   {
+    "queryName": "EC2 Permissive Network ACL Protocols",
     "severity": "MEDIUM",
     "line": 24,
     "fileName": "positive2.json",
-    "queryName": "EC2 Permissive Network ACL Protocols"
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties.Protocol",
+    "searchValue": "",
+    "expectedValue": "'Resources.OutboundRule.Properties.Protocol' should be either 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)",
+    "actualValue": "'Resources.OutboundRule.Properties.Protocol' is configured with a protocol different than 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)",
+    "issueType": "IncorrectValue",
+    "similarityID": "a4fa006e1ae82d0d069d6c62fa5c411beb631e1bf4084e72f421a5523d5e5c3e",
+    "search_line": -1
   }
 ]

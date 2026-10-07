@@ -2,11 +2,31 @@
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.cloudfront_distribution",
+    "resourceName": "create a distribution with an origin, logging and default cache behavior",
+    "searchKey": "name={{create a distribution with an origin, logging and default cache behavior}}.{{community.aws.cloudfront_distribution}}",
+    "searchValue": "",
+    "expectedValue": "cloudfront_distribution.logging should be defined",
+    "actualValue": "cloudfront_distribution.logging is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fa4b9512a6758bd0aff6aeb07f3863eb018b184fac2162c3a7be81a379111ed5",
+    "search_line": -1
   },
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
-    "line": 62
+    "line": 62,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.cloudfront_distribution",
+    "resourceName": "create a second distribution with an origin, logging and default cache behavior",
+    "searchKey": "name={{create a second distribution with an origin, logging and default cache behavior}}.{{community.aws.cloudfront_distribution}}.logging.enabled",
+    "searchValue": "",
+    "expectedValue": "cloudfront_distribution.logging.enabled should be true",
+    "actualValue": "cloudfront_distribution.logging.enabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "6c2e50be37514f6860360fd203fe7fe63ca464f695f26dd3c640684ec0200c2a",
+    "search_line": -1
   }
 ]

@@ -3,24 +3,60 @@
     "queryName": "Batch Job Definition With Privileged Container Properties",
     "severity": "HIGH",
     "line": 21,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Batch::JobDefinition",
+    "resourceName": "nvidia-smi",
+    "searchKey": "Resources.JobDefinition.Properties.ContainerProperties.Privileged",
+    "searchValue": "",
+    "expectedValue": "Resources.JobDefinition.Properties.ContainerProperties.Privileged should be set to false",
+    "actualValue": "Resources.JobDefinition.Properties.ContainerProperties.Privileged is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "07ede3f523529eadee5bbe059424625affa78a8c072c33f5ed266df8f5788966",
+    "search_line": -1
   },
   {
     "queryName": "Batch Job Definition With Privileged Container Properties",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Batch::JobDefinition",
+    "resourceName": "nvidia-smi",
+    "searchKey": "Resources.JobDefinition.Properties.ContainerProperties.Privileged",
+    "searchValue": "",
+    "expectedValue": "Resources.JobDefinition.Properties.ContainerProperties.Privileged should be set to false",
+    "actualValue": "Resources.JobDefinition.Properties.ContainerProperties.Privileged is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "b10fc49b9004031457e009bda89e8f90ba2098e24e4bf457c2e2284eeea22e44",
+    "search_line": -1
   },
   {
     "queryName": "Batch Job Definition With Privileged Container Properties",
     "severity": "HIGH",
     "line": 21,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::Batch::JobDefinition",
+    "resourceName": "nvidia-smi",
+    "searchKey": "Resources.JobDefinition.Properties.ContainerProperties.Privileged",
+    "searchValue": "",
+    "expectedValue": "Resources.JobDefinition.Properties.ContainerProperties.Privileged should be set to false",
+    "actualValue": "Resources.JobDefinition.Properties.ContainerProperties.Privileged is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "9a7e75df0210e9c85f02aeb32340162c901b2d98cc142f634e3d2202ee859c4b",
+    "search_line": -1
   },
   {
     "queryName": "Batch Job Definition With Privileged Container Properties",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::Batch::JobDefinition",
+    "resourceName": "nvidia-smi",
+    "searchKey": "Resources.JobDefinition.Properties.ContainerProperties.Privileged",
+    "searchValue": "",
+    "expectedValue": "Resources.JobDefinition.Properties.ContainerProperties.Privileged should be set to false",
+    "actualValue": "Resources.JobDefinition.Properties.ContainerProperties.Privileged is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "98c28ae2b3f77253a6b87dad8a80df58ff40b7a9c8024698f0a865ebdc1936d9",
+    "search_line": -1
   }
 ]

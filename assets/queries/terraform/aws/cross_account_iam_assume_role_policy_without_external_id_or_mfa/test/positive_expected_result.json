@@ -3,18 +3,45 @@
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "test_role",
+    "searchKey": "aws_iam_role[positive1].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "'assume_role_policy' requires external ID or MFA",
+    "actualValue": "'assume_role_policy' does not require external ID or MFA",
+    "issueType": "IncorrectValue",
+    "similarityID": "007ef04de604a58925efd25d90616c5ecf1426206270825015ce47697b8394bd",
+    "search_line": 4
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "test_role",
+    "searchKey": "aws_iam_role[positive2].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "'assume_role_policy' requires external ID or MFA",
+    "actualValue": "'assume_role_policy' does not require external ID or MFA",
+    "issueType": "IncorrectValue",
+    "similarityID": "ff60615e4047604b50e3e2c4af6c95b0d91fdbb7965185a2054e63d8df520da6",
+    "search_line": 4
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "test_role",
+    "searchKey": "aws_iam_role[positive3].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "'assume_role_policy' requires external ID or MFA",
+    "actualValue": "'assume_role_policy' does not require external ID or MFA",
+    "issueType": "IncorrectValue",
+    "similarityID": "718cda70a43850062384f5a4e2566e22bbde646e8d066bb28f3d698b7432c2f3",
+    "search_line": 4
   }
 ]

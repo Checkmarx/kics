@@ -2,26 +2,76 @@
   {
     "queryName": "Beta - SQL DB Instance Without Centralized Logging",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_1]",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should be defined and set 'cloudsql.enable_pgaudit' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_1].settings' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "a128eceee75c4669c2dc44bfc767d323a01289b081c2952113979fae21202e79",
+    "search_line": 1
   },
   {
     "queryName": "Beta - SQL DB Instance Without Centralized Logging",
     "severity": "LOW",
-    "line": 14
+    "line": 14,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should be defined and set 'cloudsql.enable_pgaudit' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "831791e5156e33098db48b4eee6d58173a94a8bc387d11d63ff7e6db0ab5f25c",
+    "search_line": 14
   },
   {
     "queryName": "Beta - SQL DB Instance Without Centralized Logging",
     "severity": "LOW",
-    "line": 23
+    "line": 23,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_3].settings.database_flags",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_3].settings.database_flags' should set 'cloudsql.enable_pgaudit' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_3].settings.database_flags' does not set 'cloudsql.enable_pgaudit'",
+    "issueType": "MissingAttribute",
+    "similarityID": "1fcfeac4ad5944357b4f7423d472aa5606f1e374eb8bc157cd2cd9990bdf5909",
+    "search_line": 23
   },
   {
     "queryName": "Beta - SQL DB Instance Without Centralized Logging",
     "severity": "LOW",
-    "line": 42
+    "line": 42,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_4].settings.database_flags[1].name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_4].settings.database_flags' should set 'cloudsql.enable_pgaudit' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_4].settings.database_flags' sets 'cloudsql.enable_pgaudit' to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0012c9e50fb8baa6ea87fc02acdd18c4e0970de2ee239764165c42dd12250b74",
+    "search_line": 42
   },
   {
     "queryName": "Beta - SQL DB Instance Without Centralized Logging",
     "severity": "LOW",
-    "line": 60
+    "line": 60,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_5].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_5].settings.database_flags' should set 'cloudsql.enable_pgaudit' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_5].settings.database_flags' sets 'cloudsql.enable_pgaudit' to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6d9c8fc01ed816baa29709bc420deb15dff2f487dde107c6fe99296ea4c8f68a",
+    "search_line": 60
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "OSS Bucket Logging Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-170309-acl",
+    "searchKey": "alicloud_oss_bucket[bucket_logging2]",
+    "searchValue": "",
+    "expectedValue": "bucket_logging2 has logging enabled",
+    "actualValue": "bucket_logging2 does not have logging enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "b768fddb2309f2467c47c590ecbc6d034e2dd8bc0827bf54f5873fab096a7215",
+    "search_line": 1
   },
   {
     "queryName": "OSS Bucket Logging Disabled",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-170309-logging",
+    "searchKey": "alicloud_oss_bucket[bucket_logging1].logging_isenable",
+    "searchValue": "",
+    "expectedValue": "bucket_logging1 'logging_isenable' argument should be set to true",
+    "actualValue": "bucket_logging1 'logging_isenable' argument is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f778f70d8dab367afdb937ab1d298c8be232cc3224a4a85f31d2290907afb877",
+    "search_line": 3
   }
 ]

@@ -3,54 +3,135 @@
     "queryName": "AWS EIP not attached to any instance",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_eip",
+    "resourceName": "ok_eip",
+    "searchKey": "aws_eip[ok_eip]",
+    "searchValue": "",
+    "expectedValue": "All EIPs should be attached",
+    "actualValue": "EIP is missing domain field set to \"vpc\"",
+    "issueType": "MissingAttribute",
+    "similarityID": "147538feca7f1f7f52e65c72d870cbba517bbfe3d04e43c0c47e0fe5ab2a9a38",
+    "search_line": 1
   },
   {
     "queryName": "AWS EIP not attached to any instance",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_eip",
+    "resourceName": "web_eip",
+    "searchKey": "aws_eip[web_eip]",
+    "searchValue": "",
+    "expectedValue": "All EIPs should be attached",
+    "actualValue": "EIP is missing domain field set to \"vpc\"",
+    "issueType": "MissingAttribute",
+    "similarityID": "7fe6de84f4a10fd01dec76fc94da32ee4769a84e2e4f71abbb127d643271baf5",
+    "search_line": 6
   },
   {
     "queryName": "AWS EIP not attached to any instance",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_eip",
+    "resourceName": "nat_eip",
+    "searchKey": "aws_eip[nat_eip]",
+    "searchValue": "",
+    "expectedValue": "All EIPs should be attached",
+    "actualValue": "EIP is not attached",
+    "issueType": "MissingAttribute",
+    "similarityID": "dea0be734cadda2b7de3c4b669e20e6e8b630b84f51e22961b6a62e4542c365e",
+    "search_line": 1
   },
   {
     "queryName": "AWS EIP not attached to any instance",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_eip",
+    "resourceName": "transfer_eip",
+    "searchKey": "aws_eip[transfer_eip]",
+    "searchValue": "",
+    "expectedValue": "All EIPs should be attached",
+    "actualValue": "EIP is not attached",
+    "issueType": "MissingAttribute",
+    "similarityID": "238c590105d09398466cd3e6c133a26cc256c7364abbe185473e13fb2f1886f9",
+    "search_line": 1
   },
   {
     "queryName": "AWS EIP not attached to any instance",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_eip",
+    "resourceName": "one",
+    "searchKey": "aws_eip[one]",
+    "searchValue": "",
+    "expectedValue": "All EIPs should be attached",
+    "actualValue": "EIP is not attached",
+    "issueType": "MissingAttribute",
+    "similarityID": "afac433460e3881ed7776461693be898b1e1081a5f8404484f38b729863fc545",
+    "search_line": 5
   },
   {
     "queryName": "AWS EIP not attached to any instance",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "aws_eip",
+    "resourceName": "ok_eip",
+    "searchKey": "aws_eip[ok_eip]",
+    "searchValue": "",
+    "expectedValue": "All EIPs should be attached",
+    "actualValue": "Vpc is not set to true",
+    "issueType": "MissingAttribute",
+    "similarityID": "9ac15c69be31884e0b3a768ccece81a94132c120ea5a14d16efb8f4171d24e43",
+    "search_line": 1
   },
   {
     "queryName": "AWS EIP not attached to any instance",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive7.tf"
+    "fileName": "positive7.tf",
+    "resourceType": "aws_eip",
+    "resourceName": "ok_eip",
+    "searchKey": "aws_eip[ok_eip]",
+    "searchValue": "",
+    "expectedValue": "All EIPs should be attached",
+    "actualValue": "Domain is not set to \"vpc\"",
+    "issueType": "MissingAttribute",
+    "similarityID": "0cdf833018ef978d4f4182a555698fef921beb47c914c7444e8749fa2d630b78",
+    "search_line": 1
   },
   {
     "queryName": "AWS EIP not attached to any instance",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive8.tf"
+    "fileName": "positive8.tf",
+    "resourceType": "aws_eip",
+    "resourceName": "eip_example",
+    "searchKey": "aws_eip[eip_example]",
+    "searchValue": "",
+    "expectedValue": "All EIPs should be attached",
+    "actualValue": "EIP is not attached",
+    "issueType": "MissingAttribute",
+    "similarityID": "a765fbe3851c22f6db729248c7432ba7ebf3f297101982f1a6edb17490049c9a",
+    "search_line": 1
   },
   {
     "queryName": "AWS EIP not attached to any instance",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive9.tf"
+    "fileName": "positive9.tf",
+    "resourceType": "aws_eip",
+    "resourceName": "web_eip",
+    "searchKey": "aws_eip[web_eip]",
+    "searchValue": "",
+    "expectedValue": "All EIPs should be attached",
+    "actualValue": "EIP is not attached",
+    "issueType": "MissingAttribute",
+    "similarityID": "74e394f7deb7adf7d23acdfd58cabb3b6b9244ead17a1b6f45dec3b35005292a",
+    "search_line": 6
   }
 ]

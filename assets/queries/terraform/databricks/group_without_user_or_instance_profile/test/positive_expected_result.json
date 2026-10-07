@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Databricks Group Without User Or Instance Profile",
-		"severity": "LOW",
-		"line": 16,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Databricks Group Without User Or Instance Profile",
-		"severity": "LOW",
-		"line": 14,
-		"fileName": "positive2.tf"
-	}
+  {
+    "queryName": "Databricks Group Without User Or Instance Profile",
+    "severity": "LOW",
+    "line": 16,
+    "fileName": "positive1.tf",
+    "resourceType": "aws_databricks_group",
+    "resourceName": "Some Group",
+    "searchKey": "databricks_group[positive_group_2]",
+    "searchValue": "",
+    "expectedValue": "aws_databricks_group[positive_group_2] should be associated with an databricks_group_member that has at least one user set",
+    "actualValue": "aws_databricks_group[positive_group_2] is not associated with an databricks_group_member that has at least one user set",
+    "issueType": "MissingAttribute",
+    "similarityID": "a5dd85b4aa3f4558a88d3475562e1e547f0512135c9e8d07790c365f9da37fdd",
+    "search_line": -1
+  },
+  {
+    "queryName": "Databricks Group Without User Or Instance Profile",
+    "severity": "LOW",
+    "line": 14,
+    "fileName": "positive2.tf",
+    "resourceType": "aws_databricks_group",
+    "resourceName": "my_group_name",
+    "searchKey": "databricks_group[positive_group2]",
+    "searchValue": "",
+    "expectedValue": "aws_databricks_group[positive_group2] should be associated with an databricks_group_member that has at least one user set",
+    "actualValue": "aws_databricks_group[positive_group2] is not associated with an databricks_group_member that has at least one user set",
+    "issueType": "MissingAttribute",
+    "similarityID": "294baab60f97d9821d49292234c67f82b6ca3fccd74c655eb64ad984f393e193",
+    "search_line": -1
+  }
 ]

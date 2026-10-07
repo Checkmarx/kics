@@ -3,24 +3,60 @@
     "queryName": "AKS Uses Azure Policies Add-On Disabled",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_kubernetes_cluster[positive1].addon_profile.azure_policy.enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive1].addon_profile.azure_policy.enabled' should be set to true",
+    "actualValue": "'azurerm_kubernetes_cluster[positive1].addon_profile.azure_policy.enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "87fedf234e19d5bc3d3a0f1cbe23d90d633d9f65843b4cdba89f9ba289291c96",
+    "search_line": 11
   },
   {
     "queryName": "AKS Uses Azure Policies Add-On Disabled",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[positive2].azure_policy_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive2].azure_policy_enabled' should be set to true",
+    "actualValue": "'azurerm_kubernetes_cluster[positive2].azure_policy_enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "c56d0e8026b4f71e9411e50ba2dcd76bb951eea39631693b1c258c6c52fcf0dc",
+    "search_line": 7
   },
   {
     "queryName": "AKS Uses Azure Policies Add-On Disabled",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "positive3",
+    "searchKey": "azurerm_kubernetes_cluster[positive3].addon_profile",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive3].addon_profile.azure_policy' should be defined and set to true",
+    "actualValue": "'azurerm_kubernetes_cluster[positive3].addon_profile.azure_policy' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c3857f77b7ee8bf90ca1fc549b9f38b08f8e782f704a4d117639e0f48d6c09ae",
+    "search_line": 7
   },
   {
     "queryName": "AKS Uses Azure Policies Add-On Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[positive4]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive4]' should use Azure Policies",
+    "actualValue": "'azurerm_kubernetes_cluster[positive4]' does not use Azure Policies",
+    "issueType": "MissingAttribute",
+    "similarityID": "4c0bf4e0ed260aa972c2e18e10504e5e79c76996ab6b67bfaff5c80377959cbc",
+    "search_line": 1
   }
 ]

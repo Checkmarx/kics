@@ -3,12 +3,30 @@
     "queryName": "Parameter JSON Reference Does Not Exist (v2)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.$ref={{#/parameters/maxParam}}",
+    "searchValue": "",
+    "expectedValue": "maxParam from #/parameters/maxParam should be declared on parameters",
+    "actualValue": "maxParam from #/parameters/maxParam is not declared on parameters",
+    "issueType": "MissingAttribute",
+    "similarityID": "f835d88fa00b5c9b7cd7157664999a190cf011c2d036fe150717f08a0e4089c2",
+    "search_line": 0
   },
   {
     "queryName": "Parameter JSON Reference Does Not Exist (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.$ref={{#/parameters/maxParam}}",
+    "searchValue": "",
+    "expectedValue": "maxParam from #/parameters/maxParam should be declared on parameters",
+    "actualValue": "maxParam from #/parameters/maxParam is not declared on parameters",
+    "issueType": "MissingAttribute",
+    "similarityID": "6cec3388dab271b3b66ad79ed8457d6000ab14bb304cea3c11282455ccf465b6",
+    "search_line": 0
   }
 ]

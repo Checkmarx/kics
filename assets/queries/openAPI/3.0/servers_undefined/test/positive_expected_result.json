@@ -3,24 +3,60 @@
     "queryName": "Servers Array Undefined",
     "severity": "INFO",
     "line": 2,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi",
+    "searchValue": "",
+    "expectedValue": "Servers array has at least one server defined",
+    "actualValue": "Servers array does not have at least one server defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "845f418b0bcd2fe9492bab91633df7cb27a55a370385c19f8b1d53d1e4f7a72c",
+    "search_line": -1
   },
   {
     "queryName": "Servers Array Undefined",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "servers",
+    "searchValue": "",
+    "expectedValue": "Servers array has at least one server defined",
+    "actualValue": "Servers array is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "82a4b6d1c71832fda81f16001a789cfc62b3eca66fa6df5c76b53f16ecd8cf00",
+    "search_line": -1
   },
   {
     "queryName": "Servers Array Undefined",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi",
+    "searchValue": "",
+    "expectedValue": "Servers array has at least one server defined",
+    "actualValue": "Servers array does not have at least one server defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c8e7b2d7721aaade4506884f40fe1fb94ede10331e758c9403b0a2c4f3d08c96",
+    "search_line": -1
   },
   {
     "queryName": "Servers Array Undefined",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "servers",
+    "searchValue": "",
+    "expectedValue": "Servers array has at least one server defined",
+    "actualValue": "Servers array is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "3417b58681f4106059f3590f7de462300469700185b1428e1590b3af4b7743eb",
+    "search_line": -1
   }
 ]

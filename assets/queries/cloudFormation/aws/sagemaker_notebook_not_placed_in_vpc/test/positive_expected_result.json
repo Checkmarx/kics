@@ -3,12 +3,30 @@
     "queryName": "SageMaker Notebook Not Placed In VPC",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::SageMaker::NotebookInstance",
+    "resourceName": "NotebookInstanceName",
+    "searchKey": "Resources.NotebookInstance.Properties.SubnetId",
+    "searchValue": "",
+    "expectedValue": "Resources.NotebookInstance.Properties.SubnetId should be defined",
+    "actualValue": "Resources.NotebookInstance.Properties.SubnetId is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8a8a76569c62584161c47859f727a98751e74c1972097bd55821ec8eca0781bb",
+    "search_line": -1
   },
   {
     "queryName": "SageMaker Notebook Not Placed In VPC",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::SageMaker::NotebookInstance",
+    "resourceName": "NotebookInstanceName",
+    "searchKey": "Resources.NotebookInstance.Properties.SubnetId",
+    "searchValue": "",
+    "expectedValue": "Resources.NotebookInstance.Properties.SubnetId should be defined",
+    "actualValue": "Resources.NotebookInstance.Properties.SubnetId is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c4fd52bc1f73da2b6fecdc635c7108b792df9cd2b3e580dfbcb8a95311b6fa7f",
+    "search_line": -1
   }
 ]

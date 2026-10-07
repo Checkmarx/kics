@@ -3,6 +3,15 @@
     "queryName": "Role With Privilege Escalation By Actions 'lambda:UpdateFunctionCode'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_role[cosmic]",
+    "searchValue": "",
+    "expectedValue": "role cosmic shouldn't be associated with a policy that has Action set to 'lambda:UpdateFunctionCode' and Resource set to '*'",
+    "actualValue": "role cosmic is associated with a policy that has Action set to 'lambda:UpdateFunctionCode' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "82e47520323e832670b5ee109c04e1fb840a386fa417869a6a9e8b46593ccc7d",
+    "search_line": 1
   }
 ]

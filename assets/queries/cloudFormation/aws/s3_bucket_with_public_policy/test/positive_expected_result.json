@@ -3,42 +3,105 @@
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket11",
+    "searchKey": "Resources.Bucket11.Properties",
+    "searchValue": "",
+    "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
+    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)",
+    "issueType": "MissingAttribute",
+    "similarityID": "a136f92e0c5f9ef129fabf376c28e7ae21bd3c12b919c244a0f02085ffc9f4df",
+    "search_line": 4
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 10,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket12",
+    "searchKey": "Resources.Bucket12.Properties.PublicAccessBlockConfiguration",
+    "searchValue": "",
+    "expectedValue": "'BlockPublicPolicy' should be defined and set to true in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "actualValue": "'BlockPublicPolicy' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "issueType": "MissingAttribute",
+    "similarityID": "50ab5ef793a38d9a019713787c8bd2988651d9fe49c1985b8d178e9f77584291",
+    "search_line": 10
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 19,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket13",
+    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.BlockPublicPolicy",
+    "searchValue": "",
+    "expectedValue": "'BlockPublicPolicy' should be set to true%!(EXTRA string=Bucket13)",
+    "actualValue": "'BlockPublicPolicy' is set to false%!(EXTRA string=Bucket13)",
+    "issueType": "IncorrectValue",
+    "similarityID": "c57af5e40265e074f282596563caf87c61bc074ee9cbe8509d1e1a3d2a2ecbb9",
+    "search_line": 19
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 8,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket1",
+    "searchKey": "Resources.Bucket1.Properties.PublicAccessBlockConfiguration.BlockPublicPolicy",
+    "searchValue": "",
+    "expectedValue": "'BlockPublicPolicy' should be set to true%!(EXTRA string=Bucket1)",
+    "actualValue": "'BlockPublicPolicy' is set to false%!(EXTRA string=Bucket1)",
+    "issueType": "IncorrectValue",
+    "similarityID": "2e2ebe3ca3fe65be22013d622d5e2bc7624cb6c76136ef574e2d8acd00eaf23d",
+    "search_line": 8
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 4,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket11",
+    "searchKey": "Resources.Bucket11.Properties",
+    "searchValue": "",
+    "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
+    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)",
+    "issueType": "MissingAttribute",
+    "similarityID": "9f100471450ed684a020a6bdbdf1806cac1e2eabffd90b6201dadb8248d61234",
+    "search_line": 4
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket12",
+    "searchKey": "Resources.Bucket12.Properties.PublicAccessBlockConfiguration",
+    "searchValue": "",
+    "expectedValue": "'BlockPublicPolicy' should be defined and set to true in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "actualValue": "'BlockPublicPolicy' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "issueType": "MissingAttribute",
+    "similarityID": "b35544afee489c87f03b087bb3d42d4b86fb4eccffcd66002c0363fe4f906a8c",
+    "search_line": 10
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 19,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket13",
+    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.BlockPublicPolicy",
+    "searchValue": "",
+    "expectedValue": "'BlockPublicPolicy' should be set to true%!(EXTRA string=Bucket13)",
+    "actualValue": "'BlockPublicPolicy' is set to false%!(EXTRA string=Bucket13)",
+    "issueType": "IncorrectValue",
+    "similarityID": "34cc147d877d89f29d5cb1d11f4eef722c7c7303d758165b1a8ebd6cb859c9e9",
+    "search_line": 19
   }
 ]

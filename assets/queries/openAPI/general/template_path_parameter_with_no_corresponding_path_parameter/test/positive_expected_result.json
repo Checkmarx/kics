@@ -3,72 +3,180 @@
     "queryName": "Template Path With No Corresponding Path Parameter (v3)",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{test-id}.get.parameters.name=test-id",
+    "searchValue": "",
+    "expectedValue": "Template path parameter should have an operation parameter with the same name and 'in' set to 'path'",
+    "actualValue": "Template path parameter does not have an operation parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ff61c01a43f8511dc3a018610a4bf7138f188eff4af4a8d2d1b37d663fc7f0a2",
+    "search_line": -1
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v3)",
     "severity": "INFO",
     "line": 58,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{blabla}.get.parameters.name=id",
+    "searchValue": "",
+    "expectedValue": "Template path parameter should have an operation parameter with the same name and 'in' set to 'path'",
+    "actualValue": "Template path parameter does not have an operation parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue",
+    "similarityID": "10e64ff8189883ad307c71a030a59d31580a26d478800c333103431a111b22b8",
+    "search_line": -1
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v3)",
     "severity": "INFO",
     "line": 34,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./people/{id}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Template path parameters should be defined for operation",
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute",
+    "similarityID": "ccf6eaecda812b0068870f6f63411e9f2825bd21c597e5f999b77c245e2695d1",
+    "search_line": -1
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v3)",
     "severity": "INFO",
     "line": 40,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Template path parameters should be defined for operation",
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute",
+    "similarityID": "6e10a4a37e5f7ceebd0f1e2f79dc1618be2b3018362c0fcc358ee1c58dce2bb7",
+    "search_line": -1
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v3)",
     "severity": "INFO",
     "line": 55,
-    "filename": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./people/{id}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Template path parameters should be defined for operation",
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute",
+    "similarityID": "a39fabe87cb758feaf9e67da6e7ae2c16c0beef0fd1d57a5939a8edb05e92796",
+    "search_line": -1
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v3)",
     "severity": "INFO",
     "line": 65,
-    "filename": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Template path parameters should be defined for operation",
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute",
+    "similarityID": "10c568febb0c417d24bb510e85c9facc30e629b55d2f84f75683a933e396fe99",
+    "search_line": -1
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{test-id}.get.parameters.name=test-id",
+    "searchValue": "",
+    "expectedValue": "Template path parameter should have an operation parameter with the same name and 'in' set to 'path'",
+    "actualValue": "Template path parameter does not have an operation parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue",
+    "similarityID": "fc1288e3b2627a7ec2fd6abaed8b2b35b36253d86daf591b9f3b255c50446111",
+    "search_line": -1
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
     "severity": "INFO",
     "line": 38,
-    "filename": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{blabla}.get.parameters.name=id",
+    "searchValue": "",
+    "expectedValue": "Template path parameter should have an operation parameter with the same name and 'in' set to 'path'",
+    "actualValue": "Template path parameter does not have an operation parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c04402dbda50d757aa9336a80e3e0d727df2b7f568d2da84e2160649ee5e662f",
+    "search_line": -1
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./people/{id}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Template path parameters should be defined for operation",
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute",
+    "similarityID": "43eab410f6de78c2c98f97ddfbe2cd7df446d9c9a3bcd6c7db06a7d8f6ce6577",
+    "search_line": -1
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
     "severity": "INFO",
     "line": 31,
-    "filename": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Template path parameters should be defined for operation",
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute",
+    "similarityID": "e8d95fc664b1ed964cb2dc08b7d0886bfceb2a8ad1472745ed6fcfaf64283af7",
+    "search_line": -1
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
     "severity": "INFO",
     "line": 35,
-    "filename": "positive8.json"
+    "fileName": "positive8.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./people/{id}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Template path parameters should be defined for operation",
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute",
+    "similarityID": "94a9076124f0d4d65b10bee306e6b745b465128ca95854d5bd3611fd34716fab",
+    "search_line": -1
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
     "severity": "INFO",
     "line": 45,
-    "filename": "positive8.json"
+    "fileName": "positive8.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Template path parameters should be defined for operation",
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute",
+    "similarityID": "ad797e32c71d8361026389c9ef0f85cc51bfe143a563d515ffe84abffb395227",
+    "search_line": -1
   }
 ]

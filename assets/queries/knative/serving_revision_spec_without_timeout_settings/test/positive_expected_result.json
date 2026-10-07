@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Serving Revision Spec Without Timeout Seconds",
-		"severity": "INFO",
-		"line": 7,
-        "fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Serving Revision Spec Without Timeout Seconds",
-		"severity": "INFO",
-		"line": 42,
-        "fileName": "positive1.yaml"
-	}
+  {
+    "queryName": "Serving Revision Spec Without Timeout Seconds",
+    "severity": "INFO",
+    "line": 7,
+    "fileName": "positive1.yaml",
+    "resourceType": "Service",
+    "resourceName": "dummy",
+    "searchKey": "metadata.name={{dummy}}.spec.template.spec",
+    "searchValue": "",
+    "expectedValue": "Service should have 'timeoutSeconds' defined in 'template.spec'",
+    "actualValue": "Service 'timeoutSeconds' is not defined in 'template.spec'",
+    "issueType": "MissingAttribute",
+    "similarityID": "99afa0c4a566a58de26ef7f289b89b3de7f657259d7e11aff30ad40e5bf94e4f",
+    "search_line": 7
+  },
+  {
+    "queryName": "Serving Revision Spec Without Timeout Seconds",
+    "severity": "INFO",
+    "line": 42,
+    "fileName": "positive1.yaml",
+    "resourceType": "Service",
+    "resourceName": "dummy",
+    "searchKey": "metadata.name={{dummy}}.spec.template.spec.timeoutSeconds",
+    "searchValue": "",
+    "expectedValue": "Service should have 'timeoutSeconds' defined to a value higher than '0'",
+    "actualValue": "Service 'timeoutSeconds' is set to '0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8ebbe4dc285b36200f6d09778b365eb15b8cc8c946faf22e47460801c76768b8",
+    "search_line": 42
+  }
 ]

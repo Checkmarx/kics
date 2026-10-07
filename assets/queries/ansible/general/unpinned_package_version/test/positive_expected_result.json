@@ -1,158 +1,392 @@
 [
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 8
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 13
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 18
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 23
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 29
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 34
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 40
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 44
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 50
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 55
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 60
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 65
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 74
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 79
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 84
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 89
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 94
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 101
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 106
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 111
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 116
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 121
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 130
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 136
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 144
-	},
-	{
-		"queryName": "Unpinned Package Version",
-		"severity": "LOW",
-		"filename": "positive1.yaml",
-		"line": 149
-	}
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive1.yaml",
+    "resourceType": "ansible.builtin.yum",
+    "resourceName": "Install Ansible",
+    "searchKey": "name={{Install Ansible}}.{{ansible.builtin.yum}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "398a72350c4c9e20c69215a2cd6b0ba007089abbf073048e68e1bd328fc692f8",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 13,
+    "fileName": "positive1.yaml",
+    "resourceType": "ansible.builtin.pip",
+    "resourceName": "Install Ansible-lint",
+    "searchKey": "name={{Install Ansible-lint}}.{{ansible.builtin.pip}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2dd7bd4e71c767a28422ec798e0386f3351a6fea2b6c4dab5287f03fd152f778",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive1.yaml",
+    "resourceType": "ansible.builtin.package",
+    "resourceName": "Install some-package",
+    "searchKey": "name={{Install some-package}}.{{ansible.builtin.package}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ca816352d5535d7929e96b41bb71f6370b42248a267c98d58550950ea082db08",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 23,
+    "fileName": "positive1.yaml",
+    "resourceType": "ansible.builtin.yum",
+    "resourceName": "Install Ansible with update_only to false",
+    "searchKey": "name={{Install Ansible with update_only to false}}.{{ansible.builtin.yum}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f5b629065d31eb4b07537948af789a652c188c7bef2c3e627171a78d7fe12b5b",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 29,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.zypper",
+    "resourceName": "Install nmap",
+    "searchKey": "name={{Install nmap}}.{{community.general.zypper}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3f21300d53ad5246301f459e5555fbb5012f03f559678c66c79eba370b45f2eb",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 34,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.apk",
+    "resourceName": "Install package without using cache",
+    "searchKey": "name={{Install package without using cache}}.{{community.general.apk}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d292b65b2e727722cbf482ebec4b9792b1a67822aeb999d6ee2d6c383ca5cbd8",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 40,
+    "fileName": "positive1.yaml",
+    "resourceType": "ansible.builtin.apt",
+    "resourceName": "Install apache httpd",
+    "searchKey": "name={{Install apache httpd}}.{{ansible.builtin.apt}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e4a4bfa9d3e7e673b8482d510259289f734bb73ef7611e0e5e2533de06d48dd1",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 44,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.bundler",
+    "resourceName": "Update Gemfile in another directory",
+    "searchKey": "name={{Update Gemfile in another directory}}.{{community.general.bundler}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f3fac5e7f94046e8116fceb1e5b04a6a0b8869f30708b134e5189a35a2663c35",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 50,
+    "fileName": "positive1.yaml",
+    "resourceType": "ansible.builtin.dnf",
+    "resourceName": "Install a modularity appstream with defined profile",
+    "searchKey": "name={{Install a modularity appstream with defined profile}}.{{ansible.builtin.dnf}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "10bc5931a411d0f1fcc59b1db4399f431996656d7a47beef59dbc708671bb185",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 55,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.gem",
+    "resourceName": "Install rake",
+    "searchKey": "name={{Install rake}}.{{community.general.gem}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "869c431ba7a39d293706d71d910b1ce2201ad9e110c6acc8d21e13304f8ce42b",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 60,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.homebrew",
+    "resourceName": "Install formula foo with 'brew' from cask",
+    "searchKey": "name={{Install formula foo with 'brew' from cask}}.{{community.general.homebrew}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f63ed7b1a212d3fdb4de72f721796a9fd7db1767d5428ed60173ad8365bd25d6",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 65,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.jenkins_plugin",
+    "resourceName": "Install Green Balls plugin",
+    "searchKey": "name={{Install Green Balls plugin}}.{{community.general.jenkins_plugin}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3232f067a4ce9b78ec37261b2655fa3993fac48253ccc7cb019a91657809a8af",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 74,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.npm",
+    "resourceName": "Install packages based on package.json",
+    "searchKey": "name={{Install packages based on package.json}}.{{community.general.npm}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f733a876b5e03b504c670249fc142e1b897266d8752d2156a199a887a5457a54",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 79,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.openbsd_pkg",
+    "resourceName": "Install nmap",
+    "searchKey": "name={{Install nmap}}.{{community.general.openbsd_pkg}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b2c93da6605e291da119f975677d3bf15e70b9024020997ddbb4def819bb4e2c",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 84,
+    "fileName": "positive1.yaml",
+    "resourceType": "ansible.builtin.package",
+    "resourceName": "Install ntpdate",
+    "searchKey": "name={{Install ntpdate}}.{{ansible.builtin.package}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1beba7a4507052a4e295153c64bd71ee072b0184afad50c0e68a8e780a1c5b83",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 89,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.pacman",
+    "resourceName": "Install package bar from file",
+    "searchKey": "name={{Install package bar from file}}.{{community.general.pacman}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9dab96677214a0a55d0a264e71dbf560c5ac309701380d3de28b05548097d3dc",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 94,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.pkg5",
+    "resourceName": "Install finger daemon",
+    "searchKey": "name={{Install finger daemon}}.{{community.general.pkg5}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d0751c4b22349b3f9529fb4c7290724b58aa4f2c38f5586988a3249c5f66f57d",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 101,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.pkgutil",
+    "resourceName": "Install several packages",
+    "searchKey": "name={{Install several packages}}.{{community.general.pkgutil}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6f0c29b9ea7d2ecd4d5fafe989263c75dbaf24e4f15b83d4228990e9ed92aa77",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 106,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.portage",
+    "resourceName": "Install package foo",
+    "searchKey": "name={{Install package foo}}.{{community.general.portage}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "004082d4b35b874cf054669e831c0590859d1e403498a41d286b5a51d37b9d96",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 111,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.slackpkg",
+    "resourceName": "Make sure that it is the most updated package",
+    "searchKey": "name={{Make sure that it is the most updated package}}.{{community.general.slackpkg}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b558abeb17e8dea7f3222ce34a9278f05fd94494d3b7ebc658c01c5e24eb4959",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 116,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.sorcery",
+    "resourceName": "Make sure spell foo is installed",
+    "searchKey": "name={{Make sure spell foo is installed}}.{{community.general.sorcery}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a972c788a46674cdd2949b210c1b913ae040ce46e7cf31ba666ab3b6fe3593bd",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 121,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.swdepot",
+    "resourceName": "Install package unzip",
+    "searchKey": "name={{Install package unzip}}.{{community.general.swdepot}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "03ab92ea1a1703a7abe9669220346b0f39f9c94232386f781952d97199791e32",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 130,
+    "fileName": "positive1.yaml",
+    "resourceType": "win_chocolatey",
+    "resourceName": "Install multiple packages",
+    "searchKey": "name={{Install multiple packages}}.{{win_chocolatey}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "16edf6b8fb6333c9dd488f900dabfa5c1e1f1e22a8c679c53efdd8602233cc63",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 136,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.yarn",
+    "resourceName": "Install \"imagemin\" node.js package globally.",
+    "searchKey": "name={{Install \"imagemin\" node.js package globally.}}.{{community.general.yarn}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5225982a27f10e7eb134e42cf1871ae38c37092219e62b56c9ffa4469140bd2a",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 144,
+    "fileName": "positive1.yaml",
+    "resourceType": "ansible.builtin.yum",
+    "resourceName": "Install a list of packages (suitable replacement for 2.11 loop deprecation warning)",
+    "searchKey": "name={{Install a list of packages (suitable replacement for 2.11 loop deprecation warning)}}.{{ansible.builtin.yum}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "04bd3a1a2d2f32aea9570e3acc32992d1f902b40c5362802f0063ef43ceec2c0",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "line": 149,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.general.zypper",
+    "resourceName": "Install local rpm file",
+    "searchKey": "name={{Install local rpm file}}.{{community.general.zypper}}.state",
+    "searchValue": "",
+    "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "98fb3068e631f3b712452f86a6403fda4d6f8f4ab3b901fc3401712f519f1139",
+    "search_line": -1
+  }
 ]

@@ -3,18 +3,45 @@
     "queryName": "Container Traffic Not Bound To Host Interface",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute bound to a specific host interface.",
+    "actualValue": "Docker compose file doesn't have 'ports' attribute bound to a specific host interface",
+    "issueType": "IncorrectValue",
+    "similarityID": "90206f3947dc15b18af97d3a1971a1d447cfab9decd33b4e75b2f891ffd8a349",
+    "search_line": 11
   },
   {
     "queryName": "Container Traffic Not Bound To Host Interface",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute bound to a specific host interface.",
+    "actualValue": "Docker compose file doesn't have 'ports' attribute bound to a specific host interface",
+    "issueType": "IncorrectValue",
+    "similarityID": "347e40948e9b94f13139b1b9a8a22dcd99c2a9dda5ef62569af1f8216e0d68dd",
+    "search_line": 11
   },
   {
     "queryName": "Container Traffic Not Bound To Host Interface",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute bound to a specific host interface.",
+    "actualValue": "Docker compose file doesn't have 'ports' attribute bound to a specific host interface",
+    "issueType": "IncorrectValue",
+    "similarityID": "cf1593043de9298522ae13ec0f93db5dd1b584d223623dd798e6d7e3263c9594",
+    "search_line": 11
   }
 ]

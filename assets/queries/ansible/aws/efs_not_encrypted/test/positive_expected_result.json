@@ -2,16 +2,46 @@
   {
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.efs",
+    "resourceName": "foo",
+    "searchKey": "name={{foo}}.{{community.aws.efs}}.encrypt",
+    "searchValue": "",
+    "expectedValue": "efs.encrypt should be set to true",
+    "actualValue": "efs.encrypt is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f457e8599c6a3bc5dc87d18043824d7f39aea503babad08abed878a81d84e7bf",
+    "search_line": -1
   },
   {
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.efs",
+    "resourceName": "foo2",
+    "searchKey": "name={{foo2}}.{{community.aws.efs}}.encrypt",
+    "searchValue": "",
+    "expectedValue": "efs.encrypt should be set to true",
+    "actualValue": "efs.encrypt is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a0e02eebc1f56fbdf3f5ba5644f914e94a9cea5bc30755ceb16e2fb0207a19f7",
+    "search_line": -1
   },
   {
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
-    "line": 25
+    "line": 25,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.efs",
+    "resourceName": "foo3",
+    "searchKey": "name={{foo3}}.{{community.aws.efs}}",
+    "searchValue": "",
+    "expectedValue": "efs.encrypt should be set to true",
+    "actualValue": "efs.encrypt is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "724a3001d538cbc1586a0d40174c61368442abadcbf12f8fa4b0e91cc26e2fe9",
+    "search_line": -1
   }
 ]

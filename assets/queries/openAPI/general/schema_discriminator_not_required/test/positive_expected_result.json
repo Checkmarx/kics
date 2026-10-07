@@ -3,48 +3,120 @@
     "queryName": "Schema Discriminator Not Required (v3)",
     "severity": "INFO",
     "line": 53,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{GeneralError}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is a required property",
+    "actualValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is not a required property",
+    "issueType": "IncorrectValue",
+    "similarityID": "a75cedf72d8890f43dcd0a10de7a4c15b7de6e842f723c12ea21b82d11267b50",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Not Required (v3)",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is a required property",
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is not a required property",
+    "issueType": "IncorrectValue",
+    "similarityID": "8d814d903243c1c004c67ff0cea60ad4eaed71d6e7a884fcda69b7f8b23ae8b2",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Not Required (v3)",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{GeneralError}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is a required property",
+    "actualValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is not a required property",
+    "issueType": "IncorrectValue",
+    "similarityID": "aeb63f5d03e4929a51631ccbc942c0d903576ffc829a67b92d9c735264b0e8ed",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Not Required (v3)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is a required property",
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is not a required property",
+    "issueType": "IncorrectValue",
+    "similarityID": "ee6bd9895865de80f599944852534414bea71fd6e410ec94df333ab601de22ea",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Not Required (v2)",
     "severity": "INFO",
     "line": 35,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{GeneralError}}.discriminator",
+    "searchValue": "",
+    "expectedValue": "definitions.{{GeneralError}}.discriminator is a required property",
+    "actualValue": "definitions.{{GeneralError}}.discriminator is not a required property",
+    "issueType": "IncorrectValue",
+    "similarityID": "b9dbad5ed11f4373da8a145349a58b85f4038d6ad217748d90d3d74bcc866fab",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Not Required (v2)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{GeneralError}}.discriminator",
+    "searchValue": "",
+    "expectedValue": "definitions.{{GeneralError}}.discriminator is a required property",
+    "actualValue": "definitions.{{GeneralError}}.discriminator is not a required property",
+    "issueType": "IncorrectValue",
+    "similarityID": "8dfc3d69976cbe1049b6d577e84b0fba12e48d3eaadd23d49534ae6121ef76b2",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Not Required (v2)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.discriminator",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is a required property",
+    "actualValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is not a required property",
+    "issueType": "IncorrectValue",
+    "similarityID": "fb850ab470257e0525a9e7098c1876358be4f5bc2edbc4dd8057c97d233f415f",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Not Required (v2)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive8.yaml"
+    "fileName": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.discriminator",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is a required property",
+    "actualValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is not a required property",
+    "issueType": "IncorrectValue",
+    "similarityID": "b96f23af0b3588c6667c26f32dde495001c91afb9c1e22962052e2e0ed7f67bc",
+    "search_line": -1
   }
 ]

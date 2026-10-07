@@ -3,6 +3,15 @@
     "queryName": "SES Policy With Allowed IAM Actions",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.aws_ses_identity_policy",
+    "resourceName": "add sending authorization policy to email identityyy",
+    "searchKey": "name={{add sending authorization policy to email identityyy}}.{{community.aws.aws_ses_identity_policy}}.policy",
+    "searchValue": "",
+    "expectedValue": "'policy' should not allow IAM actions to all principals",
+    "actualValue": "'policy' allows IAM actions to all principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "06cbc11a3b5d1680be9710b954a7f0322cb4ab2b45521bd6d2e07a668150e16a",
+    "search_line": 5
   }
 ]

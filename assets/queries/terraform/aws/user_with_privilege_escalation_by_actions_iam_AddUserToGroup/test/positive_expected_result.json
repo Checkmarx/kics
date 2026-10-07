@@ -3,6 +3,15 @@
     "queryName": "User With Privilege Escalation By Actions 'iam:AddUserToGroup'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_user",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_user[cosmic]",
+    "searchValue": "",
+    "expectedValue": "user cosmic should not be associated with a policy that has Action set to 'iam:AddUserToGroup' and Resource set to '*'",
+    "actualValue": "user cosmic is associated with a policy that has Action set to 'iam:AddUserToGroup' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "41f589073a370f836e7af03844ef5be59dc77141945546ed7d8eb56396290fd0",
+    "search_line": 1
   }
 ]

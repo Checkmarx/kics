@@ -3,18 +3,45 @@
     "queryName": "MQ Broker Is Publicly Accessible",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::AmazonMQ::Broker",
+    "resourceName": "MyBasicBroker",
+    "searchKey": "Resources.BasicBroker.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicBroker.Properties.PubliclyAccessible should be set to false or undefined",
+    "actualValue": "Resources.BasicBroker.Properties.PubliclyAccessible is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "e1322a5a7dc72fa5713b556fdcc748f15bed504e74e1b1a75d95ea46eb26c14f",
+    "search_line": -1
   },
   {
     "queryName": "MQ Broker Is Publicly Accessible",
     "severity": "HIGH",
     "line": 31,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::AmazonMQ::Broker",
+    "resourceName": "MyBasicBroker",
+    "searchKey": "Resources.BasicBroker2.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicBroker2.Properties.PubliclyAccessible should be set to false or undefined",
+    "actualValue": "Resources.BasicBroker2.Properties.PubliclyAccessible is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "b51010fb75381fe55e3708a3222236c9a2a001a0834827dfa2d3a6f13f93462f",
+    "search_line": -1
   },
   {
     "queryName": "MQ Broker Is Publicly Accessible",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::AmazonMQ::Broker",
+    "resourceName": "MyBasicBroker",
+    "searchKey": "Resources.BasicBroker.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicBroker.Properties.PubliclyAccessible should be set to false or undefined",
+    "actualValue": "Resources.BasicBroker.Properties.PubliclyAccessible is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "d280a6252f3b9c4bc90a93d2ae137f22481cb2131e4f9c2eb4dc3810d6eb2ea6",
+    "search_line": -1
   }
 ]

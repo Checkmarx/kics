@@ -1,50 +1,122 @@
 [
-	{
-		"queryName": "Missing Flag From Dnf Install",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Missing Flag From Dnf Install",
-		"severity": "LOW",
-		"line": 10,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Missing Flag From Dnf Install",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Missing Flag From Dnf Install",
-		"severity": "LOW",
-		"line": 10,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Missing Flag From Dnf Install",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive3.dockerfile"
-	},
-	{
-		"queryName": "Missing Flag From Dnf Install",
-		"severity": "LOW",
-		"line": 21,
-		"fileName": "positive4.dockerfile"
-	},
-	{
-		"queryName": "Missing Flag From Dnf Install",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive5.dockerfile"
-	},
-	{
-		"queryName": "Missing Flag From Dnf Install",
-		"severity": "LOW",
-		"line": 10,
-		"fileName": "positive5.dockerfile"
-	}
+  {
+    "queryName": "Missing Flag From Dnf Install",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:27}}.RUN={{set -uex &&     dnf config-manager --set-enabled docker-ce-test &&     dnf install docker-ce &&     dnf clean all}}",
+    "searchValue": "dnf install docker-ce",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{dnf install docker-ce}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue",
+    "similarityID": "4e271412510296911941d7676230cc89ed6ea990b1579ba54e488a272f932e4c",
+    "search_line": -1
+  },
+  {
+    "queryName": "Missing Flag From Dnf Install",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:28}}.RUN={{dnf in docker-ce}}",
+    "searchValue": "dnf in docker-ce",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{dnf in docker-ce}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue",
+    "similarityID": "94ddcdbb5a41c9f1a6b1ca30edc2e681e14024d82bc172edc0e3ef6ce359b30b",
+    "search_line": -1
+  },
+  {
+    "queryName": "Missing Flag From Dnf Install",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:27}}.RUN={{set -uex;     dnf config-manager --set-enabled docker-ce-test;     dnf install docker-ce;     dnf clean all}}",
+    "searchValue": "set -uex;     dnf config-manager --set-enabled docker-ce-test;     dnf install docker-ce;     dnf clean all",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{set -uex;     dnf config-manager --set-enabled docker-ce-test;     dnf install docker-ce;     dnf clean all}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue",
+    "similarityID": "3dd41b9220750db3ce0f7df11623b4cdd48befe364b263b9f12d31d4b766e9da",
+    "search_line": -1
+  },
+  {
+    "queryName": "Missing Flag From Dnf Install",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:28}}.RUN={{dnf in docker-ce}}",
+    "searchValue": "dnf in docker-ce",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{dnf in docker-ce}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue",
+    "similarityID": "37f64721dc2e1c2cb82224c4bf8c931e5d4f097a53382d8e0c33f2365add5dc9",
+    "search_line": -1
+  },
+  {
+    "queryName": "Missing Flag From Dnf Install",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:27}}.RUN={{microdnf install     openssl-libs-1:1.1.1k-6.el8_5.x86_64     zlib-1.2.11-18.el8_5.x86_64  && microdnf clean all}}",
+    "searchValue": "microdnf install     openssl-libs-1:1.1.1k-6.el8_5.x86_64     zlib-1.2.11-18.el8_5.x86_64",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{microdnf install     openssl-libs-1:1.1.1k-6.el8_5.x86_64     zlib-1.2.11-18.el8_5.x86_64}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue",
+    "similarityID": "3f2e03a384c80be2594886f7086500fa27988950701852f88539296fa91fa11c",
+    "search_line": -1
+  },
+  {
+    "queryName": "Missing Flag From Dnf Install",
+    "severity": "LOW",
+    "line": 21,
+    "fileName": "positive4.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{${BASE_CONTAINER_REGISTRY:-mcr.microsoft.com}/azure-cli AS installer}}.RUN={{tdnf install     jq     tar     libicu     python3-requests     python3-yaml}}",
+    "searchValue": "tdnf install     jq     tar     libicu     python3-requests     python3-yaml",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{tdnf install     jq     tar     libicu     python3-requests     python3-yaml}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue",
+    "similarityID": "652382f89222a2a65122962464f3a4935f9611fba783e1b7b5bf3d4ac3cc383c",
+    "search_line": -1
+  },
+  {
+    "queryName": "Missing Flag From Dnf Install",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive5.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{fedora:27}}.run={{set -uex &&     dnf config-manager --set-enabled docker-ce-test &&     dnf install docker-ce &&     dnf clean all}}",
+    "searchValue": "dnf install docker-ce",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{dnf install docker-ce}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue",
+    "similarityID": "a77eae77e0364844e141e152a8266398384bb41330ad8208d6181daee2a3aeef",
+    "search_line": -1
+  },
+  {
+    "queryName": "Missing Flag From Dnf Install",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive5.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{fedora:28}}.run={{dnf in docker-ce}}",
+    "searchValue": "dnf in docker-ce",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{dnf in docker-ce}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue",
+    "similarityID": "6ffe7a97147f25219fa6b90aa41b92d1223384529a4568d94451e5bcc285a0c0",
+    "search_line": -1
+  }
 ]

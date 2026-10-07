@@ -2,49 +2,121 @@
   {
     "queryName": "AKS Cluster RBAC Disabled",
     "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name={{aksCluster1}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property defined",
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b6c0b73f2eb067e60e1b60965c2f9d7f096b7c567ec1b54a66b11cc8fc0b7975",
+    "search_line": 4
+  },
+  {
+    "queryName": "AKS Cluster RBAC Disabled",
+    "severity": "HIGH",
     "line": 14,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name={{aksCluster1}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property defined",
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "bb6c3fd7456b40cdff8f835002a9f06b73cfb59427eea73fa5f5629b21c3df36",
+    "search_line": 14
+  },
+  {
+    "queryName": "AKS Cluster RBAC Disabled",
+    "severity": "HIGH",
+    "line": 26,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name={{aksCluster1}}.properties.enableRBAC",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property value set to true",
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true%!(EXTRA string=property value)",
+    "issueType": "IncorrectValue",
+    "similarityID": "9a3c4592651fcaeb4a8eed93d4680e26a9eb5b0254e499f7f49306a1bbcc2148",
+    "search_line": 26
   },
   {
     "queryName": "AKS Cluster RBAC Disabled",
     "severity": "HIGH",
     "line": 36,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name={{aksCluster1}}.properties.enableRBAC",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property value set to true",
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true%!(EXTRA string=property value)",
+    "issueType": "IncorrectValue",
+    "similarityID": "f289822f20c5e16e47ec9c70f58e86a2bb20e711a05dda898fb4522a7f20caf1",
+    "search_line": 36
+  },
+  {
+    "queryName": "AKS Cluster RBAC Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name={{aksCluster1}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property defined",
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a9b5363ae76d68918ac8599470318a69c56da621572ad9c3576d0772f373625d",
+    "search_line": 4
   },
   {
     "queryName": "AKS Cluster RBAC Disabled",
     "severity": "HIGH",
     "line": 16,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "properties.template.resources.name={{aksCluster1}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property defined",
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "cf55e2223c115015a5b77f263ff49df0389656c4cc3944d231ff2ed4e9c40ec7",
+    "search_line": 16
+  },
+  {
+    "queryName": "AKS Cluster RBAC Disabled",
+    "severity": "HIGH",
+    "line": 26,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name={{aksCluster1}}.properties.enableRBAC",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property value set to true",
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true%!(EXTRA string=property value)",
+    "issueType": "IncorrectValue",
+    "similarityID": "0c3fdaa7b77ee0fb8515893e1acd013bd855f693c0ad715c6d611f3c98e4253c",
+    "search_line": 26
   },
   {
     "queryName": "AKS Cluster RBAC Disabled",
     "severity": "HIGH",
     "line": 38,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "AKS Cluster RBAC Disabled",
-    "severity": "HIGH",
-    "line": 4,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "AKS Cluster RBAC Disabled",
-    "severity": "HIGH",
-    "line": 26,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "AKS Cluster RBAC Disabled",
-    "severity": "HIGH",
-    "line": 4,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "AKS Cluster RBAC Disabled",
-    "severity": "HIGH",
-    "line": 26,
-    "fileName": "positive4.bicep"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "properties.template.resources.name={{aksCluster1}}.properties.enableRBAC",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property value set to true",
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true%!(EXTRA string=property value)",
+    "issueType": "IncorrectValue",
+    "similarityID": "73233c64bbee0e70126dcd46b3f2d49356902f3635a83f4588f3820f86fe65b2",
+    "search_line": 38
   }
 ]

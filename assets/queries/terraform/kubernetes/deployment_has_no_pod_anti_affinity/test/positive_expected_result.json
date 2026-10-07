@@ -3,24 +3,60 @@
     "queryName": "Deployment Has No PodAntiAffinity",
     "severity": "LOW",
     "line": 25,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_deployment[example].spec.template.spec",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[example].spec.template.spec.affinity should be set",
+    "actualValue": "kubernetes_deployment[example].spec.template.spec.affinity is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "aa219c229c7c7dabee4c0e1c503b860be2124e7d4ec02011964fbfef0e409def",
+    "search_line": 25
   },
   {
     "queryName": "Deployment Has No PodAntiAffinity",
     "severity": "LOW",
     "line": 26,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_deployment[example2].spec.template.spec.affinity",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[example2].spec.template.spec.affinity.pod_anti_affinity should be set",
+    "actualValue": "kubernetes_deployment[example2].spec.template.spec.affinity.pod_anti_affinity is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "42d741293ba8cd80725ee01b545ff75cdb08549df9756e3a7bb1954d8620559d",
+    "search_line": 26
   },
   {
     "queryName": "Deployment Has No PodAntiAffinity",
     "severity": "LOW",
     "line": 28,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_deployment[example3].spec.template.spec.affinity",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[example3].spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.topology_key should be set to 'kubernetes.io/hostname'",
+    "actualValue": "kubernetes_deployment[example3].spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.topology_key is invalid or undefined",
+    "issueType": "IncorrectValue",
+    "similarityID": "3fbaedc66d41e4879c5d2b00880b1311cf9d3015301dd2c1bcccba09229d0d08",
+    "search_line": 28
   },
   {
     "queryName": "Deployment Has No PodAntiAffinity",
     "severity": "LOW",
     "line": 33,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_deployment[example4].spec.template.spec.affinity",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[example4].spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_labels match any label on template metadata",
+    "actualValue": "kubernetes_deployment[example4].spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_labels don't match any label on template metadata",
+    "issueType": "IncorrectValue",
+    "similarityID": "80b73035e6664a7c1d909cc4527deb749a184fe38bdcae7695f2bc84514ae1d6",
+    "search_line": 33
   }
 ]

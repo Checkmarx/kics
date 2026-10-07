@@ -2,11 +2,31 @@
   {
     "queryName": "WAF Is Disabled For Azure Application Gateway",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_application_gateway",
+    "resourceName": "example-appgateway",
+    "searchKey": "azurerm_application_gateway[positive1].waf_configuration.enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_application_gateway[positive1].waf_configuration.enabled' is true",
+    "actualValue": "'azurerm_application_gateway[positive1].waf_configuration.enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "62ac3c60860adc0aa5ad7b62ee3c3d0d4b7136b704496ecb3efb2c3d4141ee02",
+    "search_line": 7
   },
   {
     "queryName": "WAF Is Disabled For Azure Application Gateway",
     "severity": "MEDIUM",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_application_gateway",
+    "resourceName": "example-appgateway",
+    "searchKey": "azurerm_application_gateway[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_application_gateway[positive2]' should be set",
+    "actualValue": "'azurerm_application_gateway[positive2]' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "acc2871ee81c3c02b692b3e7313e03de8bd0d1fecd27b86050e99ec84c0d138d",
+    "search_line": 11
   }
 ]

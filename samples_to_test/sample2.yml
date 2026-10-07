@@ -1,0 +1,137 @@
+name: Sync Copywriter Changes
+
+on:
+  # Trigger only on comment creation
+  issue_comment:
+    types: [created]
+
+jobs:
+  sync-metadata:
+    # Only run if:
+    # 1. It is a PR comment (not a regular issue)
+    # 2. Comment contains "/sync-metadata"
+    if: |
+      github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request &&
+      contains(github.event.comment.body, '/sync-metadata')
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Get PR details
+        id: pr
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            // We know this is an issue_comment event
+            const prNumber = context.issue.number;
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber
+            });
+            core.setOutput('pr_number', prNumber);
+            core.setOutput('head_ref', pr.head.ref);
+            core.setOutput('head_sha', pr.head.sha);
+      # SECURITY: Checkout main branch only (trusted code)
+      - name: Checkout main branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # SECURITY: Fetch PR changes without checking out PR code
+      - name: Fetch PR changes
+        run: |
+          git fetch origin pull/${{ steps.pr.outputs.pr_number }}/head:pr-branch
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.11'
+
+      - name: Find changed MD files
+        id: changed_files
+        run: |
+          CHANGED_FILES=$(git diff --name-only main...pr-branch | grep '^documentation/rules/.*\.md$' || true)
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "files<<EOF" >> $GITHUB_OUTPUT
+            echo "$CHANGED_FILES" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+      - name: Extract MD files from PR
+        if: steps.changed_files.outputs.has_changes == 'true'
+        run: |
+          FILES="${{ steps.changed_files.outputs.files }}"
+          mkdir -p pr-md-files
+          for file in $FILES; do
+            mkdir -p "pr-md-files/$(dirname "$file")"
+            git show pr-branch:"$file" > "pr-md-files/$file"
+            cp "pr-md-files/$file" "$file"
+          done
+      - name: Run sync script
+        if: steps.changed_files.outputs.has_changes == 'true'
+        id: sync
+        run: |
+          FILES="${{ steps.changed_files.outputs.files }}"
+          python .github/scripts/sync-copywriter-changes/sync_md_to_metadata.py -f $FILES -v > sync_output.txt 2>&1
+          SYNC_EXIT_CODE=$?
+          cat sync_output.txt
+          if git diff --quiet assets/queries/; then
+            echo "updated=false" >> $GITHUB_OUTPUT
+          else
+            echo "updated=true" >> $GITHUB_OUTPUT
+          fi
+          exit $SYNC_EXIT_CODE
+      - name: Commit and push changes
+        if: steps.sync.outputs.updated == 'true'
+        env:
+          HEAD_REF: ${{ steps.pr.outputs.head_ref }}
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout -b temp-sync-branch pr-branch
+          git add assets/queries/*/metadata.json
+          git commit -m "Sync metadata.json from copywriter-approved MD changes
+          Automated sync triggered by /sync-metadata command.
+          Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          git push origin "temp-sync-branch:$HEAD_REF" --force
+      - name: Comment on PR
+        if: steps.sync.outputs.updated == 'true'
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ steps.pr.outputs.pr_number }},
+              body: '✅ Metadata files synced successfully from copywriter-approved documentation changes.\n\nThe `metadata.json` files have been updated to reflect the latest documentation edits.'
+            });
+      - name: Comment on PR if no changes
+        if: steps.changed_files.outputs.has_changes == 'false'
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ steps.pr.outputs.pr_number }},
+              body: 'ℹ️ No markdown documentation files were changed in this PR. Nothing to sync.'
+            });
+      - name: Comment on PR if sync but no updates
+        if: steps.changed_files.outputs.has_changes == 'true' && steps.sync.outputs.updated == 'false'
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ steps.pr.outputs.pr_number }},
+              body: '✅ Sync completed - metadata.json files are already up to date with the documentation changes.'
+            });

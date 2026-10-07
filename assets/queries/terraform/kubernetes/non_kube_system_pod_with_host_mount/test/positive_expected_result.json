@@ -2,21 +2,61 @@
   {
     "queryName": "Non Kube System Pod With Host Mount",
     "severity": "HIGH",
-    "line": 53
+    "line": 53,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[test].spec.volume.host_path.path",
+    "searchValue": "",
+    "expectedValue": "Resource name 'terraform-example' in non kube-system namespace 'kube' should not have host_path '/var/log' mounted",
+    "actualValue": "Resource name 'terraform-example' in non kube-system namespace 'kube' has a host_path '/var/log' mounted",
+    "issueType": "IncorrectValue",
+    "similarityID": "b8f291c2488c493ad2420bbb1663da401e217dfbed45e1a9bdcce9515e114852",
+    "search_line": -1
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
     "severity": "HIGH",
-    "line": 113
+    "line": 113,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example2",
+    "searchKey": "kubernetes_pod[test2].spec.volume.host_path.path",
+    "searchValue": "",
+    "expectedValue": "Resource name 'terraform-example2' in non kube-system namespace 'default' should not have host_path '/var/log' mounted",
+    "actualValue": "Resource name 'terraform-example2' in non kube-system namespace 'default' has a host_path '/var/log' mounted",
+    "issueType": "IncorrectValue",
+    "similarityID": "bea33e8a813a991a3343553029612d56c7ec8359ad319f47c2ce3dfac17e4de4",
+    "search_line": -1
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
     "severity": "HIGH",
-    "line": 173
+    "line": 173,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_persistent_volume",
+    "resourceName": "terraform-example3",
+    "searchKey": "kubernetes_persistent_volume[test3].spec.volume.host_path.path",
+    "searchValue": "",
+    "expectedValue": "Resource name 'terraform-example3' in non kube-system namespace 'kube' should not have host_path '/var/log' mounted",
+    "actualValue": "Resource name 'terraform-example3' in non kube-system namespace 'kube' has a host_path '/var/log' mounted",
+    "issueType": "IncorrectValue",
+    "similarityID": "bb4e871024bc7f7862bca193dd109e9dc19e6f9c63d0d99954cc9dc80daa71de",
+    "search_line": -1
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
     "severity": "HIGH",
-    "line": 233
+    "line": 233,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_persistent_volume",
+    "resourceName": "terraform-example4",
+    "searchKey": "kubernetes_persistent_volume[test4].spec.volume.host_path.path",
+    "searchValue": "",
+    "expectedValue": "Resource name 'terraform-example4' in non kube-system namespace 'default' should not have host_path '/var/log' mounted",
+    "actualValue": "Resource name 'terraform-example4' in non kube-system namespace 'default' has a host_path '/var/log' mounted",
+    "issueType": "IncorrectValue",
+    "similarityID": "147f73a492757442c2d5b32225f5d956d348d21d924deb3fef12c256f6d5df4c",
+    "search_line": -1
   }
 ]

@@ -3,6 +3,15 @@
     "queryName": "S3 Bucket Allows Get Action From All Principals",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.s3_bucket",
+    "resourceName": "Bucket",
+    "searchKey": "name={{Bucket}}.{{amazon.aws.s3_bucket}}.policy",
+    "searchValue": "",
+    "expectedValue": "s3_bucket[mys3bucket] should not allow Get Action From All Principals",
+    "actualValue": "s3_bucket[mys3bucket] allows Get Action From All Principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "50be132b5eca536aeb7b78c1e3f17f4622c3dd093719be1595d7d309065b63aa",
+    "search_line": 6
   }
 ]

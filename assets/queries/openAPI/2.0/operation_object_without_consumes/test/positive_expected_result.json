@@ -3,12 +3,30 @@
     "queryName": "Operation Object Without 'consumes'",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.put",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.put 'consumes' should be defined",
+    "actualValue": "paths.{{/}}.put 'consumes' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "3b3acbe65f590af9a58ab0c3b17d0516eedc2910b163cb4c0870b12306a862c6",
+    "search_line": -1
   },
   {
     "queryName": "Operation Object Without 'consumes'",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.put",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.put 'consumes' should be defined",
+    "actualValue": "paths.{{/}}.put 'consumes' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "7eac76fb71f6da95561590a4e2c416c5d816395875d21f3fcfbc8dc03c9f261f",
+    "search_line": -1
   }
 ]

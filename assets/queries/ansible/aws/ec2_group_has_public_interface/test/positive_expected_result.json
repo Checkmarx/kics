@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "EC2 Group Has Public Interface",
-		"severity": "HIGH",
-		"line": 22,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "EC2 Group Has Public Interface",
+    "severity": "HIGH",
+    "line": 22,
+    "fileName": "positive.yaml",
+    "resourceType": "ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{ec2_group}}.rules.cidr_ip",
+    "searchValue": "",
+    "expectedValue": "'ec2_group.rules.cidr_ip' should not be 0.0.0.0/0",
+    "actualValue": "'ec2_group.rules.cidr_ip' is 0.0.0.0/0",
+    "issueType": "IncorrectValue",
+    "similarityID": "ca9b0f6e89feec49abb7ab0a2abb5383ebd35b093b0c7ce1fbb1a024da59a0b4",
+    "search_line": 22
+  }
 ]

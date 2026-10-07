@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Nifcloud Computing Undefined Security Group To Instance",
-		"severity": "HIGH",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud Computing Undefined Security Group To Instance",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "nifcloud_instance",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_instance[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_instance[positive]' should include a security_group for security purposes",
+    "actualValue": "'nifcloud_instance[positive]' does not have a security_group",
+    "issueType": "MissingAttribute",
+    "similarityID": "e98608652b4e21a68eac63a9f88a0676ff23ce58bc962c17e30b0d16a4e23302",
+    "search_line": -1
+  }
 ]

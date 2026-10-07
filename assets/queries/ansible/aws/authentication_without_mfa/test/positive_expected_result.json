@@ -2,16 +2,46 @@
   {
     "queryName": "Authentication Without MFA",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.sts_assume_role",
+    "resourceName": "Assume an existing role",
+    "searchKey": "name={{Assume an existing role}}.{{community.aws.sts_assume_role}}",
+    "searchValue": "mfa_token",
+    "expectedValue": "sts_assume_role.mfa_token should be set",
+    "actualValue": "sts_assume_role.mfa_token is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "027d0830dc63d3b41d3c0c4b00ed48542e2abfc5bca9961fd7151c9a42940bf0",
+    "search_line": 2
   },
   {
     "queryName": "Authentication Without MFA",
     "severity": "LOW",
-    "line": 9
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "sts_assume_role",
+    "resourceName": "Hello",
+    "searchKey": "name={{Hello}}.{{sts_assume_role}}",
+    "searchValue": "mfa_serial_number",
+    "expectedValue": "sts_assume_role.mfa_serial_number should be set",
+    "actualValue": "sts_assume_role.mfa_serial_number is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7030d8db76a168ad17cd77312249dfe6c6194548032e908cc9623d505812f7b6",
+    "search_line": 9
   },
   {
     "queryName": "Authentication Without MFA",
     "severity": "LOW",
-    "line": 9
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "sts_assume_role",
+    "resourceName": "Hello",
+    "searchKey": "name={{Hello}}.{{sts_assume_role}}",
+    "searchValue": "mfa_token",
+    "expectedValue": "sts_assume_role.mfa_token should be set",
+    "actualValue": "sts_assume_role.mfa_token is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2c699f62fc7e56dece58817cd13a3283472ce7b0eefacd398805b622e48ac4e0",
+    "search_line": 9
   }
 ]

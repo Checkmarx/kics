@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Nifcloud Router Has Common Private Network",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Nifcloud Router Has Common Private Network",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive2.tf"
-	}
+  {
+    "queryName": "Nifcloud Router Has Common Private Network",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive1.tf",
+    "resourceType": "nifcloud_router",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_router[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_router[positive]' should use a private LAN to isolate the private side network from the shared network.",
+    "actualValue": "'nifcloud_router[positive]' has common private network.",
+    "issueType": "IncorrectValue",
+    "similarityID": "8b81d72d1c614e3269a251f738dd92a5a568db8be7c716a627cd9cee33e0c723",
+    "search_line": -1
+  },
+  {
+    "queryName": "Nifcloud Router Has Common Private Network",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive2.tf",
+    "resourceType": "nifcloud_router",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_router[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_router[positive]' should use a private LAN to isolate the private side network from the shared network.",
+    "actualValue": "'nifcloud_router[positive]' has common private network.",
+    "issueType": "IncorrectValue",
+    "similarityID": "95b018c88a6d0b3ddcd61c258fc98902fe0ca17c1974d385932e084c60786d5d",
+    "search_line": -1
+  }
 ]

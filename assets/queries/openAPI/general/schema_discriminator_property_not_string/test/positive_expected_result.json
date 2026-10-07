@@ -3,48 +3,120 @@
     "queryName": "Schema Discriminator Property Not String (v3)",
     "severity": "INFO",
     "line": 53,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{GeneralError}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "components.schemas.{{GeneralError}}.discriminator.propertyName should be set to string",
+    "actualValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is not set to string",
+    "issueType": "IncorrectValue",
+    "similarityID": "2770e35dfbab026bc6a6d8456bff86180662b904a93b8719df72f8af600f0957",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Property Not String (v3)",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) should be set to string",
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is not set to string",
+    "issueType": "IncorrectValue",
+    "similarityID": "5bafd8e4b1e558808a3dac3b5e4054f044ca8a8b0cce92e0b32b586277f4d35f",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Property Not String (v3)",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{GeneralError}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "components.schemas.{{GeneralError}}.discriminator.propertyName should be set to string",
+    "actualValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is not set to string",
+    "issueType": "IncorrectValue",
+    "similarityID": "08e08106b44bf253f9d12cd960abe267d296ddc2129ac064e9b92f77284cfac0",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Property Not String (v3)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) should be set to string",
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is not set to string",
+    "issueType": "IncorrectValue",
+    "similarityID": "c4073da3f17b3b57e317c609275e2462e37fde7ba4001d095e65c76521457cce",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Property Not String (v2)",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{GeneralError}}.discriminator",
+    "searchValue": "",
+    "expectedValue": "definitions.{{GeneralError}}.discriminator should be set to string",
+    "actualValue": "definitions.{{GeneralError}}.discriminator is not set to string",
+    "issueType": "IncorrectValue",
+    "similarityID": "1c4186d3403c2a3c0621318a89084a58ce0e3e312db5c6ec20e1f883088111a4",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Property Not String (v2)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{GeneralError}}.discriminator",
+    "searchValue": "",
+    "expectedValue": "definitions.{{GeneralError}}.discriminator should be set to string",
+    "actualValue": "definitions.{{GeneralError}}.discriminator is not set to string",
+    "issueType": "IncorrectValue",
+    "similarityID": "3950f87b0d165ae0ab9494c6f2cee67008956314975d2372e2feb256796cc29c",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Property Not String (v2)",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.discriminator",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) should be set to string",
+    "actualValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is not set to string",
+    "issueType": "IncorrectValue",
+    "similarityID": "36386fbd87d837a002e967486509dc865951c40020720d06df405173096f8f26",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Property Not String (v2)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive8.yaml"
+    "fileName": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.discriminator",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) should be set to string",
+    "actualValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is not set to string",
+    "issueType": "IncorrectValue",
+    "similarityID": "e8d0f48b93ef93fa57868112fb29c1dfb034cedb4c71b6bdfef57d1039304860",
+    "search_line": -1
   }
 ]

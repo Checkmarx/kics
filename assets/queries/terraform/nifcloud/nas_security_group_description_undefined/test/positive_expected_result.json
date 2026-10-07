@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Nifcloud NAS Undefined Description To NAS Security Group",
-		"severity": "INFO",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud NAS Undefined Description To NAS Security Group",
+    "severity": "INFO",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "nifcloud_nas_security_group",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_nas_security_group[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_nas_security_group[positive]' should include a description for auditing purposes",
+    "actualValue": "'nifcloud_nas_security_group[positive]' does not have a description",
+    "issueType": "MissingAttribute",
+    "similarityID": "559f816a447046bf1255a7dd5f9d023794c55282050dd55d07173e0d03f48d49",
+    "search_line": -1
+  }
 ]

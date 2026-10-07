@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "API Gateway Without SSL Certificate",
-		"severity": "MEDIUM",
-		"line": 1
-	}
+  {
+    "queryName": "API Gateway Without SSL Certificate",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive1",
+    "searchKey": "aws_api_gateway_stage[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'client_certificate_id' should be set",
+    "actualValue": "Attribute 'client_certificate_id' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "624ced6ab5f48cac9a2e45f90bffc3eecb9beb07dfe4e05fe733578948616545",
+    "search_line": -1
+  }
 ]

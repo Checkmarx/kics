@@ -1,14 +1,32 @@
 [
-    {
-      "queryName": "Default Seccomp Profile Disabled",
-      "severity": "MEDIUM",
-      "line": 13,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Default Seccomp Profile Disabled",
-      "severity": "MEDIUM",
-      "line": 10,
-      "filename": "positive2.yaml"
-    }
+  {
+    "queryName": "Default Seccomp Profile Disabled",
+    "severity": "MEDIUM",
+    "line": 13,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.demo.security_opt",
+    "searchValue": "",
+    "expectedValue": "Seccomp default profile to not be disabled.",
+    "actualValue": "Seccomp default profile is disabled.",
+    "issueType": "IncorrectValue",
+    "similarityID": "5e5b3f3bee5bc36f242bcdeca576d884f3fff99ac3a0f4037c407e2db1e85502",
+    "search_line": 13
+  },
+  {
+    "queryName": "Default Seccomp Profile Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.example.security_opt",
+    "searchValue": "",
+    "expectedValue": "Seccomp default profile to not be disabled.",
+    "actualValue": "Seccomp default profile is disabled.",
+    "issueType": "IncorrectValue",
+    "similarityID": "7acec50ea438a60d5de1dbc2d1117a87d18930530afc9a3c86439612fca532af",
+    "search_line": 10
+  }
 ]

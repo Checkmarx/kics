@@ -3,6 +3,15 @@
     "queryName": "Sagemaker Endpoint Configuration Encryption Disabled",
     "severity": "HIGH",
     "line": 1,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_sagemaker_endpoint_configuration",
+    "resourceName": "my-endpoint-config",
+    "searchKey": "aws_sagemaker_endpoint_configuration[positive]",
+    "searchValue": "",
+    "expectedValue": "aws_sagemaker_endpoint_configuration[positive] should be defined and not null",
+    "actualValue": "aws_sagemaker_endpoint_configuration[positive] is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c5d4722dfa6a54e9418fd854a405dfa660faacb313abf7a119b44ff1de879d99",
+    "search_line": -1
   }
 ]

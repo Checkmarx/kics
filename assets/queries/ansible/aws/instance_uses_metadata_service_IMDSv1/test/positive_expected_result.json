@@ -1,122 +1,302 @@
 [
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 10,
-        "fileName": "positive1.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 20,
-        "fileName": "positive1.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 32,
-        "fileName": "positive1.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 42,
-        "fileName": "positive1.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 2,
-        "fileName": "positive2.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 11,
-        "fileName": "positive2.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 20,
-        "fileName": "positive2.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 29,
-        "fileName": "positive2.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 11,
-        "fileName": "positive3.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 23,
-        "fileName": "positive3.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 35,
-        "fileName": "positive3.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 47,
-        "fileName": "positive3.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 9,
-        "fileName": "positive4.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 20,
-        "fileName": "positive4.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 31,
-        "fileName": "positive4.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 42,
-        "fileName": "positive4.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 9,
-        "fileName": "positive5.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 20,
-        "fileName": "positive5.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 31,
-        "fileName": "positive5.yaml"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": 42,
-        "fileName": "positive5.yaml"
-    }
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive1.yaml",
+    "resourceType": "amazon.aws.ec2_instance",
+    "resourceName": "start an instance with metadata options",
+    "searchKey": "name={{start an instance with metadata options}}.{{amazon.aws.ec2_instance}}.metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'amazon.aws.ec2_instance.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'amazon.aws.ec2_instance.metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a170bce6c4b48e81aa2713bac54f987a56f76b57f0ca157fbedd89a5c2c96d68",
+    "search_line": 10
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 20,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.aws.autoscaling_launch_config",
+    "resourceName": "create launch configuration with metadata options",
+    "searchKey": "name={{create launch configuration with metadata options}}.{{community.aws.autoscaling_launch_config}}.metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'community.aws.autoscaling_launch_config.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'community.aws.autoscaling_launch_config.metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4884a5b998fee8bd0e3543aa65636b40d2a14863992c13bf24ab3f748e58e28f",
+    "search_line": 20
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 32,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.aws.ec2_instance",
+    "resourceName": "start an instance with legacy naming and metadata options",
+    "searchKey": "name={{start an instance with legacy naming and metadata options}}.{{community.aws.ec2_instance}}.metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'community.aws.ec2_instance.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'community.aws.ec2_instance.metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d778bc85bba6862a37e3848134ca543116de4a5ea4555f042a9bf493420a4148",
+    "search_line": 32
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 42,
+    "fileName": "positive1.yaml",
+    "resourceType": "community.aws.ec2_lc",
+    "resourceName": "create launch configuration with legacy naming and metadata options",
+    "searchKey": "name={{create launch configuration with legacy naming and metadata options}}.{{community.aws.ec2_lc}}.metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'community.aws.ec2_lc.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'community.aws.ec2_lc.metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "bcb6fb61ccfab58d6be005cf53514607fd566ee70e3fd0dbdf305a57606f81b5",
+    "search_line": 42
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive2.yaml",
+    "resourceType": "amazon.aws.ec2_instance",
+    "resourceName": "start an instance",
+    "searchKey": "name={{start an instance}}.{{amazon.aws.ec2_instance}}",
+    "searchValue": "",
+    "expectedValue": "'amazon.aws.ec2_instance.metadata_options' should be defined with 'http_tokens' field set to 'required'",
+    "actualValue": "'amazon.aws.ec2_instance.metadata_options' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f8c7eaa2a36dd417e286186d49fc197111e5d0417d96d0c6ab8c384c47521e36",
+    "search_line": 2
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive2.yaml",
+    "resourceType": "community.aws.autoscaling_launch_config",
+    "resourceName": "create launch configuration",
+    "searchKey": "name={{create launch configuration}}.{{community.aws.autoscaling_launch_config}}",
+    "searchValue": "",
+    "expectedValue": "'community.aws.autoscaling_launch_config.metadata_options' should be defined with 'http_tokens' field set to 'required'",
+    "actualValue": "'community.aws.autoscaling_launch_config.metadata_options' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d62498ec031580160e8e6fc4b17b6590baa94682339c431affbd9089e165c26b",
+    "search_line": 11
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 20,
+    "fileName": "positive2.yaml",
+    "resourceType": "community.aws.ec2_instance",
+    "resourceName": "start an instance with legacy naming",
+    "searchKey": "name={{start an instance with legacy naming}}.{{community.aws.ec2_instance}}",
+    "searchValue": "",
+    "expectedValue": "'community.aws.ec2_instance.metadata_options' should be defined with 'http_tokens' field set to 'required'",
+    "actualValue": "'community.aws.ec2_instance.metadata_options' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "91b59b33d668ec5a98fce9b98922cf182c4cd2ee2e2781c09a1d9cbaba4dec00",
+    "search_line": 20
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 29,
+    "fileName": "positive2.yaml",
+    "resourceType": "community.aws.ec2_lc",
+    "resourceName": "create launch configuration with legacy naming",
+    "searchKey": "name={{create launch configuration with legacy naming}}.{{community.aws.ec2_lc}}",
+    "searchValue": "",
+    "expectedValue": "'community.aws.ec2_lc.metadata_options' should be defined with 'http_tokens' field set to 'required'",
+    "actualValue": "'community.aws.ec2_lc.metadata_options' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "173b5844d901e6036999f7ebfe1c6c549b7cd0e1ac064440b19b253816696cde",
+    "search_line": 29
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive3.yaml",
+    "resourceType": "amazon.aws.ec2_instance",
+    "resourceName": "start an instance with metadata options",
+    "searchKey": "name={{start an instance with metadata options}}.{{amazon.aws.ec2_instance}}.metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'amazon.aws.ec2_instance.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'amazon.aws.ec2_instance.metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b2ef164c7190e30c55d54cf36e74bba2143dc48cbac11b818f3f04a5824aaef8",
+    "search_line": 11
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 23,
+    "fileName": "positive3.yaml",
+    "resourceType": "community.aws.autoscaling_launch_config",
+    "resourceName": "create launch configuration with metadata options",
+    "searchKey": "name={{create launch configuration with metadata options}}.{{community.aws.autoscaling_launch_config}}.metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'community.aws.autoscaling_launch_config.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'community.aws.autoscaling_launch_config.metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "79fe0a7e96df48a6599165198874134cf365f83a00fcd418260d427cf55c74ec",
+    "search_line": 23
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 35,
+    "fileName": "positive3.yaml",
+    "resourceType": "community.aws.ec2_instance",
+    "resourceName": "start an instance with legacy naming and metadata options",
+    "searchKey": "name={{start an instance with legacy naming and metadata options}}.{{community.aws.ec2_instance}}.metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'community.aws.ec2_instance.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'community.aws.ec2_instance.metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4bb15c45325bde2bb8bee6fefb9a61a93ec81ae4b3fd7f5479fa8b22ab1b0d67",
+    "search_line": 35
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 47,
+    "fileName": "positive3.yaml",
+    "resourceType": "community.aws.ec2_lc",
+    "resourceName": "create launch configuration with legacy naming and metadata options",
+    "searchKey": "name={{create launch configuration with legacy naming and metadata options}}.{{community.aws.ec2_lc}}.metadata_options.http_tokens",
+    "searchValue": "",
+    "expectedValue": "'community.aws.ec2_lc.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'community.aws.ec2_lc.metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue",
+    "similarityID": "769acbb049fd6965e08ff1665a202db3c949312071a2981bf5cdc7aa35a73c63",
+    "search_line": 47
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive4.yaml",
+    "resourceType": "amazon.aws.ec2_instance",
+    "resourceName": "start an instance with metadata options",
+    "searchKey": "name={{start an instance with metadata options}}.{{amazon.aws.ec2_instance}}.metadata_options",
+    "searchValue": "",
+    "expectedValue": "'amazon.aws.ec2_instance.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'amazon.aws.ec2_instance.metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "92b1ae1c757a0534938646cfb2d8187d6919500de88b0923507b0790d8ae3a5e",
+    "search_line": 9
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 20,
+    "fileName": "positive4.yaml",
+    "resourceType": "community.aws.autoscaling_launch_config",
+    "resourceName": "create launch configuration with metadata options",
+    "searchKey": "name={{create launch configuration with metadata options}}.{{community.aws.autoscaling_launch_config}}.metadata_options",
+    "searchValue": "",
+    "expectedValue": "'community.aws.autoscaling_launch_config.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'community.aws.autoscaling_launch_config.metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "caa4b0917deb00b3728689979092b89a8679132d0daec3bca039e38466352571",
+    "search_line": 20
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 31,
+    "fileName": "positive4.yaml",
+    "resourceType": "community.aws.ec2_instance",
+    "resourceName": "start an instance with legacy naming and metadata options",
+    "searchKey": "name={{start an instance with legacy naming and metadata options}}.{{community.aws.ec2_instance}}.metadata_options",
+    "searchValue": "",
+    "expectedValue": "'community.aws.ec2_instance.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'community.aws.ec2_instance.metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7652ebe5591c138dd5db14d900a78bb329e99baf2db978a127ba612ec05f2084",
+    "search_line": 31
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 42,
+    "fileName": "positive4.yaml",
+    "resourceType": "community.aws.ec2_lc",
+    "resourceName": "create launch configuration with legacy naming and metadata options",
+    "searchKey": "name={{create launch configuration with legacy naming and metadata options}}.{{community.aws.ec2_lc}}.metadata_options",
+    "searchValue": "",
+    "expectedValue": "'community.aws.ec2_lc.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'community.aws.ec2_lc.metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0953bad2f690b1c0da9ee2eda241841cd1d4911ef51951830786c3bcd53722c0",
+    "search_line": 42
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive5.yaml",
+    "resourceType": "amazon.aws.ec2_instance",
+    "resourceName": "start an instance with metadata options",
+    "searchKey": "name={{start an instance with metadata options}}.{{amazon.aws.ec2_instance}}.metadata_options",
+    "searchValue": "",
+    "expectedValue": "'amazon.aws.ec2_instance.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'amazon.aws.ec2_instance.metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f5f5a98f31b2f3d368ef9d8afd1848e6c7fe0499f74ae920817be39a1fa0f575",
+    "search_line": 9
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 20,
+    "fileName": "positive5.yaml",
+    "resourceType": "community.aws.autoscaling_launch_config",
+    "resourceName": "create launch configuration with metadata options",
+    "searchKey": "name={{create launch configuration with metadata options}}.{{community.aws.autoscaling_launch_config}}.metadata_options",
+    "searchValue": "",
+    "expectedValue": "'community.aws.autoscaling_launch_config.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'community.aws.autoscaling_launch_config.metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "872afd2a7b5ec2d1ead00b169f22ea5f6bb23e94b24061c3b27ae3f2e8651a9d",
+    "search_line": 20
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 31,
+    "fileName": "positive5.yaml",
+    "resourceType": "community.aws.ec2_instance",
+    "resourceName": "start an instance with legacy naming and metadata options",
+    "searchKey": "name={{start an instance with legacy naming and metadata options}}.{{community.aws.ec2_instance}}.metadata_options",
+    "searchValue": "",
+    "expectedValue": "'community.aws.ec2_instance.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'community.aws.ec2_instance.metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6115ba73c880310e5b661380700deed2296ab318d49bfda3c8305a76624327c9",
+    "search_line": 31
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 42,
+    "fileName": "positive5.yaml",
+    "resourceType": "community.aws.ec2_lc",
+    "resourceName": "create launch configuration with legacy naming and metadata options",
+    "searchKey": "name={{create launch configuration with legacy naming and metadata options}}.{{community.aws.ec2_lc}}.metadata_options",
+    "searchValue": "",
+    "expectedValue": "'community.aws.ec2_lc.metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'community.aws.ec2_lc.metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0a0a7bf509a715cbb5ee04a6932181d79846b7fcda5e052dddc8a8da52d65cf4",
+    "search_line": 42
+  }
 ]

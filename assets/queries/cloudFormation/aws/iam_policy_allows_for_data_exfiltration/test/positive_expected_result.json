@@ -3,72 +3,180 @@
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "CFNUser",
+    "searchKey": "Resources.CFNUser.Properties.Policies.0.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [*]",
+    "issueType": "IncorrectValue",
+    "similarityID": "d47865da23987a185f51db95eca127566f9e90aecc9a7cb42476b753cd8b2af5",
+    "search_line": 14
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::IAM::Group",
+    "resourceName": "RootGroup",
+    "searchKey": "Resources.RootGroup.Properties.Policies.0.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [ssm:GetParameter]",
+    "issueType": "IncorrectValue",
+    "similarityID": "b6011ad33dd9afdec6e00aa7f918d89cc9df2d7b6a47d0cb79d5d7d3cd859e73",
+    "search_line": 12
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "CFNUsers",
+    "searchKey": "Resources.MyPolicy.Properties.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [ssm:GetParameters]",
+    "issueType": "IncorrectValue",
+    "similarityID": "00153f33a8f5fe240f05fdfd0515051318da708bb2255f07e7647eb98591f284",
+    "search_line": 11
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.Policies.0.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [ssm:GetParametersByPath]",
+    "issueType": "IncorrectValue",
+    "similarityID": "57f91ae69dd0161014dfff61a07167c879ab4378409703a44febec739aa46d43",
+    "search_line": 12
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::IAM::ManagedPolicy",
+    "resourceName": "CreateTestDBPolicy",
+    "searchKey": "Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' contains [s3:*]",
+    "issueType": "IncorrectValue",
+    "similarityID": "09161871497c98e5b6c66591ab368836e44957756f8705a75617e4b63fd69b80",
+    "search_line": 9
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "CFNUser",
+    "searchKey": "Resources.CFNUser.Properties.Policies.0.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [*]",
+    "issueType": "IncorrectValue",
+    "similarityID": "c5384af2ac5fcab90a4b73ce69d0b3dbf5bc1305f295fafea53ba783fa6961e0",
+    "search_line": 18
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "AWS::IAM::Group",
+    "resourceName": "RootGroup",
+    "searchKey": "Resources.RootGroup.Properties.Policies.0.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [s3:GetObject]",
+    "issueType": "IncorrectValue",
+    "similarityID": "703603a590e74742997aa0b5bbcba9383d7a12172e0ff3e840149b024298f0ce",
+    "search_line": 15
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive8.json"
+    "fileName": "positive8.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "CFNUsers",
+    "searchKey": "Resources.MyPolicy.Properties.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [secretsmanager:GetSecretValue]",
+    "issueType": "IncorrectValue",
+    "similarityID": "f858da98b1fe014f4f6872da4846b2dda9bc58cee0c0b810d5c5b7166e9c6bcf",
+    "search_line": 13
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive9.json"
+    "fileName": "positive9.json",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.Policies.0.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [s3:GetObject, ssm:GetParameter, s3:*]",
+    "issueType": "IncorrectValue",
+    "similarityID": "5810fe36d8ee7eeb02f23da22775503c90a45be8c623a7b160c3dfc091998f65",
+    "search_line": 15
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive10.json"
+    "fileName": "positive10.json",
+    "resourceType": "AWS::IAM::ManagedPolicy",
+    "resourceName": "CreateTestDBPolicy",
+    "searchKey": "Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' contains [s3:GetObject, ssm:GetParameter, s3:*]",
+    "issueType": "IncorrectValue",
+    "similarityID": "7582f9a4dd3c5ecd8f8486557e10abd766310c1f997f22482d317d7f38d244e0",
+    "search_line": 11
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive11.json"
+    "fileName": "positive11.json",
+    "resourceType": "AWS::IAM::ManagedPolicy",
+    "resourceName": "CreateTestDBPolicy",
+    "searchKey": "Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' contains [s3:*]",
+    "issueType": "IncorrectValue",
+    "similarityID": "c4a04d7c12dbde4dcb83364d8b17406f72f156977475843b6f25b7a1d387df6a",
+    "search_line": 11
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive12.json"
+    "fileName": "positive12.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "CFNUsers",
+    "searchKey": "Resources.MyPolicy.Properties.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [secretsmanager:GetSecretValue]",
+    "issueType": "IncorrectValue",
+    "similarityID": "2d56cb82ba0c850e8c48552b9b34e18bd0e2509d134f11df784ef58d64adfb13",
+    "search_line": 13
   }
 ]

@@ -2,6 +2,16 @@
   {
     "queryName": "RBAC Roles Allow Privilege Escalation",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.yaml",
+    "resourceType": "ClusterRole",
+    "resourceName": "rbac-binder",
+    "searchKey": "metadata.name={{rbac-binder}}.rules",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{rbac-binder}}.rules[0].verbs should not include the 'bind' and/or 'escalate' permission",
+    "actualValue": "metadata.name={{rbac-binder}}.rules[0].verbs includes the 'bind' and/or 'escalate' permission",
+    "issueType": "IncorrectValue",
+    "similarityID": "06faaf61917a3feef54b50d94b81cb393ff17d968d0811ae91a9f4afbfac532b",
+    "search_line": 8
   }
 ]

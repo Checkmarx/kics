@@ -2,6 +2,16 @@
   {
     "queryName": "Compute Instance Is Publicly Accessible",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance",
+    "searchKey": "name={{create a instance}}.{{google.cloud.gcp_compute_instance}}.network_interfaces.access_configs",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.network_interfaces.access_configs should not be defined",
+    "actualValue": "gcp_compute_instance.network_interfaces.access_configs is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "82eb311ec4b36b028d90976a6e022611079748502540deccabecc4db4089eb88",
+    "search_line": -1
   }
 ]

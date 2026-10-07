@@ -2,26 +2,76 @@
   {
     "queryName": "Tiller (Helm v2) Is Deployed",
     "severity": "HIGH",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].metadata",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].metadata should not refer any to a Tiller resource",
+    "actualValue": "kubernetes_pod[positive1].metadata refers to a Tiller resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "a38a756fff59eccbfd1e6c8b0b07c3d9e0079bbd01b88769f3918ce469c9dde3",
+    "search_line": -1
   },
   {
     "queryName": "Tiller (Helm v2) Is Deployed",
     "severity": "HIGH",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].image shouldn't have any Tiller containers",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].image contains a Tiller container",
+    "issueType": "IncorrectValue",
+    "similarityID": "8d0b5adb2cef5c7ddeb976b358a1a22168d5fd236c85c4c396e39dde59c4ab2e",
+    "search_line": -1
   },
   {
     "queryName": "Tiller (Helm v2) Is Deployed",
     "severity": "HIGH",
-    "line": 103
+    "line": 103,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container.image",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.image shouldn't have any Tiller containers",
+    "actualValue": "kubernetes_pod[positive2].spec.container.image contains a Tiller container",
+    "issueType": "IncorrectValue",
+    "similarityID": "a3fd069ee2671dfea2d02702eadda9720b4ffd147e2d92e8dd751d53ee566a8c",
+    "search_line": -1
   },
   {
     "queryName": "Tiller (Helm v2) Is Deployed",
     "severity": "HIGH",
-    "line": 175
+    "line": 175,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "example",
+    "searchKey": "kubernetes_deployment[example].spec.template.metadata",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[example].spec.template.metadata should not refer to any Tiller resource",
+    "actualValue": "kubernetes_deployment[example].spec.template.metadata does not refer to any Tiller resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "363b97da8397df1f2294063a0330a91fcd933d3a695eaffe4263d2a7156e23c7",
+    "search_line": -1
   },
   {
     "queryName": "Tiller (Helm v2) Is Deployed",
     "severity": "HIGH",
-    "line": 200
+    "line": 200,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "example",
+    "searchKey": "kubernetes_deployment[example].spec.template.spec.container.image",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[example].spec.template.spec.container.image shouldn't have any Tiller containers",
+    "actualValue": "kubernetes_deployment[example].spec.template.spec.container.image contains a Tiller container",
+    "issueType": "IncorrectValue",
+    "similarityID": "be039552f9513aacd0b34239733a7e85c3318dd6458e6ba1691943d1394daf79",
+    "search_line": -1
   }
 ]

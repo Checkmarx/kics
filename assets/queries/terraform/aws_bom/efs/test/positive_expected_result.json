@@ -3,12 +3,30 @@
     "queryName": "BOM - AWS EFS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_efs_file_system[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "605078a89809815594e244bc1f5d22ddb86d02d93ddd9e9f201db831439a42a8",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS EFS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_efs_file_system[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "c663a1738d748ead3dee223ff2b84dc277f11ba226a6ca36b77524826d22a240",
+    "search_line": 1
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "Beta - Redis Cache Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_redis_cache",
+    "resourceName": "example-cache",
+    "searchKey": "azurerm_redis_cache[positive1].minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "'minimum_tls_version' should be defined and set to '1.2'",
+    "actualValue": "'minimum_tls_version' is defined to '1.1'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8363411ed63a930f5862b481910a2a02a7af454d7524275a7d833b506755ad72",
+    "search_line": 9
   },
   {
     "queryName": "Beta - Redis Cache Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_redis_cache",
+    "resourceName": "example-cache",
+    "searchKey": "azurerm_redis_cache[positive2]",
+    "searchValue": "",
+    "expectedValue": "'minimum_tls_version' should be defined and set to '1.2'",
+    "actualValue": "'minimum_tls_version' is not defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "1a4e5386061a7b0357d7dd60d1120c925c7d4970b13f808ae5f0c4e5e6cbb763",
+    "search_line": 1
   }
 ]

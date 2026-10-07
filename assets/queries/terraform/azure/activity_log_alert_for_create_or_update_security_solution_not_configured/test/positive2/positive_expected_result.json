@@ -3,42 +3,105 @@
     "queryName": "Beta - Activity Log Alert For Create or Update Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_1].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_1]' resource monitors 'create or update security solution' events but sets 1 filter(s): caller",
+    "issueType": "IncorrectValue",
+    "similarityID": "4203c83188e99d4a3eee3289c98c00d25195a8be538d1d10f807002eca62070e",
+    "search_line": 9
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_2].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_2]' resource monitors 'create or update security solution' events but sets 1 filter(s): level",
+    "issueType": "IncorrectValue",
+    "similarityID": "79d8c5b19e7b126e35e9b0afb7decc1efea3c481aeeb513976e5eb6754e1e1ce",
+    "search_line": 28
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_3].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_3]' resource monitors 'create or update security solution' events but sets 1 filter(s): levels",
+    "issueType": "IncorrectValue",
+    "similarityID": "9b09082cfb8202b146a094fce400ab245760b9bf6f6d1829661f5c091fc08dce",
+    "search_line": 47
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 66,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_4].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_4]' resource monitors 'create or update security solution' events but sets 1 filter(s): status",
+    "issueType": "IncorrectValue",
+    "similarityID": "9885529ca74a38900949e07010e085b61b06230d6cc8f3e7bd7c7a34393ccf99",
+    "search_line": 66
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_5].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_5]' resource monitors 'create or update security solution' events but sets 1 filter(s): statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "f52d405c052eee5ac44da25175c482a0a73482141c59e0a525b92efb25515d45",
+    "search_line": 8
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_6].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_6]' resource monitors 'create or update security solution' events but sets 1 filter(s): sub_status",
+    "issueType": "IncorrectValue",
+    "similarityID": "7943e485d5974e192469ccc644f5e04adb66f0ac852fdece1c60724a8b700ff3",
+    "search_line": 27
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 46,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_7].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update security solution' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_7]' resource monitors 'create or update security solution' events but sets 1 filter(s): sub_statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "5b4c3c1ca8c58fcf4ba6b143301d69516861785cc068a6d0df017a4864f01ccd",
+    "search_line": 46
   }
 ]

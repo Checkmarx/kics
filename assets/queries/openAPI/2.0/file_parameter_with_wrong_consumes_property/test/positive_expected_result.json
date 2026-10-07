@@ -3,12 +3,30 @@
     "queryName": "File Parameter With Wrong Consumes Property",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Operation or global 'consumes' field should have declared 'multipart/form-data', 'application/x-www-form-urlencoded' or both when there is a file type parameter",
+    "actualValue": "Operation or global 'consumes' field doesn't have declared 'multipart/form-data', 'application/x-www-form-urlencoded' or both when there is a file type parameter",
+    "issueType": "IncorrectValue",
+    "similarityID": "032a01cb6a33d6509113eb033174077152ddc1b364416ed6eb2fc8f3ccb14f97",
+    "search_line": -1
   },
   {
     "queryName": "File Parameter With Wrong Consumes Property",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Operation or global 'consumes' field should have declared 'multipart/form-data', 'application/x-www-form-urlencoded' or both when there is a file type parameter",
+    "actualValue": "Operation or global 'consumes' field doesn't have declared 'multipart/form-data', 'application/x-www-form-urlencoded' or both when there is a file type parameter",
+    "issueType": "IncorrectValue",
+    "similarityID": "3a723fb7091217602b8e44b55a4abcad80797b1ecb4fed483a9e994202e63029",
+    "search_line": -1
   }
 ]

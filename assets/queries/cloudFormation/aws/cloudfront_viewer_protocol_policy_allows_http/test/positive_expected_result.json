@@ -3,24 +3,60 @@
     "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_1",
+    "searchKey": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy is 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy is 'allow-all'",
+    "issueType": "IncorrectValue",
+    "similarityID": "af2d2449fbe56cba75c87118f7161a477f9c83afd38558bec077ea3697451079",
+    "search_line": -1
   },
   {
+    "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
     "severity": "MEDIUM",
     "line": 30,
     "fileName": "positive1.yaml",
-    "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP"
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_2",
+    "searchKey": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy is 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy is 'allow-all'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9faec37ec266103399589523c1db7e2ac0d18d5d976aa8a906033340100c217f",
+    "search_line": -1
   },
   {
     "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_2",
+    "searchKey": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy is 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy is 'allow-all'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c34f7ed212238dbe5bdc8980f9379adaffd3532eac7366f5f6f76cb94b7f4050",
+    "search_line": -1
   },
   {
-    "fileName": "positive2.json",
     "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
     "severity": "MEDIUM",
-    "line": 50
+    "line": 50,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_1",
+    "searchKey": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy is 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy is 'allow-all'",
+    "issueType": "IncorrectValue",
+    "similarityID": "513b39feb375e44868366eb78b92de452f639d7685364337151aa7dab1b36b06",
+    "search_line": -1
   }
 ]

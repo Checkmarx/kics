@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Logging of Sensitive Data In Defaults",
-		"severity": "LOW",
-        "filename": "positive1.cfg",
-		"line": 1
-	},
-    {
-		"queryName": "Logging of Sensitive Data In Defaults",
-		"severity": "LOW",
-        "filename": "positive2.cfg",
-		"line": 39
-	}
+  {
+    "queryName": "Logging of Sensitive Data In Defaults",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive1.cfg",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "defaults",
+    "searchValue": "",
+    "expectedValue": "no_log should be defined and set to 'true'",
+    "actualValue": "no_log is not defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "9a3b799f4991c0f6068bb98a946ebc1c20609f51eeccc81ca8a4145f1aae234d",
+    "search_line": -1
+  },
+  {
+    "queryName": "Logging of Sensitive Data In Defaults",
+    "severity": "LOW",
+    "line": 39,
+    "fileName": "positive2.cfg",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "defaults.no_log",
+    "searchValue": "",
+    "expectedValue": "no_log should be set to 'true'",
+    "actualValue": "no_log is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "98e2351d5249042d07f1b4368fd956041c6b156bd92544d4abd82bfce307b9f2",
+    "search_line": -1
+  }
 ]

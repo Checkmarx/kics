@@ -1,50 +1,122 @@
 [
   {
+    "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
     "line": 12,
     "fileName": "positive1.yaml",
-    "queryName": "EC2 Network ACL Duplicate Rule"
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.InboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.InboundRule' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue",
+    "similarityID": "b322f51510a8db0597bf24c6bc04b3991b6817b0abc034a46a6fa1dd4e1e0784",
+    "search_line": -1
   },
   {
+    "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
     "line": 25,
     "fileName": "positive1.yaml",
-    "queryName": "EC2 Network ACL Duplicate Rule"
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.OutboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.OutboundRule' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue",
+    "similarityID": "d94432b251a0dc0e92e609fd14d1e417fd1f10f2f7e3945599505970baebdaad",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
     "line": 39,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule2",
+    "searchKey": "Resources.InboundRule2.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.InboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.InboundRule2' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue",
+    "similarityID": "c18028f9594bf78c490577fe99bc05dbd5b4a9ac18e0b8ebaab1bdecba6be568",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
     "line": 52,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "line": 33,
-    "fileName": "positive2.json",
-    "queryName": "EC2 Network ACL Duplicate Rule",
-    "severity": "INFO"
-  },
-  {
-    "queryName": "EC2 Network ACL Duplicate Rule",
-    "severity": "INFO",
-    "line": 71,
-    "fileName": "positive2.json"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "OutboundRule2",
+    "searchKey": "Resources.OutboundRule2.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.OutboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.OutboundRule2' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue",
+    "similarityID": "84a2740157e3c9411d5717fd2a3733be2bc25712359826f62c6a433af9391025",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
     "line": 23,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.InboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.InboundRule' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue",
+    "similarityID": "9ece8efa0848dba0b4547d87277fea46f3304dd6e49076374800bfc12ad77cb5",
+    "search_line": -1
+  },
+  {
+    "queryName": "EC2 Network ACL Duplicate Rule",
+    "severity": "INFO",
+    "line": 33,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.OutboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.OutboundRule' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue",
+    "similarityID": "fed0560259af9d5a704db501de11b488126bf54fac7bed27e20db2e2839e2966",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
     "line": 57,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule2",
+    "searchKey": "Resources.InboundRule2.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.InboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.InboundRule2' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue",
+    "similarityID": "5cab84bb0ec1ea84ac37dfef34051fc64ddb38d67c10bcd9c01e8905059622fb",
+    "search_line": -1
+  },
+  {
+    "queryName": "EC2 Network ACL Duplicate Rule",
+    "severity": "INFO",
+    "line": 71,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "OutboundRule2",
+    "searchKey": "Resources.OutboundRule2.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.OutboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.OutboundRule2' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue",
+    "similarityID": "448d607481c88d9449533e466a0b16f98b2d33b373002ac5db967ea6a22ff9dd",
+    "search_line": -1
   }
 ]

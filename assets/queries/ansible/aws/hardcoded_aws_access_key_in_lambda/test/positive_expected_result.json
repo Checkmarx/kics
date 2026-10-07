@@ -2,11 +2,31 @@
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
     "severity": "HIGH",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.lambda",
+    "resourceName": "looped creation",
+    "searchKey": "name={{looped creation}}.{{community.aws.lambda}}.aws_access_key",
+    "searchValue": "",
+    "expectedValue": "lambda.aws_access_key should not be in plaintext",
+    "actualValue": "lambda.aws_access_key is in plaintext",
+    "issueType": "IncorrectValue",
+    "similarityID": "fb3b72c817fa7e138f90e0838991d05f7aaedfe381bb71d3a740e988e49bf61e",
+    "search_line": -1
   },
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
     "severity": "HIGH",
-    "line": 32
+    "line": 32,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.lambda",
+    "resourceName": "remove tags",
+    "searchKey": "name={{remove tags}}.{{community.aws.lambda}}.aws_access_key",
+    "searchValue": "",
+    "expectedValue": "lambda.aws_access_key should not be in plaintext",
+    "actualValue": "lambda.aws_access_key is in plaintext",
+    "issueType": "IncorrectValue",
+    "similarityID": "927a54ad65372e8b6502fa7a473b539df675d10c5fecff90e194d33f19536893",
+    "search_line": -1
   }
 ]

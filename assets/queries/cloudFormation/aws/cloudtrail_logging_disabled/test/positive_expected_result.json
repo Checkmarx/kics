@@ -3,36 +3,90 @@
     "queryName": "CloudTrail Logging Disabled",
     "severity": "MEDIUM",
     "line": 19,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail3",
+    "searchKey": "Resources.myTrail3.Properties.IsLogging",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail3.Properties.IsLogging' should be true",
+    "actualValue": "'Resources.myTrail3.Properties.IsLogging' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a44fc0032411840383ac80113f22f756fd23943ea0ecb8df495426e71cdf1a5c",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Logging Disabled",
     "severity": "MEDIUM",
     "line": 34,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail4",
+    "searchKey": "Resources.myTrail4.Properties.IsLogging",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail4.Properties.IsLogging' should be true",
+    "actualValue": "'Resources.myTrail4.Properties.IsLogging' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8d54c3d684cff8f033cc1bb2ced177d916cc0385a9dc2b4ac0be16878458780b",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Logging Disabled",
     "severity": "MEDIUM",
     "line": 25,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail5",
+    "searchKey": "Resources.myTrail5.Properties.IsLogging",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail5.Properties.IsLogging' should be true",
+    "actualValue": "'Resources.myTrail5.Properties.IsLogging' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "75c3224d6543613f0fad8e55c7382f66bc45e37abfa3fab69deb2214a6fd7906",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Logging Disabled",
     "severity": "MEDIUM",
     "line": 45,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail6",
+    "searchKey": "Resources.myTrail6.Properties.IsLogging",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail6.Properties.IsLogging' should be true",
+    "actualValue": "'Resources.myTrail6.Properties.IsLogging' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "9e4bbd655f113775db68f7f3683373547a1bcbe59cac606fb33d1544ae24fd09",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Logging Disabled",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail",
+    "searchKey": "Resources.myTrail.Properties.IsLogging",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail.Properties.IsLogging' should be true",
+    "actualValue": "'Resources.myTrail.Properties.IsLogging' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "4dcd5e79c2e4c82041e9c7f85464aab03799e51c23d1d75350033cdf39c9504b",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Logging Disabled",
     "severity": "MEDIUM",
     "line": 25,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail5",
+    "searchKey": "Resources.myTrail5.Properties.IsLogging",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail5.Properties.IsLogging' should be true",
+    "actualValue": "'Resources.myTrail5.Properties.IsLogging' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "158cbefc7c4a9283ac331234147ac749ca8527da6be0ea0d8b8089b48a79b245",
+    "search_line": -1
   }
 ]

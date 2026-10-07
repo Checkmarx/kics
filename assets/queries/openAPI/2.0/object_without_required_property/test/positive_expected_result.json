@@ -2,25 +2,61 @@
   {
     "queryName": "Object Without Required Property (v2)",
     "severity": "INFO",
-    "line": 20,
-    "filename": "positive1.json"
+    "line": 3,
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.",
+    "searchValue": "",
+    "expectedValue": "info has all required fields",
+    "actualValue": "info is missing required fields",
+    "issueType": "IncorrectValue",
+    "similarityID": "43981cd1f8d96ed18e8121dc846d4c343c05f5b77eb9460205315015d71fe9ef",
+    "search_line": -1
   },
   {
     "queryName": "Object Without Required Property (v2)",
     "severity": "INFO",
-    "line": 3,
-    "filename": "positive1.json"
+    "line": 20,
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.{{limitParam}}",
+    "searchValue": "",
+    "expectedValue": "Parameter object has 'type' defined",
+    "actualValue": "Parameter object does not have 'type' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "36875ce656f3e35525dba60b79d8193ed345a1660985d0354b1aa6e25a42dd72",
+    "search_line": -1
   },
   {
     "queryName": "Object Without Required Property (v2)",
     "severity": "INFO",
     "line": 2,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.",
+    "searchValue": "",
+    "expectedValue": "info has all required fields",
+    "actualValue": "info is missing required fields",
+    "issueType": "IncorrectValue",
+    "similarityID": "90147ec3579403aee589a67ed53812447e384940b7774d0d3de21a7b6246b9a8",
+    "search_line": -1
   },
   {
     "queryName": "Object Without Required Property (v2)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.{{limitParam}}",
+    "searchValue": "",
+    "expectedValue": "Parameter object has 'type' defined",
+    "actualValue": "Parameter object does not have 'type' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "7076a173b205b2c27dc9eea7b746b6c5e02946768f7abf73a2bde685d93dd2f0",
+    "search_line": -1
   }
 ]

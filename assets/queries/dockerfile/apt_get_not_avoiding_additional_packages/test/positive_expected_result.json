@@ -1,26 +1,62 @@
 [
-	{
-		"queryName": "APT-GET Not Avoiding Additional Packages",
-		"severity": "INFO",
-		"line": 2,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "APT-GET Not Avoiding Additional Packages",
-		"severity": "INFO",
-		"line": 3,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "APT-GET Not Avoiding Additional Packages",
-		"severity": "INFO",
-		"line": 2,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "APT-GET Not Avoiding Additional Packages",
-		"severity": "INFO",
-		"line": 3,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "APT-GET Not Avoiding Additional Packages",
+    "severity": "INFO",
+    "line": 2,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:12}}.{{RUN apt-get install apt-utils}}",
+    "searchValue": "",
+    "expectedValue": "'RUN apt-get install apt-utils' uses '--no-install-recommends' flag to avoid installing additional packages",
+    "actualValue": "'RUN apt-get install apt-utils' does not use '--no-install-recommends' flag to avoid installing additional packages",
+    "issueType": "IncorrectValue",
+    "similarityID": "0790fb2f81504adb9e5562a4b20be72bb2e4fec1d0ba846c89553f67e759ae22",
+    "search_line": -1
+  },
+  {
+    "queryName": "APT-GET Not Avoiding Additional Packages",
+    "severity": "INFO",
+    "line": 3,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:12}}.{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}}",
+    "searchValue": "",
+    "expectedValue": "'RUN [\"apt-get\", \"install\", \"apt-utils\"]' uses '--no-install-recommends' flag to avoid installing additional packages",
+    "actualValue": "'RUN [\"apt-get\", \"install\", \"apt-utils\"]' does not use '--no-install-recommends' flag to avoid installing additional packages",
+    "issueType": "IncorrectValue",
+    "similarityID": "047ce04693a3e810a3aa0917444f22e2c1f412fc6a16b70794ea660221666f27",
+    "search_line": -1
+  },
+  {
+    "queryName": "APT-GET Not Avoiding Additional Packages",
+    "severity": "INFO",
+    "line": 2,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{node:12}}.{{run apt-get install apt-utils}}",
+    "searchValue": "",
+    "expectedValue": "'run apt-get install apt-utils' uses '--no-install-recommends' flag to avoid installing additional packages",
+    "actualValue": "'run apt-get install apt-utils' does not use '--no-install-recommends' flag to avoid installing additional packages",
+    "issueType": "IncorrectValue",
+    "similarityID": "a1cfc84b8cb738ebde7c1af23351438f555b51492e7fdfcfb9b6cafecb615273",
+    "search_line": -1
+  },
+  {
+    "queryName": "APT-GET Not Avoiding Additional Packages",
+    "severity": "INFO",
+    "line": 3,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{node:12}}.{{run [\"apt-get\", \"install\", \"apt-utils\"]}}",
+    "searchValue": "",
+    "expectedValue": "'run [\"apt-get\", \"install\", \"apt-utils\"]' uses '--no-install-recommends' flag to avoid installing additional packages",
+    "actualValue": "'run [\"apt-get\", \"install\", \"apt-utils\"]' does not use '--no-install-recommends' flag to avoid installing additional packages",
+    "issueType": "IncorrectValue",
+    "similarityID": "91221675d81a399c46cca3a32fd6dd20cf4d58cd30c2de5da2e97556923bdaa6",
+    "search_line": -1
+  }
 ]

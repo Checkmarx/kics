@@ -1,38 +1,92 @@
 [
   {
+    "queryName": "Empty Roles For ECS Cluster Task Definitions",
     "severity": "MEDIUM",
     "line": 6,
     "fileName": "positive1.yaml",
-    "queryName": "Empty Roles For ECS Cluster Task Definitions"
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "NoTaskDefinition",
+    "searchKey": "Resources.NoTaskDefinition.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' should be set",
+    "actualValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4d7398a40d64307fcf874861699ddc929c942d020819eca9d638054279493bea",
+    "search_line": -1
   },
   {
-    "fileName": "positive1.yaml",
     "queryName": "Empty Roles For ECS Cluster Task Definitions",
     "severity": "MEDIUM",
-    "line": 24
+    "line": 24,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "InvalidTaskDefinition",
+    "searchKey": "Resources.InvalidTaskDefinition.Properties.TaskDefinition",
+    "searchValue": "",
+    "expectedValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' refers to a valid TaskDefinition",
+    "actualValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' does not refers to a valid TaskDefinition",
+    "issueType": "MissingAttribute",
+    "similarityID": "d32e70d742b08d0cd2b9fedf0404594263c07b734f1a952e98b68908b0b1c85a",
+    "search_line": -1
   },
   {
     "queryName": "Empty Roles For ECS Cluster Task Definitions",
     "severity": "MEDIUM",
     "line": 41,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Empty Roles For ECS Cluster Task Definitions",
-    "severity": "MEDIUM",
-    "line": 96,
-    "fileName": "positive2.json"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "TaskNoRole",
+    "searchKey": "Resources.TaskNoRole.Properties.TaskDefinition",
+    "searchValue": "",
+    "expectedValue": "'Resources.TaskNoRole.Properties.TaskDefinition' refers to a TaskDefinition with Role",
+    "actualValue": "'Resources.TaskNoRole.Properties.TaskDefinition' does not refer to a TaskDefinition with Role",
+    "issueType": "IncorrectValue",
+    "similarityID": "2128574e88efed8ce196db2eadcc7dc0b8e299586037b8fddcd412da6aa148d5",
+    "search_line": -1
   },
   {
     "queryName": "Empty Roles For ECS Cluster Task Definitions",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "InvalidTaskDefinition",
+    "searchKey": "Resources.InvalidTaskDefinition.Properties.TaskDefinition",
+    "searchValue": "",
+    "expectedValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' refers to a valid TaskDefinition",
+    "actualValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' does not refers to a valid TaskDefinition",
+    "issueType": "MissingAttribute",
+    "similarityID": "95db9e01174086cb2e9aac095b39ebd5ba3f62bcc19b261ed06ef6fc75b26afb",
+    "search_line": -1
   },
   {
     "queryName": "Empty Roles For ECS Cluster Task Definitions",
     "severity": "MEDIUM",
     "line": 39,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "TaskNoRole",
+    "searchKey": "Resources.TaskNoRole.Properties.TaskDefinition",
+    "searchValue": "",
+    "expectedValue": "'Resources.TaskNoRole.Properties.TaskDefinition' refers to a TaskDefinition with Role",
+    "actualValue": "'Resources.TaskNoRole.Properties.TaskDefinition' does not refer to a TaskDefinition with Role",
+    "issueType": "IncorrectValue",
+    "similarityID": "d0afce630dcf90a514506e6db150813d1c66694dbe1e0bab4c2aabfdd2c08cb9",
+    "search_line": -1
+  },
+  {
+    "queryName": "Empty Roles For ECS Cluster Task Definitions",
+    "severity": "MEDIUM",
+    "line": 96,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "NoTaskDefinition",
+    "searchKey": "Resources.NoTaskDefinition.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' should be set",
+    "actualValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "da588997b9cb8a54179708db97eeb8f734640caa63a030239c1274dd3f8620ce",
+    "search_line": -1
   }
 ]

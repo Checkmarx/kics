@@ -2,49 +2,121 @@
   {
     "queryName": "Azure Managed Disk Without Encryption",
     "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "['${variables('vmName')}-disk1']",
+    "searchKey": "resources.name=['${variables('vmName')}-disk1'].properties.encryptionSettingsCollection.enabled",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f7e8f8f8f785ce4fa6edc8285dbfff867fd40ff069cb2d3f47d740b716869016",
+    "search_line": 18
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
     "line": 30,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "[concat(variables('vmName'),'-disk1')]",
+    "searchKey": "resources.name=[concat(variables('vmName'),'-disk1')].properties.encryptionSettingsCollection.enabled",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "ee6922678caefeb182370eeaa23846211acc162c719a59ab12fcabd0d2810ca1",
+    "search_line": 30
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "['${variables('vmName')}-disk1']",
+    "searchKey": "resources.name=['${variables('vmName')}-disk1']",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "153f42c6991dfb918a9e2737092446f77a0c0ec98c7bf9f1ce74db9fed74beaa",
+    "search_line": 7
   },
   {
     "queryName": "Azure Managed Disk Without Encryption",
     "severity": "HIGH",
     "line": 19,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "[concat(variables('vmName'),'-disk1')]",
+    "searchKey": "resources.name=[concat(variables('vmName'),'-disk1')]",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9cab4ea9145e71a348bc794ec58319b5b8fbf85a9cf37e0c65b65011719cf093",
+    "search_line": 19
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "['${variables('vmName')}-disk1']",
+    "searchKey": "resources.name=['${variables('vmName')}-disk1'].properties.encryptionSettingsCollection.enabled",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a0f1985c1a95a6159f5078d5dfc4f27fca980a5bbcbc361745aac8c18f01e3d5",
+    "search_line": 18
   },
   {
     "queryName": "Azure Managed Disk Without Encryption",
     "severity": "HIGH",
     "line": 32,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "[concat(variables('vmName'),'-disk1')]",
+    "searchKey": "properties.template.resources.name=[concat(variables('vmName'),'-disk1')].properties.encryptionSettingsCollection.enabled",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "c7346068e73b8717e02bca00a381f598f7f315149cb31c3752138289fc0fd596",
+    "search_line": 32
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "['${variables('vmName')}-disk1']",
+    "searchKey": "resources.name=['${variables('vmName')}-disk1']",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fe5e5756950fb78805afca482070afa82ceca3efd6531c9d62dde7300a8b0111",
+    "search_line": 7
   },
   {
     "queryName": "Azure Managed Disk Without Encryption",
     "severity": "HIGH",
     "line": 21,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "Azure Managed Disk Without Encryption",
-    "severity": "HIGH",
-    "line": 18,
-    "filename": "positive1.bicep"
-  },
-  {
-    "queryName": "Azure Managed Disk Without Encryption",
-    "severity": "HIGH",
-    "line": 7,
-    "filename": "positive2.bicep"
-  },
-  {
-    "queryName": "Azure Managed Disk Without Encryption",
-    "severity": "HIGH",
-    "line": 18,
-    "filename": "positive3.bicep"
-  },
-  {
-    "queryName": "Azure Managed Disk Without Encryption",
-    "severity": "HIGH",
-    "line": 7,
-    "filename": "positive4.bicep"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "[concat(variables('vmName'),'-disk1')]",
+    "searchKey": "properties.template.resources.name=[concat(variables('vmName'),'-disk1')]",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2a4e919d1bbd596b7b4a623eaac813ef1d2216faf2443aba61014b0b8be48583",
+    "search_line": 21
   }
 ]

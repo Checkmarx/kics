@@ -3,12 +3,30 @@
     "queryName": "CloudFront Without WAF",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig",
+    "searchValue": "",
+    "expectedValue": "'webACLID' should be defined",
+    "actualValue": "'webACLID' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ce7877ee3542f0d96c68fc4b11770e7d1d650e3ae891fabefe4a1381ac26898e",
+    "search_line": 8
   },
   {
     "queryName": "CloudFront Without WAF",
     "severity": "MEDIUM",
     "line": 48,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig",
+    "searchValue": "",
+    "expectedValue": "'webACLID' should be defined",
+    "actualValue": "'webACLID' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0818d265173bca775ea7990c580ec4024f999a36447bccde4afc09b7beb3785a",
+    "search_line": 48
   }
 ]

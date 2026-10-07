@@ -3,60 +3,150 @@
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_ecs_task_definition",
+    "resourceName": "service",
+    "searchKey": "aws_ecs_task_definition[{{service}}].volume.efs_volume_configuration.transit_encryption",
+    "searchValue": "",
+    "expectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value should be 'ENABLED'",
+    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value is 'DISABLED'",
+    "issueType": "IncorrectValue",
+    "similarityID": "7ad1f8b9e8787d33047adab15edd402808acd71b82002c2ac50031b2786fefd0",
+    "search_line": 11
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_ecs_task_definition",
+    "resourceName": "service_2",
+    "searchKey": "aws_ecs_task_definition[{{service_2}}].volume.efs_volume_configuration",
+    "searchValue": "",
+    "expectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value should be 'ENABLED'",
+    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "ddd2ccad8fd11c8ad115b4ab0d6d6bb375c5d003109979c6b64a280555b91cc3",
+    "search_line": 8
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_ecs_task_definition",
+    "resourceName": "service_2",
+    "searchKey": "aws_ecs_task_definition[{{service_2}}].volume",
+    "searchValue": "",
+    "expectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration value should be defined",
+    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration is not set",
+    "issueType": "MissingAttribute",
+    "similarityID": "911114eaac26793ea9bc6a7a0b8cd0baeb9d8feebde264f77e60494bdd668c29",
+    "search_line": 5
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_ecs_task_definition",
+    "resourceName": "service_4",
+    "searchKey": "aws_ecs_task_definition[{{service_4}}].volume[0].efs_volume_configuration.transit_encryption",
+    "searchValue": "",
+    "expectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value should be 'ENABLED'",
+    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value is 'DISABLED'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a9fc0e20ba8996a811c80ee4b2e92d7ff68537729d2e9f96723469892e4b880f",
+    "search_line": 11
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_ecs_task_definition",
+    "resourceName": "service_4",
+    "searchKey": "aws_ecs_task_definition[{{service_4}}].volume[1].efs_volume_configuration.transit_encryption",
+    "searchValue": "",
+    "expectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value should be 'ENABLED'",
+    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value is 'DISABLED'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c30f5479b02894ba0a5f0b84e5309590441cc72a1682dbcff9e8e80820affb2c",
+    "search_line": 26
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_ecs_task_definition",
+    "resourceName": "service_5",
+    "searchKey": "aws_ecs_task_definition[{{service_5}}].volume[0].efs_volume_configuration",
+    "searchValue": "",
+    "expectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value should be 'ENABLED'",
+    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "2dc5a17df819fb52050e6d80d13530596fdf6f798bb3f705961fd3b28c9c2d94",
+    "search_line": 8
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 22,
-    "filename": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_ecs_task_definition",
+    "resourceName": "service_5",
+    "searchKey": "aws_ecs_task_definition[{{service_5}}].volume[1].efs_volume_configuration",
+    "searchValue": "",
+    "expectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value should be 'ENABLED'",
+    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "44b0da56fa838b4fe781d26361e11d8c94d2d51ee2b1ca253dda02d5d3c5730b",
+    "search_line": 22
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "aws_ecs_task_definition",
+    "resourceName": "service_6",
+    "searchKey": "aws_ecs_task_definition[{{service_6}}].volume[0]",
+    "searchValue": "",
+    "expectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration value should be defined",
+    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration is not set",
+    "issueType": "MissingAttribute",
+    "similarityID": "edd1fe3f83a0df51accac608291769fac823860f16ffe630941d468eff4d3dba",
+    "search_line": 5
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "aws_ecs_task_definition",
+    "resourceName": "service_6",
+    "searchKey": "aws_ecs_task_definition[{{service_6}}].volume[1]",
+    "searchValue": "",
+    "expectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration value should be defined",
+    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration is not set",
+    "issueType": "MissingAttribute",
+    "similarityID": "3d186d5be20a7c7955e214794ee4fa49d357495e194980bec216b6daaf56b2cd",
+    "search_line": 9
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive7.tf"
+    "fileName": "positive7.tf",
+    "resourceType": "aws_ecs_task_definition",
+    "resourceName": "service_7",
+    "searchKey": "aws_ecs_task_definition[{{service_7}}].volume[1].efs_volume_configuration.transit_encryption",
+    "searchValue": "",
+    "expectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value should be 'ENABLED'",
+    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value is 'DISABLED'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c739dec12d9a9f92929eb5e14d32f5f8200c5f89decb152cec774df6e86705b4",
+    "search_line": 26
   }
 ]

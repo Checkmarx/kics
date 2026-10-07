@@ -1,20 +1,47 @@
 [
-	{
-		"queryName": "ECS Cluster with Container Insights Disabled",
-		"severity": "LOW",
-		"line": 8,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "ECS Cluster with Container Insights Disabled",
-		"severity": "LOW",
-		"line": 8,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "ECS Cluster with Container Insights Disabled",
-		"severity": "LOW",
-		"line": 7,
-		"fileName": "positive3.yaml"
-	}
+  {
+    "queryName": "ECS Cluster with Container Insights Disabled",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive1.yaml",
+    "resourceType": "aws:ecs:Cluster",
+    "resourceName": "foo",
+    "searchKey": "resources[foo].properties.settings",
+    "searchValue": "",
+    "expectedValue": "Attribute 'settings' should have a ClusterSetting named 'containerInsights' which value is 'enabled'",
+    "actualValue": "Attribute 'settings' doesn't have a ClusterSetting named 'containerInsights' which value is 'enabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a36c8e716e7c817a61c0aa4809ce898d3220c557ecd68e0545a07eaf174b9191",
+    "search_line": 8
+  },
+  {
+    "queryName": "ECS Cluster with Container Insights Disabled",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive2.yaml",
+    "resourceType": "aws:ecs:Cluster",
+    "resourceName": "foo",
+    "searchKey": "resources[foo].properties.settings",
+    "searchValue": "",
+    "expectedValue": "Attribute 'settings' should have a ClusterSetting named 'containerInsights' which value is 'enabled'",
+    "actualValue": "Attribute 'settings' doesn't have a ClusterSetting named 'containerInsights' which value is 'enabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6de9d2fcd1cdbfa5d468d3e733c748a4ef3a05c8ffd7b736688ae91517b8f9c4",
+    "search_line": 8
+  },
+  {
+    "queryName": "ECS Cluster with Container Insights Disabled",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive3.yaml",
+    "resourceType": "aws:ecs:Cluster",
+    "resourceName": "foo",
+    "searchKey": "resources[foo].properties",
+    "searchValue": "",
+    "expectedValue": "Attribute 'settings' should be defined and have a ClusterSetting named 'containerInsights' which value is 'enabled'",
+    "actualValue": "Attribute 'settings' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "efe05f4ae3fbaabe16c2ea2405e06ac8a7e14460a02c446c8bd4f47a5f787a18",
+    "search_line": 7
+  }
 ]
