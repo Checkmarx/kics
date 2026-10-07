@@ -24,8 +24,28 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
+      - name: Checkout kics-github-action
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: Checkmarx/kics-github-action
+          ref: fe35470377b09d56b3a887701e2bbcb67d5b8d86 # fix-kics-github-action branch
+          path: .kics-github-action
+          persist-credentials: false
+      # The runner cannot reach registry.npmjs.org, and a remote `uses:` docker action is built during job setup without secrets.
+      # Run the action from a local checkout instead and pre-build its npm layers through the echohq registry,
+      # so the build done by the action step reuses them from the local docker cache.
+      - name: Pre-build action npm layers through echohq registry
+        env:
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
+          DOCKER_BUILDKIT: "1"
+        run: |
+          NPMRC="${RUNNER_TEMP}/npmrc"
+          umask 077
+          printf 'registry=https://npm.echohq.com/\n//npm.echohq.com/:_authToken=%s\n' "${ECHO_LIBRARIES_ACCESS_KEY}" > "${NPMRC}"
+          docker build --target builder --secret "id=npmrc,src=${NPMRC}" .kics-github-action
+          rm -f "${NPMRC}"
       - name: Run KICS Scan
-        uses: checkmarx/kics-github-action@4063ea7186bec9fed1bf055e095a4658693f9998 # v2.1.20
+        uses: ./.kics-github-action
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: "./Dockerfile"
