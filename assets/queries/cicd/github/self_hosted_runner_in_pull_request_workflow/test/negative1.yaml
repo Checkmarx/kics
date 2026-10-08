@@ -1,0 +1,16 @@
+# Safe: pull_request trigger but uses a GitHub-hosted runner.
+# Fork code runs in an isolated, ephemeral environment.
+
+name: CI on Pull Request
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tests
+        run: make test
