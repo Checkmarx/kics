@@ -52,14 +52,14 @@ docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan 
 Scan a single file
 
 ```sh
-docker run -t -v {path_to_host_folder}:/path checkmarx/kics:latest scan -p /path/{filename}.{extention} -o "/path/"
+docker run -t -v {path_to_host_folder}:/path checkmarx/kics:latest scan -p /path/{filename}.{extension} -o "/path/"
 ```
 
 This will generate a `results.json` file, for both examples, under `path`.
 
 ℹ️ **UBI Based Images**
 
-When using [UBI8](https://catalog.redhat.com) based image, the KICS process will run under the `kics` user and `kics` group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the `-u` flag that overrides the username:group or UID:GID. e.g:
+When using [UBI8](https://catalog.redhat.com) based image, the KICS process will run under the `kics` user and `kics` group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overridden to match current user with the `-u` flag that overrides the username:group or UID:GID. e.g:
 
 ```sh
 docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi8 scan -p /path/assets/queries/dockerfile -o /path -v
