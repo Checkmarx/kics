@@ -58,5 +58,11 @@
     "severity": "MEDIUM",
     "line": 26,
     "filename": "positive7.tf"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive8.tf"
   }
 ]
