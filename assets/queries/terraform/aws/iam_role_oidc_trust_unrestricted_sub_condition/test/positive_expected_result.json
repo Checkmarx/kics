@@ -172,5 +172,11 @@
     "severity": "HIGH",
     "line": 3,
     "fileName": "positive29.tf"
+  },
+  {
+    "queryName": "IAM Role OIDC Trust Unrestricted Sub Condition",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive30.tf"
   }
 ]

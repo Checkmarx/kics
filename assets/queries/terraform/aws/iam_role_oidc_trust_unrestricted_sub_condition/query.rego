@@ -87,11 +87,24 @@ CxPolicy[result] {
 	}
 }
 
-# Checks if an Allow statement lets a federated (OIDC) principal call sts:AssumeRoleWithWebIdentity
+# Checks if an Allow statement lets a federated (OIDC) principal call sts:AssumeRoleWithWebIdentity.
+# Excludes Cognito Identity Pool trust policies: AWS's documented pattern for them uses the
+# fixed "cognito-identity.amazonaws.com" principal with a StringEquals on ":aud" (the identity
+# pool ID) instead of a ":sub" claim, so the allow-listing-sub requirement this query enforces
+# does not apply to them.
 is_oidc_trust(statement) {
 	common_lib.is_allow_effect(statement)
 	is_web_identity_action(statement)
 	is_federated_principal(statement)
+	not is_cognito_identity_pool(statement)
+}
+
+is_cognito_identity_pool(statement) {
+	contains(lower(as_list(statement.Principal.Federated)[_]), "cognito-identity.amazonaws.com")
+}
+
+is_cognito_identity_pool(statement) {
+	contains(lower(as_list(statement.principals)[_].identifiers[_]), "cognito-identity.amazonaws.com")
 }
 
 # Checks if the action (string or list, case-insensitive) is sts:AssumeRoleWithWebIdentity
@@ -154,7 +167,11 @@ as_list(values) = list {
 	list := [values]
 }
 
-# Checks if the identity segment of the 'sub' value is a wildcard, e.g. "*", "repo:*" or "project_path:*:..."
+# Checks if the identity segment of the 'sub' value is a wildcard. Catches a bare wildcard, one
+# right after the provider prefix (e.g. "repo:*"), and one after a literal owner/group prefix
+# scoped to "repo:"/"project_path:" (e.g. "repo:octo-org*/octo-repo*:...", which still lets
+# anyone able to register a matching org/repo name assume the role). Values like "{REPO_UUID}:{*}"
+# (Bitbucket) are intentionally left alone since they are not an owner-prefixed path.
 is_loose_sub_value(value) {
-	regex.match(`^([^:]+:)?[*?]`, value)
+	regex.match(`^(([^:]+:)?|(repo|project_path):[^/:@]*)[*?]`, value)
 }
