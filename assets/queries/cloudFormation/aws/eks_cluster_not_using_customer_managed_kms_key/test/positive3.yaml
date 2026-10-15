@@ -15,4 +15,4 @@ Resources:
           - subnet-2222bbbb
       EncryptionConfig:
         - Resources:
-          - not_secrets
+          - secrets
