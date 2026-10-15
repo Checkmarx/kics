@@ -1,0 +1,14 @@
+{
+  "id": "dda11a20-c7c2-43f8-bd52-a4c029ad15e4",
+  "queryName": "Beta - Ensure Private Endpoints Are Used Where Possible",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Ensures that key Azure PaaS services (e.g. Cosmos DB, Storage Account, SQL Server, Key Vault, Container Registry) are accessed via Private Endpoints, preventing exposure over the public internet.",
+  "descriptionUrl": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "200",
+  "descriptionID": "dda11a20",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "bd3a6fc3-fadb-472b-b06c-54c7d7645f15",
+  "queryName": "Beta - Production Workload using Basic or Consumption SKU",
+  "severity": "LOW",
+  "category": "Resource Management",
+  "descriptionText": "Detects Azure Service Plans and API Management instances using tiers unsuitable for production. Flagged azurerm_service_plan SKUs: B1/B2/B3 (Basic \u2014 no SLA, limited scale-out), F1/FREE (Free \u2014 no SLA, no custom domains), Y1 (Consumption \u2014 cold-start latency, no always-on). Flagged azurerm_api_management SKUs: Basic and Consumption (no VNet integration, no built-in cache, no multi-region deployment). Standard, Premium, or Isolated SKUs are recommended for production workloads.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/service_plan#sku_name",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "1038",
+  "descriptionID": "bd3a6fc3",
+  "riskScore": "1.0",
+  "experimental": "true"
+}

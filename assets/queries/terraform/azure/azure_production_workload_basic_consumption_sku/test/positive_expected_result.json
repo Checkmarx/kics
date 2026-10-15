@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Production Workload using Basic or Consumption SKU",
+    "severity": "LOW",
+    "line": 6,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Production Workload using Basic or Consumption SKU",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive2.tf"
+  }
+]
