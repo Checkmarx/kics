@@ -349,6 +349,57 @@ func TestBuildSarifIssue(t *testing.T) {
 	}
 }
 
+// TestBuildSarifIssueSecuritySeverity tests if the GitHub Code Scanning security-severity is set on rule properties
+func TestBuildSarifIssueSecuritySeverity(t *testing.T) {
+	tests := []struct {
+		name     string
+		severity model.Severity
+		want     sarifProperties
+	}{
+		{
+			name:     "Should set critical security-severity",
+			severity: model.SeverityCritical,
+			want:     sarifProperties{"security-severity": "9.5"},
+		},
+		{
+			name:     "Should set high security-severity",
+			severity: model.SeverityHigh,
+			want:     sarifProperties{"security-severity": "8.0"},
+		},
+		{
+			name:     "Should set medium security-severity",
+			severity: model.SeverityMedium,
+			want:     sarifProperties{"security-severity": "5.5"},
+		},
+		{
+			name:     "Should set low security-severity",
+			severity: model.SeverityLow,
+			want:     sarifProperties{"security-severity": "2.0"},
+		},
+		{
+			name:     "Should not set security-severity for info",
+			severity: model.SeverityInfo,
+			want:     nil,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := NewSarifReport().(*sarifReport)
+			result.BuildSarifIssue(&model.QueryResult{
+				QueryName: "test",
+				QueryID:   "1",
+				Severity:  tt.severity,
+				Files: []model.VulnerableFile{
+					{KeyActualValue: "test", FileName: "test.json", Line: 1},
+				},
+			})
+			require.Len(t, result.Runs[0].Tool.Driver.Rules, 1)
+			require.Equal(t, tt.want, result.Runs[0].Tool.Driver.Rules[0].RuleProperties)
+		})
+	}
+}
+
 func TestInitCweCategories(t *testing.T) {
 	cweIDs := []string{"22", "41", "203", "1188"}
 	guids := map[string]string{"22": "1489b0c4-d7ce-4d31-af66-6382a01202e3", "41": "1489b0c4-d7ce-4d31-af66-6382a01202e4", "203": "1489b0c4-d7ce-4d31-af66-6382a01202e5", "1188": "1489b0c4-d7ce-4d31-af66-6382a01202e6"}
