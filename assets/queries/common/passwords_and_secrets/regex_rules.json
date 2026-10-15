@@ -127,12 +127,12 @@
       "regex": "(A3T[A-Z0-9]|AKIA|ASIA)[A-Z0-9]{16}"
     },
     {
-      "id": "76c0bcde-903d-456e-ac13-e58c34987852",
+      "id": "b751213d-99a5-4005-8524-4bf799ee77a1",
       "name": "AWS Context-specific credential",
       "regex": "(A3T[A-Z0-9]|ACCA)[A-Z0-9]{16}"
     },
     {
-      "id": "76c0bcde-903d-456e-ac13-e58c34987852",
+      "id": "eb171053-9634-42c3-96e9-c625c8ffe698",
       "name": "AWS Certificate",
       "regex": "(A3T[A-Z0-9]|ASCA)[A-Z0-9]{16}"
     },
