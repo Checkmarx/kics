@@ -4,12 +4,16 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"regexp"
 	"strings"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
 	"github.com/pkg/errors"
 )
+
+// variableRegex matches $NAME and ${NAME}, always capturing the whole variable name
+var variableRegex = regexp.MustCompile(`\$(?:\{([A-Za-z_][A-Za-z0-9_]*)\}|([A-Za-z_][A-Za-z0-9_]*))`)
 
 // Parser is a Dockerfile parser
 type Parser struct {
@@ -92,16 +96,16 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 			cmd.Value = append(cmd.Value, n.Value)
 		}
 
-		if child.Value != "arg" {
-			cmd.Value = resolveArgsAndEnvs(cmd.Value, args)
-		} else {
-			args = saveArgs(args, cmd.Value[0])
-		}
-
-		if child.Value != "env" {
+		// ENV takes precedence over ARG when both define the same name
+		switch child.Value {
+		case "arg":
 			cmd.Value = resolveArgsAndEnvs(cmd.Value, envs)
-		} else {
+			args = saveArgs(args, cmd.Value[0])
+		case "env":
+			cmd.Value = resolveArgsAndEnvs(cmd.Value, args)
 			envs = saveEnvs(envs, cmd.Value)
+		default:
+			cmd.Value = resolveArgsAndEnvs(cmd.Value, mergeVariables(args, envs))
 		}
 
 		if fromValue == "" {
@@ -162,14 +166,37 @@ func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
 	return make(map[string]model.ResolvedFile)
 }
 
-func resolveArgsAndEnvs(values []string, args map[string]string) []string {
+// mergeVariables returns a new map with the args overridden by the envs
+func mergeVariables(args, envs map[string]string) map[string]string {
+	merged := make(map[string]string, len(args)+len(envs))
+	for k, v := range args {
+		merged[k] = v
+	}
+	for k, v := range envs {
+		merged[k] = v
+	}
+	return merged
+}
+
+// resolveArgsAndEnvs replaces every $NAME and ${NAME} found in values with the matching entry of vars.
+// Whole variable names are matched in a single pass, so the result does not depend on map iteration order
+// and substituted values are never expanded again. Unknown variables are kept untouched
+func resolveArgsAndEnvs(values []string, vars map[string]string) []string {
+	if len(vars) == 0 {
+		return values
+	}
 	for i := range values {
-		for arg := range args {
-			ref1 := fmt.Sprintf("${%s}", arg)
-			values[i] = strings.Replace(values[i], ref1, args[arg], 1)
-			ref2 := fmt.Sprintf("$%s", arg)
-			values[i] = strings.Replace(values[i], ref2, args[arg], 1)
-		}
+		values[i] = variableRegex.ReplaceAllStringFunc(values[i], func(match string) string {
+			sub := variableRegex.FindStringSubmatch(match)
+			name := sub[1]
+			if name == "" {
+				name = sub[2]
+			}
+			if value, ok := vars[name]; ok {
+				return value
+			}
+			return match
+		})
 	}
 
 	return values
@@ -188,9 +215,11 @@ func saveArgs(args map[string]string, argValue string) map[string]string {
 	return args
 }
 
+// saveEnvs stores the pairs of an ENV instruction, which BuildKit emits as [key, value, delimiter] triples
 func saveEnvs(envs map[string]string, envValues []string) map[string]string {
-	if len(envValues) == 2 {
-		envs[envValues[0]] = envValues[1]
+	const tripleSize = 3
+	for i := 0; i+tripleSize <= len(envValues); i += tripleSize {
+		envs[envValues[i]] = envValues[i+1]
 	}
 	return envs
 }
