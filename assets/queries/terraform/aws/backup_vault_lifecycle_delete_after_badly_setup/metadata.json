@@ -1,0 +1,11 @@
+{
+  "id": "3d2a1ace-baea-4feb-baa7-a5b1dfcd2409",
+  "queryName": "AWS Backup plan lifecycle with bad values",
+  "severity": "HIGH",
+  "category": "Backup",
+  "descriptionText": "AWS Backup Plan lifecycle delete_after parameter must be 90 days greater than cold_storage_after",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/backup_plan",
+  "platform": "Terraform",
+  "descriptionID": "e77ce3ce",
+  "cloudProvider": "aws"
+}
