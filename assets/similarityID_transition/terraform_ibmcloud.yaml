@@ -1,0 +1,5 @@
+similarityIDChangeList:
+    - queryId: a6bc2970-c10d-45ab-9050-cf69c393e911
+      queryName: Load Balancer VPC is Public
+      observations: ""
+      change: 1
