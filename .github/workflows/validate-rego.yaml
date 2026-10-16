@@ -1,0 +1,24 @@
+name: validate-rego
+
+on:
+  pull_request:
+    paths:
+      - "assets/**/*.rego"
+
+jobs:
+  lint-rego:
+    name: Run Regal Linter on Rego Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Regal
+        uses: StyraInc/setup-regal@33a142b1189004e0f14bf42b15972c67eecce776 #v1.0.0
+        with:
+          version: v0.31.0
+
+      - name: Run Regal Linter
+        run: regal lint --format=github assets --config-file=assets/.regal/config.yml
