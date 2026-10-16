@@ -96,17 +96,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 			cmd.Value = append(cmd.Value, n.Value)
 		}
 
-		// ENV takes precedence over ARG when both define the same name
-		switch child.Value {
-		case "arg":
-			cmd.Value = resolveArgsAndEnvs(cmd.Value, envs)
-			args = saveArgs(args, cmd.Value[0])
-		case "env":
-			cmd.Value = resolveArgsAndEnvs(cmd.Value, args)
-			envs = saveEnvs(envs, cmd.Value)
-		default:
-			cmd.Value = resolveArgsAndEnvs(cmd.Value, mergeVariables(args, envs))
-		}
+		cmd.Value = resolveCommand(child.Value, cmd.Value, args, envs)
 
 		if fromValue == "" {
 			arguments = append(arguments, cmd)
@@ -164,6 +154,23 @@ func (p *Parser) StringifyContent(content []byte) (string, error) {
 // GetResolvedFiles returns the list of files that are resolved
 func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
 	return make(map[string]model.ResolvedFile)
+}
+
+// resolveCommand resolves the variables of a command and records the ones it declares in args or envs.
+// ENV takes precedence over ARG when both define the same name
+func resolveCommand(name string, values []string, args, envs map[string]string) []string {
+	switch name {
+	case "arg":
+		values = resolveArgsAndEnvs(values, envs)
+		saveArgs(args, values[0])
+	case "env":
+		values = resolveArgsAndEnvs(values, args)
+		saveEnvs(envs, values)
+	default:
+		values = resolveArgsAndEnvs(values, mergeVariables(args, envs))
+	}
+
+	return values
 }
 
 // mergeVariables returns a new map with the args overridden by the envs
