@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-apparmor-container-seccontext
+spec:
+  containers:
+  - name: hello
+    image: busybox
+    securityContext:
+      runAsNonRoot: true
+    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-apparmor-container-unconfined
+spec:
+  containers:
+  - name: hello
+    image: busybox
+    securityContext:
+      appArmorProfile:
+        type: Unconfined
+    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
