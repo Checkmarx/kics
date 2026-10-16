@@ -15,5 +15,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_rds_cluster.backup_retention_period should be defined and not null",
 		"keyActualValue": "aws_rds_cluster.backup_retention_period is undefined or null",
+		"remediation": "backup_retention_period = 7",
+		"remediationType": "addition",
 	}
 }

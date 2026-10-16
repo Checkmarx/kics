@@ -1,0 +1,14 @@
+{
+  "id": "22383f22-a900-4d5d-b0fe-e2b28cc5d1a6",
+  "queryName": "Beta - EventBridge Bus Allows Cross-Account Access",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Amazon EventBridge event bus resource policies should not allow unrestricted cross-account access (Principal: '*'). Overly permissive policies allow any AWS account to publish events, potentially enabling data injection attacks.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_event_bus_policy",
+  "platform": "Terraform",
+  "descriptionID": "b8c9d0e1",
+  "cloudProvider": "aws",
+  "cwe": "284",
+  "riskScore": "7.5",
+  "experimental": "true"
+}
