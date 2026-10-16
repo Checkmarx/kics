@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "BETA - IAM Role Without Permission Boundary",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive1.tf"
+  }
+]
