@@ -1,0 +1,11 @@
+{
+  "id": "53598739-ffe2-4b77-9fe5-de95f2252345",
+  "queryName": "RDS Multi-AZ Deployment Disabled",
+  "severity": "MEDIUM",
+  "category": "Backup",
+  "descriptionText": "AWS RDS Instance should have a multi-az deployment",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#multi_az",
+  "platform": "Terraform",
+  "descriptionID": "fb5df2dc",
+  "cloudProvider": "aws"
+}
