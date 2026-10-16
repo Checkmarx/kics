@@ -296,4 +296,3 @@ resource azurerm_network_security_group "negative12-22" {
           destination_address_prefix  = "*"
      }
 }
-
