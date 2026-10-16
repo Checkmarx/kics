@@ -1,10 +1,18 @@
 package kics
 
 import (
+	"bytes"
+	"context"
 	"encoding/json"
+	"os"
+	"path/filepath"
 	"testing"
 
+	"github.com/Checkmarx/kics/v2/internal/storage"
+	"github.com/Checkmarx/kics/v2/internal/tracker"
 	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser"
+	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
 	"github.com/stretchr/testify/require"
 )
 
@@ -148,4 +156,59 @@ func compareJSONLine(t *testing.T, test1 interface{}, test2 string) {
 	stringefiedJSON, err := json.Marshal(&test1)
 	require.NoError(t, err)
 	require.JSONEq(t, test2, string(stringefiedJSON))
+}
+
+// TestKics_sinkIgnoreLinesWithResolvedFiles ensures that the ignore lines stored in the
+// file metadata keep the original file coordinates, even when the file references other
+// files (e.g. a docker-compose "include") and its parsed content has shifted lines
+func TestKics_sinkIgnoreLinesWithResolvedFiles(t *testing.T) {
+	tests := []struct {
+		name              string
+		filePath          string
+		wantIgnoreLines   []int
+		wantResolvedFiles bool
+	}{
+		{
+			name:              "yaml with include should keep ignore lines on the original file coordinates",
+			filePath:          filepath.Join("..", "..", "test", "fixtures", "resolve_ignore_lines", "docker-compose.yaml"),
+			wantIgnoreLines:   []int{6, 7},
+			wantResolvedFiles: true,
+		},
+		{
+			name:              "yaml without include should keep the parser ignore lines",
+			filePath:          filepath.Join("..", "..", "test", "fixtures", "resolve_ignore_lines", "no-include.yaml"),
+			wantIgnoreLines:   []int{4, 5},
+			wantResolvedFiles: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			content, err := os.ReadFile(tt.filePath)
+			require.NoError(t, err)
+
+			file := sinkFile(t, tt.filePath, content)
+			require.Equal(t, tt.wantResolvedFiles, len(file.ResolvedFiles) > 0)
+			require.Equal(t, tt.wantIgnoreLines, file.LinesIgnore)
+		})
+	}
+}
+
+func sinkFile(t *testing.T, filename string, content []byte) model.FileMetadata {
+	yamlOnlyParser, err := parser.NewBuilder().Add(&yamlParser.Parser{}).Build([]string{""}, []string{""})
+	require.NoError(t, err)
+
+	ciTracker, err := tracker.NewTracker(3)
+	require.NoError(t, err)
+
+	s := &Service{
+		Parser:      yamlOnlyParser[0],
+		Storage:     storage.NewMemoryStorage(),
+		Tracker:     ciTracker,
+		MaxFileSize: 5,
+	}
+	err = s.sink(context.Background(), filename, "scanID", bytes.NewReader(content), make([]byte, mbConst), false, 15)
+	require.NoError(t, err)
+	require.Len(t, s.files, 1)
+	return s.files[0]
 }

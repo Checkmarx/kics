@@ -1,0 +1,10 @@
+services:
+  alpha:
+    image: alpine
+    # kics-scan ignore-line
+    ports:
+      - "1111:1111"
+  beta:
+    image: alpine
+    ports:
+      - "2222:2222"

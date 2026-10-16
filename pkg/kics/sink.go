@@ -63,6 +63,17 @@ func (s *Service) sink(ctx context.Context, filename, scanID string,
 	}
 	s.Tracker.TrackFileFoundCountLines(linesResolved)
 
+	if len(documents.ResolvedFiles) > 0 {
+		// ignore lines were collected while parsing the resolved content, so they can have
+		// the lines from the resolved files; since results are reported on the original
+		// file lines, the lines ignore should be replaced with ones based on the original data
+		documents.IgnoreLines = model.GetIgnoreLines(&model.FileMetadata{
+			FilePath:     filename,
+			OriginalData: documents.Content,
+			LinesIgnore:  documents.IgnoreLines,
+		})
+	}
+
 	fileCommands := s.Parser.CommentsCommands(filename, *content)
 
 	for idx, document := range documents.Docs {
