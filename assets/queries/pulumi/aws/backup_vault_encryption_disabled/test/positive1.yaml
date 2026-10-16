@@ -1,0 +1,11 @@
+name: my-pulumi-project
+runtime: nodejs
+
+config:
+  aws:region: us-east-1
+  
+resources:
+  example:
+    type: aws:backup:Vault
+    properties:
+      name: foo
