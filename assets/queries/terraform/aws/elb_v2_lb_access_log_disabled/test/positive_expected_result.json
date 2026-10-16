@@ -34,5 +34,11 @@
     "severity": "MEDIUM",
     "line": 2,
     "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "ELBv2 LB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive7.tf"
   }
 ]
