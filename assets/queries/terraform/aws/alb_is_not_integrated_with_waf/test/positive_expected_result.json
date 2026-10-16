@@ -10,5 +10,11 @@
     "severity": "MEDIUM",
     "line": 1,
     "filename": "positive2.tf"
+  },
+  {
+    "queryName": "ALB Is Not Integrated With WAF",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive3.tf"
   }
 ]
