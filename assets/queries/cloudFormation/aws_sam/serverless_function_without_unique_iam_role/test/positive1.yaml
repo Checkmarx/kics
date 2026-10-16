@@ -1,34 +1,45 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: AWS SAM template with a simple API definition
+Description: Functions with different event types - SHOULD be flagged
+
 Resources:
-  Function1:
+  HttpFunction:
     Type: AWS::Serverless::Function
     Properties:
-      PackageType: Image
-      ImageUri: account-id.dkr.ecr.region.amazonaws.com/ecr-repo-name:image-name
-      ImageConfig:
-        Command:
-          - "app.lambda_handler"
-        EntryPoint:
-          - "entrypoint1"
-        WorkingDirectory: "workDir"
-      Tags:
-        - Key: Type
-          Value: AWS Serverless Function
-      Role: arn:aws:iam::123456789012:role/lambda-role
-  Function2:
+      Handler: index.httpHandler
+      Runtime: nodejs12.x
+      Role: arn:aws:iam::123456789012:role/shared-role
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /api
+            Method: get
+
+  S3Function:
     Type: AWS::Serverless::Function
     Properties:
-      PackageType: Image
-      ImageUri: account-id.dkr.ecr.region.amazonaws.com/ecr-repo-name:image-name
-      ImageConfig:
-        Command:
-          - "app.lambda_handler"
-        EntryPoint:
-          - "entrypoint1"
-        WorkingDirectory: "workDir"
-      Tags:
-        - Key: Type
-          Value: AWS Serverless Function
-      Role: arn:aws:iam::123456789012:role/lambda-role
+      Handler: index.s3Handler
+      Runtime: nodejs12.x
+      Role: arn:aws:iam::123456789012:role/shared-role
+      Events:
+        S3Event:
+          Type: S3
+          Properties:
+            Bucket: my-bucket
+            Event: s3:ObjectCreated:*
+
+  DynamoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.dynamoHandler
+      Runtime: nodejs12.x
+      Role: arn:aws:iam::123456789012:role/shared-role
+      Environment:
+        Variables:
+          DYNAMODB_TABLE: events
+      Events:
+        DynamoEvent:
+          Type: DynamoDB
+          Properties:
+            Stream: arn:aws:dynamodb:us-east-1:123456789012:table/events/stream

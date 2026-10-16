@@ -1,24 +1,29 @@
-variable "cluster_name" {
-  default     = "example"
-  description = "cluster name"
-  type        = string
+# These SHOULD be flagged - non-snake_case user-defined resources
+
+resource "aws_instance" "MyWebServer" {
+  ami           = "ami-12345"
+  instance_type = "t2.micro"
 }
 
-resource "aws_eks_cluster" "positive2" {
-  depends_on                = [aws_cloudwatch_log_group.example]
-
-  enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
-  name                      = var.cluster_name
+resource "aws_s3_bucket" "applicationDataBucket" {
+  bucket = "my-app-data"
 }
 
-module "ACMPositive2" {
-  source      = "terraform-aws-modules/acm/aws"
-  version     = "~> v2.0"
-  domain_name = var.site_domain
-  zone_id     = data.aws_route53_zone.this.zone_id
-  tags        = var.tags
+resource "aws_lambda_function" "ProcessUserEvents" {
+  function_name = "process-user-events"
+  runtime       = "nodejs14.x"
+}
 
-  providers = {
-    aws = aws.us_east_1 # cloudfront needs acm certificate to be from "us-east-1" region
-  }
+resource "google_compute_instance" "webServer-01" {
+  name         = "web-server"
+  machine_type = "e2-micro"
+}
+
+# Long names that should use snake_case
+resource "aws_iam_role" "VeryLongApplicationServiceRole" {
+  name = "application-service-role"
+}
+
+resource "azurerm_virtual_machine" "ProductionWebServerInstance" {
+  name = "prod-web-server"
 }
