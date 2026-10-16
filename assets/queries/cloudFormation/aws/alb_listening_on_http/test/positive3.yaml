@@ -5,7 +5,7 @@ Resources:
      DefaultActions:
        - Type: "redirect"
          RedirectConfig:
-           Protocol: "HTTPS"
+           Protocol: "HTTP"
            Port: "443"
            Host: "#{host}"
            Path: "/#{path}"
