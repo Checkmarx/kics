@@ -64,3 +64,25 @@ resource "aws_vpc_security_group_ingress_rule" "negative2_ipv6_4" {
   ip_protocol       = "icmpv6"
   cidr_ipv6         = "2400:cb00::/32"
 }
+
+# correct port and protocol, but the cidr is a small PRIVATE network (RFC1918 / ULA), so it must not be flagged
+resource "aws_vpc_security_group_ingress_rule" "negative2_private_ipv4_1" {
+  from_port    = 22
+  to_port      = 22
+  ip_protocol  = "tcp"
+  cidr_ipv4    = "10.0.0.0/25"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "negative2_private_ipv4_2" {
+  from_port    = 22
+  to_port      = 22
+  ip_protocol  = "tcp"
+  cidr_ipv4    = "172.16.0.0/27"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "negative2_private_ipv6_1" {
+  from_port    = 22
+  to_port      = 22
+  ip_protocol  = "tcp"
+  cidr_ipv6    = "fd00::/121"
+}

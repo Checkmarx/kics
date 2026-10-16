@@ -61,7 +61,38 @@ module "negative4_ipv6_1" {
       from_port         = 5000
       to_port           = 5000
       protocol          = "icmpv6"
-      ipv6_cidr_blocks  = ["fd03:5678::/64", "2400:cb00::/32"] 
+      ipv6_cidr_blocks  = ["fd03:5678::/64", "2400:cb00::/32"]
+    }
+  ]
+}
+
+# correct port and protocol, but the cidr is a small PRIVATE network (RFC1918 / ULA), so it must not be flagged
+module "negative4_private_ipv4_1" {
+  source  = "terraform-aws-modules/security-group/aws"
+  ingress_with_cidr_blocks = [
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = ["10.0.0.0/25"]
+    },
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = ["172.16.0.0/27"]
+    }
+  ]
+}
+
+module "negative4_private_ipv6_1" {
+  source  = "terraform-aws-modules/security-group/aws"
+  ingress_with_ipv6_cidr_blocks = [
+    {
+      from_port         = 22
+      to_port           = 22
+      protocol          = "tcp"
+      ipv6_cidr_blocks  = ["fd00::/121"]
     }
   ]
 }
