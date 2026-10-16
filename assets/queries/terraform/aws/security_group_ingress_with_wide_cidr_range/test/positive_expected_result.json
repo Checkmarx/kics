@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "Security Group Ingress With Wide CIDR Range",
+    "severity": "HIGH",
+    "line": 8
+  },
+  {
+    "queryName": "Security Group Ingress With Wide CIDR Range",
+    "severity": "HIGH",
+    "line": 19
+  },
+  {
+    "queryName": "Security Group Ingress With Wide CIDR Range",
+    "severity": "HIGH",
+    "line": 25
+  }
+]

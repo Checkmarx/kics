@@ -1,1 +1,5 @@
 assets/queries/k8s/hpa_targets_invalid_object/test/positive.yaml
+assets/queries/k8s/network_policy_ingress_not_restricted/test/positive.yaml
+assets/queries/k8s/network_policy_ingress_not_restricted/test/negative.yaml
+assets/queries/k8s/ingress_whitelist_open_to_all/test/positive.yaml
+assets/queries/k8s/ingress_whitelist_open_to_all/test/negative.yaml
