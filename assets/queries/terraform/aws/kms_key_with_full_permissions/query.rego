@@ -27,9 +27,33 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
+	resource := input.document[i].resource.aws_kms_key_policy[name]
+
+	policy := common_lib.get_policy(resource.policy)
+	st := common_lib.get_statement(policy)
+	statement := st[_]
+
+	common_lib.is_allow_effect(statement)
+	not common_lib.valid_key(statement, "Condition")
+	common_lib.has_wildcard(statement, "kms:*")
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "aws_kms_key_policy",
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("aws_kms_key_policy[%s].policy", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("aws_kms_key_policy[%s].policy should not have wildcard in 'Action' and 'Principal'", [name]),
+		"keyActualValue": sprintf("aws_kms_key_policy[%s].policy has wildcard in 'Action' or 'Principal'", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_kms_key_policy", name, "policy"], []),
+	}
+}
+
+CxPolicy[result] {
 	resource := input.document[i].resource.aws_kms_key[name]
 
 	not common_lib.valid_key(resource, "policy")
+	not has_external_policy(name)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -41,5 +65,10 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_kms_key[%s].policy is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_kms_key", name], []),
 	}
+}
+
+has_external_policy(name) {
+	keyPolicy := input.document[_].resource.aws_kms_key_policy[_]
+	tf_lib.matches(keyPolicy.key_id, name)
 }
 

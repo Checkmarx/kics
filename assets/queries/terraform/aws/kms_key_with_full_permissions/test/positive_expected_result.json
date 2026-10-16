@@ -16,5 +16,17 @@
     "severity": "HIGH",
     "line": 1,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "KMS Key With Vulnerable Policy",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "KMS Key With Vulnerable Policy",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive5.tf"
   }
 ]
