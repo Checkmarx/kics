@@ -1,0 +1,53 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "A sample template",
+  "Resources": {
+    "myHmacKey": {
+      "Type": "AWS::KMS::Key",
+      "Properties": {
+        "Description": "An HMAC key does not support automatic rotation",
+        "KeySpec": "HMAC_256",
+        "KeyUsage": "GENERATE_VERIFY_MAC",
+        "EnableKeyRotation": false,
+        "KeyPolicy": {
+          "Version": "2012-10-17",
+          "Id": "key-default-1",
+          "Statement": [
+            {
+              "Sid": "Enable IAM User Permissions",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::111122223333:root"
+              },
+              "Action": "kms:*",
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    },
+    "myExternalKey": {
+      "Type": "AWS::KMS::Key",
+      "Properties": {
+        "Description": "A symmetric key with imported material cannot use automatic rotation",
+        "KeySpec": "SYMMETRIC_DEFAULT",
+        "Origin": "EXTERNAL",
+        "KeyPolicy": {
+          "Version": "2012-10-17",
+          "Id": "key-default-1",
+          "Statement": [
+            {
+              "Sid": "Enable IAM User Permissions",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::111122223333:root"
+              },
+              "Action": "kms:*",
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: A sample template
+Resources:
+  myAsymmetricKey:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: An example asymmetric CMK that cannot use automatic rotation
+      KeySpec: RSA_2048
+      KeyUsage: ENCRYPT_DECRYPT
+      EnableKeyRotation: false
+      KeyPolicy:
+        Version: '2012-10-17'
+        Id: key-default-1
+        Statement:
+        - Sid: Enable IAM User Permissions
+          Effect: Allow
+          Principal:
+            AWS: arn:aws:iam::111122223333:root
+          Action: kms:*
+          Resource: '*'
+  myAsymmetricKeyNoRotationField:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: An example asymmetric CMK with no EnableKeyRotation property
+      KeySpec: ECC_NIST_P256
+      KeyUsage: SIGN_VERIFY
+      KeyPolicy:
+        Version: '2012-10-17'
+        Id: key-default-1
+        Statement:
+        - Sid: Enable IAM User Permissions
+          Effect: Allow
+          Principal:
+            AWS: arn:aws:iam::111122223333:root
+          Action: kms:*
+          Resource: '*'
