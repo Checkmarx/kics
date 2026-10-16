@@ -26,14 +26,10 @@ internal_alb(resource) {
 	scheme == "internal"
 }
 
-associated_waf(target_alb) {
-	resource := input.document[_].Resources[_]
-	resource.Type == "AWS::WAFRegional::WebACLAssociation"
-	resource.Properties.ResourceArn.Ref == target_alb
-}
+waf_association_types := {"AWS::WAFRegional::WebACLAssociation", "AWS::WAFv2::WebACLAssociation"}
 
 associated_waf(target_alb) {
 	resource := input.document[_].Resources[_]
-	resource.Type == "AWS::WAFRegional::WebACLAssociation"
-	resource.Properties.ResourceArn == target_alb
+	waf_association_types[resource.Type]
+	cf_lib.waf_association_targets_load_balancer(resource, target_alb)
 }
