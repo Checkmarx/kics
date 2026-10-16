@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Transfer Family Server Publicly Accessible",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Transfer Family Server Publicly Accessible",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive2.tf"
+  }
+]

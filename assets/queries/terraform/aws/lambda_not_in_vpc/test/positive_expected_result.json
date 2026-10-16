@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Lambda Function Not In VPC",
+        "severity": "LOW",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

@@ -1,0 +1,14 @@
+{
+  "id": "70c54d6c-702b-4079-834f-32a2c872899c",
+  "queryName": "Beta - Cognito Identity Pool Allows Unauthenticated Access",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Cognito Identity Pools should not allow unauthenticated (guest) identities, as this grants anonymous access to AWS resources and can lead to unauthorized data exposure.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cognito_identity_pool#allow_unauthenticated_identities",
+  "platform": "Terraform",
+  "descriptionID": "c3d4e5f6",
+  "cloudProvider": "aws",
+  "cwe": "306",
+  "riskScore": "7.5",
+  "experimental": "true"
+}

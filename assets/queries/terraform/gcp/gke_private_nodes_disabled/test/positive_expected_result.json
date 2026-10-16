@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - GKE Private Nodes Disabled",
+        "severity": "HIGH",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

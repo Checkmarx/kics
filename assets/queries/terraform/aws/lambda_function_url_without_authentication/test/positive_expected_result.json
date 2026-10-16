@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - Lambda Function URL Without Authentication",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive1.tf"
+  }
+]

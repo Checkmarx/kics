@@ -1,0 +1,14 @@
+{
+  "id": "844623dc-a657-46be-9e78-ce8fca44d766",
+  "queryName": "Beta - RDS Instance Multi-AZ Not Enabled",
+  "severity": "MEDIUM",
+  "category": "Availability",
+  "descriptionText": "RDS instances should have Multi-AZ enabled for high availability and automatic failover in the event of an infrastructure failure.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#multi_az",
+  "platform": "Terraform",
+  "descriptionID": "b2c3d4e5",
+  "cloudProvider": "aws",
+  "cwe": "778",
+  "riskScore": "4.5",
+  "experimental": "true"
+}

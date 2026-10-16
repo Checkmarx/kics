@@ -1,0 +1,14 @@
+{
+  "id": "f979bf87-34fd-4bab-a5b1-530268a581d5",
+  "queryName": "Beta - Backup Vault Without KMS Key",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "AWS Backup Vaults should be encrypted using a customer-managed KMS key. Without a 'kms_key_arn', backups are protected only by the default AWS-managed key, offering no additional control over key rotation or access.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/backup_vault#kms_key_arn",
+  "platform": "Terraform",
+  "descriptionID": "6df8a84c",
+  "cloudProvider": "aws",
+  "cwe": "311",
+  "riskScore": "5.5",
+  "experimental": "true"
+}

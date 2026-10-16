@@ -1,0 +1,14 @@
+{
+  "id": "664c673f-71f2-4a7f-a54a-2efa25e8567f",
+  "queryName": "Beta - Artifact Registry Repository With Public Access",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "GCP Artifact Registry repositories should not grant access to 'allUsers' or 'allAuthenticatedUsers'. Public access allows anyone to read or push container images and packages, risking supply chain attacks or data leakage.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/artifact_registry_repository_iam_member",
+  "platform": "Terraform",
+  "descriptionID": "3116634b",
+  "cloudProvider": "gcp",
+  "cwe": "284",
+  "riskScore": "8.2",
+  "experimental": "true"
+}

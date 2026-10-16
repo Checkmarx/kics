@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - RDS Instance Multi-AZ Not Enabled",
+        "severity": "MEDIUM",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

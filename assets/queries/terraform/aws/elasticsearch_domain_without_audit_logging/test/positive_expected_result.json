@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Elasticsearch Domain Without Audit Logging",
+        "severity": "MEDIUM",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]
