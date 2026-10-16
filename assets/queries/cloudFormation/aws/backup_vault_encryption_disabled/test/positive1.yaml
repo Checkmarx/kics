@@ -1,0 +1,6 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  myDistribution:
+    Type: AWS::Backup::BackupVault
+    Properties: 
+      BackupVaultName: foo
