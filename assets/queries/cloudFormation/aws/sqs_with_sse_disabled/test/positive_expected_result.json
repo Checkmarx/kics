@@ -3,24 +3,60 @@
     "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::SQS::Queue",
+    "resourceName": "SampleQueue",
+    "searchKey": "Resources.MyQueue.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyQueue.Properties.KmsMasterKeyId should be set or SqsManagedSseEnabled set to true",
+    "actualValue": "Resources.MyQueue.Properties.KmsMasterKeyId is undefined and SqsManagedSseEnabled not enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "cccd85e4b016f77f7bc9eed3b1df1738b3bbc389d96271584bc196139d63a331",
+    "search_line": -1
   },
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::SQS::Queue",
+    "resourceName": "SampleQueue",
+    "searchKey": "Resources.MyQueue2.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyQueue2.Properties.KmsMasterKeyId should be set or SqsManagedSseEnabled set to true",
+    "actualValue": "Resources.MyQueue2.Properties.KmsMasterKeyId is undefined and SqsManagedSseEnabled not enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "5195eeea5216bb488934d49cce5a85b860f5b73c4841dfbae6b77512446ae529",
+    "search_line": -1
   },
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::SQS::Queue",
+    "resourceName": "SampleQueue",
+    "searchKey": "Resources.MyQueue.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyQueue.Properties.KmsMasterKeyId should be set or SqsManagedSseEnabled set to true",
+    "actualValue": "Resources.MyQueue.Properties.KmsMasterKeyId is undefined and SqsManagedSseEnabled not enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "592fb1cac02e3510154c3d5c97e12adac5fe394021022f0fe3407e3bcac04fbb",
+    "search_line": -1
   },
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::SQS::Queue",
+    "resourceName": "SampleQueue",
+    "searchKey": "Resources.MyQueue2.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyQueue2.Properties.KmsMasterKeyId should be set or SqsManagedSseEnabled set to true",
+    "actualValue": "Resources.MyQueue2.Properties.KmsMasterKeyId is undefined and SqsManagedSseEnabled not enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "689f0a6da857d2e41a4a633955ed6247d949e4227a5ad42ad0c7d7f4938bb1d5",
+    "search_line": -1
   }
 ]

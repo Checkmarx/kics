@@ -1,17 +1,47 @@
 [
-	{
-		"queryName": "Cloud DNS Without DNSSEC",
-		"severity": "MEDIUM",
-		"line": 3
-	},
-	{
-		"queryName": "Cloud DNS Without DNSSEC",
-		"severity": "MEDIUM",
-		"line": 20
-	},
-	{
-		"queryName": "Cloud DNS Without DNSSEC",
-		"severity": "MEDIUM",
-		"line": 33
-	}
+  {
+    "queryName": "Cloud DNS Without DNSSEC",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_dns_managed_zone",
+    "resourceName": "create a managed zone",
+    "searchKey": "name={{create a managed zone}}.{{google.cloud.gcp_dns_managed_zone}}",
+    "searchValue": "",
+    "expectedValue": "gcp_dns_managed_zone.dnssec_config should be defined",
+    "actualValue": "gcp_dns_managed_zone.dnssec_config is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "cd3422112730a0623905f72579857c2d253f59a39ec1cc414aa83806fc339aad",
+    "search_line": -1
+  },
+  {
+    "queryName": "Cloud DNS Without DNSSEC",
+    "severity": "MEDIUM",
+    "line": 20,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_dns_managed_zone",
+    "resourceName": "create a second managed zone",
+    "searchKey": "name={{create a second managed zone}}.{{google.cloud.gcp_dns_managed_zone}}.dnssec_config",
+    "searchValue": "",
+    "expectedValue": "gcp_dns_managed_zone.dnssec_config.state should be defined",
+    "actualValue": "gcp_dns_managed_zone.dnssec_config.state is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4f60d691d90cf9de9051f1d1c1d2f39a225b6a894a206c73972c0cd32cc4e519",
+    "search_line": -1
+  },
+  {
+    "queryName": "Cloud DNS Without DNSSEC",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_dns_managed_zone",
+    "resourceName": "create a third managed zone",
+    "searchKey": "name={{create a third managed zone}}.{{google.cloud.gcp_dns_managed_zone}}.dnssec_config.state",
+    "searchValue": "",
+    "expectedValue": "gcp_dns_managed_zone.dnssec_config.state should equal to 'on'",
+    "actualValue": "gcp_dns_managed_zone.dnssec_config.state is not equal to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6214324194a3e593b9c09ce76d0bd484611a9de64eed15ecf06c98fc268391df",
+    "search_line": -1
+  }
 ]

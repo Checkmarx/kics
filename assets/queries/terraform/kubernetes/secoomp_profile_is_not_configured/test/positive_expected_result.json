@@ -2,46 +2,136 @@
   {
     "queryName": "Seccomp Profile Is Not Configured",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[pod1].metadata",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[pod1].metadata.annotations should be set",
+    "actualValue": "kubernetes_pod[pod1].metadata.annotations is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c29d0ec3294efde5e94c03d9c9d88219c35f628141811ea9e08d04832fb70415",
+    "search_line": -1
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
     "severity": "MEDIUM",
-    "line": 58
+    "line": 58,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[pod2].metadata.annotations",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[pod2].metadata.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName should be set",
+    "actualValue": "kubernetes_pod[pod2].metadata.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e830867148a53381dfe7ae3012174282fc7fa931e5f1edccbf06514e8d65c943",
+    "search_line": -1
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
     "severity": "MEDIUM",
-    "line": 115
+    "line": 115,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[pod3].metadata.annotations",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[pod3].metadata.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'runtime/default'",
+    "actualValue": "kubernetes_pod[pod3].metadata.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'rntim/dfl'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4441d1243c8fea067849d6b2aec2cfc2fc937fb8fbef738b3b3d7e5c2eca22b7",
+    "search_line": -1
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
     "severity": "MEDIUM",
-    "line": 184
+    "line": 184,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_cron_job",
+    "resourceName": "demo",
+    "searchKey": "kubernetes_cron_job[cron1].spec.job_template.spec.template.metadata",
+    "searchValue": "",
+    "expectedValue": "kubernetes_cron_job[cron1].spec.job_template.spec.template.metadata.annotations should be set",
+    "actualValue": "kubernetes_cron_job[cron1].spec.job_template.spec.template.metadata.annotations is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "3b17645991f26c3b7ccfd030fcdbc6d57d07486e74aaa9a05490acb74e18a644",
+    "search_line": -1
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
     "severity": "MEDIUM",
-    "line": 215
+    "line": 215,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_cron_job",
+    "resourceName": "demo",
+    "searchKey": "kubernetes_cron_job[cron2].spec.job_template.spec.template.metadata.annotations",
+    "searchValue": "",
+    "expectedValue": "kubernetes_cron_job[cron2].spec.job_template.spec.template.metadata.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName should be set",
+    "actualValue": "kubernetes_cron_job[cron2].spec.job_template.spec.template.metadata.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0a5d51b3911938fb0fc017238d11be6fd3e849855b3b323bb3e4275aec4e8e15",
+    "search_line": -1
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
     "severity": "MEDIUM",
-    "line": 249
+    "line": 249,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_cron_job",
+    "resourceName": "demo",
+    "searchKey": "kubernetes_cron_job[cron3].spec.job_template.spec.template.metadata.annotations",
+    "searchValue": "",
+    "expectedValue": "kubernetes_cron_job[cron3].spec.job_template.spec.template.metadata.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'runtime/default'",
+    "actualValue": "kubernetes_cron_job[cron3].spec.job_template.spec.template.metadata.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'rntim/dfl'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f985353ce5911e54c3674bbf2ca2017897c2fb39c0754e14ffacb0684a7ba715",
+    "search_line": -1
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
     "severity": "MEDIUM",
-    "line": 284
+    "line": 284,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "deployment1",
+    "searchKey": "kubernetes_deployment[deployment1].spec.template.metadata",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[deployment1].spec.template.metadata.annotations should be set",
+    "actualValue": "kubernetes_deployment[deployment1].spec.template.metadata.annotations is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d0e5018a7e6a84d66125ce0ebe8da973d58f9c26daa15551f0ca3fc1189af799",
+    "search_line": -1
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
     "severity": "MEDIUM",
-    "line": 348
+    "line": 348,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "deployment2",
+    "searchKey": "kubernetes_deployment[deployment2].spec.template.metadata.annotations",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[deployment2].spec.template.metadata.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName should be set",
+    "actualValue": "kubernetes_deployment[deployment2].spec.template.metadata.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "eb3d01742b6346c7c6e9eb24e9bc426c242b416c6c662648ec6f8aae3399bcd0",
+    "search_line": -1
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
     "severity": "MEDIUM",
-    "line": 411
+    "line": 411,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "deployment3",
+    "searchKey": "kubernetes_deployment[deployment3].spec.template.metadata.annotations",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[deployment3].spec.template.metadata.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'runtime/default'",
+    "actualValue": "kubernetes_deployment[deployment3].spec.template.metadata.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'rntim/dfl'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c6fa83d2f4294eba255837b25b1a5a28143f5ad94b134b3e8c8b94d2c401fcb3",
+    "search_line": -1
   }
 ]

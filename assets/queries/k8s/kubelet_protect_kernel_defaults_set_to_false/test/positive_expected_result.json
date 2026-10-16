@@ -1,26 +1,62 @@
 [
-	{
-		"queryName": "Kubelet Protect Kernel Defaults Set To False",
-		"severity": "MEDIUM",
-		"line": 11,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Kubelet Protect Kernel Defaults Set To False",
-		"severity": "MEDIUM",
-		"line": 11,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Kubelet Protect Kernel Defaults Set To False",
-		"severity": "MEDIUM",
-		"line": 5,
-		"fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Kubelet Protect Kernel Defaults Set To False",
-		"severity": "MEDIUM",
-		"line": 2,
-		"fileName": "positive4.yaml"
-	}
+  {
+    "queryName": "Kubelet Protect Kernel Defaults Set To False",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--protect-kernel-defaults flag should not be set to false",
+    "actualValue": "--protect-kernel-defaults flag is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "ee58ba414bd1505a131ef662c65c457ab9007830f8206f924881cab3735289bd",
+    "search_line": 11
+  },
+  {
+    "queryName": "Kubelet Protect Kernel Defaults Set To False",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--protect-kernel-defaults flag should not be set to false",
+    "actualValue": "--protect-kernel-defaults flag is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "d15ac4d244811b08601a20df66fbd2d21a2e0c7f7cc17811a1bf3f72ac46c25f",
+    "search_line": 11
+  },
+  {
+    "queryName": "Kubelet Protect Kernel Defaults Set To False",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive3.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.protectKernelDefaults",
+    "searchValue": "",
+    "expectedValue": "protectKernelDefaults flag should defined to true",
+    "actualValue": "protectKernelDefaults flag is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f93ff73ede5aced6822d0d1cf6759dc5ac1d783b01fe7fefe4d78e5290c52abe",
+    "search_line": -1
+  },
+  {
+    "queryName": "Kubelet Protect Kernel Defaults Set To False",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive4.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}",
+    "searchValue": "",
+    "expectedValue": "protectKernelDefaults flag should defined to true",
+    "actualValue": "protectKernelDefaults flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "03a77675bce0bee2843980ae81814f843fb3f67791c4a55bc45f411a5a589cb1",
+    "search_line": -1
+  }
 ]

@@ -2,13 +2,31 @@
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive2.tf"
+    "line": 1,
+    "fileName": "positive1.tf",
+    "resourceType": "tencentcloud_cbs_storage",
+    "resourceName": "encrytion_positive1",
+    "searchKey": "tencentcloud_cbs_storage[encrytion_positive1]",
+    "searchValue": "",
+    "expectedValue": "[encrytion_positive1] has encryption enabled",
+    "actualValue": "[encrytion_positive1] does not have encryption enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "3887846af73414d52a22d6446f0ffa00b700d160be3455f6dc174ae39535b8f5",
+    "search_line": 1
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive1.tf"
+    "line": 6,
+    "fileName": "positive2.tf",
+    "resourceType": "tencentcloud_cbs_storage",
+    "resourceName": "encrytion_positive2",
+    "searchKey": "tencentcloud_cbs_storage[encrytion_positive2].encrypt",
+    "searchValue": "",
+    "expectedValue": "[encrytion_positive2] has encryption set to true",
+    "actualValue": "[encrytion_positive2] has encryption set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "051d0e020a47bea1f5e58ca1c5931f0eea1dddcf3c8b9bdf3872ac9cacea9097",
+    "search_line": 6
   }
 ]

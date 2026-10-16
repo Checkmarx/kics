@@ -2,6 +2,16 @@
   {
     "queryName": "PSP Allows Sharing Host IPC",
     "severity": "HIGH",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod_security_policy",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod_security_policy[example2].spec.host_ipc",
+    "searchValue": "",
+    "expectedValue": "Attribute 'host_ipc' should be undefined or false",
+    "actualValue": "Attribute 'host_ipc' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "fb60abd504b05c10cd80d2168385dffde3aa3ba238b1daec46ae8bc4d2155ef5",
+    "search_line": 8
   }
 ]

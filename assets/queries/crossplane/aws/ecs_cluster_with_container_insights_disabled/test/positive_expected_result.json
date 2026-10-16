@@ -3,18 +3,45 @@
     "queryName": "ECS Cluster with Container Insights Disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Cluster",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "Cluster.spec.forProvider.settings should be defined and have a ClusterSetting which name is 'containerInsights' with 'enabled' value",
+    "actualValue": "Cluster.spec.forProvider.settings is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8602de2d323091f7501e8d3ea1e03a02dca91281f972d5b6edf1dd5ca8b028c8",
+    "search_line": 6
   },
   {
     "queryName": "ECS Cluster with Container Insights Disabled",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Cluster",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec.forProvider.settings",
+    "searchValue": "",
+    "expectedValue": "Cluster.spec.forProvider.settings should have a ClusterSetting which name is 'containerInsights' with 'enabled' value",
+    "actualValue": "Cluster.spec.forProvider.settings doesn't have a ClusterSetting which name is 'containerInsights' with 'enabled' value",
+    "issueType": "MissingAttribute",
+    "similarityID": "c4a97d50c76a6e27abce8035187f0f938bab8c019aee205e649127fafdb00444",
+    "search_line": 8
   },
   {
     "queryName": "ECS Cluster with Container Insights Disabled",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive3.yaml"
-  } 
+    "fileName": "positive3.yaml",
+    "resourceType": "Cluster",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec.forProvider.settings",
+    "searchValue": "",
+    "expectedValue": "Cluster.spec.forProvider.settings should have a ClusterSetting which name is 'containerInsights' with 'enabled' value",
+    "actualValue": "Cluster.spec.forProvider.settings doesn't have a ClusterSetting which name is 'containerInsights' with 'enabled' value",
+    "issueType": "MissingAttribute",
+    "similarityID": "41e4786107218dac2880f5b41297366c0f7288ddd2939b289ddd87aa5df1123a",
+    "search_line": 8
+  }
 ]

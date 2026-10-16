@@ -3,24 +3,60 @@
     "queryName": "CDN Configuration Is Missing",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution",
+    "searchKey": "Resources.myDistribution.Properties.DistributionConfig",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig should contain an 'Origins' object",
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig does not contain an 'Origins' object configured",
+    "issueType": "MissingAttribute",
+    "similarityID": "17aac5c7db00f76782e0c1901957189b14ed6e41a341ec4afac7f87479b3c126",
+    "search_line": -1
   },
   {
     "queryName": "CDN Configuration Is Missing",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution",
+    "searchKey": "Resources.myDistribution.Properties.DistributionConfig.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.Enabled should be 'true'",
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.Enabled is configured as 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "32ddb137e3e553181f3c3811688e214a3775bcfa99c890c9496005070281b30c",
+    "search_line": -1
   },
   {
+    "queryName": "CDN Configuration Is Missing",
     "severity": "LOW",
     "line": 7,
     "fileName": "positive2.json",
-    "queryName": "CDN Configuration Is Missing"
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution",
+    "searchKey": "Resources.myDistribution.Properties.DistributionConfig",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig should contain an 'Origins' object",
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig does not contain an 'Origins' object configured",
+    "issueType": "MissingAttribute",
+    "similarityID": "3a8d177a936501bb9f58bbbc617bf0e21aca23bc5735757ada7979537abd0e7c",
+    "search_line": -1
   },
   {
-    "fileName": "positive2.json",
     "queryName": "CDN Configuration Is Missing",
     "severity": "LOW",
-    "line": 15
+    "line": 15,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution",
+    "searchKey": "Resources.myDistribution.Properties.DistributionConfig.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.Enabled should be 'true'",
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.Enabled is configured as 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3fe01167e7c145b7d8d8ad4093d21c5b8fc58db5ae66f90eead24242d7343758",
+    "search_line": -1
   }
 ]

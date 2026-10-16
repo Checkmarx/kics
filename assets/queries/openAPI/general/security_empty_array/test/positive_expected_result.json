@@ -3,24 +3,60 @@
     "queryName": "Global Security Field Has An Empty Array (v3)",
     "severity": "HIGH",
     "line": 43,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "A default security schema should be defined",
+    "actualValue": "A default security schema is not defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "6620543135490e32232be5668ae6887766b244a006e61067f6f2a4f721513c9b",
+    "search_line": -1
   },
   {
     "queryName": "Global Security Field Has An Empty Array (v3)",
     "severity": "HIGH",
     "line": 25,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Global Security Field Has An Empty Array (v2)",
-    "severity": "HIGH",
-    "line": 60,
-    "filename": "positive4.json"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "A default security schema should be defined",
+    "actualValue": "A default security schema is not defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "d398d1ec0d124c95c1dafd2c39844262662b4ea982b1daf4807618e071f9322d",
+    "search_line": -1
   },
   {
     "queryName": "Global Security Field Has An Empty Array (v2)",
     "severity": "HIGH",
     "line": 38,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "A default security schema should be defined",
+    "actualValue": "A default security schema is not defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "5a176f3808dce666042f64e0c40f9c00b2842ee5e11bc2c50548c73e6517acaa",
+    "search_line": -1
+  },
+  {
+    "queryName": "Global Security Field Has An Empty Array (v2)",
+    "severity": "HIGH",
+    "line": 60,
+    "fileName": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "A default security schema should be defined",
+    "actualValue": "A default security schema is not defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "269bcf7cdabb0d415431ba9d642a97449d5dd59546e47dd92cd17fbe24604bb9",
+    "search_line": -1
   }
 ]

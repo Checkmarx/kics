@@ -3,48 +3,120 @@
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Prod.Properties' should have 'EnableCloudwatchLogsExports' enabled ",
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "db8d0f431e8aefb791eaa02b04e4e93d1b34e18ff48b8d69a714395d81c44800",
+    "search_line": 6
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.EnableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' should include 'audit'",
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'",
+    "issueType": "MissingAttribute",
+    "similarityID": "87b3dabfdbd9bf4c2216caa2fa1c58a5e4825c3e20f9926ab1a180bcb7c4b3d6",
+    "search_line": 8
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.EnableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' should include 'audit'",
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'",
+    "issueType": "MissingAttribute",
+    "similarityID": "072f28266de1dd05843a8c034c0e27593cf6a8c075fff08f76c9f460656d885b",
+    "search_line": 8
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.EnableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' should include 'audit'",
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'",
+    "issueType": "MissingAttribute",
+    "similarityID": "aeac8bbc8fb7c7fcee25131465205b4bf9963f6b5bb2810496d297f0aff9a274",
+    "search_line": 8
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Prod.Properties' should have 'EnableCloudwatchLogsExports' enabled ",
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f31e5f021222d631d8ed0e9d97ab6a84e8ae38d71477cd3ba955656a59bed918",
+    "search_line": 5
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.EnableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "'Resources.Prod.Properties' should have 'EnableCloudwatchLogsExports' enabled ",
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' is set to null",
+    "issueType": "IncorrectValue",
+    "similarityID": "83345b07ce8fb39f7314dc545e1356e494346d3708773e034417c331dd682f00",
+    "search_line": 7
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.EnableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' should include 'audit'",
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'",
+    "issueType": "MissingAttribute",
+    "similarityID": "7a59804c366040f769e6027f66c8d2da1e7a39ba71399afd29270ff859a38351",
+    "search_line": 7
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive8.yaml"
+    "fileName": "positive8.yaml",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.EnableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' should include 'audit'",
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'",
+    "issueType": "MissingAttribute",
+    "similarityID": "47ef2d35ff791fba85c901708c4af508cf8bf07b546a0d87767bada22383ebce",
+    "search_line": 7
   }
 ]

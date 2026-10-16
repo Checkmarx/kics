@@ -2,21 +2,61 @@
   {
     "queryName": "EBS Volume Encryption Disabled",
     "severity": "HIGH",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_vol",
+    "resourceName": "Creating EBS volume01",
+    "searchKey": "name={{Creating EBS volume01}}.{{amazon.aws.ec2_vol}}.encrypted",
+    "searchValue": "",
+    "expectedValue": "ec2_vol.encrypted should be enabled",
+    "actualValue": "ec2_vol.encrypted is disabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "8d23ebaaa57db577a5c0971659ce9c1aa0e4ede12b94ea32632852ec64e00905",
+    "search_line": -1
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
     "severity": "HIGH",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_vol",
+    "resourceName": "Creating EBS volume02",
+    "searchKey": "name={{Creating EBS volume02}}.{{amazon.aws.ec2_vol}}.encrypted",
+    "searchValue": "",
+    "expectedValue": "ec2_vol.encrypted should be enabled",
+    "actualValue": "ec2_vol.encrypted is disabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "2d28739344599199726eb3ded03eed2d4762d7e3c7bbaf3a42a460919836bdb2",
+    "search_line": -1
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
     "severity": "HIGH",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_vol",
+    "resourceName": "Creating EBS volume03",
+    "searchKey": "name={{Creating EBS volume03}}.{{amazon.aws.ec2_vol}}.encrypted",
+    "searchValue": "",
+    "expectedValue": "ec2_vol.encrypted should be enabled",
+    "actualValue": "ec2_vol.encrypted is disabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "5497c810d5636e51a920bf9424b3cd55e3b7a8017302af680cbcea425bf31005",
+    "search_line": -1
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
     "severity": "HIGH",
-    "line": 24
+    "line": 24,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_vol",
+    "resourceName": "Creating EBS volume04",
+    "searchKey": "name={{Creating EBS volume04}}.{{amazon.aws.ec2_vol}}",
+    "searchValue": "",
+    "expectedValue": "ec2_vol.encrypted should be defined",
+    "actualValue": "ec2_vol.encrypted is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "09fab184885fe5ddd91df69dffcb208c9efeda7dae3adeeb7ff3f2423c98e735",
+    "search_line": -1
   }
 ]

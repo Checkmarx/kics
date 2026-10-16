@@ -3,12 +3,30 @@
     "queryName": "Cloud Storage Bucket Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "storage.v1.bucketAccessControl",
+    "resourceName": "bucket-access-control",
+    "searchKey": "resources.name={{bucket-access-control}}.properties.entity",
+    "searchValue": "",
+    "expectedValue": "'entity' should not equal to 'allUsers' or 'allAuthenticatedUsers'",
+    "actualValue": "'entity' is equal to 'allUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "135ed1b7ca5df38ad4682accc222a95db25d169a22b6bf34baacca97e9d57b3b",
+    "search_line": 5
   },
   {
     "queryName": "Cloud Storage Bucket Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "storage.v1.bucketAccessControl",
+    "resourceName": "bucket-access-control",
+    "searchKey": "resources.name={{bucket-access-control}}.properties.entity",
+    "searchValue": "",
+    "expectedValue": "'entity' should not equal to 'allUsers' or 'allAuthenticatedUsers'",
+    "actualValue": "'entity' is equal to 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a78c64359ea5007b13677d17bd36dc840f56f9df2bae8a3a32367e325b454ef2",
+    "search_line": 5
   }
 ]

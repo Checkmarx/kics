@@ -2,16 +2,46 @@
   {
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_api_gateway_rest_api",
+    "resourceName": "regional-example",
+    "searchKey": "aws_api_gateway_rest_api[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'minimum_compression_size' should be set and have a value greater than -1 and smaller than 10485760",
+    "actualValue": "Attribute 'minimum_compression_size' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "95c643ba88c863929317e9de1fc94f7472674593718b4942cd4a81fc6274beee",
+    "search_line": 1
   },
   {
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.tf",
+    "resourceType": "aws_api_gateway_rest_api",
+    "resourceName": "regional-example",
+    "searchKey": "aws_api_gateway_rest_api[positive2].minimum_compression_size",
+    "searchValue": "",
+    "expectedValue": "Attribute 'minimum_compression_size' should be greater than -1 and smaller than 10485760",
+    "actualValue": "Attribute 'minimum_compression_size' is -1",
+    "issueType": "IncorrectValue",
+    "similarityID": "dc4e3cd32eae23b620500f1f30e4d02a6e242271f14f2f222151d7c82f99bbc5",
+    "search_line": 17
   },
   {
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
-    "line": 28
+    "line": 28,
+    "fileName": "positive.tf",
+    "resourceType": "aws_api_gateway_rest_api",
+    "resourceName": "regional-example",
+    "searchKey": "aws_api_gateway_rest_api[positive3].minimum_compression_size",
+    "searchValue": "",
+    "expectedValue": "Attribute 'minimum_compression_size' should be greater than -1 and smaller than 10485760",
+    "actualValue": "Attribute 'minimum_compression_size' is 10485760",
+    "issueType": "IncorrectValue",
+    "similarityID": "f7de1823379352b3017db1e899e11ac015a09b5c06affca52be1be433349f0f8",
+    "search_line": 28
   }
 ]

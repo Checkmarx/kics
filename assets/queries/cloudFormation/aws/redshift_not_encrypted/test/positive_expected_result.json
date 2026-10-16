@@ -3,30 +3,75 @@
     "queryName": "Redshift Not Encrypted",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "${DatabaseName}",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties.Encrypted should be set",
+    "actualValue": "Resources.RedshiftCluster.Properties.Encrypted is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a7a21edce00350ef91dca9e43e1148870421d06d5aab0635f3ea2c9d68f8f7e6",
+    "search_line": -1
   },
   {
     "queryName": "Redshift Not Encrypted",
     "severity": "HIGH",
     "line": 21,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "${DatabaseName}",
+    "searchKey": "Resources.RedshiftCluster2.Properties.Encrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster2.Properties.Encrypted should be set to true",
+    "actualValue": "Resources.RedshiftCluster2.Properties.Encryped is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "2a7443e101cbe76c3a19760f0435422c4646b4e61ea06829e9458fe08cb582d6",
+    "search_line": -1
   },
   {
     "queryName": "Redshift Not Encrypted",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "${DatabaseName}",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties.Encrypted should be set",
+    "actualValue": "Resources.RedshiftCluster.Properties.Encrypted is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f5af65311f59c2acf296f68cb260b3b541e9f88c93d7422bbcc5410ef389e556",
+    "search_line": -1
   },
   {
     "queryName": "Redshift Not Encrypted",
     "severity": "HIGH",
     "line": 32,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "${DatabaseName}",
+    "searchKey": "Resources.RedshiftCluster2.Properties.Encrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster2.Properties.Encrypted should be set to true",
+    "actualValue": "Resources.RedshiftCluster2.Properties.Encryped is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "2af08d87759d36d5bf6289ce9eb853f18a2bbe3a2654c7a96838dc1a3593a718",
+    "search_line": -1
   },
   {
     "queryName": "Redshift Not Encrypted",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "${DatabaseName}",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties.Encrypted should be set",
+    "actualValue": "Resources.RedshiftCluster.Properties.Encrypted is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b230bbae454c87b7a67024b7dcda3b81eb795a574ee7c31539a5420bfb685a76",
+    "search_line": -1
   }
 ]

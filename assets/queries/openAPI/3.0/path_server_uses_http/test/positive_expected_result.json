@@ -3,12 +3,30 @@
     "queryName": "Path Server Object Uses HTTP (v3)",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.servers.url={{http://staging.gigantic-server.com/v1}}",
+    "searchValue": "",
+    "expectedValue": "Path Server Object url uses 'HTTPS' protocol",
+    "actualValue": "Path Server Object url uses 'HTTP' protocol",
+    "issueType": "IncorrectValue",
+    "similarityID": "f4136dd0135f03cd4821db877ea461bb19da8b283e7fd44a0ef1692d6daf1c8f",
+    "search_line": -1
   },
   {
     "queryName": "Path Server Object Uses HTTP (v3)",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.servers.url={{http://api.gigantic-server.com/v1}}",
+    "searchValue": "",
+    "expectedValue": "Path Server Object url uses 'HTTPS' protocol",
+    "actualValue": "Path Server Object url uses 'HTTP' protocol",
+    "issueType": "IncorrectValue",
+    "similarityID": "7863ad9ea79ef4c262df97b7f0566a2a757d8ea3377c569a61bae15bac079938",
+    "search_line": -1
   }
 ]

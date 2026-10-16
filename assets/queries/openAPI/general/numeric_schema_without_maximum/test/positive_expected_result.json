@@ -3,48 +3,120 @@
     "queryName": "Numeric Schema Without Maximum (v3)",
     "severity": "LOW",
     "line": 58,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'maximum' defined",
+    "actualValue": "Numeric schema does not have 'maximum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fa9decaa74fae2383d06178f45bc3637f33587bd1b53aaf472581f3356114239",
+    "search_line": 0
   },
   {
     "queryName": "Numeric Schema Without Maximum (v3)",
     "severity": "LOW",
     "line": 75,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'maximum' defined",
+    "actualValue": "Numeric schema does not have 'maximum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f6612dcaa41bdd248d8642bb6322dbc52c45a69d4276fcdb15c7a36a63ce149d",
+    "search_line": 0
   },
   {
     "queryName": "Numeric Schema Without Maximum (v3)",
     "severity": "LOW",
     "line": 27,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'maximum' defined",
+    "actualValue": "Numeric schema does not have 'maximum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2258c2b5e886a9926bef1cfaf1c43a500ef61f394b1be937eb2867413b857245",
+    "search_line": -1
   },
   {
     "queryName": "Numeric Schema Without Maximum (v3)",
     "severity": "LOW",
     "line": 34,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'maximum' defined",
+    "actualValue": "Numeric schema does not have 'maximum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2d5c4111d0b26a965ff01f7c85fabfa5dcfc256060001e6700e2a316ec6c03da",
+    "search_line": 0
   },
   {
     "queryName": "Numeric Schema Without Maximum (v3)",
     "severity": "LOW",
     "line": 46,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'maximum' defined",
+    "actualValue": "Numeric schema does not have 'maximum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ae33eb4281620d1b0592669cdce36794a146aa3f91af98c53171c69bc317bb4c",
+    "search_line": 0
   },
   {
     "queryName": "Numeric Schema Without Maximum (v3)",
     "severity": "LOW",
     "line": 22,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'maximum' defined",
+    "actualValue": "Numeric schema does not have 'maximum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "30fe3ba8861b0d62e7b33df27c7ebc85221d0ccf51e339e20510431a09852d51",
+    "search_line": -1
   },
   {
     "queryName": "Numeric Schema Without Maximum (v2)",
     "severity": "LOW",
     "line": 23,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'maximum' defined",
+    "actualValue": "Numeric schema does not have 'maximum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c1b9fd25ddd49366f4a7cfc459da9186b84874245a92b92e54e84c174af506cd",
+    "search_line": -1
   },
   {
     "queryName": "Numeric Schema Without Maximum (v2)",
     "severity": "LOW",
     "line": 20,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'maximum' defined",
+    "actualValue": "Numeric schema does not have 'maximum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8280b9fab03bcc4295b9eaeadf0e63bb37743e3c6899bbf0dae1e9cdc3dade12",
+    "search_line": -1
   }
 ]

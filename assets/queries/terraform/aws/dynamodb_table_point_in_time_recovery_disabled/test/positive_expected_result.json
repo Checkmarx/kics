@@ -3,12 +3,30 @@
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_dynamodb_table",
+    "resourceName": "aws_dynamodb_table",
+    "searchKey": "aws_dynamodb_table[{{basic-dynamodb-table}}].point_in_time_recovery.enabled",
+    "searchValue": "",
+    "expectedValue": "aws_dynamodb_table.point_in_time_recovery.enabled should be set to true",
+    "actualValue": "aws_dynamodb_table.point_in_time_recovery.enabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "0143bd0c94ba9b4cc921dbb167c0e5c0fe5c5489a0795f2c6d53202a47b4b3cd",
+    "search_line": -1
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_dynamodb_table",
+    "resourceName": "aws_dynamodb_table",
+    "searchKey": "aws_dynamodb_table[{{basic-dynamodb-table}}]",
+    "searchValue": "",
+    "expectedValue": "aws_dynamodb_table.point_in_time_recovery.enabled should be enabled",
+    "actualValue": "aws_dynamodb_table.point_in_time_recovery is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "80e2dccf1dda7942af780cf7615e353de7a515dc1c430bbfa25a15259b85500b",
+    "search_line": -1
   }
 ]

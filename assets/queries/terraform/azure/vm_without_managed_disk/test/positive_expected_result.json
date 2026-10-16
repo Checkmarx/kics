@@ -3,54 +3,135 @@
     "queryName": "Beta - VM Without Managed Disk",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_virtual_machine",
+    "resourceName": "${var.prefix}-vm",
+    "searchKey": "azurerm_virtual_machine[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_virtual_machine[positive1].storage_os_disk' should be defined and not null",
+    "actualValue": "'azurerm_virtual_machine[positive1].storage_os_disk' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "7232f4debfe1f9b1683484f38243bc22acafecc5268aacc37c5fa672841e6a7e",
+    "search_line": 1
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
     "severity": "MEDIUM",
     "line": 21,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_virtual_machine",
+    "resourceName": "${var.prefix}-vm",
+    "searchKey": "azurerm_virtual_machine[positive1_2].storage_os_disk.vhd_uri",
+    "searchValue": "",
+    "expectedValue": "'azurerm_virtual_machine[positive1_2].storage_os_disk.vhd_uri' should not be set",
+    "actualValue": "'azurerm_virtual_machine[positive1_2].storage_os_disk.vhd_uri' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "d2121b01e38f4d40651c237b74b5cf01e6e4d576644364349877eadbd59fde50",
+    "search_line": 21
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
     "severity": "MEDIUM",
     "line": 34,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_virtual_machine",
+    "resourceName": "${var.prefix}-vm",
+    "searchKey": "azurerm_virtual_machine[positive1_3].storage_os_disk",
+    "searchValue": "",
+    "expectedValue": "'azurerm_virtual_machine[positive1_3].storage_os_disk' should define a 'managed_disk_id' or 'managed_disk_type'",
+    "actualValue": "'azurerm_virtual_machine[positive1_3].storage_os_disk' does not define or sets to null 'managed_disk_id' and 'managed_disk_type'",
+    "issueType": "MissingAttribute",
+    "similarityID": "6d07bfed77f93fc410b9296bd9220da386cff13c7772a6bb74c75d03c2d9e632",
+    "search_line": 34
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_virtual_machine",
+    "resourceName": "positive2-machine",
+    "searchKey": "azurerm_linux_virtual_machine[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine[positive2].os_managed_disk_id' should be defined and not null",
+    "actualValue": "'azurerm_linux_virtual_machine[positive2].os_managed_disk_id' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "9e2fad1d31683146f33c4ca2677bda298a260daf866afe59c73aa2d0df9a6e2e",
+    "search_line": 1
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_virtual_machine",
+    "resourceName": "positive3-machine",
+    "searchKey": "azurerm_windows_virtual_machine[positive3]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine[positive3].os_managed_disk_id' should be defined and not null",
+    "actualValue": "'azurerm_windows_virtual_machine[positive3].os_managed_disk_id' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "7a4566290802734960f4f4a5875c1111d7177397418a8b713c49c7501f552576",
+    "search_line": 1
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "azurerm_virtual_machine_scale_set",
+    "resourceName": "vmss-premium-positive4_1",
+    "searchKey": "azurerm_virtual_machine_scale_set[positive4_1].storage_profile_os_disk.vhd_containers",
+    "searchValue": "",
+    "expectedValue": "'azurerm_virtual_machine_scale_set[positive4_1].storage_profile_os_disk.vhd_containers' should not be set",
+    "actualValue": "'azurerm_virtual_machine_scale_set[positive4_1].storage_profile_os_disk.vhd_containers' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "af9a1dd82e340b1c0b4e146d162b02e24b544f18b938384754e71d2734773867",
+    "search_line": 10
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
     "severity": "MEDIUM",
     "line": 23,
-    "filename": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "azurerm_virtual_machine_scale_set",
+    "resourceName": "vmss-premium-positive4_2",
+    "searchKey": "azurerm_virtual_machine_scale_set[positive4_2].storage_profile_os_disk",
+    "searchValue": "",
+    "expectedValue": "'azurerm_virtual_machine_scale_set[positive4_2].storage_profile_os_disk.managed_disk_type' should be defined and not null",
+    "actualValue": "'azurerm_virtual_machine_scale_set[positive4_2].storage_profile_os_disk.managed_disk_type' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "d8ad82ffe0d9dc847e4dae3c82ac2f343394ece4af511176dcdd2c0027eda8dc",
+    "search_line": 23
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "azurerm_virtual_machine",
+    "resourceName": "${var.prefix}-vm",
+    "searchKey": "azurerm_virtual_machine[positive5].storage_os_disk.vhd_uri",
+    "searchValue": "",
+    "expectedValue": "'azurerm_virtual_machine[positive5].storage_os_disk.vhd_uri' should not be set",
+    "actualValue": "'azurerm_virtual_machine[positive5].storage_os_disk.vhd_uri' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "45b5e9e0cbfc29d012678c54efc6cdad905712e673d6225b823f456b18215020",
+    "search_line": 18
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "azurerm_virtual_machine",
+    "resourceName": "${var.prefix}-vm",
+    "searchKey": "azurerm_virtual_machine[positive6].storage_os_disk",
+    "searchValue": "",
+    "expectedValue": "'azurerm_virtual_machine[positive6].storage_os_disk' should define a 'managed_disk_id' or 'managed_disk_type'",
+    "actualValue": "'azurerm_virtual_machine[positive6].storage_os_disk' does not define or sets to null 'managed_disk_id' and 'managed_disk_type'",
+    "issueType": "MissingAttribute",
+    "similarityID": "443431512ff68e73ce9d7c09ddca36072a6fabeb24945c5a622b408255167c9d",
+    "search_line": 16
   }
 ]

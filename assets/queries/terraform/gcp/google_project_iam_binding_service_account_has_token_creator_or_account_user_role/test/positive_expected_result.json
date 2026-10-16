@@ -2,21 +2,61 @@
   {
     "queryName": "Google Project IAM Binding Service Account has Token Creator or Account User Role",
     "severity": "HIGH",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.tf",
+    "resourceType": "google_project_iam_binding",
+    "resourceName": "positive1",
+    "searchKey": "google_project_iam_binding[positive1].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_binding[positive1].role should not be Service Account Token Creator",
+    "actualValue": "google_project_iam_binding[positive1].role is Service Account Token Creator",
+    "issueType": "IncorrectValue",
+    "similarityID": "7db9ebef4dfb676d54309936ab4db4ff45e6ed9f5d778649415b9d3511f35e0d",
+    "search_line": -1
   },
   {
     "queryName": "Google Project IAM Binding Service Account has Token Creator or Account User Role",
     "severity": "HIGH",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf",
+    "resourceType": "google_project_iam_binding",
+    "resourceName": "positive2",
+    "searchKey": "google_project_iam_binding[positive2].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_binding[positive2].role should not be Service Account Token Creator",
+    "actualValue": "google_project_iam_binding[positive2].role is Service Account Token Creator",
+    "issueType": "IncorrectValue",
+    "similarityID": "a0cfc6da77d4bcc1977ef4464e5f11869f5b7b4547cbcd5a533c47065158f7b4",
+    "search_line": -1
   },
   {
     "queryName": "Google Project IAM Binding Service Account has Token Creator or Account User Role",
     "severity": "HIGH",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.tf",
+    "resourceType": "google_project_iam_binding",
+    "resourceName": "positive3",
+    "searchKey": "google_project_iam_binding[positive3].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_binding[positive3].role should not be Service Account User",
+    "actualValue": "google_project_iam_binding[positive3].role is Service Account User",
+    "issueType": "IncorrectValue",
+    "similarityID": "8c56149e2223826932851221d5ab392ae6f3b8ee6420dcf5a139898836e8cf1f",
+    "search_line": -1
   },
   {
     "queryName": "Google Project IAM Binding Service Account has Token Creator or Account User Role",
     "severity": "HIGH",
-    "line": 29
+    "line": 29,
+    "fileName": "positive.tf",
+    "resourceType": "google_project_iam_binding",
+    "resourceName": "positive4",
+    "searchKey": "google_project_iam_binding[positive4].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_binding[positive4].role should not be Service Account User",
+    "actualValue": "google_project_iam_binding[positive4].role is Service Account User",
+    "issueType": "IncorrectValue",
+    "similarityID": "3629395c0d2e33a906e49a7405f69874dda7e24b6de87b61a7c237ae4c8b87bc",
+    "search_line": -1
   }
 ]

@@ -2,26 +2,76 @@
   {
     "queryName": "Beta - Databricks Workspace Without CMK",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "my-databricks-workspace",
+    "searchKey": "azurerm_databricks_workspace[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace[positive1].managed_disk_cmk_key_vault_key_id' should be defined and not null",
+    "actualValue": "'azurerm_databricks_workspace[positive1].managed_disk_cmk_key_vault_key_id' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "816ecceeba8fbe3473daeb5fff6035b0b9221c7e9ac3d9a44b41b57c94dae417",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Databricks Workspace Without CMK",
     "severity": "MEDIUM",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "my-databricks-workspace",
+    "searchKey": "azurerm_databricks_workspace[positive2].customer_managed_key_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace[positive2].customer_managed_key_enabled' should be defined and set to true",
+    "actualValue": "'azurerm_databricks_workspace[positive2].customer_managed_key_enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "4961326ed2015fcb384a31110f22dd0a0a0dd35f51700864b821114b67953fc0",
+    "search_line": 17
   },
   {
     "queryName": "Beta - Databricks Workspace Without CMK",
     "severity": "MEDIUM",
-    "line": 27
+    "line": 27,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "my-databricks-workspace",
+    "searchKey": "azurerm_databricks_workspace[positive3].customer_managed_key_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace[positive3].customer_managed_key_enabled' should be defined and set to true",
+    "actualValue": "'azurerm_databricks_workspace[positive3].customer_managed_key_enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "2b4c42f0172b49c9a4e9809d58d3b260d21c54335c848b347798497c90560be3",
+    "search_line": 27
   },
   {
     "queryName": "Beta - Databricks Workspace Without CMK",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "my-databricks-workspace",
+    "searchKey": "azurerm_databricks_workspace[positive4]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace[positive4].customer_managed_key_enabled' should be defined and set to true",
+    "actualValue": "'azurerm_databricks_workspace[positive4].customer_managed_key_enabled' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "cf8fbaa6315429fbdc054d40784021f7ec2f6d3fd0629efa82288f5464a756e2",
+    "search_line": 31
   },
   {
     "queryName": "Beta - Databricks Workspace Without CMK",
     "severity": "MEDIUM",
-    "line": 41
+    "line": 41,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "my-databricks-workspace",
+    "searchKey": "azurerm_databricks_workspace[positive5]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace[positive5].customer_managed_key_enabled' should be defined and set to true",
+    "actualValue": "'azurerm_databricks_workspace[positive5].customer_managed_key_enabled' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "ae252ac438d6b7ad28b6e3f19d21a84481147744e523e9579425c73c0de80bf3",
+    "search_line": 41
   }
 ]

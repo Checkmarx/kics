@@ -3,24 +3,60 @@
     "queryName": "CloudWatch Console Sign-in Without MFA Alarm Missing",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") } and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "f374c016c281320750484e09977ac0d9ce592add0958ed6f9e9e2eb584f6ab20",
+    "search_line": 1
   },
   {
     "queryName": "CloudWatch Console Sign-in Without MFA Alarm Missing",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") } and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "495021a36cb296ff2e808790962352267c8b5152136ef62955d9bf0f665a7fbf",
+    "search_line": 1
   },
   {
     "queryName": "CloudWatch Console Sign-in Without MFA Alarm Missing",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") } and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "d5dc94550509265ab1dd3efbc1c31702dabf880b8352794d7c1bcd80657ea461",
+    "search_line": 1
   },
   {
     "queryName": "CloudWatch Console Sign-in Without MFA Alarm Missing",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") } and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "f0be431fa053e6d8dc011f9a6e4b7beed3cd6111555ac894c950f342998b8268",
+    "search_line": 1
   }
 ]

@@ -2,11 +2,31 @@
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_webapp",
+    "resourceName": "Create a windows web app with non-exist app service plan",
+    "searchKey": "name={{Create a windows web app with non-exist app service plan}}.{{azure_rm_webapp}}.https_only",
+    "searchValue": "",
+    "expectedValue": "azure_rm_webapp.https_only should be set to true or 'yes'",
+    "actualValue": "azure_rm_webapp.https_only value is 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "308af9c6097e65af0f3278237d8875f991f1c4bbe996443ecb0c5e7e13dbf6ce",
+    "search_line": -1
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_webapp",
+    "resourceName": "Create another windows web app",
+    "searchKey": "name={{Create another windows web app}}.{{azure_rm_webapp}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_webapp.https_only should be defined",
+    "actualValue": "azure_rm_webapp.https_only is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "de91c297700b17b5516540b3c4561688e7d8e20d8cd8c2242c36f6b512eabfcf",
+    "search_line": -1
   }
 ]

@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "API Gateway Access Logging Disabled",
-		"severity": "MEDIUM",
-		"line": 7,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "aws:apigatewayv2:Stage",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties",
+    "searchValue": "",
+    "expectedValue": "Attribute 'accessLogSettings' should be defined",
+    "actualValue": "Attribute 'accessLogSettings' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7b8f569921e9748f397531cb7c0c033b0cff6726b45ceb5908ae144c96d6eeab",
+    "search_line": 7
+  }
 ]

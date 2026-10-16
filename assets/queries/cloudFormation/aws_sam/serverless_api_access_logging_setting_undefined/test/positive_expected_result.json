@@ -3,12 +3,30 @@
     "queryName": "Serverless API Access Logging Setting Undefined",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi",
+    "searchKey": "Resources.ApiGatewayApi.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi.Properties.%!d(string=AccessLogSetting) should be defined and not null",
+    "actualValue": "Resources.ApiGatewayApi.Properties.%!d(string=AccessLogSetting) is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "70dc59fba5472fe8e0ec774e6ca4f36c1c52e4c5cb00754abe41f4c5da19fa90",
+    "search_line": 7
   },
   {
     "queryName": "Serverless API Access Logging Setting Undefined",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::Serverless::HttpApi",
+    "resourceName": "HttpApi",
+    "searchKey": "Resources.HttpApi.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.HttpApi.Properties.%!d(string=AccessLogSettings) should be defined and not null",
+    "actualValue": "Resources.HttpApi.Properties.%!d(string=AccessLogSettings) is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "b580d25c1ae27da9af65acd355907b7e037b95cec4e4c34ca1ab587e709bb54b",
+    "search_line": 7
   }
 ]

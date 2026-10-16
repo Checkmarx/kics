@@ -2,6 +2,16 @@
   {
     "queryName": "COS Node Image Not Used",
     "severity": "LOW",
-    "line": 16
+    "line": 16,
+    "fileName": "positive.tf",
+    "resourceType": "google_container_node_pool",
+    "resourceName": "primary-pool",
+    "searchKey": "google_container_node_pool[positive2].node_config.image_type",
+    "searchValue": "",
+    "expectedValue": "'node_config.image_type' should start with 'COS'",
+    "actualValue": "'node_config.image_type' does not start with 'COS'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6c7e979f9b05c369572d7c72b68918f2c1ca0f8090fcd644691ef23d1c7f7ac8",
+    "search_line": -1
   }
 ]

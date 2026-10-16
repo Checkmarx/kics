@@ -3,18 +3,45 @@
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
     "line": 69,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.PubliclyAccessible' should be set to false",
+    "actualValue": "'Resources.MyDB.Properties.PubliclyAccessible' is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "981256c2b0d633fd322d83980c71e6e8a04b69cdae5dc584f182633b0221f832",
+    "search_line": 69
   },
   {
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
     "line": 61,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.PubliclyAccessible' should be set to false",
+    "actualValue": "'Resources.MyDB.Properties.PubliclyAccessible' is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "38d6383e7102091c8d62889f5957ad80de583767d29cfa3077295f413a0f15ba",
+    "search_line": 61
   },
   {
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
     "line": 69,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.PubliclyAccessible' should be set to false",
+    "actualValue": "'Resources.MyDB.Properties.PubliclyAccessible' is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "3dfaa65927629327c0bf68bef7dfca61c88b4e4b9c59c738d57195df24e1e9e3",
+    "search_line": 69
   }
 ]

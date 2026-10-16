@@ -1,14 +1,32 @@
 [
   {
+    "queryName": "CodeBuild Not Encrypted",
     "severity": "MEDIUM",
     "line": 7,
     "fileName": "positive1.yaml",
-    "queryName": "CodeBuild Not Encrypted"
+    "resourceType": "AWS::CodeBuild::Project",
+    "resourceName": "CodeBuildProject",
+    "searchKey": "Resources.CodeBuildProject.Project.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.CodeBuildProject.Project.Properties.EncryptionKey' should be defined and not null",
+    "actualValue": "Resources.CodeBuildProject.Project.Properties.EncryptionKey' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "53ab299493b2c5e53efe91e5e3e5f627c5046cc76356e9ff6a442cbaeba6a9a8",
+    "search_line": -1
   },
   {
     "queryName": "CodeBuild Not Encrypted",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::CodeBuild::Project",
+    "resourceName": "CodeBuildProject",
+    "searchKey": "Resources.CodeBuildProject.Project.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.CodeBuildProject.Project.Properties.EncryptionKey' should be defined and not null",
+    "actualValue": "Resources.CodeBuildProject.Project.Properties.EncryptionKey' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "85df0516b1df55f01f25a37351c9123be80a3cd0674db0c97d9b05a167a6091a",
+    "search_line": -1
   }
 ]

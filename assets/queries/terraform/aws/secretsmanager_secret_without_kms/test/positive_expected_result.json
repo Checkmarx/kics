@@ -3,6 +3,15 @@
     "queryName": "Secretsmanager Secret Without KMS",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_secretsmanager_secret",
+    "resourceName": "example",
+    "searchKey": "aws_secretsmanager_secret[{{example}}]",
+    "searchValue": "",
+    "expectedValue": "aws_secretsmanager_secret.kms_key_id should be defined and not null",
+    "actualValue": "aws_secretsmanager_secret.kms_key_id is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "eb71d6ddc92412dd70fec3dccbeaee90795ea99435e0d2dbafd47bd7e1697c53",
+    "search_line": -1
   }
 ]

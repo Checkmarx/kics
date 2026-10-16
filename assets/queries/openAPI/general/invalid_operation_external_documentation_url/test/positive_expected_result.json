@@ -3,24 +3,60 @@
     "queryName": "Invalid Operation External Documentation URL (v3)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.externalDocs.url has a valid URL",
+    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "02085feab0ae182d5e0d1a91798f37424c3b47302367b37bff863b0fb5789d02",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Operation External Documentation URL (v3)",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.externalDocs.url has a valid URL",
+    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "8d8099194f104a88c6ead6d703d9824332c78399c7fb5fa3b681ba5e3c9474cf",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Operation External Documentation URL (v2)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.externalDocs.url has a valid URL",
+    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "717a8e85124a5a6517a33d512321f059bff273f1bbf683cb9c1210f8664a1ade",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Operation External Documentation URL (v2)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.externalDocs.url has a valid URL",
+    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "1e7d7e9b96eff666646e8d4ca36a73060fc8f1e2ff0d69941331a08033d6cae9",
+    "search_line": -1
   }
 ]

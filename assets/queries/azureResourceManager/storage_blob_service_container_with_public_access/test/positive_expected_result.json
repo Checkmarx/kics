@@ -2,61 +2,151 @@
   {
     "queryName": "Storage Blob Service Container With Public Access",
     "severity": "HIGH",
-    "line": 15,
-    "fileName": "positive1.json"
-  },
-  {
-    "queryName": "Storage Blob Service Container With Public Access",
-    "severity": "HIGH",
-    "line": 107,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "Storage Blob Service Container With Public Access",
-    "severity": "HIGH",
-    "line": 50,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "Storage Blob Service Container With Public Access",
-    "severity": "HIGH",
-    "line": 17,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "Storage Blob Service Container With Public Access",
-    "severity": "HIGH",
-    "line": 109,
-    "fileName": "positive5.json"
-  },
-  {
-    "queryName": "Storage Blob Service Container With Public Access",
-    "severity": "HIGH",
-    "line": 52,
-    "fileName": "positive6.json"
-  },
-  {
-    "queryName": "Storage Blob Service Container With Public Access",
-    "severity": "HIGH",
-    "line": 96,
-    "fileName": "positive7.json"
-  },
-  {
-    "queryName": "Storage Blob Service Container With Public Access",
-    "severity": "HIGH",
     "line": 5,
-    "fileName": "positive1.bicep"
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts/blobServices/containers",
+    "resourceName": "blob/container/example",
+    "searchKey": "resources.name=blob/container/example.properties.publicAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' has 'publicAccess' property set to 'Container'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b23dbac8cc3f0e0e68eba3e82ed66b6eda5846faa34402098d300c6e647765ba",
+    "search_line": 5
+  },
+  {
+    "queryName": "Storage Blob Service Container With Public Access",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Storage/storageAccounts/blobServices/containers",
+    "resourceName": "blob/container/example",
+    "searchKey": "resources.name=blob/container/example.properties.publicAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' has 'publicAccess' property set to 'Container'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b6839b2f561df9e8a1d22f4197197ba345a57858edbb9e1ccb947dd67c2f1bcb",
+    "search_line": 15
   },
   {
     "queryName": "Storage Blob Service Container With Public Access",
     "severity": "HIGH",
     "line": 87,
-    "fileName": "positive2.bicep"
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "[parameters('storageAccountName')]",
+    "searchKey": "resources.name=[parameters('storageAccountName')].resources.name=default.resources.name=container.properties.publicAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
+    "actualValue": "resource with type 'containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3dea5d98daccf135469fa57117974c1b5dc867e5b351a04172f48dc413592f11",
+    "search_line": 87
+  },
+  {
+    "queryName": "Storage Blob Service Container With Public Access",
+    "severity": "HIGH",
+    "line": 107,
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Storage/storageAccounts/blobServices",
+    "resourceName": "[concat(parameters('storageAccountName'), '/default')]",
+    "searchKey": "resources.name=[concat(parameters('storageAccountName'), '/default')].resources.name=container.properties.publicAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
+    "actualValue": "resource with type 'containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3b176dcc96b068f6f4fb1c46a0f1311c36eacb263e29756340926497f4cb2c39",
+    "search_line": -1
   },
   {
     "queryName": "Storage Blob Service Container With Public Access",
     "severity": "HIGH",
     "line": 29,
-    "fileName": "positive3.bicep"
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts/blobServices/containers",
+    "resourceName": "['${parameters('storageAccountName')}/default/${parameters('containerName')}']",
+    "searchKey": "resources.name=['${parameters('storageAccountName')}/default/${parameters('containerName')}'].properties.publicAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a48ecb12399931d2fa67f822de423421d579240e35eb1fa8e629b6c68f489637",
+    "search_line": 29
+  },
+  {
+    "queryName": "Storage Blob Service Container With Public Access",
+    "severity": "HIGH",
+    "line": 50,
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "[parameters('storageAccountName')]",
+    "searchKey": "resources.name=[parameters('storageAccountName')].resources.name=[concat('default/', parameters('containerName'))].properties.publicAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'blobServices/containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
+    "actualValue": "resource with type 'blobServices/containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ed1cfde22942c6c15f0578fed949804f8b89c935a615934c65bbd467dd2dc723",
+    "search_line": -1
+  },
+  {
+    "queryName": "Storage Blob Service Container With Public Access",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.Storage/storageAccounts/blobServices/containers",
+    "resourceName": "blob/container/example",
+    "searchKey": "properties.template.resources.name=blob/container/example.properties.publicAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' has 'publicAccess' property set to 'Container'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f33cf44c1d0a4c50b9d74463c94d89d229cbd5c4592fbd112234417d86ba08df",
+    "search_line": 17
+  },
+  {
+    "queryName": "Storage Blob Service Container With Public Access",
+    "severity": "HIGH",
+    "line": 109,
+    "fileName": "positive5.json",
+    "resourceType": "Microsoft.Storage/storageAccounts/blobServices",
+    "resourceName": "[concat(parameters('storageAccountName'), '/default')]",
+    "searchKey": "properties.template.resources.name=[concat(parameters('storageAccountName'), '/default')].resources.name=container.properties.publicAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
+    "actualValue": "resource with type 'containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue",
+    "similarityID": "319646323d7b2aa4fe1ad4d66ddf15cb2dcf72763bc242f88fd0aba909a03cf3",
+    "search_line": -1
+  },
+  {
+    "queryName": "Storage Blob Service Container With Public Access",
+    "severity": "HIGH",
+    "line": 52,
+    "fileName": "positive6.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "[parameters('storageAccountName')]",
+    "searchKey": "properties.template.resources.name=[parameters('storageAccountName')].resources.name=[concat('default/', parameters('containerName'))].properties.publicAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'blobServices/containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
+    "actualValue": "resource with type 'blobServices/containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d52f9fc187a2d2fc8a72c5e0a4167ea7843d9685ff8c58ccf2410fffc156d520",
+    "search_line": -1
+  },
+  {
+    "queryName": "Storage Blob Service Container With Public Access",
+    "severity": "HIGH",
+    "line": 96,
+    "fileName": "positive7.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "[parameters('storageAccountName')]",
+    "searchKey": "resources.name=[parameters('storageAccountName')].resources.name=[concat(parameters('storageAccountName'), '/default')].resources.name=container.properties.publicAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
+    "actualValue": "resource with type 'containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue",
+    "similarityID": "955c170c421bf7ca21c42f1e1800cef7dc26942755828173e87dc3a756c32d4b",
+    "search_line": 96
   }
 ]

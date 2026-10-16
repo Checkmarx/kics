@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Root CA File Not Defined",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	}
+  {
+    "queryName": "Root CA File Not Defined",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--root-ca-file flag should be defined",
+    "actualValue": "--root-ca-file flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "90f3670a86206ed1d65b9a49b03167c1bab797e2aa39e51d50d8427a2e9ba8e7",
+    "search_line": 11
+  }
 ]

@@ -3,48 +3,120 @@
     "queryName": "Schema Discriminator Mismatch Defined Properties (v3)",
     "severity": "INFO",
     "line": 53,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{GeneralError}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "components.schemas.{{GeneralError}}.discriminator.propertyName should be set in 'properties'",
+    "actualValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is not set in 'properties'",
+    "issueType": "IncorrectValue",
+    "similarityID": "97da3ee820c058adbffee5e1cf9500bb243f48ad8e583685313b7f27a16c2c8b",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Mismatch Defined Properties (v3)",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) should be set in 'properties'",
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is not set in 'properties'",
+    "issueType": "IncorrectValue",
+    "similarityID": "00be89997feadcaf58bf13934aa8594457873bbcd44b84cf13139047705d6be6",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Mismatch Defined Properties (v3)",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{GeneralError}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "components.schemas.{{GeneralError}}.discriminator.propertyName should be set in 'properties'",
+    "actualValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is not set in 'properties'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d8b0cf0736f9ff52cd97303ef013fbf0f740ed261183488d0f106480030a7ea6",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Mismatch Defined Properties (v3)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) should be set in 'properties'",
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is not set in 'properties'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f92aa24485936c83167edcdefd280b43ae18472d741c0ded06ba1ad11337c7d7",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Mismatch Defined Properties (v2)",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{GeneralError}}.discriminator",
+    "searchValue": "",
+    "expectedValue": "definitions.{{GeneralError}}.discriminator should be set in 'properties'",
+    "actualValue": "definitions.{{GeneralError}}.discriminator is not set in 'properties'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b03b2e2103b9811c5ae9a73152af625dbe06509f79bd4040a8a46b7b76e284c5",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Mismatch Defined Properties (v2)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{GeneralError}}.discriminator",
+    "searchValue": "",
+    "expectedValue": "definitions.{{GeneralError}}.discriminator should be set in 'properties'",
+    "actualValue": "definitions.{{GeneralError}}.discriminator is not set in 'properties'",
+    "issueType": "IncorrectValue",
+    "similarityID": "69482ec3a273adaf84f4f321aab81ddbf2e88572d95f52790639ad40ce2b0024",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Mismatch Defined Properties (v2)",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.discriminator",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) should be set in 'properties'",
+    "actualValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is not set in 'properties'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0cd625e009d73080e4818191a9e903ede8fde38fb8527a51b9af945d3f4632d2",
+    "search_line": -1
   },
   {
     "queryName": "Schema Discriminator Mismatch Defined Properties (v2)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive8.yaml"
+    "fileName": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.discriminator",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) should be set in 'properties'",
+    "actualValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is not set in 'properties'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b852940cc920c164196fe4f052232ade42f225d09d74e706fd6f4b62c031d6b2",
+    "search_line": -1
   }
 ]

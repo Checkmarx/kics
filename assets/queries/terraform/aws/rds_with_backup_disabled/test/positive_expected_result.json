@@ -3,24 +3,60 @@
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1].backup_retention_period",
+    "searchValue": "",
+    "expectedValue": "'backup_retention_period' should not equal '0'",
+    "actualValue": "'backup_retention_period' is equal '0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "27cfff3a7ec5b83601084ac4df47c79f814610ad4bc2745c70e127331a5d2f1f",
+    "search_line": 12
   },
   {
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db].backup_retention_period",
+    "searchValue": "",
+    "expectedValue": "'backup_retention_period' should not equal '0'",
+    "actualValue": "'backup_retention_period' is equal '0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f0be24f4a45feebe263249256bb49d3e474defb051e650eff39370bfbfdb0171",
+    "search_line": 12
   },
   {
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1]",
+    "searchValue": "",
+    "expectedValue": "'backup_retention_period' should be defined, and bigger than '0'",
+    "actualValue": "'backup_retention_period' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "65b372eee533a2130f146f6df54999bf79200719b67dfa6bcc8d237544d11f65",
+    "search_line": 1
   },
   {
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db]",
+    "searchValue": "",
+    "expectedValue": "'backup_retention_period' should be defined, and bigger than '0'",
+    "actualValue": "'backup_retention_period' is not defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "eeb9b295164943c33e3e4be22edd1ed9475f596c0129b04791cdfce6390f5daf",
+    "search_line": 1
   }
 ]

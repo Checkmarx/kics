@@ -2,61 +2,181 @@
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].security_context.capabilities.drop should be set",
+    "actualValue": "kkubernetes_pod[positive1].spec.container[0].security_context.capabilities.drop is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "72db16c22bed11731511d093157771a7956ecc07733d30961de533d2b1c4dbef",
+    "search_line": 13
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 47
+    "line": 47,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].security_context.capabilities.drop should be set",
+    "actualValue": "kkubernetes_pod[positive1].spec.container[1].security_context.capabilities.drop is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d15a25fdd5bd66f0d78c2a83f501715f1228b68ecc3a776259ecff7f39edd78c",
+    "search_line": 47
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 82
+    "line": 82,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[2].security_context.capabilities.drop is ALL or NET_RAW",
+    "actualValue": "kubernetes_pod[positive1].spec.container[2].security_context.capabilities.drop is not ALL or NET_RAW",
+    "issueType": "IncorrectValue",
+    "similarityID": "2400743c2a8a72a6ee1d7446a184da79a2559bc044d188dd69f022a0b4dffb8b",
+    "search_line": 82
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 117
+    "line": 117,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[3].security_context.capabilities.drop is ALL or NET_RAW",
+    "actualValue": "kubernetes_pod[positive1].spec.container[3].security_context.capabilities.drop is not ALL or NET_RAW",
+    "issueType": "IncorrectValue",
+    "similarityID": "31ca30bf1b9794cfe79d9f07b599baa480b4fcbe9e3bc8d376c8819ac2d70d07",
+    "search_line": 117
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 150
+    "line": 150,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[4].security_context.capabilities should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[4].security_context.capabilities is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "063fbc38aeef8ecf4563366f3163261a6a11819ef8757cb533d6a0c032dd09c2",
+    "search_line": 150
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 183
+    "line": 183,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[5].security_context.capabilities should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[5].security_context.capabilities is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "306a54a29c72adec5e36f85be81bdcfc7c39bae92b09c2cf27dc8cdff6262fe8",
+    "search_line": 183
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 212
+    "line": 212,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[6].security_context should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[6].security_context is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "783106e15c9f0738c2b12d85c469e63d5faac552ee24f6c320484f70aeae7bcd",
+    "search_line": 212
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 241
+    "line": 241,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[7].security_context should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[7].security_context is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4c5f5616fdf512a3f0040373345a6b9601c5a35a6f09599e1c8649ba76aff9eb",
+    "search_line": 241
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 299
+    "line": 299,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container.security_context.capabilities",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.security_context.capabilities.drop should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container.security_context.capabilities.drop is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d0fad02a4bbdc9a89976458754a49f847d09cfa6aaf533445fc1b4dfa330bb3e",
+    "search_line": 299
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 358
+    "line": 358,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container.security_context.capabilities.drop",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container.security_context.capabilities.drop is ALL or NET_RAW",
+    "actualValue": "kubernetes_pod[positive3].spec.container.security_context.capabilities.drop is not ALL or NET_RAW",
+    "issueType": "IncorrectValue",
+    "similarityID": "a093d7b7922e5e7350e645ba0f4a010c796e96b56cff8feeb0265b491eb8ec77",
+    "search_line": 358
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 415
+    "line": 415,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive4",
+    "searchKey": "kubernetes_pod[positive4].spec.container.security_context",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive4].spec.container.security_context.capabilities should be set",
+    "actualValue": "kubernetes_pod[positive4].spec.container.security_context.capabilities is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "043b51c466641ff5f82c96f9296a319eee92719b7cf52e8aa4c87dfd0b628585",
+    "search_line": 415
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 467
+    "line": 467,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive5",
+    "searchKey": "kubernetes_pod[positive5].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive5].spec.container.security_context should be set",
+    "actualValue": "kubernetes_pod[positive5].spec.container.security_context is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b647a72af70eda0a279185c79262cad6d30becf94834b1180fc73ba7d3c89e43",
+    "search_line": 467
   }
 ]

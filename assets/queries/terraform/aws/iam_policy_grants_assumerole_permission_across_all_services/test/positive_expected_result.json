@@ -2,11 +2,31 @@
   {
     "queryName": "IAM Policy Grants 'AssumeRole' Permission Across All Services",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "${var.name_tag_prefix}-openshift-instance-role",
+    "searchKey": "aws_iam_role[positive1].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "'assume_role_policy.Statement.Principal' shouldn't contain '*'",
+    "actualValue": "'assume_role_policy.Statement.Principal' contains '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4f1967df5cc16fe581ccfeeb8fe248672266d10d638beccf2839e53ab5ae61e0",
+    "search_line": 7
   },
   {
     "queryName": "IAM Policy Grants 'AssumeRole' Permission Across All Services",
     "severity": "MEDIUM",
-    "line": 70
+    "line": 70,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "${var.name_tag_prefix}-openshift-instance-role",
+    "searchKey": "aws_iam_role[positive2].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "'assume_role_policy.Statement.Principal' shouldn't contain '*'",
+    "actualValue": "'assume_role_policy.Statement.Principal' contains '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f89fbc199d7e88f1555b7b180fe9afe3552ba9fe6feaf551896a6383c92a519a",
+    "search_line": 70
   }
 ]

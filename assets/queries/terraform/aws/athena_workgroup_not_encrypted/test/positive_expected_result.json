@@ -3,18 +3,45 @@
     "queryName": "Athena Workgroup Not Encrypted",
     "severity": "HIGH",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_athena_workgroup",
+    "resourceName": "example",
+    "searchKey": "aws_athena_workgroup[{{example}}]",
+    "searchValue": "",
+    "expectedValue": "aws_athena_workgroup[{{example}}].configuration.result_configuration.encryption_configuration should be defined",
+    "actualValue": "aws_athena_workgroup[{{example}}].configuration is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "11f7dcb4ad31b0a86fa9e6252ddf1266f40b21b397882a499b9e42b4bed3b62d",
+    "search_line": -1
   },
   {
     "queryName": "Athena Workgroup Not Encrypted",
     "severity": "HIGH",
     "line": 8,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_athena_workgroup",
+    "resourceName": "example",
+    "searchKey": "aws_athena_workgroup[{{example_2}}].configuration",
+    "searchValue": "",
+    "expectedValue": "aws_athena_workgroup[{{example_2}}].configuration.result_configuration.encryption_configuration should be defined",
+    "actualValue": "aws_athena_workgroup[{{example_2}}].configuration.result_configuration is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "787c6b4909c296e09868f43dc6d7942aa1cf8b9d51b45a67fd2936a1d06ca86b",
+    "search_line": -1
   },
   {
     "queryName": "Athena Workgroup Not Encrypted",
     "severity": "HIGH",
     "line": 21,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_athena_workgroup",
+    "resourceName": "example",
+    "searchKey": "aws_athena_workgroup[{{example_3}}].configuration.result_configuration",
+    "searchValue": "",
+    "expectedValue": "aws_athena_workgroup[{{example_3}}].configuration.result_configuration.encryption_configuration should be defined",
+    "actualValue": "aws_athena_workgroup[{{example_3}}].configuration.result_configuration.encryption_configuration is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "4512a7dda3678e84ede004737b758a9cdcc721abdcf74f40a22dcf2b368c422d",
+    "search_line": -1
   }
 ]

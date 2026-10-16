@@ -3,24 +3,60 @@
     "queryName": "Success Response Code Undefined for Head Operation (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.head.responses",
+    "searchValue": "",
+    "expectedValue": "Head should have at least one successful code (200 or 202)",
+    "actualValue": "Head does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "7e69db27bbd3cee73d4496c1471f7c9684324aee811146373ef97a9612247505",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Head Operation (v3)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.head.responses",
+    "searchValue": "",
+    "expectedValue": "Head should have at least one successful code (200 or 202)",
+    "actualValue": "Head does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "a4e0606d1b6bef162221552f57fba5e7addaafed105cc9a3d06d79e1a6f37f19",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Head Operation (v2)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.head.responses",
+    "searchValue": "",
+    "expectedValue": "Head should have at least one successful code (200 or 202)",
+    "actualValue": "Head does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "6766f6a62e4d10c50db71065df2a7d764035b7ef1233ffca1dd713fb87550e06",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Head Operation (v2)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.head.responses",
+    "searchValue": "",
+    "expectedValue": "Head should have at least one successful code (200 or 202)",
+    "actualValue": "Head does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "1a06e8df6afcd72877d29e25aedf87f188fea4b3e76cfed5d8b96a6468060236",
+    "search_line": -1
   }
 ]

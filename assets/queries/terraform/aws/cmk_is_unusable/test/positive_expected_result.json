@@ -2,6 +2,16 @@
   {
     "queryName": "CMK Is Unusable",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "a",
+    "searchKey": "aws_kms_key[a].is_enabled",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[a].is_enabled should be set to true",
+    "actualValue": "aws_kms_key[a].is_enabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a31ad3862f3b3ab9773eff997553ec606cbae24b670b01197c215cd1702ce7cf",
+    "search_line": 3
   }
 ]

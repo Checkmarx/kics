@@ -3,12 +3,30 @@
     "queryName": "Liveness Probe Is Not Defined",
     "severity": "INFO",
     "line": 7,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[test].spec.container",
+    "searchValue": "",
+    "expectedValue": "Attribute 'livenessProbe' should be defined and not null",
+    "actualValue": "Attribute 'livenessProbe' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "95801e9affa022a04128e1b7cd42f293f7db12cfb3b1935a29f7c3c686037a67",
+    "search_line": -1
   },
   {
     "queryName": "Liveness Probe Is Not Defined",
     "severity": "INFO",
     "line": 27,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_deployment[example].spec.template.spec.container",
+    "searchValue": "",
+    "expectedValue": "Attribute 'livenessProbe' should be defined and not null",
+    "actualValue": "Attribute 'livenessProbe' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "ea5fd4fcf8d737a15f78be0fc0bc285457a41245db31df422ff87a09593530b1",
+    "search_line": -1
   }
 ]

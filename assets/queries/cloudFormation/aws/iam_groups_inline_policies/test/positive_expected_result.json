@@ -3,12 +3,30 @@
     "queryName": "IAM Group Inline Policies",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::Group",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.Policies",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.Policies' should be undefined or empty",
+    "actualValue": "'Resources.Properties.Policies' is not empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "5a27a108e41b0d6e8161a20d14707db8578dc06094464295de27f65db95de41d",
+    "search_line": -1
   },
   {
     "queryName": "IAM Group Inline Policies",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::Group",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.Policies",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.Policies' should be undefined or empty",
+    "actualValue": "'Resources.Properties.Policies' is not empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "e85351b8a2f495bf260da4d62670e0a6b48d632d21c339ee16007fbc41383f4d",
+    "search_line": -1
   }
 ]

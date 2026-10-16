@@ -1,20 +1,47 @@
 [
-	{
-		"queryName": "Missing User Instruction",
-		"severity": "HIGH",
-		"line": 1,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Missing User Instruction",
-		"severity": "HIGH",
-		"line": 7,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Missing User Instruction",
-		"severity": "HIGH",
-		"line": 1,
-		"fileName": "positive3.dockerfile"
-	}
+  {
+    "queryName": "Missing User Instruction",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{python:2.7}}",
+    "searchValue": "",
+    "expectedValue": "The 'Dockerfile' should contain the 'USER' instruction",
+    "actualValue": "The 'Dockerfile' does not contain any 'USER' instruction",
+    "issueType": "MissingAttribute",
+    "similarityID": "e5d8c25797f25a395dec78798a908a7149699ff86e8cd49644e3d339a4e2a366",
+    "search_line": -1
+  },
+  {
+    "queryName": "Missing User Instruction",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:latest}}",
+    "searchValue": "",
+    "expectedValue": "The 'Dockerfile' should contain the 'USER' instruction",
+    "actualValue": "The 'Dockerfile' does not contain any 'USER' instruction",
+    "issueType": "MissingAttribute",
+    "similarityID": "1e215d37f259f0a15e7d8dd03471034ff7713cbeb87dfeb8aba1fbc596c21274",
+    "search_line": -1
+  },
+  {
+    "queryName": "Missing User Instruction",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{python:2.7}}",
+    "searchValue": "",
+    "expectedValue": "The 'Dockerfile' should contain the 'USER' instruction",
+    "actualValue": "The 'Dockerfile' does not contain any 'USER' instruction",
+    "issueType": "MissingAttribute",
+    "similarityID": "2b2ea005d07d6d8e3a079ed338970b065ce84f578a2c680d1914ed36eb782058",
+    "search_line": -1
+  }
 ]

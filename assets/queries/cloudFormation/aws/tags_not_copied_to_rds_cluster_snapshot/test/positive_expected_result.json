@@ -1,74 +1,182 @@
 [
-    {
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 12,
-		"fileName": "positive1.json"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 21,
-		"fileName": "positive1.json"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 12,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 19,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 12,
-		"fileName": "positive3.json"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 21,
-		"fileName": "positive3.json"
-	}, 
-    {
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 12,
-		"fileName": "positive4.yaml"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 19,
-		"fileName": "positive4.yaml"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 7,
-		"fileName": "positive5.json"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 17,
-		"fileName": "positive5.json"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 7,
-		"fileName": "positive6.yaml"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 15,
-		"fileName": "positive6.yaml"
-	}
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive1.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBInstance",
+    "searchKey": "Resources.MyDBInstance.Properties.CopyTagsToSnapshot",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' should be set to true",
+    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a993d5d435a928e1b5d706552f5e222c8a81831739adf7f001dc86a3d55cf920",
+    "search_line": 12
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 21,
+    "fileName": "positive1.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "MyDBCluster",
+    "searchKey": "Resources.MyDBCluster.Properties.CopyTagsToSnapshot",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' should be set to true",
+    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "5c4652aaa9a5339104a4a9220ad83eed3c8910bed749d4af847e0065b44c970a",
+    "search_line": 21
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBInstance",
+    "searchKey": "Resources.MyDBInstance.Properties.CopyTagsToSnapshot",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' should be set to true",
+    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "71c356ff9abc154c57ee0049b119ccd96f6768e0ea727f3ca59d8087f98ffbfe",
+    "search_line": 12
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 19,
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "MyDBCluster",
+    "searchKey": "Resources.MyDBCluster.Properties.CopyTagsToSnapshot",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' should be set to true",
+    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "eb8f3bde11268ac875d5169d9a9e16c0e39cfe07ef66da7c239e4f6bdcf5f1f0",
+    "search_line": 19
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive3.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBInstance",
+    "searchKey": "Resources.MyDBInstance.Properties.CopyTagsToSnapshot",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' should be set to true",
+    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "2c1f298c69a156d04b477fc3274079d8f6c21f5a2c50872ef0c572ba529683de",
+    "search_line": 12
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 21,
+    "fileName": "positive3.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "MyDBCluster",
+    "searchKey": "Resources.MyDBCluster.Properties.CopyTagsToSnapshot",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' should be set to true",
+    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "30f4f640a52a2880f9c0ba34733df1fddee8f98932c0e182ca8acd85a6f80c59",
+    "search_line": 21
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive4.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBInstance",
+    "searchKey": "Resources.MyDBInstance.Properties.CopyTagsToSnapshot",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' should be set to true",
+    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "dcc4b1efa8dc55b94c6b24bdd01bb134fcf75f6ecb5d5259f8e2de0c60bcde9e",
+    "search_line": 12
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 19,
+    "fileName": "positive4.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "MyDBCluster",
+    "searchKey": "Resources.MyDBCluster.Properties.CopyTagsToSnapshot",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' should be set to true",
+    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8ea9021d7ae850ac05fdbff4073d1ad4f61d736afaff9bbebab0fa23fdb904b1",
+    "search_line": 19
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive5.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBInstance",
+    "searchKey": "Resources.MyDBInstance.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' should be set to true",
+    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6fea5ee076a40bddac4da7cb3d14bc79b667541c1e4abc52db54b04bafe0fada",
+    "search_line": 7
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 17,
+    "fileName": "positive5.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "MyDBCluster",
+    "searchKey": "Resources.MyDBCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' should be set to true",
+    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "24596309da3af3b1bba07d783ff1d222f82ae2f4861c5b4ab5f84270b65843a0",
+    "search_line": 17
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive6.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBInstance",
+    "searchKey": "Resources.MyDBInstance.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' should be set to true",
+    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "96dd2cceac882f3ac14ea0902e547122f88c643b54ca439105b8c216837a53af",
+    "search_line": 7
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 15,
+    "fileName": "positive6.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "MyDBCluster",
+    "searchKey": "Resources.MyDBCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' should be set to true",
+    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9ce6bc8dd384288638d66569c5dfe7801fe02ef4d64a2967da3acaabb9270ab7",
+    "search_line": 15
+  }
 ]

@@ -3,24 +3,60 @@
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "create minimal aurora instance in default VPC and default subnet group",
+    "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group}}.{{community.aws.rds_instance}}.port",
+    "searchValue": "",
+    "expectedValue": "'port' should not be set to 3306",
+    "actualValue": "'port' is set to 3306",
+    "issueType": "IncorrectValue",
+    "similarityID": "30e4a31df52e58ada04dcdaa2c817a208605109d343fa50ddb7cb3a6734f7ea4",
+    "search_line": 10
   },
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "create minimal aurora instance in default VPC and default subnet group2",
+    "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group2}}.{{community.aws.rds_instance}}.port",
+    "searchValue": "",
+    "expectedValue": "'port' should not be set to 5432",
+    "actualValue": "'port' is set to 5432",
+    "issueType": "IncorrectValue",
+    "similarityID": "48bc691b58ae2a1f576e440ccb4d8c7ca5ee6772f0c9ba8d213c2ed763b12894",
+    "search_line": 10
   },
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "create minimal aurora instance in default VPC and default subnet group2",
+    "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group2}}.{{community.aws.rds_instance}}.port",
+    "searchValue": "",
+    "expectedValue": "'port' should not be set to 1521",
+    "actualValue": "'port' is set to 1521",
+    "issueType": "IncorrectValue",
+    "similarityID": "b90ca1374fb8a784e5873bbca5059c1a6f7f1458e9c1756aa104a3c7ab6f7352",
+    "search_line": 10
   },
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "create minimal aurora instance in default VPC and default subnet group2",
+    "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group2}}.{{community.aws.rds_instance}}.port",
+    "searchValue": "",
+    "expectedValue": "'port' should not be set to 1433",
+    "actualValue": "'port' is set to 1433",
+    "issueType": "IncorrectValue",
+    "similarityID": "ebe75b613c4ebe9f2e372aa8c54c5f03b690a131ff431fd1e0c1b8925d5a1c23",
+    "search_line": 10
   }
 ]

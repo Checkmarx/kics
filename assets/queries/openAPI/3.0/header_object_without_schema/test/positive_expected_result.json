@@ -3,24 +3,60 @@
     "queryName": "Header Object Without Schema",
     "severity": "MEDIUM",
     "line": 72,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.{{X-Rate-Limit-Limit}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.{{X-Rate-Limit-Limit}} has schema defined",
+    "actualValue": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.{{X-Rate-Limit-Limit}} does not have schema defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "555bc50a495d3cbd1456211f84623a5cab8aaf5212708ddd9ef0d613235ce038",
+    "search_line": -1
   },
   {
     "queryName": "Header Object Without Schema",
     "severity": "MEDIUM",
     "line": 42,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.6xx.{{X-Rate-Limit-Limit}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.6xx.{{X-Rate-Limit-Limit}} has schema defined",
+    "actualValue": "paths.{{/}}.get.responses.6xx.{{X-Rate-Limit-Limit}} does not have schema defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7940abefd5e8c6ab6b000b793716463939cdcd1f72190f50d3b580b76df95571",
+    "search_line": -1
   },
   {
     "queryName": "Header Object Without Schema",
     "severity": "MEDIUM",
     "line": 44,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.{{X-Rate-Limit-Limit}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.{{X-Rate-Limit-Limit}} has schema defined",
+    "actualValue": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.{{X-Rate-Limit-Limit}} does not have schema defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "539c317da00e2b72016d7eb22fd4dd101fde8c65f6c2c98dbc65f8ffdb3a6a86",
+    "search_line": -1
   },
   {
     "queryName": "Header Object Without Schema",
     "severity": "MEDIUM",
     "line": 28,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.6xx.{{X-Rate-Limit-Limit}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.6xx.{{X-Rate-Limit-Limit}} has schema defined",
+    "actualValue": "paths.{{/}}.get.responses.6xx.{{X-Rate-Limit-Limit}} does not have schema defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ecab43a8e7adcb835b4981fa64abb2ab66039e69eba5ecf4a36ae38dc336baac",
+    "search_line": -1
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "Autoscaling Groups Supply Tags",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_autoscaling_group",
+    "resourceName": "foobar3-terraform-test",
+    "searchKey": "aws_autoscaling_group[positive1]",
+    "searchValue": "",
+    "expectedValue": "'tags' or 'tag' should be defined and not null",
+    "actualValue": "'tags' and 'tag' are undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "60803c162c178d43a6b73279e60a36960e0535f90436a57982f3ceba120fcad0",
+    "search_line": 1
   },
   {
     "queryName": "Autoscaling Groups Supply Tags",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[asg]",
+    "searchValue": "",
+    "expectedValue": "'tags' should be defined and not null",
+    "actualValue": "'tags' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "25873740cf726cf2a91858f3738390bfa85737436fd853b950db1adc26127045",
+    "search_line": 1
   }
 ]

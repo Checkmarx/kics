@@ -3,12 +3,30 @@
     "queryName": "Global Security Scheme Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 51,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{regularSecurity}}",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{regularSecurity}} global security should not allow basic authentication",
+    "actualValue": "components.securitySchemes.{{regularSecurity}} global security allows basic authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "062ba7610d375ab13a863335b76f70393c16683839ab19d0865addb95955d3ec",
+    "search_line": -1
   },
   {
     "queryName": "Global Security Scheme Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 30,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{regularSecurity}}",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{regularSecurity}} global security should not allow basic authentication",
+    "actualValue": "components.securitySchemes.{{regularSecurity}} global security allows basic authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "fff221ae078a69c602949090ea0d8bd0bcd881e23a60658edcfe3e8144323909",
+    "search_line": -1
   }
 ]

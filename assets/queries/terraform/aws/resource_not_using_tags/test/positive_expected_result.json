@@ -3,12 +3,30 @@
     "queryName": "Resource Not Using Tags",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_acm_certificate",
+    "resourceName": "cert",
+    "searchKey": "aws_acm_certificate[{{cert}}]",
+    "searchValue": "",
+    "expectedValue": "aws_acm_certificate[{{cert}}].tags should be defined and not null",
+    "actualValue": "aws_acm_certificate[{{cert}}].tags is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "e0a09c54386ce7210267c7e67d1df83a66c17d3aa63bacdf181c729819f0b139",
+    "search_line": -1
   },
   {
     "queryName": "Resource Not Using Tags",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_acm_certificate",
+    "resourceName": "test",
+    "searchKey": "aws_acm_certificate[{{cert_2}}].tags",
+    "searchValue": "",
+    "expectedValue": "aws_acm_certificate[{{cert_2}}].tags has additional tags defined other than 'Name'",
+    "actualValue": "aws_acm_certificate[{{cert_2}}].tags does not have additional tags defined other than 'Name'",
+    "issueType": "MissingAttribute",
+    "similarityID": "3babc833d0df5400b7d19e88163f2f8abcb94dc3f5876cdf432b179e29b29361",
+    "search_line": -1
   }
 ]

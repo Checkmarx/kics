@@ -3,6 +3,15 @@
     "queryName": "S3 Bucket Allows List Action From All Principals",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.s3_bucket",
+    "resourceName": "Bucket",
+    "searchKey": "name={{Bucket}}.{{amazon.aws.s3_bucket}}.policy",
+    "searchValue": "",
+    "expectedValue": "s3_bucket[mys3bucket] should not allow List Action From All Principals",
+    "actualValue": "s3_bucket[mys3bucket] allows List Action From All Principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "bba3039d4bb7d8daf66b4db6efcedef6ae449b8e2b33c6d008d3ad29658feeba",
+    "search_line": 6
   }
 ]

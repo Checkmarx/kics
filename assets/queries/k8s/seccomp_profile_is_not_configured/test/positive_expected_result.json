@@ -1,50 +1,122 @@
 [
-	{
-		"queryName": "Seccomp Profile Is Not Configured",
-		"severity": "MEDIUM",
-		"line": 7,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Seccomp Profile Is Not Configured",
-		"severity": "MEDIUM",
-		"line": 18,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Seccomp Profile Is Not Configured",
-		"severity": "MEDIUM",
-		"line": 26,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Seccomp Profile Is Not Configured",
-		"severity": "MEDIUM",
-		"line": 43,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Seccomp Profile Is Not Configured",
-		"severity": "MEDIUM",
-		"line": 24,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Seccomp Profile Is Not Configured",
-		"severity": "MEDIUM",
-		"line": 24,
-		"fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Seccomp Profile Is Not Configured",
-		"severity": "MEDIUM",
-		"line": 33,
-		"fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Seccomp Profile Is Not Configured",
-		"severity": "MEDIUM",
-		"line": 35,
-		"fileName": "positive4.yaml"
-	}
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod-test-1",
+    "searchKey": "metadata.name={{pod-test-1}}.spec.containers.name={{foobar}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{pod-test-1}}.spec.containers.name={{foobar}}.securityContext.seccompProfile.type should be defined",
+    "actualValue": "metadata.name={{pod-test-1}}.spec.containers.name={{foobar}}.securityContext.seccompProfile.type is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "403cb566bca47e8647d3e5debc7cdcf7b8dd04a2b989bf4824d69662e439144e",
+    "search_line": 7
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod-test-2",
+    "searchKey": "metadata.name={{pod-test-2}}.spec.containers.name={{foobar}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{pod-test-2}}.spec.containers.name={{foobar}}.securityContext.seccompProfile.type should be defined",
+    "actualValue": "metadata.name={{pod-test-2}}.spec.containers.name={{foobar}}.securityContext.seccompProfile.type is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a00ef6be3a9960fd4803ccbd8084c3ef2e18be048258f20064f9d6f5572fc07a",
+    "search_line": 18
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod-test-3",
+    "searchKey": "metadata.name={{pod-test-3}}.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{pod-test-3}}.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'runtime/default'",
+    "actualValue": "metadata.name={{pod-test-3}}.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'rntim/dfl'",
+    "issueType": "IncorrectValue",
+    "similarityID": "44260e712bb1cf5055d3dbdba8bb38e6762b43d171477c016126bb8e0e3b6c83",
+    "search_line": 26
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 43,
+    "fileName": "positive1.yaml",
+    "resourceType": "CronJob",
+    "resourceName": "hello",
+    "searchKey": "metadata.name={{hello}}.spec.jobTemplate.spec.template.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName",
+    "searchValue": "CronJob",
+    "expectedValue": "metadata.name={{hello}}.spec.jobTemplate.spec.template.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'runtime/default'",
+    "actualValue": "metadata.name={{hello}}.spec.jobTemplate.spec.template.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'rntim/dfl'",
+    "issueType": "IncorrectValue",
+    "similarityID": "7ed454520b8abe940fe2a491645178ff439dc86d1eeb5d2d4e00ad3e7756b721",
+    "search_line": 43
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "securitydemo",
+    "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.seccompProfile.type should be defined",
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.seccompProfile.type is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f1ae59c1fa4bcaa6f8b18ef8a12f178b846e77bc92334132958ac634765e5ff6",
+    "search_line": 24
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive3.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "securitydemo",
+    "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.seccompProfile.type should be defined",
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.seccompProfile.type is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "848ee4bdb01cde1f4db58d89068a2057449e5ee89ee4fc33db020bd26c66d461",
+    "search_line": 24
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive3.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "securitydemo",
+    "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type=Unconfined",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type should be set to 'RuntimeDefault' or 'Localhost'",
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type is set to 'Unconfined'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1b0fc7bfecac023aafa2ead9d9ff19196f2146f3fc989f946dadb518e7a9826b",
+    "search_line": 33
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 35,
+    "fileName": "positive4.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "securitydemo",
+    "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type=Unconfined",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type should be set to 'RuntimeDefault' or 'Localhost'",
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type is set to 'Unconfined'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0f277b429686ff5f2d1ddd75b71e21555dca5d4ad727265cb9d22b525467d3ca",
+    "search_line": 35
+  }
 ]

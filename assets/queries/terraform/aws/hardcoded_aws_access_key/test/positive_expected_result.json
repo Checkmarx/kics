@@ -2,13 +2,31 @@
   {
     "queryName": "Hardcoded AWS Access Key",
     "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive2.tf"
+    "line": 13,
+    "fileName": "positive1.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance].user_data",
+    "searchValue": "",
+    "expectedValue": "'user_data' shouldn't contain hardcoded access key",
+    "actualValue": "'user_data' contains hardcoded access key",
+    "issueType": "IncorrectValue",
+    "similarityID": "d7cc008fa4baacae58089b9527be9f49e980fbd7e7ea7cae805d5faf1692922d",
+    "search_line": 13
   },
   {
     "queryName": "Hardcoded AWS Access Key",
     "severity": "HIGH",
-    "line": 13,
-    "fileName": "positive1.tf"
+    "line": 5,
+    "fileName": "positive2.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance[positive1].user_data",
+    "searchValue": "",
+    "expectedValue": "'user_data' shouldn't contain hardcoded access key",
+    "actualValue": "'user_data' contains hardcoded access key",
+    "issueType": "IncorrectValue",
+    "similarityID": "16645680508968c8278362b729442b36f1ecfb88476098442f102e7e9e696ff0",
+    "search_line": 5
   }
 ]

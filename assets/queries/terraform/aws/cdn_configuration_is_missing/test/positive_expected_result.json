@@ -2,16 +2,46 @@
   {
     "queryName": "CDN Configuration Is Missing",
     "severity": "LOW",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive1",
+    "searchKey": "resource.aws_cloudfront_distribution[positive1].enabled",
+    "searchValue": "",
+    "expectedValue": "resource.aws_cloudfront_distribution[positive1].enabled should be set to 'true'",
+    "actualValue": "resource.aws_cloudfront_distribution[positive1].enabled is configured as 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b3947c724d29fca11a74077a7ac0752e56dcfbef06b0ed6ea711560bc65dd185",
+    "search_line": 11
   },
   {
     "queryName": "CDN Configuration Is Missing",
     "severity": "LOW",
-    "line": 61
+    "line": 61,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive2",
+    "searchKey": "resource.aws_cloudfront_distribution[positive2]",
+    "searchValue": "enabled",
+    "expectedValue": "resource.aws_cloudfront_distribution[positive2].enabled should be set to 'true'",
+    "actualValue": "resource.aws_cloudfront_distribution[positive2].enabled is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0480c287c786dd74dd3e2efc644284487ab64404fc23a7cb1d2c3e29c36b2df5",
+    "search_line": 61
   },
   {
     "queryName": "CDN Configuration Is Missing",
     "severity": "LOW",
-    "line": 61
+    "line": 61,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive2",
+    "searchKey": "resource.aws_cloudfront_distribution[positive2]",
+    "searchValue": "origin",
+    "expectedValue": "resource.aws_cloudfront_distribution[positive2].origin should be defined",
+    "actualValue": "resource.aws_cloudfront_distribution[positive2].origin is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8fa63b75f9709631b53070bc29ddbace47436492f0b1fce86c51b15f98e0b757",
+    "search_line": 61
   }
 ]

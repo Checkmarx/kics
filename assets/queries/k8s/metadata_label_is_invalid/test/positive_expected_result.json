@@ -2,6 +2,16 @@
   {
     "queryName": "Metadata Label Is Invalid",
     "severity": "LOW",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "goproxy",
+    "searchKey": "metadata.name={{goproxy}}.labels.app",
+    "searchValue": "Pod",
+    "expectedValue": "'metadata.labels.{{app}}' has valid label g**dy.l+bel.",
+    "actualValue": "'metadata.labels.{{app}}' has invalid label g**dy.l+bel.",
+    "issueType": "IncorrectValue",
+    "similarityID": "e44198714bc9ea92bf4f8106546e40ce8d444d3888c1abf3bd3e8685d5f6f5a8",
+    "search_line": 6
   }
 ]

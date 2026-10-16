@@ -1,17 +1,47 @@
 [
-	{
-		"queryName": "Secrets As Environment Variables",
-		"severity": "LOW",
-		"line": 12
-	},
-	{
-		"queryName": "Secrets As Environment Variables",
-		"severity": "LOW",
-		"line": 17
-	},
-	{
-		"queryName": "Secrets As Environment Variables",
-		"severity": "LOW",
-		"line": 31
-	}
+  {
+    "queryName": "Secrets As Environment Variables",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "secret-env-pod",
+    "searchKey": "metadata.name={{secret-env-pod}}.spec.containers.env.name={{SECRET_USERNAME}}.valueFrom.secretKeyRef",
+    "searchValue": "Pod",
+    "expectedValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_USERNAME}}.valueFrom.secretKeyRef' should be undefined",
+    "actualValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_USERNAME}}.valueFrom.secretKeyRef' is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "1434003ceda5c63152aa446f446662e0f62b366be1414e6f69c43a53c10babfe",
+    "search_line": 12
+  },
+  {
+    "queryName": "Secrets As Environment Variables",
+    "severity": "LOW",
+    "line": 17,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "secret-env-pod",
+    "searchKey": "metadata.name={{secret-env-pod}}.spec.containers.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef",
+    "searchValue": "Pod",
+    "expectedValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef' should be undefined",
+    "actualValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef' is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "ddfcd72de3c860c2e7d41516fcb2fcb5b98412996b844271242b02471e456f72",
+    "search_line": 17
+  },
+  {
+    "queryName": "Secrets As Environment Variables",
+    "severity": "LOW",
+    "line": 31,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "envfrom-secret",
+    "searchKey": "metadata.name={{envfrom-secret}}.spec.containers.name={{envars-test-container}}.envFrom",
+    "searchValue": "Pod",
+    "expectedValue": "'spec.containers.name={{envars-test-container}}.envFrom.secretRef' should be undefined",
+    "actualValue": "'spec.containers.name={{envars-test-container}}.envFrom.secretRef' is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "39c6091c0b3e129fcfb924037c2d23f1517b78e2387dca1465d6b3d5ac22e2e7",
+    "search_line": 31
+  }
 ]

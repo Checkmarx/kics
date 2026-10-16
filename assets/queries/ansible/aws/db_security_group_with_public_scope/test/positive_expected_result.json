@@ -2,11 +2,31 @@
   {
     "queryName": "DB Security Group With Public Scope",
     "severity": "CRITICAL",
-    "line": 22
+    "line": 22,
+    "fileName": "positive.yaml",
+    "resourceType": "ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{ec2_group}}.rules.cidr_ip",
+    "searchValue": "",
+    "expectedValue": "'ec2_group.rules.cidr_ip' should be one of [10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12]",
+    "actualValue": "'ec2_group.rules.cidr_ip' is [0.0.0.0/0]",
+    "issueType": "IncorrectValue",
+    "similarityID": "85167ab7762f9d20d0239e63c892848cfd3a66a5140c4ee66f141db59dcaf395",
+    "search_line": -1
   },
   {
     "queryName": "DB Security Group With Public Scope",
     "severity": "CRITICAL",
-    "line": 53
+    "line": 53,
+    "fileName": "positive.yaml",
+    "resourceType": "ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{ec2_group}}.rules_egress.cidr_ip",
+    "searchValue": "",
+    "expectedValue": "'ec2_group.rules_egress.cidr_ip' should be one of [10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12]",
+    "actualValue": "'ec2_group.rules_egress.cidr_ip' is [0.0.0.0/0]",
+    "issueType": "IncorrectValue",
+    "similarityID": "2c2b6dc22a87382fabadcf2ece3b230e35f1eb4cc7a609ea0cba616804ee08cb",
+    "search_line": -1
   }
 ]

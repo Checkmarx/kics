@@ -3,36 +3,90 @@
     "queryName": "Parameter Object Content With Multiple Entries",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./.get.parameters",
+    "searchValue": "",
+    "expectedValue": "paths./.get.parameters.0.content has one entry",
+    "actualValue": "paths./.get.parameters.0.content has multiple entries",
+    "issueType": "IncorrectValue",
+    "similarityID": "fae6815cc7229a890c7ed258ed54a8f6aff6000bba49cdd45560d09a3e2f5adc",
+    "search_line": 0
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
     "severity": "INFO",
     "line": 78,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./user/{id}.parameters",
+    "searchValue": "",
+    "expectedValue": "paths./user/{id}.parameters.0.content has one entry",
+    "actualValue": "paths./user/{id}.parameters.0.content has multiple entries",
+    "issueType": "IncorrectValue",
+    "similarityID": "1a9fe1bf9d0e42924d32336c344e53d27c5b5cfdc98c4aeb33b701c002cbdf05",
+    "search_line": 0
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
     "severity": "INFO",
     "line": 44,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters",
+    "searchValue": "",
+    "expectedValue": "components.parameters.idParam.content has one entry",
+    "actualValue": "components.parameters.idParam.content has multiple entries",
+    "issueType": "IncorrectValue",
+    "similarityID": "e5b4976a428535f50a3ff88ca06332c547e6732155a30653f7d58ec1704db9da",
+    "search_line": 0
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./.get.parameters",
+    "searchValue": "",
+    "expectedValue": "paths./.get.parameters.0.content has one entry",
+    "actualValue": "paths./.get.parameters.0.content has multiple entries",
+    "issueType": "IncorrectValue",
+    "similarityID": "5c3f56382145da6ee618c5411ba3e93ba6d9c76aa3a0db963e7573075387a28e",
+    "search_line": 0
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
     "severity": "INFO",
     "line": 48,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./user/{id}.parameters",
+    "searchValue": "",
+    "expectedValue": "paths./user/{id}.parameters.0.content has one entry",
+    "actualValue": "paths./user/{id}.parameters.0.content has multiple entries",
+    "issueType": "IncorrectValue",
+    "similarityID": "a68a78143f129e6fed460ba266096f7934c71fc79738d0baa1387c1287d7cf4c",
+    "search_line": 0
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters",
+    "searchValue": "",
+    "expectedValue": "components.parameters.idParam.content has one entry",
+    "actualValue": "components.parameters.idParam.content has multiple entries",
+    "issueType": "IncorrectValue",
+    "similarityID": "e3300d469147f944100939bd1122ff8369063f59ee96ff629e8487ef2e2ff1a8",
+    "search_line": 0
   }
 ]

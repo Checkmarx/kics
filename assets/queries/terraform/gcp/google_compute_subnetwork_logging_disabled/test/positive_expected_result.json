@@ -2,6 +2,16 @@
   {
     "queryName": "Google Compute Subnetwork Logging Disabled",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_subnetwork",
+    "resourceName": "log-test-subnetwork",
+    "searchKey": "google_compute_subnetwork[positive1]",
+    "searchValue": "",
+    "expectedValue": "'google_compute_subnetwork[positive1].log_config' should be defined and not null",
+    "actualValue": "'google_compute_subnetwork[positive1].log_config' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "32d30be9a3acd05b16ab28cd74dbf01aca1c23ff2fc58f1cefd7e1178b61ae2a",
+    "search_line": -1
   }
 ]

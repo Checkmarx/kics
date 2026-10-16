@@ -3,24 +3,60 @@
     "queryName": "Additional Properties Too Restrictive",
     "severity": "LOW",
     "line": 41,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Additional Properties Too Restrictive",
-    "severity": "LOW",
-    "line": 15,
-    "filename": "positive3.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.oneOf",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should not be false",
+    "actualValue": "'additionalProperties' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "7e5743b7deb17b72957462d364c4d770d409b2f1f9d9c7236d68a4507cae60d2",
+    "search_line": -1
   },
   {
     "queryName": "Additional Properties Too Restrictive",
     "severity": "LOW",
     "line": 25,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.oneOf",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should not be false",
+    "actualValue": "'additionalProperties' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "b77989d263a1e991a4896a406c45bfe01bb08bc2e3055dcb20a7703d28e78874",
+    "search_line": -1
+  },
+  {
+    "queryName": "Additional Properties Too Restrictive",
+    "severity": "LOW",
+    "line": 15,
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.allOf",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should not be false",
+    "actualValue": "'additionalProperties' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "9f0326a42c9a5afb0f23f4f10a2e40a8d941eb47592f7f37c7475d0b219bced6",
+    "search_line": -1
   },
   {
     "queryName": "Additional Properties Too Restrictive",
     "severity": "LOW",
     "line": 13,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.allOf",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should not be false",
+    "actualValue": "'additionalProperties' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "4b609348c3d0172e7728f5226b78a68ba35cc78d44b164e742e3b9328f129b33",
+    "search_line": -1
   }
 ]

@@ -3,24 +3,60 @@
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_elb",
+    "resourceName": "foobar-terraform-elb",
+    "searchKey": "aws_elb[{{postive1}}].access_logs.enabled",
+    "searchValue": "",
+    "expectedValue": "'aws_elb[{{postive1}}].access_logs.enabled' should be true",
+    "actualValue": "'aws_elb[{{postive1}}].access_logs.enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "ddc9ff966762ffe636e707675db9d0127458f683443d96a43097900dceee186b",
+    "search_line": 9
   },
   {
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_elb",
+    "resourceName": "foobar-terraform-elb",
+    "searchKey": "aws_elb[{{postive2}}]",
+    "searchValue": "",
+    "expectedValue": "'aws_elb[{{postive2}}].access_logs' should be defined and not null",
+    "actualValue": "'aws_elb[{{postive2}}].access_logs' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "32c9fcc00fe5147d0ad5254c24d3d0b994aac836257e44b160a49f380df65137",
+    "search_line": 1
+  },
+  {
+    "queryName": "ELB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[elb_http]",
+    "searchValue": "",
+    "expectedValue": "'access_logs' should be defined and not null",
+    "actualValue": "'access_logs' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "ca683ce6ea2ec2b949e09bf8146009583d6a0fce6934ddc88539d8b80670ab27",
+    "search_line": 1
   },
   {
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 39,
-    "filename": "positive4.tf"
-  },
-  {
-    "queryName": "ELB Access Log Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive3.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[elb_http].access_logs.enabled",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be true",
+    "actualValue": "'access_logs.enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "e8f0a0b412ae7116a96c24c3409e742a0f2947ad44e80f25f6b8a74463b95960",
+    "search_line": -1
   }
 ]

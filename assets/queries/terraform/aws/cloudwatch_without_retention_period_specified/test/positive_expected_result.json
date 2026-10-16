@@ -2,11 +2,31 @@
   {
     "queryName": "CloudWatch Without Retention Period Specified",
     "severity": "INFO",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudwatch_log_group",
+    "resourceName": "Yada",
+    "searchKey": "aws_cloudwatch_log_group[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'retention_in_days' should be set and valid",
+    "actualValue": "Attribute 'retention_in_days' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fe7015e943acdbcd293b0fa0d83503534062f5621a4b77c831f4df4350f58542",
+    "search_line": 1
   },
   {
     "queryName": "CloudWatch Without Retention Period Specified",
     "severity": "INFO",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudwatch_log_group",
+    "resourceName": "Yada",
+    "searchKey": "aws_cloudwatch_log_group[positive2].retention_in_days",
+    "searchValue": "",
+    "expectedValue": "Attribute 'retention_in_days' should be set and valid",
+    "actualValue": "Attribute 'retention_in_days' is set but invalid",
+    "issueType": "IncorrectValue",
+    "similarityID": "1bc52e2619e98ac1106541444d5d0067c9ab6ab7132dd7e39fe225d81364f5f6",
+    "search_line": 18
   }
 ]

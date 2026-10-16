@@ -3,12 +3,30 @@
     "queryName": "Beta - Function App Deployment Slot Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_linux_function_app_slot",
+    "resourceName": "example-linux-function-app-slot",
+    "searchKey": "azurerm_linux_function_app_slot[positive1].site_config.minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "'site_config.minimum_tls_version' should be defined to '1.2' or higher",
+    "actualValue": "'site_config.minimum_tls_version' is defined to '1.1'",
+    "issueType": "IncorrectValue",
+    "similarityID": "65ca133dce35535e8ca1e640a3db72cad1cd690f98feb3847c67d66de69c7b8d",
+    "search_line": 7
   },
   {
     "queryName": "Beta - Function App Deployment Slot Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_windows_function_app_slot",
+    "resourceName": "example-slot",
+    "searchKey": "azurerm_windows_function_app_slot[positive2].site_config.minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "'site_config.minimum_tls_version' should be defined to '1.2' or higher",
+    "actualValue": "'site_config.minimum_tls_version' is defined to '1.1'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f2b5fafc6dc1166c3351aaa6c80ae988b76975c7c8daa7b082130dc9e3dddb21",
+    "search_line": 7
   }
 ]

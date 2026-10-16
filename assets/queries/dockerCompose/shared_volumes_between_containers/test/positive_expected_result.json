@@ -1,26 +1,62 @@
 [
-    {
-      "queryName": "Shared Volumes Between Containers",
-      "severity": "INFO",
-      "line": 9,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Shared Volumes Between Containers",
-      "severity": "INFO",
-      "line": 16,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Shared Volumes Between Containers",
-      "severity": "INFO",
-      "line": 8,
-      "filename": "positive2.yaml"
-    },
-    {
-      "queryName": "Shared Volumes Between Containers",
-      "severity": "INFO",
-      "line": 17,
-      "filename": "positive2.yaml"
-    }
+  {
+    "queryName": "Shared Volumes Between Containers",
+    "severity": "INFO",
+    "line": 9,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.frontend.volumes",
+    "searchValue": "shared",
+    "expectedValue": "There shouldn't be volumes shared between containers",
+    "actualValue": "Volume ./logic:/app shared between containers",
+    "issueType": "IncorrectValue",
+    "similarityID": "91e8285a01071de29d4734306c423b9a79c6e10a662e8f91fe361988ec5a6378",
+    "search_line": 9
+  },
+  {
+    "queryName": "Shared Volumes Between Containers",
+    "severity": "INFO",
+    "line": 16,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.backend.volumes",
+    "searchValue": "shared",
+    "expectedValue": "There shouldn't be volumes shared between containers",
+    "actualValue": "Volume ./logic:/app shared between containers",
+    "issueType": "IncorrectValue",
+    "similarityID": "36093bbddf97e32ae6ee6cfb5db50531cada3ae33d1e4d8f51b9ed8fcb62b6de",
+    "search_line": 16
+  },
+  {
+    "queryName": "Shared Volumes Between Containers",
+    "severity": "INFO",
+    "line": 8,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.app.volumes",
+    "searchValue": "created-and-shared",
+    "expectedValue": "There shouldn't be volumes created and shared between containers",
+    "actualValue": "Volume shared-volume created and shared between containers",
+    "issueType": "IncorrectValue",
+    "similarityID": "08974eb71a788a72794a431cc332f9b64bb4097312fecc52680f0735ba677991",
+    "search_line": 8
+  },
+  {
+    "queryName": "Shared Volumes Between Containers",
+    "severity": "INFO",
+    "line": 17,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.checker.volumes",
+    "searchValue": "created-and-shared",
+    "expectedValue": "There shouldn't be volumes created and shared between containers",
+    "actualValue": "Volume shared-volume created and shared between containers",
+    "issueType": "IncorrectValue",
+    "similarityID": "78d2dce36f7145e48b3fe4b26a33b67cfac8ada61d903930c0165b76285ef64a",
+    "search_line": 17
+  }
 ]

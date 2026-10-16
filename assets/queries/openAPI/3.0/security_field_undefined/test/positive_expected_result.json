@@ -3,24 +3,60 @@
     "queryName": "Security Field Undefined",
     "severity": "INFO",
     "line": 45,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "security[0].petstore_auth should be defined in '#/components/securitySchemes'",
+    "actualValue": "security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute",
+    "similarityID": "119f851c4fbb90bdeabcd177ce56e8ce1a5be2037d2114845d1399a717f22917",
+    "search_line": -1
   },
   {
     "queryName": "Security Field Undefined",
     "severity": "INFO",
     "line": 45,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "security[0].petstore_auth should be defined in '#/components/securitySchemes'",
+    "actualValue": "security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute",
+    "similarityID": "46285a3c01e26d354fb0cc169a68cb69849347ddd91a2489191b95d7a8b39899",
+    "search_line": -1
   },
   {
     "queryName": "Security Field Undefined",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "security[0].petstore_auth should be defined in '#/components/securitySchemes'",
+    "actualValue": "security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute",
+    "similarityID": "ae4c56fe26c5d5cd5c49f4a37e063bc5c16f631b2bdd53ec66a6dea1a55b81d4",
+    "search_line": -1
   },
   {
     "queryName": "Security Field Undefined",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "security[0].petstore_auth should be defined in '#/components/securitySchemes'",
+    "actualValue": "security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute",
+    "similarityID": "1b624911b1dacd6cc2cdad5e3b778229893e7f1290e907cac98faa263eafa650",
+    "search_line": -1
   }
 ]

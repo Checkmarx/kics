@@ -3,12 +3,30 @@
     "queryName": "Stackdriver Logging Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "",
+    "expectedValue": "'loggingService' should be defined and not null",
+    "actualValue": "'loggingService' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "8f2b71f4e67e5af177d1b0cc836e1dff15ef3c0270a53a0e9e4814dcc68a52c7",
+    "search_line": 4
   },
   {
     "queryName": "Stackdriver Logging Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.loggingService",
+    "searchValue": "",
+    "expectedValue": "'loggingService' to not be none",
+    "actualValue": "'loggingService' is none",
+    "issueType": "IncorrectValue",
+    "similarityID": "2d8961db3ddcfe319846495db0aae1db03186087e919997c235f4603e943688a",
+    "search_line": 6
   }
 ]

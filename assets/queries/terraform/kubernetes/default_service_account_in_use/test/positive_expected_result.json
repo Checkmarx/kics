@@ -2,11 +2,31 @@
   {
     "queryName": "Default Service Account In Use",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_service_account",
+    "resourceName": "default",
+    "searchKey": "kubernetes_service_account[example]",
+    "searchValue": "",
+    "expectedValue": "kubernetes_service_account[example].automount_service_account_token should be set",
+    "actualValue": "kubernetes_service_account[example].automount_service_account_token is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6c85fa3775081bbbca25f7edee254b40e593c4a8b8b1192863eb074b2a545120",
+    "search_line": 1
   },
   {
     "queryName": "Default Service Account In Use",
     "severity": "LOW",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_service_account",
+    "resourceName": "default",
+    "searchKey": "kubernetes_service_account[example2].automount_service_account_token",
+    "searchValue": "",
+    "expectedValue": "kubernetes_service_account[example2].automount_service_account_token should be set to false",
+    "actualValue": "kubernetes_service_account[example2].automount_service_account_token is not set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "bddf8068acbeb1e7303308a853ed48d01f09df4873e5d7b8be1cfd35357d9383",
+    "search_line": 12
   }
 ]

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "SQLServerName": {
+      "type": "String",
+      "defaultValue": "poc-sql-server"
+    },
+    "DatabaseName": {
+      "type": "String",
+      "defaultValue": "pocdb"
+    },
+    "location": {
+      "type": "String",
+      "defaultValue": "westeurope"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2019-06-01-preview",
+      "name": "[parameters('SQLServerName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "administratorLogin": "placeholderadmin"
+      },
+      "resources": [
+        {
+          "type": "databases",
+          "apiVersion": "2019-06-01-preview",
+          "name": "[parameters('DatabaseName')]",
+          "location": "[parameters('location')]",
+          "dependsOn": [
+            "[parameters('SQLServerName')]"
+          ],
+          "properties": {
+    	    "disabledAlerts": []
+          }
+        }
+      ]
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/auditingSettings",
+      "apiVersion": "2021-02-01-preview",
+      "name": "[format('{0}/{1}/default', parameters('SQLServerName'), parameters('DatabaseName'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('SQLServerName'), parameters('DatabaseName'))]"
+      ],
+      "properties": {
+        "state": "Enabled",
+        "isAzureMonitorTargetEnabled": true,
+        "retentionDays": 90
+      }
+    }
+  ]
+}
+

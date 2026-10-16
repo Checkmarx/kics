@@ -3,18 +3,45 @@
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "DBCluster",
+    "resourceName": "example-cluster-autogen-password",
+    "searchKey": "metadata.name={{example-cluster-autogen-password}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "DBCluster.enableCloudwatchLogsExports should be defined",
+    "actualValue": "DBCluster.enableCloudwatchLogsExports is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4f2aa8422793e870503917c8e4bfe916b14ea29b628341eaf48666cd01c76458",
+    "search_line": 6
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "DBCluster",
+    "resourceName": "example-cluster-autogen-password",
+    "searchKey": "metadata.name={{example-cluster-autogen-password}}.spec.forProvider.enableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "DBCluster.enableCloudwatchLogsExports should have all following values: audit, profiler",
+    "actualValue": "DBCluster.enableCloudwatchLogsExports has the following missing values: audit, profiler",
+    "issueType": "IncorrectValue",
+    "similarityID": "b219b9e0038478725917a0c2eb32ff214520940d6aba14a33acd9226e8d951f0",
+    "search_line": 26
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "DBCluster",
+    "resourceName": "example-cluster-autogen-password",
+    "searchKey": "metadata.name={{example-cluster-autogen-password}}.spec.forProvider.enableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "DBCluster.enableCloudwatchLogsExports should have all following values: audit, profiler",
+    "actualValue": "DBCluster.enableCloudwatchLogsExports has the following missing values: profiler",
+    "issueType": "IncorrectValue",
+    "similarityID": "2de4613e22fdfd350802f6311f59083dbdda4ff710ee618ae8c2f5261d67483a",
+    "search_line": 26
   }
 ]

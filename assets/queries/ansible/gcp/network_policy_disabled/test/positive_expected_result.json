@@ -2,26 +2,76 @@
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster1",
+    "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "network_policy",
+    "expectedValue": "gcp_container_cluster.network_policy should be defined",
+    "actualValue": "gcp_container_cluster.network_policy is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "85d07fd370097ad3375610b116050404b95a6e395802ca2684aeb28814cec125",
+    "search_line": 3
   },
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
-    "line": 21
+    "line": 21,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster2",
+    "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "addons_config",
+    "expectedValue": "gcp_container_cluster.addons_config should be defined",
+    "actualValue": "gcp_container_cluster.addons_config is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fef916f7a45863e3ffe3f1d1890f6e95d62e9a00c6481854da2889ea2636e89f",
+    "search_line": 21
   },
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
-    "line": 54
+    "line": 54,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster3",
+    "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.addons_config",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.addons_config.network_policy_config should be defined",
+    "actualValue": "gcp_container_cluster.addons_config.network_policy_config is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e8e6960e17727c2913a1aa1b213cf129ed82449db6a8b5171019f442602eb730",
+    "search_line": 54
   },
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
-    "line": 73
+    "line": 73,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster4",
+    "searchKey": "name={{create a cluster4}}.{{google.cloud.gcp_container_cluster}}.network_policy.enabled",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.network_policy.enabled should be true",
+    "actualValue": "gcp_container_cluster.network_policy.enabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "795f15265877ddd1981f22f63a763a36eb4783d2310314adf5dd0a6aeabd35ae",
+    "search_line": 73
   },
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
-    "line": 96
+    "line": 96,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster5",
+    "searchKey": "name={{create a cluster5}}.{{google.cloud.gcp_container_cluster}}.addons_config.network_policy_config.disabled",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.addons_config.network_policy_config.disabled should be set to false",
+    "actualValue": "gcp_container_cluster.addons_config.network_policy_config.disabled is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "9f34ca1a91892fd79b7fcc672bf344ea0af89d0b400532ddf75944b40ae0d159",
+    "search_line": 96
   }
 ]

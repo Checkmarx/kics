@@ -1,17 +1,47 @@
 [
-	{
-		"queryName": "StatefulSet Requests Storage",
-		"severity": "LOW",
-		"line": 33
-	},
-	{
-		"queryName": "StatefulSet Requests Storage",
-		"severity": "LOW",
-		"line": 66
-	},
-	{
-		"queryName": "StatefulSet Requests Storage",
-		"severity": "LOW",
-		"line": 73
-	}
+  {
+    "queryName": "StatefulSet Requests Storage",
+    "severity": "LOW",
+    "line": 33,
+    "fileName": "positive.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "web",
+    "searchKey": "metadata.name={{web}}.spec.volumeClaimTemplates.spec.resources.requests.storage=1Gi",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{web}}.spec.volumeClaimTemplates.spec.resources.requests.storage should not be set",
+    "actualValue": "metadata.name={{web}}.spec.volumeClaimTemplates.spec.resources.requests.storage is set to 1Gi",
+    "issueType": "IncorrectValue",
+    "similarityID": "135cdaa95a41b1c8e583e2ceda8bcd369094710a18e5e24f7cec7004f6adfcde",
+    "search_line": -1
+  },
+  {
+    "queryName": "StatefulSet Requests Storage",
+    "severity": "LOW",
+    "line": 66,
+    "fileName": "positive.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "web2",
+    "searchKey": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage=1Gi",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage should not be set",
+    "actualValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage is set to 1Gi",
+    "issueType": "IncorrectValue",
+    "similarityID": "49e8e496fa4bf9d1b62ca7636dac4e934c7e1ab50b8cfbfb8462d025bd585ee5",
+    "search_line": -1
+  },
+  {
+    "queryName": "StatefulSet Requests Storage",
+    "severity": "LOW",
+    "line": 73,
+    "fileName": "positive.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "web2",
+    "searchKey": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage=2Gi",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage should not be set",
+    "actualValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage is set to 2Gi",
+    "issueType": "IncorrectValue",
+    "similarityID": "132ee3c0e266dc44122f87f6f3436cf984ebffd226d9b8d8ed0f22c371bd2562",
+    "search_line": -1
+  }
 ]

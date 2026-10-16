@@ -1,20 +1,47 @@
 [
-	{
-		"queryName": "PSP With Unrestricted Access to Host Path",
-		"severity": "HIGH",
-		"line": 5,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "PSP With Unrestricted Access to Host Path",
-		"severity": "HIGH",
-		"line": 8,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "PSP With Unrestricted Access to Host Path",
-		"severity": "HIGH",
-		"line": 9,
-		"fileName": "positive3.yaml"
-	}
+  {
+    "queryName": "PSP With Unrestricted Access to Host Path",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive1.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec",
+    "searchValue": "",
+    "expectedValue": "'spec.allowedHostPaths' should be defined and not null",
+    "actualValue": "'spec.allowedHostPaths' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c2bd8cde907efa4cf85899a18e1347584a3bf890421a28ef3c24273fdbe2d008",
+    "search_line": 5
+  },
+  {
+    "queryName": "PSP With Unrestricted Access to Host Path",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive2.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec.allowedHostPaths",
+    "searchValue": "",
+    "expectedValue": "'spec.allowedHostPaths[0].readOnly' should be set to true",
+    "actualValue": "'spec.allowedHostPaths[0].readOnly' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "a9a22dcf20c18f8d5c1e902031ac4e8d7fab2f15088aeb033fd1bac966a44848",
+    "search_line": 8
+  },
+  {
+    "queryName": "PSP With Unrestricted Access to Host Path",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive3.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec.allowedHostPaths.readOnly",
+    "searchValue": "",
+    "expectedValue": "'spec.allowedHostPaths[0].readOnly' should be set to true",
+    "actualValue": "'spec.allowedHostPaths[0].readOnly' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "3fb5f61a6df6f86964a99ae555212f4fed8f85b295b8e81dc617f8d21c460dc4",
+    "search_line": 9
+  }
 ]
