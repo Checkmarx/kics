@@ -1,0 +1,15 @@
+{
+  "id": "c2d4e6f8-a1b3-4c5d-8e7f-8a9b0c1d2e3f",
+  "queryName": "Beta - Missing Workflow Trigger Authorization",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "A workflow triggered by issue_comment contains a job that checks for a slash command in the comment body (e.g. contains(github.event.comment.body, '/deploy')) without verifying the commenter's identity. Any GitHub user can trigger workflow execution, including jobs that check out and run code from a forked PR. Fix: add an authorization check such as github.event.comment.author_association == 'MEMBER' or 'OWNER' to restrict command execution to trusted contributors.",
+  "descriptionUrl": "https://securitylab.github.com/resources/github-actions-preventing-pwn-requests/",
+  "platform": "CICD",
+  "descriptionID": "d4e5f6a7",
+  "cloudProvider": "common",
+  "cwe": "285",
+  "oldSeverity": "HIGH",
+  "riskScore": "8.5",
+  "experimental": "true"
+}

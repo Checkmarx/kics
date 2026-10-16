@@ -1,0 +1,10 @@
+name: Auto Bump Versions (scalar on)
+
+on: issue_comment
+
+jobs:
+  add-same-version-label-to-pr:
+    runs-on: ubuntu-latest
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/add-same-version-label')
+    steps:
+      - uses: actions/checkout@v4

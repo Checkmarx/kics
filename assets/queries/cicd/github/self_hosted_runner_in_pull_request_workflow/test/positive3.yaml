@@ -1,0 +1,11 @@
+name: CI on Pull Request (scalar on)
+
+on: pull_request
+
+jobs:
+  test:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tests
+        run: make test

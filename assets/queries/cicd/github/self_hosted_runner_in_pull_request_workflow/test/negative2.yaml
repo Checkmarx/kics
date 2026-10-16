@@ -1,0 +1,21 @@
+# Safe: self-hosted runner used with workflow_dispatch, which requires
+# explicit invocation by an authenticated user with write access.
+# Fork code cannot trigger this workflow.
+
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options: [staging, production]
+        required: true
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, linux, x64]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy
+        run: ./scripts/deploy.sh ${{ github.event.inputs.environment }}

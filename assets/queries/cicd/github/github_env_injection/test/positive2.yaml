@@ -1,0 +1,15 @@
+name: Process Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Export issue title to env
+        run: echo "ISSUE_TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
+
+      - name: Run script with issue title
+        run: ./scripts/process-issue.sh

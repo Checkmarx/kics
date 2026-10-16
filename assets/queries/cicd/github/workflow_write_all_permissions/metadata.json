@@ -1,0 +1,15 @@
+{
+  "id": "a7b8c9d0-e1f2-4a3b-9c5d-6e7f8a9b0c1d",
+  "queryName": "Beta - Workflow Permissions Set to Write-All",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "The workflow or a job explicitly sets 'permissions: write-all', granting the GITHUB_TOKEN maximum write access to all scopes (contents, pull-requests, issues, deployments, checks, and more). This violates the principle of least privilege: if any step executes untrusted code, the attacker inherits all write permissions. Declare only the individual scopes the workflow actually needs.",
+  "descriptionUrl": "https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token",
+  "platform": "CICD",
+  "descriptionID": "a3b4c5d6",
+  "cloudProvider": "common",
+  "cwe": "272",
+  "oldSeverity": "MEDIUM",
+  "riskScore": "6.5",
+  "experimental": "true"
+}

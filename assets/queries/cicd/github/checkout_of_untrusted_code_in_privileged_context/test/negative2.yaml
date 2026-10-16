@@ -1,0 +1,42 @@
+# Safe pattern: uses pull_request (not pull_request_target).
+# The regular pull_request trigger runs in an isolated environment without
+# access to target-repo secrets, so checking out the PR head is safe.
+# Additionally, the job condition restricts to same-repo PRs only.
+
+name: Amber Automatic Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  amber-review:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read
+
+    steps:
+      - name: Checkout base ref (for command file security)
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          fetch-depth: 1
+          path: base-ref
+
+      - name: Checkout PR code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Run code review
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            Review the PR code and post findings as a comment.

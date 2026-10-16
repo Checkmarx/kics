@@ -1,0 +1,16 @@
+name: PR Quality Check
+
+on:
+  pull_request_target:
+    branches: [main]
+
+jobs:
+  quality:
+    runs-on: [self-hosted, linux, x64]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+      - name: Run quality checks
+        run: make quality
