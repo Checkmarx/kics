@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "RDS Deletion Protection Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive.tf"
+  },
+  {
+    "queryName": "RDS Deletion Protection Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive.tf"
+  },
+  {
+    "queryName": "RDS Deletion Protection Disabled",
+    "severity": "MEDIUM",
+    "line": 19,
+    "fileName": "positive.tf"
+  },
+  {
+    "queryName": "RDS Deletion Protection Disabled",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive.tf"
+  }
+]
