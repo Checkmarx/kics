@@ -2,6 +2,11 @@ name: release-docker-image
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to build and push (e.g. v2.2.0). Leave empty to build the dispatched ref."
+        required: false
+        type: string
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -21,29 +26,42 @@ jobs:
     env:
       DOCKER_CLI_EXPERIMENTAL: "enabled"
     steps:
+      - name: Validate tag input
+        if: inputs.tag != ''
+        env:
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          if ! [[ "$INPUT_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::tag input must look like vX.Y.Z, got '$INPUT_TAG'"
+            exit 1
+          fi
       - name: Check out the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
+          ref: ${{ inputs.tag != '' && format('refs/tags/{0}', inputs.tag) || github.ref }}
           fetch-depth: 0
           persist-credentials: false
       - name: Get Release version
         id: get-version
         run: |
           echo "version=$(git describe --match='v*' --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
-      - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
-        if: always()
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
-          card-layout-start: cozy
-          card-layout-exit: complete
-          show-on-start: true
-          show-on-exit: true
-          custom-actions: |
-            - name: View CI Logs
-              value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}
-            - name: View HEAD Commit
-              value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      # Disabled: toko-bifrost/ms-teams-deploy-card is blocked by the StepSecurity policy, which cancels the run.
+      # It only posts a release notification card to MS Teams.
+      #- uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
+      #  if: always()
+      #  with:
+      #    github-token: ${{ secrets.GITHUB_TOKEN }}
+      #    webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
+      #    card-layout-start: cozy
+      #    card-layout-exit: complete
+      #    show-on-start: true
+      #    show-on-exit: true
+      #    custom-actions: |
+      #      - name: View CI Logs
+      #        value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}
+      #      - name: View HEAD Commit
+      #        value: https://github.com/Checkmarx/kics/commit/${{ steps.get-version.outputs.commit }}
       - name: Setup QEMU
         uses: step-security/setup-qemu-action@109c6ed9f089be1a250c75fd6a534e30df44e030 # v4.0.0
         with:
@@ -61,7 +79,7 @@ jobs:
         run: echo "CREATED_AT=$(date --rfc-3339=seconds)" >> $GITHUB_ENV
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@80c7e94dd9b9319bd5eb7a0e0fe9291e23a2a2e9 # v6.1.0
+        uses: step-security/metadata-action@619b5adf759ed62ddd8c6d474364da38ea264eee # v6.1.0
         with:
           images: "checkmarx/kics"
           labels: |
@@ -74,7 +92,7 @@ jobs:
             org.opencontainers.image.url=https://github.com/Checkmarx/kics
             org.opencontainers.image.source=https://github.com/Checkmarx/kics
             org.opencontainers.image.licenses=Apache-2.0
-            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.revision=${{ steps.get-version.outputs.commit }}
             org.opencontainers.image.created=${{ env.CREATED_AT }}
       - name: Push main to Docker Hub
         uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
@@ -86,7 +104,8 @@ jobs:
           tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }}
           build-args: |
             ENGINE_VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ github.sha }}
+            VERSION=${{ steps.get-version.outputs.version }}
+            COMMIT=${{ steps.get-version.outputs.commit }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -101,7 +120,8 @@ jobs:
           tags: checkmarx/kics:alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
           build-args: |
             ENGINE_VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ github.sha }}
+            VERSION=${{ steps.get-version.outputs.version }}
+            COMMIT=${{ steps.get-version.outputs.commit }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -116,7 +136,8 @@ jobs:
           tags: checkmarx/kics:debian,checkmarx/kics:${{ steps.get-version.outputs.version }}-debian
           build-args: |
             ENGINE_VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ github.sha }}
+            VERSION=${{ steps.get-version.outputs.version }}
+            COMMIT=${{ steps.get-version.outputs.commit }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -131,7 +152,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           build-args: |
             ENGINE_VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ github.sha }}
+            VERSION=${{ steps.get-version.outputs.version }}
+            COMMIT=${{ steps.get-version.outputs.commit }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}

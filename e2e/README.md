@@ -267,7 +267,7 @@ In addition, it is necessary to remove files generated during the test, adding t
 }
 ```
 
-E2E tests are skiped in short mode:
+E2E tests are skipped in short mode:
 
 ```go
 func Test_E2E_CLI(t *testing.T) {

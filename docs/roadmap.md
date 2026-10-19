@@ -2,7 +2,7 @@
 
 These are our upcoming new supports:
 
-- Extend Pulumi Support to .json extention
+- Extend Pulumi Support to .json extension
 - Populate CWE IDs in all remaining queries
 
 

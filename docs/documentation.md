@@ -35,7 +35,7 @@ You can see the list of available tags in [dockerhub](https://hub.docker.com/r/c
 
 ℹ️ **UBI Based Images**
 
-When using [UBI8](https://catalog.redhat.com) based image, the KICS process will run under the `kics` user and `kics` group with default UID=1000 and GID=1000. When using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the `-u` flag that overrides the username:group or UID:GID. e.g:
+When using [UBI8](https://catalog.redhat.com) based image, the KICS process will run under the `kics` user and `kics` group with default UID=1000 and GID=1000. When using bind mount to share host files with the container, the UID and GID can be overridden to match current user with the `-u` flag that overrides the username:group or UID:GID. e.g:
 
 ```sh
 docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi8 scan -p /path/assets/queries/dockerfile -o /path -v
@@ -88,7 +88,7 @@ echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' >>
 
 #### Custom Queries
 
-You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default _./assets/queries_ is built-in in the image. You can use this to provide a path to your own custom queries. Check [create a new query guide](creating-queries.md) to learn how to define your own queries.
+You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used. The default _./assets/queries_ is built-in in the image. You can use this to provide a path to your own custom queries. Check [create a new query guide](creating-queries.md) to learn how to define your own queries.
 
 #### Password and Secrets
 

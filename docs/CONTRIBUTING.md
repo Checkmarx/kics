@@ -169,7 +169,7 @@ If an E2E test causes failures in Github actions, the recommended steps are:
 
 9. Navigate to the path specified by the `-o` flag and compare the generated file with the version in the [fixtures directory of the KICS repository](https://github.com/Checkmarx/kics/tree/master/e2e/fixtures).
 
-10. Merge the generated file or add any missing data to the original file in the repository. **Example**: paste the generated `E2E_CLI_032_RESULT` into `e2e/fixtures/e2e/E2E_CLI_032_RESULT.json`.
+10. Merge the generated file or add any missing data to the original file in the repository. **Example**: paste the generated `E2E_CLI_032_RESULT` into `e2e/fixtures/E2E_CLI_032_RESULT.json`.
 
 11. Correct the path, to `/path/e2e/fixtures/samples/positive.yaml`, if it currently points to a local machine directory. **Example**: change `C:\Users\john\Desktop\kics\e2e\fixtures\samples\positive.yaml` to `/path/e2e/fixtures/samples/positive.yaml`.
 
@@ -181,7 +181,7 @@ If the pipeline fails when submitting a Pull Request, it may be due to GitGuard 
 
 ### Flaky tests
 
-There is a known set of tests that are considered flaky. These tests may fail intermittently due to timming issues, external dependencies or environment-specific conditions, rather than actual problems on the code. The team is aware of these cases and continues to monitor and improve them. 
+There is a known set of tests that are considered flaky. These tests may fail intermittently due to timing issues, external dependencies or environment-specific conditions, rather than actual problems on the code. The team is aware of these cases and continues to monitor and improve them. 
 
 Below is a list of currently identified flaky tests:
 
