@@ -46,20 +46,22 @@ jobs:
         run: |
           echo "version=$(git describe --match='v*' --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
           echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-      - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
-        if: always()
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
-          card-layout-start: cozy
-          card-layout-exit: complete
-          show-on-start: true
-          show-on-exit: true
-          custom-actions: |
-            - name: View CI Logs
-              value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}
-            - name: View HEAD Commit
-              value: https://github.com/Checkmarx/kics/commit/${{ steps.get-version.outputs.commit }}
+      # Disabled: toko-bifrost/ms-teams-deploy-card is blocked by the StepSecurity policy, which cancels the run.
+      # It only posts a release notification card to MS Teams.
+      #- uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
+      #  if: always()
+      #  with:
+      #    github-token: ${{ secrets.GITHUB_TOKEN }}
+      #    webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
+      #    card-layout-start: cozy
+      #    card-layout-exit: complete
+      #    show-on-start: true
+      #    show-on-exit: true
+      #    custom-actions: |
+      #      - name: View CI Logs
+      #        value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}
+      #      - name: View HEAD Commit
+      #        value: https://github.com/Checkmarx/kics/commit/${{ steps.get-version.outputs.commit }}
       - name: Setup QEMU
         uses: step-security/setup-qemu-action@109c6ed9f089be1a250c75fd6a534e30df44e030 # v4.0.0
         with:
@@ -77,7 +79,7 @@ jobs:
         run: echo "CREATED_AT=$(date --rfc-3339=seconds)" >> $GITHUB_ENV
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@80c7e94dd9b9319bd5eb7a0e0fe9291e23a2a2e9 # v6.1.0
+        uses: step-security/metadata-action@619b5adf759ed62ddd8c6d474364da38ea264eee # v6.1.0
         with:
           images: "checkmarx/kics"
           labels: |
