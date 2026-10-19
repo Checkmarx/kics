@@ -42,7 +42,7 @@ jobs:
             -H "Authorization: Bearer ${GITHUB_TOKEN}" \
             -H "Accept: application/vnd.github+json" \
             "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/workflows/release-dkr-image.yml/dispatches" \
-            -d "{\"ref\":\"${DEFAULT_BRANCH}\",\"inputs\":{\"tag\":\"${RELEASE_TAG}\",\"update_floating_tags\":\"true\"}}"
+            -d "$(jq -n --arg ref "$DEFAULT_BRANCH" --arg tag "$RELEASE_TAG" '{ref: $ref, inputs: {tag: $tag, update_floating_tags: "true"}}')"
   push_to_registry:
     name: Push Docker image to Docker Hub
     if: github.event_name == 'workflow_dispatch'
@@ -77,7 +77,7 @@ jobs:
           version=$(git describe --match='v*' --tags --abbrev=0)
           # Floating tags (latest, alpine, debian, ubi8) are skipped when backfilling an older release
           floating=("latest," "alpine," "debian," "ubi8,")
-          if [[ "$UPDATE_FLOATING_TAGS" == "false" ]]; then
+          if [[ "$UPDATE_FLOATING_TAGS" != "true" ]]; then
             floating=("" "" "" "")
           fi
           {
