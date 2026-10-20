@@ -1,7 +1,19 @@
 name: release-docker-image
 
 on:
+  release:
+    types: [published]
   workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to build and push (e.g. v2.2.0). Leave empty to build the dispatched ref."
+        required: false
+        type: string
+      update_floating_tags:
+        description: "Also move latest, alpine, debian and ubi8. Disable when backfilling an older release."
+        required: false
+        type: boolean
+        default: true
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -11,8 +23,29 @@ permissions:
   contents: read # default deny-write baseline; the push_to_registry job elevates as needed
 
 jobs:
+  # The release environment only allows the default branch, so a published release
+  # re-dispatches this workflow on the default branch with the release tag as input.
+  dispatch_on_release:
+    name: Dispatch Docker Hub publish for release
+    if: github.event_name == 'release' && !github.event.release.prerelease
+    runs-on: cx-public-ubuntu-x64
+    permissions:
+      actions: write # to dispatch this workflow
+    steps:
+      - name: Dispatch release-docker-image on the default branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          curl -sSf -X POST \
+            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/workflows/release-dkr-image.yml/dispatches" \
+            -d "$(jq -n --arg ref "$DEFAULT_BRANCH" --arg tag "$RELEASE_TAG" '{ref: $ref, inputs: {tag: $tag, update_floating_tags: "true"}}')"
   push_to_registry:
     name: Push Docker image to Docker Hub
+    if: github.event_name == 'workflow_dispatch'
     environment: release
     runs-on: cx-public-ubuntu-x64
     permissions:
@@ -21,29 +54,56 @@ jobs:
     env:
       DOCKER_CLI_EXPERIMENTAL: "enabled"
     steps:
+      - name: Validate tag input
+        if: inputs.tag != ''
+        env:
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          if ! [[ "$INPUT_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::tag input must look like vX.Y.Z, got '$INPUT_TAG'"
+            exit 1
+          fi
       - name: Check out the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
+          ref: ${{ inputs.tag != '' && format('refs/tags/{0}', inputs.tag) || github.ref }}
           fetch-depth: 0
           persist-credentials: false
       - name: Get Release version
         id: get-version
+        env:
+          UPDATE_FLOATING_TAGS: ${{ inputs.update_floating_tags }}
         run: |
-          echo "version=$(git describe --match='v*' --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
-      - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
-        if: always()
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
-          card-layout-start: cozy
-          card-layout-exit: complete
-          show-on-start: true
-          show-on-exit: true
-          custom-actions: |
-            - name: View CI Logs
-              value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}
-            - name: View HEAD Commit
-              value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
+          version=$(git describe --match='v*' --tags --abbrev=0)
+          # Floating tags (latest, alpine, debian, ubi8) are skipped when backfilling an older release
+          floating=("latest," "alpine," "debian," "ubi8,")
+          if [[ "$UPDATE_FLOATING_TAGS" != "true" ]]; then
+            floating=("" "" "" "")
+          fi
+          {
+            echo "version=${version}"
+            echo "commit=$(git rev-parse HEAD)"
+            echo "tags_main=${floating[0]:+checkmarx/kics:${floating[0]}}checkmarx/kics:${version}"
+            echo "tags_alpine=${floating[1]:+checkmarx/kics:${floating[1]}}checkmarx/kics:${version}-alpine"
+            echo "tags_debian=${floating[2]:+checkmarx/kics:${floating[2]}}checkmarx/kics:${version}-debian"
+            echo "tags_ubi8=${floating[3]:+checkmarx/kics:${floating[3]}}checkmarx/kics:${version}-ubi8"
+          } >> "$GITHUB_OUTPUT"
+      # Disabled: toko-bifrost/ms-teams-deploy-card is blocked by the StepSecurity policy, which cancels the run.
+      # It only posts a release notification card to MS Teams.
+      #- uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
+      #  if: always()
+      #  with:
+      #    github-token: ${{ secrets.GITHUB_TOKEN }}
+      #    webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
+      #    card-layout-start: cozy
+      #    card-layout-exit: complete
+      #    show-on-start: true
+      #    show-on-exit: true
+      #    custom-actions: |
+      #      - name: View CI Logs
+      #        value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}
+      #      - name: View HEAD Commit
+      #        value: https://github.com/Checkmarx/kics/commit/${{ steps.get-version.outputs.commit }}
       - name: Setup QEMU
         uses: step-security/setup-qemu-action@109c6ed9f089be1a250c75fd6a534e30df44e030 # v4.0.0
         with:
@@ -51,17 +111,11 @@ jobs:
           platforms: linux/amd64,linux/arm64
       - name: Setup Docker Buildx
         uses: step-security/setup-buildx-action@f931205d68723ad9589fd2a7e2ece238bf9de341 # v4.0.0
-      - name: Login to DockerHub
-        uses: step-security/docker-login-action@bd6978fd4ef9a5f78130095b298b8a721afcb0d8 # v4.5.1
-        with:
-          username: ${{ vars.DOCKERHUB_USERNAME }}
-        env:
-          DOCKERHUB_OIDC_CONNECTIONID: ${{ secrets.DOCKERHUB_OIDC_CONNECTIONID }}
       - name: Get current date
         run: echo "CREATED_AT=$(date --rfc-3339=seconds)" >> $GITHUB_ENV
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@80c7e94dd9b9319bd5eb7a0e0fe9291e23a2a2e9 # v6.1.0
+        uses: step-security/metadata-action@619b5adf759ed62ddd8c6d474364da38ea264eee # v6.1.0
         with:
           images: "checkmarx/kics"
           labels: |
@@ -74,8 +128,67 @@ jobs:
             org.opencontainers.image.url=https://github.com/Checkmarx/kics
             org.opencontainers.image.source=https://github.com/Checkmarx/kics
             org.opencontainers.image.licenses=Apache-2.0
-            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.revision=${{ steps.get-version.outputs.commit }}
             org.opencontainers.image.created=${{ env.CREATED_AT }}
+      # Build every image before logging in: the Docker Hub OIDC token is short-lived and
+      # the emulated arm64 builds can outlast it. The push steps below reuse the build cache.
+      - name: Build main
+        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
+        with:
+          context: .
+          push: false
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
+            VERSION=${{ steps.get-version.outputs.version }}
+            COMMIT=${{ steps.get-version.outputs.commit }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      - name: Build alpine
+        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
+        with:
+          context: .
+          file: ./docker/Dockerfile.alpine
+          push: false
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
+            VERSION=${{ steps.get-version.outputs.version }}
+            COMMIT=${{ steps.get-version.outputs.commit }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      - name: Build debian
+        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
+        with:
+          context: .
+          file: ./docker/Dockerfile.debian
+          push: false
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
+            VERSION=${{ steps.get-version.outputs.version }}
+            COMMIT=${{ steps.get-version.outputs.commit }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      - name: Build ubi8
+        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
+        with:
+          context: .
+          file: ./docker/Dockerfile.ubi8
+          push: false
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
+            VERSION=${{ steps.get-version.outputs.version }}
+            COMMIT=${{ steps.get-version.outputs.commit }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      - name: Login to DockerHub
+        uses: step-security/docker-login-action@bd6978fd4ef9a5f78130095b298b8a721afcb0d8 # v4.5.1
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+        env:
+          DOCKERHUB_OIDC_CONNECTIONID: ${{ secrets.DOCKERHUB_OIDC_CONNECTIONID }}
       - name: Push main to Docker Hub
         uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         id: build_main
@@ -83,10 +196,11 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }}
+          tags: ${{ steps.get-version.outputs.tags_main }}
           build-args: |
             ENGINE_VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ github.sha }}
+            VERSION=${{ steps.get-version.outputs.version }}
+            COMMIT=${{ steps.get-version.outputs.commit }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -98,10 +212,11 @@ jobs:
           file: ./docker/Dockerfile.alpine
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: checkmarx/kics:alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
+          tags: ${{ steps.get-version.outputs.tags_alpine }}
           build-args: |
             ENGINE_VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ github.sha }}
+            VERSION=${{ steps.get-version.outputs.version }}
+            COMMIT=${{ steps.get-version.outputs.commit }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -113,10 +228,11 @@ jobs:
           file: ./docker/Dockerfile.debian
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: checkmarx/kics:debian,checkmarx/kics:${{ steps.get-version.outputs.version }}-debian
+          tags: ${{ steps.get-version.outputs.tags_debian }}
           build-args: |
             ENGINE_VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ github.sha }}
+            VERSION=${{ steps.get-version.outputs.version }}
+            COMMIT=${{ steps.get-version.outputs.commit }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -127,11 +243,12 @@ jobs:
           context: .
           file: ./docker/Dockerfile.ubi8
           push: true
-          tags: checkmarx/kics:ubi8,checkmarx/kics:${{ steps.get-version.outputs.version }}-ubi8
+          tags: ${{ steps.get-version.outputs.tags_ubi8 }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             ENGINE_VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ github.sha }}
+            VERSION=${{ steps.get-version.outputs.version }}
+            COMMIT=${{ steps.get-version.outputs.commit }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
