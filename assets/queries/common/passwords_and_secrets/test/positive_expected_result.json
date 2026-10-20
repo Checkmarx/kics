@@ -872,21 +872,6 @@
   {
     "queryName": "Passwords And Secrets - AWS Context-specific credential",
     "severity": "HIGH",
-    "line": 15,
-    "fileName": "positive40.tf",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "",
-    "searchValue": "",
-    "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source",
-    "issueType": "RedundantAttribute",
-    "similarityID": "440f21a5812412d187684bcf2ae816188ca53d12e3fb9d5415c419f198261fc0",
-    "search_line": 0
-  },
-  {
-    "queryName": "Passwords And Secrets - AWS Certificate",
-    "severity": "HIGH",
     "line": 16,
     "fileName": "positive40.tf",
     "resourceType": "",
@@ -896,7 +881,22 @@
     "expectedValue": "Hardcoded secret key should not appear in source",
     "actualValue": "Hardcoded secret key appears in source",
     "issueType": "RedundantAttribute",
-    "similarityID": "40ec34577363eb82151a20685811dc674f1f83fe15db1f3f3968eb049d7c35d9",
+    "similarityID": "80153858b8c28f0132eac6dd61075d6243d7b16b6cab60f4b3c5b5a7513f9719",
+    "search_line": 0
+  },
+  {
+    "queryName": "Passwords And Secrets - AWS Certificate",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive40.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "",
+    "searchValue": "",
+    "expectedValue": "Hardcoded secret key should not appear in source",
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute",
+    "similarityID": "3d8bec291b4ee2a2514afa3d58059565e717112f6c66c4154840eaab1046232f",
     "search_line": 0
   },
   {
