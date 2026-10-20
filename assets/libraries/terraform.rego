@@ -669,6 +669,20 @@ get_action(statement) = a {
 } else = a {
   statement.Actions != null
   a := statement.Actions
+} else = a {
+  statement.actions != null
+  a := statement.actions
+} else = a {
+  statement.action != null
+  a := statement.action
+}
+
+get_condition(statement) = c {
+  statement.Condition != null
+  c := statement.Condition
+} else = c {
+  statement.condition != null
+  c := statement.condition
 }
 
 action_matches_s3_star(action_value) {
