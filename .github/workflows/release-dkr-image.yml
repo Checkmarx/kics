@@ -150,6 +150,12 @@ jobs:
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
+      # Each image is already saved to its OCI archive, so drop the build cache to keep the
+      # runner from running out of disk (the archives in runner.temp are not touched).
+      - name: Clean build cache (main)
+        run: |
+          docker buildx prune --all --force
+          df -h /
       - name: Build alpine
         uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
@@ -164,6 +170,10 @@ jobs:
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
+      - name: Clean build cache (alpine)
+        run: |
+          docker buildx prune --all --force
+          df -h /
       - name: Build debian
         uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
@@ -178,6 +188,10 @@ jobs:
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
+      - name: Clean build cache (debian)
+        run: |
+          docker buildx prune --all --force
+          df -h /
       - name: Build ubi8
         uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
@@ -192,6 +206,12 @@ jobs:
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
+      # Also frees the space skopeo needs to unpack each archive while pushing.
+      - name: Clean build cache (ubi8)
+        run: |
+          docker buildx prune --all --force
+          df -h /
+          ls -lh "${RUNNER_TEMP}"/kics-*.tar
       # Each push gets a fresh login so the short-lived token is valid for the whole copy.
       # The version tag is pushed before the floating tag; --preserve-digests keeps the pushed
       # image byte-identical to what was built.
