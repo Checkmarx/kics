@@ -63,6 +63,15 @@ jobs:
             echo "::error::tag input must look like vX.Y.Z, got '$INPUT_TAG'"
             exit 1
           fi
+      # skopeo pushes the prebuilt images; install it from the Ubuntu archive if the runner lacks it.
+      # Done first so a missing tool fails the run before the long builds.
+      - name: Ensure skopeo
+        run: |
+          if ! command -v skopeo >/dev/null 2>&1; then
+            sudo apt-get update -q
+            sudo apt-get install -y -q skopeo
+          fi
+          skopeo --version
       - name: Check out the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -74,19 +83,15 @@ jobs:
         env:
           UPDATE_FLOATING_TAGS: ${{ inputs.update_floating_tags }}
         run: |
-          version=$(git describe --match='v*' --tags --abbrev=0)
           # Floating tags (latest, alpine, debian, ubi8) are skipped when backfilling an older release
-          floating=("latest," "alpine," "debian," "ubi8,")
-          if [[ "$UPDATE_FLOATING_TAGS" != "true" ]]; then
-            floating=("" "" "" "")
+          update_floating=false
+          if [[ "$UPDATE_FLOATING_TAGS" == "true" ]]; then
+            update_floating=true
           fi
           {
-            echo "version=${version}"
+            echo "version=$(git describe --match='v*' --tags --abbrev=0)"
             echo "commit=$(git rev-parse HEAD)"
-            echo "tags_main=${floating[0]:+checkmarx/kics:${floating[0]}}checkmarx/kics:${version}"
-            echo "tags_alpine=${floating[1]:+checkmarx/kics:${floating[1]}}checkmarx/kics:${version}-alpine"
-            echo "tags_debian=${floating[2]:+checkmarx/kics:${floating[2]}}checkmarx/kics:${version}-debian"
-            echo "tags_ubi8=${floating[3]:+checkmarx/kics:${floating[3]}}checkmarx/kics:${version}-ubi8"
+            echo "update_floating=${update_floating}"
           } >> "$GITHUB_OUTPUT"
       # Disabled: toko-bifrost/ms-teams-deploy-card is blocked by the StepSecurity policy, which cancels the run.
       # It only posts a release notification card to MS Teams.
@@ -130,13 +135,13 @@ jobs:
             org.opencontainers.image.licenses=Apache-2.0
             org.opencontainers.image.revision=${{ steps.get-version.outputs.commit }}
             org.opencontainers.image.created=${{ env.CREATED_AT }}
-      # Build every image before logging in: the Docker Hub OIDC token is short-lived and
-      # the emulated arm64 builds can outlast it. The push steps below reuse the build cache.
+      # Build every image to an OCI archive before logging in: the Docker Hub OIDC token lives only
+      # a few minutes and the emulated arm64 builds take much longer. Nothing is rebuilt after login.
       - name: Build main
         uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
           context: .
-          push: false
+          outputs: type=oci,dest=${{ runner.temp }}/kics-main.tar
           platforms: linux/amd64,linux/arm64
           build-args: |
             ENGINE_VERSION=${{ steps.get-version.outputs.version }}
@@ -144,12 +149,13 @@ jobs:
             COMMIT=${{ steps.get-version.outputs.commit }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+          labels: ${{ steps.meta.outputs.labels }}
       - name: Build alpine
         uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
           context: .
           file: ./docker/Dockerfile.alpine
-          push: false
+          outputs: type=oci,dest=${{ runner.temp }}/kics-alpine.tar
           platforms: linux/amd64,linux/arm64
           build-args: |
             ENGINE_VERSION=${{ steps.get-version.outputs.version }}
@@ -157,12 +163,13 @@ jobs:
             COMMIT=${{ steps.get-version.outputs.commit }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+          labels: ${{ steps.meta.outputs.labels }}
       - name: Build debian
         uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
           context: .
           file: ./docker/Dockerfile.debian
-          push: false
+          outputs: type=oci,dest=${{ runner.temp }}/kics-debian.tar
           platforms: linux/amd64,linux/arm64
           build-args: |
             ENGINE_VERSION=${{ steps.get-version.outputs.version }}
@@ -170,12 +177,13 @@ jobs:
             COMMIT=${{ steps.get-version.outputs.commit }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+          labels: ${{ steps.meta.outputs.labels }}
       - name: Build ubi8
         uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
           context: .
           file: ./docker/Dockerfile.ubi8
-          push: false
+          outputs: type=oci,dest=${{ runner.temp }}/kics-ubi8.tar
           platforms: linux/amd64,linux/arm64
           build-args: |
             ENGINE_VERSION=${{ steps.get-version.outputs.version }}
@@ -183,75 +191,98 @@ jobs:
             COMMIT=${{ steps.get-version.outputs.commit }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-      - name: Login to DockerHub
+          labels: ${{ steps.meta.outputs.labels }}
+      # Each push gets a fresh login so the short-lived token is valid for the whole copy.
+      # The version tag is pushed before the floating tag; --preserve-digests keeps the pushed
+      # image byte-identical to what was built.
+      - name: Login to DockerHub (main)
         uses: step-security/docker-login-action@bd6978fd4ef9a5f78130095b298b8a721afcb0d8 # v4.5.1
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
         env:
           DOCKERHUB_OIDC_CONNECTIONID: ${{ secrets.DOCKERHUB_OIDC_CONNECTIONID }}
       - name: Push main to Docker Hub
-        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
-        id: build_main
+        env:
+          ARCHIVE: ${{ runner.temp }}/kics-main.tar
+          VERSION_TAG: ${{ steps.get-version.outputs.version }}
+          FLOATING_TAG: latest
+          UPDATE_FLOATING: ${{ steps.get-version.outputs.update_floating }}
+        run: |
+          tags=("${VERSION_TAG}")
+          if [[ "$UPDATE_FLOATING" == "true" ]]; then
+            tags+=("${FLOATING_TAG}")
+          fi
+          for tag in "${tags[@]}"; do
+            skopeo copy --all --preserve-digests \
+              --dest-authfile "${DOCKER_CONFIG:-$HOME/.docker}/config.json" \
+              "oci-archive:${ARCHIVE}" "docker://docker.io/checkmarx/kics:${tag}"
+          done
+      - name: Login to DockerHub (alpine)
+        uses: step-security/docker-login-action@bd6978fd4ef9a5f78130095b298b8a721afcb0d8 # v4.5.1
         with:
-          context: .
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags: ${{ steps.get-version.outputs.tags_main }}
-          build-args: |
-            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
-            VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ steps.get-version.outputs.commit }}
-            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-          labels: ${{ steps.meta.outputs.labels }}
-      - name: Build and push alpine to Docker Hub
-        id: build_alpine
-        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+        env:
+          DOCKERHUB_OIDC_CONNECTIONID: ${{ secrets.DOCKERHUB_OIDC_CONNECTIONID }}
+      - name: Push alpine to Docker Hub
+        env:
+          ARCHIVE: ${{ runner.temp }}/kics-alpine.tar
+          VERSION_TAG: ${{ steps.get-version.outputs.version }}-alpine
+          FLOATING_TAG: alpine
+          UPDATE_FLOATING: ${{ steps.get-version.outputs.update_floating }}
+        run: |
+          tags=("${VERSION_TAG}")
+          if [[ "$UPDATE_FLOATING" == "true" ]]; then
+            tags+=("${FLOATING_TAG}")
+          fi
+          for tag in "${tags[@]}"; do
+            skopeo copy --all --preserve-digests \
+              --dest-authfile "${DOCKER_CONFIG:-$HOME/.docker}/config.json" \
+              "oci-archive:${ARCHIVE}" "docker://docker.io/checkmarx/kics:${tag}"
+          done
+      - name: Login to DockerHub (debian)
+        uses: step-security/docker-login-action@bd6978fd4ef9a5f78130095b298b8a721afcb0d8 # v4.5.1
         with:
-          context: .
-          file: ./docker/Dockerfile.alpine
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags: ${{ steps.get-version.outputs.tags_alpine }}
-          build-args: |
-            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
-            VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ steps.get-version.outputs.commit }}
-            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-          labels: ${{ steps.meta.outputs.labels }}
-      - name: Build and push debian to Docker Hub
-        id: build_debian
-        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+        env:
+          DOCKERHUB_OIDC_CONNECTIONID: ${{ secrets.DOCKERHUB_OIDC_CONNECTIONID }}
+      - name: Push debian to Docker Hub
+        env:
+          ARCHIVE: ${{ runner.temp }}/kics-debian.tar
+          VERSION_TAG: ${{ steps.get-version.outputs.version }}-debian
+          FLOATING_TAG: debian
+          UPDATE_FLOATING: ${{ steps.get-version.outputs.update_floating }}
+        run: |
+          tags=("${VERSION_TAG}")
+          if [[ "$UPDATE_FLOATING" == "true" ]]; then
+            tags+=("${FLOATING_TAG}")
+          fi
+          for tag in "${tags[@]}"; do
+            skopeo copy --all --preserve-digests \
+              --dest-authfile "${DOCKER_CONFIG:-$HOME/.docker}/config.json" \
+              "oci-archive:${ARCHIVE}" "docker://docker.io/checkmarx/kics:${tag}"
+          done
+      - name: Login to DockerHub (ubi8)
+        uses: step-security/docker-login-action@bd6978fd4ef9a5f78130095b298b8a721afcb0d8 # v4.5.1
         with:
-          context: .
-          file: ./docker/Dockerfile.debian
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags: ${{ steps.get-version.outputs.tags_debian }}
-          build-args: |
-            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
-            VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ steps.get-version.outputs.commit }}
-            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-          labels: ${{ steps.meta.outputs.labels }}
-      - name: Build and push ubi8 to Docker Hub
-        id: build_ubi8
-        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
-        with:
-          context: .
-          file: ./docker/Dockerfile.ubi8
-          push: true
-          tags: ${{ steps.get-version.outputs.tags_ubi8 }}
-          platforms: linux/amd64,linux/arm64
-          build-args: |
-            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
-            VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ steps.get-version.outputs.commit }}
-            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-          labels: ${{ steps.meta.outputs.labels }}
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+        env:
+          DOCKERHUB_OIDC_CONNECTIONID: ${{ secrets.DOCKERHUB_OIDC_CONNECTIONID }}
+      - name: Push ubi8 to Docker Hub
+        env:
+          ARCHIVE: ${{ runner.temp }}/kics-ubi8.tar
+          VERSION_TAG: ${{ steps.get-version.outputs.version }}-ubi8
+          FLOATING_TAG: ubi8
+          UPDATE_FLOATING: ${{ steps.get-version.outputs.update_floating }}
+        run: |
+          tags=("${VERSION_TAG}")
+          if [[ "$UPDATE_FLOATING" == "true" ]]; then
+            tags+=("${FLOATING_TAG}")
+          fi
+          for tag in "${tags[@]}"; do
+            skopeo copy --all --preserve-digests \
+              --dest-authfile "${DOCKER_CONFIG:-$HOME/.docker}/config.json" \
+              "oci-archive:${ARCHIVE}" "docker://docker.io/checkmarx/kics:${tag}"
+          done
       # TODO: dockerhub api does not support PAT yet
       # https://github.com/docker/roadmap/issues/115#issuecomment-891694974
       # https://github.com/docker/roadmap/issues/115
