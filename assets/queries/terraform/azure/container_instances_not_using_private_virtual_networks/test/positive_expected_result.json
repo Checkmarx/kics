@@ -3,18 +3,45 @@
     "queryName": "Beta - Container Instances Not Using Private Virtual Networks",
     "severity": "LOW",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_container_group",
+    "resourceName": "cg-positive1",
+    "searchKey": "azurerm_container_group[positive1]",
+    "searchValue": "",
+    "expectedValue": "'ip_address_type' should be set to 'Private'",
+    "actualValue": "'ip_address_type' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0dd343f62fcdeea5d96c6c0c5129f08d42650ac4eefb8f6207a54f59535c6b52",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Container Instances Not Using Private Virtual Networks",
     "severity": "LOW",
     "line": 7,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_container_group",
+    "resourceName": "cg-positive2",
+    "searchKey": "azurerm_container_group[positive2].ip_address_type",
+    "searchValue": "",
+    "expectedValue": "'ip_address_type' should be set to 'Private'",
+    "actualValue": "'ip_address_type' is defined to 'Public'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8dd4391cc0710e9dce7652c4c1eb3a91bd074b48de1d142af428eda23943c808",
+    "search_line": 7
   },
   {
     "queryName": "Beta - Container Instances Not Using Private Virtual Networks",
     "severity": "LOW",
     "line": 7,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_container_group",
+    "resourceName": "cg-positive3",
+    "searchKey": "azurerm_container_group[positive3].ip_address_type",
+    "searchValue": "",
+    "expectedValue": "'ip_address_type' should be set to 'Private'",
+    "actualValue": "'ip_address_type' is defined to 'None'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2154f06a554b8c63e13894db3710fe22624a332c1ed8345d3bf12c90b75bbe9b",
+    "search_line": 7
   }
 ]

@@ -2,26 +2,76 @@
   {
     "queryName": "Beta - SQL DB Instance With Exposed Show Privileges",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_1]",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should be defined and set 'skip_show_database' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_1].settings' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c62a3718506de782e71ee99138f27c9fbc4974063ce592796a00fd3dad482e65",
+    "search_line": 1
   },
   {
     "queryName": "Beta - SQL DB Instance With Exposed Show Privileges",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 14,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should be defined and set 'skip_show_database' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "534a40f30df99e1e7eb1f903f3cd6fbd65885439ecb352007bd640fce3fba8e1",
+    "search_line": 14
   },
   {
     "queryName": "Beta - SQL DB Instance With Exposed Show Privileges",
     "severity": "MEDIUM",
-    "line": 23
+    "line": 23,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_3].settings.database_flags",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_3].settings.database_flags' should be defined and set 'skip_show_database' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_3].settings.database_flags' does not set 'skip_show_database'",
+    "issueType": "MissingAttribute",
+    "similarityID": "07f92c8b34fdcd0077e2115afd889851191a27b9e1cde3bbed56c8d65536d8c3",
+    "search_line": 23
   },
   {
     "queryName": "Beta - SQL DB Instance With Exposed Show Privileges",
     "severity": "MEDIUM",
-    "line": 42
+    "line": 42,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_4].settings.database_flags[1].name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_4].settings.database_flags' should be defined and set 'skip_show_database' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_4].settings.database_flags' sets 'skip_show_database' to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9006bab04dfe6d2d55afa9ba0df348ed265e76ff742a033df8d298f621291f24",
+    "search_line": 42
   },
   {
     "queryName": "Beta - SQL DB Instance With Exposed Show Privileges",
     "severity": "MEDIUM",
-    "line": 60
+    "line": 60,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_5].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_5].settings.database_flags' should be defined and set 'skip_show_database' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_5].settings.database_flags' sets 'skip_show_database' to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "18c8c7f15dd0a4a6430161301cd6d3f99acac7a57604d1702a3fab02f47eef02",
+    "search_line": 60
   }
 ]

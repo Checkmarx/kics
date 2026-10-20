@@ -2,26 +2,76 @@
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster1",
+    "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.private_cluster_config should be defined",
+    "actualValue": "gcp_container_cluster.private_cluster_config is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7d02b7f4dd32a0231d2ed1d6649b6f16240dc9e68ce6013f466c25b9f36a4283",
+    "search_line": -1
   },
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster2",
+    "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes should be defined",
+    "actualValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "efbd55674b4d2359fdf6a32ba6bb3e294db411f21aef874d0e70255b5067a0be",
+    "search_line": -1
   },
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 48
+    "line": 48,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster3",
+    "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint should be defined",
+    "actualValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a705c0e79ce4ad7b19e498ccb4e2ae9b28423309006ab80ec9b573ae8ca58370",
+    "search_line": -1
   },
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 66
+    "line": 66,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster4",
+    "searchKey": "name={{create a cluster4}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config.enable_private_endpoint",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint should be true",
+    "actualValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "cfdb3b13834e9c66ba210794e81ea386383d5cf0071473a8c7acbeb2deed16da",
+    "search_line": -1
   },
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 85
+    "line": 85,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster5",
+    "searchKey": "name={{create a cluster5}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config.enable_private_nodes",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes should be true",
+    "actualValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "5f7100f8d9271cbaae52288f575bd2572829891a1b919a7a752c600302856818",
+    "search_line": -1
   }
 ]

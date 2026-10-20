@@ -3,12 +3,30 @@
     "queryName": "KMS Crypto Key is Publicly Accessible",
     "severity": "HIGH",
     "line": 24,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "google_kms_crypto_key_iam_policy",
+    "resourceName": "positive1",
+    "searchKey": "google_kms_crypto_key_iam_policy[positive1].policy_data",
+    "searchValue": "",
+    "expectedValue": "KMS crypto key should not be publicly accessible",
+    "actualValue": "KMS crypto key is publicly accessible",
+    "issueType": "IncorrectValue",
+    "similarityID": "a27772f80e360d391f3342e6d437c0f7c5754b44c43977fc3ee04ee3c5f5c61a",
+    "search_line": 24
   },
   {
     "queryName": "KMS Crypto Key is Publicly Accessible",
     "severity": "HIGH",
     "line": 24,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "google_kms_crypto_key_iam_policy",
+    "resourceName": "positive2",
+    "searchKey": "google_kms_crypto_key_iam_policy[positive2].policy_data",
+    "searchValue": "",
+    "expectedValue": "KMS crypto key should not be publicly accessible",
+    "actualValue": "KMS crypto key is publicly accessible",
+    "issueType": "IncorrectValue",
+    "similarityID": "87f9ca3ee58573283400ed3fa7d5bdf61e794a92d19adec4af95bbaa1e3d463a",
+    "search_line": 24
   }
 ]

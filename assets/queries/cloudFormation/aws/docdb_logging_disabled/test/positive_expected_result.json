@@ -3,24 +3,60 @@
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "AWS::DocDB::DBCluster",
+    "resourceName": "MyDocDBCluster",
+    "searchKey": "Resources.MyDocDBCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports should be defined",
+    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "cbdbc6d3d89c7311d43c3fd230820015094dc28af79e11072375fa0f83cf01fc",
+    "search_line": 6
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::DocDB::DBCluster",
+    "resourceName": "MyDocDBCluster",
+    "searchKey": "Resources.MyDocDBCluster.Properties.EnableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports should have all following values: audit, profiler",
+    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports haven't got the following values: audit, profiler",
+    "issueType": "IncorrectValue",
+    "similarityID": "40b60bd01ef669dc4af8ca6a4b4da9eb4ef2051fa7b3b9f6445e2a3f8b7a3cd8",
+    "search_line": 15
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::DocDB::DBCluster",
+    "resourceName": "MyDocDBCluster",
+    "searchKey": "Resources.MyDocDBCluster.Properties.EnableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports should have all following values: audit, profiler",
+    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports haven't got the following values: audit",
+    "issueType": "IncorrectValue",
+    "similarityID": "f0519c977dced925acc1c40490d3ff3360024d34e4fa93397b471c72e6c48bde",
+    "search_line": 15
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::DocDB::DBCluster",
+    "resourceName": "MyDocDBCluster",
+    "searchKey": "Resources.MyDocDBCluster.Properties.EnableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports should have all following values: audit, profiler",
+    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports haven't got the following values: profiler",
+    "issueType": "IncorrectValue",
+    "similarityID": "1c4c4db8d3086a6eab779f7c58992aa4d1b2253f44246362f519b243c65fe827",
+    "search_line": 14
   }
 ]

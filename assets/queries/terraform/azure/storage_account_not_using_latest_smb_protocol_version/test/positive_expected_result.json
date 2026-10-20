@@ -2,31 +2,91 @@
   {
     "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_storage_account[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive1].share_properties.smb.versions' should be defined and exclusively include 'SMB3.1.1'",
+    "actualValue": "'azurerm_storage_account[positive1].share_properties' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "33f2bc8b54f7bae08ca7c76c0b6c2bdef1b555b407dfc9095b3ee88e443ba544",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
     "severity": "HIGH",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive2",
+    "searchKey": "azurerm_storage_account[positive2].share_properties",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive2].share_properties.smb.versions' should be defined and exclusively include 'SMB3.1.1'",
+    "actualValue": "'azurerm_storage_account[positive2].share_properties.smb' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "9ee08eac6c00de4f2f7a26bc688adf119aea4fad71b36243c774664be3ff4fe5",
+    "search_line": 18
   },
   {
     "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
     "severity": "HIGH",
-    "line": 32
+    "line": 32,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive3",
+    "searchKey": "azurerm_storage_account[positive3].share_properties.smb",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive3].share_properties.smb.versions' should be defined and exclusively include 'SMB3.1.1'",
+    "actualValue": "'azurerm_storage_account[positive3].share_properties.smb.versions' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "d4590688fc286f6e4f3526a49f970d906fa1e5f5cb5d8d84f4e73c0f6f76b67a",
+    "search_line": 32
   },
   {
     "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
     "severity": "HIGH",
-    "line": 47
+    "line": 47,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive4",
+    "searchKey": "azurerm_storage_account[positive4].share_properties.smb.versions",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive4].share_properties.smb.versions' should be defined and exclusively include 'SMB3.1.1'",
+    "actualValue": "'azurerm_storage_account[positive4].share_properties.smb.versions' is empty or null",
+    "issueType": "IncorrectValue",
+    "similarityID": "9c016741f31f9fc3901b534d8eca4b97145e1d1f1f8edd4a1d307b40fab9356c",
+    "search_line": 47
   },
   {
     "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
     "severity": "HIGH",
-    "line": 61
+    "line": 61,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive5",
+    "searchKey": "azurerm_storage_account[positive5].share_properties.smb.versions",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive5].share_properties.smb.versions' should be defined and exclusively include 'SMB3.1.1'",
+    "actualValue": "'azurerm_storage_account[positive5].share_properties.smb.versions' does not include 'SMB3.1.1' and instead includes 2 outdated version(s)",
+    "issueType": "IncorrectValue",
+    "similarityID": "c27f45adfa417b19b52b3ce21ce8ad68d2254a1eb80caeb724018978494bef51",
+    "search_line": 61
   },
   {
     "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
     "severity": "HIGH",
-    "line": 75
+    "line": 75,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive6",
+    "searchKey": "azurerm_storage_account[positive6].share_properties.smb.versions",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive6].share_properties.smb.versions' should be defined and exclusively include 'SMB3.1.1'",
+    "actualValue": "'azurerm_storage_account[positive6].share_properties.smb.versions' includes 'SMB3.1.1' but also includes 1 outdated version(s)",
+    "issueType": "IncorrectValue",
+    "similarityID": "7de33e3bb3174ac2900dbc2187a20151bfe5cdd3cc28fb1ddb4c9a12fd996cf0",
+    "search_line": 75
   }
 ]

@@ -3,6 +3,15 @@
     "queryName": "Unpinned Actions Full Length Commit SHA",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "uses={{thollander/actions-comment-pull-request@v2}}",
+    "searchValue": "",
+    "expectedValue": "Action pinned to a full length commit SHA.",
+    "actualValue": "Action is not pinned to a full length commit SHA.",
+    "issueType": "IncorrectValue",
+    "similarityID": "c9bb241500f8b70915ba77a5239bff4f4aa9cdf481921e955351b249155b5ef8",
+    "search_line": 12
   }
 ]

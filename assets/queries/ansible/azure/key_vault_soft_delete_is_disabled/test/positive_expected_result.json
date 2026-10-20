@@ -2,11 +2,31 @@
   {
     "queryName": "Key Vault Soft Delete Is Disabled",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_keyvault",
+    "resourceName": "Create instance of Key Vault",
+    "searchKey": "name={{Create instance of Key Vault}}.{{azure_rm_keyvault}}.enable_soft_delete",
+    "searchValue": "",
+    "expectedValue": "azure_rm_keyvault.enable_soft_delete should be true",
+    "actualValue": "azure_rm_keyvault.enable_soft_delete is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8c45bb58e8ae17b225f51b8f336f2ebf0a8468fce2315f9d7cf7dd9b097fa1a9",
+    "search_line": -1
   },
   {
     "queryName": "Key Vault Soft Delete Is Disabled",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_keyvault",
+    "resourceName": "Create instance of Key Vault 02",
+    "searchKey": "name={{Create instance of Key Vault 02}}.{{azure_rm_keyvault}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_keyvault.enable_soft_delete should be defined",
+    "actualValue": "azure_rm_keyvault.enable_soft_delete is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "681967777c875e99cc1481ce9b5060d06d8c61d4ad2ac85e9a08590f57ec69a3",
+    "search_line": -1
   }
 ]

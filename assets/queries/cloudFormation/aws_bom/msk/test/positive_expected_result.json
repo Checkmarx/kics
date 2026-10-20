@@ -3,12 +3,30 @@
     "queryName": "BOM - AWS MSK",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.TestCluster",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "de4068af8084505d0f869d243525eb0d57ea1cadcb1e7e1b3f31b899d9b56c13",
+    "search_line": 3
   },
   {
     "queryName": "BOM - AWS MSK",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.TestCluster3",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "d6bcb825498f3c195f63b57d9b2ccc2f3914ea3224007f15351511e25cedb74a",
+    "search_line": 4
   }
 ]

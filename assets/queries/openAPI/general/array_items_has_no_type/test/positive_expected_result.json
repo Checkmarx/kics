@@ -3,48 +3,120 @@
     "queryName": "Array Items Has No Type (v3)",
     "severity": "LOW",
     "line": 65,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyIntArray.items",
+    "searchValue": "",
+    "expectedValue": "components.schemas.MyIntArray.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "components.schemas.MyIntArray.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "42272527fe43ac85e353488f0a15f9f4512f36321815de5c6da984c4867302dd",
+    "search_line": 0
   },
   {
     "queryName": "Array Items Has No Type (v3)",
     "severity": "LOW",
     "line": 22,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "be4cfd84cfc45ee8b56c0d65c8ab908db947077b0c22283458e7030355e0759e",
+    "search_line": 0
   },
   {
     "queryName": "Array Items Has No Type (v3)",
     "severity": "LOW",
     "line": 21,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "560cc43d23d6d8d348ad4e2c642c8d48aafa3dc93d1b54c8e42e70da2e0d1770",
+    "search_line": 0
   },
   {
     "queryName": "Array Items Has No Type (v3)",
     "severity": "LOW",
     "line": 42,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyIntArray.items",
+    "searchValue": "",
+    "expectedValue": "components.schemas.MyIntArray.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "components.schemas.MyIntArray.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d169d52c14b7abc01fda12ff4f16820f99028e499a9bd29c3c353be01071d97c",
+    "search_line": 0
   },
   {
     "queryName": "Array Items Has No Type (v3)",
     "severity": "LOW",
     "line": 19,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "57fefa3a292a4bf4ba26814fc59190ca9c1e432d7f7879aa7e13ce8958367bf2",
+    "search_line": 0
   },
   {
     "queryName": "Array Items Has No Type (v3)",
     "severity": "LOW",
     "line": 19,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "1b88239860529f5b5116e51b118e3e93ca336fddc86e91a399db5a11b39c7de0",
+    "search_line": 0
   },
   {
     "queryName": "Array Items Has No Type (v2)",
     "severity": "LOW",
     "line": 25,
-    "filename": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.parameters.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.parameters.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "bde48ffad8a0497549caa79c338cfb349ecb3925b026e7082234ddca13966a70",
+    "search_line": -1
   },
   {
     "queryName": "Array Items Has No Type (v2)",
     "severity": "LOW",
     "line": 20,
-    "filename": "positive8.yaml"
+    "fileName": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.parameters.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.parameters.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "431086488591149352248c3ab89a27508387cc36d22f9f978c77cc68fcedd94e",
+    "search_line": -1
   }
 ]

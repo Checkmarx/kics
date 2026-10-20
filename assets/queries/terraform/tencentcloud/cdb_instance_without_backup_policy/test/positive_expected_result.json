@@ -3,6 +3,15 @@
     "queryName": "CDB Instance Without Backup Policy",
     "severity": "MEDIUM",
     "line": 23,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "tencentcloud_mysql_instance",
+    "resourceName": "none_backup_policy",
+    "searchKey": "tencentcloud_mysql_instance[none_backup_policy]",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_mysql_instance[none_backup_policy] should have 'tencentcloud_mysql_backup_policy'",
+    "actualValue": "tencentcloud_mysql_instance[none_backup_policy] does not have 'tencentcloud_mysql_backup_policy'",
+    "issueType": "MissingAttribute",
+    "similarityID": "35cfd288307df2fed2cacd83e8e5770af5a210b108ba0b0cbdbbbc6e7ba1b04f",
+    "search_line": 23
   }
 ]

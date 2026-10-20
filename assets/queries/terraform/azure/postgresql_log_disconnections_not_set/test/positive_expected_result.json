@@ -2,16 +2,46 @@
   {
     "queryName": "PostgreSQL Log Disconnections Not Set",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_disconnections",
+    "searchKey": "azurerm_postgresql_configuration[positive1].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive1.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive1.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3af0e9385bc7b34bb0cca211b4f7da42cd7ebb3eb3f8ffaf72e1d66b89a8dcd5",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Disconnections Not Set",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_disconnections",
+    "searchKey": "azurerm_postgresql_configuration[positive2].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive2.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive2.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e9c8484fbea7f713d32b35a34fd6f3cbbbcf0022ca9cee1311a40d66875d80c7",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Disconnections Not Set",
     "severity": "MEDIUM",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_disconnections",
+    "searchKey": "azurerm_postgresql_configuration[positive3].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive3.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive3.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0552f4a6bbf8ccc5961ed23ac2090bb502ecb486962784f145d5cdb20e89398c",
+    "search_line": -1
   }
 ]

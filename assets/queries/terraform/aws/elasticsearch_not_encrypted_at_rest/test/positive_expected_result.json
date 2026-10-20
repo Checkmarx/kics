@@ -2,11 +2,31 @@
   {
     "queryName": "ElasticSearch Not Encrypted At Rest",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_elasticsearch_domain",
+    "resourceName": "positive1",
+    "searchKey": "aws_elasticsearch_domain[positive1]",
+    "searchValue": "",
+    "expectedValue": "'encrypt_at_rest' should be set and enabled",
+    "actualValue": "'encrypt_at_rest' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "415a1912ca61cd7b7703c784d2ed3854cce0d7255209fd7e631a7d5ddd969788",
+    "search_line": 1
   },
   {
     "queryName": "ElasticSearch Not Encrypted At Rest",
     "severity": "HIGH",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.tf",
+    "resourceType": "aws_elasticsearch_domain",
+    "resourceName": "positive2",
+    "searchKey": "aws_elasticsearch_domain[positive2].encrypt_at_rest.enabled",
+    "searchValue": "",
+    "expectedValue": "'encrypt_at_rest.enabled' should be true",
+    "actualValue": "'encrypt_at_rest.enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f99dac270ff415284034af822e03bb64cf61943693aaa91ba281721ae8d39765",
+    "search_line": 11
   }
 ]

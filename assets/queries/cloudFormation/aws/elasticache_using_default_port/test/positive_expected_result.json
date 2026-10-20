@@ -3,24 +3,60 @@
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "BasicReplicationGroup",
+    "searchKey": "Resources.BasicReplicationGroup.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicReplicationGroup.Properties.Port should not be set to 6379",
+    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 6379",
+    "issueType": "IncorrectValue",
+    "similarityID": "38ff5348380c539ac6c1977eed8f7605c05fb4c4e90a337edbda08becb042e0d",
+    "search_line": 12
   },
   {
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "BasicReplicationGroup",
+    "searchKey": "Resources.BasicReplicationGroup.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicReplicationGroup.Properties.Port should not be set to 11211",
+    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 11211",
+    "issueType": "IncorrectValue",
+    "similarityID": "92208f5127605ab40b31029da514d7183c8ec47cf3d3eecffce99e4c5200aa33",
+    "search_line": 12
   },
   {
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "BasicReplicationGroup",
+    "searchKey": "Resources.BasicReplicationGroup.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicReplicationGroup.Properties.Port should not be set to 6379",
+    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 6379",
+    "issueType": "IncorrectValue",
+    "similarityID": "53e96241b059bd572c92dc0775c174f2957684bb7a930fbb753783e28bba7ffd",
+    "search_line": 15
   },
   {
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "BasicReplicationGroup",
+    "searchKey": "Resources.BasicReplicationGroup.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicReplicationGroup.Properties.Port should not be set to 11211",
+    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 11211",
+    "issueType": "IncorrectValue",
+    "similarityID": "dad145f555b41455f149c131c0a5a5f524af3b4ca996df12f3d823f11de489ee",
+    "search_line": 15
   }
 ]

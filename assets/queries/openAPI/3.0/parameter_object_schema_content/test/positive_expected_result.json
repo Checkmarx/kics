@@ -3,36 +3,90 @@
     "queryName": "Parameter Object With Schema And Content",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
+    "actualValue": "Parameter Object has both 'schema' and 'content' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "32d80ccab3347ada96571219745093e35b364bad3bfd6e66a0d707ffe05d89da",
+    "search_line": -1
   },
   {
     "queryName": "Parameter Object With Schema And Content",
     "severity": "INFO",
     "line": 73,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
+    "actualValue": "Parameter Object has both 'schema' and 'content' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "59f059557af33e0a3539d071bb67dcbda7e97737dd06b796cc4073e87bfe22a8",
+    "search_line": -1
   },
   {
     "queryName": "Parameter Object With Schema And Content",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
+    "actualValue": "Parameter Object has both 'schema' and 'content' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "549c3fcacbef35388f35a53d79cc1166caf2ff03aa3c0def6193ba557ed2deb9",
+    "search_line": -1
   },
   {
     "queryName": "Parameter Object With Schema And Content",
     "severity": "INFO",
     "line": 45,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
+    "actualValue": "Parameter Object has both 'schema' and 'content' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "897e87f740ced1b497ea570d18187a9cb433b91f5d22d314fa388766933d3af4",
+    "search_line": -1
   },
   {
     "queryName": "Parameter Object With Schema And Content",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi.components.parameters.name={{limit}}",
+    "searchValue": "",
+    "expectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
+    "actualValue": "Parameter Object has both 'schema' and 'content' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "b1fba4ed6a2494111b50b8cc85027848697fa01f4f2f9828dcff26702424a44b",
+    "search_line": 0
   },
   {
     "queryName": "Parameter Object With Schema And Content",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi.components.parameters.name={{limit}}",
+    "searchValue": "",
+    "expectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
+    "actualValue": "Parameter Object has both 'schema' and 'content' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "995f7f05206b56723304c7633e132b9d89f5e176dab821932a50086cd9b86261",
+    "search_line": 0
   }
 ]

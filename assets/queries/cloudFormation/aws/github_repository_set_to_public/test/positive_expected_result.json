@@ -3,30 +3,75 @@
     "queryName": "GitHub Repository Set To Public",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CodeStar::GitHubRepository",
+    "resourceName": "my-github-repo",
+    "searchKey": "Resources.MyRepo3.Properties.IsPrivate",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRepo3.Properties.IsPrivate' should be set to true",
+    "actualValue": "'Resources.MyRepo3.Properties.IsPrivate' is not set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "2b3b8441a158cdcb3524918c8a4d6259df78ab2c97a6e02b166084882cce017d",
+    "search_line": -1
   },
   {
     "queryName": "GitHub Repository Set To Public",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive3.json"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::CodeStar::GitHubRepository",
+    "resourceName": "my-github-repo",
+    "searchKey": "Resources.MyRepo4.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRepo4.IsPrivate' should be set",
+    "actualValue": "'Resources.MyRepo4.IsPrivate' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5a1780c690886b71346e808d66c1c577c3ffc2ea78578786880dbfd13d0cfb7a",
+    "search_line": -1
   },
   {
     "queryName": "GitHub Repository Set To Public",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive2.yaml"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::CodeStar::GitHubRepository",
+    "resourceName": "my-github-repo",
+    "searchKey": "Resources.MyRepo5.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRepo5.IsPrivate' should be set",
+    "actualValue": "'Resources.MyRepo5.IsPrivate' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "66018f0fe68756823828ce703ea0551261b6b63f4bc18d4ce1be1040b273513d",
+    "search_line": -1
   },
   {
     "queryName": "GitHub Repository Set To Public",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::CodeStar::GitHubRepository",
+    "resourceName": "my-github-repo",
+    "searchKey": "Resources.MyRepo6.Properties.IsPrivate",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRepo6.Properties.IsPrivate' should be set to true",
+    "actualValue": "'Resources.MyRepo6.Properties.IsPrivate' is not set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "7f6c3af45ed08692493986ae0e21a50dbe3f6321ef2ccff4a33e23a89f35d8d4",
+    "search_line": -1
   },
   {
     "queryName": "GitHub Repository Set To Public",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::CodeStar::GitHubRepository",
+    "resourceName": "my-github-repo",
+    "searchKey": "Resources.MyRepo3.Properties.IsPrivate",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRepo3.Properties.IsPrivate' should be set to true",
+    "actualValue": "'Resources.MyRepo3.Properties.IsPrivate' is not set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "1f8fab7ee9646e53eb8635a6a0bc03b9add7cb997f72a7f6f36f12cf6e00f342",
+    "search_line": -1
   }
 ]

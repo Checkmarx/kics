@@ -3,12 +3,30 @@
     "queryName": "Secretsmanager Secret Encrypted With AWS Managed Key",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_secretsmanager_secret",
+    "resourceName": "test-cloudrail-1",
+    "searchKey": "aws_secretsmanager_secret[test2].kms_key_id",
+    "searchValue": "",
+    "expectedValue": "Secrets Manager secret should not be encrypted with AWS managed key",
+    "actualValue": "Secrets Manager secret is encrypted with AWS managed key",
+    "issueType": "IncorrectValue",
+    "similarityID": "5dbd8ea250e6b8022a0f3db1c9d9591ae8ea8dd4240517557113b89c22d90cb5",
+    "search_line": -1
   },
   {
     "queryName": "Secretsmanager Secret Encrypted With AWS Managed Key",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_secretsmanager_secret",
+    "resourceName": "test-cloudrail-1",
+    "searchKey": "aws_secretsmanager_secret[test].kms_key_id",
+    "searchValue": "",
+    "expectedValue": "Secrets Manager secret should not be encrypted with AWS managed key",
+    "actualValue": "Secrets Manager secret is encrypted with AWS managed key",
+    "issueType": "IncorrectValue",
+    "similarityID": "bf7cace6475946809239bf625787969393ddbeb108723096019d3dcd9232538a",
+    "search_line": -1
   }
 ]

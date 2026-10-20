@@ -3,6 +3,15 @@
     "queryName": "Storage Share Allows All ACL Permissions",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_storage_share",
+    "resourceName": "my-awesome-content.zip",
+    "searchKey": "azurerm_storage_share[default_storage_share].acl.access_policy.permissions",
+    "searchValue": "",
+    "expectedValue": "azurerm_storage_share[default_storage_share].acl.access_policy.permissions should not allow all ACL permissions",
+    "actualValue": "azurerm_storage_share[default_storage_share].acl.access_policy.permissions allows all ACL permissions",
+    "issueType": "IncorrectValue",
+    "similarityID": "2f13a1956a7069173852f03b062e8d1194085cef99870ac334392c291831cd09",
+    "search_line": -1
   }
 ]

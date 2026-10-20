@@ -3,24 +3,60 @@
     "queryName": "Path Template is Empty (v3)",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{}",
+    "searchValue": "",
+    "expectedValue": "The path template should not be empty",
+    "actualValue": "The path template is empty",
+    "issueType": "MissingAttribute",
+    "similarityID": "3ad63ff66214c8a6cf794b68102aaf20c817d0d2c39cbf827fdf1d9feb78455e",
+    "search_line": -1
   },
   {
     "queryName": "Path Template is Empty (v3)",
     "severity": "INFO",
     "line": 53,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{}",
+    "searchValue": "",
+    "expectedValue": "The path template should not be empty",
+    "actualValue": "The path template is empty",
+    "issueType": "MissingAttribute",
+    "similarityID": "f089ae9fbdf3e520a84213ff64d276ef6b6464ceb021beb07deba81781cca77a",
+    "search_line": -1
   },
   {
     "queryName": "Path Template is Empty (v2)",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{}",
+    "searchValue": "",
+    "expectedValue": "The path template should not be empty",
+    "actualValue": "The path template is empty",
+    "issueType": "MissingAttribute",
+    "similarityID": "476eb3b1eba85fac90f0fe9448958dce1883b24f2311f99823ebe48c7d6d42e9",
+    "search_line": -1
   },
   {
     "queryName": "Path Template is Empty (v2)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{}",
+    "searchValue": "",
+    "expectedValue": "The path template should not be empty",
+    "actualValue": "The path template is empty",
+    "issueType": "MissingAttribute",
+    "similarityID": "e84d3a47f5ade0f1def8cc1edb4ca325340579b93445ee61f0b714c34e0ea6c7",
+    "search_line": -1
   }
 ]

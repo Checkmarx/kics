@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Exposing Port 22 (SSH)",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Exposing Port 22 (SSH)",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Exposing Port 22 (SSH)",
+    "severity": "LOW",
+    "line": 3,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{gliderlabs/alpine:3.3}}.{{EXPOSE 3000 80 443 22}}",
+    "searchValue": "",
+    "expectedValue": "'EXPOSE' shouldn't contain the port 22 ",
+    "actualValue": "'EXPOSE' contains the port 22 ",
+    "issueType": "IncorrectValue",
+    "similarityID": "864cf3b1da86ee632c10c47ae4e4a45bb56bb33c667261d99e57ce3ec271d107",
+    "search_line": -1
+  },
+  {
+    "queryName": "Exposing Port 22 (SSH)",
+    "severity": "LOW",
+    "line": 3,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{gliderlabs/alpine:3.3}}.{{expose 3000 80 443 22}}",
+    "searchValue": "",
+    "expectedValue": "'EXPOSE' shouldn't contain the port 22 ",
+    "actualValue": "'EXPOSE' contains the port 22 ",
+    "issueType": "IncorrectValue",
+    "similarityID": "5a79d673d478abf9ab57f590df2207d6821d2267d48f291802450c7375305da9",
+    "search_line": -1
+  }
 ]

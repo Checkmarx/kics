@@ -3,18 +3,45 @@
     "queryName": "User with IAM Role",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "google_iam_policy",
+    "resourceName": "positive",
+    "searchKey": "google_iam_policy[positive].binding.role",
+    "searchValue": "",
+    "expectedValue": "google_iam_policy[positive].binding.role should not be set",
+    "actualValue": "google_iam_policy[positive].binding.role is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "6acb11d58803f62abb8b7329357c88123c51ff656d6e9c16244c9a25440fd286",
+    "search_line": -1
   },
   {
     "queryName": "User with IAM Role",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "google_project_iam_binding",
+    "resourceName": "positive2",
+    "searchKey": "google_project_iam_binding[positive2].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_binding[positive2].role should not be set",
+    "actualValue": "google_project_iam_binding[positive2].role is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "4fed7bdda171a2f33efa3fb3282195a54d287f13b02793ee54af7abf586b70b7",
+    "search_line": 3
   },
   {
     "queryName": "User with IAM Role",
     "severity": "LOW",
     "line": 18,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "google_project_iam_member",
+    "resourceName": "positive3",
+    "searchKey": "google_project_iam_member[positive3].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_member[positive3].role should not be set",
+    "actualValue": "google_project_iam_member[positive3].role is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "7c2098121d8e979366376c7e3e04c449fe018ea8bda552efd51ebb3c4551bc3e",
+    "search_line": 18
   }
 ]

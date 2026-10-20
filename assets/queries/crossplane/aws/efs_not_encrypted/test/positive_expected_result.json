@@ -2,25 +2,61 @@
   {
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
-    "line": 8,
-    "fileName": "positive.yaml"
-  },
-  {
-    "queryName": "EFS Not Encrypted",
-    "severity": "HIGH",
-    "line": 38,
-    "fileName": "positive.yaml"
-  },
-  {
-    "queryName": "EFS Not Encrypted",
-    "severity": "HIGH",
     "line": 6,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "FileSystem",
+    "resourceName": "example5",
+    "searchKey": "metadata.name={{example5}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "encrypted should be defined and set to true",
+    "actualValue": "encrypted is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6b86c6009de98b44d824d9bdb0a8e6b723c49204d20ea666d8181f230e90578b",
+    "search_line": 6
   },
   {
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
     "line": 35,
-    "fileName": "positive2.yaml"
-  } 
+    "fileName": "positive2.yaml",
+    "resourceType": "FileSystem",
+    "resourceName": "example6",
+    "searchKey": "spec.resources.base.metadata.name={{example6}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "encrypted should be defined and set to true",
+    "actualValue": "encrypted is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6b818d6d8d87a3a55ae5c3ca6ab617b2f5af25c4ab963ef03898482846f7f4e5",
+    "search_line": 35
+  },
+  {
+    "queryName": "EFS Not Encrypted",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive.yaml",
+    "resourceType": "FileSystem",
+    "resourceName": "example3",
+    "searchKey": "metadata.name={{example3}}.spec.forProvider.encrypted",
+    "searchValue": "",
+    "expectedValue": "encrypted should be set to true",
+    "actualValue": "encrypted is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "0b5d9ba8642129f49b8680d1e9528090414d91dc7ca43675519d72aa995f8959",
+    "search_line": 8
+  },
+  {
+    "queryName": "EFS Not Encrypted",
+    "severity": "HIGH",
+    "line": 38,
+    "fileName": "positive.yaml",
+    "resourceType": "FileSystem",
+    "resourceName": "example4",
+    "searchKey": "spec.resources.base.metadata.name={{example4}}.spec.forProvider.encrypted",
+    "searchValue": "",
+    "expectedValue": "encrypted should be set to true",
+    "actualValue": "encrypted is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f41e25cb18f680aa965655d4f86c96636c5989f7ea270ee7878c2a16da97fe67",
+    "search_line": 38
+  }
 ]

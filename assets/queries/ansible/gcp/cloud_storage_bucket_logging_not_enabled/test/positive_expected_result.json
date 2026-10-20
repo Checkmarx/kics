@@ -2,6 +2,16 @@
   {
     "queryName": "Cloud Storage Bucket Logging Not Enabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_storage_bucket",
+    "resourceName": "create a bucket",
+    "searchKey": "name={{create a bucket}}.{{google.cloud.gcp_storage_bucket}}",
+    "searchValue": "",
+    "expectedValue": "gcp_storage_bucket.logging should be defined",
+    "actualValue": "gcp_storage_bucket.logging is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7c64f208fcd63b95ec78d3987860ae2f7995708267a5243b3d72d80eb497bbf4",
+    "search_line": -1
   }
 ]

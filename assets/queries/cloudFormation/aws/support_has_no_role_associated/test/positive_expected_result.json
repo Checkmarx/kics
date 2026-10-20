@@ -1,38 +1,92 @@
 [
   {
+    "queryName": "Support Has No Role Associated",
+    "severity": "LOW",
     "line": 4,
     "fileName": "positive1.yaml",
-    "queryName": "Support Has No Role Associated",
-    "severity": "LOW"
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "AWSSupportAccess",
+    "searchKey": "Resources.noRoles",
+    "searchValue": "",
+    "expectedValue": "'Resources.noRoles.Roles' should be set",
+    "actualValue": "'Resources.noRoles.Roles' is undefined",
+    "issueType": "IncorrectValue",
+    "similarityID": "5d7e6f2c85f734f517ee167a8ab1f40433dfe86e41f8bb411c7c1a5bab24765f",
+    "search_line": -1
   },
   {
     "queryName": "Support Has No Role Associated",
     "severity": "LOW",
     "line": 16,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "AWSSupportAccess",
+    "searchKey": "Resources.noUsers",
+    "searchValue": "",
+    "expectedValue": "'Resources.noUsers.Users' should be set",
+    "actualValue": "'Resources.noUsers.Users' is undefined",
+    "issueType": "IncorrectValue",
+    "similarityID": "5039d592793e50520903df921ff45d664cf5b64b6982ca6eca9fb4c506e4ff9f",
+    "search_line": -1
   },
   {
     "queryName": "Support Has No Role Associated",
     "severity": "LOW",
     "line": 28,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "AWSSupportAccess",
+    "searchKey": "Resources.noGroups",
+    "searchValue": "",
+    "expectedValue": "'Resources.noGroups.Groups' should be set",
+    "actualValue": "'Resources.noGroups.Groups' is undefined",
+    "issueType": "IncorrectValue",
+    "similarityID": "b5ea2bf675e66eafe80f4ab3e9c6ea00a144a0cbf8480afbdd76064765c26447",
+    "search_line": -1
   },
   {
     "queryName": "Support Has No Role Associated",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "AWSSupportAccess",
+    "searchKey": "Resources.noRoles",
+    "searchValue": "",
+    "expectedValue": "'Resources.noRoles.Roles' should be set",
+    "actualValue": "'Resources.noRoles.Roles' is undefined",
+    "issueType": "IncorrectValue",
+    "similarityID": "1e800b4cae23081127784d326f74b379f18f192ca1c3c36732c21ab23059ee51",
+    "search_line": -1
   },
   {
     "queryName": "Support Has No Role Associated",
     "severity": "LOW",
     "line": 29,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "AWSSupportAccess",
+    "searchKey": "Resources.noUsers",
+    "searchValue": "",
+    "expectedValue": "'Resources.noUsers.Users' should be set",
+    "actualValue": "'Resources.noUsers.Users' is undefined",
+    "issueType": "IncorrectValue",
+    "similarityID": "2803373f5969d31b17eaf6759ea163d527675bf96b6e63566b1bce5a1bfc8305",
+    "search_line": -1
   },
   {
     "queryName": "Support Has No Role Associated",
     "severity": "LOW",
     "line": 53,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "AWSSupportAccess",
+    "searchKey": "Resources.noGroups",
+    "searchValue": "",
+    "expectedValue": "'Resources.noGroups.Groups' should be set",
+    "actualValue": "'Resources.noGroups.Groups' is undefined",
+    "issueType": "IncorrectValue",
+    "similarityID": "670b830d82ea59c2822c91ea524301898ef45ff770fd201d1d503cac9f7939c3",
+    "search_line": -1
   }
 ]

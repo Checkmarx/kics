@@ -1,8 +1,17 @@
 [
-    {
-      "queryName": "ROS Stack Without Template",
-      "severity": "MEDIUM",
-      "line": 1,
-      "fileName": "positive1.tf"
-    }
-  ]
+  {
+    "queryName": "ROS Stack Without Template",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_ros_stack",
+    "resourceName": "tf-testaccstack",
+    "searchKey": "alicloud_ros_stack[example]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'template_body' or Attribute 'template_url' should be set.",
+    "actualValue": "Both Attribute 'template_body' and Attribute 'template_url' are undefined.",
+    "issueType": "MissingAttribute",
+    "similarityID": "f05bfdead5291bdcdd802f80a888dad30fe8695f6e3b4f317e2e8e774fde2a47",
+    "search_line": 1
+  }
+]

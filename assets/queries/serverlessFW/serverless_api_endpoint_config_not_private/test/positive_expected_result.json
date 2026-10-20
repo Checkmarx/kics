@@ -3,12 +3,30 @@
     "queryName": "Serverless API Endpoint Config Not Private",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive1.yml"
+    "fileName": "positive1.yml",
+    "resourceType": "AWS::ApiGateway",
+    "resourceName": "my-service",
+    "searchKey": "provider",
+    "searchValue": "",
+    "expectedValue": "endpointType should be defined and set to PRIVATE",
+    "actualValue": "endpointType is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b8f8d02c9e47b664ae625d8286fc44910586aeddbcc5d55e1e3ed987c5bcdc70",
+    "search_line": 3
   },
   {
     "queryName": "Serverless API Endpoint Config Not Private",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive2.yml"
+    "fileName": "positive2.yml",
+    "resourceType": "AWS::ApiGateway",
+    "resourceName": "my-service",
+    "searchKey": "provider.endpointType",
+    "searchValue": "",
+    "expectedValue": "endpointType should be set to PRIVATE",
+    "actualValue": "endpointType is not set to PRIVATE",
+    "issueType": "IncorrectValue",
+    "similarityID": "7aa30dbd57d621c457c10c0e2752944a8a7363e7174b1135dea20e4d0551e022",
+    "search_line": 5
   }
 ]

@@ -1,38 +1,92 @@
 [
-	{
-		"queryName": "Request Timeout Not Properly Set",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Request Timeout Not Properly Set",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Request Timeout Not Properly Set",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Request Timeout Not Properly Set",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive4.yaml"
-	},
-	{
-		"queryName": "Request Timeout Not Properly Set",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive5.yaml"
-	},
-	{
-		"queryName": "Request Timeout Not Properly Set",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive6.yaml"
-	}
+  {
+    "queryName": "Request Timeout Not Properly Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--request-timeout flag should not be set to more than 300 seconds",
+    "actualValue": "--request-timeout flag is set to more than 300 seconds",
+    "issueType": "IncorrectValue",
+    "similarityID": "f7215646be3f76ec8801980766f873eb88ebc16a7c68f54b362ca8edf2ce24f5",
+    "search_line": 11
+  },
+  {
+    "queryName": "Request Timeout Not Properly Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--request-timeout flag should not be set to more than 300 seconds",
+    "actualValue": "--request-timeout flag is set to more than 300 seconds",
+    "issueType": "IncorrectValue",
+    "similarityID": "04554f60068182ede2f90f508bddccd8e0f9576d7457b9875bd18a789455bf12",
+    "search_line": 11
+  },
+  {
+    "queryName": "Request Timeout Not Properly Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive3.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--request-timeout flag should not be set to more than 300 seconds",
+    "actualValue": "--request-timeout flag is set to more than 300 seconds",
+    "issueType": "IncorrectValue",
+    "similarityID": "b53303389f2f69ac36a3b8aa28b1aa07911cffcf3a25d3ab0a7686172fccb765",
+    "search_line": 11
+  },
+  {
+    "queryName": "Request Timeout Not Properly Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive4.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--request-timeout flag should not be set to more than 300 seconds",
+    "actualValue": "--request-timeout flag is set to more than 300 seconds",
+    "issueType": "IncorrectValue",
+    "similarityID": "9bda340f267344ec24f3be3f4b867483bec5c3b3802b2b987682087ee4b8cdff",
+    "search_line": 11
+  },
+  {
+    "queryName": "Request Timeout Not Properly Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive5.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--request-timeout flag should not be set to more than 300 seconds",
+    "actualValue": "--request-timeout flag is set to more than 300 seconds",
+    "issueType": "IncorrectValue",
+    "similarityID": "5064a4ec5fc6dbfb4aa8e76232fdc9a5a42970ac861902d0a2120e5ae3288b8f",
+    "search_line": 11
+  },
+  {
+    "queryName": "Request Timeout Not Properly Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive6.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--request-timeout flag should not be set to more than 300 seconds",
+    "actualValue": "--request-timeout flag is set to more than 300 seconds",
+    "issueType": "IncorrectValue",
+    "similarityID": "e0cdc61011fd1677e4c90b6fd4b7f3ebf7070fe003f8cd8a165dd979e57ceefa",
+    "search_line": 11
+  }
 ]

@@ -1,0 +1,124 @@
+{
+	"kics_version": "development",
+	"files_scanned": 7,
+	"lines_scanned": 72,
+	"files_parsed": 7,
+	"lines_parsed": 72,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 1,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 0,
+		"INFO": 0,
+		"LOW": 6,
+		"MEDIUM": 0,
+		"TRACE": 0
+	},
+	"total_counter": 6,
+	"total_bom_resources": 0,
+	"start": "2026-09-15T17:11:04.856116473+01:00",
+	"end": "2026-09-15T17:11:07.002692715+01:00",
+	"paths": [
+		"assets/queries/terraform/aws/postgres_rds_logging_disabled/test"
+	],
+	"queries": [
+		{
+			"query_name": "Postgres RDS logging disabled",
+			"query_id": "820882c4-0c07-4686-b1ca-c69241c57470",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_parameter_group?q=log_statement#argument-reference",
+			"severity": "LOW",
+			"platform": "Terraform",
+			"cwe": "778",
+			"risk_score": "1.0",
+			"cloud_provider": "AWS",
+			"category": "Observability",
+			"experimental": false,
+			"description": "Logging of executed database queries should be enabled to help assess performance impact and detect potential malicious activity.Note that these logs might contain password information and other credentials if provided in cleartext. More Information: https://repost.aws/knowledge-center/rds-postgresql-cleartext-logging",
+			"description_id": "820882c4",
+			"files": [
+				{
+					"file_name": "assets/queries/terraform/aws/postgres_rds_logging_disabled/test/positive2.tf",
+					"similarity_id": "effd0e480fca212e320486620e644edf21d9aac8ba3b0d4d71dded231252f688",
+					"line": 6,
+					"resource_type": "aws_db_parameter_group",
+					"resource_name": "postgres-logging",
+					"issue_type": "IncorrectValue",
+					"search_key": "aws_db_parameter_group.postgres_logging",
+					"search_line": 6,
+					"search_value": "",
+					"expected_value": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
+					"actual_value": "aws_db_parameter_group's log_statement has the wrong value"
+				},
+				{
+					"file_name": "assets/queries/terraform/aws/postgres_rds_logging_disabled/test/positive1.tf",
+					"similarity_id": "52a326190d7d162c78216e971b4845a0ab0ed6b286ca60d51308d63eb9c29ff0",
+					"line": 1,
+					"resource_type": "aws_db_parameter_group",
+					"resource_name": "postgres-logging",
+					"issue_type": "IncorrectValue",
+					"search_key": "aws_db_parameter_group.postgres_logging",
+					"search_line": 1,
+					"search_value": "",
+					"expected_value": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
+					"actual_value": "aws_db_parameter_group's log_statement and log_min_duration_statement are not set or both have the wrong value"
+				},
+				{
+					"file_name": "assets/queries/terraform/aws/postgres_rds_logging_disabled/test/positive3.tf",
+					"similarity_id": "e9120271aa26610e6332592431627cfd7b37de589dfa5397cbf84236455e3724",
+					"line": 10,
+					"resource_type": "aws_db_parameter_group",
+					"resource_name": "postgres-logging",
+					"issue_type": "IncorrectValue",
+					"search_key": "aws_db_parameter_group.postgres_logging",
+					"search_line": 10,
+					"search_value": "",
+					"expected_value": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
+					"actual_value": "aws_db_parameter_group's log_min_duration_statement has the wrong value"
+				},
+				{
+					"file_name": "assets/queries/terraform/aws/postgres_rds_logging_disabled/test/positive5.tf",
+					"similarity_id": "f5afc06275f9899f11f17db8093b42f8460cd92e793606f17b42651cc1124e00",
+					"line": 1,
+					"resource_type": "aws_db_parameter_group",
+					"resource_name": "postgres-logging",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_db_parameter_group.example",
+					"search_line": 1,
+					"search_value": "",
+					"expected_value": "aws_db_parameter_group's log_statement and log_min_duration_statement should be defined",
+					"actual_value": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined"
+				},
+				{
+					"file_name": "assets/queries/terraform/aws/postgres_rds_logging_disabled/test/positive6.tf",
+					"similarity_id": "fa08dbefc510e384150ca861a686bb567db8751050bc2ad0622e2755099ff7ef",
+					"line": 1,
+					"resource_type": "aws_db_parameter_group",
+					"resource_name": "postgres-logging",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_db_parameter_group.example",
+					"search_line": 1,
+					"search_value": "",
+					"expected_value": "aws_db_parameter_group's log_statement and log_min_duration_statement should be defined",
+					"actual_value": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined"
+				},
+				{
+					"file_name": "assets/queries/terraform/aws/postgres_rds_logging_disabled/test/positive4.tf",
+					"similarity_id": "b6edbd3a9669c3a67691f423f3106a841a55be4fa2265d17f99a8cc0377a6808",
+					"line": 1,
+					"resource_type": "aws_db_parameter_group",
+					"resource_name": "postgres-logging",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_db_parameter_group.postgres_logging",
+					"search_line": 1,
+					"search_value": "",
+					"expected_value": "aws_db_parameter_group's log_statement and log_min_duration_statement should be defined",
+					"actual_value": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined"
+				}
+			]
+		}
+	]
+}

@@ -1,14 +1,32 @@
 [
   {
+    "queryName": "CloudWatch Logging Disabled",
     "severity": "MEDIUM",
     "line": 6,
     "fileName": "positive1.yaml",
-    "queryName": "CloudWatch Logging Disabled"
+    "resourceType": "AWS::Route53::HostedZone",
+    "resourceName": "HostedZone",
+    "searchKey": "Resources.HostedZone3.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.HostedZone3.QueryLoggingConfig should be set",
+    "actualValue": "Resources.HostedZone3.QueryLoggingConfig is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "15dfdcb3e8b652adb036919f01182b149c8ba1c08d2d50c3cb22dc423b6c68c3",
+    "search_line": -1
   },
   {
     "queryName": "CloudWatch Logging Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Route53::HostedZone",
+    "resourceName": "HostedZone",
+    "searchKey": "Resources.HostedZone4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.HostedZone4.QueryLoggingConfig should be set",
+    "actualValue": "Resources.HostedZone4.QueryLoggingConfig is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6f3f2491e00b0327db73eed9cf14eb157789fea3e9ce6b64fb3f805ae61006d9",
+    "search_line": -1
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "CMK Is Unusable",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "community.aws.aws_kms",
+    "resourceName": "Update IAM policy on an existing KMS key1",
+    "searchKey": "name={{Update IAM policy on an existing KMS key1}}.{{community.aws.aws_kms}}.enabled",
+    "searchValue": "",
+    "expectedValue": "community.aws.aws_kms.enabled should be set to true",
+    "actualValue": "community.aws.aws_kms.enabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "33a1e252780be9bff31494319f33309075e9b7b99bedbb889b49c94dcb7155aa",
+    "search_line": -1
   },
   {
     "queryName": "CMK Is Unusable",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "community.aws.aws_kms",
+    "resourceName": "Update IAM policy on an existing KMS key2",
+    "searchKey": "name={{Update IAM policy on an existing KMS key2}}.{{community.aws.aws_kms}}.pending_window",
+    "searchValue": "",
+    "expectedValue": "community.aws.aws_kms.pending_window should be undefined",
+    "actualValue": "community.aws.aws_kms.pending_windowis is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "9e73f1892cb5748430e707efa5ee393dd0d3ed2e5a935b4d6fcb3525a9985759",
+    "search_line": -1
   }
 ]

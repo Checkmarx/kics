@@ -1,38 +1,92 @@
 [
-    {
-      "queryName": "Memory Not Limited",
-      "severity": "MEDIUM",
-      "line": 9,
-      "filename": "positive1.yaml"
-    },
-    {
-        "queryName": "Memory Not Limited",
-        "severity": "MEDIUM",
-        "line": 4,
-        "filename": "positive2.yaml"
-    },
-    {
-      "queryName": "Memory Not Limited",
-      "severity": "MEDIUM",
-      "line": 3,
-      "filename": "positive3.yaml"
-    },
-    {
-      "queryName": "Memory Not Limited",
-      "severity": "MEDIUM",
-      "line": 7,
-      "filename": "positive3.yaml"
-    },
-    {
-      "queryName": "Memory Not Limited",
-      "severity": "MEDIUM",
-      "line": 8,
-      "filename": "positive4.yaml"
-    },
-    {
-      "queryName": "Memory Not Limited",
-      "severity": "MEDIUM",
-      "line": 5,
-      "filename": "positive5.yaml"
-    }
-  ]
+  {
+    "queryName": "Memory Not Limited",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.zapzop.deploy.resources.limits",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources.limits.memory' should be defined",
+    "actualValue": "'deploy.resources.limits.memory' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6ea74f9b8e2abf61f7f109fc4dacb0b55a5c17348b00f059d8f1f02c56b0d8a6",
+    "search_line": 9
+  },
+  {
+    "queryName": "Memory Not Limited",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.criwhat",
+    "searchValue": "",
+    "expectedValue": "For mem_limit should be declared.",
+    "actualValue": "There is no mem_limit declared.",
+    "issueType": "MissingAttribute",
+    "similarityID": "c3ade69521dc45cf8e3b59ab11bf9e556160aa4fd1c81f3e04b714c98c89a558",
+    "search_line": 4
+  },
+  {
+    "queryName": "Memory Not Limited",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.zapzop",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources.limits.memory' should be defined",
+    "actualValue": "'deploy' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "33db19bd4e91454146f18b05f8f936aa49c593155611aff3e177837c60107d66",
+    "search_line": 3
+  },
+  {
+    "queryName": "Memory Not Limited",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.zapzop.deploy",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources' should be defined",
+    "actualValue": "'deploy.resources' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5cdd2d98316be66547582a0437e5768ec03b6966d5b596a4dadf4799e0752e19",
+    "search_line": 7
+  },
+  {
+    "queryName": "Memory Not Limited",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.zapzop.deploy.resources",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources.limits' should be defined",
+    "actualValue": "'deploy.resources.limits' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "dc0aa47ed7f98b13ae28e63731be4862ce8d562a648755cf024f07253c327a05",
+    "search_line": 8
+  },
+  {
+    "queryName": "Memory Not Limited",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.redis.deploy",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources' should be defined",
+    "actualValue": "'deploy.resources' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0ccf9210f496f76f3cd3bbc6d348a4b64623f1c79364a128856ed9770a7d095f",
+    "search_line": 5
+  }
+]

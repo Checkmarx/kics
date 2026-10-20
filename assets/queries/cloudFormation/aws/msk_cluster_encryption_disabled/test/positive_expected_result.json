@@ -1,38 +1,92 @@
 [
   {
+    "queryName": "MSK Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 5,
     "fileName": "positive1.yaml",
-    "queryName": "MSK Cluster Encryption Disabled"
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithAllProperties",
+    "searchKey": "Resources.TestCluster5.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster5.Properties.EncryptionInfo should be defined",
+    "actualValue": "Resources.TestCluster5.Properties.EncryptionInfo is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "96c2877a07e9f86274303e87260619c03693b35218cbf56f77a1df03b229b980",
+    "search_line": -1
+  },
+  {
+    "queryName": "MSK Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithAllProperties",
+    "searchKey": "Resources.TestCluster6.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster6.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker is 'TLS'",
+    "actualValue": "Resources.TestCluster6.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker is not 'TLS'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5e80a6a818ee2a5181906fbdeb5504d0377c57f996f13d67311bbd94542de454",
+    "search_line": -1
+  },
+  {
+    "queryName": "MSK Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithAllProperties",
+    "searchKey": "Resources.TestCluster7.Properties.EncryptionInfo.EncryptionInTransit.InCluster",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster7.Properties.EncryptionInfo.EncryptionInTransit.InCluster is 'true'",
+    "actualValue": "Resources.TestCluster7.Properties.EncryptionInfo.EncryptionInTransit.InCluster is 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "fd4cdc394cc25db553755768bb944eb5159cf1fda8b86c63eeda853a585f0d04",
+    "search_line": -1
   },
   {
     "queryName": "MSK Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "MSK Cluster Encryption Disabled",
-    "severity": "HIGH",
-    "line": 14,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "MSK Cluster Encryption Disabled",
-    "severity": "HIGH",
-    "line": 16,
-    "fileName": "positive5.json"
-  },
-  {
-    "queryName": "MSK Cluster Encryption Disabled",
-    "severity": "HIGH",
-    "line": 14,
-    "fileName": "positive3.yaml"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithAllProperties",
+    "searchKey": "Resources.TestCluster8.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster8.Properties.EncryptionInfo should be defined",
+    "actualValue": "Resources.TestCluster8.Properties.EncryptionInfo is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "599740764c27d331fa47bbe516eba5c93bcd0c748d09e767751096bc1fa45979",
+    "search_line": -1
   },
   {
     "queryName": "MSK Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 16,
-    "fileName": "positive6.json"
+    "fileName": "positive5.json",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithAllProperties",
+    "searchKey": "Resources.TestCluster9.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster9.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker is 'TLS'",
+    "actualValue": "Resources.TestCluster9.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker is not 'TLS'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3a25911f079e6fca8fd8e3347ec207619edcc23bdfa42d18f83b31b2770bf46e",
+    "search_line": -1
+  },
+  {
+    "queryName": "MSK Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive6.json",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithAllProperties",
+    "searchKey": "Resources.TestCluster10.Properties.EncryptionInfo.EncryptionInTransit.InCluster",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster10.Properties.EncryptionInfo.EncryptionInTransit.InCluster is 'true'",
+    "actualValue": "Resources.TestCluster10.Properties.EncryptionInfo.EncryptionInTransit.InCluster is 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "75b7b5eefb5472daa92a175bf4163bef558f1bbb9421ba7a98a7f70b03418f3e",
+    "search_line": -1
   }
 ]

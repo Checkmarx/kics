@@ -3,6 +3,15 @@
     "queryName": "Group With Privilege Escalation By Actions 'iam:UpdateAssumeRolePolicy' And 'sts:AssumeRole'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_group",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_group[cosmic]",
+    "searchValue": "",
+    "expectedValue": "group cosmic shouldn't be associated with a policy that has Action set to 'iam:UpdateAssumeRolePolicy' and 'sts:AssumeRole' and Resource set to '*'",
+    "actualValue": "group cosmic is associated with a policy that has Action set to 'iam:UpdateAssumeRolePolicy' and 'sts:AssumeRole' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0887ff5d37479c0924ad3443da5f5ab4e735c0d4f3ce155616efa19ffead9b99",
+    "search_line": 1
   }
 ]

@@ -3,24 +3,60 @@
     "queryName": "Operation Without Successful HTTP Status Code (v3)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses has at least one successful HTTP status code defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f37a0dd0b5f2f3702497ee7ab455b2b621c3515a4aba3a653a4d38f15dfcbcd9",
+    "search_line": 12
   },
   {
     "queryName": "Operation Without Successful HTTP Status Code (v3)",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses has at least one successful HTTP status code defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f0caa090b68bcd4d166f5a45b44de9a7386e7977cfbc74281d431632651ac753",
+    "search_line": 10
   },
   {
     "queryName": "Operation Without Successful HTTP Status Code (v2)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses has at least one successful HTTP status code defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d5860a8601aadff4d8d64ddafc47cef2c4b00acaf5c0797bb3995241138e538e",
+    "search_line": 12
   },
   {
     "queryName": "Operation Without Successful HTTP Status Code (v2)",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses has at least one successful HTTP status code defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "51b5e6d739af756370b5e41c6ffb57aadd6c203b0e5dfd19232f5b84dedbbcb5",
+    "search_line": 10
   }
 ]

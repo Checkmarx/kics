@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "OSLogin Is Disabled In VM Instance",
-		"severity": "MEDIUM",
-		"line": 4
-	}
+  {
+    "queryName": "OSLogin Is Disabled In VM Instance",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "oslogin-disabled",
+    "searchKey": "name={{oslogin-disabled}}.{{google.cloud.gcp_compute_instance}}.metadata.enable-oslogin",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.metadata.enable-oslogin should be true",
+    "actualValue": "gcp_compute_instance.metadata.enable-oslogin is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a998f2616219301e8f28207a45463e80fcb4793c6a3f0a3f0f6dd410085d7129",
+    "search_line": -1
+  }
 ]

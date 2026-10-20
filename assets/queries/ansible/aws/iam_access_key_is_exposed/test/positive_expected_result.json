@@ -1,17 +1,47 @@
 [
-	{
-		"queryName": "IAM Access Key Is Exposed",
-		"severity": "MEDIUM",
-		"line": 7
-		},
-    {
-      "queryName": "IAM Access Key Is Exposed",
-      "severity": "MEDIUM",
-      "line": 26
-    },
-    {
-      "queryName": "IAM Access Key Is Exposed",
-      "severity": "MEDIUM",
-      "line": 36
-    }
+  {
+    "queryName": "IAM Access Key Is Exposed",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.iam",
+    "resourceName": "Create two new IAM users with API keys",
+    "searchKey": "name={{Create two new IAM users with API keys}}.{{community.aws.iam}}.access_key_state",
+    "searchValue": "",
+    "expectedValue": "iam.name should be 'root' for an active access key",
+    "actualValue": "iam.name is '{{ item }}' for an active access key",
+    "issueType": "IncorrectValue",
+    "similarityID": "b597bc9d5c10503d787e68b78e43a2a4fb78361f25be389f5da765baeb7786c6",
+    "search_line": -1
+  },
+  {
+    "queryName": "IAM Access Key Is Exposed",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.iam",
+    "resourceName": "Create Two Groups, Mario and Luigi",
+    "searchKey": "name={{Create Two Groups, Mario and Luigi}}.{{community.aws.iam}}.access_key_state",
+    "searchValue": "",
+    "expectedValue": "iam.name should be 'root' for an active access key",
+    "actualValue": "iam.name is '{{ item }}' for an active access key",
+    "issueType": "IncorrectValue",
+    "similarityID": "22702f72322eb16654c96461e3d02094233b86699081c60ddb5d96e9c6092f46",
+    "search_line": -1
+  },
+  {
+    "queryName": "IAM Access Key Is Exposed",
+    "severity": "MEDIUM",
+    "line": 36,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.iam",
+    "resourceName": "Update user",
+    "searchKey": "name={{Update user}}.{{community.aws.iam}}.access_key_state",
+    "searchValue": "",
+    "expectedValue": "iam.name should be 'root' for an active access key",
+    "actualValue": "iam.name is 'jdavila' for an active access key",
+    "issueType": "IncorrectValue",
+    "similarityID": "908ac85a4deb5e3852efd1ed8dc02a9d5d2e4daf94409c60337cb5409af1b756",
+    "search_line": -1
+  }
 ]

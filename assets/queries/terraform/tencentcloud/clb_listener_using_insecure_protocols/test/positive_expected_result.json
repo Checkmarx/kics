@@ -3,18 +3,45 @@
     "queryName": "CLB Listener Using Insecure Protocols",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "tencentcloud_clb_listener",
+    "resourceName": "listener",
+    "searchKey": "tencentcloud_clb_listener[listener].protocol",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_clb_listener[listener].protocol[HTTP] should not be an insecure protocol",
+    "actualValue": "tencentcloud_clb_listener[listener].protocol[HTTP] is an insecure protocol",
+    "issueType": "IncorrectValue",
+    "similarityID": "394d495f018f2d536221ada3879d8473f768be943680001db6d92849e0cfce29",
+    "search_line": 4
   },
   {
     "queryName": "CLB Listener Using Insecure Protocols",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "tencentcloud_clb_listener",
+    "resourceName": "listener",
+    "searchKey": "tencentcloud_clb_listener[listener].protocol",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_clb_listener[listener].protocol[TCP] should not be an insecure protocol",
+    "actualValue": "tencentcloud_clb_listener[listener].protocol[TCP] is an insecure protocol",
+    "issueType": "IncorrectValue",
+    "similarityID": "4daa5aced1de17aa735cc9c2916b26f087bd71a5ad1423db211fdf17f4e6b231",
+    "search_line": 4
   },
   {
     "queryName": "CLB Listener Using Insecure Protocols",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "tencentcloud_clb_listener",
+    "resourceName": "listener",
+    "searchKey": "tencentcloud_clb_listener[listener].protocol",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_clb_listener[listener].protocol[UDP] should not be an insecure protocol",
+    "actualValue": "tencentcloud_clb_listener[listener].protocol[UDP] is an insecure protocol",
+    "issueType": "IncorrectValue",
+    "similarityID": "f5cc914ce1c6683b6717d0d3d25e436835fb33ee1b7e6d25ef50914dd9db03c8",
+    "search_line": 4
   }
 ]

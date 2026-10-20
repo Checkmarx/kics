@@ -2,25 +2,61 @@
   {
     "queryName": "Hardcoded SecureString Parameter Default Value",
     "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive1.bicep",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "parameters.adminPassword.defaultValue",
+    "searchValue": "",
+    "expectedValue": "parameters.adminPassword.defaultValue should not be hardcoded",
+    "actualValue": "parameters.adminPassword.defaultValue is hardcoded",
+    "issueType": "IncorrectValue",
+    "similarityID": "bbc12e6c80acee61b11a8285d7453e75b98bc88decbe1ac762ca52a3b6a4ae2b",
+    "search_line": 2
+  },
+  {
+    "queryName": "Hardcoded SecureString Parameter Default Value",
+    "severity": "HIGH",
     "line": 7,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "parameters.adminPassword.defaultValue",
+    "searchValue": "",
+    "expectedValue": "parameters.adminPassword.defaultValue should not be hardcoded",
+    "actualValue": "parameters.adminPassword.defaultValue is hardcoded",
+    "issueType": "IncorrectValue",
+    "similarityID": "d1bb35bd189780b050e27802a4e1538a8f365d5845ddf89a0f394ffca3be9983",
+    "search_line": 7
+  },
+  {
+    "queryName": "Hardcoded SecureString Parameter Default Value",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive2.bicep",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "parameters.adminPassword.defaultValue",
+    "searchValue": "",
+    "expectedValue": "parameters.adminPassword.defaultValue should not be hardcoded",
+    "actualValue": "parameters.adminPassword.defaultValue is hardcoded",
+    "issueType": "IncorrectValue",
+    "similarityID": "46f7057c25ea017d8866fd8fa06734e38c179f79501fc6c12a8de419d90fda9a",
+    "search_line": 2
   },
   {
     "queryName": "Hardcoded SecureString Parameter Default Value",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "Hardcoded SecureString Parameter Default Value",
-    "severity": "HIGH",
-    "line": 2,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Hardcoded SecureString Parameter Default Value",
-    "severity": "HIGH",
-    "line": 2,
-    "fileName": "positive2.bicep"
+    "fileName": "positive2.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "parameters.adminPassword.defaultValue",
+    "searchValue": "",
+    "expectedValue": "parameters.adminPassword.defaultValue should not be hardcoded",
+    "actualValue": "parameters.adminPassword.defaultValue is hardcoded",
+    "issueType": "IncorrectValue",
+    "similarityID": "432b70dad64b9b8515133bb887a53c24cbb9f266e016755df60b8b67606f0410",
+    "search_line": -1
   }
 ]

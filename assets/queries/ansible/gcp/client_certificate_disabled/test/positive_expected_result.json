@@ -2,16 +2,46 @@
   {
     "queryName": "Client Certificate Disabled",
     "severity": "HIGH",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster1",
+    "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_auth should be defined",
+    "actualValue": "gcp_container_cluster.master_auth is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7c63e39721fa4cf8b41aed030771ef65924a9f45e1bcf5289deb44e826eb6855",
+    "search_line": -1
   },
   {
     "queryName": "Client Certificate Disabled",
     "severity": "HIGH",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster2",
+    "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}.master_auth",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_auth.client_certificate_config should be defined",
+    "actualValue": "gcp_container_cluster.master_auth.client_certificate_config is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4a0c48c424879f346170e0b794fd25ca40a2a2cf1d24e8ea09121abc8e6540af",
+    "search_line": -1
   },
   {
     "queryName": "Client Certificate Disabled",
     "severity": "HIGH",
-    "line": 37
+    "line": 37,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster3",
+    "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.master_auth.client_certificate_config.issue_client_certificate",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_auth.password should be true",
+    "actualValue": "gcp_container_cluster.master_auth.password is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "c2292a84e6d5d27c07a9fc0faec50608ab751f70b298621f21c728fc7668905f",
+    "search_line": -1
   }
 ]

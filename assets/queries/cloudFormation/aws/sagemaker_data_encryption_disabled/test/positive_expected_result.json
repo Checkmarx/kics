@@ -3,24 +3,60 @@
     "queryName": "SageMaker Data Encryption Disabled",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::SageMaker::NotebookInstance",
+    "resourceName": "BasicNotebookInstance",
+    "searchKey": "Resources.BasicNotebookInstance.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' should be defined",
+    "actualValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b1f358c3d5e166866ded8b51c3974a56a2aad00a73ccf0dfea3dbff2f315141b",
+    "search_line": -1
   },
   {
+    "queryName": "SageMaker Data Encryption Disabled",
+    "severity": "HIGH",
     "line": 20,
     "fileName": "positive1.yaml",
+    "resourceType": "AWS::SageMaker::NotebookInstance",
+    "resourceName": "BasicNotebookInstance3",
+    "searchKey": "Resources.BasicNotebookInstance3.Properties.KmsKeyId",
+    "searchValue": "",
+    "expectedValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' should not be empty",
+    "actualValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "3f42860ef6d431a531e4080a7ad28fb27d6bb0471fa8e7c5cb8583f7a1916244",
+    "search_line": -1
+  },
+  {
     "queryName": "SageMaker Data Encryption Disabled",
-    "severity": "HIGH"
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::SageMaker::NotebookInstance",
+    "resourceName": "BasicNotebookInstance3",
+    "searchKey": "Resources.BasicNotebookInstance3.Properties.KmsKeyId",
+    "searchValue": "",
+    "expectedValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' should not be empty",
+    "actualValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "5e70fc8452b39fcb2954940387f64f542244d9cdeec2508093fa61f30ea583f6",
+    "search_line": -1
   },
   {
     "queryName": "SageMaker Data Encryption Disabled",
     "severity": "HIGH",
     "line": 59,
-    "fileName": "positive2.json"
-  },
-  {
-    "line": 16,
     "fileName": "positive2.json",
-    "queryName": "SageMaker Data Encryption Disabled",
-    "severity": "HIGH"
+    "resourceType": "AWS::SageMaker::NotebookInstance",
+    "resourceName": "BasicNotebookInstance",
+    "searchKey": "Resources.BasicNotebookInstance.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' should be defined",
+    "actualValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "62e2d7bb8f41a9a482245c48df6ce4bea8a5c841579f0815bf8eba8978f8c9d2",
+    "search_line": -1
   }
 ]

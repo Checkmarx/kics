@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "ECS Service Admin Role Is Present",
-		"severity": "HIGH",
-		"line": 7
-	}
+  {
+    "queryName": "ECS Service Admin Role Is Present",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive.tf",
+    "resourceType": "aws_ecs_service",
+    "resourceName": "mongodb",
+    "searchKey": "aws_ecs_service[positive1].iam_role",
+    "searchValue": "",
+    "expectedValue": "'aws_ecs_service[positive1].iam_role' should not equal to 'admin'",
+    "actualValue": "'aws_ecs_service[positive1].iam_role' is equal to 'admin'",
+    "issueType": "IncorrectValue",
+    "similarityID": "cb3b10cbf6ba554618c345120598175692bff02052fd2c11d3e0c66d91de5d6a",
+    "search_line": -1
+  }
 ]

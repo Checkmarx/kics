@@ -3,6 +3,15 @@
     "queryName": "OSS Bucket Ip Restriction Disabled",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-170309-policy",
+    "searchKey": "alicloud_oss_bucket[bucket-policy].policy",
+    "searchValue": "",
+    "expectedValue": "[bucket-policy].policy has restricted ip access",
+    "actualValue": "[bucket-policy].policy does not restrict access via ip",
+    "issueType": "MissingAttribute",
+    "similarityID": "05dac5a3945782a10aacfac5b7fb685b86ced3db1327526d99e3f51823ed7141",
+    "search_line": 5
   }
 ]

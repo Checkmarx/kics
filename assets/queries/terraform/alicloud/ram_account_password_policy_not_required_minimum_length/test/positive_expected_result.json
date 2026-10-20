@@ -3,12 +3,30 @@
     "queryName": "Ram Account Password Policy Not Required Minimum Length",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_ram_account_password_policy",
+    "resourceName": "corporate",
+    "searchKey": "alicloud_ram_account_password_policy[corporate].minimum_password_length",
+    "searchValue": "",
+    "expectedValue": "'minimum_password_length' should be defined and set to 14 or above",
+    "actualValue": "'minimum_password_length' is lower than 14",
+    "issueType": "IncorrectValue",
+    "similarityID": "b4586a3ca91942d824bcc39f3c93ae44974e04d4e836c80d510e1fb0b574ab2e",
+    "search_line": 2
   },
   {
     "queryName": "Ram Account Password Policy Not Required Minimum Length",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_ram_account_password_policy",
+    "resourceName": "corporate",
+    "searchKey": "alicloud_ram_account_password_policy[corporate]",
+    "searchValue": "",
+    "expectedValue": "'minimum_password_length' should be defined and set to 14 or above ",
+    "actualValue": "'minimum_password_length' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2f3395dbb151cba1f367085c5a7d4a7e9543938a7dd65a42a132ddc656de82ce",
+    "search_line": 1
   }
 ]

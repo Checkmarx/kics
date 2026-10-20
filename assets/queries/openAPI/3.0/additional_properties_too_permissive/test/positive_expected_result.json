@@ -3,36 +3,90 @@
     "queryName": "Additional Properties Too Permissive",
     "severity": "LOW",
     "line": 24,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Additional Properties Too Permissive",
-    "severity": "LOW",
-    "line": 34,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Additional Properties Too Permissive",
-    "severity": "LOW",
-    "line": 14,
-    "filename": "positive5.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set to false",
+    "actualValue": "'additionalProperties' is set true",
+    "issueType": "IncorrectValue",
+    "similarityID": "0a0ca2678121357a106db48b7c94a1b0bd6753efa2d69a6b28402e82bdbf0162",
+    "search_line": -1
   },
   {
     "queryName": "Additional Properties Too Permissive",
     "severity": "LOW",
     "line": 19,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set to false",
+    "actualValue": "'additionalProperties' is set true",
+    "issueType": "IncorrectValue",
+    "similarityID": "926ee5ff66278fe1229a9d06ae4a5307c9dfdc5b3bffa65220212ef1442ca9a7",
+    "search_line": -1
+  },
+  {
+    "queryName": "Additional Properties Too Permissive",
+    "severity": "LOW",
+    "line": 34,
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.oneOf",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set to false",
+    "actualValue": "'additionalProperties' is set true",
+    "issueType": "IncorrectValue",
+    "similarityID": "076ba584273d56459ed8ec441d0584eb89d80bed673e1f6b93cb5a183278fc51",
+    "search_line": -1
   },
   {
     "queryName": "Additional Properties Too Permissive",
     "severity": "LOW",
     "line": 23,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.oneOf",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set to false",
+    "actualValue": "'additionalProperties' is set true",
+    "issueType": "IncorrectValue",
+    "similarityID": "393b08849d45fe20aef8693ed47ac0f95910b5347938a410fea65151248dd1cb",
+    "search_line": -1
+  },
+  {
+    "queryName": "Additional Properties Too Permissive",
+    "severity": "LOW",
+    "line": 14,
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' needs to be set and to false",
+    "actualValue": "'additionalProperties' is not set",
+    "issueType": "MissingAttribute",
+    "similarityID": "487131f5badb4a4d57fd2cf4d46880c34b1ad10b868423286c17a23c12e8fad1",
+    "search_line": -1
   },
   {
     "queryName": "Additional Properties Too Permissive",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' needs to be set and to false",
+    "actualValue": "'additionalProperties' is not set",
+    "issueType": "MissingAttribute",
+    "similarityID": "2ac90b0e6861b0fd74bd7e192525f0d69134ce0004be8b8ec160d5904d7190c5",
+    "search_line": -1
   }
 ]

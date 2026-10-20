@@ -3,18 +3,45 @@
     "queryName": "IAM Policies Attached To User",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_policy_attachment",
+    "resourceName": "excess_policy",
+    "searchKey": "aws_iam_policy_attachment[{{positive1_3}}].users",
+    "searchValue": "",
+    "expectedValue": "'users' is redundant",
+    "actualValue": "'users' exists",
+    "issueType": "RedundantAttribute",
+    "similarityID": "05e99bd2d4d483edd29a08d2f4d97639558c1b9c78ee95e68415432e580bae67",
+    "search_line": -1
   },
   {
     "queryName": "IAM Policies Attached To User",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_iam_user_policy",
+    "resourceName": "excess_policy",
+    "searchKey": "aws_iam_user_policy[{{positive2_3}}].user",
+    "searchValue": "",
+    "expectedValue": "'user' is redundant",
+    "actualValue": "'user' exists",
+    "issueType": "RedundantAttribute",
+    "similarityID": "60239549bf82e006353275e32c4e2413d5fe852818ade9417c92c5838bd9c4c3",
+    "search_line": -1
   },
   {
     "queryName": "IAM Policies Attached To User",
     "severity": "MEDIUM",
     "line": 27,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_iam_user_policy_attachment",
+    "resourceName": "test-attach",
+    "searchKey": "aws_iam_user_policy_attachment[{{test-attach}}].user",
+    "searchValue": "",
+    "expectedValue": "'user' is redundant",
+    "actualValue": "'user' exists",
+    "issueType": "RedundantAttribute",
+    "similarityID": "f260469ac90b1bf29c54ef848971d48e70a189696ac409d7cf4d667463817351",
+    "search_line": -1
   }
 ]

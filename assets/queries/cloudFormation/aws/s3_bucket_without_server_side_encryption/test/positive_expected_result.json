@@ -3,12 +3,30 @@
     "queryName": "S3 Bucket Without Server-side-encryption",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "",
+    "searchKey": "Resources.S3Bucket.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket.Properties.BucketEncryption.ServerSideEncryptionConfiguration should be defined and not empty",
+    "actualValue": "Resources.S3Bucket.Properties.BucketEncryption.ServerSideEncryptionConfiguration is undefined or empty",
+    "issueType": "MissingAttribute",
+    "similarityID": "a513c7bef8f525fc53441666528f158b77332e0efb76d4b401463260ab987d74",
+    "search_line": -1
   },
   {
+    "queryName": "S3 Bucket Without Server-side-encryption",
     "severity": "HIGH",
     "line": 5,
     "fileName": "positive2.json",
-    "queryName": "S3 Bucket Without Server-side-encryption"
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "",
+    "searchKey": "Resources.S3Bucket.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket.Properties.BucketEncryption.ServerSideEncryptionConfiguration should be defined and not empty",
+    "actualValue": "Resources.S3Bucket.Properties.BucketEncryption.ServerSideEncryptionConfiguration is undefined or empty",
+    "issueType": "MissingAttribute",
+    "similarityID": "8802395aa679de33f5bd67a39eb5a0ccf89ef50af4bd833b8c0522e4415583e5",
+    "search_line": -1
   }
 ]

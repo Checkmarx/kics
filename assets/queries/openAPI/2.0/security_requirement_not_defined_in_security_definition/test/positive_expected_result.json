@@ -3,24 +3,60 @@
     "queryName": "Security Requirement Not Defined In Security Definition",
     "severity": "HIGH",
     "line": 33,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "petstore_auth should be defined in 'securityDefinitions'",
+    "actualValue": "petstore_auth is not defined in 'securityDefinitions'",
+    "issueType": "IncorrectValue",
+    "similarityID": "34eeb59bcd658c3ed5e0b72993f7bd2e848832bcf028e753636922cc1725b44e",
+    "search_line": -1
   },
   {
     "queryName": "Security Requirement Not Defined In Security Definition",
     "severity": "HIGH",
     "line": 21,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "petstore_auth should be defined in 'securityDefinitions'",
+    "actualValue": "petstore_auth is not defined in 'securityDefinitions'",
+    "issueType": "IncorrectValue",
+    "similarityID": "82cd707f2d5e528ac322392edd409b1795ae189827f7d181c02fdf3e45c3e743",
+    "search_line": -1
   },
   {
     "queryName": "Security Requirement Not Defined In Security Definition",
     "severity": "HIGH",
     "line": 30,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "petstore_auth should be defined in 'securityDefinitions'",
+    "actualValue": "petstore_auth is not defined in 'securityDefinitions'",
+    "issueType": "IncorrectValue",
+    "similarityID": "30c769cac49b2e55c435d74d2b6ca687661d0ee9eea951a721b34f30f304bc1c",
+    "search_line": -1
   },
   {
     "queryName": "Security Requirement Not Defined In Security Definition",
     "severity": "HIGH",
     "line": 21,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "petstore_auth should be defined in 'securityDefinitions'",
+    "actualValue": "petstore_auth is not defined in 'securityDefinitions'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d9e950437f46d38583ee225a9002cda441254eb64144a03d654f65f1357c51eb",
+    "search_line": -1
   }
 ]

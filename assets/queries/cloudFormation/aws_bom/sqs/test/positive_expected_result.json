@@ -3,12 +3,30 @@
     "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 2,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.MyQueue",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "590fc5b46f19d1aefd1af1436500975dd8acf2b17ab03a7f1a845cf3de5d404a",
+    "search_line": 2
   },
   {
     "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.MyQueue",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "9dcfa763fdb87129844b1ea2f8aca7d85576b8f68cc2a06b2e6cb9186afbb682",
+    "search_line": 3
   }
 ]

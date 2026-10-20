@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "PSP Allows Sharing Host PID",
-		"severity": "MEDIUM",
-		"line": 6
-	}
+  {
+    "queryName": "PSP Allows Sharing Host PID",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec.hostPID",
+    "searchValue": "",
+    "expectedValue": "'spec.hostPID' should be set to false or undefined",
+    "actualValue": "'spec.hostPID' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "cc4eaed1eb213bc470a82ca39539ebd1fa8f67aa70ee3a8ef34857e1632588e6",
+    "search_line": -1
+  }
 ]

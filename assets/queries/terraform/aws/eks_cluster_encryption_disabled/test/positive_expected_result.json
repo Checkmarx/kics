@@ -3,12 +3,30 @@
     "queryName": "EKS Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_eks_cluster",
+    "resourceName": "example",
+    "searchKey": "aws_eks_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "'encryption_config' should be defined and not null",
+    "actualValue": "'encryption_config' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c8d77c5cf662d1bf04f0793617265cdc71e0f36d9c7ae2de3d4d64d89b463688",
+    "search_line": 6
   },
   {
     "queryName": "EKS Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_eks_cluster",
+    "resourceName": "example",
+    "searchKey": "aws_eks_cluster[positive2].encryption_config.resources",
+    "searchValue": "",
+    "expectedValue": "'secrets' should be defined",
+    "actualValue": "'secrets' is undefined",
+    "issueType": "IncorrectValue",
+    "similarityID": "2bfa2cf55b85175d1fb4cb417b025196361a1dc34934b8598fcbf8ed0e2d0303",
+    "search_line": -1
   }
 ]

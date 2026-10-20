@@ -3,24 +3,60 @@
     "queryName": "Global Responses Definition Not Being Used",
     "severity": "INFO",
     "line": 38,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Global Responses Definition Not Being Used",
-    "severity": "INFO",
-    "line": 25,
-    "filename": "positive2.yaml"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.{{IllegalInput}}",
+    "searchValue": "",
+    "expectedValue": "responses definition 'IllegalInput' is used",
+    "actualValue": "responses definition 'IllegalInput' is not being used",
+    "issueType": "MissingAttribute",
+    "similarityID": "14a83f95282f8a995b6c0e55f0fd523307f83edae4061e725f9ef74c218f8ec3",
+    "search_line": 0
   },
   {
     "queryName": "Global Responses Definition Not Being Used",
     "severity": "INFO",
     "line": 41,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.{{GeneralError}}",
+    "searchValue": "",
+    "expectedValue": "responses definition 'GeneralError' is used",
+    "actualValue": "responses definition 'GeneralError' is not being used",
+    "issueType": "MissingAttribute",
+    "similarityID": "15caa9a35ed83873bd6da4e6a4ac7f5a5e178c31cdd7a911bedb22e8874e8b2d",
+    "search_line": 0
+  },
+  {
+    "queryName": "Global Responses Definition Not Being Used",
+    "severity": "INFO",
+    "line": 25,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.{{IllegalInput}}",
+    "searchValue": "",
+    "expectedValue": "responses definition 'IllegalInput' is used",
+    "actualValue": "responses definition 'IllegalInput' is not being used",
+    "issueType": "MissingAttribute",
+    "similarityID": "f4ab10bc4f38dac3c1e732b3ed51f9d8a299e1a0b5e0be7d0d5752531cd1307d",
+    "search_line": 0
   },
   {
     "queryName": "Global Responses Definition Not Being Used",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.{{GeneralError}}",
+    "searchValue": "",
+    "expectedValue": "responses definition 'GeneralError' is used",
+    "actualValue": "responses definition 'GeneralError' is not being used",
+    "issueType": "MissingAttribute",
+    "similarityID": "e8b47dd63301baa14eea98f4fa14cec378e4aa1b23515e51c9032f5379944f4a",
+    "search_line": 0
   }
 ]

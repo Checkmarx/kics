@@ -3,12 +3,30 @@
     "queryName": "Insecure Port Not Properly Set",
     "severity": "HIGH",
     "line": 11,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--insecure-port flag should be set to 0",
+    "actualValue": "--insecure-port flag is not properly set",
+    "issueType": "IncorrectValue",
+    "similarityID": "b16c420ec61600ee98f4e61f64cc5e58aabc6527d0b4ea5bd7f4afc947d18405",
+    "search_line": 11
   },
   {
     "queryName": "Insecure Port Not Properly Set",
     "severity": "HIGH",
     "line": 11,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--insecure-port flag should be defined and set to 0",
+    "actualValue": "--insecure-port flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "da65ddeb6b9feb4861fa4861db8c290c233fb268f08fd6e47d28cd0a492b7938",
+    "search_line": 11
   }
 ]

@@ -3,24 +3,60 @@
     "queryName": "Security Requirement Object With Wrong Scopes",
     "severity": "INFO",
     "line": 9,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.api_key",
+    "searchValue": "",
+    "expectedValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
+    "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0ab38a1d2649b9fb6fd48bd486167ffc4b1ca9153a6e950ead88b5850727be15",
+    "search_line": -1
   },
   {
     "queryName": "Security Requirement Object With Wrong Scopes",
     "severity": "INFO",
     "line": 6,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.api_key",
+    "searchValue": "",
+    "expectedValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
+    "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9c8b8d10370cd7079742bfae7aa2aaf93cca17c34e3dd86cb4bf006f726f8339",
+    "search_line": -1
   },
   {
     "queryName": "Security Requirement Object With Wrong Scopes",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/pets}}.get.security.api_key",
+    "searchValue": "",
+    "expectedValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
+    "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
+    "issueType": "IncorrectValue",
+    "similarityID": "60cd531459a6fa309cee5a86075ba10f7749f67272424cceb01c9ae2f668e005",
+    "search_line": 0
   },
   {
     "queryName": "Security Requirement Object With Wrong Scopes",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/pets}}.get.security.api_key",
+    "searchValue": "",
+    "expectedValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
+    "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
+    "issueType": "IncorrectValue",
+    "similarityID": "feb56edd7a5ef9721d10fc7e2cb9ebc02ed32f6c64a39dc2edba723cd6009c20",
+    "search_line": 0
   }
 ]

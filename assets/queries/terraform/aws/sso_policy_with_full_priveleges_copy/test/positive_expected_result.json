@@ -3,6 +3,15 @@
     "queryName": "SSO Identity User Unsafe Creation",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_identitystore_user",
+    "resourceName": "",
+    "searchKey": "aws_identitystore_user[example]",
+    "searchValue": "",
+    "expectedValue": "aws_identitystore_user resource should not be used",
+    "actualValue": "aws_identitystore_user resource is used",
+    "issueType": "IncorrectValue",
+    "similarityID": "7a26b16612bcd6c88c2ba37f37a7dd5e2e323deb03ea0b69561f0e94f17a54a6",
+    "search_line": 1
   }
 ]

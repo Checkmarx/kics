@@ -3,24 +3,60 @@
     "queryName": "Invalid Contact Email (v3)",
     "severity": "INFO",
     "line": 9,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.email",
+    "searchValue": "",
+    "expectedValue": "info.contact.email has a valid email",
+    "actualValue": "info.contact.email has an invalid email",
+    "issueType": "IncorrectValue",
+    "similarityID": "4367bad5c0e56f1304fbfc24b340d56b57a7693e2dba18f9438652e36cf2a563",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Contact Email (v3)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.email",
+    "searchValue": "",
+    "expectedValue": "info.contact.email has a valid email",
+    "actualValue": "info.contact.email has an invalid email",
+    "issueType": "IncorrectValue",
+    "similarityID": "df5e673edf07535e1c62ce90aebf07caba83122f43f87947bec27853843c8a03",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Contact Email (v2)",
     "severity": "INFO",
     "line": 9,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.email",
+    "searchValue": "",
+    "expectedValue": "info.contact.email has a valid email",
+    "actualValue": "info.contact.email has an invalid email",
+    "issueType": "IncorrectValue",
+    "similarityID": "b14bc588b94b5b6a6d65ec570790ec8b96c894c7c2a604d05c29c979ba61405c",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Contact Email (v2)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.email",
+    "searchValue": "",
+    "expectedValue": "info.contact.email has a valid email",
+    "actualValue": "info.contact.email has an invalid email",
+    "issueType": "IncorrectValue",
+    "similarityID": "431032600899cba5938a58a15e5b0fa433314c10654141294e5af24c75538b80",
+    "search_line": -1
   }
 ]

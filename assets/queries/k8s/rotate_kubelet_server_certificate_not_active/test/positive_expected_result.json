@@ -1,25 +1,62 @@
 [
-	{
-		"queryName": "Rotate Kubelet Server Certificate Not Active",
-		"severity": "MEDIUM",
-		"line": 8,
-        "filename": "positive1.yaml"
-	},
-    {
-		"queryName": "Rotate Kubelet Server Certificate Not Active",
-		"severity": "MEDIUM",
-		"line": 11,
-        "filename": "positive2.yaml"
-	},
-    {
-		"queryName": "Rotate Kubelet Server Certificate Not Active",
-		"severity": "MEDIUM",
-		"line": 8,
-        "filename": "positive3.json"
-	},{
-		"queryName": "Rotate Kubelet Server Certificate Not Active",
-		"severity": "MEDIUM",
-		"line": 11,
-        "filename": "positive4.yaml"
-	}
+  {
+    "queryName": "Rotate Kubelet Server Certificate Not Active",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive1.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.featureGates",
+    "searchValue": "",
+    "expectedValue": "RotateKubeletServerCertificates should be true",
+    "actualValue": "RotateKubeletServerCertificate is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "71dd78b62a650cab4702c4767ecc2b820842cd190f483253ced05e8ddffbdac5",
+    "search_line": -1
+  },
+  {
+    "queryName": "Rotate Kubelet Server Certificate Not Active",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--feature-gates=RotateKubeletServerCertificate flag should be true",
+    "actualValue": "--feature-gates=RotateKubeletServerCertificate flag is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8a17116713347a0fdb3657e68bd67a8f2a0d79433bd99b5324f15dfee94475f3",
+    "search_line": 11
+  },
+  {
+    "queryName": "Rotate Kubelet Server Certificate Not Active",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive3.json",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.featureGates",
+    "searchValue": "",
+    "expectedValue": "RotateKubeletServerCertificates should be true",
+    "actualValue": "RotateKubeletServerCertificate is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "05dd37d62c76c432799279aa7474d806d75aaf34df8569415d9be046b8321133",
+    "search_line": -1
+  },
+  {
+    "queryName": "Rotate Kubelet Server Certificate Not Active",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive4.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container7}}.command",
+    "searchValue": "",
+    "expectedValue": "--feature-gates=RotateKubeletServerCertificate flag should be true",
+    "actualValue": "--feature-gates=RotateKubeletServerCertificate flag is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "42802e72c7fa2c4c5e6eed32da87944956aa2956ea0075d368526d85f98ac329",
+    "search_line": 11
+  }
 ]

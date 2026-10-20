@@ -3,36 +3,90 @@
     "queryName": "Audit Log Maxbackup Not Properly Set",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxbackup flag should be set to 10 or more files",
+    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files",
+    "issueType": "IncorrectValue",
+    "similarityID": "5291b427eaa74a66615e42aff3659d23ce3a8535fadf2f9713fee77a0c77bc4a",
+    "search_line": 11
   },
   {
     "queryName": "Audit Log Maxbackup Not Properly Set",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxbackup flag should be defined and set to 10 or more files",
+    "actualValue": "--audit-log-maxbackup flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "3ae305530194c8a865b43dc113e930bb0dbd07b4825b0ecc22ec516c62ca1eb7",
+    "search_line": 11
   },
   {
     "queryName": "Audit Log Maxbackup Not Properly Set",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "Service",
+    "resourceName": "dummy",
+    "searchKey": "metadata.name={{dummy}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxbackup flag should be set to 10 or more files",
+    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files",
+    "issueType": "IncorrectValue",
+    "similarityID": "45e4553e32ca7a48d73e08f87d378d010a058398a941d062cbaa5e7a01e0cd9a",
+    "search_line": 12
   },
   {
     "queryName": "Audit Log Maxbackup Not Properly Set",
     "severity": "LOW",
     "line": 27,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "Configuration",
+    "resourceName": "dummy-config",
+    "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxbackup flag should be set to 10 or more files",
+    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files",
+    "issueType": "IncorrectValue",
+    "similarityID": "87a122fe29f97d7b5027af9f8e654e83a1c4a8ba12dc1029f124a31d9dddd560",
+    "search_line": 27
   },
   {
     "queryName": "Audit Log Maxbackup Not Properly Set",
     "severity": "LOW",
     "line": 40,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "Revision",
+    "resourceName": "dummy-rev",
+    "searchKey": "metadata.name={{dummy-rev}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxbackup flag should be set to 10 or more files",
+    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files",
+    "issueType": "IncorrectValue",
+    "similarityID": "594edb62b9ccaa76455414924a03d55e748c5a60b7181bb079232a96712d6a34",
+    "search_line": 40
   },
   {
     "queryName": "Audit Log Maxbackup Not Properly Set",
     "severity": "LOW",
     "line": 55,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "ContainerSource",
+    "resourceName": "dummy-cs",
+    "searchKey": "metadata.name={{dummy-cs}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxbackup flag should be set to 10 or more files",
+    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files",
+    "issueType": "IncorrectValue",
+    "similarityID": "0549e3ba368f6bb573c9a3b2d4dc055c2e2b1ff2b79625d3cb68634f774ea3ca",
+    "search_line": 55
   }
 ]

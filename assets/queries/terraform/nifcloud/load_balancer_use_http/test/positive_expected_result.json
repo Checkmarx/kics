@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Nifcloud LB Using HTTP Port",
-		"severity": "MEDIUM",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud LB Using HTTP Port",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "nifcloud_load_balancer",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_load_balancer[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_load_balancer[positive]' should switch to HTTPS to benefit from TLS security features.",
+    "actualValue": "'nifcloud_load_balancer[positive]' using HTTP port.",
+    "issueType": "IncorrectValue",
+    "similarityID": "4a4db974d9810c5ab3ad00802b9d9a475ffc859c1284e81b5423b9f4887ed27c",
+    "search_line": -1
+  }
 ]

@@ -1,12 +1,32 @@
 [
-	{
-		"queryName": "Tiller Deployment Is Accessible From Within The Cluster",
-		"severity": "HIGH",
-		"line": 21
-	},
-	{
-		"queryName": "Tiller Deployment Is Accessible From Within The Cluster",
-		"severity": "HIGH",
-		"line": 53
-	}
+  {
+    "queryName": "Tiller Deployment Is Accessible From Within The Cluster",
+    "severity": "HIGH",
+    "line": 21,
+    "fileName": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "tiller-bad-args",
+    "searchKey": "metadata.name=tiller-bad-args.spec.template.spec.containers.args",
+    "searchValue": "",
+    "expectedValue": "'spec.template.spec.containers[tiller-v2].args' sets the container to listen to localhost",
+    "actualValue": "'spec.template.spec.containers[tiller-v2].args' is not setting the container to listen to localhost",
+    "issueType": "IncorrectValue",
+    "similarityID": "4906127650be5ae1b96a4ba3c3c520ded7e10b37b092bb1c6acb65f7cbab1702",
+    "search_line": -1
+  },
+  {
+    "queryName": "Tiller Deployment Is Accessible From Within The Cluster",
+    "severity": "HIGH",
+    "line": 53,
+    "fileName": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "tiller-deploy-no-args",
+    "searchKey": "metadata.name=tiller-deploy-no-args.spec.template.spec.containers",
+    "searchValue": "",
+    "expectedValue": "'spec.template.spec.containers[tiller-v2].args' should be set",
+    "actualValue": "'spec.template.spec.containers[tiller-v2].args' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a9c4b6b2c792246b14ea6ca36ba7693a69ca717678677c5e7136ecc63ef7d21c",
+    "search_line": -1
+  }
 ]

@@ -3,48 +3,120 @@
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "default",
+    "searchKey": "Resources.InstanceSecurityGroup_ingress.Properties",
+    "searchValue": "",
+    "expectedValue": "Any 'AWS::EC2::SecurityGroup' with 'Properties.GroupName' set to 'default' should not have any traffic rules set.",
+    "actualValue": "'Resources.InstanceSecurityGroup_ingress' has 'Properties.GroupName' set to 'default' and traffic rules set in 'Properties'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "e9eb1bc7fd51a06a345acb27430b6a5f9f43a04ee87a93b1be2d2a9284fc99b1",
+    "search_line": 4
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "default",
+    "searchKey": "Resources.InstanceSecurityGroup_egress.Properties",
+    "searchValue": "",
+    "expectedValue": "Any 'AWS::EC2::SecurityGroup' with 'Properties.GroupName' set to 'default' should not have any traffic rules set.",
+    "actualValue": "'Resources.InstanceSecurityGroup_egress' has 'Properties.GroupName' set to 'default' and traffic rules set in 'Properties'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "207493992fa575cf4653596e88a74d1342795b20803b7d9877ae21899cd21a80",
+    "search_line": 15
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "default",
+    "searchKey": "Resources.InstanceSecurityGroupIngress.Properties.GroupId",
+    "searchValue": "",
+    "expectedValue": "Any 'AWS::EC2::SecurityGroup' with 'Properties.GroupName' set to 'default' should not have any traffic rules set.",
+    "actualValue": "'Resources.InstanceSecurityGroup_default' has 'Properties.GroupName' set to 'default' and a standalone 'AWS::EC2::SecurityGroupIngress' rule set.",
+    "issueType": "IncorrectValue",
+    "similarityID": "41c24dbdbf19620b4ce1c645b8b43a4b0fe69f617095a42126b5b645f7ba3082",
+    "search_line": 11
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
     "line": 20,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "default",
+    "searchKey": "Resources.InstanceSecurityGroupEgress.Properties.GroupId",
+    "searchValue": "",
+    "expectedValue": "Any 'AWS::EC2::SecurityGroup' with 'Properties.GroupName' set to 'default' should not have any traffic rules set.",
+    "actualValue": "'Resources.InstanceSecurityGroup_default' has 'Properties.GroupName' set to 'default' and a standalone 'AWS::EC2::SecurityGroupEgress' rule set.",
+    "issueType": "IncorrectValue",
+    "similarityID": "3d1979110cc0b2e3fc2005bd3484be070a75324d0705923f99a69f76f075200c",
+    "search_line": 20
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "default",
+    "searchKey": "Resources.InstanceSecurityGroup_ingress.Properties",
+    "searchValue": "",
+    "expectedValue": "Any 'AWS::EC2::SecurityGroup' with 'Properties.GroupName' set to 'default' should not have any traffic rules set.",
+    "actualValue": "'Resources.InstanceSecurityGroup_ingress' has 'Properties.GroupName' set to 'default' and traffic rules set in 'Properties'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "bb88d4a9886411dd9685e096bb982dfad67727e0372b1fe7236e5ccafc423268",
+    "search_line": 5
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
     "line": 20,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "default",
+    "searchKey": "Resources.InstanceSecurityGroup_egress.Properties",
+    "searchValue": "",
+    "expectedValue": "Any 'AWS::EC2::SecurityGroup' with 'Properties.GroupName' set to 'default' should not have any traffic rules set.",
+    "actualValue": "'Resources.InstanceSecurityGroup_egress' has 'Properties.GroupName' set to 'default' and traffic rules set in 'Properties'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "0410524f0aa2388fa58ae56e9d334d2bfe0d0d27fe96b9de630c7d1efe5265f1",
+    "search_line": 20
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "default",
+    "searchKey": "Resources.InstanceSecurityGroupIngress.Properties.GroupId",
+    "searchValue": "",
+    "expectedValue": "Any 'AWS::EC2::SecurityGroup' with 'Properties.GroupName' set to 'default' should not have any traffic rules set.",
+    "actualValue": "'Resources.InstanceSecurityGroup_default' has 'Properties.GroupName' set to 'default' and a standalone 'AWS::EC2::SecurityGroupIngress' rule set.",
+    "issueType": "IncorrectValue",
+    "similarityID": "ad8612ce8590954f558a02cad37ac8ec5927ecfab74126237e3beff71ee00d4f",
+    "search_line": 13
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
     "line": 25,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "default",
+    "searchKey": "Resources.InstanceSecurityGroupEgress.Properties.GroupId",
+    "searchValue": "",
+    "expectedValue": "Any 'AWS::EC2::SecurityGroup' with 'Properties.GroupName' set to 'default' should not have any traffic rules set.",
+    "actualValue": "'Resources.InstanceSecurityGroup_default' has 'Properties.GroupName' set to 'default' and a standalone 'AWS::EC2::SecurityGroupEgress' rule set.",
+    "issueType": "IncorrectValue",
+    "similarityID": "9aca9c323df68376a8acece42b1d57200041552ae6f464f4d0681cdaebe43ad2",
+    "search_line": 25
   }
 ]

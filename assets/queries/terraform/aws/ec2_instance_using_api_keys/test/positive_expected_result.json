@@ -3,72 +3,180 @@
     "queryName": "EC2 Instance Using API Keys",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "test",
+    "searchKey": "aws_instance[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_instance[positive1] should be using iam_instance_profile to assign a role with permissions",
+    "actualValue": "aws_instance[positive1].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute",
+    "similarityID": "93b9ef1c237a27db2dc09119146649beca7c631b2ece391abfc774d37098b17d",
+    "search_line": 13
   },
   {
     "queryName": "EC2 Instance Using API Keys",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "test",
+    "searchKey": "aws_instance[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_instance[positive2] should be using iam_instance_profile to assign a role with permissions",
+    "actualValue": "aws_instance[positive2].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute",
+    "similarityID": "dc8b07b77855c74279d03a29057eefa3679c74e1b818ee8cf07ca4d645c348d2",
+    "search_line": 13
   },
   {
     "queryName": "EC2 Instance Using API Keys",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "test",
+    "searchKey": "aws_instance[positive3]",
+    "searchValue": "",
+    "expectedValue": "aws_instance[positive3] should be using iam_instance_profile to assign a role with permissions",
+    "actualValue": "aws_instance[positive3].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute",
+    "similarityID": "c7ca088f0003c69ccb2a70f5182016a2ab4ede6dd510c87dfd9ef8f2ff25cbcb",
+    "search_line": 13
   },
   {
     "queryName": "EC2 Instance Using API Keys",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "test",
+    "searchKey": "aws_instance[positive4]",
+    "searchValue": "",
+    "expectedValue": "aws_instance[positive4] should be using iam_instance_profile to assign a role with permissions",
+    "actualValue": "aws_instance[positive4].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute",
+    "similarityID": "033c4a16c0bca94d728c076c1cb76d90633978de007814ffcad81a0c3947d5b2",
+    "search_line": 13
   },
   {
     "queryName": "EC2 Instance Using API Keys",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "test",
+    "searchKey": "aws_instance[positive5]",
+    "searchValue": "",
+    "expectedValue": "aws_instance[positive5] should be using iam_instance_profile to assign a role with permissions",
+    "actualValue": "aws_instance[positive5].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute",
+    "similarityID": "4267ddcf9fbf71a097a8dfadabd379b1719b6e84d7f51ddfe90bb5108cd146ca",
+    "search_line": 13
   },
   {
     "queryName": "EC2 Instance Using API Keys",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "test",
+    "searchKey": "aws_instance[positive6]",
+    "searchValue": "",
+    "expectedValue": "aws_instance[positive6] should be using iam_instance_profile to assign a role with permissions",
+    "actualValue": "aws_instance[positive6].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute",
+    "similarityID": "ec882af9e236112e50a0a1449f77d46f9e28f10d8262a07fe60a34bfbc69b8e8",
+    "search_line": 13
   },
   {
     "queryName": "EC2 Instance Using API Keys",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive7.tf"
+    "fileName": "positive7.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "test",
+    "searchKey": "aws_instance[positive7].provisioner",
+    "searchValue": "",
+    "expectedValue": "aws_instance[positive7] should be using iam_instance_profile to assign a role with permissions",
+    "actualValue": "aws_instance[positive7].provisioner.remote-exec is being used to configure AWS API keys",
+    "issueType": "IncorrectValue",
+    "similarityID": "faac27f2f8a6023e73f06d732c40cfc3da3c132f8c8194d7f9456628cc9ade8e",
+    "search_line": 13
   },
   {
     "queryName": "EC2 Instance Using API Keys",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive8.tf"
+    "fileName": "positive8.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "test",
+    "searchKey": "aws_instance[positive8].provisioner",
+    "searchValue": "",
+    "expectedValue": "aws_instance[positive8] should be using iam_instance_profile to assign a role with permissions",
+    "actualValue": "aws_instance[positive8].provisioner.file is being used to configure AWS API keys",
+    "issueType": "IncorrectValue",
+    "similarityID": "f5d7132ee5188c291d695e9a8fb9d0aa6cd55666280aa4de2b6e38247fa0a4e3",
+    "search_line": 13
   },
   {
     "queryName": "EC2 Instance Using API Keys",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive9.tf"
+    "fileName": "positive9.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "test",
+    "searchKey": "aws_instance[positive9].provisioner",
+    "searchValue": "",
+    "expectedValue": "aws_instance[positive9] should be using iam_instance_profile to assign a role with permissions",
+    "actualValue": "aws_instance[positive9].provisioner.remote-exec is being used to configure AWS API keys",
+    "issueType": "IncorrectValue",
+    "similarityID": "bcb7c8ed132e33160c2270e8959885f08b018c90be331dfc42aeb24e903da75a",
+    "search_line": 13
   },
   {
     "queryName": "EC2 Instance Using API Keys",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive10.tf"
+    "fileName": "positive10.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance]",
+    "searchValue": "",
+    "expectedValue": "module[ec2_instance] should be using iam_instance_profile to assign a role with permissions",
+    "actualValue": "module[ec2_instance].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute",
+    "similarityID": "1684feadfa109c7acae188a84ad7323fd015bfb27dc18b90b09feb0647a35031",
+    "search_line": 1
   },
   {
     "queryName": "EC2 Instance Using API Keys",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive11.tf"
+    "fileName": "positive11.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance]",
+    "searchValue": "",
+    "expectedValue": "module[ec2_instance] should be using iam_instance_profile to assign a role with permissions",
+    "actualValue": "module[ec2_instance].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute",
+    "similarityID": "dde530dd77c10c137d686f1aa04ca9ba4044f3c41595d36b92301be11aee792a",
+    "search_line": 1
   },
   {
     "queryName": "EC2 Instance Using API Keys",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive12.tf"
+    "fileName": "positive12.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance]",
+    "searchValue": "",
+    "expectedValue": "module[ec2_instance] should be using iam_instance_profile to assign a role with permissions",
+    "actualValue": "module[ec2_instance].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute",
+    "similarityID": "781b5c910e7d18cfda630607bf86575994d40fa489bc2b1889e667e3b17e1228",
+    "search_line": 1
   }
 ]

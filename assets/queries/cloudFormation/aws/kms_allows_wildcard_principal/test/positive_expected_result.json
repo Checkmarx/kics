@@ -3,12 +3,30 @@
     "queryName": "KMS Allows Wildcard Principal",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey",
+    "searchKey": "Resources.myKey.Properties.KeyPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.myKey.Properties.KeyPolicy.Statement should not be '*'",
+    "actualValue": "Resources.myKey.Properties.KeyPolicy.Statement is '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "bc031d71db7656988a804f0295d4f22321c91ac0aff80b4ffcd60471bb4c82bd",
+    "search_line": -1
   },
   {
     "queryName": "KMS Allows Wildcard Principal",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey",
+    "searchKey": "Resources.myKey.Properties.KeyPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.myKey.Properties.KeyPolicy.Statement should not be '*'",
+    "actualValue": "Resources.myKey.Properties.KeyPolicy.Statement is '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6eab8bcd3ab3d2243b9c238f06b34cfa8a0b861e51b8067cf4cd236f6ed08e8a",
+    "search_line": -1
   }
 ]

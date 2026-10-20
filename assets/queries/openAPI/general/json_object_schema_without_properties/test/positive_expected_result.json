@@ -3,36 +3,90 @@
     "queryName": "JSON Object Schema Without Properties (v3)",
     "severity": "MEDIUM",
     "line": 67,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema of the JSON object should have 'properties' defined",
+    "actualValue": "Schema of the JSON object does not have 'properties' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0060a4350e08499f9065beb6cfb29f8546ccc80332286e5a6a052cbea868b690",
+    "search_line": 0
   },
   {
     "queryName": "JSON Object Schema Without Properties (v3)",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema of the JSON object should have 'properties' defined",
+    "actualValue": "Schema of the JSON object does not have 'properties' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5012552f4cf4572ed153847509f7da0ca2f2ef20c5d1bb213cdfd8d138b09287",
+    "search_line": 0
   },
   {
     "queryName": "JSON Object Schema Without Properties (v3)",
     "severity": "MEDIUM",
     "line": 40,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema of the JSON object should have 'properties' defined",
+    "actualValue": "Schema of the JSON object does not have 'properties' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ff16df684fecb8d1ec594c7e02f393d03aa8afec299f29d9cc12251aaa5753c0",
+    "search_line": 0
   },
   {
     "queryName": "JSON Object Schema Without Properties (v3)",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema of the JSON object should have 'properties' defined",
+    "actualValue": "Schema of the JSON object does not have 'properties' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "41dbf1529851e1141ab61dfa04fadb0d909d98198887c0bbd12c9afd7b4275e0",
+    "search_line": 0
   },
   {
     "queryName": "JSON Object Schema Without Properties (v2)",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema of the JSON object should have 'properties' defined",
+    "actualValue": "Schema of the JSON object does not have 'properties' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "93f7aa201192910e5c609493fb94bf7789bacaed3a916fa24fa9a9a9b04b0ba9",
+    "search_line": 0
   },
   {
     "queryName": "JSON Object Schema Without Properties (v2)",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema of the JSON object should have 'properties' defined",
+    "actualValue": "Schema of the JSON object does not have 'properties' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "945f885a8a97d0196f53041fbfbed012e3ffaf6941df091dcbb2d6f1c83d7fca",
+    "search_line": 0
   }
 ]

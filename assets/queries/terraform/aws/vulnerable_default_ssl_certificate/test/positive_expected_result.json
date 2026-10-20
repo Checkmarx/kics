@@ -2,21 +2,61 @@
   {
     "queryName": "Vulnerable Default SSL Certificate",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive2",
+    "searchKey": "aws_cloudfront_distribution[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_cloudfront_distribution[positive2].viewer_certificate should be defined and not null",
+    "actualValue": "aws_cloudfront_distribution[positive2].viewer_certificate is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "04613358f5d9894d3f8bafbc70f0ad2e8593e8ce9b290cdf6ebda42c1a0a78a5",
+    "search_line": 5
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",
     "severity": "MEDIUM",
-    "line": 88
+    "line": 88,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive3",
+    "searchKey": "aws_cloudfront_distribution[positive3].viewer_certificate",
+    "searchValue": "cloudfront_default_certificate",
+    "expectedValue": "Attribute 'cloudfront_default_certificate' should be 'false' or not defined",
+    "actualValue": "Attribute 'cloudfront_default_certificate' is 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "02ea5713180d051ad60c0c5267dc95763e67d01ff275b934b64d1f090285cde1",
+    "search_line": 88
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive4",
+    "searchKey": "aws_cloudfront_distribution[positive4].viewer_certificate",
+    "searchValue": "minimum_protocol_version",
+    "expectedValue": "Attributes 'ssl_support_method' and 'minimum_protocol_version' should be defined when one of 'acm_certificate_arn' or 'iam_certificate_id' is declared.",
+    "actualValue": "Attribute 'minimum_protocol_version' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "14972c3f54f6149c3c42ae7e0b682b59cac738d8f743a9e523642ac9df4b76b4",
+    "search_line": 134
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive4",
+    "searchKey": "aws_cloudfront_distribution[positive4].viewer_certificate",
+    "searchValue": "ssl_support_method",
+    "expectedValue": "Attributes 'ssl_support_method' and 'minimum_protocol_version' should be defined when one of 'acm_certificate_arn' or 'iam_certificate_id' is declared.",
+    "actualValue": "Attribute 'ssl_support_method' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "dfc0d20281400f6ab5996a38b8cd5eb2f7f940255d26cb11b0b758b4c848e24b",
+    "search_line": 134
   }
 ]

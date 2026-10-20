@@ -2,11 +2,31 @@
   {
     "queryName": "AKS Network Policy Misconfigured",
     "severity": "LOW",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_aks",
+    "resourceName": "Create a managed Azure Container Services (AKS) instance03",
+    "searchKey": "name={{Create a managed Azure Container Services (AKS) instance03}}.{{azure_rm_aks}}.network_profile.network_policy",
+    "searchValue": "",
+    "expectedValue": "Azure AKS cluster network policy should be either 'calico' or 'azure'",
+    "actualValue": "Azure AKS cluster network policy is istio",
+    "issueType": "IncorrectValue",
+    "similarityID": "771cbe5f57168414145266bdf3d3ac0c6173a374a94d1eb2d2e1adaff8101194",
+    "search_line": -1
   },
   {
     "queryName": "AKS Network Policy Misconfigured",
     "severity": "LOW",
-    "line": 24
+    "line": 24,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_aks",
+    "resourceName": "Create a managed Azure Container Services (AKS) instance04",
+    "searchKey": "name={{Create a managed Azure Container Services (AKS) instance04}}.{{azure_rm_aks}}",
+    "searchValue": "",
+    "expectedValue": "Azure AKS cluster network profile should be defined",
+    "actualValue": "Azure AKS cluster network profile is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8d6055e2794c1f2fecf911ecee796f6b838aa865df50c74088b6831ea75d0e6d",
+    "search_line": -1
   }
 ]

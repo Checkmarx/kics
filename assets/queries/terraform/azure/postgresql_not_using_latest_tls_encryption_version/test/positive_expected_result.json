@@ -3,6 +3,15 @@
     "queryName": "Beta - PostgreSQL Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_server",
+    "resourceName": "example-psqlserver",
+    "searchKey": "azurerm_postgresql_server[negative2].minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "'ssl_minimal_tls_version_enforced' should be defined to 'TLS1_2'",
+    "actualValue": "'ssl_minimal_tls_version_enforced' is defined to 'TLS1_1'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ea35140c5682af776cda944589bb298454fa02dd1ca0eb42a9743d66ef7871e9",
+    "search_line": 10
   }
 ]

@@ -3,24 +3,60 @@
     "queryName": "Invalid OAuth2 Authorization URL (v3)",
     "severity": "MEDIUM",
     "line": 50,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.oAuth2AuthCodeNeg2.flows.authorizationCode.authorizationUrl",
+    "searchValue": "",
+    "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "a6304fbf50f04bb5633091331340ed44953ae8f51d83d831c12f7b6e175c0208",
+    "search_line": -1
   },
   {
     "queryName": "Invalid OAuth2 Authorization URL (v3)",
     "severity": "MEDIUM",
     "line": 50,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.oAuth2AuthCodeNeg2.flows.implicit.authorizationUrl",
+    "searchValue": "",
+    "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "e93e49d15d97c6754d0d0f908633e8922b82f8dade43eb931d7c9b87c337d368",
+    "search_line": -1
   },
   {
     "queryName": "Invalid OAuth2 Authorization URL (v3)",
     "severity": "MEDIUM",
     "line": 32,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.oAuth2AuthCodeNeg2.flows.authorizationCode.authorizationUrl",
+    "searchValue": "",
+    "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "2f6283f059affa033ae6a8a28a1ca5cff711dc6391cfe0895a0b3c4f2dbec35d",
+    "search_line": -1
   },
   {
     "queryName": "Invalid OAuth2 Authorization URL (v3)",
     "severity": "MEDIUM",
     "line": 32,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.oAuth2AuthCodeNeg2.flows.implicit.authorizationUrl",
+    "searchValue": "",
+    "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "4b966daa8b777bb9996218f4de89548a39566cc474d24c42dfd5ff0012454513",
+    "search_line": -1
   }
 ]

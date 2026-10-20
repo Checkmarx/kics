@@ -3,24 +3,60 @@
     "queryName": "Network ACL With Unrestricted Access To RDP",
     "severity": "HIGH",
     "line": 30,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_network_acl",
+    "resourceName": "main",
+    "searchKey": "aws_network_acl[positive1].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[positive1].ingress[0] 'RDP' (TCP:3389) should not be public",
+    "actualValue": "aws_network_acl[positive1].ingress[0] 'RDP' (TCP:3389) is public",
+    "issueType": "IncorrectValue",
+    "similarityID": "b52a2c5fadfa12605890034025c7a84c7cdea20a73237e30d77ad6faacf42d48",
+    "search_line": 30
   },
   {
     "queryName": "Network ACL With Unrestricted Access To RDP",
     "severity": "HIGH",
     "line": 22,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_network_acl_rule",
+    "resourceName": "postive2",
+    "searchKey": "aws_network_acl_rule[postive2]",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[postive2] 'RDP' (TCP:3389) should not be public",
+    "actualValue": "aws_network_acl[postive2] 'RDP' (TCP:3389) is public",
+    "issueType": "IncorrectValue",
+    "similarityID": "f9b5fe0666cba080777fa8cf45d9c28d7e0012ab20ed5f27b8c206d0cdfbeb49",
+    "search_line": 22
   },
   {
     "queryName": "Network ACL With Unrestricted Access To RDP",
     "severity": "HIGH",
     "line": 26,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_network_acl",
+    "resourceName": "main",
+    "searchKey": "aws_network_acl[positive3].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[positive3].ingress 'RDP' (TCP:3389) should not be public",
+    "actualValue": "aws_network_acl[positive3].ingress 'RDP' (TCP:3389) is public",
+    "issueType": "IncorrectValue",
+    "similarityID": "ac1d510655b1330ed3530b9441e94f13f0ab6603b7a0cb8f1d125ffd38587bbb",
+    "search_line": 26
   },
   {
     "queryName": "Network ACL With Unrestricted Access To RDP",
     "severity": "HIGH",
     "line": 14,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vpc].default_network_acl_ingress",
+    "searchValue": "",
+    "expectedValue": "module[vpc].default_network_acl_ingress[0] 'RDP' (TCP:3389) should not be public",
+    "actualValue": "module[vpc].default_network_acl_ingress[0] 'RDP' (TCP:3389) is public",
+    "issueType": "IncorrectValue",
+    "similarityID": "2c63fc67d478e24707f2962fd4cc62f2cd0f62774ac7951dc42df0af68623500",
+    "search_line": 14
   }
 ]

@@ -2,16 +2,46 @@
   {
     "queryName": "Enum Name Not CamelCase",
     "severity": "INFO",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.proto",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "enum[noInitCap]",
+    "searchValue": "",
+    "expectedValue": "Enum Name should follow CamelCase (Initial Letter is Capital)",
+    "actualValue": "Enum Name doesn't follow CamelCase",
+    "issueType": "IncorrectValue",
+    "similarityID": "95c33c42d83e2e0f0c59293fdafb30a4e31f58b46d3b151f4d729a71d9295f01",
+    "search_line": 3
   },
   {
     "queryName": "Enum Name Not CamelCase",
     "severity": "INFO",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.proto",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "enum[NOT_CAMEL_CASE]",
+    "searchValue": "",
+    "expectedValue": "Enum Name should follow CamelCase (Initial Letter is Capital)",
+    "actualValue": "Enum Name doesn't follow CamelCase",
+    "issueType": "IncorrectValue",
+    "similarityID": "097f5f12ffc3e12c34b86d8f1967854ed7ed3610b22b47c65406ba87bfcbcd0e",
+    "search_line": 10
   },
   {
     "queryName": "Enum Name Not CamelCase",
     "severity": "INFO",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.proto",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "enum[ALLCAPS]",
+    "searchValue": "",
+    "expectedValue": "Enum Name should follow CamelCase (Initial Letter is Capital)",
+    "actualValue": "Enum Name doesn't follow CamelCase",
+    "issueType": "IncorrectValue",
+    "similarityID": "33724bf136e7a6db51ad9d252c024bf6556dc1d8906cd682626960b3419dcbd2",
+    "search_line": 18
   }
 ]

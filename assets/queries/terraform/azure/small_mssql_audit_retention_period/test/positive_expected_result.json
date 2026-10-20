@@ -2,21 +2,61 @@
   {
     "queryName": "Small MSSQL Audit Retention Period",
     "severity": "LOW",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_mssql_database",
+    "resourceName": "myexamplesqldatabase",
+    "searchKey": "azurerm_mssql_database[positive1].extended_auditing_policy.retention_in_days",
+    "searchValue": "",
+    "expectedValue": "'positive1.extended_auditing_policy.retention_in_days' should be bigger than 90",
+    "actualValue": "'extended_auditing_policy.retention_in_days' is 6",
+    "issueType": "IncorrectValue",
+    "similarityID": "d64b55c37652f05422143d7d3860932881b1ce9c7175fa8dbfa058beef76fb3b",
+    "search_line": 11
   },
   {
     "queryName": "Small MSSQL Audit Retention Period",
     "severity": "LOW",
-    "line": 29
+    "line": 29,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_mssql_database",
+    "resourceName": "myexamplesqldatabase",
+    "searchKey": "azurerm_mssql_database[positive2].extended_auditing_policy.retention_in_days",
+    "searchValue": "",
+    "expectedValue": "'positive2.extended_auditing_policy.retention_in_days' should be bigger than 90",
+    "actualValue": "'extended_auditing_policy.retention_in_days' is 90",
+    "issueType": "IncorrectValue",
+    "similarityID": "de6aabe1476869baccd7cb310e0bfbbb5af781187bac7fdf312e5d4ef8feedf9",
+    "search_line": 29
   },
   {
     "queryName": "Small MSSQL Audit Retention Period",
     "severity": "LOW",
-    "line": 47
+    "line": 47,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_mssql_database",
+    "resourceName": "myexamplesqldatabase",
+    "searchKey": "azurerm_mssql_database[positive3].extended_auditing_policy.retention_in_days",
+    "searchValue": "",
+    "expectedValue": "'positive3.extended_auditing_policy.retention_in_days' should be bigger than 90",
+    "actualValue": "'extended_auditing_policy.retention_in_days' is 0",
+    "issueType": "IncorrectValue",
+    "similarityID": "e460b8b87331833ea79e0d9ca9b3f03fbd8a4cdc84477af83343fb20b15df023",
+    "search_line": 47
   },
   {
     "queryName": "Small MSSQL Audit Retention Period",
     "severity": "LOW",
-    "line": 67
+    "line": 67,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_mssql_server",
+    "resourceName": "mssqlserver",
+    "searchKey": "azurerm_mssql_server[positive4].extended_auditing_policy.retention_in_days",
+    "searchValue": "",
+    "expectedValue": "'positive4.extended_auditing_policy.retention_in_days' should be bigger than 90",
+    "actualValue": "'extended_auditing_policy.retention_in_days' is 20",
+    "issueType": "IncorrectValue",
+    "similarityID": "c643ac80e1675d00eefcc043d02400f55a89ecd9841eae1dfaa6d4c1d56a10d3",
+    "search_line": 67
   }
 ]

@@ -1,32 +1,77 @@
 [
-	{
-		"queryName": "Public Storage Account",
-		"severity": "HIGH",
-		"line": 11,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Public Storage Account",
-		"severity": "HIGH",
-		"line": 28,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Public Storage Account",
-		"severity": "HIGH",
-		"line": 43,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Public Storage Account",
-		"severity": "HIGH",
-		"line": 48,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Public Storage Account",
-		"severity": "HIGH",
-		"line": 8,
-		"fileName": "positive2.tf"
-	}
+  {
+    "queryName": "Public Storage Account",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "storageaccountname",
+    "searchKey": "azurerm_storage_account[positive1].network_rules.ip_rules",
+    "searchValue": "",
+    "expectedValue": "'network_rules.ip_rules' should not contain 0.0.0.0/0",
+    "actualValue": "'network_rules.ip_rules' contains 0.0.0.0/0",
+    "issueType": "IncorrectValue",
+    "similarityID": "2b35fd7f25e66b8988688c5fb85065d8406ac08f0ddb8e5ddaa8faa4049d0347",
+    "search_line": 11
+  },
+  {
+    "queryName": "Public Storage Account",
+    "severity": "HIGH",
+    "line": 28,
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "storageaccountname",
+    "searchKey": "azurerm_storage_account[positive2].network_rules",
+    "searchValue": "",
+    "expectedValue": "'network_rules.ip_rules' should be defined and not null",
+    "actualValue": "'network_rules.default_action' is 'Allow' and 'network_rules.ip_rules' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "5c34a0b54247b98ed4ba18b97bc4c043ae6bec38993dfdf204c70e059e66100c",
+    "search_line": 28
+  },
+  {
+    "queryName": "Public Storage Account",
+    "severity": "HIGH",
+    "line": 43,
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_storage_account_network_rules",
+    "resourceName": "positive3",
+    "searchKey": "azurerm_storage_account_network_rules[positive3].ip_rules",
+    "searchValue": "",
+    "expectedValue": "ip_rules[0] should not contain 0.0.0.0/0",
+    "actualValue": "ip_rules[0] contains 0.0.0.0/0",
+    "issueType": "IncorrectValue",
+    "similarityID": "afd1aa1d88bc3a76a2e586b8f35b286fa14f58c59b0851700de67f4541178181",
+    "search_line": 43
+  },
+  {
+    "queryName": "Public Storage Account",
+    "severity": "HIGH",
+    "line": 48,
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_storage_account_network_rules",
+    "resourceName": "positive4",
+    "searchKey": "azurerm_storage_account_network_rules[positive4]",
+    "searchValue": "",
+    "expectedValue": "'ip_rules' should be defined and not null",
+    "actualValue": "'default_action' is set to 'Allow' and 'ip_rules' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "91c23147a3e7ef807773f9f7d5cff2fdf09bf9d940e0d055b059c6cd09ab7b8c",
+    "search_line": 48
+  },
+  {
+    "queryName": "Public Storage Account",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "storageaccountname",
+    "searchKey": "azurerm_storage_account[positive5].allow_blob_public_access",
+    "searchValue": "",
+    "expectedValue": "'allow_blob_public_access' should be set to false or undefined",
+    "actualValue": "'allow_blob_public_access' is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "2a60e24c8adbb65d72bb53620efbf396a7e55dd5b181b2785683578918cb4ed7",
+    "search_line": 8
+  }
 ]

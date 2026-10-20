@@ -3,24 +3,60 @@
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_docdb_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_docdb_cluster[{{positive1}}]",
+    "searchValue": "",
+    "expectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports should be defined",
+    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8a9cc162eb262bed6b2267499c319ee64157fc39c1b61dea5f9d4b2f096e8585",
+    "search_line": -1
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_docdb_cluster",
+    "resourceName": "positive2",
+    "searchKey": "aws_docdb_cluster[{{positive2}}].enabled_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports should have all following values: audit, profiler",
+    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "6451e4eff5359ff8ebd5ab28b9682da5b740c933a87a32cba7f49304bda0406e",
+    "search_line": -1
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_docdb_cluster",
+    "resourceName": "positive3",
+    "searchKey": "aws_docdb_cluster[{{positive3}}].enabled_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports should have all following values: audit, profiler",
+    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports has the following missing values: audit",
+    "issueType": "IncorrectValue",
+    "similarityID": "95971ccf3a4f88527e168cac0d0d49af73669482d328d544b23140fd354e30ff",
+    "search_line": -1
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_docdb_cluster",
+    "resourceName": "positive4",
+    "searchKey": "aws_docdb_cluster[{{positive4}}].enabled_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports should have all following values: audit, profiler",
+    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports has the following missing values: profiler",
+    "issueType": "IncorrectValue",
+    "similarityID": "da824f68b7555321d87fd8fb171bf7b13cb583cdaa6e3589ab71e5d0a07224b0",
+    "search_line": -1
   }
 ]

@@ -3,24 +3,60 @@
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "google_compute_disk",
+    "resourceName": "test-disk",
+    "searchKey": "google_compute_disk[positive1]",
+    "searchValue": "",
+    "expectedValue": "'google_compute_disk[positive1].disk_encryption_key' should be defined and not null",
+    "actualValue": "'google_compute_disk[positive1].disk_encryption_key' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "9a190a36c6f4abbcf2ceb6b94c4a5809f1d358aff257d1e454f9d25e116ccf9f",
+    "search_line": -1
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 22,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "google_compute_disk",
+    "resourceName": "test-disk",
+    "searchKey": "google_compute_disk[positive2].disk_encryption_key",
+    "searchValue": "",
+    "expectedValue": "'google_compute_disk[positive2].disk_encryption_key.raw_key' or 'google_compute_disk[%!s(MISSING)].disk_encryption_key.kms_key_self_link' should be defined and not null",
+    "actualValue": "'google_compute_disk[positive2].disk_encryption_key.raw_key' and 'google_compute_disk[%!s(MISSING)].disk_encryption_key.kms_key_self_link' are undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "ea1ed5a3f1ad37f142fcc78d71df8cf9f12905dde1401dde26fc9ddf7d1c2199",
+    "search_line": -1
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 12,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "google_compute_disk",
+    "resourceName": "test-disk",
+    "searchKey": "google_compute_disk[positive3].disk_encryption_key.raw_key",
+    "searchValue": "",
+    "expectedValue": "'google_compute_disk[positive3].disk_encryption_key.raw_key' should not be empty or null",
+    "actualValue": "'google_compute_disk[positive3].disk_encryption_key.raw_key' is not empty or null",
+    "issueType": "IncorrectValue",
+    "similarityID": "242f8e1cbb318d50923537f831c1fddce7fb060caea72fdc2f465b6be2d6e569",
+    "search_line": -1
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 12,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "google_compute_disk",
+    "resourceName": "test-disk",
+    "searchKey": "google_compute_disk[positive4].disk_encryption_key.kms_key_self_link",
+    "searchValue": "",
+    "expectedValue": "'google_compute_disk[positive4].disk_encryption_key.kms_key_self_link' should not be empty or null",
+    "actualValue": "'google_compute_disk[positive4].disk_encryption_key.kms_key_self_link' is not empty or null",
+    "issueType": "IncorrectValue",
+    "similarityID": "578f6c1fd21352d95402cc32af11a8f123ee4f6edce985028a34a845f66a92a7",
+    "search_line": -1
   }
 ]

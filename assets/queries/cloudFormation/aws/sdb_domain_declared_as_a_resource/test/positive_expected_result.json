@@ -1,14 +1,32 @@
 [
   {
+    "queryName": "SDB Domain Declared As A Resource",
+    "severity": "LOW",
     "line": 8,
     "fileName": "positive1.yaml",
-    "queryName": "SDB Domain Declared As A Resource",
-    "severity": "LOW"
+    "resourceType": "AWS::SDB::Domain",
+    "resourceName": "SBDDomain",
+    "searchKey": "Resources.SBDDomain",
+    "searchValue": "",
+    "expectedValue": "Resources.SBDDomain should not be defined",
+    "actualValue": "Resources.SBDDomain is defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "30260e86070720d7fbaa638096aa10b21488f7aad700736643bd3b662e19d70d",
+    "search_line": -1
   },
   {
     "queryName": "SDB Domain Declared As A Resource",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::SDB::Domain",
+    "resourceName": "SBDDomain",
+    "searchKey": "Resources.SBDDomain",
+    "searchValue": "",
+    "expectedValue": "Resources.SBDDomain should not be defined",
+    "actualValue": "Resources.SBDDomain is defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0321665a74c259cc5408ee99c65427440be4944b611307abe3da252cbeed08d2",
+    "search_line": -1
   }
 ]

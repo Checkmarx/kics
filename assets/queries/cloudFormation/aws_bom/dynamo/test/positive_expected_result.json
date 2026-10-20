@@ -3,30 +3,75 @@
     "queryName": "BOM - AWS DynamoDB",
     "severity": "TRACE",
     "line": 27,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DynamoDBOnDemandTable2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "e75c193d393c1f5c0355309adb259fd64f28baa86e47f1598034fb23fc644e62",
+    "search_line": 27
   },
   {
     "queryName": "BOM - AWS DynamoDB",
     "severity": "TRACE",
     "line": 27,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DynamoDBOnDemandTable2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "c4b9a4dfb321fb6d1097d7ecc6e8f7f31333f4793d8150d3a7d46df52594825b",
+    "search_line": 27
   },
   {
     "queryName": "BOM - AWS DynamoDB",
     "severity": "TRACE",
     "line": 27,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DynamoDBOnDemandTable2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "9f4e6815e2196ef0d5cfd0cc46e57b36f8c7a86fffffe3c7e41448765063f6d2",
+    "search_line": 27
   },
   {
     "queryName": "BOM - AWS DynamoDB",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DynamoDBOnDemandTable2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "38e663c3bd7d3877a23a4373e791f511f0244966b3d735e82658ad1209788306",
+    "search_line": 3
   },
   {
     "queryName": "BOM - AWS DynamoDB",
     "severity": "TRACE",
     "line": 27,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DynamoDBOnDemandTable2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "7826f7e588275f0791d24f9791d4f2bc3ca54ae85627eaea7e73da1d534657d0",
+    "search_line": 27
   }
 ]

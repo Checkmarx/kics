@@ -2,6 +2,16 @@
   {
     "queryName": "Cloud SQL Instance With Cross DB Ownership Chaining On",
     "severity": "HIGH",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "sql_instance",
+    "searchKey": "name={{sql_instance}}.{{google.cloud.gcp_sql_instance}}.settings.database_flags",
+    "searchValue": "",
+    "expectedValue": "{{cloud_gcp_sql_instance}}.settings.database_flags should be correct",
+    "actualValue": "{{cloud_gcp_sql_instance}}.settings.database_flags.name is 'cross db ownership chaining' and cloud_gcp_sql_instance.settings.database_flags.value is not 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4177127b55590660da314a352b9c89a78c054b0afe7a047761f43498dd5b29bd",
+    "search_line": -1
   }
 ]

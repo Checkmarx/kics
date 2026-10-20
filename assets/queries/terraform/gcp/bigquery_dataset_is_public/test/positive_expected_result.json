@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "BigQuery Dataset Is Public",
-		"severity": "HIGH",
-		"line": 14
-	}
+  {
+    "queryName": "BigQuery Dataset Is Public",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive.tf",
+    "resourceType": "google_bigquery_dataset",
+    "resourceName": "test",
+    "searchKey": "google_bigquery_dataset[positive1].access.special_group",
+    "searchValue": "",
+    "expectedValue": "'access.special_group' should not equal to 'allAuthenticatedUsers'",
+    "actualValue": "'access.special_group' is equal to 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6fa7f2ed6cf90b1e2521603ad41c1197b0d957e3d379761cf8fecf3c0260094a",
+    "search_line": -1
+  }
 ]

@@ -2,31 +2,91 @@
   {
     "queryName": "PostgreSQL Log Connections Not Set",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting",
+    "searchKey": "name={{Update PostgreSQL Server setting}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_connections'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "28dfd144688f04011868c74e379f702a93af3fe09901fdac0d81dff0ccb803cf",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Connections Not Set",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting2",
+    "searchKey": "name={{Update PostgreSQL Server setting2}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_connections'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d769b0cb2fd974df259fa8b49e6c58f9dc67ef137f183016a0de2cecb7199e34",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Connections Not Set",
     "severity": "MEDIUM",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting3",
+    "searchKey": "name={{Update PostgreSQL Server setting3}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_connections'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "dfa7b1f366ca4dc038f657eb1bef24dc30fdba637dd8bba368beb4961801621e",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Connections Not Set",
     "severity": "MEDIUM",
-    "line": 25
+    "line": 25,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting4",
+    "searchKey": "name={{Update PostgreSQL Server setting4}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_connections'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c04b121a601b72ad8ab8a0fd7e849794fc67e0a48eab5e9f819600fcf780e588",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Connections Not Set",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting5",
+    "searchKey": "name={{Update PostgreSQL Server setting5}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_connections'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d80727fe4ec65ae8e742e0040ef6bf45d204a3d293653958ac8caf9de33a44d8",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Connections Not Set",
     "severity": "MEDIUM",
-    "line": 37
+    "line": 37,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting6",
+    "searchKey": "name={{Update PostgreSQL Server setting6}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_connections'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "724f9a687478799a50da61972b72944c5f3a92267525ff063c93611f902c7ba3",
+    "search_line": -1
   }
 ]

@@ -2,49 +2,121 @@
   {
     "queryName": "AKS Logging To Azure Monitoring Is Disabled",
     "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1.properties.addonProfiles.omsagent.enabled",
+    "searchValue": "",
+    "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
+    "actualValue": "'addonProfiles.omsagent.enabled' property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1c03325fd27f0f977e7dd9c3612ce8b496d8d4abcdcf9603b79b798cbde3269b",
+    "search_line": 8
+  },
+  {
+    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
+    "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1.properties.addonProfiles.omsagent.enabled",
+    "searchValue": "",
+    "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
+    "actualValue": "'addonProfiles.omsagent.enabled' property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f08e7d28df91af26b7b4c53e8526fa1d79981896f4f539129b20794ec1a3f0cd",
+    "search_line": 14
+  },
+  {
+    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1",
+    "searchValue": "",
+    "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
+    "actualValue": "'addonProfiles.omsagent.enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "46493acfaa39f3f9a402580b5aade3f14f186dcd9f052954e864eaa0ceac3b51",
+    "search_line": 2
   },
   {
     "queryName": "AKS Logging To Azure Monitoring Is Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1",
+    "searchValue": "",
+    "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
+    "actualValue": "'addonProfiles.omsagent.enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5ad3370134bb008c47dd2d4c657ec1f135f4e3996abcbd03369f71d02249aff6",
+    "search_line": 6
+  },
+  {
+    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1.properties.addonProfiles.omsagent.enabled",
+    "searchValue": "",
+    "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
+    "actualValue": "'addonProfiles.omsagent.enabled' property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "bee460b4f1a3c02e4a1bc0772ec9a287b4d35c72ec274a41a52a9d1cb30babb3",
+    "search_line": 8
   },
   {
     "queryName": "AKS Logging To Azure Monitoring Is Disabled",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
-    "severity": "MEDIUM",
-    "line": 8,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
-    "severity": "MEDIUM",
-    "line": 8,
-    "filename": "positive1.bicep"
-  },
-  {
-    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
-    "severity": "MEDIUM",
-    "line": 2,
-    "filename": "positive2.bicep"
-  },
-  {
-    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
-    "severity": "MEDIUM",
-    "line": 8,
-    "filename": "positive3.bicep"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "properties.template.resources.name=aksCluster1.properties.addonProfiles.omsagent.enabled",
+    "searchValue": "",
+    "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
+    "actualValue": "'addonProfiles.omsagent.enabled' property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "c3d9d32d55caf81cf2e655ad2ebde7b31a52bf657019bdff3853367243cbab35",
+    "search_line": 16
   },
   {
     "queryName": "AKS Logging To Azure Monitoring Is Disabled",
     "severity": "MEDIUM",
     "line": 2,
-    "filename": "positive4.bicep"
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1",
+    "searchValue": "",
+    "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
+    "actualValue": "'addonProfiles.omsagent.enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "370d0d2919e27e744a99f84360e361a50df1d888d864210882b9e67c0ebe348c",
+    "search_line": 2
+  },
+  {
+    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "properties.template.resources.name=aksCluster1",
+    "searchValue": "",
+    "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
+    "actualValue": "'addonProfiles.omsagent.enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d88a91531f643d8835877f968981324509af27d332c6bd6d4c5b070b53768f8e",
+    "search_line": 8
   }
 ]

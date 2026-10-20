@@ -3,18 +3,45 @@
     "queryName": "Etcd Peer TLS Certificate Files Not Properly Set",
     "severity": "HIGH",
     "line": 21,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "app-etcd-deployment",
+    "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
+    "searchValue": "Deployment--peer-key-file",
+    "expectedValue": "--peer-key-file flag should be defined",
+    "actualValue": "--peer-key-file flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b35a2d8ac2f9f72644f60ff292c6de9f4991644ece32cef17fc4c73052eafae4",
+    "search_line": 21
   },
   {
     "queryName": "Etcd Peer TLS Certificate Files Not Properly Set",
     "severity": "HIGH",
     "line": 46,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "app-etcd-deployment2",
+    "searchKey": "metadata.name={{app-etcd-deployment2}}.spec.template.spec.containers.name={{database}}.command",
+    "searchValue": "Deployment--peer-cert-file",
+    "expectedValue": "--peer-cert-file flag should be defined",
+    "actualValue": "--peer-cert-file flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c859269a6530d9654c88bb780a044b9adc093a2b55569d4a1f7e320d3edbee24",
+    "search_line": 46
   },
   {
     "queryName": "Etcd Peer TLS Certificate Files Not Properly Set",
     "severity": "HIGH",
     "line": 21,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "app-etcd-deployment",
+    "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
+    "searchValue": "Deployment--peer-cert-file",
+    "expectedValue": "--peer-cert-file flag should be defined",
+    "actualValue": "--peer-cert-file flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "51978f0785c2a12c9978079f7087b74d50f4255ad032a69ddc4f876e3a9ff63e",
+    "search_line": 21
   }
 ]

@@ -3,24 +3,60 @@
     "queryName": "Path Parameter With No Corresponding Template Path (v3)",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./yada/foo.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter 'id' should have an template path parameter with the same name and 'in' set to 'path'",
+    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e424d0052c1c8f403b9e37167ce17f7131cf8a673e16b16ddd48b1d20f3f3049",
+    "search_line": 37
   },
   {
     "queryName": "Path Parameter With No Corresponding Template Path (v3)",
     "severity": "INFO",
     "line": 59,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter 'id' should have an template path parameter with the same name and 'in' set to 'path'",
+    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a1c1777de0c946ebbecbf727dd351be7738e67fce10a994360e9119aac14d6f8",
+    "search_line": 59
   },
   {
     "queryName": "Path Parameter With No Corresponding Template Path (v2)",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./people/foo.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter 'id' should have an template path parameter with the same name and 'in' set to 'path'",
+    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2d3ec3ea3b649f19f2f98211e384b007f6453770b5d881bc7c7aab5cd2561cb1",
+    "search_line": 32
   },
   {
     "queryName": "Path Parameter With No Corresponding Template Path (v2)",
     "severity": "INFO",
     "line": 51,
-    "filename": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./people/foo.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter 'id' should have an template path parameter with the same name and 'in' set to 'path'",
+    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4b7abbbd62e5707b30cddb393c6a2eb49e8ce3f875b336acf3c7991f5a38be72",
+    "search_line": 51
   }
 ]
