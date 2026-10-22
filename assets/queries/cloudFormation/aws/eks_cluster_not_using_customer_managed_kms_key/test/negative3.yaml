@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  ClusterKey:
+    Type: 'AWS::KMS::Key'
+    Properties:
+      EnableKeyRotation: true
+  myCluster:
+    Type: 'AWS::EKS::Cluster'
+    Properties:
+      Name: prod
+      RoleArn: >-
+        arn:aws:iam::012345678910:role/eks-service-role-AWSServiceRoleForAmazonEKS-EXAMPLEBQ4PI
+      ResourcesVpcConfig:
+        SubnetIds:
+          - subnet-6782e71e
+          - subnet-e7e761ac
+      EncryptionConfig:
+        - Provider:
+            KeyArn: !GetAtt ClusterKey.Arn
