@@ -11,6 +11,7 @@ CxPolicy[result] {
 	lb := {"aws_alb", "aws_lb"}
 	resource := input.document[i].resource[lb[idx]][name]
 	not is_internal_alb(resource)
+	not is_nlb(resource)
 	count({x | x := associated_waf(name)}) == 0
 
 	result := {
@@ -26,6 +27,11 @@ CxPolicy[result] {
 
 is_internal_alb(resource) {
 	resource.internal == true
+}
+
+is_nlb(resource) {
+	non_alb_types := {"network", "gateway"}
+	non_alb_types[resource.load_balancer_type]
 }
 
 associated_waf(name) {
