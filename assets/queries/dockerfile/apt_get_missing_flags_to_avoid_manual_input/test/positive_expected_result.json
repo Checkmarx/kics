@@ -106,5 +106,35 @@
 		"severity": "LOW",
 		"line": 4,
 		"filename": "positive8.dockerfile"
+	},
+	{
+		"queryName": "APT-GET Missing Flags To Avoid Manual Input",
+		"severity": "LOW",
+		"line": 2,
+		"filename": "positive9.dockerfile"
+	},
+	{
+		"queryName": "APT-GET Missing Flags To Avoid Manual Input",
+		"severity": "LOW",
+		"line": 3,
+		"filename": "positive9.dockerfile"
+	},
+	{
+		"queryName": "APT-GET Missing Flags To Avoid Manual Input",
+		"severity": "LOW",
+		"line": 4,
+		"filename": "positive9.dockerfile"
+	},
+	{
+		"queryName": "APT-GET Missing Flags To Avoid Manual Input",
+		"severity": "LOW",
+		"line": 5,
+		"filename": "positive9.dockerfile"
+	},
+	{
+		"queryName": "APT-GET Missing Flags To Avoid Manual Input",
+		"severity": "LOW",
+		"line": 6,
+		"filename": "positive9.dockerfile"
 	}
 ]
