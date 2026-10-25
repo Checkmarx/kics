@@ -257,6 +257,7 @@ func renderWithFixer(client *action.Install, chartRequested *chart.Chart, chartP
 			}
 			continue
 		}
+		path = scopeDependencyValuePath(errStr, path)
 		candidate := map[string]interface{}{}
 		if err := strvals.ParseIntoString(path+"="+value, candidate); err != nil {
 			return nil, runErr

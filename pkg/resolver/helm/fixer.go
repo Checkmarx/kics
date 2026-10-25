@@ -44,6 +44,13 @@ var (
 	// valuesPathRe matches an explicit ".Values.x.y" path anywhere in a message.
 	valuesPathRe = regexp.MustCompile(`\.Values\.([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*)`)
 
+	// templateLocationRe captures the chart-relative template path from Helm's
+	// standard execution error. Every "charts/<name>" pair in that path is a
+	// dependency scope (and <name> is the dependency alias, when one is used).
+	templateLocationRe = regexp.MustCompile(`template:\s+([^\r\n:]+):\d+:\d+`)
+	// required/fail errors use this alternate Helm location format.
+	executionLocationRe = regexp.MustCompile(`execution error at \(([^\r\n:]+):\d+:\d+\)`)
+
 	// kubeVersionReqRe captures the constraint from a kubeVersion incompatibility,
 	// e.g. "chart requires kubeVersion: >= 1.30.0 < 1.34.0 which is incompatible ...".
 	kubeVersionReqRe = regexp.MustCompile(`requires kubeVersion:\s*(.+?)\s+which is incompatible`)
@@ -202,6 +209,50 @@ func parseError(errStr string) (kind, path, value string, ok bool) {
 	}
 
 	return "", "", "", false
+}
+
+// scopeDependencyValuePath translates a value path as seen by the failing
+// template into the path that must be set on the root chart. Helm gives every
+// dependency its own .Values scope, so an error at
+//
+//	parent/charts/api/charts/database/templates/secret.yaml
+//
+// referring to .Values.credentials.password must be repaired at
+// api.database.credentials.password. Rendered template paths use dependency
+// aliases, which are also the keys Helm expects in the root values tree.
+func scopeDependencyValuePath(errStr, valuePath string) string {
+	if valuePath == "" || valuePath == "global" || strings.HasPrefix(valuePath, "global.") {
+		return valuePath
+	}
+
+	templatePath := ""
+	if m := templateLocationRe.FindStringSubmatch(errStr); m != nil {
+		templatePath = m[1]
+	} else if m := executionLocationRe.FindStringSubmatch(errStr); m != nil {
+		templatePath = m[1]
+	}
+	if templatePath == "" {
+		return valuePath
+	}
+
+	parts := strings.Split(strings.ReplaceAll(templatePath, `\`, "/"), "/")
+	dependencyNames := make([]string, 0)
+	for i := 0; i+1 < len(parts); i++ {
+		if parts[i] != "charts" {
+			continue
+		}
+		dependencyNames = append(dependencyNames, parts[i+1])
+		i++
+	}
+	if len(dependencyNames) == 0 {
+		return valuePath
+	}
+
+	prefix := strings.Join(dependencyNames, ".")
+	if valuePath == prefix || strings.HasPrefix(valuePath, prefix+".") {
+		return valuePath
+	}
+	return prefix + "." + valuePath
 }
 
 // ver is a stable Kubernetes version candidate.

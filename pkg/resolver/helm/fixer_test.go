@@ -65,13 +65,110 @@ func TestFixerRecoversRequiredValue(t *testing.T) {
 	t.Logf("fixed manifest:\n%s", rel.Manifest)
 }
 
+func writeDependencyChart(t *testing.T, alias string, nested bool) string {
+	t.Helper()
+	root := t.TempDir()
+	mustWrite(t, filepath.Join(root, "Chart.yaml"),
+		"apiVersion: v2\nname: parent\nversion: 0.1.0\ndependencies:\n"+
+			"  - name: child\n    alias: "+alias+"\n    version: 0.1.0\n")
+	mustWrite(t, filepath.Join(root, "values.yaml"), "{}\n")
+
+	child := filepath.Join(root, "charts", "child")
+	require.NoError(t, os.MkdirAll(filepath.Join(child, "templates"), 0o755))
+	childChart := "apiVersion: v2\nname: child\nversion: 0.1.0\n"
+	if nested {
+		childChart += "dependencies:\n  - name: grandchild\n    alias: database\n    version: 0.1.0\n"
+	}
+	mustWrite(t, filepath.Join(child, "Chart.yaml"), childChart)
+	mustWrite(t, filepath.Join(child, "values.yaml"), "{}\n")
+
+	templateChart := child
+	if nested {
+		templateChart = filepath.Join(child, "charts", "grandchild")
+		require.NoError(t, os.MkdirAll(filepath.Join(templateChart, "templates"), 0o755))
+		mustWrite(t, filepath.Join(templateChart, "Chart.yaml"),
+			"apiVersion: v2\nname: grandchild\nversion: 0.1.0\n")
+		mustWrite(t, filepath.Join(templateChart, "values.yaml"), "{}\n")
+	}
+	mustWrite(t, filepath.Join(templateChart, "templates", "cm.yaml"),
+		"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: dependency\ndata:\n"+
+			"  host: {{ .Values.config.database.host | quote }}\n"+
+			"  token: {{ required \"credentials.token is required\" .Values.credentials.token | quote }}\n")
+	return root
+}
+
+func TestFixerRecoversAliasedSubchartValue(t *testing.T) {
+	dir := writeDependencyChart(t, "worker", false)
+
+	_, _, err := runInstall([]string{dir}, newClient(), &values.Options{}, false, nil)
+	require.ErrorContains(t, err, "nil pointer")
+
+	rel, _, err := runInstall([]string{dir}, newClient(), &values.Options{}, true, nil)
+	require.NoError(t, err)
+	require.Contains(t, rel.Manifest, "name: dependency")
+	require.Contains(t, rel.Manifest, kicsPlaceholder)
+}
+
+func TestFixerRecoversNestedSubchartValue(t *testing.T) {
+	dir := writeDependencyChart(t, "worker", true)
+
+	rel, _, err := runInstall([]string{dir}, newClient(), &values.Options{}, true, nil)
+	require.NoError(t, err)
+	require.Contains(t, rel.Manifest, "name: dependency")
+	require.Contains(t, rel.Manifest, kicsPlaceholder)
+}
+
+func TestScopeDependencyValuePath(t *testing.T) {
+	tests := []struct {
+		name, errStr, path, want string
+	}{
+		{
+			name:   "root chart",
+			errStr: `template: parent/templates/cm.yaml:5:10: executing "parent/templates/cm.yaml" at <.Values.config.host>: nil pointer`,
+			path:   "config.host",
+			want:   "config.host",
+		},
+		{
+			name:   "aliased nested dependencies",
+			errStr: `template: parent/charts/worker/charts/database/templates/cm.yaml:5:10: executing "cm" at <.Values.config.host>: nil pointer`,
+			path:   "config.host",
+			want:   "worker.database.config.host",
+		},
+		{
+			name:   "global value",
+			errStr: `template: parent/charts/worker/templates/cm.yaml:5:10: executing "cm" at <.Values.global.host>: nil pointer`,
+			path:   "global.host",
+			want:   "global.host",
+		},
+		{
+			name:   "already qualified custom error",
+			errStr: `template: parent/charts/worker/templates/cm.yaml:5:10: executing "cm" at <required>: error calling required: worker.config.host is required`,
+			path:   "worker.config.host",
+			want:   "worker.config.host",
+		},
+		{
+			name:   "required error location",
+			errStr: `execution error at (parent/charts/worker/templates/cm.yaml:5:10): config.host is required`,
+			path:   "config.host",
+			want:   "worker.config.host",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			require.Equal(t, tt.want, scopeDependencyValuePath(tt.errStr, tt.path))
+		})
+	}
+}
+
 func TestFixerFetchesMissingLocalDependency(t *testing.T) {
 	dir := writeChart(t)
 	child := filepath.Join(t.TempDir(), "child")
 	require.NoError(t, os.MkdirAll(filepath.Join(child, "templates"), 0755))
 	mustWrite(t, filepath.Join(child, "Chart.yaml"), "apiVersion: v2\nname: child\nversion: 0.1.0\n")
+	mustWrite(t, filepath.Join(child, "values.yaml"), "{}\n")
 	mustWrite(t, filepath.Join(child, "templates", "cm.yaml"),
-		"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: dependency\n")
+		"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: dependency\ndata:\n"+
+			"  host: {{ .Values.config.database.host | quote }}\n")
 	repositoryPath, err := filepath.Rel(dir, child)
 	require.NoError(t, err)
 	mustWrite(t, filepath.Join(dir, "Chart.yaml"),
@@ -87,6 +184,7 @@ func TestFixerFetchesMissingLocalDependency(t *testing.T) {
 	rel, _, err := runInstall([]string{dir}, newClient(), &values.Options{}, true, nil)
 	require.NoError(t, err)
 	require.Contains(t, rel.Manifest, "name: dependency")
+	require.Contains(t, rel.Manifest, `host: ""`)
 }
 
 func TestFixerRestoresDisabledDependencyOnRetry(t *testing.T) {

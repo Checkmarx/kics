@@ -141,8 +141,9 @@ func CheckVersion(t *tracker.CITracker) {
 	}
 
 	latestVersionTag := strings.TrimPrefix(release.TagName, "v")
+	currentVersion := strings.TrimPrefix(constants.Version, "v")
 	t.TrackVersion(model.Version{
-		Latest:           constants.Version == latestVersionTag,
+		Latest:           currentVersion == latestVersionTag,
 		LatestVersionTag: latestVersionTag,
 	})
 }
