@@ -6,6 +6,9 @@ metadata:
     container.apparmor.security.beta.kubernetes.io/hello1: dummy
     container.apparmor.security.beta.kubernetes.io/hello2: dummy
 spec:
+  initContainers:
+  - name: init-hello
+    image: busybox
   containers:
   - name: hello1
     image: busybox
