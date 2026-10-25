@@ -13,6 +13,7 @@ import (
 	"github.com/Checkmarx/kics/v2/internal/constants"
 	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
 	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/resolver/helm"
 	"github.com/Checkmarx/kics/v2/pkg/scan"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -95,6 +96,7 @@ func run(cmd *cobra.Command) error {
 
 	// save the scan parameters into the ScanParameters struct
 	scanParams := getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath)
+	scanParams.HelmOverrides, _ = cmd.Context().Value(helmOverridesKey{}).(*helm.Overrides)
 
 	return executeScan(scanParams)
 }
@@ -117,6 +119,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		ExcludeResults:              flags.GetMultiStrFlag(flags.ExcludeResultsFlag),
 		ExcludeSeverities:           flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag),
 		ExperimentalQueries:         flags.GetBoolFlag(flags.ExperimentalQueriesFlag),
+		ExperimentalHelmScan:        flags.GetBoolFlag(flags.ExperimentalHelmScan),
 		IncludeQueries:              flags.GetMultiStrFlag(flags.IncludeQueriesFlag),
 		InputData:                   flags.GetStrFlag(flags.InputDataFlag),
 		OutputName:                  flags.GetStrFlag(flags.OutputNameFlag),
@@ -138,6 +141,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		ChangedDefaultLibrariesPath: changedDefaultLibrariesPath,
 		ChangedDefaultQueryPath:     changedDefaultQueryPath,
 		BillOfMaterials:             flags.GetBoolFlag(flags.BomFlag),
+		ImageBOM:                    flags.GetBoolFlag(flags.ImageBomFlag),
 		ExcludeGitIgnore:            flags.GetBoolFlag(flags.ExcludeGitIgnore),
 		OpenAPIResolveReferences:    flags.GetBoolFlag(flags.OpenAPIReferencesFlag),
 		ParallelScanFlag:            flags.GetIntFlag(flags.ParallelScanFile),

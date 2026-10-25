@@ -3,10 +3,12 @@ package helm
 import (
 	"path/filepath"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 
 	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
 	"helm.sh/helm/v3/pkg/chart"
 	"helm.sh/helm/v3/pkg/cli/values"
 	"helm.sh/helm/v3/pkg/release"
@@ -17,9 +19,15 @@ import (
 
 // Resolver is an instance of the helm resolver
 type Resolver struct {
+	// ExperimentalHelmScan enables the helm fixer: when a chart fails to render,
+	// placeholder values are injected and the render is retried so the chart can
+	// still be scanned (see renderWithFixer). Off by default — when disabled the
+	// resolver keeps its fail-closed behavior (an unrenderable chart is skipped).
+	ExperimentalHelmScan bool
+	Overrides            *Overrides
 }
 
-// splitManifest keeps the information of the manifest splitted by source
+// splitManifest keeps the information of the manifest split by source
 type splitManifest struct {
 	path       string
 	content    []byte
@@ -29,7 +37,8 @@ type splitManifest struct {
 }
 
 const (
-	kicsHelmID = "# KICS_HELM_ID_"
+	kicsHelmID      = "# KICS_HELM_ID_"
+	maxCombinations = 128
 )
 
 // Resolve will render the passed helm chart and return its content ready for parsing
@@ -41,30 +50,42 @@ func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
 			masterUtils.HandlePanic(r, errMessage)
 		}
 	}()
-	splits, excluded, err := renderHelm(filePath)
+	splitRenderedManifests, excluded, err := renderHelm(filePath, r.ExperimentalHelmScan, r.Overrides)
 	if err != nil { // return error to be logged
-		return model.ResolvedFiles{}, errors.New("failed to render helm chart")
+		return model.ResolvedFiles{}, errors.Wrap(err, "failed to render helm chart")
 	}
-	var rfiles = model.ResolvedFiles{
+	var rFiles = model.ResolvedFiles{
 		Excluded: excluded,
 	}
-	for _, split := range *splits {
-		subFolder := filepath.Base(filePath)
+	for k, splitRenderedManifestsPerValue := range splitRenderedManifests {
+		for _, split := range *splitRenderedManifestsPerValue {
+			subFolder := filepath.Base(filePath)
 
-		splitPath := strings.Split(split.path, getPathSeparator(split.path))
+			splitPath := filepath.Join(
+				strings.Split(split.path, getPathSeparator(split.path))[1:]...,
+			)
 
-		splited := filepath.Join(splitPath[1:]...)
+			originalPath := filepath.Join(filepath.Dir(filePath), subFolder, splitPath)
 
-		origpath := filepath.Join(filepath.Dir(filePath), subFolder, splited)
-		rfiles.File = append(rfiles.File, model.ResolvedHelm{
-			FileName:     origpath,
-			Content:      split.content,
-			OriginalData: split.original,
-			SplitID:      split.splitID,
-			IDInfo:       split.splitIDMap,
-		})
+			// append resolved helm file to the list
+			rFiles.File = append(rFiles.File, model.ResolvedHelm{
+				FileName:     originalPath,
+				Content:      split.content,
+				OriginalData: split.original,
+				SplitID:      split.splitID,
+				IDInfo:       split.splitIDMap,
+				ContextSelector: func() string {
+					// only add context selector when multiple values files are used and is not the default values.yaml
+					if len(splitRenderedManifests) == 1 && k == "values.yaml" {
+						return ""
+					} else {
+						return k
+					}
+				}(),
+			})
+		}
 	}
-	return rfiles, nil
+	return rFiles, nil
 }
 
 // SupportedTypes returns the supported fileKinds for this resolver
@@ -72,36 +93,148 @@ func (r *Resolver) SupportedTypes() []model.FileKind {
 	return []model.FileKind{model.KindHELM}
 }
 
-// renderHelm will use helm library to render helm charts
-func renderHelm(path string) (*[]splitManifest, []string, error) {
-	client := newClient()
-	manifest, excluded, err := runInstall([]string{path}, client, &values.Options{})
-	if err != nil {
-		return nil, []string{}, err
+// renderHelm will use helm library to render helm charts. experimentalHelmScan
+// enables the experimental helm scan (--experimental-helm-scan): it renders the
+// chart against every combination of the additional values files found alongside
+// values.yaml, and on a render failure it injects placeholder values and retries
+// so the chart can still be scanned.
+func renderHelm(path string, experimentalHelmScan bool, overrides *Overrides) (map[string]*[]splitManifest, []string, error) {
+	splitManifests := map[string]*[]splitManifest{}
+	excludedMap := map[string]struct{}{}
+	explicit, overrideFiles, configured := overrides.forChart(path)
+	combinations := [][]string{nil} // Render the chart's defaults first.
+	if experimentalHelmScan {
+		var discovered []string
+		for _, file := range getOtherValuesFiles(path) {
+			canonical, _ := canonicalOverridePath(file, ".")
+			if !overrideFiles[canonical] {
+				discovered = append(discovered, file)
+			}
+		}
+		combinations = append(combinations, generateCombinations(discovered)...)
 	}
-	splitted, err := splitManifestYAML(manifest)
-	if err != nil {
-		return nil, []string{}, err
+	var firstErr error
+	for _, combo := range combinations {
+		key := "values.yaml"
+		if len(combo) != 0 {
+			key = generateComboKey(combo)
+		}
+		if configured {
+			key = "configured"
+			if len(combo) != 0 {
+				key += "+" + generateComboKey(combo)
+			}
+		}
+		// Fixer overrides (especially KubeVersion) belong to this render only.
+		manifest, excluded, err := runInstall([]string{path}, newClient(), &values.Options{
+			ValueFiles: combo,
+		}, experimentalHelmScan, explicit)
+		var split *[]splitManifest
+		if err == nil {
+			split, err = splitManifestYAML(manifest)
+		}
+		if err != nil {
+			if !experimentalHelmScan {
+				return nil, nil, err
+			}
+			if firstErr == nil {
+				firstErr = err
+			}
+			log.Warn().Err(err).Str("chart", path).Str("values", key).
+				Msg("Skipping unrenderable Helm values combination")
+			continue
+		}
+		splitManifests[key] = split
+		for _, file := range excluded {
+			excludedMap[file] = struct{}{}
+		}
 	}
-	return splitted, excluded, nil
+	if len(splitManifests) == 0 {
+		return nil, nil, firstErr
+	}
+
+	var excludedMerged []string
+	for k := range excludedMap {
+		// merge excluded values files, filtering duplicates
+		excludedMerged = append(excludedMerged, k)
+	}
+	sort.Strings(excludedMerged)
+	return splitManifests, excludedMerged, nil
+}
+
+func getOtherValuesFiles(path string) []string {
+	otherValuesFiles := []string{}
+
+	files, err := filepath.Glob(filepath.Join(path, "*.yaml"))
+	if err != nil {
+		return otherValuesFiles
+	}
+
+	for _, file := range files {
+		if filepath.Base(file) != "values.yaml" && filepath.Base(file) != "Chart.yaml" {
+			otherValuesFiles = append(otherValuesFiles, file)
+		}
+	}
+
+	return otherValuesFiles
+}
+
+// generateCombinations generates all possible combinations (power set) of the input slice
+func generateCombinations(files []string) [][]string {
+	var result [][]string
+	n := len(files)
+
+	// Total number of combinations is 2^n (excluding empty set)
+	// Saturate before shifting: 1 << n can overflow int for large charts.
+	totalCombinations := 1
+	for i := 0; i < n && totalCombinations < maxCombinations; i++ {
+		totalCombinations *= 2
+	}
+
+	// Iterate through all possible combinations (skip 0 to exclude empty set)
+	for combinationMask := 1; combinationMask < totalCombinations; combinationMask++ {
+		var combo []string
+
+		// Check each file's position in the current combination
+		for fileIndex := 0; fileIndex < n; fileIndex++ {
+			fileBit := 1 << fileIndex
+			isFileIncluded := combinationMask&fileBit != 0
+
+			if isFileIncluded {
+				combo = append(combo, files[fileIndex])
+			}
+		}
+		result = append(result, combo)
+	}
+	return result
+}
+
+// generateComboKey creates a unique key from a combination of values files
+func generateComboKey(combo []string) string {
+	var fileNames []string
+	for _, file := range combo {
+		_, fileName := filepath.Split(file)
+		fileNames = append(fileNames, fileName)
+	}
+	return strings.Join(fileNames, "+")
 }
 
 // splitManifestYAML will split the rendered file and return its content by template as well as the template path
 func splitManifestYAML(template *release.Release) (*[]splitManifest, error) {
 	sources := make([]*chart.File, 0)
 	sources = updateName(sources, template.Chart, template.Chart.Name())
-	var splitedManifest []splitManifest
-	splitedSource := strings.Split(template.Manifest, "---") // split manifest by '---'
+	var manifests []splitManifest
+	splitTemplate := strings.Split(template.Manifest, "---") // splitTemplate manifest by '---'
 	origData := toMap(sources)
-	for _, splited := range splitedSource {
+	for _, manifest := range splitTemplate {
 		var lineID string
-		for _, line := range strings.Split(splited, "\n") {
+		for _, line := range strings.Split(manifest, "\n") {
 			if strings.Contains(line, kicsHelmID) {
 				lineID = line // get auxiliary line id
 				break
 			}
 		}
-		path := strings.Split(strings.TrimPrefix(splited, "\n# Source: "), "\n") // get source of split yaml
+		path := strings.Split(strings.TrimPrefix(manifest, "\n# Source: "), "\n") // get source of splitTemplate yaml
 		// ignore auxiliary files used to render chart
 		if path[0] == "" || isEmptyFileRender(path) {
 			continue
@@ -113,15 +246,15 @@ func splitManifestYAML(template *release.Release) (*[]splitManifest, error) {
 		if err != nil {
 			return nil, err
 		}
-		splitedManifest = append(splitedManifest, splitManifest{
+		manifests = append(manifests, splitManifest{
 			path:       path[0],
-			content:    []byte(strings.ReplaceAll(splited, "\r", "")),
+			content:    []byte(strings.ReplaceAll(manifest, "\r", "")),
 			original:   origData[filepath.FromSlash(path[0])], // get original data from template
 			splitID:    lineID,
 			splitIDMap: idMap,
 		})
 	}
-	return &splitedManifest, nil
+	return &manifests, nil
 }
 
 // toMap will convert to map original data having the path as it's key

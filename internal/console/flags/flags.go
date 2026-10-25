@@ -93,6 +93,10 @@ func InitJSONFlags(
 		flagProps.Usage = evalUsage(flagProps.Usage, supportedPlatforms, supportedCloudProviders)
 
 		switch flagProps.FlagType {
+		case "stringArray":
+			var flag []string
+			flagsMultiStrReferences[flagName] = &flag
+			flagSet.StringArrayVarP(&flag, flagName, flagProps.ShorthandFlag, nil, flagProps.Usage)
 		case "multiStr":
 			var flag []string
 			flagsMultiStrReferences[flagName] = &flag

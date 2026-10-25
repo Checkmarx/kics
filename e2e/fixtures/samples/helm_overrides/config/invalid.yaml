@@ -1,0 +1,3 @@
+helm-overrides:
+  global:
+    values-file: ../values/common.yaml

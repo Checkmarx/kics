@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.chartID }}
+  labels:
+    helm-overrides-e2e: "true"
+data:
+  replicaCount: {{ .Values.replicaCount | quote }}
+  tag: {{ .Values.image.tag | quote }}
+  enabled: {{ .Values.enabled | quote }}
+  items: {{ join "," .Values.items | quote }}
+  message: {{ .Values.message | quote }}
+  variant: {{ .Values.variant | quote }}
+  requiredValue: {{ if .Values.needsRequired }}{{ required ".Values.requiredValue is required" .Values.requiredValue | quote }}{{ else }}{{ .Values.requiredValue | quote }}{{ end }}

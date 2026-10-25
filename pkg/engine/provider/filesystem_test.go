@@ -71,6 +71,28 @@ func TestNewFileSystemSourceProvider(t *testing.T) {
 	}
 }
 
+func TestFileSystemSourceProvider_ResolvesSiblingCharts(t *testing.T) {
+	root := t.TempDir()
+	for _, chart := range []string{"api", "api/charts/nested", "api-worker"} {
+		dir := filepath.Join(root, filepath.FromSlash(chart))
+		require.NoError(t, os.MkdirAll(dir, 0700))
+		require.NoError(t, os.WriteFile(filepath.Join(dir, "Chart.yaml"), []byte("name: shared\n"), 0600))
+	}
+	source, err := NewFileSystemSourceProvider([]string{root}, nil)
+	require.NoError(t, err)
+	var resolved []string
+	err = source.GetSources(context.Background(), model.Extensions{}, mockSink,
+		func(_ context.Context, path string) ([]string, error) {
+			relative, relErr := filepath.Rel(root, filepath.FromSlash(path))
+			require.NoError(t, relErr)
+			resolved = append(resolved, filepath.ToSlash(relative))
+			return nil, nil
+		})
+	require.NoError(t, err)
+	require.Equal(t, []string{"api", "api-worker"}, resolved,
+		"resolve sibling charts independently and leave nested charts to their parent")
+}
+
 // TestFileSystemSourceProvider_GetSources tests the functions [GetSources()] and all the methods called by them
 func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 	if err := test.ChangeCurrentDir("kics"); err != nil {

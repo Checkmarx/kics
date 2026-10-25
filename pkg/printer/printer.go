@@ -9,6 +9,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
+	"github.com/Checkmarx/kics/v2/pkg/kics"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
 
 	consoleFlags "github.com/Checkmarx/kics/v2/internal/console/flags"
@@ -240,8 +241,9 @@ func prettyPrintResultsTable(summary *model.Summary) error {
 
 func printFiles(query *model.QueryResult, printer *Printer) {
 	for fileIdx := range query.Files {
-		fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
-			query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
+
+		fmt.Printf("\t%s %s:%s%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
+			query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line), prepareContextSelector(query.Files[fileIdx].ContextSelector))
 		if !printer.minimal {
 			fmt.Println()
 			for _, line := range *query.Files[fileIdx].VulnLines {
@@ -257,6 +259,13 @@ func printFiles(query *model.QueryResult, printer *Printer) {
 			fmt.Print("\n\n")
 		}
 	}
+}
+
+func prepareContextSelector(selector string) string {
+	if selector == "" || selector == kics.DefaultSelector {
+		return ""
+	}
+	return fmt.Sprintf(" - (Execution context: %s)", selector)
 }
 
 // SetupPrinter - configures stdout and log options with given FlagSet

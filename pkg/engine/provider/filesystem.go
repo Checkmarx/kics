@@ -142,7 +142,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 			continue
 		}
 
-		err = s.walkDir(ctx, scanPath, false, sink, resolverSink, extensions)
+		err = s.walkDir(ctx, scanPath, sink, resolverSink, extensions)
 		if err != nil {
 			return errors.Wrap(err, "failed to walk directory")
 		}
@@ -151,13 +151,16 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 	return nil
 }
 
-func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
+func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 	sink Sink, resolverSink ResolverSink, extensions model.Extensions) error {
+	resolvedPrefix := ""
 	return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
 
+		// A resolved chart covers its descendants, but not sibling charts.
+		resolved := resolvedPrefix != "" && strings.HasPrefix(path, resolvedPrefix)
 		if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip {
 			return skipFolder
 		}
@@ -177,7 +180,7 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 			if errAdd := s.AddExcluded(excluded); errAdd != nil {
 				log.Err(errAdd).Msgf("Filesystem files provider couldn't exclude rendered Chart files, Chart=%s", info.Name())
 			}
-			resolved = true
+			resolvedPrefix = strings.TrimSuffix(path, string(filepath.Separator)) + string(filepath.Separator)
 			return nil
 		}
 		// -----------------------------------------------------------------

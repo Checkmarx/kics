@@ -1,0 +1,10 @@
+chartID: api
+replicaCount: 1
+image:
+  tag: default
+enabled: true
+items: [default]
+message: default
+variant: baseline
+needsRequired: false
+requiredValue: ""

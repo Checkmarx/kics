@@ -100,7 +100,7 @@ func initializeConfig(cmd *cobra.Command) error {
 		return err
 	}
 	if exit {
-		return nil
+		return prepareHelmOverrides(cmd, v)
 	}
 
 	base := filepath.Base(flags.GetStrFlag(flags.ConfigFlag))
@@ -115,11 +115,15 @@ func initializeConfig(cmd *cobra.Command) error {
 		return err
 	}
 
-	errBind = flags.BindFlags(cmd, v)
+	var sections []string
+	if cmd.Flags().Lookup(flags.HelmValuesFlag) != nil {
+		sections = []string{"helm-overrides"}
+	}
+	errBind = flags.BindFlags(cmd, v, sections...)
 	if errBind != nil {
 		return errBind
 	}
-	return nil
+	return prepareHelmOverrides(cmd, v)
 }
 
 type console struct {

@@ -1,0 +1,3 @@
+replicaCount: 11
+image:
+  tag: later-file
