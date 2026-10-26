@@ -1,4 +1,4 @@
-FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.26.3@sha256:2d6c80227255c3112a4d08e67ba98e58efd3846daf15d9d7d4c389565d881b1a AS build_env
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.27.3@sha256:f20d83a83e18dbd2a4714b8ffd4b30b287b6243962dd75608e86abcc63ba4efc AS build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -27,7 +27,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -o bin/kics cmd/console/main.go
 
 # Runtime image - Alpine base with git preinstalled (wget/unzip come from busybox already)
-FROM alpine/git:latest@sha256:6f8eae2205a85c51106a9650e574a37fb1d5e4f645e5f6ea57cb57b9462cd4cf
+FROM alpine/git:latest@sha256:e8ceedc73bd80992ae8d58a7d24c58b8322146c354f1d2e81a97db4452068ec0
 
 RUN addgroup -g 1000 checkmarx && \
     adduser -D -u 1000 -G checkmarx -h /app/bin -s /bin/sh checkmarx
