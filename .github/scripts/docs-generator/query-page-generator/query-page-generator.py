@@ -244,10 +244,14 @@ def generate_md_docs(queries_database : str, output_path : str, template_file_pa
             '<POSITIVE_TESTS>', format_positive_tests(query_data.get('true_positives'))).replace(
             '<NEGATIVE_TESTS>', format_negative_tests(query_data.get('true_negatives')))
 
-        cloud_provider = query_data.get('cloudProvider', '').lower()
+        # Re-validate right where the output path is built (empty cloud provider and 'common' map to no sub-folder)
+        safe_platform = validate_path_component(query_data.get('platform'), 'platform', key).lower()
+        safe_key = validate_path_component(key, 'id', key)
+        cloud_provider = query_data.get('cloudProvider', '')
+        safe_cloud_provider = validate_path_component(cloud_provider, 'cloudProvider', key).lower() if cloud_provider != '' else ''
         platform_folder_path = os.path.join(output_path,
-                                            f"{query_data.get('platform').lower()}-queries",
-                                            cloud_provider if cloud_provider != 'common' else '')
+                                            f"{safe_platform}-queries",
+                                            safe_cloud_provider if safe_cloud_provider != 'common' else '')
         # Defense in depth: the generated page must always stay inside the output folder
         if os.path.commonpath([os.path.realpath(output_path), os.path.realpath(platform_folder_path)]) != os.path.realpath(output_path):
             raise ValueError(f"\033[31mRefusing to write outside of the output folder: {platform_folder_path}\033[0m")
@@ -255,7 +259,7 @@ def generate_md_docs(queries_database : str, output_path : str, template_file_pa
             os.makedirs(platform_folder_path)
 
         # If you are having problems rendering the ".md" pages, try adding encoding='utf-8' as a parameter of "open" function invocation
-        with open(f'{os.path.join(platform_folder_path, key)}.md', 'w') as f:
+        with open(f'{os.path.join(platform_folder_path, safe_key)}.md', 'w') as f:
             f.write(query_doc)
 
 # Export a dictionary to a "json" file
