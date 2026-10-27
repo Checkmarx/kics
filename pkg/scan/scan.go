@@ -130,6 +130,11 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 }
 
 func (c *Client) executeScan(ctx context.Context) (*Results, error) {
+	defer func() {
+		for _, path := range c.ScanParams.HelmOverrides.UnmatchedCharts() {
+			log.Warn().Str("chart", path).Msg("Helm override selector did not match any chart rendered by this scan")
+		}
+	}()
 	executeScanParameters, err := c.initScan(ctx)
 
 	if err != nil {
@@ -251,7 +256,7 @@ func (c *Client) createService(
 
 	// combinedResolver to be used to resolve files and templates
 	combinedResolver, err := resolver.NewBuilder().
-		Add(&helm.Resolver{}).
+		Add(&helm.Resolver{ExperimentalHelmScan: c.ScanParams.ExperimentalHelmScan, Overrides: c.ScanParams.HelmOverrides}).
 		Build()
 	if err != nil {
 		return nil, err
@@ -271,6 +276,7 @@ func (c *Client) createService(
 				Tracker:          t,
 				Resolver:         combinedResolver,
 				MaxFileSize:      c.ScanParams.MaxFileSizeFlag,
+				Files:            make(map[string]model.FileMetadatas),
 			},
 		)
 	}

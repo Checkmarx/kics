@@ -130,6 +130,8 @@ Flags:
       --exclude-severities strings    exclude results by providing the severity of a result
                                       can be provided multiple times or as a comma separated string
                                       example: 'info,low'
+      --experimental-helm-scan        render unrenderable helm charts by injecting placeholder values (a chart that still fails is skipped);
+                                      may surface findings on injected values (default [false])
       --experimental-queries          include experimental queries (queries not yet thoroughly reviewed) (default [false])
       --fail-on strings               which kind of results should return an exit code different from 0
                                       accepts: critical, high, medium, low and info

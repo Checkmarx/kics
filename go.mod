@@ -11,6 +11,7 @@ require (
 	github.com/aws/aws-sdk-go-v2 v1.47.1
 	github.com/bigkevmcd/go-configparser v0.0.0-20230427073640-c6b631f70126
 	github.com/cheggaaa/pb/v3 v3.1.7
+	github.com/distribution/reference v0.6.0
 	github.com/emicklei/proto v1.14.0
 	github.com/getsentry/sentry-go v0.31.2-0.20250102155933-f2d4348b0508
 	github.com/gocarina/gocsv v0.0.0-20240520201108-78e41c74b4b1

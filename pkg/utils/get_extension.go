@@ -34,6 +34,12 @@ var falsePositiveFROMPatterns = []*regexp.Regexp{
 func GetExtension(path string) (string, error) {
 	fileInfo, err := os.Stat(path)
 	if err != nil {
+		// Rendered Helm manifests can have virtual paths. Only fall back for
+		// missing files so existing files still use Dockerfile detection and
+		// directories and other filesystem errors are not treated as files.
+		if ext := filepath.Ext(path); os.IsNotExist(err) && ext != "" {
+			return ext, nil
+		}
 		return "", fmt.Errorf("file %s not found", path)
 	}
 

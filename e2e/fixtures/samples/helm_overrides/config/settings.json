@@ -1,0 +1,15 @@
+{
+  "helm-overrides": {
+    "global": {
+      "values-files": ["../values/common.yaml", "../values/later.yaml"],
+      "set": ["replicaCount=13", "enabled=false"],
+      "set-string": ["image.tag=001", "message=hello\\,world"]
+    },
+    "charts": [{
+      "path": "../charts/api",
+      "values-files": ["../values/api.yaml"],
+      "set": ["replicaCount=14"],
+      "set-string": ["image.tag=002"]
+    }]
+  }
+}

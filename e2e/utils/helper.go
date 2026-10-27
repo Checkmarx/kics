@@ -50,6 +50,14 @@ func RunCommand(kicsArgs []string, useDocker, useMock bool, kicsDockerImage stri
 
 // KicsDevPathAdapter adapts the path to enable kics locally execution
 func KicsDevPathAdapter(path string) string {
+	// Scoped Helm flags contain a chart path and either a second path or an
+	// expression. Adapt each side independently, preserving expression escapes.
+	if chart, value, scoped := strings.Cut(path, "::"); scoped {
+		return KicsDevPathAdapter(chart) + "::" + KicsDevPathAdapter(value)
+	}
+	if !strings.Contains(path, "/path/") && !strings.Contains(path, `\path\`) {
+		return path
+	}
 	path = filepath.ToSlash(path)
 	// [e2e-029] and [e2e-056] config tests
 	switch path {

@@ -46,13 +46,14 @@ func (m *MemoryStorage) GetVulnerabilities(_ context.Context, _ string) ([]model
 func (m *MemoryStorage) getUniqueVulnerabilities() []model.Vulnerability {
 	vulnDictionary := make(map[string]model.Vulnerability)
 	for i := range m.vulnerabilities {
-		key := fmt.Sprintf("%s:%s:%d:%s:%s:%s",
+		key := fmt.Sprintf("%s:%s:%d:%s:%s:%s:%s",
 			m.vulnerabilities[i].QueryID,
 			m.vulnerabilities[i].FileName,
 			m.vulnerabilities[i].Line,
 			m.vulnerabilities[i].SimilarityID,
 			m.vulnerabilities[i].SearchKey,
 			m.vulnerabilities[i].KeyActualValue,
+			m.vulnerabilities[i].ContextSelector,
 		)
 		vulnDictionary[key] = m.vulnerabilities[i]
 	}
