@@ -2,9 +2,31 @@
 import argparse
 import os
 import json
+import re
 import shutil
 import time
 from pathlib import Path
+
+# Values taken from "metadata.json" that are used to build file or folder names must be a single safe path component
+SAFE_PATH_COMPONENT = re.compile(r'^[A-Za-z0-9_-]+$')
+
+# Raises ValueError if the value can't be safely used as a single file/folder name
+def validate_path_component(value, field : str, source : str) -> str:
+    if not isinstance(value, str) or not SAFE_PATH_COMPONENT.fullmatch(value):
+        raise ValueError(f"\033[31mInvalid '{field}' value {value!r} in {source}\033[0m")
+    return value
+
+# Returns the unique line numbers of the expected results, making sure each one is an integer that points inside the test file
+# This bounds the number of items to the number of lines in the test file
+def get_expected_lines(test_results : list, file_content : str, source : str) -> list:
+    total_lines = file_content.count('\n') + 1
+    lines = set()
+    for item in test_results:
+        line = item['line']
+        if isinstance(line, bool) or not isinstance(line, int) or not 1 <= line <= total_lines:
+            raise ValueError(f"\033[31mInvalid 'line' value {line!r} in {source} (file has {total_lines} lines)\033[0m")
+        lines.add(line)
+    return list(lines)
 
 # Searches for "metadata.json" files within the inputed directory
 # Returns a dictionary of dictionaries (output of function get_query_info)
@@ -31,6 +53,12 @@ def get_query_info(query_path : str, metadata_file = 'metadata.json'):
     with open(metadata_file_path, 'r') as f:
         query_metadata_content = json.loads(f.read())
 
+    for field in ('id', 'platform'):
+        if field in query_metadata_content:
+            validate_path_component(query_metadata_content[field], field, metadata_file_path)
+    if 'cloudProvider' in query_metadata_content:
+        validate_path_component(query_metadata_content['cloudProvider'], 'cloudProvider', metadata_file_path)
+
     # Find the index of the folder name in the directory path
     folder_index = metadata_file_path.rfind('assets\queries')
     # If the folder name is found, return everything after it
@@ -50,6 +78,9 @@ def get_query_info(query_path : str, metadata_file = 'metadata.json'):
 
     with open(expected_result_file_path) as f:
         expected_results = json.loads(f.read())
+
+    if not isinstance(expected_results, list) or not all(isinstance(r, dict) for r in expected_results):
+        raise ValueError(f"\033[31m{expected_result_file_path} must contain a list of objects\033[0m")
 
     files = sorted(os.listdir(os.path.join(query_path, 'test')), key=str.casefold)
     positive_filenames = []
@@ -83,7 +114,7 @@ def get_query_info(query_path : str, metadata_file = 'metadata.json'):
                          or f.get('filename')
                          or f.get('file')) == p_filename)
                 ]
-            lines = list(set([item['line'] for item in test_results]))
+            lines = get_expected_lines(test_results, test_content, expected_result_file_path)
             if lines != []:
                 positive_test = dict(fileName=p_filename, lines=lines, code=test_content)
                 true_positives.append(positive_test)
@@ -213,15 +244,22 @@ def generate_md_docs(queries_database : str, output_path : str, template_file_pa
             '<POSITIVE_TESTS>', format_positive_tests(query_data.get('true_positives'))).replace(
             '<NEGATIVE_TESTS>', format_negative_tests(query_data.get('true_negatives')))
 
-        cloud_provider = query_data.get('cloudProvider', '').lower()
+        # Re-validate right where the output path is built (empty cloud provider and 'common' map to no sub-folder)
+        safe_platform = validate_path_component(query_data.get('platform'), 'platform', key).lower()
+        safe_key = validate_path_component(key, 'id', key)
+        cloud_provider = query_data.get('cloudProvider', '')
+        safe_cloud_provider = validate_path_component(cloud_provider, 'cloudProvider', key).lower() if cloud_provider != '' else ''
         platform_folder_path = os.path.join(output_path,
-                                            f"{query_data.get('platform').lower()}-queries",
-                                            cloud_provider if cloud_provider != 'common' else '')
+                                            f"{safe_platform}-queries",
+                                            safe_cloud_provider if safe_cloud_provider != 'common' else '')
+        # Defense in depth: the generated page must always stay inside the output folder
+        if os.path.commonpath([os.path.realpath(output_path), os.path.realpath(platform_folder_path)]) != os.path.realpath(output_path):
+            raise ValueError(f"\033[31mRefusing to write outside of the output folder: {platform_folder_path}\033[0m")
         if not os.path.exists(platform_folder_path):
             os.makedirs(platform_folder_path)
 
         # If you are having problems rendering the ".md" pages, try adding encoding='utf-8' as a parameter of "open" function invocation
-        with open(f'{os.path.join(platform_folder_path, key)}.md', 'w') as f:
+        with open(f'{os.path.join(platform_folder_path, safe_key)}.md', 'w') as f:
             f.write(query_doc)
 
 # Export a dictionary to a "json" file
