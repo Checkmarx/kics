@@ -1,6 +1,6 @@
-FROM golang:1.26.3@sha256:2d6c80227255c3112a4d08e67ba98e58efd3846daf15d9d7d4c389565d881b1a AS go_toolchain
+FROM golang:1.27.3@sha256:f20d83a83e18dbd2a4714b8ffd4b30b287b6243962dd75608e86abcc63ba4efc AS go_toolchain
 
-FROM redhat/ubi8:latest@sha256:a94c5e31450d30190afe6f7a09628dd1dd7a3dc98784ba5ed1d19fd77098fcb2 AS build_env
+FROM redhat/ubi8:latest@sha256:bd097b288df365aec7bad694c87036534ce94d1a4974c943f417f757f8eb2ac4 AS build_env
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -33,7 +33,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
   -a -installsuffix cgo \
   -o bin/kics cmd/console/main.go
 
-FROM redhat/ubi8:latest@sha256:a94c5e31450d30190afe6f7a09628dd1dd7a3dc98784ba5ed1d19fd77098fcb2
+FROM redhat/ubi8:latest@sha256:bd097b288df365aec7bad694c87036534ce94d1a4974c943f417f757f8eb2ac4
 
 ARG RELEASE
 ARG ENGINE_VERSION
