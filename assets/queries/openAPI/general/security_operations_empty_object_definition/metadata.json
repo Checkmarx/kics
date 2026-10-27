@@ -3,7 +3,7 @@
   "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
   "severity": "HIGH",
   "category": "Access Control",
-  "descriptionText": "Security object for operations should not be empty object or has any empty object definition",
+  "descriptionText": "Security object for operations should not be empty object",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
   "platform": "OpenAPI",
   "descriptionID": "05dcdd12",
