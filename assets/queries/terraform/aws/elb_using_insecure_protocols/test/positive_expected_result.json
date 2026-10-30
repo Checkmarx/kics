@@ -2,11 +2,31 @@
   {
     "queryName": "ELB Using Insecure Protocols",
     "severity": "MEDIUM",
-    "line": 41
+    "line": 30,
+    "fileName": "positive.tf",
+    "resourceType": "aws_load_balancer_policy",
+    "resourceName": "positive4",
+    "searchKey": "aws_load_balancer_policy[positive4].policy_attribute[1].name",
+    "searchValue": "",
+    "expectedValue": "'aws_load_balancer_policy[positive4].policy_attribute[Protocol-TLSv1]' should not be an insecure protocol",
+    "actualValue": "'aws_load_balancer_policy[positive4].policy_attribute[Protocol-TLSv1]' is an insecure protocol",
+    "issueType": "IncorrectValue",
+    "similarityID": "7cd8c19629be3b781907f04edea5c502735f7be03b1b613274252c364b59bdbe",
+    "search_line": 30
   },
   {
     "queryName": "ELB Using Insecure Protocols",
     "severity": "MEDIUM",
-    "line": 30
+    "line": 41,
+    "fileName": "positive.tf",
+    "resourceType": "aws_load_balancer_policy",
+    "resourceName": "positive5",
+    "searchKey": "aws_load_balancer_policy[positive5].policy_attribute.name",
+    "searchValue": "",
+    "expectedValue": "'aws_load_balancer_policy[positive5].policy_attribute[Protocol-SSLv3]' should not be an insecure protocol",
+    "actualValue": "'aws_load_balancer_policy[positive5].policy_attribute[Protocol-SSLv3]' is an insecure protocol",
+    "issueType": "IncorrectValue",
+    "similarityID": "f69a436fb47d803a5c4e8e3f37aaacf3882def98a9ef97da80cf815f5f04cfb2",
+    "search_line": 41
   }
 ]

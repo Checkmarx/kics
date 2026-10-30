@@ -3,6 +3,15 @@
     "queryName": "Group With Privilege Escalation By Actions 'iam:SetDefaultPolicyVersion'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_group",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_group[cosmic]",
+    "searchValue": "",
+    "expectedValue": "group cosmic shouldn't be associated with a policy that has Action set to 'iam:SetDefaultPolicyVersion' and Resource set to '*'",
+    "actualValue": "group cosmic is associated with a policy that has Action set to 'iam:SetDefaultPolicyVersion' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "236f2c1b8fc4bf94462e402f16c5d6cae78c15eac39edd4f535fe02b4febc5e0",
+    "search_line": 1
   }
 ]

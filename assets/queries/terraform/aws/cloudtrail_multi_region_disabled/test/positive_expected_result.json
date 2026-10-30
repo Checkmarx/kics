@@ -3,18 +3,45 @@
     "queryName": "CloudTrail Multi Region Disabled",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "npositive_1",
+    "searchKey": "aws_cloudtrail[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_cloudtrail[positive1].is_multi_region_trail should be defined and not null",
+    "actualValue": "aws_cloudtrail[positive1].is_multi_region_trail is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "7703291eadb50d88e0d6da6b06825388fd3e1ec72cf4c1008ef8aa17a1da1551",
+    "search_line": 2
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "npositive_2",
+    "searchKey": "aws_cloudtrail[positive2].is_multi_region_trail",
+    "searchValue": "",
+    "expectedValue": "aws_cloudtrail[positive2].is_multi_region_trail should be set to true",
+    "actualValue": "aws_cloudtrail[positive2].is_multi_region_trail is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "39f8f2219eb718457e887e5536b0880436df7d01042a25aa808c16bb73e2155f",
+    "search_line": 4
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "npositive_3",
+    "searchKey": "aws_cloudtrail[positive3].include_global_service_events",
+    "searchValue": "",
+    "expectedValue": "aws_cloudtrail[positive3].include_global_service_events should be undefined or set to true",
+    "actualValue": "aws_cloudtrail[positive3].include_global_service_events is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f256060602a6371d20103b93ec5caa1a3543dc8dfa0cc19ac21d7add4baa86f2",
+    "search_line": 5
   }
 ]

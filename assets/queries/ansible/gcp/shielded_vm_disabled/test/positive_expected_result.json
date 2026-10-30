@@ -2,36 +2,106 @@
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance1",
+    "searchKey": "name={{create a instance1}}.{{google.cloud.gcp_compute_instance}}",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config should be defined",
+    "actualValue": "gcp_compute_instance.shielded_instance_config is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "117f866351f681e8f8cc900d8b5729ffe10eaa13cee9dcb7b4057485c8f5240c",
+    "search_line": -1
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 42
+    "line": 42,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance2",
+    "searchKey": "name={{create a instance2}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring should be defined",
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8c227524812e46e846d974eb320c7840fdcfe6fce8ed4bd761b545f2318e0297",
+    "search_line": -1
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 65
+    "line": 65,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance3",
+    "searchKey": "name={{create a instance3}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot should be defined",
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b417b9624639d35cbca54c122fbbfeb690c3f61f2318042df14cbe1279b92782",
+    "search_line": -1
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 88
+    "line": 88,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance4",
+    "searchKey": "name={{create a instance4}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm should be defined",
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5d6e12917123f85a34467bb7a996f7acfbf3a8b3af0cca5d367cf015cbf1fc4b",
+    "search_line": -1
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 112
+    "line": 112,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance5",
+    "searchKey": "name={{create a instance5}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_integrity_monitoring",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring should be true",
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "e2355129e81321b10d88710ce6f351474fa69e76cd3c23f80ea38cfa5320e5c2",
+    "search_line": -1
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 137
+    "line": 137,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance6",
+    "searchKey": "name={{create a instance6}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_secure_boot",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot should be true",
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "35cc1f104fac7cad30a0edbfc632b3940d0aab62c883e6c6886639bd77d6bcad",
+    "search_line": -1
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 162
+    "line": 162,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance7",
+    "searchKey": "name={{create a instance7}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_vtpm",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm should be true",
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "ade394d15452df876283ac3133f95744dd126010b81735ee4286f5d265f24cd2",
+    "search_line": -1
   }
 ]

@@ -2,16 +2,46 @@
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "google_storage_bucket_iam_binding",
+    "resourceName": "positive1",
+    "searchKey": "google_storage_bucket_iam_binding[positive1].members",
+    "searchValue": "",
+    "expectedValue": "'google_storage_bucket_iam_binding[positive1].members' should not be null",
+    "actualValue": "'google_storage_bucket_iam_binding[positive1].members' is null",
+    "issueType": "IncorrectValue",
+    "similarityID": "46f9cc3e9530d0b2b54aff72ad596edc59ee7e6c3ddda714285664d935fa67dd",
+    "search_line": -1
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.tf",
+    "resourceType": "google_storage_bucket_iam_binding",
+    "resourceName": "positive2",
+    "searchKey": "google_storage_bucket_iam_binding[positive2].members",
+    "searchValue": "",
+    "expectedValue": "'google_storage_bucket_iam_binding[positive2].members' should not have 'allUsers'",
+    "actualValue": "'google_storage_bucket_iam_binding[positive2].members' has 'allUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5f4dc8983fba28166b17220a206503e268c2cc6d854bcf404f011165066e9de4",
+    "search_line": -1
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.tf",
+    "resourceType": "google_storage_bucket_iam_binding",
+    "resourceName": "positive3",
+    "searchKey": "google_storage_bucket_iam_binding[positive3].members",
+    "searchValue": "",
+    "expectedValue": "'google_storage_bucket_iam_binding[positive3].members' should not have 'allAuthenticatedUsers'",
+    "actualValue": "'google_storage_bucket_iam_binding[positive3].members' has 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3cf9151787a91833019957994c8501912d7d9a425965ad887aca9f26784320e1",
+    "search_line": -1
   }
 ]

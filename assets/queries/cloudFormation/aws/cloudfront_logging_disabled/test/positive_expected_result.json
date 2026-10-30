@@ -3,24 +3,60 @@
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution1",
+    "searchKey": "Resources.myDistribution1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging should be defined",
+    "actualValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6903e307c3dddbfbe2f4c20ed98934468668c555a32a6205e1572f972ae8b9c9",
+    "search_line": -1
   },
   {
+    "queryName": "CloudFront Logging Disabled",
+    "severity": "MEDIUM",
     "line": 30,
     "fileName": "positive2.yaml",
-    "queryName": "CloudFront Logging Disabled",
-    "severity": "MEDIUM"
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution2",
+    "searchKey": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket should have the domain '.s3.amazonaws.com'",
+    "actualValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket does not have the correct domain",
+    "issueType": "IncorrectValue",
+    "similarityID": "9aab6fd06c7574d31c7598de97ff4180cc1d67d1654855f898c5854410cc458a",
+    "search_line": -1
   },
   {
+    "queryName": "CloudFront Logging Disabled",
+    "severity": "MEDIUM",
     "line": 6,
     "fileName": "positive3.json",
-    "queryName": "CloudFront Logging Disabled",
-    "severity": "MEDIUM"
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution1",
+    "searchKey": "Resources.myDistribution1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging should be defined",
+    "actualValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2ffa5e17e1fc04c83496de985de1add5ecfb9aad4641c6967a2227434fb762ff",
+    "search_line": -1
   },
   {
+    "queryName": "CloudFront Logging Disabled",
+    "severity": "MEDIUM",
     "line": 40,
     "fileName": "positive4.json",
-    "queryName": "CloudFront Logging Disabled",
-    "severity": "MEDIUM"
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution2",
+    "searchKey": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket should have the domain '.s3.amazonaws.com'",
+    "actualValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket does not have the correct domain",
+    "issueType": "IncorrectValue",
+    "similarityID": "ad6303d7ff99974af2cea1dbf23eff4fc820f8bd557de1a426fa565a495ca4bf",
+    "search_line": -1
   }
 ]

@@ -3,6 +3,15 @@
     "queryName": "Role With Privilege Escalation By Actions 'cloudformation:CreateStack' And 'iam:PassRole'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_role[cosmic]",
+    "searchValue": "",
+    "expectedValue": "role cosmic shouldn't be associated with a policy that has Action set to 'cloudformation:CreateStack' and 'iam:PassRole' and Resource set to '*'",
+    "actualValue": "role cosmic is associated with a policy that has Action set to 'cloudformation:CreateStack' and 'iam:PassRole' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b8277fe6901ae07d393f4e3c9e3bc2a13c8100e0205e89fa320f38189fba9bb1",
+    "search_line": 1
   }
 ]

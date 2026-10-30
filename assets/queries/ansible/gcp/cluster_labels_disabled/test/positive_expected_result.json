@@ -2,16 +2,46 @@
   {
     "queryName": "Cluster Labels Disabled",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster1",
+    "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "",
+    "expectedValue": "google.cloud.gcp_container_cluster should be defined and not null",
+    "actualValue": "google.cloud.gcp_container_cluster is undefined and null",
+    "issueType": "MissingAttribute",
+    "similarityID": "2692ee7cd48c1d40c28788d1d630da34acdff38cd57d45c46548c4c1bec32f27",
+    "search_line": -1
   },
   {
     "queryName": "Cluster Labels Disabled",
     "severity": "LOW",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster2",
+    "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "",
+    "expectedValue": "google.cloud.gcp_container_cluster should be defined and not null",
+    "actualValue": "google.cloud.gcp_container_cluster is undefined and null",
+    "issueType": "MissingAttribute",
+    "similarityID": "4287eb431ed3280c4cd4e6541f92a96f86a9b4f7ca2286138ada3ec1f2ed502f",
+    "search_line": -1
   },
   {
     "queryName": "Cluster Labels Disabled",
     "severity": "LOW",
-    "line": 47
+    "line": 47,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster3",
+    "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.resource_labels",
+    "searchValue": "",
+    "expectedValue": "google.cloud.gcp_container_cluster should not be empty",
+    "actualValue": "google.cloud.gcp_container_cluster is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "11f47e8dcab2a937353f05f97b1ee5238d8c00b2c0104b078dd711470b3c0019",
+    "search_line": -1
   }
 ]

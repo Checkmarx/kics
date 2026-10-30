@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Nifcloud Computing Undefined Description To Security Group",
-		"severity": "INFO",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud Computing Undefined Description To Security Group",
+    "severity": "INFO",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "nifcloud_security_group",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_security_group[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_security_group[positive]' should include a description for auditing purposes",
+    "actualValue": "'nifcloud_security_group[positive]' does not have a description",
+    "issueType": "MissingAttribute",
+    "similarityID": "a8d01e60417e7f6eb8b2ca488111cc119f5c69679080d701f23505dad022a84b",
+    "search_line": -1
+  }
 ]

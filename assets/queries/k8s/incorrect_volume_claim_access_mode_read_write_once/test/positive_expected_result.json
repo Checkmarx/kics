@@ -1,12 +1,32 @@
 [
-	{
-		"queryName": "Incorrect Volume Claim Access Mode ReadWriteOnce",
-		"severity": "MEDIUM",
-		"line": 27
-	},
-	{
-		"queryName": "Incorrect Volume Claim Access Mode ReadWriteOnce",
-		"severity": "MEDIUM",
-		"line": 72
-	}
+  {
+    "queryName": "Incorrect Volume Claim Access Mode ReadWriteOnce",
+    "severity": "MEDIUM",
+    "line": 27,
+    "fileName": "positive.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "web",
+    "searchKey": "metadata.name=web.spec.volumeClaimTemplates",
+    "searchValue": "",
+    "expectedValue": "metadata.name=web.spec.volumeClaimTemplates has only one template with a 'ReadWriteOnce'",
+    "actualValue": "metadata.name=web.spec.volumeClaimTemplates has multiple templates with 'ReadWriteOnce'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b42bb9576598d84649b1e4538c30bba0312553f883f68acfcd9717723c58a0b2",
+    "search_line": -1
+  },
+  {
+    "queryName": "Incorrect Volume Claim Access Mode ReadWriteOnce",
+    "severity": "MEDIUM",
+    "line": 72,
+    "fileName": "positive.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "web2",
+    "searchKey": "metadata.name=web2.spec.volumeClaimTemplates",
+    "searchValue": "",
+    "expectedValue": "metadata.name=web2.spec.volumeClaimTemplates has one template with a 'ReadWriteOnce'",
+    "actualValue": "metadata.name=web2.spec.volumeClaimTemplates does not have a template with a 'ReadWriteOnce'",
+    "issueType": "MissingAttribute",
+    "similarityID": "73ec2fb452d9e71203e1a706aa489dfeea9f83d315fd6aca1574f29fa3e60d38",
+    "search_line": -1
+  }
 ]

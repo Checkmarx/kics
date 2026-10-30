@@ -3,6 +3,15 @@
     "queryName": "BigQuery Dataset Is Public",
     "severity": "HIGH",
     "line": 7,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "bigquery.v2.dataset",
+    "resourceName": "bigquery",
+    "searchKey": "resources.name={{bigquery}}.properties.access[0].specialGroup",
+    "searchValue": "",
+    "expectedValue": "'access[0].specialGroup' should not equal to 'allAuthenticatedUsers'",
+    "actualValue": "'access[0].specialGroup' is equal to 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "00bed6eb5dc2252720d71d5a45b115db3708d49ae76cd4b91575d646be275a8e",
+    "search_line": 7
   }
 ]

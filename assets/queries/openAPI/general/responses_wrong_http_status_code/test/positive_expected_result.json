@@ -3,48 +3,120 @@
     "queryName": "Responses With Wrong HTTP Status Code (v3)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{50}}",
+    "searchValue": "",
+    "expectedValue": "HTTP responses status codes should be in range of [200-599]",
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue",
+    "similarityID": "e9afadde017590cbbc90148df8cc56efb47f9d932f32839ce9106f5f883c86f2",
+    "search_line": -1
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v3)",
     "severity": "INFO",
     "line": 39,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{6xx}}",
+    "searchValue": "",
+    "expectedValue": "HTTP responses status codes should be in range of [200-599]",
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue",
+    "similarityID": "f8a0dd40c1cdac2cc8f73bb4d01338d2e03025a1510064e9911dfefb77ae629d",
+    "search_line": -1
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v3)",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{50}}",
+    "searchValue": "",
+    "expectedValue": "HTTP responses status codes should be in range of [200-599]",
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue",
+    "similarityID": "6e52bb4bdf71c4802cca3568b41f39c7d9b3416973be857d2b83c3872690b208",
+    "search_line": -1
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v3)",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{6xx}}",
+    "searchValue": "",
+    "expectedValue": "HTTP responses status codes should be in range of [200-599]",
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue",
+    "similarityID": "42cdb6f90fc381c7786a8357434eb1f1baa68fbbd03d7df22f022043ddd250bb",
+    "search_line": -1
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v2)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{50}}",
+    "searchValue": "",
+    "expectedValue": "HTTP responses status codes should be in range of [200-599]",
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue",
+    "similarityID": "46df87ab1eb2c4fd893af5f4a0fdcb1029e8d368298c404a762a81a16b73b894",
+    "search_line": -1
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v2)",
     "severity": "INFO",
     "line": 39,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{6xx}}",
+    "searchValue": "",
+    "expectedValue": "HTTP responses status codes should be in range of [200-599]",
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue",
+    "similarityID": "a2b0bf9341cbdc6477bcd2303893df486ef93dce1831922479d43627d278aa57",
+    "search_line": -1
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v2)",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{50}}",
+    "searchValue": "",
+    "expectedValue": "HTTP responses status codes should be in range of [200-599]",
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue",
+    "similarityID": "07ffc4f588fa42887962f1550ab98d2ad01934f560124f40efd5b1c36d76cdda",
+    "search_line": -1
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v2)",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{6xx}}",
+    "searchValue": "",
+    "expectedValue": "HTTP responses status codes should be in range of [200-599]",
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue",
+    "similarityID": "fa7a5a6d7610cda562372369044f03e1a441406bc4f814673b4b94a72e7cd3e1",
+    "search_line": -1
   }
 ]

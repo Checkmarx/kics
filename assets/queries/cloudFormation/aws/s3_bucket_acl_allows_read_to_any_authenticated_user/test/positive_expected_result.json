@@ -3,48 +3,120 @@
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "jenkins-artifacts",
+    "searchKey": "Resources.JenkinsArtifacts01.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
+    "actualValue": "S3 bucket named 'jenkins-artifacts' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "120e3a6d78d35075cf8fb24ce4118de2f93230272b364d5b2ed5027bb8752eed",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "public-read-static-page01",
+    "searchKey": "Resources.StaticPage01.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
+    "actualValue": "S3 bucket named 'public-read-static-page01' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "020fb35b991e5590d867b3d1ec1d02ca81ea531f7bc3ef8f299c22c3b0747210",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "jenkins-artifacts-block-public",
+    "searchKey": "Resources.JenkinsArtifacts02.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
+    "actualValue": "S3 bucket named 'jenkins-artifacts-block-public' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "44ebd00fc10ac67c1c823715ceec6e148a9e17206fd2d4aafe54e1d986452168",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3BucketForWebsiteContent",
+    "searchKey": "Resources.S3BucketForWebsiteContent.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
+    "actualValue": "S3 bucket named 'undefined' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "cb36020c5e0e5f798876c712bfa201e0064d08de8bb9918c1e347ffe4e396160",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "jenkins-artifacts",
+    "searchKey": "Resources.JenkinsArtifacts01.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
+    "actualValue": "S3 bucket named 'jenkins-artifacts' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "7a43577577a634944ffb7f8edef538a4df4ee1d31404b530b98c6775159a444f",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "public-read-static-page01",
+    "searchKey": "Resources.StaticPage01.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
+    "actualValue": "S3 bucket named 'public-read-static-page01' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c1bafaa1b3badedd98c3855befd87bf104cd6043b2bd4bbb622a1c9e3e49bb0c",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
     "severity": "HIGH",
     "line": 20,
-    "fileName": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "jenkins-artifacts-block-public",
+    "searchKey": "Resources.JenkinsArtifacts02.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
+    "actualValue": "S3 bucket named 'jenkins-artifacts-block-public' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3754b7b900066355c273d793777af29e0e24a216007d0b2c19342d70d70b4640",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive8.json"
+    "fileName": "positive8.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3BucketForWebsiteContent",
+    "searchKey": "Resources.S3BucketForWebsiteContent.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
+    "actualValue": "S3 bucket named 'undefined' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "bbf970ce9f2c44dc23194a902e474671dffd0bf67740b5ae804910b8b1225824",
+    "search_line": -1
   }
 ]

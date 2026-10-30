@@ -2,11 +2,31 @@
   {
     "queryName": "Unscanned ECR Image",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_ecr_repository",
+    "resourceName": "img_p_2",
+    "searchKey": "aws_ecr_repository[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_ecr_repository[positive1].image_scanning_configuration should be defined",
+    "actualValue": "aws_ecr_repository[positive1].image_scanning_configuration is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "67e0445ccba8ae94167cd967c4f2a2357ae6052152287b0c37bc2b33a0da0026",
+    "search_line": 1
   },
   {
     "queryName": "Unscanned ECR Image",
     "severity": "LOW",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.tf",
+    "resourceType": "aws_ecr_repository",
+    "resourceName": "img_p_1",
+    "searchKey": "aws_ecr_repository[positive2].image_scanning_configuration.scan_on_push",
+    "searchValue": "",
+    "expectedValue": "aws_ecr_repository[positive2].image_scanning_configuration.scan_on_push is true",
+    "actualValue": "aws_ecr_repository[positive2].image_scanning_configuration.scan_on_push is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "7b0aeeaaef2089b7551f160222464b56bb54faa8a10cf92f153841d6325f77df",
+    "search_line": 11
   }
 ]

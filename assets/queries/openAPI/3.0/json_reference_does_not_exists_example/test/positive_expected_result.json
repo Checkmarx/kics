@@ -3,12 +3,30 @@
     "queryName": "Example JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.objectExample.$ref",
+    "searchValue": "",
+    "expectedValue": "wrongExample from #/components/examples/wrongExample should be declared on components.examples",
+    "actualValue": "wrongExample from #/components/examples/wrongExample is not declared on components.examples",
+    "issueType": "MissingAttribute",
+    "similarityID": "77e10f65e9f32bbb455487863b402cba14b5a201409ab1d8f4c62aece1e66d2a",
+    "search_line": 0
   },
   {
     "queryName": "Example JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.objectExample.$ref",
+    "searchValue": "",
+    "expectedValue": "wrongExample from #/components/examples/wrongExample should be declared on components.examples",
+    "actualValue": "wrongExample from #/components/examples/wrongExample is not declared on components.examples",
+    "issueType": "MissingAttribute",
+    "similarityID": "ac6438c6b9378d5f62328f4a78af8bc3aab155237d351d796c53405f627054b8",
+    "search_line": 0
   }
 ]

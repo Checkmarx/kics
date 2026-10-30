@@ -1,14 +1,32 @@
 [
   {
+    "queryName": "ECS Services assigned with public IP address",
     "severity": "MEDIUM",
     "line": 54,
-    "queryName": "ECS Services assigned with public IP address",
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "cfn-service",
+    "searchKey": "Resources.ECSService.Properties.NetworkConfiguration.AwsvpcConfiguration.AssignPublicIp",
+    "searchValue": "",
+    "expectedValue": "'AssignPublicIp' field should be defined to 'DISABLED' (defaults to 'DISABLED')",
+    "actualValue": "'AssignPublicIp' field is defined to 'ENABLED'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0083ecb1f2893b163733335b3553bf15cc0b3a454a754ace4bb27d6953a139f9",
+    "search_line": 54
   },
   {
+    "queryName": "ECS Services assigned with public IP address",
     "severity": "MEDIUM",
     "line": 66,
-    "queryName": "ECS Services assigned with public IP address",
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "cfn-service",
+    "searchKey": "Resources.ECSService.Properties.NetworkConfiguration.AwsvpcConfiguration.AssignPublicIp",
+    "searchValue": "",
+    "expectedValue": "'AssignPublicIp' field should be defined to 'DISABLED' (defaults to 'DISABLED')",
+    "actualValue": "'AssignPublicIp' field is defined to 'ENABLED'",
+    "issueType": "IncorrectValue",
+    "similarityID": "99d4d922f924600fffb88bbe63951bab45cc6c1cfda58b2065d4be6e4bb36e72",
+    "search_line": 66
   }
 ]

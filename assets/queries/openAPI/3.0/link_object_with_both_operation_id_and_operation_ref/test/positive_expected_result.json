@@ -3,36 +3,90 @@
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
     "severity": "INFO",
     "line": 70,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.{{200}}.links.{{address}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.200.links.address has both 'operationId' and 'operationRef' defined",
+    "actualValue": "components.responses.200.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "d8858ce7cef35ca34c36a888ef22484048c3b526ae2541f2b5063cdbc02ed538",
+    "search_line": -1
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}",
+    "searchValue": "",
+    "expectedValue": "paths/.get.responses.200.links.address has both 'operationId' and 'operationRef' defined",
+    "actualValue": "paths./.get.responses.200.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "e1d550113a7169e586d3c5e3be1a3dce33e0849b5821c076414e0cd1cf25e9fe",
+    "search_line": -1
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
     "severity": "INFO",
     "line": 67,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.links.{{address}}",
+    "searchValue": "",
+    "expectedValue": "components.links.address has both 'operationId' and 'operationRef' defined",
+    "actualValue": "components.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "e023bdc7a40ab49f6da9346e7ff39d1fb2fed3a9b290a0d5e7dad5550f598d6b",
+    "search_line": -1
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
     "severity": "INFO",
     "line": 50,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.{{200}}.links.{{address}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.200.links.address has both 'operationId' and 'operationRef' defined",
+    "actualValue": "components.responses.200.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "788c05f0b887fc078920bb006cee4f45abfa933b5bf1ec3a2499e530770f2c4e",
+    "search_line": -1
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}",
+    "searchValue": "",
+    "expectedValue": "paths/.get.responses.200.links.address has both 'operationId' and 'operationRef' defined",
+    "actualValue": "paths./.get.responses.200.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "9c976b196772450144adad5fb0c61a862ae0141e5e6d495bf53d244d96bc56eb",
+    "search_line": -1
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
     "severity": "INFO",
     "line": 42,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.links.{{address}}",
+    "searchValue": "",
+    "expectedValue": "components.links.address has both 'operationId' and 'operationRef' defined",
+    "actualValue": "components.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "503469888959bdaa1acafa70454ace83ebe7bde88f22658ac8e0b05ea5a409c1",
+    "search_line": -1
   }
 ]

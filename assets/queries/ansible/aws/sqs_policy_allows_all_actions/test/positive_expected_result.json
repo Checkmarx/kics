@@ -3,6 +3,15 @@
     "queryName": "SQS Policy Allows All Actions",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.sqs_queue",
+    "resourceName": "Second SQS queue with policy",
+    "searchKey": "name={{Second SQS queue with policy}}.{{community.aws.sqs_queue}}.policy",
+    "searchValue": "",
+    "expectedValue": "sqs_queue.policy.Statement should not contain Action equal to '*'",
+    "actualValue": "sqs_queue.policy.Statement contains Action equal to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "eab05d0e0ef3bde6f25fad9f30c4b5a467e091844791a3d99905ea489fcfee0a",
+    "search_line": 10
   }
 ]

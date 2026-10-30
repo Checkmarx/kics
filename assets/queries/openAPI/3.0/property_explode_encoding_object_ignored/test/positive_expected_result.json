@@ -3,24 +3,60 @@
     "queryName": "Property 'explode' of Encoding Object Ignored",
     "severity": "INFO",
     "line": 49,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.{{NewItem}}.content.{{multipart/data}}",
+    "searchValue": "",
+    "expectedValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} should be 'application/x-www-form-urlencoded' when 'explode' is set",
+    "actualValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'explode' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "9742843002361b5a60ab7776fb1c941ffa39bd2b0fc59f8e13d998d6bf0d67fa",
+    "search_line": 0
   },
   {
     "queryName": "Property 'explode' of Encoding Object Ignored",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/form-data}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/form-data}} should be 'application/x-www-form-urlencoded' when 'explode' is set",
+    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/form-data}} is not 'application/x-www-form-urlencoded' when 'explode' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "5537f09d8fbba0894f7bfe1badfd93cf9e916c4ebb5221a6cefcb10317132a59",
+    "search_line": -1
   },
   {
     "queryName": "Property 'explode' of Encoding Object Ignored",
     "severity": "INFO",
     "line": 31,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.{{NewItem}}.content.{{multipart/form-data}}",
+    "searchValue": "",
+    "expectedValue": "components.requestBodies.{{NewItem}}.content.{{multipart/form-data}} should be 'application/x-www-form-urlencoded' when 'explode' is set",
+    "actualValue": "components.requestBodies.{{NewItem}}.content.{{multipart/form-data}} is not 'application/x-www-form-urlencoded' when 'explode' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "66583583c5be1939419e15ed9e2c56be1d16fbef665d003a83e1d05f9c39a83a",
+    "search_line": 0
   },
   {
     "queryName": "Property 'explode' of Encoding Object Ignored",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/form-data}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/form-data}} should be 'application/x-www-form-urlencoded' when 'explode' is set",
+    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/form-data}} is not 'application/x-www-form-urlencoded' when 'explode' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "dc5e2c62188a8b7672926a97b452dc3bf241f7518028cd454cbd59e402651f73",
+    "search_line": -1
   }
 ]

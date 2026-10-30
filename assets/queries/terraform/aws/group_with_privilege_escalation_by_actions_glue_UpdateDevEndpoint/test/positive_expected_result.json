@@ -3,6 +3,15 @@
     "queryName": "Group With Privilege Escalation By Actions 'glue:UpdateDevEndpoint'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_group",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_group[cosmic]",
+    "searchValue": "",
+    "expectedValue": "group cosmic shouldn't be associated with a policy that has Action set to 'glue:UpdateDevEndpoint' and Resource set to '*'",
+    "actualValue": "group cosmic is associated with a policy that has Action set to 'glue:UpdateDevEndpoint' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5268d10fe6546653fa882389bc14936770dbe2e7e8526a08c2d5642ec57f1b98",
+    "search_line": 1
   }
 ]

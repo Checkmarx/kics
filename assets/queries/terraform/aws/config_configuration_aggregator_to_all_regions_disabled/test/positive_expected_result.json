@@ -3,12 +3,30 @@
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_config_configuration_aggregator",
+    "resourceName": "example",
+    "searchKey": "aws_config_configuration_aggregator[positive1].account_aggregation_source",
+    "searchValue": "",
+    "expectedValue": "'aws_config_configuration_aggregator[positive1].account_aggregation_source.all_regions' should be set to true",
+    "actualValue": "'aws_config_configuration_aggregator[positive1].account_aggregation_source.all_regions' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "91e05b9e3f0e258bcedfef07a5d970b8b003dee0b5d90911bbd40ac4f3eee1d3",
+    "search_line": 4
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
     "line": 16,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_config_configuration_aggregator",
+    "resourceName": "example",
+    "searchKey": "aws_config_configuration_aggregator[positive2].organization_aggregation_source.all_regions",
+    "searchValue": "",
+    "expectedValue": "'aws_config_configuration_aggregator[positive2].organization_aggregation_source.all_regions' should be set to true",
+    "actualValue": "'aws_config_configuration_aggregator[positive2].organization_aggregation_source.all_regions' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "7beefae3c54ad2820e01e0384b635cf8833a7237fe58012433a9968bfdecb32f",
+    "search_line": 16
   }
 ]

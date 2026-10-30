@@ -2,49 +2,121 @@
   {
     "queryName": "Required Property With Default Value (v3)",
     "severity": "INFO",
-    "line": 30,
-    "filename": "positive1.json"
+    "line": 14,
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "Required properties should not have default defined",
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "3f3541fca1f520a49fbfa2522a76d7b0e6957b4ce4742fa05e293b001c0e0019",
+    "search_line": 0
   },
   {
     "queryName": "Required Property With Default Value (v3)",
     "severity": "INFO",
-    "line": 14,
-    "filename": "positive1.json"
+    "line": 30,
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.properties.{{id}}.default",
+    "searchValue": "",
+    "expectedValue": "Required properties should not have default defined",
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "b6c8672fcb8a3b10ea6b33992cb85d1f59b870170b8a68b08b86ae99b35f8efa",
+    "search_line": 0
   },
   {
     "queryName": "Required Property With Default Value (v3)",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.{{id}}.default",
+    "searchValue": "",
+    "expectedValue": "Required properties should not have default defined",
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "0441e4dbaa6a44b7528fa5b60d639b4fe0a85d5ab765fdca46d2d109d945ba70",
+    "search_line": -1
   },
   {
     "queryName": "Required Property With Default Value (v3)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "Required properties should not have default defined",
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "59c5b59fa33d088118186a38d73507eeccc0e96e48fa687bdbe1b39a2cfbac71",
+    "search_line": 0
   },
   {
     "queryName": "Required Property With Default Value (v3)",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.properties.{{id}}.default",
+    "searchValue": "",
+    "expectedValue": "Required properties should not have default defined",
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "80dc0cc72ae3788a59e021efc888fa272ce691706f86e1e345490efb76ab562a",
+    "search_line": 0
   },
   {
     "queryName": "Required Property With Default Value (v3)",
     "severity": "INFO",
     "line": 23,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.{{id}}.default",
+    "searchValue": "",
+    "expectedValue": "Required properties should not have default defined",
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "7e9d21c808ba5ddc5ab943492a60d6ad6a85555092348b95f80302f56b31d934",
+    "search_line": -1
   },
   {
     "queryName": "Required Property With Default Value (v2)",
     "severity": "INFO",
     "line": 23,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.post.parameters.schema.properties.{{id}}.default",
+    "searchValue": "",
+    "expectedValue": "Required properties should not have default defined",
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "9f6127cf7eb45237a2f6ca489e3ca720a28264e3ce366690c5338fd4bcc3896a",
+    "search_line": -1
   },
   {
     "queryName": "Required Property With Default Value (v2)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.post.parameters.schema.properties.{{id}}.default",
+    "searchValue": "",
+    "expectedValue": "Required properties should not have default defined",
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "046a0b3d3baeb441dc083485d77f9ca3d600989a8904dd2b98dcdf1942fbf19c",
+    "search_line": -1
   }
 ]

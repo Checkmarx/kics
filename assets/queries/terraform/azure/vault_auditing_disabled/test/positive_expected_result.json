@@ -2,6 +2,16 @@
   {
     "queryName": "Vault Auditing Disabled",
     "severity": "MEDIUM",
-    "line": 16
+    "line": 16,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_key_vault",
+    "resourceName": "testvault",
+    "searchKey": "azurerm_key_vault[example1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_key_vault' should be associated with 'azurerm_monitor_diagnostic_setting'",
+    "actualValue": "'azurerm_key_vault' is not associated with 'azurerm_monitor_diagnostic_setting'",
+    "issueType": "MissingAttribute",
+    "similarityID": "71ec5c2cf5067cbd7afb7e693561d1971abcb9498b9012af8b58b94ef1f4955c",
+    "search_line": -1
   }
 ]

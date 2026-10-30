@@ -3,12 +3,30 @@
     "queryName": "Components Example Definition Is Unused",
     "severity": "INFO",
     "line": 42,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.examples.{{objectExample}}",
+    "searchValue": "",
+    "expectedValue": "Example should be used as reference somewhere",
+    "actualValue": "Example is not used as reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "b5c3f2d910a5e40ebdea43e858c9afc47b4c1f33774d950b00a2fcd50c781c84",
+    "search_line": 0
   },
   {
     "queryName": "Components Example Definition Is Unused",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.examples.{{objectExample}}",
+    "searchValue": "",
+    "expectedValue": "Example should be used as reference somewhere",
+    "actualValue": "Example is not used as reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "743622987c7f9df67f3097f7aa98dea1bfb8c9e2dc28a19cdd1ba516279a041a",
+    "search_line": 0
   }
 ]

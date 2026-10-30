@@ -2,6 +2,16 @@
   {
     "queryName": "PSP With Added Capabilities",
     "severity": "HIGH",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod_security_policy",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod_security_policy[example].spec.allowed_capabilities",
+    "searchValue": "",
+    "expectedValue": "Pod Security Policy example should not have allowed capabilities",
+    "actualValue": "Pod Security Policy example has allowed capabilities",
+    "issueType": "IncorrectValue",
+    "similarityID": "6eb4c11d6012d9d0fa3e83580df9422f0355ce9b220b0ddb51509056b509cbb8",
+    "search_line": -1
   }
 ]

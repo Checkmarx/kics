@@ -1,20 +1,47 @@
 [
-	{
-		"queryName": "BOM - GCP FI",
-		"severity": "TRACE",
-		"line": 1,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP FI",
-		"severity": "TRACE",
-		"line": 32,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP FI",
-		"severity": "TRACE",
-		"line": 59,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "BOM - GCP FI",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_filestore_instance[instance]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "0d012118c429c35158a1c69d3d964ed4e044ec56de795c677332183b29844d1a",
+    "search_line": 1
+  },
+  {
+    "queryName": "BOM - GCP FI",
+    "severity": "TRACE",
+    "line": 32,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_filestore_instance[instance2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "fd6f6ababa131ec8cd608ba3ecd59d9b8cf0cf4f0659005dcdc115275f4a4349",
+    "search_line": 32
+  },
+  {
+    "queryName": "BOM - GCP FI",
+    "severity": "TRACE",
+    "line": 59,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_filestore_instance[instance3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "4fb95afbc504bcf4786a47b4acc06cefe49a2fffc23507c19b0e6a75ea699d17",
+    "search_line": 59
+  }
 ]

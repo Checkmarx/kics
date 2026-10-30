@@ -2,6 +2,16 @@
   {
     "queryName": "Github Organization Webhook With SSL Disabled",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.tf",
+    "resourceType": "github_organization_webhook",
+    "resourceName": "web",
+    "searchKey": "github_organization_webhook[positive1].configuration.insecure_ssl",
+    "searchValue": "",
+    "expectedValue": "github_organization_webhook[positive1].configuration.insecure_ssl should be set to false",
+    "actualValue": "github_organization_webhook[positive1].configuration.insecure_ssl is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "30edc32f104a50a3ae1f6a4f97b94bdf0887b711867c8838f260ea581e995979",
+    "search_line": -1
   }
 ]

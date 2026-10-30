@@ -2,11 +2,31 @@
   {
     "queryName": "MySQL SSL Connection Disabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_mysqlserver",
+    "resourceName": "Create (or update) MySQL Server",
+    "searchKey": "name={{Create (or update) MySQL Server}}.{{azure.azcollection.azure_rm_mysqlserver}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_mysqlserver should have enforce_ssl set to true",
+    "actualValue": "azure_rm_mysqlserver does not have enforce_ssl (defaults to false)",
+    "issueType": "MissingAttribute",
+    "similarityID": "7389adb7571fb4430a54e8fede97c5aa6884a072ee7b3be16f0c798911ae152f",
+    "search_line": -1
   },
   {
     "queryName": "MySQL SSL Connection Disabled",
     "severity": "MEDIUM",
-    "line": 23
+    "line": 23,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_mysqlserver",
+    "resourceName": "Create (or update) MySQL Server2",
+    "searchKey": "name={{Create (or update) MySQL Server2}}.{{azure.azcollection.azure_rm_mysqlserver}}.enforce_ssl",
+    "searchValue": "",
+    "expectedValue": "azure_rm_mysqlserver should have enforce_ssl set to true",
+    "actualValue": "azure_rm_mysqlserver does has enforce_ssl set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1c43b6af94bfe3de95fb4a686d5e1fa5798ae575a7fe44e3d2bc02cb2eed8708",
+    "search_line": -1
   }
 ]

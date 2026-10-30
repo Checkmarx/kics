@@ -3,24 +3,60 @@
     "queryName": "Service Account Token Automount Not Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.automountServiceAccountToken should be defined and set to false",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.automountServiceAccountToken is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fcf594677d2f01b344ac91688b4c98f4a9c6bd013f6dbe5e60b080592058e5ba",
+    "search_line": 5
   },
   {
     "queryName": "Service Account Token Automount Not Disabled",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security.context.demo",
+    "searchKey": "metadata.name={{security.context.demo}}.spec.automountServiceAccountToken",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security.context.demo}}.spec.automountServiceAccountToken should be set to false",
+    "actualValue": "metadata.name={{security.context.demo}}.spec.automountServiceAccountToken is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "f39f9cac0acecbefe622a4a86b16dd64d08ea8f8a1da1088c499c8c1364c337e",
+    "search_line": 28
   },
   {
     "queryName": "Service Account Token Automount Not Disabled",
     "severity": "MEDIUM",
     "line": 54,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Configuration",
+    "resourceName": "dummy-config",
+    "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.automountServiceAccountToken",
+    "searchValue": "Configuration",
+    "expectedValue": "metadata.name={{dummy-config}}.spec.template.spec.automountServiceAccountToken should be set to false",
+    "actualValue": "metadata.name={{dummy-config}}.spec.template.spec.automountServiceAccountToken is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "0b61d321b1cb9960cd15113db3813bcf3f67cde3652bf429d815bc76466d4592",
+    "search_line": 54
   },
   {
     "queryName": "Service Account Token Automount Not Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "ServiceAccount",
+    "resourceName": "redistest-sa",
+    "searchKey": "metadata.name={{redistest-sa}}.automountServiceAccountToken",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{redistest-sa}}.automountServiceAccountToken should be set to false",
+    "actualValue": "metadata.name={{redistest-sa}}.automountServiceAccountToken is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "c8d90f3314d596a61c0abe932ae6d3a835501cd07fb1d62904823c35448cc80d",
+    "search_line": 5
   }
 ]

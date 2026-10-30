@@ -1,32 +1,77 @@
 [
   {
-    "fileName": "positive1.yaml",
     "queryName": "ALB Listening on HTTP",
     "severity": "MEDIUM",
-    "line": 25
+    "line": 13,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Listeners.Protocol=HTTP",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Listeners.Protocol' should not equal to 'HTTP'",
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.Protocol' equals to 'HTTP'",
+    "issueType": "IncorrectValue",
+    "similarityID": "11e116344c3fc1cb66e5ba3965ce21bb42be676297259d9db7d7afd37f14a5fb",
+    "search_line": 13
   },
   {
-    "fileName": "positive1.yaml",
     "queryName": "ALB Listening on HTTP",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 25,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancingV2::Listener",
+    "resourceName": "HTTPlistener",
+    "searchKey": "Resources.HTTPlistener.Properties.Protocol=HTTP",
+    "searchValue": "",
+    "expectedValue": "'Resources.HTTPlistener.Protocol' should not equal to 'HTTP'",
+    "actualValue": "'Resources.HTTPlistener.Protocol' equals to 'HTTP'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8ac0a22227f13ac440cb5927924e73dc3f66a9045f012092145ba601e88a0f7a",
+    "search_line": 25
   },
   {
-    "line": 35,
-    "fileName": "positive2.json",
     "queryName": "ALB Listening on HTTP",
-    "severity": "MEDIUM"
-  },
-  {
+    "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Listeners.Protocol=HTTP",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Listeners.Protocol' should not equal to 'HTTP'",
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.Protocol' equals to 'HTTP'",
+    "issueType": "IncorrectValue",
+    "similarityID": "147084d49c5c0df6d63bbd9c3671c75463866e10d564f8fd7ebbf300b0bcd231",
+    "search_line": 9
+  },
+  {
     "queryName": "ALB Listening on HTTP",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 35,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancingV2::Listener",
+    "resourceName": "HTTPlistener",
+    "searchKey": "Resources.HTTPlistener.Properties.Protocol=HTTP",
+    "searchValue": "",
+    "expectedValue": "'Resources.HTTPlistener.Protocol' should not equal to 'HTTP'",
+    "actualValue": "'Resources.HTTPlistener.Protocol' equals to 'HTTP'",
+    "issueType": "IncorrectValue",
+    "similarityID": "43fc448a9e5e7dd9c8b08227962599dea46d50d9800324665aafb283e1fa9896",
+    "search_line": 35
   },
   {
     "queryName": "ALB Listening on HTTP",
     "severity": "MEDIUM",
     "line": 16,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::ElasticLoadBalancingV2::Listener",
+    "resourceName": "HTTPlistener",
+    "searchKey": "Resources.HTTPlistener.Properties.Protocol=HTTP",
+    "searchValue": "",
+    "expectedValue": "'Resources.HTTPlistener.Protocol' should not equal to 'HTTP'",
+    "actualValue": "'Resources.HTTPlistener.Protocol' equals to 'HTTP'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ed9f4ae9233e2985d6140beac9aaf22fa028352429aecaad0229c4189828a19c",
+    "search_line": 16
   }
 ]

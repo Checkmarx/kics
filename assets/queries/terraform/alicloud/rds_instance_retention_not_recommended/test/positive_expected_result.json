@@ -3,36 +3,90 @@
     "queryName": "RDS Instance Retention Period Not Recommended",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "sql_collector_config_value",
+    "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
+    "actualValue": "'sql_collector_config_value' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5bd0ee49ff68cdcec396cb74c125cf18f00b4cf9de13b7308cf34b6ff05a4c5a",
+    "search_line": 1
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "sql_collector_status",
+    "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
+    "actualValue": "'sql_collector_status' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "219147773c74fad22edebba528c21149856eb2e98da5e6f3a14d788f985b3b46",
+    "search_line": 1
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "sql_collector_config_value",
+    "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
+    "actualValue": "'sql_collector_config_value' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fad17f84deff2c23134b6869023dee665b0d772f48eefb3e7f613e85ef673505",
+    "search_line": 1
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].sql_collector_status",
+    "searchValue": "",
+    "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
+    "actualValue": "'sql_collector_status' is set to 'Disabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "cdf4bb16e4a64106aa978dcfda19b65300125207995e233a8f03ce7427f8de96",
+    "search_line": 6
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "sql_collector_config_value",
+    "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
+    "actualValue": "'sql_collector_config_value' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8951e4d9e288f60b01fc35726328ad21e93db0bd6995b550fbc25ecd271687ee",
+    "search_line": 1
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].sql_collector_config_value",
+    "searchValue": "",
+    "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
+    "actualValue": "'sql_collector_config_value' is set to 30",
+    "issueType": "IncorrectValue",
+    "similarityID": "3ff2fa5ef0ccd4e6080154e39d1f23c043df22b6f4722c9123fa44fb584d5d19",
+    "search_line": 7
   }
 ]

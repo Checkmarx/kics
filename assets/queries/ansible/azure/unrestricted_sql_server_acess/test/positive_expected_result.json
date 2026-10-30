@@ -2,11 +2,31 @@
   {
     "queryName": "Unrestricted SQL Server Access",
     "severity": "CRITICAL",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_sqlfirewallrule",
+    "resourceName": "Create (or update) Firewall Rule1",
+    "searchKey": "name={{Create (or update) Firewall Rule1}}.{{azure_rm_sqlfirewallrule}}",
+    "searchValue": "",
+    "expectedValue": "The difference between the value of azure_rm_sqlfirewallrule end_ip_address and start_ip_address should be less than 256",
+    "actualValue": "The difference between the value of azure_rm_sqlfirewallrule end_ip_address and start_ip_address is greater than or equal to 256",
+    "issueType": "IncorrectValue",
+    "similarityID": "673e495ae9ae0c21d4fb81fbe7bc90e282fa0935a62faa8b447eb493c3af8a7c",
+    "search_line": -1
   },
   {
     "queryName": "Unrestricted SQL Server Access",
     "severity": "CRITICAL",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_sqlfirewallrule",
+    "resourceName": "Create (or update) Firewall Rule2",
+    "searchKey": "name={{Create (or update) Firewall Rule2}}.{{azure_rm_sqlfirewallrule}}",
+    "searchValue": "",
+    "expectedValue": "The difference between the value of azure_rm_sqlfirewallrule end_ip_address and start_ip_address should be less than 256",
+    "actualValue": "The difference between the value of azure_rm_sqlfirewallrule end_ip_address and start_ip_address is greater than or equal to 256",
+    "issueType": "IncorrectValue",
+    "similarityID": "fe42ba43e06db122d13b050902aebbb92e5680188c5d44f25b0f552099e024c1",
+    "search_line": -1
   }
 ]

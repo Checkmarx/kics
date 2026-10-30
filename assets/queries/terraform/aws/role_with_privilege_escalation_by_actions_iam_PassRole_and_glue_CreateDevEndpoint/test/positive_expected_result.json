@@ -3,6 +3,15 @@
     "queryName": "Role With Privilege Escalation By Actions 'glue:CreateDevEndpoint' And 'iam:PassRole'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_role[cosmic]",
+    "searchValue": "",
+    "expectedValue": "role cosmic shouldn't be associated with a policy that has Action set to 'glue:CreateDevEndpoint' and 'iam:PassRole' and Resource set to '*'",
+    "actualValue": "role cosmic is associated with a policy that has Action set to 'glue:CreateDevEndpoint' and 'iam:PassRole' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e645d3046256014e806ef88eaa547c941db75c7a4efbc9839499a69f2f835782",
+    "search_line": 1
   }
 ]

@@ -3,36 +3,90 @@
     "queryName": "VPC Default Security Group Accepts All Traffic",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_default_security_group",
+    "resourceName": "default",
+    "searchKey": "aws_default_security_group[{{default}}].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_default_security_group[{{default}}] should not have 'ingress' defined",
+    "actualValue": "aws_default_security_group[{{default}}] has 'ingress' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "2d41938f078290a68058b1041f34e642cbff3c9aa04c62a234c4abee6bb02d2d",
+    "search_line": -1
   },
   {
     "queryName": "VPC Default Security Group Accepts All Traffic",
     "severity": "HIGH",
     "line": 17,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_default_security_group",
+    "resourceName": "default",
+    "searchKey": "aws_default_security_group[{{default}}].egress",
+    "searchValue": "",
+    "expectedValue": "aws_default_security_group[{{default}}] should not have 'egress' defined",
+    "actualValue": "aws_default_security_group[{{default}}] has 'egress' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "7cb0ecff5496140f1cd56c1d0ae886dc75d4cd784df31c6a358897cef2103e36",
+    "search_line": -1
   },
   {
     "queryName": "VPC Default Security Group Accepts All Traffic",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "VPC Default Security Group Accepts All Traffic",
-    "severity": "HIGH",
-    "line": 18,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_default_security_group",
+    "resourceName": "default3",
+    "searchKey": "aws_default_security_group[{{default3}}].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_default_security_group[{{default3}}] should not have 'ingress' defined",
+    "actualValue": "aws_default_security_group[{{default3}}] has 'ingress' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "8075855f077644c953ac72e5c38feab75739bebd80c41c0593f8749659b7c518",
+    "search_line": -1
   },
   {
     "queryName": "VPC Default Security Group Accepts All Traffic",
     "severity": "HIGH",
     "line": 14,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_default_security_group",
+    "resourceName": "default3",
+    "searchKey": "aws_default_security_group[{{default3}}].ingress.ipv6_cidr_blocks",
+    "searchValue": "",
+    "expectedValue": "'ingress' should be undefined",
+    "actualValue": "'ingress' accepts all traffic",
+    "issueType": "IncorrectValue",
+    "similarityID": "180894021b0e212631593ec78585f4be9ac9f27e2a79cc213d931e49a90091ea",
+    "search_line": -1
+  },
+  {
+    "queryName": "VPC Default Security Group Accepts All Traffic",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive2.tf",
+    "resourceType": "aws_default_security_group",
+    "resourceName": "default3",
+    "searchKey": "aws_default_security_group[{{default3}}].egress",
+    "searchValue": "",
+    "expectedValue": "aws_default_security_group[{{default3}}] should not have 'egress' defined",
+    "actualValue": "aws_default_security_group[{{default3}}] has 'egress' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "cb4da3c25cc2de33aa6287b85903649e0f2f080cf0c3fa5fc036da434cc2a8a2",
+    "search_line": -1
   },
   {
     "queryName": "VPC Default Security Group Accepts All Traffic",
     "severity": "HIGH",
     "line": 23,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_default_security_group",
+    "resourceName": "default3",
+    "searchKey": "aws_default_security_group[{{default3}}].egress.cidr_blocks",
+    "searchValue": "",
+    "expectedValue": "'egress' should be undefined",
+    "actualValue": "'egress' accepts all traffic",
+    "issueType": "IncorrectValue",
+    "similarityID": "e465f654ceaae27e9405b5b39ad91fd2d708840c44095d7e463263e5360e5168",
+    "search_line": -1
   }
 ]

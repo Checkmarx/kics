@@ -3,24 +3,60 @@
     "queryName": "Node Auto Upgrade Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "",
+    "expectedValue": "'nodePools' should be defined and not null",
+    "actualValue": "'nodePools' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "7dc38ee98d912b7f197def7f075af88e810a268976007a421baf0a92021fbcdf",
+    "search_line": 4
   },
   {
     "queryName": "Node Auto Upgrade Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.nodePools",
+    "searchValue": "",
+    "expectedValue": "'nodePools.management' should be defined and not null",
+    "actualValue": "'nodePools.management' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "9856a1db1d40bf1321309ac9315e6988f7594e15597c5e37182063e49f5e1d11",
+    "search_line": 6
   },
   {
     "queryName": "Node Auto Upgrade Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.nodePools.management",
+    "searchValue": "",
+    "expectedValue": "'nodePools.management.autoUpgrade' should be defined and not null",
+    "actualValue": "'nodePools.management.autoUpgrade' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "bc9ffe6d7374488cb538c0dcc3d5bee095f4646e6e566e5d3017ccf54ee5b221",
+    "search_line": 8
   },
   {
     "queryName": "Node Auto Upgrade Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.nodePools.management.autoUpgrade",
+    "searchValue": "",
+    "expectedValue": "'nodePools.management.autoUpgrade' should be true",
+    "actualValue": "'nodePools.management.autoUpgrade' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "019b119b0aa243da893f25fefa04904c87bdebd18af0c97a9df33cfe6333e4f3",
+    "search_line": 9
   }
 ]

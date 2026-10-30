@@ -1,12 +1,32 @@
 [
-	{
-		"queryName": "Storage Account Not Using Latest TLS Encryption Version",
-		"severity": "MEDIUM",
-		"line": 8
-	},
-	{
-		"queryName": "Storage Account Not Using Latest TLS Encryption Version",
-		"severity": "MEDIUM",
-		"line": 12
-	}
+  {
+    "queryName": "Storage Account Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_storageaccount",
+    "resourceName": "Create an account with kind of FileStorage",
+    "searchKey": "name={{Create an account with kind of FileStorage}}.{{azure_rm_storageaccount}}.minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount should be using the latest version of TLS encryption",
+    "actualValue": "azure_rm_storageaccount is using version TLS1_0 of TLS encryption",
+    "issueType": "IncorrectValue",
+    "similarityID": "45a2d0c8070300168a9b1a05e39fb0c325ce6cb08e0649ad3eb4daa4ecad5455",
+    "search_line": -1
+  },
+  {
+    "queryName": "Storage Account Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_storageaccount",
+    "resourceName": "Create a second account with kind of FileStorage",
+    "searchKey": "name={{Create a second account with kind of FileStorage}}.{{azure_rm_storageaccount}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount.minimum_tls_version should be defined",
+    "actualValue": "azure_rm_storageaccount.minimum_tls_version is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "be95cc7f842a394959dcf7e17989a948e58d4d58c2d30abda705620c7530b8fa",
+    "search_line": -1
+  }
 ]

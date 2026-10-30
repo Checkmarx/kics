@@ -3,18 +3,45 @@
     "queryName": "GuardDuty Detector Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::GuardDuty::Detector",
+    "resourceName": "mydetector3",
+    "searchKey": "Resources.mydetector3.Properties.Enable",
+    "searchValue": "",
+    "expectedValue": "Resources.mydetector3.Properties.Enable should be set to true",
+    "actualValue": "Resources.mydetector3.Properties.Enable is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "06f3962ed380a891b8a3ba1d0e64191c3d3195be8404c6f699b9d83be9edef45",
+    "search_line": -1
   },
   {
     "queryName": "GuardDuty Detector Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::GuardDuty::Detector",
+    "resourceName": "mydetector4",
+    "searchKey": "Resources.mydetector4.Properties.Enable",
+    "searchValue": "",
+    "expectedValue": "Resources.mydetector4.Properties.Enable should be set to true",
+    "actualValue": "Resources.mydetector4.Properties.Enable is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8334fbbb025d876c2c45c573ba110389047b4b90b65d7bbc5aa97a60ef405874",
+    "search_line": -1
   },
   {
     "queryName": "GuardDuty Detector Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::GuardDuty::Detector",
+    "resourceName": "mydetector3",
+    "searchKey": "Resources.mydetector3.Properties.Enable",
+    "searchValue": "",
+    "expectedValue": "Resources.mydetector3.Properties.Enable should be set to true",
+    "actualValue": "Resources.mydetector3.Properties.Enable is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a2a5499ea451de4c9e16d3e3af32c636c081afd3ed1c60101eb03778e0cc8ba2",
+    "search_line": -1
   }
 ]

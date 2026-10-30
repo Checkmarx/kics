@@ -3,12 +3,30 @@
     "queryName": "BOM - AWS Kinesis",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.MyStream",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "c25ad46861b57058d59e58d5cb3ffcf38e529dd149bdc4ffccbda61756bc295c",
+    "search_line": 3
   },
   {
     "queryName": "BOM - AWS Kinesis",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.MyStream2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "3982901c4665e84ddd5058875208c874d4b9e266f7f3731855f55e64c717aca4",
+    "search_line": 4
   }
 ]

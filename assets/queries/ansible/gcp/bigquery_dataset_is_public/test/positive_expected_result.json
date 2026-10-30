@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "BigQuery Dataset Is Public",
-		"severity": "HIGH",
-		"line": 5
-	}
+  {
+    "queryName": "BigQuery Dataset Is Public",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_bigquery_dataset",
+    "resourceName": "create a dataset",
+    "searchKey": "name={{create a dataset}}.{{google.cloud.gcp_bigquery_dataset}}.access",
+    "searchValue": "",
+    "expectedValue": "gcp_bigquery_dataset.access.special_group should not equal to 'allAuthenticatedUsers'",
+    "actualValue": "gcp_bigquery_dataset.access.special_group is equal to 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4a679980a9a759bd96cf8af04e06fa9953b9d906cf160712f4fbb71291c52226",
+    "search_line": -1
+  }
 ]

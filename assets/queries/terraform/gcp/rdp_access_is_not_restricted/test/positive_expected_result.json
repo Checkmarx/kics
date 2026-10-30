@@ -2,16 +2,46 @@
   {
     "queryName": "RDP Access Is Not Restricted",
     "severity": "HIGH",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_firewall",
+    "resourceName": "test-firewall",
+    "searchKey": "google_compute_firewall[positive1].allow.ports",
+    "searchValue": "",
+    "expectedValue": "'google_compute_firewall[positive1].allow.ports' should not include RDP port 3389",
+    "actualValue": "'google_compute_firewall[positive1].allow.ports' includes RDP port 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "f8f70db83d94123948b491b8e887489e407b7ab1642a7ed04fad6855c5ac4415",
+    "search_line": -1
   },
   {
     "queryName": "RDP Access Is Not Restricted",
     "severity": "HIGH",
-    "line": 25
+    "line": 25,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_firewall",
+    "resourceName": "test-firewall",
+    "searchKey": "google_compute_firewall[positive2].allow.ports",
+    "searchValue": "",
+    "expectedValue": "'google_compute_firewall[positive2].allow.ports' should not include RDP port 3389",
+    "actualValue": "'google_compute_firewall[positive2].allow.ports' includes RDP port 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "2ed11e71ced2e23f1b19d4b0716ff0de95b4032484b91b445743fe8e4be69629",
+    "search_line": -1
   },
   {
     "queryName": "RDP Access Is Not Restricted",
     "severity": "HIGH",
-    "line": 36
+    "line": 36,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_firewall",
+    "resourceName": "test-firewall",
+    "searchKey": "google_compute_firewall[positive3].allow.ports",
+    "searchValue": "",
+    "expectedValue": "'google_compute_firewall[positive3].allow.ports' should not include RDP port 3389",
+    "actualValue": "'google_compute_firewall[positive3].allow.ports' includes RDP port 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "01140835d0ee902d9707b82f9482d1d138c02cc0507853f1bf90bbb47b9c7e50",
+    "search_line": -1
   }
 ]

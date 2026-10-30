@@ -3,54 +3,135 @@
     "queryName": "Beta - AKS Without Audit Logs",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "myAKSClusterLogs",
+    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos1_1].enabled_log.category",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos1_1].enabled_log.category' should be defined to 'kube-audit' or 'kube-audit-admin'",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos1_1].enabled_log.category' is not defined to 'kube-audit' or 'kube-audit-admin'",
+    "issueType": "IncorrectValue",
+    "similarityID": "618762bfb4523b2ff45b6ff0559dd95438ab77b207780df9f6ecef69acae12ff",
+    "search_line": 14
   },
   {
     "queryName": "Beta - AKS Without Audit Logs",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "myAKSClusterLogs",
+    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos1_2].enabled_log[0].category",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos1_2].enabled_log[0].category' should be defined to 'kube-audit' or 'kube-audit-admin'",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos1_2].enabled_log[0].category' is not defined to 'kube-audit' or 'kube-audit-admin'",
+    "issueType": "IncorrectValue",
+    "similarityID": "7966bbb0de02def9f4ad32bc73e9415fe3a34390599db2c5bb02b273cf401b3b",
+    "search_line": 31
   },
   {
     "queryName": "Beta - AKS Without Audit Logs",
     "severity": "MEDIUM",
     "line": 35,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "myAKSClusterLogs",
+    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos1_2].enabled_log[1].category",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos1_2].enabled_log[1].category' should be defined to 'kube-audit' or 'kube-audit-admin'",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos1_2].enabled_log[1].category' is not defined to 'kube-audit' or 'kube-audit-admin'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f0ea4f12cb89d009db13a92a2a1859156ca1e54e48eee120bdfa842248c56351",
+    "search_line": 35
   },
   {
     "queryName": "Beta - AKS Without Audit Logs",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "myAKSClusterLogs",
+    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_1].log.category",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_1].log.category' should be defined to 'kube-audit' or 'kube-audit-admin' and 'enabled' field set to 'true'",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_1].log.category' is not defined to 'kube-audit' or 'kube-audit-admin'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b649a870c82bbeb846044e176bd83f2ea1bd67677f396793fb5de667373f47c9",
+    "search_line": 15
   },
   {
     "queryName": "Beta - AKS Without Audit Logs",
     "severity": "MEDIUM",
     "line": 33,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "myAKSClusterLogs",
+    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[0].category",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[0].category' should be defined to 'kube-audit' or 'kube-audit-admin' and 'enabled' field set to 'true'",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[0].category' is not defined to 'kube-audit' or 'kube-audit-admin'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e831158cb273faf014b41e3fb49f01878e3414228516d3be83d4466b44984c51",
+    "search_line": 33
   },
   {
     "queryName": "Beta - AKS Without Audit Logs",
     "severity": "MEDIUM",
     "line": 38,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "myAKSClusterLogs",
+    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[1].category",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[1].category' should be defined to 'kube-audit' or 'kube-audit-admin' and 'enabled' field set to 'true'",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[1].category' is not defined to 'kube-audit' or 'kube-audit-admin'",
+    "issueType": "IncorrectValue",
+    "similarityID": "49328c52855c9bf2408a3414c78286fa7761340f4fc78fb057f06a48489011f6",
+    "search_line": 38
   },
   {
     "queryName": "Beta - AKS Without Audit Logs",
     "severity": "MEDIUM",
     "line": 16,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "myAKSClusterLogs",
+    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_1].log.enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_1]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_1]' has the 'enabled' field set to 'false' instead of 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5d910b8d0cb42c5f3ded9c6fd5b35412d34939d41d0c5de5133652a67e39d557",
+    "search_line": 16
   },
   {
     "queryName": "Beta - AKS Without Audit Logs",
     "severity": "MEDIUM",
     "line": 34,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "myAKSClusterLogs",
+    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2].log[0].enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2]' has the 'enabled' field set to 'false' instead of 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "88a79c7f817eae348b93700966eff3361b7e9e0fab4678a01016112bbc747a5a",
+    "search_line": 34
   },
   {
     "queryName": "Beta - AKS Without Audit Logs",
     "severity": "MEDIUM",
     "line": 39,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "myAKSClusterLogs",
+    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2].log[1].enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2]' has the 'enabled' field set to 'false' instead of 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "fc618355e5cdd19e473e6a1e596ef1a45f04c8da092071528aefa2d7f83f1cb7",
+    "search_line": 39
   }
 ]

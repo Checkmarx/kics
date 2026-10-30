@@ -3,18 +3,45 @@
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 2,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticacheCluster",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "17275acc97a95d1eece69329241b6a38acbba3faa481c5e44aef5569578737bc",
+    "search_line": 2
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticacheCluster",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "aa37cf454d48c04ba499445093d2e142af7ea1b883a0ea41e553cacb9ca542fe",
+    "search_line": 3
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 2,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticacheCluster",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "20a20355276133529a52f07ae327f1815fca2bfb1b13806de4bb212da745be14",
+    "search_line": 2
   }
 ]

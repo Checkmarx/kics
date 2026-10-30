@@ -3,6 +3,15 @@
     "queryName": "User With Privilege Escalation By Actions 'iam:CreatePolicyVersion'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_user",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_user[cosmic]",
+    "searchValue": "",
+    "expectedValue": "user cosmic shouldn't be associated with a policy that has Action set to 'iam:CreatePolicyVersion' and Resource set to '*'",
+    "actualValue": "user cosmic is associated with a policy that has Action set to 'iam:CreatePolicyVersion' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0d3a0dfa5bba0cd89048d7bc1524924edcb626f68e6fb0891e28eb4142f1e6f2",
+    "search_line": 1
   }
 ]

@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Unrestricted Databricks ACL",
-		"severity": "HIGH",
-		"line": 10,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Unrestricted Databricks ACL",
-		"severity": "HIGH",
-		"line": 10,
-		"fileName": "positive2.tf"
-	}
+  {
+    "queryName": "Unrestricted Databricks ACL",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive1.tf",
+    "resourceType": "databricks_ip_access_list",
+    "resourceName": "positive1",
+    "searchKey": "databricks_ip_access_list[positive1].ip_addresses",
+    "searchValue": "",
+    "expectedValue": "'databricks_ip_access_list[positive1].ip_addresses' should not be equal to '0.0.0.0/0' or '::/0'",
+    "actualValue": "'databricks_ip_access_list[positive1].ip_addresses' is equal to '0.0.0.0/0' or '::/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "fa90e4c6edd8d47ce308883dd8eea6b997318c1e7a729c6003b644e637a49cef",
+    "search_line": -1
+  },
+  {
+    "queryName": "Unrestricted Databricks ACL",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive2.tf",
+    "resourceType": "databricks_ip_access_list",
+    "resourceName": "positive2",
+    "searchKey": "databricks_ip_access_list[positive2].ip_addresses",
+    "searchValue": "",
+    "expectedValue": "'databricks_ip_access_list[positive2].ip_addresses' should not be equal to '0.0.0.0/0' or '::/0'",
+    "actualValue": "'databricks_ip_access_list[positive2].ip_addresses' is equal to '0.0.0.0/0' or '::/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1b5a8de1c701302e1972ad682114d7df425c948092f617bd48711bea542eb95c",
+    "search_line": -1
+  }
 ]

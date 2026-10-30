@@ -3,12 +3,30 @@
     "queryName": "Components Link Definition Is Unused",
     "severity": "INFO",
     "line": 45,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.links.{{APIRepository}}",
+    "searchValue": "",
+    "expectedValue": "Link should be used as reference somewhere",
+    "actualValue": "Link is not used as reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "b6dc3fca7879096e247c422bc95db00408860d84e3ea54f3241a58cd350da0c6",
+    "search_line": 0
   },
   {
     "queryName": "Components Link Definition Is Unused",
     "severity": "INFO",
     "line": 29,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.links.{{APIRepository}}",
+    "searchValue": "",
+    "expectedValue": "Link should be used as reference somewhere",
+    "actualValue": "Link is not used as reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "67532b8030617be429f44769e4aafb3d818c1a05c4b48b5876b1b61954db611b",
+    "search_line": 0
   }
 ]

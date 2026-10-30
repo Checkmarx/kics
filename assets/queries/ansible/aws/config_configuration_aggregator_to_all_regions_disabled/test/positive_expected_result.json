@@ -2,11 +2,31 @@
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.aws_config_aggregator",
+    "resourceName": "Create cross-account aggregator",
+    "searchKey": "name={{Create cross-account aggregator}}.{{community.aws.aws_config_aggregator}}.account_sources.all_aws_regions",
+    "searchValue": "",
+    "expectedValue": "'aws_config_aggregator.account_sources' should have all_aws_regions set to true",
+    "actualValue": "'aws_config_aggregator.account_sources' has all_aws_regions set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "022c2eaefbe6bf31e9575ea851af5f0c00b5a6f6d1da3fdb3591663e1f0f0cee",
+    "search_line": -1
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
-    "line": 24
+    "line": 24,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.aws_config_aggregator",
+    "resourceName": "Create cross-account aggregator2",
+    "searchKey": "name={{Create cross-account aggregator2}}.{{community.aws.aws_config_aggregator}}.organization_source.all_aws_regions",
+    "searchValue": "",
+    "expectedValue": "'aws_config_aggregator.organization_source' should have all_aws_regions set to true",
+    "actualValue": "'aws_config_aggregator.organization_source' has all_aws_regions set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "951ec65790adb27904189405bc4e7461928f893712f8098bfb1a11a1b58db6dd",
+    "search_line": -1
   }
 ]

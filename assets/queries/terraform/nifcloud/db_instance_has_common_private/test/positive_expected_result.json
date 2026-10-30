@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Nifcloud RDB Has Common Private Network",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud RDB Has Common Private Network",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "nifcloud_db_instance",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_db_instance[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_db_instance[positive]' should use a private LAN to isolate the private side network from the shared network",
+    "actualValue": "'nifcloud_db_instance[positive]' has common private network",
+    "issueType": "IncorrectValue",
+    "similarityID": "fc1c7f5e040a897cff15891b44f1a73b4a378b33fc3c6ec279f50339446272b6",
+    "search_line": -1
+  }
 ]

@@ -2,16 +2,46 @@
   {
     "queryName": "SSH Access Is Not Restricted",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_firewall",
+    "resourceName": "test-firewall",
+    "searchKey": "google_compute_firewall[positive1].allow.ports=22",
+    "searchValue": "",
+    "expectedValue": "'google_compute_firewall[positive1].allow.ports' should not include SSH port 22",
+    "actualValue": "'google_compute_firewall[positive1].allow.ports' includes SSH port 22",
+    "issueType": "IncorrectValue",
+    "similarityID": "68acb4681a995b517da6c7efbb65aa07f22af9060ea0c46dc1162eb3c06cf4a6",
+    "search_line": -1
   },
   {
     "queryName": "SSH Access Is Not Restricted",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_firewall",
+    "resourceName": "test-firewall",
+    "searchKey": "google_compute_firewall[positive2].allow.ports=21-3390",
+    "searchValue": "",
+    "expectedValue": "'google_compute_firewall[positive2].allow.ports' should not include SSH port 22",
+    "actualValue": "'google_compute_firewall[positive2].allow.ports' includes SSH port 22",
+    "issueType": "IncorrectValue",
+    "similarityID": "6d541b8ff1a18d25310917a5f64da087f17b4372b00afcab2b6f215751ed5d5c",
+    "search_line": -1
   },
   {
     "queryName": "SSH Access Is Not Restricted",
     "severity": "MEDIUM",
-    "line": 43
+    "line": 43,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_firewall",
+    "resourceName": "test-firewall",
+    "searchKey": "google_compute_firewall[positive3].allow.ports=0-65535",
+    "searchValue": "",
+    "expectedValue": "'google_compute_firewall[positive3].allow.ports' should not include SSH port 22",
+    "actualValue": "'google_compute_firewall[positive3].allow.ports' includes SSH port 22",
+    "issueType": "IncorrectValue",
+    "similarityID": "abfd86322dd388e1910cf5b762d19341f4b6e54dfc6d580cd8f72647091fdb6f",
+    "search_line": -1
   }
 ]

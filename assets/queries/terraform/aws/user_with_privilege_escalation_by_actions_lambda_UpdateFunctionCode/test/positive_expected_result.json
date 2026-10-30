@@ -3,6 +3,15 @@
     "queryName": "User With Privilege Escalation By Actions 'lambda:UpdateFunctionCode'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_user",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_user[cosmic]",
+    "searchValue": "",
+    "expectedValue": "user cosmic shouldn't be associated with a policy that has Action set to 'lambda:UpdateFunctionCode' and Resource set to '*'",
+    "actualValue": "user cosmic is associated with a policy that has Action set to 'lambda:UpdateFunctionCode' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d9a3c0c4f9d573d13ebc50c8a13f2ea65f7d10254f47b3c4ab6204d23ee6496c",
+    "search_line": 1
   }
 ]

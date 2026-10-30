@@ -2,16 +2,46 @@
   {
     "queryName": "Redshift Publicly Accessible",
     "severity": "HIGH",
-    "line": 9
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.redshift",
+    "resourceName": "Basic cluster provisioning example04",
+    "searchKey": "name={{Basic cluster provisioning example04}}.{{community.aws.redshift}}.publicly_accessible",
+    "searchValue": "",
+    "expectedValue": "redshift.publicly_accessible should be set to false",
+    "actualValue": "redshift.publicly_accessible is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "4425cea86838b14895149ffb1d0d425071fcc4feff069a786b0c394c97ab42ea",
+    "search_line": -1
   },
   {
     "queryName": "Redshift Publicly Accessible",
     "severity": "HIGH",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.redshift",
+    "resourceName": "Basic cluster provisioning example05",
+    "searchKey": "name={{Basic cluster provisioning example05}}.{{community.aws.redshift}}.publicly_accessible",
+    "searchValue": "",
+    "expectedValue": "redshift.publicly_accessible should be set to false",
+    "actualValue": "redshift.publicly_accessible is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "053cfb0db7064f1814d4d12d862da149be63e4bf020ec6ebac39ae2e3730599d",
+    "search_line": -1
   },
   {
     "queryName": "Redshift Publicly Accessible",
     "severity": "HIGH",
-    "line": 25
+    "line": 25,
+    "fileName": "positive.yaml",
+    "resourceType": "redshift",
+    "resourceName": "Basic cluster provisioning example06",
+    "searchKey": "name={{Basic cluster provisioning example06}}.{{redshift}}.publicly_accessible",
+    "searchValue": "",
+    "expectedValue": "redshift.publicly_accessible should be set to false",
+    "actualValue": "redshift.publicly_accessible is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "e94c0b695ca045d9a249aeb32f8e6d7471597dd7836599ae6a09bd928ccd51eb",
+    "search_line": -1
   }
 ]

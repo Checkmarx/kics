@@ -3,12 +3,30 @@
     "queryName": "Redshift Cluster Without KMS CMK",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "${DatabaseName}",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties.KmsKeyId should be set",
+    "actualValue": "Resources.RedshiftCluster.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a7576a4d3842eb0f59956c59f1998c7dcf4a54b3a1892fd35a99e3f48c46568f",
+    "search_line": -1
   },
   {
-    "fileName": "positive2.json",
     "queryName": "Redshift Cluster Without KMS CMK",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "${DatabaseName}",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties.KmsKeyId should be set",
+    "actualValue": "Resources.RedshiftCluster.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "87dca7688ca262b9e242ff00d7f3aa287b3517496e4c3e4350d9741559c4772a",
+    "search_line": -1
   }
 ]

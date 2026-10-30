@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Chown Flag Exists",
-		"severity": "LOW",
-		"line": 4,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Chown Flag Exists",
-		"severity": "LOW",
-		"line": 4,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Chown Flag Exists",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{python:3.7}}.{{COPY --chown=patrick:patrick app /app}}",
+    "searchValue": "",
+    "expectedValue": "The 'Dockerfile' shouldn\u00b4t contain the 'chown' flag",
+    "actualValue": "The 'Dockerfile' contains the 'chown' flag",
+    "issueType": "IncorrectValue",
+    "similarityID": "184d4464464d7d45453d0fa2dc9a41f0464a67e58982fbd5f43cd656f1a2bdf9",
+    "search_line": -1
+  },
+  {
+    "queryName": "Chown Flag Exists",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{python:3.7}}.{{copy --chown=patrick:patrick app /app}}",
+    "searchValue": "",
+    "expectedValue": "The 'Dockerfile' shouldn\u00b4t contain the 'chown' flag",
+    "actualValue": "The 'Dockerfile' contains the 'chown' flag",
+    "issueType": "IncorrectValue",
+    "similarityID": "b38a72e107aa81dd7d25c33ee14150967c764fd8ecc54ac25dd53b0dfb1a336e",
+    "search_line": -1
+  }
 ]

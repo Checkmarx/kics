@@ -3,12 +3,30 @@
     "queryName": "Wildcard In ACM Certificate Domain Name",
     "severity": "LOW",
     "line": 16,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CertificateManager::Certificate",
+    "resourceName": "Certificate",
+    "searchKey": "Resources.Certificate.Properties.DomainName",
+    "searchValue": "",
+    "expectedValue": "'Resources.Certificate.Properties.DomainName' should not contain '*'",
+    "actualValue": "'Resources.Certificate.Properties.DomainName' contains '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4d2b93612ed107c21064eb65d328e86b00ac264a6cdc518a0fb7e9f9f7b55c33",
+    "search_line": -1
   },
   {
+    "queryName": "Wildcard In ACM Certificate Domain Name",
+    "severity": "LOW",
     "line": 19,
     "fileName": "positive2.json",
-    "queryName": "Wildcard In ACM Certificate Domain Name",
-    "severity": "LOW"
+    "resourceType": "AWS::CertificateManager::Certificate",
+    "resourceName": "Certificate",
+    "searchKey": "Resources.Certificate.Properties.DomainName",
+    "searchValue": "",
+    "expectedValue": "'Resources.Certificate.Properties.DomainName' should not contain '*'",
+    "actualValue": "'Resources.Certificate.Properties.DomainName' contains '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0002cecf0373d7a5fb17bd0355f5daab7fb7cc8d7312240aa5a93d567d78689e",
+    "search_line": -1
   }
 ]

@@ -1,38 +1,92 @@
 [
-	{
-		"queryName": "Gem Install Without Version",
-		"severity": "MEDIUM",
-		"line": 3,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Gem Install Without Version",
-		"severity": "MEDIUM",
-		"line": 4,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Gem Install Without Version",
-		"severity": "MEDIUM",
-		"line": 5,
-		"fileName": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Gem Install Without Version",
-		"severity": "MEDIUM",
-		"line": 3,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Gem Install Without Version",
-		"severity": "MEDIUM",
-		"line": 4,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Gem Install Without Version",
-		"severity": "MEDIUM",
-		"line": 5,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Gem Install Without Version",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN gem install bundler}}",
+    "searchValue": "",
+    "expectedValue": "RUN gem install bundler is 'gem install <gem>:<version>'",
+    "actualValue": "RUN gem install bundler is 'gem install <gem>', you should use 'gem install <gem>:<version>",
+    "issueType": "IncorrectValue",
+    "similarityID": "8c05574becb21bba7fccc6b5d0ba054e9d2902171084611354abb1cb925f72dd",
+    "search_line": -1
+  },
+  {
+    "queryName": "Gem Install Without Version",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN [\"gem\", \"install\", \"blunder\"]}}",
+    "searchValue": "",
+    "expectedValue": "RUN [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>:<version>'",
+    "actualValue": "RUN [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>', you should use 'gem install <gem>:<version>",
+    "issueType": "IncorrectValue",
+    "similarityID": "9842f9cb398d64135d1fe158ab35aa24eb78337f680852c1810fc5fa2cc5ea59",
+    "search_line": -1
+  },
+  {
+    "queryName": "Gem Install Without Version",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN gem install grpc -v ${GRPC_RUBY_VERSION} blunder}}",
+    "searchValue": "",
+    "expectedValue": "RUN gem install grpc -v ${GRPC_RUBY_VERSION} blunder is 'gem install <gem>:<version>'",
+    "actualValue": "RUN gem install grpc -v ${GRPC_RUBY_VERSION} blunder is 'gem install <gem>', you should use 'gem install <gem>:<version>",
+    "issueType": "IncorrectValue",
+    "similarityID": "55b308dff6b304322b50865bd7a4c6e21f3489092b822d7f708e70202e5fafb0",
+    "search_line": -1
+  },
+  {
+    "queryName": "Gem Install Without Version",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:3.5}}.{{run gem install bundler}}",
+    "searchValue": "",
+    "expectedValue": "run gem install bundler is 'gem install <gem>:<version>'",
+    "actualValue": "run gem install bundler is 'gem install <gem>', you should use 'gem install <gem>:<version>",
+    "issueType": "IncorrectValue",
+    "similarityID": "7ff8709d691833564b6552bf590026bd772b7cb1e905f5f4453660f122ed594b",
+    "search_line": -1
+  },
+  {
+    "queryName": "Gem Install Without Version",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:3.5}}.{{run [\"gem\", \"install\", \"blunder\"]}}",
+    "searchValue": "",
+    "expectedValue": "run [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>:<version>'",
+    "actualValue": "run [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>', you should use 'gem install <gem>:<version>",
+    "issueType": "IncorrectValue",
+    "similarityID": "27290ea2e0571231638c8f659a59e8fbe0f7bf77073d3de3b694f054bbb1d69a",
+    "search_line": -1
+  },
+  {
+    "queryName": "Gem Install Without Version",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "from={{alpine:3.5}}.{{run gem install grpc -v ${GRPC_RUBY_VERSION} blunder}}",
+    "searchValue": "",
+    "expectedValue": "run gem install grpc -v ${GRPC_RUBY_VERSION} blunder is 'gem install <gem>:<version>'",
+    "actualValue": "run gem install grpc -v ${GRPC_RUBY_VERSION} blunder is 'gem install <gem>', you should use 'gem install <gem>:<version>",
+    "issueType": "IncorrectValue",
+    "similarityID": "16350db6d28d1b18276648551724657522147d8b004b06ff923c3e072af22916",
+    "search_line": -1
+  }
 ]

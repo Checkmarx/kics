@@ -3,24 +3,60 @@
     "queryName": "VPC Peering Route Table with Unrestricted CIDR",
     "severity": "HIGH",
     "line": 118,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_route",
+    "resourceName": "public_route_table",
+    "searchKey": "aws_route_table[public_route_table].route",
+    "searchValue": "",
+    "expectedValue": "aws_route_table[public_route_table].route restricts CIDR",
+    "actualValue": "aws_route_table[public_route_table].route does not restrict CIDR",
+    "issueType": "IncorrectValue",
+    "similarityID": "8996901e27b30b0172f6d139d96a93fe4999eeeea3b7fc6019a2d5bb8ddbb175",
+    "search_line": 118
   },
   {
     "queryName": "VPC Peering Route Table with Unrestricted CIDR",
     "severity": "HIGH",
     "line": 132,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_route",
+    "resourceName": "private_route2",
+    "searchKey": "aws_route[private_route2]",
+    "searchValue": "",
+    "expectedValue": "aws_route[private_route2] restricts CIDR",
+    "actualValue": "aws_route[private_route2] does not restrict CIDR",
+    "issueType": "IncorrectValue",
+    "similarityID": "13d355f91521bc900e7d4098c592a87423ba92b4c57bc03bd274425318e58876",
+    "search_line": 132
   },
   {
     "queryName": "VPC Peering Route Table with Unrestricted CIDR",
     "severity": "HIGH",
     "line": 118,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_route",
+    "resourceName": "public_route_table",
+    "searchKey": "aws_route_table[public_route_table].route",
+    "searchValue": "",
+    "expectedValue": "aws_route_table[public_route_table].route restricts CIDR",
+    "actualValue": "aws_route_table[public_route_table].route does not restrict CIDR",
+    "issueType": "IncorrectValue",
+    "similarityID": "03f6b8b26dbc56a4be10b6f779dbb6cdd410911bd4ea75727d9808f353e14728",
+    "search_line": 118
   },
   {
     "queryName": "VPC Peering Route Table with Unrestricted CIDR",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive4.tf"  
+    "fileName": "positive4.tf",
+    "resourceType": "aws_route",
+    "resourceName": "art_nat_gw_out",
+    "searchKey": "aws_route_table[art_nat_gw_out].route",
+    "searchValue": "",
+    "expectedValue": "aws_route_table[art_nat_gw_out].route restricts CIDR",
+    "actualValue": "aws_route_table[art_nat_gw_out].route does not restrict CIDR",
+    "issueType": "IncorrectValue",
+    "similarityID": "f548157cd667eda120ede54d7d57fdc59d65c95666caa744b3ecc9800e96f2f7",
+    "search_line": 9
   }
 ]

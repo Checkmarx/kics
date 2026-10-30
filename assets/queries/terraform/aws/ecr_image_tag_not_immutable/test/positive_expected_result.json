@@ -3,12 +3,30 @@
     "queryName": "ECR Image Tag Not Immutable",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_ecr_repository",
+    "resourceName": "bar",
+    "searchKey": "aws_ecr_repository.foo2.image_tag_mutability",
+    "searchValue": "",
+    "expectedValue": "aws_ecr_repository.foo2.image_tag_mutability should be 'IMMUTABLE'",
+    "actualValue": "aws_ecr_repository.foo2.image_tag_mutability is 'MUTABLE'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2be5637a54bd0dc5b6f7f8426c4c2b7275745927ee26a7f951b4d916ec491896",
+    "search_line": 3
   },
   {
     "queryName": "ECR Image Tag Not Immutable",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_ecr_repository",
+    "resourceName": "bar",
+    "searchKey": "aws_ecr_repository.foo3",
+    "searchValue": "",
+    "expectedValue": "aws_ecr_repository.foo3.image_tag_mutability should be defined and not null",
+    "actualValue": "aws_ecr_repository.foo3.image_tag_mutability is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "bc13210a5cf0ec1a14be24fce473bab198194621382265bc5bd27e6b2624b9b9",
+    "search_line": 10
   }
 ]

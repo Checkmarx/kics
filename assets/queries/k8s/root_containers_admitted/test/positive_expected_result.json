@@ -2,26 +2,76 @@
   {
     "queryName": "Root Containers Admitted",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.privileged",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{restricted}}.spec.privileged should be set to 'false'",
+    "actualValue": "metadata.name={{restricted}}.spec.privileged is set to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "cf860b4d127f04dfa74cdbf0936a50984d570490267a70872ad63d5624e7f02e",
+    "search_line": -1
   },
   {
     "queryName": "Root Containers Admitted",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.allowPrivilegeEscalation",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{restricted}}.spec.allowPrivilegeEscalation should be set to 'false'",
+    "actualValue": "metadata.name={{restricted}}.spec.allowPrivilegeEscalation is set to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ac106e9dcf9421d278a570167a1eaa0732b0d67b72bfe030fb26d24cd940f88a",
+    "search_line": -1
   },
   {
     "queryName": "Root Containers Admitted",
     "severity": "MEDIUM",
-    "line": 27
+    "line": 27,
+    "fileName": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.runAsUser.rule",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{restricted}}.spec.runAsUser.rule is equal to 'MustRunAsNonRoot'",
+    "actualValue": "metadata.name={{restricted}}.spec.runAsUser.rule is not equal to 'MustRunAsNonRoot'",
+    "issueType": "IncorrectValue",
+    "similarityID": "af1fd07638ac64e8839b487364b635b8701f11d1a894d6c4c1df796f13274801",
+    "search_line": -1
   },
   {
     "queryName": "Root Containers Admitted",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.supplementalGroups.rule",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{restricted}}.spec.supplementalGroups limits its ranges",
+    "actualValue": "metadata.name={{restricted}}.spec.supplementalGroups does not limit its ranges",
+    "issueType": "IncorrectValue",
+    "similarityID": "dbe4e92492121ddc36025c779dd761727c6b372d1da59e17fcf87bcfb9d6bc10",
+    "search_line": -1
   },
   {
     "queryName": "Root Containers Admitted",
     "severity": "MEDIUM",
-    "line": 32
+    "line": 32,
+    "fileName": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.fsGroup",
+    "searchValue": "",
+    "expectedValue": "metadata.name{{restricted}}.spec.fsGroup should not allow range '0' (root)",
+    "actualValue": "metadata.name={{restricted}}.spec.fsGroup allows range '0' (root)",
+    "issueType": "IncorrectValue",
+    "similarityID": "2cb606bba35c5f9be549993d7bf5e34c2daf4bc0c0ac9920e188d60751719058",
+    "search_line": -1
   }
 ]

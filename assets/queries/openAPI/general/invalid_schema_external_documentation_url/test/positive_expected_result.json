@@ -3,48 +3,120 @@
     "queryName": "Invalid Schema External Documentation URL (v3)",
     "severity": "INFO",
     "line": 61,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{User}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "6624fbf6a4ff334207a7f4aebc178c4905d34f27613e1272b155ff0508a8a771",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v3)",
     "severity": "INFO",
     "line": 24,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "c2b8ef73aafac56f034870f3fe79fe8c283d22901962950a2ca0d96d785ac58d",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v3)",
     "severity": "INFO",
     "line": 35,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{User}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "17de66754adff03a73c9b4527fd1ab48f2cffe231ed858f595382ea2efec38e9",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v3)",
     "severity": "INFO",
     "line": 17,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "fccb5fdfff7f5f8e4845961c81929629982fa61b52e936287c30934c6e9ef1a2",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v2)",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "Invalid Schema External Documentation URL (v2)",
-    "severity": "INFO",
-    "line": 37,
-    "filename": "positive7.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "4d4ad6304b94b6d3a818c574cde180f6dc8e677058c7e4fbb09ebe5419308d5a",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v2)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "2e0c7ce38fa6e6378663e6e960136a1f6e9edf73cfc870cf6abbccb626047201",
+    "search_line": -1
+  },
+  {
+    "queryName": "Invalid Schema External Documentation URL (v2)",
+    "severity": "INFO",
+    "line": 37,
+    "fileName": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{User}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "f753337472952e2ce88c537354665f3c0dbe481bc7752e4e2bf877ae0f3d3860",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v2)",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive8.yaml"
+    "fileName": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{User}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "de5ba1906112ddd454dcebee02fd476bc2556a6f11afdad90252afc886696088",
+    "search_line": -1
   }
 ]

@@ -1,12 +1,32 @@
 [
-	{
-		"queryName": "Incorrect Volume Claim Access Mode ReadWriteOnce",
-		"severity": "MEDIUM",
-		"line": 166
+  {
+    "queryName": "Incorrect Volume Claim Access Mode ReadWriteOnce",
+    "severity": "MEDIUM",
+    "line": 166,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_stateful_set",
+    "resourceName": "prometheus",
+    "searchKey": "kubernetes_stateful_set[prometheus-1].spec.volume_claim_template",
+    "searchValue": "",
+    "expectedValue": "kubernetes_stateful_set[prometheus-1].spec.volume_claim_template has only one template with a 'ReadWriteOnce'",
+    "actualValue": "kubernetes_stateful_set[prometheus-1].spec.volume_claim_template has multiple templates with 'ReadWriteOnce'",
+    "issueType": "IncorrectValue",
+    "similarityID": "608cccdbb1c84f803f1742924f7ed96cbcf17808cff068d008d7d745d9638133",
+    "search_line": -1
   },
   {
-		"queryName": "Incorrect Volume Claim Access Mode ReadWriteOnce",
-		"severity": "MEDIUM",
-		"line": 367
+    "queryName": "Incorrect Volume Claim Access Mode ReadWriteOnce",
+    "severity": "MEDIUM",
+    "line": 367,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_stateful_set",
+    "resourceName": "prometheus",
+    "searchKey": "kubernetes_stateful_set[prometheus-2].spec.volume_claim_template",
+    "searchValue": "",
+    "expectedValue": "kubernetes_stateful_set[prometheus-2].spec.volume_claim_template has one template with a 'ReadWriteOnce'",
+    "actualValue": "kubernetes_stateful_set[prometheus-2].spec.volume_claim_template does not have a template with a 'ReadWriteOnce'",
+    "issueType": "MissingAttribute",
+    "similarityID": "94d52dedf5a78149078dfca59e2290fa7cc7b942a9f85983722f069794630c6c",
+    "search_line": -1
   }
 ]

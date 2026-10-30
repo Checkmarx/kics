@@ -1,14 +1,32 @@
 [
   {
+    "queryName": "VPC Without Attached Subnet",
     "severity": "LOW",
     "line": 3,
     "fileName": "positive1.yaml",
-    "queryName": "VPC Without Attached Subnet"
+    "resourceType": "AWS::EC2::VPC",
+    "resourceName": "myVPC_1",
+    "searchKey": "Resources.myVPC_1",
+    "searchValue": "",
+    "expectedValue": "'Resources.myVPC_1' should be attached to resources",
+    "actualValue": "'Resources.myVPC_1' is not attached to resources",
+    "issueType": "MissingAttribute",
+    "similarityID": "fdc2b2e013ec6d338eafb31611dc06a8a0a7e095d4872788cda1f846e3917b35",
+    "search_line": -1
   },
   {
+    "queryName": "VPC Without Attached Subnet",
     "severity": "LOW",
     "line": 4,
     "fileName": "positive2.json",
-    "queryName": "VPC Without Attached Subnet"
+    "resourceType": "AWS::EC2::VPC",
+    "resourceName": "myVPC_1",
+    "searchKey": "Resources.myVPC_1",
+    "searchValue": "",
+    "expectedValue": "'Resources.myVPC_1' should be attached to resources",
+    "actualValue": "'Resources.myVPC_1' is not attached to resources",
+    "issueType": "MissingAttribute",
+    "similarityID": "df19f49391f626e4d676c659b9a070bf5c89e3fe0e32de01450efa5c3debe651",
+    "search_line": -1
   }
 ]

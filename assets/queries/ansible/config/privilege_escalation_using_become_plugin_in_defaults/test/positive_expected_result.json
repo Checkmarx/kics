@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Privilege Escalation Using Become Plugin In Defaults",
-		"severity": "MEDIUM",
-		"filename": "positive1.cfg",
-		"line": 10
-	},
-	{
-		"queryName": "Privilege Escalation Using Become Plugin In Defaults",
-		"severity": "MEDIUM",
-		"filename": "positive2.cfg",
-		"line": 12
-	}
+  {
+    "queryName": "Privilege Escalation Using Become Plugin In Defaults",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive1.cfg",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "defaults.become",
+    "searchValue": "",
+    "expectedValue": "'become' should be set to 'true'",
+    "actualValue": "'become' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a3c6b0873769845b73faf32f71f82c1caad2212b8308227980dd13c7d80c242a",
+    "search_line": -1
+  },
+  {
+    "queryName": "Privilege Escalation Using Become Plugin In Defaults",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive2.cfg",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "defaults.become_user",
+    "searchValue": "",
+    "expectedValue": "'become' should be defined and set to 'true'",
+    "actualValue": "'become' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9cb2e114c801c05ed94762d87feb078aa1d757e43494dcc49ff22704e654ee68",
+    "search_line": -1
+  }
 ]

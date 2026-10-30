@@ -1,26 +1,62 @@
 [
-    {
-      "queryName": "Volume Has Sensitive Host Directory",
-      "severity": "HIGH",
-      "line": 11,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Volume Has Sensitive Host Directory",
-      "severity": "HIGH",
-      "line": 18,
-      "filename": "positive2.yaml"
-    },
-    {
-      "queryName": "Volume Has Sensitive Host Directory",
-      "severity": "HIGH",
-      "line": 14,
-      "filename": "positive3.yaml"
-    },
-    {
-      "queryName": "Volume Has Sensitive Host Directory",
-      "severity": "HIGH",
-      "line": 11,
-      "filename": "positive4.yaml"
-    }
+  {
+    "queryName": "Volume Has Sensitive Host Directory",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.backup.volumes",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be sensitive directory mounted as a volume",
+    "actualValue": "There is a sensitive directory (/var/lib/backup/data) mounted as a volume",
+    "issueType": "IncorrectValue",
+    "similarityID": "d61f9cc8e05cddaf3337b35cf2136dd427485fd0864bdb9ceb50a63ce14618ad",
+    "search_line": 11
+  },
+  {
+    "queryName": "Volume Has Sensitive Host Directory",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "volumes.vol.driver_opts.device",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be sensitive directory mounted as a volume",
+    "actualValue": "There is a sensitive directory (/var/lib/backup/data) mounted as a volume",
+    "issueType": "IncorrectValue",
+    "similarityID": "3665ddf21eff8233219845619d445948833f0546e5b924a91db0e93198e16237",
+    "search_line": 18
+  },
+  {
+    "queryName": "Volume Has Sensitive Host Directory",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "volumes.wp-content.driver_opts.mountpoint",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be sensitive directory mounted as a volume",
+    "actualValue": "There is a sensitive directory (/var/data) mounted as a volume",
+    "issueType": "IncorrectValue",
+    "similarityID": "646228fa710ff0cd5736092d39054d0e24c3609147dd72156764d210e3038fe5",
+    "search_line": 14
+  },
+  {
+    "queryName": "Volume Has Sensitive Host Directory",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.yesno.volumes.source",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be sensitive directory mounted as a volume",
+    "actualValue": "There is a sensitive directory (/etc/exercise) mounted as a volume",
+    "issueType": "IncorrectValue",
+    "similarityID": "fb459ca93b47372a996b6ea4a5e544ab4c8bfd10a2d0bc842ce5baed1fbbdab9",
+    "search_line": 11
+  }
 ]

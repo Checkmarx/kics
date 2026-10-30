@@ -3,6 +3,15 @@
     "queryName": "Role With Privilege Escalation By Actions 'iam:PutGroupPolicy'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_role[cosmic]",
+    "searchValue": "",
+    "expectedValue": "role cosmic shouldn't be associated with a policy that has Action set to 'iam:PutGroupPolicy' and Resource set to '*'",
+    "actualValue": "role cosmic is associated with a policy that has Action set to 'iam:PutGroupPolicy' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3f7e244cf5f79f21897cd6816ae570d319a7b60a14ad76bb5129eedfc8c5b88a",
+    "search_line": 1
   }
 ]

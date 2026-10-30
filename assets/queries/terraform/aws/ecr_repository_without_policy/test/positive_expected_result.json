@@ -3,12 +3,30 @@
     "queryName": "ECR Repository Without Policy",
     "severity": "LOW",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_ecr_repository",
+    "resourceName": "foo",
+    "searchKey": "aws_ecr_repository[foo]",
+    "searchValue": "",
+    "expectedValue": "aws_ecr_repository[foo] has policies attached",
+    "actualValue": "aws_ecr_repository[foo] doesn't have policies attached",
+    "issueType": "MissingAttribute",
+    "similarityID": "a90c5e834c076ebd57017b169000f2e536a10c0fd7f262871f1a6317b7ca75f9",
+    "search_line": -1
   },
   {
     "queryName": "ECR Repository Without Policy",
     "severity": "LOW",
     "line": 1,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_ecr_repository",
+    "resourceName": "foo2",
+    "searchKey": "aws_ecr_repository[foo2]",
+    "searchValue": "",
+    "expectedValue": "aws_ecr_repository[foo2] has policies attached",
+    "actualValue": "aws_ecr_repository[foo2] doesn't have policies attached",
+    "issueType": "MissingAttribute",
+    "similarityID": "2ad0d7d3813a9ea699fdf443a6e225e7afac9a4f86135042853446dd73a92f5a",
+    "search_line": -1
   }
 ]

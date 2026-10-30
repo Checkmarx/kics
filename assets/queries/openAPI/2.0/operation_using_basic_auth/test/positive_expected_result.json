@@ -3,12 +3,30 @@
     "queryName": "Operation Using Basic Auth",
     "severity": "MEDIUM",
     "line": 22,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
+    "searchValue": "",
+    "expectedValue": "Operation Object should not be using basic authentication",
+    "actualValue": "Operation Object is using basic authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "0c76e65a2b327fc780082e258fafd781ca0de92554f26159ed5fd77ceefd1a95",
+    "search_line": -1
   },
   {
     "queryName": "Operation Using Basic Auth",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
+    "searchValue": "",
+    "expectedValue": "Operation Object should not be using basic authentication",
+    "actualValue": "Operation Object is using basic authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "25b7f67ecaa219c820ca73b27dd0400b9b5a48b957305b4cb7beee4e04767aa6",
+    "search_line": -1
   }
 ]

@@ -3,48 +3,120 @@
     "queryName": "Non-Array Schema With Items (v3)",
     "severity": "INFO",
     "line": 52,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.items",
+    "searchValue": "",
+    "expectedValue": "Schema items property should be undefined",
+    "actualValue": "Schema items property is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "505808003621ec9aee3de49aa3b8392db4bfe2eef363171f17c4116f62e2bc68",
+    "search_line": -1
   },
   {
     "queryName": "Non-Array Schema With Items (v3)",
     "severity": "INFO",
     "line": 24,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.items",
+    "searchValue": "",
+    "expectedValue": "Schema items property should be undefined",
+    "actualValue": "Schema items property is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "e2031543575bc157e2bcd13975a6d1b4b87aeec1261a38a7153c011130f08d54",
+    "search_line": -1
   },
   {
     "queryName": "Non-Array Schema With Items (v3)",
     "severity": "INFO",
     "line": 29,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.items",
+    "searchValue": "",
+    "expectedValue": "Schema items property should be undefined",
+    "actualValue": "Schema items property is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "8c64e7693070e400372ace4e58eab6374436cfafa8b87cce5ba832dda87c2acb",
+    "search_line": -1
   },
   {
     "queryName": "Non-Array Schema With Items (v3)",
     "severity": "INFO",
     "line": 17,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "Non-Array Schema With Items (v2)",
-    "severity": "INFO",
-    "line": 44,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "Non-Array Schema With Items (v2)",
-    "severity": "INFO",
-    "line": 32,
-    "filename": "positive6.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.items",
+    "searchValue": "",
+    "expectedValue": "Schema items property should be undefined",
+    "actualValue": "Schema items property is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "20fa3a220f2347556288bc4b9f80b2746bd42cb3f40115b7db319c45b8c8f16b",
+    "search_line": -1
   },
   {
     "queryName": "Non-Array Schema With Items (v2)",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users}}.get.responses.200.schema.items.$ref=#/definitions/User",
+    "searchValue": "",
+    "expectedValue": "Schema items property should be undefined",
+    "actualValue": "Schema items property is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "718a399a326190244248933ae421e5b348cc9fd6ae6bbc773b670d88e3bf5c13",
+    "search_line": 0
+  },
+  {
+    "queryName": "Non-Array Schema With Items (v2)",
+    "severity": "INFO",
+    "line": 44,
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.User.properties.name.items",
+    "searchValue": "",
+    "expectedValue": "Schema items property should be undefined",
+    "actualValue": "Schema items property is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "e958292cc7c9b69d1bc79c7ec21843e744bdc2d155dfcaf908e812097ce78ea2",
+    "search_line": 0
   },
   {
     "queryName": "Non-Array Schema With Items (v2)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users}}.get.responses.200.schema.items.$ref=#/definitions/User",
+    "searchValue": "",
+    "expectedValue": "Schema items property should be undefined",
+    "actualValue": "Schema items property is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "fc0797806aba0a78449e161d193b2fc746a6146bba321ab61d3f0c83d2346012",
+    "search_line": 0
+  },
+  {
+    "queryName": "Non-Array Schema With Items (v2)",
+    "severity": "INFO",
+    "line": 32,
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.User.properties.name.items",
+    "searchValue": "",
+    "expectedValue": "Schema items property should be undefined",
+    "actualValue": "Schema items property is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "ccffc4d214a3d16bef7c4d13ba74ff0a30eebfceb20252c5905edc4e0281f5fe",
+    "search_line": 0
   }
 ]

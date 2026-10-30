@@ -2,6 +2,16 @@
   {
     "queryName": "PostgreSQL Misconfigured Log Messages Flag",
     "severity": "LOW",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "sql_instance",
+    "searchKey": "name={{sql_instance}}.{{google.cloud.gcp_sql_instance}}.settings.database_flags.log_min_messages",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.database_flags should set 'log_min_messages' to a valid value",
+    "actualValue": "gcp_sql_instance.settings.database_flags doesn't set 'log_min_messages' to a valid value",
+    "issueType": "IncorrectValue",
+    "similarityID": "53eca9efb79d6a1ded0d77c99c2dd876f4e16f115ff7a25ba401649c67709511",
+    "search_line": -1
   }
 ]

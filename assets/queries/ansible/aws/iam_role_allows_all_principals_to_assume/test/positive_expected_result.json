@@ -3,12 +3,30 @@
     "queryName": "IAM Role Allows All Principals To Assume",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.iam_managed_policy",
+    "resourceName": "Create IAM Managed Policy",
+    "searchKey": "name={{Create IAM Managed Policy}}.{{community.aws.iam_managed_policy}}.policy",
+    "searchValue": "",
+    "expectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain ':root",
+    "actualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains ':root'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f946a6d47c2de72e57acc1ebf25fbdd0e2bc51e6edd1e8bccbd9a0a94a989a11",
+    "search_line": 4
   },
   {
     "queryName": "IAM Role Allows All Principals To Assume",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.iam_managed_policy",
+    "resourceName": "Create2 IAM Managed Policy",
+    "searchKey": "name={{Create2 IAM Managed Policy}}.{{community.aws.iam_managed_policy}}.policy",
+    "searchValue": "",
+    "expectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain ':root",
+    "actualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains ':root'",
+    "issueType": "IncorrectValue",
+    "similarityID": "381c805c7f0d58b86ca4c03283ac7b0fed643c176dde2da66fb7f2b042405d1e",
+    "search_line": 17
   }
 ]

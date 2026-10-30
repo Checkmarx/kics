@@ -2,6 +2,16 @@
   {
     "queryName": "No Stack Policy",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudformation_stack",
+    "resourceName": "networking-stack",
+    "searchKey": "aws_cloudformation_stack[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'policy_body' or Attribute 'policy_url' should be set",
+    "actualValue": "Both Attribute 'policy_body' and Attribute 'policy_url' are undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "bec8e2487c6e6661214767f91fed9c5e2b1109a64c54e79cd078877f9635e07f",
+    "search_line": -1
   }
 ]

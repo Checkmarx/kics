@@ -2,49 +2,121 @@
   {
     "queryName": "Account Admins Not Notified By Email",
     "severity": "INFO",
+    "line": 4,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/server/default",
+    "searchKey": "resources.name={{sample/server/default}}.properties.emailAccountAdmins",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins property value should be set to true",
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "39fe844602d43c18c8161b84fb6428ce7f992cec4f783555db6775b7fd4a42a6",
+    "search_line": 4
+  },
+  {
+    "queryName": "Account Admins Not Notified By Email",
+    "severity": "INFO",
     "line": 14,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/server/default",
+    "searchKey": "resources.name={{sample/server/default}}.properties.emailAccountAdmins",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins property value should be set to true",
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "0afa60ae587b17830eeb4fe2efe3e9b2b6f9ec28706e39a085654b445b6f3061",
+    "search_line": 14
+  },
+  {
+    "queryName": "Account Admins Not Notified By Email",
+    "severity": "INFO",
+    "line": 3,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/server/default",
+    "searchKey": "resources.name={{sample/server/default}}.properties",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins should be set to true",
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "bd1659c4126e49fd9a9df30c30b53c75b89ae40364c268a958404b59992cd8a1",
+    "search_line": 3
   },
   {
     "queryName": "Account Admins Not Notified By Email",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/server/default",
+    "searchKey": "resources.name={{sample/server/default}}.properties",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins should be set to true",
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "4cefefdcd85bda34c612d7cf07c4415e3022646e989057500dc0710908d0facb",
+    "search_line": 13
+  },
+  {
+    "queryName": "Account Admins Not Notified By Email",
+    "severity": "INFO",
+    "line": 4,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/server/default",
+    "searchKey": "resources.name={{sample/server/default}}.properties.emailAccountAdmins",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins property value should be set to true",
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "e9099d5da0417a58ee2eaba4279cdbe9338a08b8a3d07a36fd14a390e8978472",
+    "search_line": 4
   },
   {
     "queryName": "Account Admins Not Notified By Email",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/server/default",
+    "searchKey": "properties.template.resources.name={{sample/server/default}}.properties.emailAccountAdmins",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins property value should be set to true",
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1800c2e7feeb1a9e1e6c0254e30b3f9c83371e2137b3cbc1ac97299ba767da76",
+    "search_line": 16
+  },
+  {
+    "queryName": "Account Admins Not Notified By Email",
+    "severity": "INFO",
+    "line": 3,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/server/default",
+    "searchKey": "resources.name={{sample/server/default}}.properties",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins should be set to true",
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "3989dad3e7c9d54bb191c025c94f08600067cc25be6b520d7bbb061fd000361b",
+    "search_line": 3
   },
   {
     "queryName": "Account Admins Not Notified By Email",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "Account Admins Not Notified By Email",
-    "severity": "INFO",
-    "line": 4,
-    "filename": "positive1.bicep"
-  }, 
-  {
-    "queryName": "Account Admins Not Notified By Email",
-    "severity": "INFO",
-    "line": 3,
-    "filename": "positive2.bicep"
-  },
-  {
-    "queryName": "Account Admins Not Notified By Email",
-    "severity": "INFO",
-    "line": 4,
-    "filename": "positive3.bicep"
-  },
-  {
-    "queryName": "Account Admins Not Notified By Email",
-    "severity": "INFO",
-    "line": 3,
-    "filename": "positive4.bicep"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/server/default",
+    "searchKey": "properties.template.resources.name={{sample/server/default}}.properties",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins should be set to true",
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "fc0889f01880f19b717781e8f14f8b06aeff4faec44562a968a0f1b999d2e624",
+    "search_line": 15
   }
 ]

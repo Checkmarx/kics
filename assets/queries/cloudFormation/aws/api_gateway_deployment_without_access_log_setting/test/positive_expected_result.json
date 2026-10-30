@@ -2,37 +2,91 @@
   {
     "queryName": "API Gateway Deployment Without Access Log Setting",
     "severity": "MEDIUM",
-    "line": 21,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "fileName": "positive3.yaml",
-    "queryName": "API Gateway Deployment Without Access Log Setting",
-    "severity": "MEDIUM",
-    "line": 21
-  },
-  {
-    "queryName": "API Gateway Deployment Without Access Log Setting",
-    "severity": "MEDIUM",
     "line": 29,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.ApiDeployment.Properties.StageDescription.AccessLogSetting",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiDeployment.Properties.StageDescriptionAccessLogSetting should be defined",
+    "actualValue": "Resources.ApiDeployment.Properties.StageDescription.AccessLogSetting is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c064e1ad78bfba5c7692b3628ad0fd057f1ced52fc5de43a0d2ddce4601ab5a6",
+    "search_line": -1
   },
   {
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.ApiDeployment1",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiDeployment1 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same as the ApiGateway::Stage resource",
+    "actualValue": "Resources.ApiDeployment1 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same in the ApiGateway::Stage resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "c16879add6efae8a9f40420a776ee587233a8adaff01fdb70479c59e845895b7",
+    "search_line": -1
+  },
+  {
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.ApiDeployment2",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiDeployment2 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same as the ApiGateway::Stage resource",
+    "actualValue": "Resources.ApiDeployment2 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same in the ApiGateway::Stage resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "27c25fdad18950a371b38824c05122e18328b4717e019e46968ee21854fdb002",
+    "search_line": -1
+  },
+  {
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 15,
     "fileName": "positive4.json",
-    "queryName": "API Gateway Deployment Without Access Log Setting",
-    "severity": "MEDIUM",
-    "line": 15
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.ApiDeployment.Properties.StageDescription.AccessLogSetting",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiDeployment.Properties.StageDescriptionAccessLogSetting should be defined",
+    "actualValue": "Resources.ApiDeployment.Properties.StageDescription.AccessLogSetting is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d33aa1083328614ea69ccf03cfead13a1ec1a8ab95d09d675d20a13d4f3acd15",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway Deployment Without Access Log Setting",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.ApiDeployment1",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiDeployment1 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same as the ApiGateway::Stage resource",
+    "actualValue": "Resources.ApiDeployment1 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same in the ApiGateway::Stage resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "8f7a48991863a8ffdd033f27f6502f56e85beb7a9c68315949f92ed0514f2f07",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway Deployment Without Access Log Setting",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.ApiDeployment2",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiDeployment2 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same as the ApiGateway::Stage resource",
+    "actualValue": "Resources.ApiDeployment2 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same in the ApiGateway::Stage resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "125ed9ee1727ed3080f7a0dc28d5ca77c94b3c9f8158d974d79a8a4427c5b97a",
+    "search_line": -1
   }
 ]

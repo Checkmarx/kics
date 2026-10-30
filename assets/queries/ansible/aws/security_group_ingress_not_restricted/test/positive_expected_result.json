@@ -2,31 +2,91 @@
   {
     "queryName": "Security Group Ingress Not Restricted",
     "severity": "HIGH",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[0] should be restricted",
+    "actualValue": "ec2_group.rules[0] is not restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "b7cb8f7961ce193c9e5dd1f4b4616b687cb3ccec98cb6fb69c0051d469ee20c3",
+    "search_line": 8
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
     "severity": "HIGH",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[1] should be restricted",
+    "actualValue": "ec2_group.rules[1] is not restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "04ff24f8abdca2ce644788d51f9460cf7fe79b991b193732ef77279001e3fedb",
+    "search_line": 12
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
     "severity": "HIGH",
-    "line": 16
+    "line": 16,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[2] should be restricted",
+    "actualValue": "ec2_group.rules[2] is not restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "8f73ed63bb1362c0a213e36979ac6e943c84b1082ecf7aed52bd65e47b29281c",
+    "search_line": 16
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
     "severity": "HIGH",
-    "line": 27
+    "line": 27,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group v2",
+    "searchKey": "name={{example ec2 group v2}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[0] should be restricted",
+    "actualValue": "ec2_group.rules[0] is not restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "6e14178c7575ac7c32fc7613d2bf2cbbd486cedf1729445f6114db79e89750db",
+    "search_line": 27
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
     "severity": "HIGH",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group v2",
+    "searchKey": "name={{example ec2 group v2}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[1] should be restricted",
+    "actualValue": "ec2_group.rules[1] is not restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "8f9cf372ebdc601ad8893ec3d5d6c0f2ce90f7eaa7edae5f692e2477f23123bd",
+    "search_line": 31
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
     "severity": "HIGH",
-    "line": 35
+    "line": 35,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group v2",
+    "searchKey": "name={{example ec2 group v2}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[2] should be restricted",
+    "actualValue": "ec2_group.rules[2] is not restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "1ccd11b820c3d8f0f26cd6cd372a0cd7c2107ac0476ef4c49379684b6ff3bfe6",
+    "search_line": 35
   }
 ]

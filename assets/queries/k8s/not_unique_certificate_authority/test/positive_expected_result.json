@@ -1,8 +1,17 @@
 [
-    {
-      "queryName": "Not Unique Certificate Authority",
-      "severity": "MEDIUM",
-      "line": 22,
-      "filename": "positive1.yaml"
-    }
+  {
+    "queryName": "Not Unique Certificate Authority",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive1.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "database",
+    "searchKey": "metadata.name={{database}}.spec.template.spec.containers.name={{database}}.command",
+    "searchValue": "",
+    "expectedValue": "Trusted Certificate Authentication File should not be the same of a Client Certificate Authentication File",
+    "actualValue": "Trusted Certificate Authentication File is the same of a Client Certificate Authentication File",
+    "issueType": "IncorrectValue",
+    "similarityID": "28fe5233864943d1d7d3d1744ccdd39cefcc951fa7b5004c0ccf61e9a5e353e1",
+    "search_line": 22
+  }
 ]

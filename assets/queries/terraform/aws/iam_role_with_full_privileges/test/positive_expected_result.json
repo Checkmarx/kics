@@ -2,11 +2,31 @@
   {
     "queryName": "IAM Role With Full Privileges",
     "severity": "HIGH",
-    "line": 4
+    "line": 4,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "test_role",
+    "searchKey": "aws_iam_role[positive1].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "assume_role_policy.Statement.Action should not equal to, nor contain '*'",
+    "actualValue": "assume_role_policy.Statement.Action is equal to or contains '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9cc1af4313a0deb6f32e88f8e09a2f435f413e6408b70d9f47ba0a5142de95ff",
+    "search_line": 4
   },
   {
     "queryName": "IAM Role With Full Privileges",
     "severity": "HIGH",
-    "line": 29
+    "line": 29,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "test_role2",
+    "searchKey": "aws_iam_role[positive2].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "assume_role_policy.Statement.Action should not equal to, nor contain '*'",
+    "actualValue": "assume_role_policy.Statement.Action is equal to or contains '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0e7d3e367f5fd58867a2b7980bbd55283a8154f86b1d59c08826799a5b68ba06",
+    "search_line": 29
   }
 ]

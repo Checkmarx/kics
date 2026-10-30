@@ -2,6 +2,16 @@
   {
     "queryName": "CodeBuild Project Encrypted With AWS Managed Key",
     "severity": "LOW",
-    "line": 35
+    "line": 35,
+    "fileName": "positive.tf",
+    "resourceType": "aws_codebuild_project",
+    "resourceName": "project-cloudrail-test",
+    "searchKey": "aws_codebuild_project[project-cloudrail-test].encryption_key",
+    "searchValue": "",
+    "expectedValue": "CodeBuild Project should not be encrypted with AWS managed key",
+    "actualValue": "CodeBuild Project is encrypted with AWS managed key",
+    "issueType": "IncorrectValue",
+    "similarityID": "d09b258100bca147b19b8b12f6a296541c814579c7a8a767fe7d1a6c2c62e63a",
+    "search_line": -1
   }
 ]

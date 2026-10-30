@@ -178,7 +178,7 @@ type Vulnerability struct {
 	ResourceName     string      `db:"resource_name" json:"resourceName"`
 	IssueType        IssueType   `db:"issue_type" json:"issueType"`
 	SearchKey        string      `db:"search_key" json:"searchKey"`
-	SearchLine       int         `db:"search_line" json:"searchLine"`
+	SearchLine       int         `db:"search_line" json:"search_line"`
 	SearchValue      string      `db:"search_value" json:"searchValue"`
 	KeyExpectedValue string      `db:"key_expected_value" json:"expectedValue"`
 	KeyActualValue   string      `db:"key_actual_value" json:"actualValue"`

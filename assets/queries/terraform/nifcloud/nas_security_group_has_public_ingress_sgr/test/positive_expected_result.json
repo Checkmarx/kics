@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Nifcloud NAS Has Public Ingress NAS Security Group Rule",
-		"severity": "HIGH",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud NAS Has Public Ingress NAS Security Group Rule",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "nifcloud_nas_security_group",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_nas_security_group[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_nas_security_group[positive]' set a more restrictive cidr range",
+    "actualValue": "'nifcloud_nas_security_group[positive]' allows traffic from /0",
+    "issueType": "IncorrectValue",
+    "similarityID": "f735b71f3c28b8c12da55b16fc23ab85800fa8448fed1a11b8226495ea93199d",
+    "search_line": -1
+  }
 ]

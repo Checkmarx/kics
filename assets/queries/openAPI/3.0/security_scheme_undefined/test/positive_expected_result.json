@@ -3,36 +3,90 @@
     "queryName": "Field 'securityScheme' On Components Is Undefined",
     "severity": "MEDIUM",
     "line": 2,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi",
+    "searchValue": "",
+    "expectedValue": "A security scheme on components should be defined",
+    "actualValue": "Components is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0fa80851e6de253e79a6078f1914357e134b0ba82fd32bea86426e784c4a2371",
+    "search_line": -1
   },
   {
     "queryName": "Field 'securityScheme' On Components Is Undefined",
     "severity": "MEDIUM",
     "line": 43,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components",
+    "searchValue": "",
+    "expectedValue": "A security scheme on components should be defined",
+    "actualValue": "A security scheme is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "20c9997c25c236cea287e0e2d82e6cc48673ff72b0bfd0b472508c156a3e57bd",
+    "search_line": -1
   },
   {
     "queryName": "Field 'securityScheme' On Components Is Undefined",
     "severity": "MEDIUM",
     "line": 44,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes",
+    "searchValue": "",
+    "expectedValue": "A security scheme on components should be defined",
+    "actualValue": "A security scheme is an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "b8aefb64cd0d7ad77d18b9741ab0b9d76d9b68e742d364930dd70926f3ebc78c",
+    "search_line": -1
   },
   {
     "queryName": "Field 'securityScheme' On Components Is Undefined",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi",
+    "searchValue": "",
+    "expectedValue": "A security scheme on components should be defined",
+    "actualValue": "Components is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "28b9d377198ade66870bcb25f36230f4f735161c32bf2840d20b2d466896ec7b",
+    "search_line": -1
   },
   {
     "queryName": "Field 'securityScheme' On Components Is Undefined",
     "severity": "MEDIUM",
     "line": 25,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components",
+    "searchValue": "",
+    "expectedValue": "A security scheme on components should be defined",
+    "actualValue": "A security scheme is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "bfbad386bb984eba13c42feded27b2598e637161154877fc71b556b45fa6bf30",
+    "search_line": -1
   },
   {
     "queryName": "Field 'securityScheme' On Components Is Undefined",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes",
+    "searchValue": "",
+    "expectedValue": "A security scheme on components should be defined",
+    "actualValue": "A security scheme is an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "2e8dca1a004cd43964ed51be76ac2e97a6fd696e878ea46661521b4cfb79e1fd",
+    "search_line": -1
   }
 ]

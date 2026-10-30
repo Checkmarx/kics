@@ -3,6 +3,15 @@
     "queryName": "User With Privilege Escalation By Actions 'iam:PutRolePolicy'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_user",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_user[cosmic]",
+    "searchValue": "",
+    "expectedValue": "user cosmic should not be associated with a policy that has Action set to 'iam:PutRolePolicy' and Resource set to '*'",
+    "actualValue": "user cosmic is associated with a policy that has Action set to 'iam:PutRolePolicy' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8dd547e802db7754c723418f6ab0dd9c61af19b3b98848e64444abd05fc324bc",
+    "search_line": 1
   }
 ]

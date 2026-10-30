@@ -3,48 +3,120 @@
     "queryName": "Numeric Schema Without Minimum (v3)",
     "severity": "LOW",
     "line": 58,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "3183803b69c7f240eb0deaca000b37962a2038b3cd0eee5dfc76788cc2e99248",
+    "search_line": 0
   },
   {
     "queryName": "Numeric Schema Without Minimum (v3)",
     "severity": "LOW",
     "line": 74,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "caa258a4d0b71a8ee8875ff492dde8cf0fd24a4d0264f8204ba079a1d2bdf6de",
+    "search_line": 0
   },
   {
     "queryName": "Numeric Schema Without Minimum (v3)",
     "severity": "LOW",
     "line": 27,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e6c6fd98dc3c3e33ae53dc1d48d608e39d8bf9b38c7de80316923ecf63a1c17d",
+    "search_line": -1
   },
   {
     "queryName": "Numeric Schema Without Minimum (v3)",
     "severity": "LOW",
     "line": 34,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5e0ae21991a25de3c0b760814eb801fc14b066258fc435060a590975fd451894",
+    "search_line": 0
   },
   {
     "queryName": "Numeric Schema Without Minimum (v3)",
     "severity": "LOW",
     "line": 45,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "aa8e9804cc114b0585ce8525445a11042c29a3fab3ef004d9043904cbd0c628f",
+    "search_line": 0
   },
   {
     "queryName": "Numeric Schema Without Minimum (v3)",
     "severity": "LOW",
     "line": 22,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "09b1cd476ef186175b3b673cc1ea74aeedbe468a7c70ad455500da85d44fd5c9",
+    "search_line": -1
   },
   {
     "queryName": "Numeric Schema Without Minimum (v2)",
     "severity": "LOW",
     "line": 23,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c83f3af92096d6568b5a5c229cd211ebde059c9427a0397ea4525a0a1e7c6b91",
+    "search_line": -1
   },
   {
     "queryName": "Numeric Schema Without Minimum (v2)",
     "severity": "LOW",
     "line": 20,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "567c45fc30320cf064304dfc6e3db5ab6d8505bd5114c71eb23d2d86f0a47368",
+    "search_line": -1
   }
 ]

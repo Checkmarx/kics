@@ -2,49 +2,121 @@
   {
     "queryName": "Role Definitions Allow Custom Subscription Role Creation",
     "severity": "HIGH",
-    "line": 18,
-    "fileName": "positive1.json"
+    "line": 8,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Authorization/roleDefinitions",
+    "resourceName": "roleDef",
+    "searchKey": "resources.name={{roleDef}}.properties.permissions.actions",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue",
+    "similarityID": "b63de8441570a5cea79c21c5587cf76a31d4f8a07ae5085f572c3db0c8d56837",
+    "search_line": 8
   },
   {
     "queryName": "Role Definitions Allow Custom Subscription Role Creation",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive2.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Authorization/roleDefinitions",
+    "resourceName": "roleDef",
+    "searchKey": "resources.name={{roleDef}}.properties.permissions.actions",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue",
+    "similarityID": "95ec719da8fc576c636d323fb130dcdfe5e69414ce007522d2f9c42c804ed4c6",
+    "search_line": 18
+  },
+  {
+    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Authorization/roleDefinitions",
+    "resourceName": "roleDef",
+    "searchKey": "resources.name={{roleDef}}.properties.permissions.actions",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue",
+    "similarityID": "df567476b37974f8d267e40ee5b7db5f3d62a59660a21de3da91c9b63c6bbcc9",
+    "search_line": 8
+  },
+  {
+    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Authorization/roleDefinitions",
+    "resourceName": "roleDef",
+    "searchKey": "resources.name={{roleDef}}.properties.permissions.actions",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue",
+    "similarityID": "a9804caa15de1a25dc045bfba76ae3f908673d0cb2317596595eda7d4c49f5ac",
+    "search_line": 18
+  },
+  {
+    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.Authorization/roleDefinitions",
+    "resourceName": "roleDef",
+    "searchKey": "resources.name={{roleDef}}.properties.permissions.actions",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue",
+    "similarityID": "44391cad6609d171eefc37d7d7e3c7eeb0c9d7fb7029e0a714cec955161f4feb",
+    "search_line": 8
   },
   {
     "queryName": "Role Definitions Allow Custom Subscription Role Creation",
     "severity": "HIGH",
     "line": 20,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.Authorization/roleDefinitions",
+    "resourceName": "roleDef",
+    "searchKey": "properties.template.resources.name={{roleDef}}.properties.permissions.actions",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue",
+    "similarityID": "451690f901b2ba323252c2915725da8932f14065840a5ad96661549f3e833b19",
+    "search_line": 20
+  },
+  {
+    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.Authorization/roleDefinitions",
+    "resourceName": "roleDef",
+    "searchKey": "resources.name={{roleDef}}.properties.permissions.actions",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue",
+    "similarityID": "52f2e96f14bbeb668b0a0e489e8310690d07840b210a1ae9319a4e6c4d924df3",
+    "search_line": 8
   },
   {
     "queryName": "Role Definitions Allow Custom Subscription Role Creation",
     "severity": "HIGH",
     "line": 20,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
-    "severity": "HIGH",
-    "line": 8,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
-    "severity": "HIGH",
-    "line": 8,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
-    "severity": "HIGH",
-    "line": 8,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
-    "severity": "HIGH",
-    "line": 8,
-    "fileName": "positive4.bicep"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.Authorization/roleDefinitions",
+    "resourceName": "roleDef",
+    "searchKey": "properties.template.resources.name={{roleDef}}.properties.permissions.actions",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue",
+    "similarityID": "a1af0dd782c3e891d8c24e234b63fee73bf0b0d819f91393e074536d7a72de98",
+    "search_line": 20
   }
 ]

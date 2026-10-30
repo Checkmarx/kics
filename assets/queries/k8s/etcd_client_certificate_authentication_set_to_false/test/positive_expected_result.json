@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Etcd Client Certificate Authentication Set To False",
-		"severity": "MEDIUM",
-		"line": 21,
-        "fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Etcd Client Certificate Authentication Set To False",
-		"severity": "MEDIUM",
-		"line": 21,
-        "fileName": "positive2.yaml"
-	}
+  {
+    "queryName": "Etcd Client Certificate Authentication Set To False",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive1.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "app-etcd-deployment",
+    "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
+    "searchValue": "",
+    "expectedValue": "--client-cert-auth flag should be set to true",
+    "actualValue": "--client-cert-auth flag is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "21a1532812d15254795e0f0006d0a97cd89ded41666cfcbebe4fdd206962dcac",
+    "search_line": 21
+  },
+  {
+    "queryName": "Etcd Client Certificate Authentication Set To False",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "app-etcd-deployment",
+    "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
+    "searchValue": "",
+    "expectedValue": "--client-cert-auth flag should be defined and set to true",
+    "actualValue": "--client-cert-auth flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "694d0faaf9608ad461dc771532372a050cd4b793769b6d6ae97128ff655cded0",
+    "search_line": 21
+  }
 ]
