@@ -154,5 +154,29 @@
     "severity": "LOW",
     "line": 10,
     "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Response Code Missing (v3)",
+    "severity": "LOW",
+    "line": 17,
+    "filename": "positive7.json"
+  },
+  {
+    "queryName": "Response Code Missing (v3)",
+    "severity": "LOW",
+    "line": 17,
+    "filename": "positive7.json"
+  },
+  {
+    "queryName": "Response Code Missing (v2)",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive8.yaml"
+  },
+  {
+    "queryName": "Response Code Missing (v2)",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive8.yaml"
   }
 ]
