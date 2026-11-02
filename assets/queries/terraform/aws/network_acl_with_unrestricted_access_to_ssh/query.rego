@@ -9,6 +9,7 @@ CxPolicy[result] {
 
 	is_array(resource.ingress)
 	tf_lib.portOpenToInternet(resource.ingress[idx], 22)
+	not is_tcp_port_zero(resource.ingress[idx])
 
 	result := {
 		"documentId": doc.id,
@@ -29,6 +30,7 @@ CxPolicy[result] {
 	split(net_acl_rule.network_acl_id, ".")[1] == netAclName
 
 	tf_lib.portOpenToInternet(net_acl_rule, 22)
+	not is_tcp_port_zero(net_acl_rule)
 
 	result := {
 		"documentId": doc.id,
@@ -48,6 +50,7 @@ CxPolicy[result] {
 
 	not is_array(resource.ingress)
 	tf_lib.portOpenToInternet(resource.ingress, 22)
+	not is_tcp_port_zero(resource.ingress)
 
 	result := {
 		"documentId": doc.id,
@@ -68,6 +71,7 @@ CxPolicy[result] {
 	rule := module[keyToCheck][idx]
 
 	tf_lib.portOpenToInternet(rule, 22)
+	not is_tcp_port_zero(rule)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -79,4 +83,10 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_network_acl[%s].ingress[%d] 'SSH' (Port:22) is public", [name, idx]),
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck, idx], []),
 	}
+}
+
+is_tcp_port_zero(rule) {
+	rule.protocol == "tcp"
+	rule.from_port == 0
+	rule.to_port == 0
 }
