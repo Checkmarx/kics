@@ -96,8 +96,9 @@ CxPolicy[result] {
 	doc := input.document[i]
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
-	response := doc.paths[n][oper].responses
-	common_lib.valid_key(doc, "security")
+	operation := doc.paths[n][oper]
+	response := operation.responses
+	requires_authentication(doc, operation)
 	responses := {"401", "403"}
 	wantedResponses := responses[_]
 
@@ -114,4 +115,17 @@ CxPolicy[result] {
 		"searchValue": sprintf("%s response", [wantedResponses]),
 		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"],[]),
 	}
+}
+
+requires_authentication(doc, operation) {
+	is_array(operation.security)
+	count(operation.security) > 0
+	not has_empty_security_requirement(operation.security)
+} else {
+	not common_lib.valid_key(operation, "security")
+	common_lib.valid_key(doc, "security")
+}
+
+has_empty_security_requirement(security) {
+	security[_] == {}
 }
