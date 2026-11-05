@@ -45,7 +45,7 @@ jobs:
           docker build --target builder --secret "id=npmrc,src=${NPMRC}" .kics-github-action
           rm -f "${NPMRC}"
       - name: Run KICS Scan
-        uses: $/.kics-github-action
+        uses: ./.kics-github-action # zizmor: ignore[self-repository] '$/' makes the runner download the repo tarball, which fails on the dead_symlink test fixture
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: "./Dockerfile"
