@@ -47,6 +47,14 @@ CxPolicy[result] {
 
 	settings_are_equal(name)
 
+	# stage_description only configures the implicit stage that stage_name
+	# creates. hashicorp/aws v6 removed stage_name, stage_description and
+	# canary_settings from aws_api_gateway_deployment (the separate
+	# aws_api_gateway_stage resource is required instead), so for v6 configs
+	# this rule must not fire: a referencing stage with access_log_settings
+	# already satisfies the check. See #8163.
+	common_lib.valid_key(deployment, "stage_name")
+
 	not common_lib.valid_key(deployment, "stage_description")
 
 	result := {
