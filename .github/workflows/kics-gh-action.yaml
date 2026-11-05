@@ -45,7 +45,7 @@ jobs:
           docker build --target builder --secret "id=npmrc,src=${NPMRC}" .kics-github-action
           rm -f "${NPMRC}"
       - name: Run KICS Scan
-        uses: ./.kics-github-action
+        uses: $/.kics-github-action
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: "./Dockerfile"
