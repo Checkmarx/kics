@@ -118,12 +118,18 @@ CxPolicy[result] {
 }
 
 requires_authentication(doc, operation) {
-	is_array(operation.security)
-	count(operation.security) > 0
-	not has_empty_security_requirement(operation.security)
+	common_lib.valid_key(operation, "security")
+	enforces_authentication(operation.security)
 } else {
 	not common_lib.valid_key(operation, "security")
 	common_lib.valid_key(doc, "security")
+	enforces_authentication(doc.security)
+}
+
+enforces_authentication(security) {
+	is_array(security)
+	count(security) > 0
+	not has_empty_security_requirement(security)
 }
 
 has_empty_security_requirement(security) {

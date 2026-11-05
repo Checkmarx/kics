@@ -96,7 +96,7 @@ jobs:
     permissions:
       id-token: write # run kics againts the projects
     needs: build
-    uses: ./.github/workflows/run-projects.yaml
+    uses: $/.github/workflows/run-projects.yaml
     with:
       machines-count: 10
     secrets: inherit # zizmor: ignore[secrets-inherit] run-projects.yaml is an internal same-repo reusable workflow, fixed caller set (here + ci-projects.yaml), needs several CES_*/GH_TOKEN secrets for AWS OIDC + private executor-repo checkout
