@@ -17,6 +17,7 @@ jobs:
     permissions:
       actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
       contents: write  # for Git to git push
+      id-token: write  # for configure-aws-credentials to assume the AWS role via OIDC
     runs-on: cx-public-ubuntu-x64
     steps:
       - name: Cancel Previous Runs
@@ -84,7 +85,36 @@ jobs:
         run: |
           mike delete latest
           mike deploy latest "${CURRENT_VERSION}"
+      - name: Configure AWS credentials
+        uses: step-security/configure-aws-credentials@1448016543d4432bd608e0de7871c7bf9e9be925 # v6.2.1
+        with:
+          role-to-assume: ${{ secrets.SECRET_MANAGER_ROLE_ARN }}
+          aws-region: ${{ secrets.SECRET_MANAGER_AWS_REGION }}
+          role-session-name: kics-release-app-key
+      - name: Fetch GitHub App private key
+        uses: step-security/aws-secretsmanager-get-secrets@102b6b2a2528747bcc321bb99ef326d8be7ef58f # v3.0.1
+        with:
+          secret-ids: KICS_APP_KEY,${{ secrets.SECRET_MANAGER_SECRET_NAME }}
+      - name: Mask each line of the private key
+        run: |
+          while IFS= read -r line; do
+            line="${line%$'\r'}"
+            if [ -n "${line}" ]; then
+              echo "::add-mask::${line}"
+            fi
+          done <<< "${KICS_APP_KEY}"
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          client-id: ${{ secrets.KICS_RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ env.KICS_APP_KEY }}
+          permission-contents: write
+      - name: Remove the private key from the environment
+        run: echo "KICS_APP_KEY=" >> "$GITHUB_ENV"
       - name: Fix version selector
+        env:
+          GH_APP_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           git checkout gh-pages
           git branch --set-upstream-to=origin/gh-pages gh-pages
@@ -94,4 +124,4 @@ jobs:
           find . -type f -name "version-select.css" -exec rm -f {} +
           find . -type f -name "version-select.js" -exec rm -f {} +
           git commit -a --amend --no-edit
-          git push origin gh-pages
+          git push "https://x-access-token:${GH_APP_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
