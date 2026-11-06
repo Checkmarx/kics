@@ -8,6 +8,7 @@ CxPolicy[result] {
     volumes := service_parameters.volumes
     volume := volumes[v]
     path := split(volume,":")
+    count(path) > 1
     host_path := path[0]
  	common_lib.isOSDir(host_path)
 
