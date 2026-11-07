@@ -71,6 +71,37 @@ resource "aws_security_group" "negative1_array_test_ipv6" {
     from_port         = 5000
     to_port           = 5000
     protocol          = "icmpv6"
-    ipv6_cidr_blocks  = ["fd03:5678::/64", "2400:cb00::/32"] 
+    ipv6_cidr_blocks  = ["fd03:5678::/64", "2400:cb00::/32"]
+  }
+}
+
+# correct port and protocol, but the cidr is a small PRIVATE network (RFC1918 / ULA), so it must not be flagged
+resource "aws_security_group" "negative1_private_ipv4_1" {
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/25"]
+  }
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["192.168.0.0/26"]
+  }
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["172.16.0.0/27"]
+  }
+}
+
+resource "aws_security_group" "negative1_private_ipv6_1" {
+  ingress {
+    from_port         = 22
+    to_port           = 22
+    protocol          = "tcp"
+    ipv6_cidr_blocks  = ["fd00::/121"]
   }
 }
