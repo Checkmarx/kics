@@ -10,6 +10,24 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/model"
 )
 
+func TestMemoryStoragePreservesContexts(t *testing.T) {
+	m := NewMemoryStorage()
+	ctx := context.Background()
+	for _, selector := range []string{"", "prod.yaml", "dev.yaml", "prod.yaml"} {
+		require.NoError(t, m.SaveVulnerabilities(ctx, []model.Vulnerability{{
+			QueryID: "query", FileName: "template.yaml", Line: 1, ContextSelector: selector,
+		}}))
+	}
+	vulnerabilities, err := m.GetVulnerabilities(ctx, "")
+	require.NoError(t, err)
+	require.Len(t, vulnerabilities, 3)
+	selectors := make([]string, 0, len(vulnerabilities))
+	for _, vulnerability := range vulnerabilities {
+		selectors = append(selectors, vulnerability.ContextSelector)
+	}
+	require.ElementsMatch(t, []string{"", "prod.yaml", "dev.yaml"}, selectors)
+}
+
 // TestMemoryStorage_SaveFile tests the functions [SaveFile()]
 func TestMemoryStorage_SaveFile(t *testing.T) {
 	type fields struct {

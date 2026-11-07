@@ -41,9 +41,13 @@ func ValidateTypeSelectionFlags() error {
 }
 
 // BindFlags fill flags values with config file or environment variables data
-func BindFlags(cmd *cobra.Command, v *viper.Viper) error {
+func BindFlags(cmd *cobra.Command, v *viper.Viper, sections ...string) error {
 	log.Debug().Msg("console.bindFlags()")
 	settingsMap := v.AllSettings()
+	for _, section := range sections {
+		delete(settingsMap, section)
+	}
+	var bindErr error
 	cmd.Flags().VisitAll(func(f *pflag.Flag) {
 		settingsMap[f.Name] = true
 		if strings.Contains(f.Name, "-") {
@@ -55,9 +59,14 @@ func BindFlags(cmd *cobra.Command, v *viper.Viper) error {
 		}
 		if !f.Changed && v.IsSet(f.Name) {
 			val := v.Get(f.Name)
-			setBoundFlags(f.Name, val, cmd)
+			if err := setBoundFlags(f.Name, val, cmd); err != nil && bindErr == nil {
+				bindErr = err
+			}
 		}
 	})
+	if bindErr != nil {
+		return bindErr
+	}
 	for key, val := range settingsMap {
 		if val != true {
 			return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -66,20 +75,45 @@ func BindFlags(cmd *cobra.Command, v *viper.Viper) error {
 	return nil
 }
 
-func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
+func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) error {
+	if flag := cmd.Flags().Lookup(flagName); flag.Value.Type() == "stringArray" {
+		var items []string
+		switch value := val.(type) {
+		case string:
+			items = []string{value}
+		case []string:
+			items = value
+		case []interface{}:
+			for _, item := range value {
+				text, ok := item.(string)
+				if !ok {
+					return fmt.Errorf("%s must contain strings", flagName)
+				}
+				items = append(items, text)
+			}
+		default:
+			return fmt.Errorf("%s must be a string or list of strings", flagName)
+		}
+		// Preserve commas inside Helm expressions; they are not CSV flags.
+		if err := flag.Value.(pflag.SliceValue).Replace(items); err != nil {
+			return err
+		}
+		flag.Changed = true
+		return nil
+	}
 	switch t := val.(type) {
 	case []interface{}:
 		var paramSlice []string
 		for _, param := range t {
-			paramSlice = append(paramSlice, param.(string))
+			text, ok := param.(string)
+			if !ok {
+				return fmt.Errorf("%s must contain strings", flagName)
+			}
+			paramSlice = append(paramSlice, text)
 		}
 		valStr := strings.Join(paramSlice, ",")
-		if err := cmd.Flags().Set(flagName, valStr); err != nil {
-			log.Err(err).Msg("Failed to set Viper flags")
-		}
+		return cmd.Flags().Set(flagName, valStr)
 	default:
-		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", val)); err != nil {
-			log.Err(err).Msg("Failed to set Viper flags")
-		}
+		return cmd.Flags().Set(flagName, fmt.Sprintf("%v", val))
 	}
 }

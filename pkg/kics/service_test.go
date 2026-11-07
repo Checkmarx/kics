@@ -6,6 +6,8 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/stretchr/testify/require"
+
 	"github.com/Checkmarx/kics/v2/internal/storage"
 	"github.com/Checkmarx/kics/v2/internal/tracker"
 	"github.com/Checkmarx/kics/v2/pkg/engine"
@@ -20,6 +22,15 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/resolver"
 	"github.com/Checkmarx/kics/v2/pkg/resolver/helm"
 )
+
+func TestSaveToFileInitializesContexts(t *testing.T) {
+	s := Service{Storage: storage.NewMemoryStorage()}
+	s.saveToFile(context.Background(), &model.FileMetadata{FilePath: "plain.yaml"})
+	s.saveToFile(context.Background(), &model.FileMetadata{FilePath: "rendered.yaml", ContextSelector: "prod.yaml"})
+	require.Len(t, s.Files[DefaultSelector], 1)
+	require.Len(t, s.Files["prod.yaml"], 1)
+	require.Empty(t, s.Files[DefaultSelector][0].ContextSelector)
+}
 
 // TestService tests the functions [GetVulnerabilities(), GetScanSummary(),StartScan()] and all the methods called by them
 func TestService(t *testing.T) { //nolint

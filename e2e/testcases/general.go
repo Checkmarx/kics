@@ -17,6 +17,8 @@ type Validation func(string) bool
 type ResultsValidation struct {
 	ResultsFile    string
 	ResultsFormats []string
+	// Validate checks report semantics independently of volatile IDs and timestamps.
+	Validate func([]byte) error
 }
 
 type args struct {

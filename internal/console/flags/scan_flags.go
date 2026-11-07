@@ -3,6 +3,7 @@ package flags
 // Flags constants for scan
 const (
 	BomFlag                    = "bom"
+	ImageBomFlag               = "image-bom"
 	CloudProviderFlag          = "cloud-provider"
 	ConfigFlag                 = "config"
 	ExcludeCategoriesFlag      = "exclude-categories"
@@ -11,6 +12,13 @@ const (
 	ExcludeResultsFlag         = "exclude-results"
 	ExcludeSeveritiesFlag      = "exclude-severities"
 	ExperimentalQueriesFlag    = "experimental-queries"
+	ExperimentalHelmScan       = "experimental-helm-scan"
+	HelmValuesFlag             = "helm-values"
+	HelmSetFlag                = "helm-set"
+	HelmSetStringFlag          = "helm-set-string"
+	HelmChartValuesFlag        = "helm-chart-values"
+	HelmChartSetFlag           = "helm-chart-set"
+	HelmChartSetStringFlag     = "helm-chart-set-string"
 	IncludeQueriesFlag         = "include-queries"
 	InputDataFlag              = "input-data"
 	FailOnFlag                 = "fail-on"

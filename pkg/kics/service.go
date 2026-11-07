@@ -21,7 +21,8 @@ import (
 )
 
 const (
-	mbConst = 1048576
+	mbConst         = 1048576
+	DefaultSelector = "no_selector"
 )
 
 // Storage is the interface that wraps following basic methods: SaveFile, SaveVulnerability, GetVulnerability and GetScanSummary
@@ -58,7 +59,7 @@ type Service struct {
 	SecretsInspector *secrets.Inspector
 	Tracker          Tracker
 	Resolver         *resolver.Resolver
-	files            model.FileMetadatas
+	Files            map[string]model.FileMetadatas
 	MaxFileSize      int
 }
 
@@ -95,34 +96,41 @@ func (s *Service) StartScan(
 	log.Debug().Msg("service.StartScan()")
 	defer wg.Done()
 
-	secretsVulnerabilities, err := s.SecretsInspector.Inspect(
-		ctx,
-		s.SourceProvider.GetBasePaths(),
-		s.files,
-		currentQuery,
-	)
-	if err != nil {
-		errCh <- errors.Wrap(err, "failed to inspect secrets")
-	}
+	for contextSelector, segmentFiles := range s.Files {
+		secretsVulnerabilities, err := s.SecretsInspector.Inspect(
+			ctx,
+			s.SourceProvider.GetBasePaths(),
+			segmentFiles,
+			currentQuery,
+		)
+		if err != nil {
+			errCh <- errors.Wrap(err, "failed to inspect secrets")
+		}
 
-	vulnerabilities, err := s.Inspector.Inspect(
-		ctx,
-		scanID,
-		s.files,
-		s.SourceProvider.GetBasePaths(),
-		s.Parser.Platform,
-		currentQuery,
-	)
-	if err != nil {
-		errCh <- errors.Wrap(err, "failed to inspect files")
-	}
-	vulnerabilities = append(vulnerabilities, secretsVulnerabilities...)
+		vulnerabilities, err := s.Inspector.Inspect(
+			ctx,
+			scanID,
+			segmentFiles,
+			s.SourceProvider.GetBasePaths(),
+			s.Parser.Platform,
+			currentQuery,
+		)
+		if err != nil {
+			errCh <- errors.Wrap(err, "failed to inspect files")
+		}
+		vulnerabilities = append(vulnerabilities, secretsVulnerabilities...)
 
-	updateMaskedSecrets(&vulnerabilities, s.SecretsInspector.SecretTracker)
+		updateMaskedSecrets(&vulnerabilities, s.SecretsInspector.SecretTracker)
 
-	err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
-	if err != nil {
-		errCh <- errors.Wrap(err, "failed to save vulnerabilities")
+		if contextSelector != DefaultSelector {
+			for i := range vulnerabilities {
+				vulnerabilities[i].ContextSelector = contextSelector
+			}
+		}
+		err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
+		if err != nil {
+			errCh <- errors.Wrap(err, "failed to save vulnerabilities")
+		}
 	}
 }
 
@@ -190,7 +198,14 @@ func (s *Service) GetScanSummary(ctx context.Context, scanIDs []string) ([]model
 func (s *Service) saveToFile(ctx context.Context, file *model.FileMetadata) {
 	err := s.Storage.SaveFile(ctx, file)
 	if err == nil {
-		s.files = append(s.files, *file)
+		if s.Files == nil {
+			s.Files = make(map[string]model.FileMetadatas)
+		}
+		selector := file.ContextSelector
+		if selector == "" {
+			selector = DefaultSelector
+		}
+		s.Files[selector] = append(s.Files[selector], *file)
 	}
 }
 

@@ -10,6 +10,7 @@ import (
 
 	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
 	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
+	"github.com/Checkmarx/kics/v2/pkg/imagebom"
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
 	"github.com/Checkmarx/kics/v2/pkg/progress"
@@ -118,6 +119,13 @@ func (c *Client) postScan(scanResults *Results) error {
 		return err
 	}
 
+	if c.ScanParams.ImageBOM {
+		if err := c.writeImageBOM(scanResults.Files); err != nil {
+			log.Err(err)
+			return err
+		}
+	}
+
 	deleteExtractionFolder(scanResults.ExtractedPaths.ExtractionMap)
 
 	logger := consolePrinter.NewLogger(nil)
@@ -133,4 +141,23 @@ func (c *Client) postScan(scanResults *Results) error {
 	}
 
 	return nil
+}
+
+// writeImageBOM extracts the Docker/OCI images referenced by the scanned files
+// and writes them as a CycloneDX bill of materials (kics-image-bom.json).
+func (c *Client) writeImageBOM(files model.FileMetadatas) error {
+	images := imagebom.Extract(files)
+	bom := imagebom.BuildCycloneDx(images)
+
+	outputPath := c.ScanParams.OutputPath
+	if outputPath == "" {
+		outputPath = "."
+	}
+	if err := os.MkdirAll(outputPath, os.ModePerm); err != nil {
+		return err
+	}
+
+	log.Info().Msgf("Image BoM: found %d unique container image(s)", len(images))
+
+	return report.ExportJSONReport(outputPath, "kics-image-bom", bom)
 }

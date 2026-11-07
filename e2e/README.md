@@ -88,6 +88,43 @@ You can combine `E2E_TESTS` with Go's built-in `-run` flag if you need a finer m
 
 ## Test Structure
 
+### Image inventory coverage
+
+Cases `117` and `118` validate `--image-bom` against the real CLI. They check
+the CycloneDX schema, exact image references, deduplication, and source files
+and lines for Dockerfiles, Compose, Kubernetes, and rendered Helm charts.
+The Helm cases verify global and chart-specific overrides in both normal and
+experimental modes. They use local fixtures and do not pull container images.
+
+Run them with `E2E_TESTS=117,118` using the commands below, or append these IDs
+to the Helm override selection to test both features together.
+
+### Helm override coverage
+
+Cases `109`–`116` exercise the KICS executable with two charts that share a chart
+name. A fixture-only query records rendered ConfigMap values in JSON findings.
+The tests check exact values, chart paths, context labels and result counts,
+without depending on generated IDs or timestamps.
+
+Coverage includes the normal baseline; YAML/JSON configuration; all six CLI
+flags; config/CLI/chart precedence; experimental combinations; fixer protection;
+invalid overrides; and warnings for selectors outside the scan paths. The cases
+use local fixtures and do not require the mock HTTP server or chart repositories.
+
+After building the local binary, run:
+
+```bash
+DISABLE_CRASH_REPORT=1 E2E_TESTS=109,110,111,112,113,114,115,116 go test -mod=readonly -tags dev ./e2e -run '^Test_E2E_CLI$' -count=1 -parallel=2 -timeout=300s -v
+```
+
+PowerShell:
+
+```powershell
+$env:DISABLE_CRASH_REPORT = '1'
+$env:E2E_TESTS = '109,110,111,112,113,114,115,116'
+go test -mod=readonly -tags dev ./e2e -run '^Test_E2E_CLI$' -count=1 -parallel=2 -timeout=300s -v
+```
+
 Test case main structure 
 
 ```go

@@ -1,0 +1,132 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "bomFormat",
+        "specVersion",
+        "serialNumber",
+        "version",
+        "metadata",
+        "components"
+    ],
+    "properties": {
+        "bomFormat": {
+            "type": "string",
+            "const": "CycloneDX"
+        },
+        "specVersion": {
+            "type": "string",
+            "const": "1.5"
+        },
+        "serialNumber": {
+            "type": "string",
+            "pattern": "^urn:uuid:[a-f0-9]{8}-[a-f0-9]{4}-4{1}[a-f0-9]{3}-[89ab]{1}[a-f0-9]{3}-[a-f0-9]{12}$"
+        },
+        "version": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "metadata": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "timestamp",
+                "tools"
+            ],
+            "properties": {
+                "timestamp": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "tools": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "vendor",
+                            "name",
+                            "version"
+                        ],
+                        "properties": {
+                            "vendor": {
+                                "type": "string",
+                                "const": "Checkmarx"
+                            },
+                            "name": {
+                                "type": "string",
+                                "const": "KICS"
+                            },
+                            "version": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "components": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "type",
+                    "bom-ref",
+                    "name",
+                    "version",
+                    "purl"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "const": "container"
+                    },
+                    "bom-ref": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "version": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "purl": {
+                        "type": "string",
+                        "pattern": "^pkg:docker\/(.)+@(.)+$"
+                    },
+                    "properties": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "name",
+                                "value"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "enum": [
+                                        "kics:source:file",
+                                        "kics:source:line"
+                                    ]
+                                },
+                                "value": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
