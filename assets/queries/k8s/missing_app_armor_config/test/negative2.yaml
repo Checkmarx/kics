@@ -1,0 +1,26 @@
+# New Kubernetes syntax: AppArmor via securityContext.appArmorProfile (no annotations)
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-apparmor-runtime-default
+spec:
+  securityContext:
+    appArmorProfile:
+      type: RuntimeDefault
+  containers:
+  - name: hello
+    image: busybox
+    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-apparmor-runtime-default2
+spec:
+  securityContext:
+    appArmorProfile:
+      type: Localhost
+  containers:
+  - name: hello
+    image: busybox
+    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
