@@ -191,6 +191,7 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
                             ],
                             "properties": {
                                 "riskScore": "6.8",
+                                "security-severity": "8.0"
                             }
                         },
                         // More rules may exist before the rest.
@@ -466,6 +467,7 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
 **taxa**: Contains an array of taxonomic categories within the taxonomy.   
 **cwe**: Community-developed list of common software and hardware weakness types that could have security ramifications.   
 **riskScore**: Numeric score used to help users prioritize security findings by potential impact.   
+**security-severity**: Score derived from the query severity (CRITICAL: 9.5, HIGH: 8.0, MEDIUM: 5.5, LOW: 2.0; not set for INFO) that [GitHub Code Scanning](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning#reportingdescriptor-object) uses to classify alerts as Critical, High, Medium or Low.   
 
 ## Gitlab SAST
 
