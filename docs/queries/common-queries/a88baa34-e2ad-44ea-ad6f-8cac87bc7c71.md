@@ -31,18 +31,21 @@ Query to find passwords and secrets in infrastructure code.<br>
 ### Code samples
 #### Code samples with security vulnerabilities
 ```yaml title="Positive test num. 1 - yaml file" hl_lines="8"
-#k8s test
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test (k8s)
 apiVersion: v1
 kind: Secret
 metadata:
   name: secret-basic-auth
 type: kubernetes.io/basic-auth
 stringData:
-  password: "root"
+  password: "root"  # positive1
 
 ```
-```json title="Positive test num. 2 - json file" hl_lines="17 27 7"
+```json title="Positive test num. 2 - json file" hl_lines="10 20 30"
 {
+  "metadata1": "'Password in URL' - c4d3b58a-e6d4-450f-9340-04f1e702eaae  positive-test (line 10)",
+  "metadata2": "'Slack Webhook'   - ccde326f-ebc7-4772-8ad5-de66e90a8cc3  positive-test (line 20)",
+  "metadata3": "'MSTeams Webhook' - d6214dca-a31b-425f-bcf7-f4faa772a1c0  positive-test (line 30)",
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
     "myStackWithParams": {
@@ -79,25 +82,33 @@ stringData:
 }
 
 ```
-```yaml title="Positive test num. 3 - yaml file" hl_lines="9 11 7"
+```yaml title="Positive test num. 3 - yaml file" hl_lines="10 12 14"
+# "Password in URL" - c4d3b58a-e6d4-450f-9340-04f1e702eaae  positive-test - #1
+# "Slack Webhook"   - ccde326f-ebc7-4772-8ad5-de66e90a8cc3  positive-test - #2
+# "MSTeams Webhook" - d6214dca-a31b-425f-bcf7-f4faa772a1c0  positive-test - #3
 openapi: 3.0.0
 info:
   title: Simple API Overview
   version: 1.0.0
 paths: {}
 servers:
-  - url: http://bob:sekret@example.invalid/some/path
+  - url: http://bob:sekret@example.invalid/some/path  #1
     description: My API Server 1
-  - url: https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
+  - url: https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX  #2
     description: My API Server 2
-  - url: https://team_name.webhook.office.com/webhookb2/7aa49aa6-7840-443d-806c-08ebe8f59966@c662313f-14fc-43a2-9a7a-d2e27f4f3478/IncomingWebhook/8592f62b50cf41b9b93ba0c0a00a0b88/eff4cd58-1bb8-4899-94de-795f656b4a18
+  - url: https://team_name.webhook.office.com/webhookb2/7aa49aa6-7840-443d-806c-08ebe8f59966@c662313f-14fc-43a2-9a7a-d2e27f4f3478/IncomingWebhook/8592f62b50cf41b9b93ba0c0a00a0b88/eff4cd58-1bb8-4899-94de-795f656b4a18 #3
     description: My API Server 3
+
 
 ```
 <details><summary>Positive test num. 4 - json file</summary>
 
-```json hl_lines="8 19 11 15"
+```json hl_lines="19 12 23 15"
 {
+  "metadata1": "'Generic Password' - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test (line 12)",
+  "metadata2": "'Password in URL'  - c4d3b58a-e6d4-450f-9340-04f1e702eaae  positive-test (line 15)",
+  "metadata3": "'Slack Webhook'    - ccde326f-ebc7-4772-8ad5-de66e90a8cc3  positive-test (line 19)",
+  "metadata4": "'MSTeams Webhook'  - d6214dca-a31b-425f-bcf7-f4faa772a1c0  positive-test (line 23)",
   "openapi": "3.0.0",
   "info": {
     "title": "Simple API Overview",
@@ -125,7 +136,8 @@ servers:
 </details>
 <details><summary>Positive test num. 5 - tf file</summary>
 
-```tf hl_lines="6"
+```tf hl_lines="7"
+# "Asymmetric private key" - 51b5b840-cd0c-4556-98a7-fe5f4def80cf  positive-test (line 7)
 resource "aws_transfer_ssh_key" "example" {
 	server_id = aws_transfer_server.example.id
 	user_name = aws_transfer_user.example.user_name
@@ -146,8 +158,9 @@ EOT
 </details>
 <details><summary>Positive test num. 6 - tf file</summary>
 
-```tf hl_lines="17 18"
-
+```tf hl_lines="18 19"
+# "AWS Access Key" - 76c0bcde-903d-456e-ac13-e58c34987852  positive-test (line 18)
+# "AWS Secret Key" - 83ab47ff-381d-48cd-bac5-fb32222f54af  positive-test (line 19)
 provider "aws" {
   region = "us-east-1"
 }
@@ -176,7 +189,9 @@ EOF
 </details>
 <details><summary>Positive test num. 7 - tf file</summary>
 
-```tf hl_lines="14 15"
+```tf hl_lines="16 17"
+# "AWS Access Key" - 76c0bcde-903d-456e-ac13-e58c34987852  positive-test (line 16)
+# "AWS Secret Key" - 83ab47ff-381d-48cd-bac5-fb32222f54af  positive-test (line 17)
 resource "aws_instance" "web_host" {
   # ec2 have plain text secrets in user data
   ami           = var.ami
@@ -205,243 +220,12 @@ EOF
   })
 }
 
-resource "aws_ebs_volume" "web_host_storage" {
-  # unencrypted volume
-  availability_zone = "${var.region}a"
-  #encrypted         = false  # Setting this causes the volume to be recreated on apply
-  size = 1
-  tags = merge({
-    Name = "${local.resource_prefix.value}-ebs"
-    }, {
-    git_last_modified_by = "email@email.com"
-    git_modifiers        = "foo.bar"
-    git_org              = "checkmarx"
-    git_repo             = "kics"
-  })
-}
-
-resource "aws_ebs_snapshot" "example_snapshot" {
-  # ebs snapshot without encryption
-  volume_id   = aws_ebs_volume.web_host_storage.id
-  description = "${local.resource_prefix.value}-ebs-snapshot"
-  tags = merge({
-    Name = "${local.resource_prefix.value}-ebs-snapshot"
-    }, {
-    git_last_modified_by = "email@email.com"
-    git_modifiers        = "foo.bar"
-    git_org              = "checkmarx"
-    git_repo             = "kics"
-  })
-}
-
-resource "aws_volume_attachment" "ebs_att" {
-  device_name = "/dev/sdh"
-  volume_id   = aws_ebs_volume.web_host_storage.id
-  instance_id = aws_instance.web_host.id
-}
-
-resource "aws_security_group" "web-node" {
-  # security group is open to the world in SSH port
-  name        = "${local.resource_prefix.value}-sg"
-  description = "${local.resource_prefix.value} Security Group"
-  vpc_id      = aws_vpc.web_vpc.id
-
-  ingress {
-    from_port = 80
-    to_port   = 80
-    protocol  = "tcp"
-    cidr_blocks = [
-    "0.0.0.0/0"]
-  }
-  ingress {
-    from_port = 22
-    to_port   = 22
-    protocol  = "tcp"
-    cidr_blocks = [
-    "0.0.0.0/0"]
-  }
-  egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
-    cidr_blocks = [
-    "0.0.0.0/0"]
-  }
-  depends_on = [aws_vpc.web_vpc]
-  tags = {
-    git_last_modified_by = "email@email.com"
-    git_modifiers        = "foo.bar"
-    git_org              = "checkmarx"
-    git_repo             = "kics"
-  }
-}
-
-resource "aws_vpc" "web_vpc" {
-  cidr_block           = "172.16.0.0/16"
-  enable_dns_hostnames = true
-  enable_dns_support   = true
-  tags = merge({
-    Name = "${local.resource_prefix.value}-vpc"
-    }, {
-    git_last_modified_by = "email@email.com"
-    git_modifiers        = "foo.bar"
-    git_org              = "checkmarx"
-    git_repo             = "kics"
-  })
-}
-
-resource "aws_subnet" "web_subnet" {
-  vpc_id                  = aws_vpc.web_vpc.id
-  cidr_block              = "172.16.10.0/24"
-  availability_zone       = "${var.region}a"
-  map_public_ip_on_launch = true
-
-  tags = merge({
-    Name = "${local.resource_prefix.value}-subnet"
-    }, {
-    git_last_modified_by = "email@email.com"
-    git_modifiers        = "foo.bar"
-    git_org              = "checkmarx"
-    git_repo             = "kics"
-  })
-}
-
-resource "aws_subnet" "web_subnet2" {
-  vpc_id                  = aws_vpc.web_vpc.id
-  cidr_block              = "172.16.11.0/24"
-  availability_zone       = "${var.region}b"
-  map_public_ip_on_launch = true
-
-  tags = merge({
-    Name = "${local.resource_prefix.value}-subnet2"
-    }, {
-    git_last_modified_by = "email@email.com"
-    git_modifiers        = "foo.bar"
-    git_org              = "checkmarx"
-    git_repo             = "kics"
-  })
-}
-
-
-resource "aws_internet_gateway" "web_igw" {
-  vpc_id = aws_vpc.web_vpc.id
-
-  tags = merge({
-    Name = "${local.resource_prefix.value}-igw"
-    }, {
-    git_last_modified_by = "email@email.com"
-    git_modifiers        = "foo.bar"
-    git_org              = "checkmarx"
-    git_repo             = "kics"
-  })
-}
-
-resource "aws_route_table" "web_rtb" {
-  vpc_id = aws_vpc.web_vpc.id
-
-  tags = merge({
-    Name = "${local.resource_prefix.value}-rtb"
-    }, {
-    git_last_modified_by = "email@email.com"
-    git_modifiers        = "foo.bar"
-    git_org              = "checkmarx"
-    git_repo             = "kics"
-  })
-}
-
-resource "aws_route_table_association" "rtbassoc" {
-  subnet_id      = aws_subnet.web_subnet.id
-  route_table_id = aws_route_table.web_rtb.id
-}
-
-resource "aws_route_table_association" "rtbassoc2" {
-  subnet_id      = aws_subnet.web_subnet2.id
-  route_table_id = aws_route_table.web_rtb.id
-}
-
-resource "aws_route" "public_internet_gateway" {
-  route_table_id         = aws_route_table.web_rtb.id
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.web_igw.id
-
-  timeouts {
-    create = "5m"
-  }
-}
-
-
-resource "aws_network_interface" "web-eni" {
-  subnet_id   = aws_subnet.web_subnet.id
-  private_ips = ["172.16.10.100"]
-
-  tags = merge({
-    Name = "${local.resource_prefix.value}-primary_network_interface"
-    }, {
-    git_last_modified_by = "email@email.com"
-    git_modifiers        = "foo.bar"
-    git_org              = "checkmarx"
-    git_repo             = "kics"
-  })
-}
-
-# VPC Flow Logs to S3
-resource "aws_flow_log" "vpcflowlogs" {
-  log_destination      = aws_s3_bucket.flowbucket.arn
-  log_destination_type = "s3"
-  traffic_type         = "ALL"
-  vpc_id               = aws_vpc.web_vpc.id
-
-  tags = merge({
-    Name        = "${local.resource_prefix.value}-flowlogs"
-    Environment = local.resource_prefix.value
-    }, {
-    git_last_modified_by = "email@email.com"
-    git_modifiers        = "foo.bar"
-    git_org              = "checkmarx"
-    git_repo             = "kics"
-  })
-}
-
-resource "aws_s3_bucket" "flowbucket" {
-  bucket        = "${local.resource_prefix.value}-flowlogs"
-  force_destroy = true
-
-  tags = merge({
-    Name        = "${local.resource_prefix.value}-flowlogs"
-    Environment = local.resource_prefix.value
-    }, {
-    git_last_modified_by = "email@email.com"
-    git_modifiers        = "foo.bar"
-    git_org              = "checkmarx"
-    git_repo             = "kics"
-  })
-}
-
-output "ec2_public_dns" {
-  description = "Web Host Public DNS name"
-  value       = aws_instance.web_host.public_dns
-}
-
-output "vpc_id" {
-  description = "The ID of the VPC"
-  value       = aws_vpc.web_vpc.id
-}
-
-output "public_subnet" {
-  description = "The ID of the Public subnet"
-  value       = aws_subnet.web_subnet.id
-}
-
-output "public_subnet2" {
-  description = "The ID of the Public subnet"
-  value       = aws_subnet.web_subnet2.id
-}
-
 ```
 </details>
 <details><summary>Positive test num. 8 - yaml file</summary>
 
-```yaml hl_lines="34 36"
+```yaml hl_lines="35 37"
+# "K8s Environment Variable Password" - 4b2b5fd3-364d-4093-bac2-17391b2a5297  positive-test
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -475,9 +259,9 @@ spec:
             - name: DB_NAME_BD
               value: "dbx"
             - name: DB_PASS_BD
-              value: "passx"
+              value: "passx"          # positive1
             - name: DB_PASS_BD_2
-              value: "passx"
+              value: "passx"          # positive2
             - name: DB_USER_BD
               value: "userx"
 
@@ -485,14 +269,15 @@ spec:
 </details>
 <details><summary>Positive test num. 9 - tf file</summary>
 
-```tf hl_lines="7"
+```tf hl_lines="8"
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test
 resource "azurerm_sql_server" "example" {
   name                         = "kics-test"
   resource_group_name          = azurerm_resource_group.example.name
   location                     = azurerm_resource_group.example.location
   version                      = "12.0"
   administrator_login          = "ariel"
-  administrator_login_password = "Aa12345678"
+  administrator_login_password = "Aa12345678" # positive1
 
   tags = {
     environment = var.environment
@@ -504,12 +289,13 @@ resource "azurerm_sql_server" "example" {
 </details>
 <details><summary>Positive test num. 10 - tf file</summary>
 
-```tf hl_lines="5"
+```tf hl_lines="6"
+# "Google OAuth" - d651cca2-2156-4d17-8e76-423e68de5c8b  positive-test
 resource "auth0_connection" "google_oauth2" {
   name = "Google-OAuth2-Connection"
   strategy = "google-oauth2"
   options {
-    client_id = "53221331-2323wasdfa343rwhthfaf33feaf2fa7f.apps.googleusercontent.com"
+    client_id = "53221331-2323wasdfa343rwhthfaf33feaf2fa7f.apps.googleusercontent.com"  # positive1
     client_secret = "j2323232324"
     allowed_audiences = [ "example.com", "api.example.com" ]
     scopes = [ "email", "profile", "gmail", "youtube" ]
@@ -521,7 +307,9 @@ resource "auth0_connection" "google_oauth2" {
 </details>
 <details><summary>Positive test num. 11 - tf file</summary>
 
-```tf hl_lines="2"
+```tf hl_lines="4"
+# "Slack Token"   - 7908a9e3-5cac-41b1-b514-5f6d82ce02d5                           positive-test
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Slack Token"  allow-rule-test
 provider "slack" {
   token = "xoxp-121314151623-121314151623-121314151623-12131423121314151623121314151623"
 }
@@ -531,12 +319,12 @@ provider "slack" {
 <details><summary>Positive test num. 12 - yaml file</summary>
 
 ```yaml hl_lines="6"
-#cloud formation test
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test (CloudFormation)
 Resources:
   RDSCluster1:
     Type: "AWS::RDS::DBCluster"
     Properties:
-      MasterUserPassword: root
+      MasterUserPassword: root  # positive1
       DBClusterIdentifier: my-serverless-cluster
       Engine: aurora
       EngineVersion: 5.6.10a
@@ -551,7 +339,8 @@ Resources:
 </details>
 <details><summary>Positive test num. 13 - tf file</summary>
 
-```tf hl_lines="2"
+```tf hl_lines="3"
+# "Stripe API Key" - 6abcae17-b175-4698-a9a5-b07661974749  positive-test
 provider "stripe" {
   api_key = "sk_live_aSaDsEaSaDsEaSaDs29SaDsE"
 }
@@ -560,7 +349,8 @@ provider "stripe" {
 </details>
 <details><summary>Positive test num. 14 - tf file</summary>
 
-```tf hl_lines="50"
+```tf hl_lines="51"
+# "Google API Key" - e9856348-4069-4ac0-bd91-415f6a7b84a4  positive-test (line 51)
 resource "aws_ecs_task_definition" "webapp" {
   family        = "tomato-webapp"
   task_role_arn = data.aws_iam_role.ecs_task_role.arn
@@ -651,10 +441,11 @@ EOF
 </details>
 <details><summary>Positive test num. 15 - tf file</summary>
 
-```tf hl_lines="3"
+```tf hl_lines="4"
+# "Her oku API Key"(extra space to prevent false positive) - 9a3650af-5b88-48cd-ab89-cd77fd0b633f  positive-test
 provider "heroku" {
   email   = "ops@company.com"
-  api_key = "C71AAAAE-1D1D-1D1D-1D1D-1D1D1D1D1D1D"
+  api_key = "C71AAAAE-1D1D-1D1D-1D1D-1D1D1D1D1D1D"  # positive1
 }
 
 ```
@@ -662,7 +453,7 @@ provider "heroku" {
 <details><summary>Positive test num. 16 - tf file</summary>
 
 ```tf hl_lines="3"
-
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc  positive-test
 provider "github" {
    token = "we2323232g3hg2h3g2h3g2h3g2h3uh2h3ghg32h3"
 }
@@ -671,35 +462,49 @@ provider "github" {
 </details>
 <details><summary>Positive test num. 17 - tf file</summary>
 
-```tf hl_lines="4"
+```tf hl_lines="5"
+# "Generic API Key" - 74736dd1-dd11-4139-beb6-41cd43a50317  positive-test
 provider "cloudflare" {
   version = "~> 2.0"
   email   = "var.cloudflare_email"
-  api_key = "1d2d2dewerdcxeee34c323c3223c223232c32"
+  api_key = "1d2d2dewerdcxeee34c323c3223c223232c32" # positive1
 }
 
 ```
 </details>
 <details><summary>Positive test num. 18 - dockerfile file</summary>
 
-```dockerfile hl_lines="3 5 7 9 11"
+```dockerfile hl_lines="11 14 17 20 23"
+# "Square Access Token"   - 0b1b2482-51e7-49d1-893d-522afa4a6bd0                                     positive-test   - #1
+# "Generic Token"         - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Square Access Token"    allow-rule-test - #2
+# "Picatic API Key"       - 50cc5f03-e686-4183-97e9-12f9b55d0f97                                     positive-test   - #3
+# "Amazon MWS Auth Token" - ac8c8075-6ec0-4367-9e26-30ec8161d258                                     positive-test   - #4
+# "Generic Token"         - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Amazon MWS Auth Token"  allow-rule-test - #5 (also detected as TF resource access)
+# "MailChimp API Key"     - 6c54f9da-1a11-445a-8568-0d327e6af8be                                     positive-test   - #6
+# "SendGrid API Key"      - 8a879bc7-6f82-40fd-bb48-74d25d557fe8                                     positive-test   - #7
 FROM baseImage
 
+#1 & #2:
 ARG token=sq0atp-812erere3wewew45678901
 
+#3:
 ARG picaticKey=sk_live_123as6789o1234567890123a123a5678
 
+#4 & #5:
 ARG amazonToken=amzn.mws.643a5678-8f9f-1a2b-5c3b-e3ea43f3f4b4
 
+#6:
 ARG mailChimp=f4f56af5a54a3eaeb3c3beb3cc2ccccc-us36
 
+#7:
 ARG sgApiK=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
 
 ```
 </details>
 <details><summary>Positive test num. 19 - yaml file</summary>
 
-```yaml hl_lines="9"
+```yaml hl_lines="10"
+# "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258  positive-test
 Resources:
   PinpointApp:
     Type: AWS::Pinpoint::App
@@ -708,18 +513,19 @@ Resources:
   PinpointAPNSChannel:
     Type: AWS::Pinpoint::APNSChannel
     Properties:
-      PrivateKey: b@d0@u7H70K3n
+      PrivateKey: b@d0@u7H70K3n # positive1
 
 ```
 </details>
 <details><summary>Positive test num. 20 - yaml file</summary>
 
-```yaml hl_lines="5 22"
+```yaml hl_lines="6 23"
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc  positive-test
 Resources:
   ElastiCacheReplicationGroup:
     Type: AWS::ElastiCache::ReplicationGroup
     Properties:
-      AuthToken: b@d0@u7H70K3n
+      AuthToken: b@d0@u7H70K3n      # positive1
       CacheNodeType: cache.m5.large
       CacheSubnetGroupName: subnet-foobar
       Engine: redis
@@ -736,19 +542,20 @@ Resources:
   PinpointAPNSChannel:
     Type: AWS::Pinpoint::APNSChannel
     Properties:
-      TokenKey: b@d0@u7H70K3n
+      TokenKey: b@d0@u7H70K3n       # positive2
       ApplicationId: !Ref PinpointApp
 
 ```
 </details>
 <details><summary>Positive test num. 21 - yaml file</summary>
 
-```yaml hl_lines="5"
+```yaml hl_lines="6"
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc  positive-test
 - name: Start a workflow in the Itential Automation Platform
   community.network.iap_start_workflow:
     iap_port: 3000
     iap_fqdn: localhost
-    token_key: "DFSFSFHFGFGF[DSFSFAADAFASD%3D"
+    token_key: "DFSFSFHFGFGF[DSFSFAADAFASD%3D"  # positive1
     workflow_name: "RouterUpgradeWorkflow"
     description: "OS-Router-Upgrade"
     variables: {"deviceName":"ASR9K"}
@@ -758,7 +565,8 @@ Resources:
 </details>
 <details><summary>Positive test num. 22 - tf file</summary>
 
-```tf hl_lines="2"
+```tf hl_lines="3"
+# "Mailgun API Key" - 62d0025d-9575-4eff-b60b-d3b4fcec0d04  positive-test
 provider "mailgun" {
   api_key = "key-987ad62adwf1w2w2563adf2ef5323123"
 }
@@ -768,13 +576,13 @@ provider "mailgun" {
 <details><summary>Positive test num. 23 - yaml file</summary>
 
 ```yaml hl_lines="7"
-#ansible test
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test (ansible)
 - name: create a cluster1
   google.cloud.gcp_container_cluster:
     name: my-cluster1
     initial_node_count: 2
     master_auth:
-      password: root
+      password: root  # positive1
     node_config:
       machine_type: n1-standard-4
       disk_size_gb: 500
@@ -788,7 +596,8 @@ provider "mailgun" {
 </details>
 <details><summary>Positive test num. 24 - tf file</summary>
 
-```tf hl_lines="2"
+```tf hl_lines="3"
+# "Stripe Restricted API Key" - 54274b18-bfac-47ce-afd1-0f05bc3e3b59  positive-test
 provider "stripe" {
   api_key = "rk_live_aSaDsEaSaDsEaSaDs29SaDsE"
 }
@@ -797,29 +606,35 @@ provider "stripe" {
 </details>
 <details><summary>Positive test num. 25 - yaml file</summary>
 
-```yaml hl_lines="4"
+```yaml hl_lines="6"
+# "Twilio API Key"  - e0f01838-b1c2-4669-b84b-981949ebe5ed                              positive-test   - #1
+# "Generic API Key" - 74736dd1-dd11-4139-beb6-41cd43a50317 - "Avoiding Twilio API Key"  allow-rule-test - #2
 - hosts: all
   remote_user: root
   vars:
-    twilio_api_key: SKa7CF7acdcaf92Be4CCC52F4a2923BBB3
+    twilio_api_key: SKa7CF7acdcaf92Be4CCC52F4a2923BBB3  #1 & #2
 
 
 ```
 </details>
 <details><summary>Positive test num. 26 - yaml file</summary>
 
-```yaml hl_lines="4"
+```yaml hl_lines="6"
+# "PayPal Braintree Access Token" - 4919b847-e3da-402a-acf8-6cea8e529993                                             positive-test   - #1
+# "Generic Token"                 - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding PayPal Braintree Access Token"  allow-rule-test - #2
 - hosts: all
   remote_user: root
   vars:
-    paypal_access_token: access_token$production$1s2d3f4g5h6j7k8k$1b2b3c4a3a1b2b3c4a3a1b2b3c4a3a1b
+    paypal_access_token: access_token$production$1s2d3f4g5h6j7k8k$1b2b3c4a3a1b2b3c4a3a1b2b3c4a3a1b  #1 & #2
 
 
 ```
 </details>
 <details><summary>Positive test num. 27 - yaml file</summary>
 
-```yaml hl_lines="13"
+```yaml hl_lines="17 15"
+# "Facebook Access Token" - 5176e805-0cda-44fa-ac96-c092c646180a                                     positive-test    - #1
+# "Generic Token"         - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Facebook Access Token"  allow-rule-test  - #2
 apiVersion: v1
 kind: Pod
 metadata:
@@ -832,14 +647,18 @@ spec:
     image: gcr.io/google-samples/node-hello:1.0
     env:
     - name: FACEBOOK_TOKEN
-      value: "EAACEdEose0cBA1bad3afsf2aew"
+      value: "EAACEdEose0cBA1bad3afsf2aew"  #1
+    - name: SECOND_FACEBOOK_TOKEN
+      token: "EAACEdEose0cBA12jiajkdasg9w"  #1 & #2
 
 
 ```
 </details>
 <details><summary>Positive test num. 28 - yaml file</summary>
 
-```yaml hl_lines="13"
+```yaml hl_lines="16 15"
+# "Square OAuth Secret" - bb51eb1e-0357-44a2-86d7-dd5350cffd43                                    positive-test   - #1
+# "Generic Secret"      - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99  - "Avoiding Square OAuth Secret"  allow-rule-test - #2
 apiVersion: v1
 kind: Pod
 metadata:
@@ -852,14 +671,17 @@ spec:
     image: gcr.io/google-samples/node-hello:1.0
     env:
     - name: Square_OAuth_Secret
-      value: "sq0csp-0p9h7g6f4s3s3s3-4a3ardgwa6ADRDJDDKUFYDYDYDY"
+      value: "sq0csp-0p9h7g6f4s3s3s3-4a3ardgwa6ADRDJDDKUFYDYDYDY"  #1
+      secret: "sq0csp-0p9h7g6f4s3s3s3-4a3ardgwa6ADRDJDDKUFYDYDYDY" #2
 
 
 ```
 </details>
 <details><summary>Positive test num. 29 - yaml file</summary>
 
-```yaml hl_lines="13"
+```yaml hl_lines="15"
+# "Google OAuth Access Token" - 41a1ca8d-f466-4084-a8c9-50f8b22200d5                                         positive-test   - #1
+# "Generic Token"             - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Google OAuth Access Token"  allow-rule-test - #2
 apiVersion: v1
 kind: Config
 users:
@@ -872,7 +694,7 @@ users:
   user:
     auth-provider:
       config:
-        access-token: ya29.Radftwefewuifdebkw2_23232427t42wdbjsvdjavdajvdadkd
+        access-token: ya29.Radftwefewuifdebkw2_23232427t42wdbjsvdjavdajvdadkd #1 & #2
         cmd-args: config config-helper --format=json
         cmd-path: /Users/dave/google-cloud-sdk/bin/gcloud
         expiry: 2021-10-28T15:12:03.000Z
@@ -884,7 +706,8 @@ users:
 </details>
 <details><summary>Positive test num. 30 - tf file</summary>
 
-```tf hl_lines="5"
+```tf hl_lines="6"
+# "Putty User Key File Content" - a007a85e-a2a7-4a81-803a-7a2ca0c65abb  positive-test (line 6)
 resource "aws_transfer_ssh_key" "example2" {
 	server_id = aws_transfer_server.example.id
 	user_name = aws_transfer_user.example.user_name
@@ -922,7 +745,8 @@ EOF
 </details>
 <details><summary>Positive test num. 31 - tf file</summary>
 
-```tf hl_lines="14"
+```tf hl_lines="15"
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99  positive-test
 resource "aws_lambda_function" "analysis_lambda2" {
   # lambda have plain text secrets in environment variables
   filename      = "resources/lambda_function_payload.zip"
@@ -936,7 +760,7 @@ resource "aws_lambda_function" "analysis_lambda2" {
 
   environment {
     variables = {
-      secret_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+      secret_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" # positive1
     }
   }
 }
@@ -945,12 +769,14 @@ resource "aws_lambda_function" "analysis_lambda2" {
 </details>
 <details><summary>Positive test num. 32 - yaml file</summary>
 
-```yaml hl_lines="16"
+```yaml hl_lines="18"
+# Global allow rule                - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding CloudFormation intrinsic functions"  allow-rule-test - #1
+# "CloudFormation Secret Template" - 0ec60fb3-5b78-4da0-bea0-b854fd9bf8b9                                                  positive-test   - #2
 Resources:
      NewAmpApp2:
         Type: AWS::DocDB::DBCluster
         Properties:
-          MasterUserPassword: !Sub '{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}'
+          MasterUserPassword: !Sub '{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}' #1
           Port: 27017
           PreferredBackupWindow: "07:34-08:04"
           PreferredMaintenanceWindow: "sat:04:51-sat:05:21"
@@ -961,7 +787,7 @@ Resources:
         Properties:
           Description: 'This is my amp app instance secret'
           GenerateSecretString:
-            SecretStringTemplate: '{"username":"admin"}'
+            SecretStringTemplate: '{"username":"admin"}'  #2
             GenerateStringKey: 'password'
             PasswordLength: 16
             ExcludeCharacters: '"@/\'
@@ -970,7 +796,8 @@ Resources:
 </details>
 <details><summary>Positive test num. 33 - tf file</summary>
 
-```tf hl_lines="3"
+```tf hl_lines="4"
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99  positive-test
 locals {
   secrets = {
     clientSecret = "C98D9F6O-1273-4E8A-B8D9-551F7F3OC41"
@@ -982,7 +809,7 @@ locals {
 <details><summary>Positive test num. 34 - tf file</summary>
 
 ```tf hl_lines="9"
-#this is a problematic code where the query should report a result(s)
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test
 resource "google_container_cluster" "primary1" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
@@ -990,7 +817,7 @@ resource "google_container_cluster" "primary1" {
 
   master_auth {
     username = ""
-    password = "root"
+    password = "root" # positive1
 
     client_certificate_config {
       issue_client_certificate = true
@@ -1007,7 +834,9 @@ resource "google_container_cluster" "primary1" {
 </details>
 <details><summary>Positive test num. 35 - tf file</summary>
 
-```tf hl_lines="14 15"
+```tf hl_lines="16 17"
+# "AWS Context-specific credential" - b751213d-99a5-4005-8524-4bf799ee77a1  positive-test (line 16)
+# "AWS Certificate"                 - eb171053-9634-42c3-96e9-c625c8ffe698  positive-test (line 17)
 resource "aws_instance" "web_host" {
   # ec2 have plain text secrets in user data
   ami           = var.ami
@@ -1040,7 +869,8 @@ EOF
 </details>
 <details><summary>Positive test num. 36 - tf file</summary>
 
-```tf hl_lines="6"
+```tf hl_lines="7"
+# "Asymmetric private key" - 51b5b840-cd0c-4556-98a7-fe5f4def80cf  positive-test (line 7)
 resource "aws_transfer_ssh_key" "positive44" {
 	server_id = aws_transfer_server.example.id
 	user_name = aws_transfer_user.example.user_name
@@ -1064,14 +894,15 @@ EOT
 </details>
 <details><summary>Positive test num. 37 - tf file</summary>
 
-```tf hl_lines="7"
+```tf hl_lines="8"
+# "Generic Access Key" - 7f370dd5-eea3-4e5f-8354-3cb2506f9f13  positive-test
 data "terraform_remote_state" "intnet" {
   backend = "azurerm"
   config = {
     storage_account_name = "asdsadas"
     container_name       = "dp-prasdasdase-001"
     key                  = "infrastructure.tfstate"
-    access_key           = "sdsaljasbdasddsadsa"
+    access_key           = "sdsaljasbdasddsadsa"  # positive1
   }
   workspace = terraform.workspace
 }
@@ -1080,12 +911,15 @@ data "terraform_remote_state" "intnet" {
 </details>
 <details><summary>Positive test num. 38 - yaml file</summary>
 
-```yaml hl_lines="5"
+```yaml hl_lines="7"
+# "Generic Token"   - baee238e-1921-4801-9c3f-79ae1d7b2cbc                         positive-test   - #1
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding CF resolve" allow-rule-test - #2
 Resources:
   ElastiCacheReplicationGroup:
     Type: AWS::ElastiCache::ReplicationGroup
     Properties:
-      AuthToken: '{{resolve:secretsmanager:/elasticache/replicationgroup/authtoken:SecretString:password}}'
+      First_AuthToken: 'exposed_token' #1
+      Second_AuthToken: '{{resolve:secretsmanager:/elasticache/replicationgroup/authtoken:SecretString:password}}' #2
       CacheNodeType: cache.m5.large
       CacheSubnetGroupName: subnet-foobar
       Engine: redis
@@ -1100,32 +934,22 @@ Resources:
 </details>
 <details><summary>Positive test num. 39 - yaml file</summary>
 
-```yaml hl_lines="17"
-Transform: 'AWS::Serverless-2016-10-31'
-Metadata:
-  'AWS::ServerlessRepo::Application':
-    Name: AthenaJdbcConnector
-    Description: 'This connector enables Amazon Athena to communicate with your Database instance(s) using JDBC driver.'
-    Author: 'default author'
-    SpdxLicenseId: Apache-2.0
-    LicenseUrl: LICENSE.txt
-    ReadmeUrl: README.md
-    Labels:
-      - athena-federation
-    HomePageUrl: 'https://github.com/awslabs/aws-athena-query-federation'
-    SemanticVersion: 2021.41.1
-    SourceCodeUrl: 'https://github.com/awslabs/aws-athena-query-federation'
-Parameters:
-  SecretNamePrefix:
-      Description: 'Used to create resource-based authorization policy for "secretsmanager:GetSecretValue" action. E.g. All Athena JDBC Federation secret names can be prefixed with "AthenaJdbcFederation" and authorization policy will allow "arn:${AWS::Partition}:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:AthenaJdbcFederatione*". Parameter value in this case should be "AthenaJdbcFederation". If you do not have a prefix, you can manually update the IAM policy to add allow any secret names.'
-      Type: String
-Resources:
+```yaml hl_lines="5 6 7"
+# "Encryption Key" - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6  positive-test
+- hosts: all
+  remote_user: root
+  vars:
+    encryption_key: aes256_my_super_secret_key_value    # positive1
+    encryption_key: Ab3f8G2kL9mN4pQ7                    # positive2
+    encryptionkey: 0123456789abcdef                     # positive3
+
+
 ```
 </details>
 <details><summary>Positive test num. 40 - tf file</summary>
 
 ```tf hl_lines="9"
-#this is a problematic code where the query should report a result(s)
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test
 resource "google_container_cluster" "primary1" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
@@ -1133,7 +957,7 @@ resource "google_container_cluster" "primary1" {
 
   master_auth {
     username = ""
-    password = local.rds_postgres_is_primary ? var.rds_postgres_password : "null"
+    password = local.rds_postgres_is_primary ? var.rds_postgres_password : "null" # positive1
 
     client_certificate_config {
       issue_client_certificate = true
@@ -1150,7 +974,8 @@ resource "google_container_cluster" "primary1" {
 </details>
 <details><summary>Positive test num. 41 - yaml file</summary>
 
-```yaml hl_lines="20 21"
+```yaml hl_lines="21 22"
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test
 version: '3.9'
 services:
   vulnerable_node:
@@ -1170,20 +995,22 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_PASSWORD=string
+      - POSTGRES_PASSWORD=postgres  # positive1
+      - POSTGRES_PASSWORD=string    # positive2
 
 ```
 </details>
 <details><summary>Positive test num. 42 - tf file</summary>
 
-```tf hl_lines="5 6"
+```tf hl_lines="8 7"
+# "Google OAuth"   - d651cca2-2156-4d17-8e76-423e68de5c8b  positive-test - #1
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99  positive-test - #2
 resource "auth0_connection" "google_oauth2" {
   name = "Google-OAuth2-Connection"
   strategy = "google-oauth2"
   options {
-    client_id = "53221331-2323wasdfa343rwhthfaf33feaf2fa7f.apps.googleusercontent.com"
-    client_secret = "F-oS9Su%}<>[];#"
+    client_id = "53221331-2323wasdfa343rwhthfaf33feaf2fa7f.apps.googleusercontent.com"  #1
+    client_secret = "F-oS9Su%}<>[];#"                                                   #2
     allowed_audiences = [ "example.com", "api.example.com" ]
     scopes = [ "email", "profile", "gmail", "youtube" ]
     set_user_root_attributes = "on_each_login"
@@ -1194,7 +1021,9 @@ resource "auth0_connection" "google_oauth2" {
 </details>
 <details><summary>Positive test num. 43 - tf file</summary>
 
-```tf hl_lines="8"
+```tf hl_lines="10"
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08                           positive-test   - #1
+# Global allow rule  - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding TF variables" allow-rule-test - #2
 resource "google_container_cluster" "primary1" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
@@ -1202,11 +1031,11 @@ resource "google_container_cluster" "primary1" {
 
   master_auth {
     username = ""
-    password = "varexample"
+    password = "varexample" #1
 
     client_certificate_config {
       issue_client_certificate = true
-      password = var.example
+      password = var.example  #2
     }
   }
 
@@ -1220,19 +1049,21 @@ resource "google_container_cluster" "primary1" {
 </details>
 <details><summary>Positive test num. 44 - yml file</summary>
 
-```yml hl_lines="7"
+```yml hl_lines="9"
+# "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258                              positive-test   - #1
+# "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258 - "Avoiding bash variables"  allow-rule-test - #2
 on: workflow_call
 
 stages:
   - build
 
 variables:
-  GIT_PRIVATE_KEY: "heythisisaprivatekey!"
+  GIT_PRIVATE_KEY: "heythisisaprivatekey!"  #1
 
 jobs:
   job_build:
     stage: build
-    script:
+    script:                                 #2:
       - if [[ -z "${GIT_PRIVATE_KEY:-}" ]]; then
           echo "Missing GIT_PRIVATE_KEY variable!"
           exit 1
@@ -1245,9 +1076,10 @@ jobs:
 </details>
 <details><summary>Positive test num. 45 - tf file</summary>
 
-```tf hl_lines="2"
+```tf hl_lines="3"
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99  positive-test
 resource "google_secret_manager_secret_version" "secret-version-basic2" {
-  secret = "3gzcGokilvtw2HmCLuPx"
+  secret = "3gzcGokilvtw2HmCLuPx" # positive1
 
   secret_data = "secret-data"
 }
@@ -1256,7 +1088,8 @@ resource "google_secret_manager_secret_version" "secret-version-basic2" {
 </details>
 <details><summary>Positive test num. 46 - yaml file</summary>
 
-```yaml hl_lines="56 68"
+```yaml hl_lines="26 22"
+# "Generic Password on YAML files when value in tuple" - be0ed753-d304-4363-844a-144050d4006d  positive-test
 swagger: "2.0"
 info:
   x-ibm-name: sirene-apigw
@@ -1268,43 +1101,8 @@ info:
     name: MICKAEL MASSE
 schemes:
   - https
-basePath: /partners/dialog-apfr/sirene/v1
-consumes:
-  - application/json
-produces:
-  - application/json
-securityDefinitions:
-  Basic Authentication:
-    description: The user name and password provided by PSA Group.
-    type: basic
-    x-ibm-authentication-registry: ldap
-  Client ID:
-    description: The client ID provided by PSA Group when you register your application.
-    in: header
-    name: X-IBM-Client-Id
-    type: apiKey
-security:
-  - Client ID: []
 x-ibm-configuration:
-  testable: true
-  enforced: true
-  cors:
-    enabled: true
   assembly:
-    execute:
-      - parse:
-          version: 2.0.0
-          use-content-type: true
-          warn-on-empty-input: true
-      - gatewayscript:
-          title: set target url
-          version: 1.0.0
-      - invoke:
-          title: invoke
-          verb: keep
-          target-url: $(target-url)$(api.operation.path)
-          version: 1.5.0
-          final-action: true
   gateway: datapower-api-gateway
   properties:
     mock-proxy-user:
@@ -1312,43 +1110,17 @@ x-ibm-configuration:
       description: ""
       encoded: false
     mock-proxy-password:
-      value: testpwd
-      description: ""
-      encoded: false
-    mock-target-url:
-      value: https://api.insee.fr/entreprises/sirene/V3
-      description: ""
-      encoded: false
-    dev-proxy-user:
-      value: mzpamt66
+      value: testpwd        # positive1
       description: ""
       encoded: false
     dev-proxy-password:
-      value: testpwd
+      value: testpwd        # positive2
       description: ""
       encoded: false
     dev-target-url:
       value: https://api.insee.fr/entreprises/sirene/V3
       description: ""
       encoded: false
-    preprod-target-url:
-      value: REPLACE_PREPROD_URL
-      description: ""
-      encoded: false
-    prod-target-url:
-      value: REPLACE_PROD_URL
-      description: ""
-      encoded: false
-  phase: realized
-  type: rest
-  compatibility:
-    wrapper-policies:
-      allow-chunked-uploads: false
-    enforce-required-params: false
-    request-headers: true
-    allow-trailing-slash: true
-    migrated-api: true
-  buffering: true
 paths:
   /siren:
     post:
@@ -1369,165 +1141,14 @@ paths:
             plus de précisions
           required: false
           type: string
-        - name: date
-          in: formData
-          description: Date à laquelle s'appliqueront les critères de recherche sur
-            les champs historisés, format AAAA-MM-JJ
-          required: false
-          type: string
-        - name: champs
-          in: formData
-          description: Liste des champs demandés, séparés par des virgules
-          required: false
-          type: string
-        - name: masquerValeursNulles
-          in: formData
-          description: Masque (true) ou affiche (false, par défaut) les attributs qui
-            n'ont pas de valeur
-          required: false
-          type: boolean
-        - name: facette.champ
-          in: formData
-          description: Liste des champs sur lesquels des comptages seront effectués,
-            séparés par des virgules
-          required: false
-          type: string
-        - name: tri
-          in: formData
-          description: Champs sur lesquels des tris seront effectués, séparés par des
-            virgules. Tri sur siren par défaut
-          required: false
-          type: string
-        - name: nombre
-          in: formData
-          description: Nombre d'éléments demandés dans la réponse, défaut 20
-          required: false
-          type: integer
-          maximum: 100000
-          minimum: 0
-        - name: debut
-          in: formData
-          description: Rang du premier élément demandé dans la réponse, défaut 0
-          required: false
-          type: integer
-          maximum: 1000000
-          minimum: 0
-        - name: curseur
-          in: formData
-          description: Paramètre utilisé pour la pagination profonde, voir la documentation
-            pour plus de précisions
-          required: false
-          type: string
-      responses:
-        "200":
-          description: successful operation
-          schema:
-            $ref: '#/definitions/ReponseUnitesLegales'
-        "301":
-          description: Entreprise doublon
-        "400":
-          description: Nombre incorrect de paramètres ou les paramètres sont mal formatés
-        "401":
-          description: Jeton d'accès manquant ou invalide
-        "404":
-          description: Entreprise non trouvée dans la base Sirene (si le paramètre
-            date n'a pas été utilisé, cela peut signifier que le numéro de 9 chiffres
-            ne correspond pas à un Siren présent dans la base ; si le paramètre a
-            été utilisé, le Siren peut exister mais la date de création est postérieure
-            au paramètre date)
-        "406":
-          description: Le paramètre 'Accept' de l'en-tête HTTP contient une valeur
-            non prévue
-        "414":
-          description: Requête trop longue
-        "429":
-          description: Quota d'interrogations de l'API dépassé
-        "500":
-          description: Erreur interne du serveur
-        "503":
-          description: Service indisponible
-      x-auth-type: Application & Application User
-      x-throttling-tier: Unlimited
-    get:
-      tags:
-        - Informations
-      summary: État du service, dates de mise à jour et numéro de version
-      description: ""
-      operationId: informations
-      produces:
-        - application/json
-      parameters: []
-      responses:
-        "200":
-          description: successful operation
-          schema:
-            $ref: '#/definitions/ReponseInformations'
-        "503":
-          description: Service indisponible
-      x-auth-type: Application & Application User
-      x-throttling-tier: Unlimited
-definitions:
-  Adresse:
-    type: object
-    properties:
-      complementAdresseEtablissement:
-        type: string
-        description: Complément d'adresse de l'établissement
-      numeroVoieEtablissement:
-        type: string
-        description: Numéro dans la voie
-      indiceRepetitionEtablissement:
-        type: string
-        description: Indice de répétition dans la voie
-      typeVoieEtablissement:
-        type: string
-        description: Type de la voie
-      libelleVoieEtablissement:
-        type: string
-        description: Libellé de la voie
-      codePostalEtablissement:
-        type: string
-        description: Code postal
-      libelleCommuneEtablissement:
-        type: string
-        description: Libellé de la commune pour les adresses en France
-      libelleCommuneEtrangerEtablissement:
-        type: string
-        description: Libellé complémentaire pour une adresse à l'étranger
-      distributionSpecialeEtablissement:
-        type: string
-        description: Distribution spéciale (BP par ex)
-      codeCommuneEtablissement:
-        type: string
-        description: Code commune de localisation de l’établissement hors établissements
-          situés à l’étranger (Le code commune est défini dans le <a href='https://www.insee.fr/fr/information/2028028'>code
-          officiel géographique (COG)</a>)
-      codeCedexEtablissement:
-        type: string
-        description: Numéro de Cedex
-      libelleCedexEtablissement:
-        type: string
-        description: Libellé correspondant au numéro de Cedex (variable codeCedexEtablissement)
-      codePaysEtrangerEtablissement:
-        type: string
-        description: Code pays pour les établissements situés à l’étranger
-      libellePaysEtrangerEtablissement:
-        type: string
-        description: Libellé du pays pour les adresses à l’étranger
-    description: Ensemble des variables d'adresse d'un établissement
-    etatService:
-      type: string
-      description: État actuel du service
-      enum:
-        - UP
-        - DOWN
 tags: []
 
 ```
 </details>
 <details><summary>Positive test num. 47 - dockerfile file</summary>
 
-```dockerfile hl_lines="4"
+```dockerfile hl_lines="5"
+# "Dockerfile ENV hardcoded password with omitted equals" - f05f238a-2ef0-4c39-9a36-951de1ba6dc9  positive-test
 FROM baseImage
 
 ENV ARTEMIS_USER artemis
@@ -1543,10 +1164,12 @@ RUN apk add --no-cache git \
 </details>
 <details><summary>Positive test num. 48 - dockerfile file</summary>
 
-```dockerfile hl_lines="4"
+```dockerfile hl_lines="6"
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test
 FROM baseImage
 
 ENV ARTEMIS_USER=artemis
+# positive1:
 ENV ARTEMIS_PASSWORD=artemis
 
 RUN apk add --no-cache git \
@@ -1559,8 +1182,9 @@ RUN apk add --no-cache git \
 </details>
 <details><summary>Positive test num. 49 - json file</summary>
 
-```json hl_lines="54"
+```json hl_lines="55"
 {
+  "metadata": "'Generic Password' - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test (line 55)",
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
@@ -1628,27 +1252,28 @@ RUN apk add --no-cache git \
 <details><summary>Positive test num. 50 - tf file</summary>
 
 ```tf hl_lines="8 14"
-
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test
 variable "linux_vms" {
   description = "positive54.tf"
   type = map(object({
     region                           = string
     size                             = optional(string)
     admin_username                   = optional(string)
-    admin_password                   = "optional(sensitive(string))"
+    admin_password                   = "optional(sensitive(string))"  # positive1
   }))
   default = {}
 }
 
 resource "azurerm_linux_virtual_machine" "vms" {
-  admin_password        = try(each.value.admin_password, "exposed_password", null)
+  admin_password        = try(each.value.admin_password, "exposed_password", null)  # positive2
 }
 ```
 </details>
 <details><summary>Positive test num. 51 - json file</summary>
 
-```json hl_lines="4"
+```json hl_lines="5"
 {
+  "metadata": "'Generic Secret' - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99  positive-test (line 5)",
   "Resources": {
     "service-3": {
       "secretValue": "secretVaule1"
@@ -1704,20 +1329,24 @@ extend google.protobuf.FileOptions {                // too generic for an allow 
 </details>
 <details><summary>Positive test num. 53 - dockerfile file</summary>
 
-```dockerfile hl_lines="3 7"
+```dockerfile hl_lines="10 5"
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test
 FROM baseImage
 
+# positive1
 ARG password=pass!1213Fs
 
-
 FROM test2
+
+# positive2
 ARG password=pass!1213Fs
 
 ```
 </details>
 <details><summary>Positive test num. 54 - tf file</summary>
 
-```tf hl_lines="8"
+```tf hl_lines="9"
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test
 resource "google_container_cluster" "primary2" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
@@ -1725,7 +1354,7 @@ resource "google_container_cluster" "primary2" {
 
   master_auth {
     username = ""
-    password = "pwd_jsuwauJk212"
+    password = "pwd_jsuwauJk212"  # positive1
 
     client_certificate_config {
       issue_client_certificate = true
@@ -1742,8 +1371,9 @@ resource "google_container_cluster" "primary2" {
 </details>
 <details><summary>Positive test num. 55 - json file</summary>
 
-```json hl_lines="4 7"
+```json hl_lines="8 5"
 {
+  "metadata": "'Generic Password' - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test (line 5/8)",
   "Resources": {
     "service-1": {
       "password": "abcdefg"
@@ -1758,7 +1388,8 @@ resource "google_container_cluster" "primary2" {
 </details>
 <details><summary>Positive test num. 56 - tf file</summary>
 
-```tf hl_lines="8"
+```tf hl_lines="9"
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test
 resource "google_container_cluster" "primary4" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
@@ -1766,7 +1397,7 @@ resource "google_container_cluster" "primary4" {
 
   master_auth {
     username = ""
-    password = "abcd    s"
+    password = "abcd    s"  # positive1
 
     client_certificate_config {
       issue_client_certificate = true
@@ -1785,7 +1416,7 @@ resource "google_container_cluster" "primary4" {
 
 #### Code samples without security vulnerabilities
 ```yaml title="Negative test num. 1 - yaml file"
-#k8s test
+# Generic Negative Test - no secrets (k8s)
 apiVersion: v1
 kind: Pod
 metadata:
@@ -1800,6 +1431,7 @@ spec:
 
 ```
 ```tf title="Negative test num. 2 - tf file"
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding TF variables" allow-rule-test
 resource "aws_db_instance" "default" {
   name                   = var.dbname
   engine                 = "mysql"
@@ -1812,7 +1444,7 @@ resource "aws_db_instance" "default" {
   instance_class          = "db.t3.micro"
   allocated_storage       = "20"
   username                = "admin"
-  password                = var.password
+  password                = var.password  # negative1
   apply_immediately       = true
   multi_az                = false
   backup_retention_period = 0
@@ -1833,12 +1465,13 @@ resource "aws_db_instance" "default" {
 
 ```
 ```tf title="Negative test num. 3 - tf file"
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding TF variables" allow-rule-test
 resource "auth0_connection" "google_oauth2" {
   name = "Google-OAuth2-Connection"
   strategy = "google-oauth2"
   options {
     client_id     = var.google_client_id
-    client_secret = var.google_client_secret
+    client_secret = var.google_client_secret  # negative1
     allowed_audiences = [ "example.com", "api.example.com" ]
     scopes = [ "email", "profile", "gmail", "youtube" ]
     set_user_root_attributes = "on_each_login"
@@ -1849,8 +1482,9 @@ resource "auth0_connection" "google_oauth2" {
 <details><summary>Negative test num. 4 - tf file</summary>
 
 ```tf
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding TF variables"  allow-rule-test
 provider "slack" {
-  token = var.slack_token
+  token = var.slack_token # negative1
 }
 
 ```
@@ -1858,6 +1492,7 @@ provider "slack" {
 <details><summary>Negative test num. 5 - tf file</summary>
 
 ```tf
+# "Generic API Key" - 74736dd1-dd11-4139-beb6-41cd43a50317  negative-test ('.' char is illegal in key definition, incorrect key length (17 is not in {32,45}))
 provider "stripe" {
   api_key = var.strip_api_key
 }
@@ -1867,6 +1502,7 @@ provider "stripe" {
 <details><summary>Negative test num. 6 - tf file</summary>
 
 ```tf
+# Generic Negative Test - several keywords used in safe contexts ("password","api_key","secret_key")
 resource "aws_ecs_task_definition" "webapp" {
   family        = "tomato-webapp"
   task_role_arn = data.aws_iam_role.ecs_task_role.arn
@@ -1958,6 +1594,7 @@ EOF
 <details><summary>Negative test num. 7 - tf file</summary>
 
 ```tf
+# "Generic API Key" - 74736dd1-dd11-4139-beb6-41cd43a50317  negative-test ('.' char is illegal in key definition, incorrect key length (18 is not in {32,45}))
 provider "heroku" {
   email   = "ops@company.com"
   api_key = var.heroku_api_key
@@ -1968,8 +1605,9 @@ provider "heroku" {
 <details><summary>Negative test num. 8 - tf file</summary>
 
 ```tf
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding TF variables"  allow-rule-test
 provider "github" {
-  token = var.github_key
+  token = var.github_key  # negative1
 }
 
 ```
@@ -1977,6 +1615,7 @@ provider "github" {
 <details><summary>Negative test num. 9 - tf file</summary>
 
 ```tf
+# "Generic API Key" - 74736dd1-dd11-4139-beb6-41cd43a50317  negative-test ('.' char is illegal in key definition, incorrect key length (11 is not in {32,45}))
 provider "cloudflare" {
   version = "~> 2.0"
   email   = "var.cloudflare_email"
@@ -1988,6 +1627,7 @@ provider "cloudflare" {
 <details><summary>Negative test num. 10 - yaml file</summary>
 
 ```yaml
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding CloudFormation intrinsic functions"  allow-rule-test
 Parameters:
   PrivateKey1:
     Type: String
@@ -1999,13 +1639,14 @@ Resources:
   PinpointAPNSChannel:
     Type: AWS::Pinpoint::APNSChannel
     Properties:
-      PrivateKey: !GetAtt PrivateKey1
+      PrivateKey: !GetAtt PrivateKey1 # negative1
 
 ```
 </details>
 <details><summary>Negative test num. 11 - yaml file</summary>
 
 ```yaml
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding CloudFormation intrinsic functions"  allow-rule-test
 Parameters:
   PinpointAPNSVoipChannelTokenKey:
     Type: String
@@ -2013,7 +1654,7 @@ Resources:
   ElastiCacheReplicationGroup:
     Type: AWS::ElastiCache::ReplicationGroup
     Properties:
-      AuthToken: !Ref PinpointAPNSVoipChannelTokenKey
+      AuthToken: !Ref PinpointAPNSVoipChannelTokenKey # negative1
       CacheNodeType: cache.m5.large
       CacheSubnetGroupName: subnet-foobar
       Engine: redis
@@ -2030,7 +1671,7 @@ Resources:
   PinpointAPNSChannel:
     Type: AWS::Pinpoint::APNSChannel
     Properties:
-      TokenKey: !Ref PinpointAPNSVoipChannelTokenKey
+      TokenKey: !Ref PinpointAPNSVoipChannelTokenKey # negative2
       ApplicationId: !Ref PinpointApp
 
 ```
@@ -2038,12 +1679,12 @@ Resources:
 <details><summary>Negative test num. 12 - yaml file</summary>
 
 ```yaml
-#cloud formation test
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding CloudFormation intrinsic functions"  allow-rule-test
 Resources:
   RDSCluster:
     Type: "AWS::RDS::DBCluster"
     Properties:
-      MasterUserPassword: !Ref PasswordMaster
+      MasterUserPassword: !Ref PasswordMaster  # negative1
       DBClusterIdentifier: my-serverless-cluster
       Engine: aurora
       EngineVersion: 5.6.10a
@@ -2059,6 +1700,7 @@ Resources:
 <details><summary>Negative test num. 13 - yaml file</summary>
 
 ```yaml
+# Generic Negative Test - no secrets
 - name: Start a workflow in the Itential Automation Platform
   community.network.iap_start_workflow:
     iap_port: 3000
@@ -2073,6 +1715,7 @@ Resources:
 <details><summary>Negative test num. 14 - tf file</summary>
 
 ```tf
+# "Generic API Key" - 74736dd1-dd11-4139-beb6-41cd43a50317  negative-test ('.' char is illegal in key definition, incorrect key length (19 is not in {32,45}))
 provider "mailgun" {
   api_key = "var.mailgun_api_key"
 }
@@ -2082,6 +1725,7 @@ provider "mailgun" {
 <details><summary>Negative test num. 15 - tf file</summary>
 
 ```tf
+# "Generic API Key" - 74736dd1-dd11-4139-beb6-41cd43a50317  negative-test ('.' char is illegal in key definition, incorrect key length (28 is not in {32,45}))
 provider "stripe" {
   api_key = var.strip_restricted_api_key
 }
@@ -2091,6 +1735,7 @@ provider "stripe" {
 <details><summary>Negative test num. 16 - yaml file</summary>
 
 ```yaml
+# "Twilio API Key" - e0f01838-b1c2-4669-b84b-981949ebe5ed  negative-test (is not a hardcoded key)
 - hosts: all
   remote_user: root
   vars:
@@ -2101,6 +1746,7 @@ provider "stripe" {
 <details><summary>Negative test num. 17 - yaml file</summary>
 
 ```yaml
+# "PayPal Braintree Access Token" - 4919b847-e3da-402a-acf8-6cea8e529993  negative-test (is not a hardcoded token)
 - hosts: all
   remote_user: root
   vars:
@@ -2112,6 +1758,7 @@ provider "stripe" {
 <details><summary>Negative test num. 18 - yaml file</summary>
 
 ```yaml
+# Generic Negative Test - no secrets
 apiVersion: v1
 kind: Pod
 metadata:
@@ -2128,6 +1775,7 @@ spec:
 <details><summary>Negative test num. 19 - yaml file</summary>
 
 ```yaml
+# "Google OAuth Access Token" - 41a1ca8d-f466-4084-a8c9-50f8b22200d5  negative-test (is not a hardcoded token)
 apiVersion: v1
 kind: Config
 users:
@@ -2140,7 +1788,7 @@ users:
   user:
     auth-provider:
       config:
-        access-token: '{.credential.oauth_access_token_}'
+        access-token: '{.credential.oauth_access_token_}' # negative1
         cmd-args: config config-helper --format=json
         cmd-path: /Users/dave/google-cloud-sdk/bin/gcloud
         expiry: 2021-10-28T15:12:03.000Z
@@ -2153,6 +1801,7 @@ users:
 <details><summary>Negative test num. 20 - tf file</summary>
 
 ```tf
+# Generic Negative Test - no secrets
 resource "aws_lambda_function" "analysis_lambda4" {
   # lambda have plain text secrets in environment variables
   filename      = "resources/lambda_function_payload.zip"
@@ -2170,16 +1819,99 @@ resource "aws_lambda_function" "analysis_lambda4" {
 <details><summary>Negative test num. 21 - tf file</summary>
 
 ```tf
-provider rancher2 {
-  api_url   = data.terraform_remote_state.rancher.outputs.api_url
-  token_key = data.terraform_remote_state.rancher.outputs.token_key
+# "Generic Token"   - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding TF resource access"  allow-rule-test - #1
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding TF variables"        allow-rule-test - #2
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding array access"        allow-rule-test - #3
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
 }
 
+provider "aws" {
+  region = "us-east-1"
+}
+
+variable "auth_token" {
+  description = "Authentication token"
+  type        = string
+  sensitive   = true
+}
+
+variable "enabled" {
+  description = "Whether to enable resources"
+  type        = bool
+  default     = true
+}
+
+resource "aws_secretsmanager_secret_version" "token_version" {
+  for_each = { for k, v in var.clients.oauth : k => v if var.enabled }
+
+  secret_id     = aws_secretsmanager_secret.client_token_secret[each.key].id
+  secret_string = jsonencode({ "client" : each.key, "token" : random_password.client_token[each.key].result })  #1
+}
+
+resource "aws_secretsmanager_secret_version" "token_version_2" {
+  for_each = { for k, v in var.clients.oauth : k => v if var.enabled }
+
+  secret_id     = aws_secretsmanager_secret.client_token_secret[each.key].id
+  secret_string = jsonencode({ "client" : each.key, "token" : random_password[each.key].client_token.result }) #1
+}
+
+resource "aws_secretsmanager_secret_version" "token_version_3" {
+  for_each = { for k, v in var.clients.oauth : k => v if var.enabled }
+
+  secret_id     = aws_secretsmanager_secret.client_token_secret[each.key].id                                   #3
+  secret_string = jsonencode({ "client" : each.key, "token" : random_password["index"].client_token.result })
+}
+
+resource "aws_lb_listener" "https_null" {
+  count             = var.enabled ? 1 : 0
+  load_balancer_arn = aws_lb.main[0].arn
+  port              = 443
+  protocol          = "HTTPS"
+
+  default_action {
+    type      = "fixed-response"
+    token_key = null  #1
+  }
+}
+module "auth_service" {
+  source = "./modules/auth"
+
+  token = var.auth_token  #2
+}
+module "api_gateway" {
+  source = "./modules/gateway"
+
+  token = module.auth_service.token_output.value  #1
+}
+module "legacy_service" {
+  source = "./modules/legacy"
+
+  token = data.aws_secretsmanager_secret_version.existing_token.secret_string  #1
+}
+
+locals {
+  token_config = {
+    value = aws_secretsmanager_secret.client_token_secret["primary"].arn
+  }
+}
+
+module "monitoring" {
+  source = "./modules/monitoring"
+
+  token = local.token_config.value  #1
+}
 ```
 </details>
 <details><summary>Negative test num. 22 - yaml file</summary>
 
 ```yaml
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Github id-token Default Values"  allow-rule-test
 name: Example Workflow
 
 on: workflow_call
@@ -2189,7 +1921,7 @@ jobs:
     permissions:
       contents: read
       pages: write
-      id-token: write
+      id-token: write # negative1
 
     runs-on: ubuntu
 
@@ -2207,7 +1939,7 @@ jobs:
     permissions:
       contents: read
       pages: write
-      id-token: read
+      id-token: read # negative2
 
     runs-on: ubuntu
 
@@ -2225,7 +1957,7 @@ jobs:
     permissions:
       contents: read
       pages: write
-      id-token: none
+      id-token: none # negative3
 
     runs-on: ubuntu
 
@@ -2237,7 +1969,7 @@ jobs:
 <details><summary>Negative test num. 23 - yaml file</summary>
 
 ```yaml
-#ansible test
+# Generic Negative Test - no secrets (ansible)
 - name: create a cluster
   google.cloud.gcp_container_cluster:
     name: my-cluster
@@ -2256,12 +1988,13 @@ jobs:
 <details><summary>Negative test num. 24 - yaml file</summary>
 
 ```yaml
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding Boolean's"  allow-rule-test
 apiVersion: v1
 kind: Pod
 metadata:
   name: security-context-demo
 spec:
-  automountServiceAccountToken: false
+  automountServiceAccountToken: false # negative1
   securityContext:
     runAsUser: 1000
     runAsGroup: 3000
@@ -2283,6 +2016,7 @@ spec:
 <details><summary>Negative test num. 25 - yaml file</summary>
 
 ```yaml
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding arn"  allow-rule-test
 - name: 'aws_codebuild integration tests'
   collections:
     - amazon.aws
@@ -2307,7 +2041,7 @@ spec:
           packaging: NONE
           type: CODEPIPELINE
           name: test
-        encryption_key: 'arn:aws:kms:{{ aws_region }}:{{ aws_account_id }}:alias/aws/s3'
+        encryption_key: 'arn:aws:kms:{{ aws_region }}:{{ aws_account_id }}:alias/aws/s3'  # negative1
         environment:
           compute_type: BUILD_GENERAL1_SMALL
           privileged_mode: true
@@ -2325,59 +2059,27 @@ spec:
 <details><summary>Negative test num. 26 - yaml file</summary>
 
 ```yaml
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding CloudFormation intrinsic functions"  allow-rule-test
 Conditions:
   HasKmsKey: !Not [!Equals [!Ref ParentKmsKeyStack, '']]
   HasSecretName: !Not [!Equals [!Ref ParentKmsKeyStack, '']]
-  HasPassword: !Not [!Equals [!Ref DBPassword, '']]
+  HasPassword: !Not [!Equals [!Ref DBPassword, '']] # negative1
 Resources:
 ```
 </details>
 <details><summary>Negative test num. 27 - yaml file</summary>
 
 ```yaml
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding TF resource access" allow-rule-test - #1 (line 10)
+# Global allow rule  - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding Boolean's"          allow-rule-test - #2 (line 11)
 Resources:
   LambdaFunctionV2:
     Type: 'AWS::Lambda::Function'
     Properties:
-      Code:
+      Code:       #1 & #2:
         ZipFile: |
-          'use strict';
-          const AWS = require('aws-sdk');
-          const response = require('cfn-response');
-          const iam = new AWS.IAM({apiVersion: '2010-05-08'});
-          exports.handler = (event, context, cb) => {
-            console.log(`Invoke: ${JSON.stringify(event)}`);
-            function done(err) {
-              if (err) {
-                console.log(`Error: ${JSON.stringify(err)}`);
-                response.send(event, context, response.FAILED, {});
-              } else {
-                response.send(event, context, response.SUCCESS, {});
-              }
-            }
-            if (event.RequestType === 'Delete') {
-              iam.deleteAccountPasswordPolicy({}, done);
-            } else if (event.RequestType === 'Create' || event.RequestType === 'Update') {
-              const params = {
-                MinimumPasswordLength: parseInt(event.ResourceProperties.MinimumPasswordLength, 10),
-                RequireSymbols: event.ResourceProperties.RequireSymbols === 'true',
-                RequireNumbers: event.ResourceProperties.RequireNumbers === 'true',
-                RequireUppercaseCharacters: event.ResourceProperties.RequireUppercaseCharacters === 'true',
-                RequireLowercaseCharacters: event.ResourceProperties.RequireLowercaseCharacters === 'true',
                 AllowUsersToChangePassword: event.ResourceProperties.AllowUsersToChangePassword === 'true',
-                HardExpiry: event.ResourceProperties.HardExpiry === 'true'
-              };
-              if (parseInt(event.ResourceProperties.MaxPasswordAge, 10) > 0) {
-                params.MaxPasswordAge = parseInt(event.ResourceProperties.MaxPasswordAge, 10);
-              }
-              if (parseInt(event.ResourceProperties.PasswordReusePrevention, 10) > 0) {
-                params.PasswordReusePrevention = parseInt(event.ResourceProperties.PasswordReusePrevention, 10);
-              }
-              iam.updateAccountPasswordPolicy(params, done);
-            } else {
-              cb(new Error(`unsupported RequestType: ${event.RequestType}`));
-            }
-          };
+                AllowUsersToChangePassword: false,
       Handler: 'index.handler'
       MemorySize: 128
       Role: !GetAtt 'LambdaRole.Arn'
@@ -2389,6 +2091,7 @@ Resources:
 <details><summary>Negative test num. 28 - tf file</summary>
 
 ```tf
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99  - "Avoiding TF resource access"  allow-rule-test
 locals {
   secrets = {
     my_secret = random_password.my_password.result
@@ -2400,6 +2103,7 @@ locals {
 <details><summary>Negative test num. 29 - dockerfile file</summary>
 
 ```dockerfile
+# Generic Negative Test - arbitrary git "token" references (dockerfile)
 FROM baseImage
 
 RUN apk add --no-cache git \
@@ -2414,13 +2118,14 @@ RUN apk add --no-cache git \
 <details><summary>Negative test num. 30 - tf file</summary>
 
 ```tf
+# Global allow rule  - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding TF file function"  allow-rule-test
 resource "aws_instance" "instance" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
 
   connection {
     user        = "ubuntu"
-    private_key = file(var.private_key_path)
+    private_key = file(var.private_key_path)  # negative1
   }
 }
 
@@ -2429,15 +2134,17 @@ resource "aws_instance" "instance" {
 <details><summary>Negative test num. 31 - yaml file</summary>
 
 ```yaml
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding array access"  allow-rule-test (line 10/11)
 Resources:
   MytFunction:
     Type: AWS::Lambda::Function
     Properties:
       FunctionName: !Sub '${AWS::StackName}-CdnViewerRequest'
       Code:
-        ZipFile: !Sub |
+        ZipFile: !Sub | # negative1:
           function msg(userPass) {
             return {"username": userPass[1], "password": userPass[2]}
+            return {"Busername": userPass[1312], "Bpassword": userPass[2412]}
           }
 
 ```
@@ -2445,6 +2152,7 @@ Resources:
 <details><summary>Negative test num. 32 - yaml file</summary>
 
 ```yaml
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99  - "Avoiding Secrets Manager arn"  allow-rule-test
 Type: AWS::Glue::Connection
 Resources:
   Properties:
@@ -2456,19 +2164,19 @@ Resources:
               - ""
               - - "mongodb://{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test
+                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test  # negative1
           USERNAME:
             Fn::Join:
               - ""
               - - "{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:username::}}
+                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:username::}}       # negative2
           PASSWORD:
             Fn::Join:
               - ""
               - - "{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:password::}}
+                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:password::}}        # negative3
           JDBC_ENFORCE_SSL: true
       ConnectionType: MONGODB
 
@@ -2477,6 +2185,7 @@ Resources:
 <details><summary>Negative test num. 33 - yaml file</summary>
 
 ```yaml
+# "Encryption Key" - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 - "Avoiding CloudFormation KeyName"  allow-rule-test
 AWSTemplateFormatVersion: "2010-09-09"
 Resources:
   somecode:
@@ -2487,7 +2196,7 @@ Resources:
       TimeoutInMinutes: 10
       QueuedTimeoutInMinutes: 10
       ServiceRole: someservicerole
-      EncryptionKey: somekey
+      EncryptionKey: somekey      # negative1
       Artifacts:
         Type: someartifact
       Cache:
@@ -2510,7 +2219,7 @@ Resources:
 <details><summary>Negative test num. 34 - tf file</summary>
 
 ```tf
-#this code is a correct code for which the query should not find any result
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding TF variables" allow-rule-test
 resource "google_container_cluster" "primary" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
@@ -2529,7 +2238,7 @@ resource "google_container_cluster" "primary" {
 }
 
 resource "google_secret_manager_secret_version" "secret-version-basic" {
-  secret = var.my_google_secret
+  secret = var.my_google_secret # negative1
 
   secret_data = "secret-data"
 }
@@ -2539,6 +2248,7 @@ resource "google_secret_manager_secret_version" "secret-version-basic" {
 <details><summary>Negative test num. 35 - yaml file</summary>
 
 ```yaml
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99  - "Avoiding Secrets Manager arn"  allow-rule-test
 Type: AWS::Glue::Connection
 Resources:
   Properties:
@@ -2550,13 +2260,13 @@ Resources:
               - ""
               - - "mongodb://{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:*:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test
+                - :secretsmanager:*:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test  # negative1
           USERNAME:
             Fn::Join:
               - ""
               - - "{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:eu-west-1:*:secret:/test/resources/docdb-test:SecretString:username::}}
+                - :secretsmanager:eu-west-1:*:secret:/test/resources/docdb-test:SecretString:username::}}           # negative2
           PASSWORD:
             Fn::Join:
               - ""
@@ -2571,6 +2281,7 @@ Resources:
 <details><summary>Negative test num. 36 - yaml file</summary>
 
 ```yaml
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding CloudFormation ServiceToken"  allow-rule-test
 ---
 AWSTemplateFormatVersion: "2010-09-09"
 Description: >
@@ -2649,7 +2360,7 @@ Resources:
   GetSubnets:
     Type: AWS::CloudFormation::CustomResource
     Properties:
-      ServiceToken: anArn
+      ServiceToken: anArn                       # negative1
   LoadBalancer3:
     Type: AWS::ElasticLoadBalancing::LoadBalancer
     Properties:
@@ -2737,13 +2448,14 @@ Resources:
 <details><summary>Negative test num. 37 - tf file</summary>
 
 ```tf
+# Global allow rule  - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding TF file function"  allow-rule-test
 data "terraform_remote_state" "intnet" {
   backend = "azurerm"
   config = {
     storage_account_name = "asdsadas"
     container_name       = "dp-prasdasdase-001"
     key                  = "infrastructure.tfstate"
-    access_key           = file(var.access_key_path)
+    access_key           = file(var.access_key_path)  # negative1
   }
   workspace = terraform.workspace
 }
@@ -2753,7 +2465,7 @@ data "terraform_remote_state" "intnet" {
 <details><summary>Negative test num. 38 - tf file</summary>
 
 ```tf
-#this is a problematic code where the query should report a result(s)
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding TF resource access"  allow-rule-test
 resource "google_container_cluster" "primary1" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
@@ -2761,7 +2473,7 @@ resource "google_container_cluster" "primary1" {
 
   master_auth {
     username = ""
-    password = local.rds_postgres_is_primary ? var.rds_postgres_password : null
+    password = local.rds_postgres_is_primary ? var.rds_postgres_password : null # negative1
 
     client_certificate_config {
       issue_client_certificate = true
@@ -2779,6 +2491,7 @@ resource "google_container_cluster" "primary1" {
 <details><summary>Negative test num. 39 - yml file</summary>
 
 ```yml
+# "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258 - "Avoiding bash variables"  allow-rule-test
 on: workflow_call
 
 stages:
@@ -2790,7 +2503,7 @@ variables:
 jobs:
   job_build:
     stage: build
-    script:
+    script: # negative1:
       - if [[ -z "${GIT_PRIVATE_KEY:-}" ]]; then
           echo "Missing GIT_PRIVATE_KEY variable!"
           exit 1
@@ -2804,6 +2517,7 @@ jobs:
 <details><summary>Negative test num. 40 - yml file</summary>
 
 ```yml
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding Ansible playbook update_password"  allow-rule-test
 - name: "Configure the MySQL user "
   community.mysql.mysql_user:
     login_user: "root"
@@ -2811,13 +2525,14 @@ jobs:
     name: "{{ mysql_user }}"
     password: "{{ mysql_user_password }}"
     password_expire: "never"
-    update_password: "on_create"
+    update_password: "on_create"    # negative1
 
 ```
 </details>
 <details><summary>Negative test num. 41 - yaml file</summary>
 
 ```yaml
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - "Avoiding Secrets from Variable Interpolation"  allow-rule-test - (lines 51/73)
 name: Deploy
 on:
   workflow_call:
@@ -2897,6 +2612,7 @@ jobs:
 <details><summary>Negative test num. 42 - tf file</summary>
 
 ```tf
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding TF resource access"  allow-rule-test
 provider "azurerm" {
   features {}
 }
@@ -2918,7 +2634,7 @@ resource "azurerm_linux_virtual_machine" "example_vm" {
   location            = "your-location"
   size                = "Standard_DS1_v2"
   admin_username      = "adminuser"
-  admin_password      = data.azurerm_key_vault_secret.LinuxVmPassword.value
+  admin_password      = data.azurerm_key_vault_secret.LinuxVmPassword.value # negative1
 
   network_interface_ids = [
     # Your network interface ID
@@ -2947,21 +2663,22 @@ output "vm_password" {
 <details><summary>Negative test num. 43 - tf file</summary>
 
 ```tf
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding TF resource access"  allow-rule-test
 data "template_file" "sci_integration_app_properties_secret_template" {
   template = file(join("", ["/secrets/sci-integration-app", var.resource_identifier_shorthand], ".json"))
 
-  vars = {
-    ayreshirerarran_password   = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["ayreshirerarran_password"]
-    lanark_password            = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["lanark_password"]
-    tayside_password           = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["tayside_password"]
-    glasgow_password           = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["glasgow_password"]
-    grampian_password          = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["grampian_password"]
-    highland_password          = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["highland_password"]
-    westernisles_password      = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["westernisles_password"]
+  vars = {  # negative1-11
+    ayreshirerarran_password     = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["ayreshirerarran_password"]
+    lanark_password              = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["lanark_password"]
+    tayside_password             = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["tayside_password"]
+    glasgow_password             = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["glasgow_password"]
+    grampian_password            = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["grampian_password"]
+    highland_password            = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["highland_password"]
+    westernisles_password        = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["westernisles_password"]
     dumfriesandgalloway_password = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["dumfriesandgalloway_password"]
-    forthvalley_password       = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["forthvalley_password"]
-    borders_password           = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["borders_password"]
-    lothian_password           = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["lothian_password"]
+    forthvalley_password         = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["forthvalley_password"]
+    borders_password             = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["borders_password"]
+    lothian_password             = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["lothian_password"]
   }
 }
 
@@ -2970,6 +2687,7 @@ data "template_file" "sci_integration_app_properties_secret_template" {
 <details><summary>Negative test num. 44 - dockerfile file</summary>
 
 ```dockerfile
+# Generic Negative Test - arbitrary git "token" references, ARTEMIS_PASSWORD missing (dockerfile)
 FROM baseImage
 
 ENV ARTEMIS_USER artemis
@@ -2986,6 +2704,7 @@ RUN apk add --no-cache git \
 <details><summary>Negative test num. 45 - dockerfile file</summary>
 
 ```dockerfile
+# Generic Negative Test - no secrets (dockerfile)
 FROM baseImage
 
 RUN command
@@ -2995,6 +2714,7 @@ RUN command
 <details><summary>Negative test num. 46 - dockerfile file</summary>
 
 ```dockerfile
+# Generic Negative Test - arbitrary git "token" references, ARTEMIS_PASSWORD missing (dockerfile)
 FROM baseImage
 
 ENV ARTEMIS_USER=artemis
@@ -3011,47 +2731,31 @@ RUN apk add --no-cache git \
 <details><summary>Negative test num. 47 - yml file</summary>
 
 ```yml
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Allow placeholders"  allow-rule-test - #1
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Allow empty values"  allow-rule-test - #2
 stages:
 - template: templates/main-stage.yml
   parameters:
     environment:                      'foo'
     isSm9ChangeRequired:              true
-  
+
     isDedicatedSubscription:          'true'
     setResourceLock:                  'true'
     nameResourceLock:                 'PrdPreventAccidentalDeletion'
     isDevelopment:                    'false'
-    # example 1 (placeholders)
-    vmAdminPassword:                  '$(VM_ADMIN_PASSWORD)'                 # SET IN PIPELINE
-    sqlAdminPassword:                 '$(SQL_ADMIN_PASSWORD)'                # SET IN PIPELINE
-    yetanotherAdminPassword:          '${{SQL_ADMIN_PASSWORD}}'                # SET IN PIPELINE
-    andyetanotherAdminPassword:       '${{ SQL_ADMIN_PASSWORD }}'                # SET IN PIPELINE
+
+    vmAdminPassword:                  '$(VM_ADMIN_PASSWORD)'          #1
+    sqlAdminPassword:                 '$(SQL_ADMIN_PASSWORD)'         #1
+    yetanotherAdminPassword:          '${{SQL_ADMIN_PASSWORD}}'       #1
+    andyetanotherAdminPassword:       '${{ SQL_ADMIN_PASSWORD }}'     #1
 
     # example 2 (empty string value)
-    anotherAdminPassword:             ''                 # SET IN PIPELINE
+    anotherAdminPassword:             ''  #2
 
-    serviceConnectionName:            'foo' 
+    serviceConnectionName:            'foo'
     subscriptionId:                   'foo'
-    organisationalGroup:              'foo'        # Replace this with your own Organisational Group name.
-    devOrganisationalGroup:           'foo'                                     # should be empty for none DEV env
-    sm9ApplicationCi:                 'foo'                                  # Replace this with your own SM9 Application CI name.
-    resourceGroupBaseName:            'foo'                 # This is used to construct a Resource Group name. Replace this with your desired resource group name.
-    resourceGroupNameSuffix:          'foo'                                    # This is suffixed to the Resource Group name in a Shared subscription (must be an integer). Can be left as-is.
-    location:                         'foo'                           # Replace this with your desired Azure region.
-    linuxAgentPoolName:               'foo'                # Agent pool name of Linux agents. Can be left as-is.
-    windowsAgentPoolName:             'foo'              # Agent pool name of Windows agents. Can be left as-is.
-    System.Debug:                     'foo'                                 # Set to 'foo' to enable debug logging. Can be left as-is.
+    organisationalGroup:              'foo'
 
-    skipAdditionalResources:          'foo'                                # if true skip creating additional resources
-    skipSQL:                          'foo'
-
-    #####################################################################################
-    # ADF                                                                               #
-    #####################################################################################
-    adfName:                          'foo'
-    adfDeveloperGroup:                'foo'        # Group has access to ADF
-    irName:                           'foo'
-    irDescription:                    'foo'
 
 
 
@@ -3060,6 +2764,7 @@ stages:
 <details><summary>Negative test num. 48 - yml file</summary>
 
 ```yml
+# "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258 - "Avoid Docker Compose secrets paths"  allow-rule-test
 version: '3.7'
 
 services:
@@ -3070,8 +2775,7 @@ services:
     environment:
       env: "dev"
 
-      # this value is a Docker Compose secrets path, its contents are not exposed
-      PrivateKey: /run/secrets/SOME_AUTHORIZATION_PRIVATE_KEY
+      PrivateKey: /run/secrets/SOME_AUTHORIZATION_PRIVATE_KEY # negative1
 
 secrets:
   SOME_AUTHORIZATION_PRIVATE_KEY:
@@ -3084,56 +2788,9 @@ secrets:
 
 ```json
 {
+  "metadata" : "# 'Generic Password' - 487f4be7-3fd9-4506-a07a-eae252180c08 - 'Allow password retrieved from ARM parameters' allow rule test (line 12)",
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {
-    "siteName": {
-      "type": "string"
-    },
-    "administratorLogin": {
-      "type": "string"
-    },
-    "administratorLoginPassword": {
-      "type": "securestring"
-    },
-    "secretSuffix": {
-      "type": "string",
-      "defaultValue": "word"
-    },
-    "location": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().location]"
-    }
-  },
-  "variables": {
-    "databaseName": "[concat(parameters('siteName'), 'db')]",
-    "serverName": "[concat(parameters('siteName'), 'srv')]",
-    "hostingPlanName": "[concat(parameters('siteName'), 'plan')]",
-    "passKey": "[concat('Pass', parameters('secretSuffix'))]"
-  },
-  "resources": [
-    {
-      "apiVersion": "2020-06-01",
-      "type": "Microsoft.Web/serverfarms",
-      "name": "[variables('hostingPlanName')]",
-      "location": "[parameters('location')]",
-      "sku": {
-        "Tier": "Standard",
-        "Name": "S1"
-      },
-      "properties": {}
-    },
-    {
-      "apiVersion": "2020-06-01",
-      "type": "Microsoft.Web/sites",
-      "name": "[parameters('siteName')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
-      ],
-      "properties": {
-        "serverFarmId": "[variables('hostingPlanName')]"
-      },
       "resources": [
         {
           "apiVersion": "2020-06-01",
@@ -3147,15 +2804,14 @@ secrets:
           }
         }
       ]
-    }
-  ]
-}
+  }
 ```
 </details>
 <details><summary>Negative test num. 50 - json file</summary>
 
 ```json
 {
+  "metadata": "'Generic Secret' - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - 'Allow secret retrieved from ARM parameters'  allow-rule-test (line 11)",
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
@@ -3173,6 +2829,7 @@ secrets:
 <details><summary>Negative test num. 51 - yml file</summary>
 
 ```yml
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Github id-token Default Values"  allow-rule-test
 jobs:
   release:
     if: github.event.pull_request.merged == true || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
@@ -3184,10 +2841,10 @@ jobs:
        actions: write # for createWorkflowDispatch
        issues: write # for comments on issues
        pull-requests: write # for comments on pull requests
-       #id-token: write # for oidc npm provenance
-       #"id-token": read 
-       #'id-token': none
-       #permissions: {id-token: write, contents: read, pull-requests: write} 
+       #id-token: write # for oidc npm provenance                             # negative1
+       #"id-token": read                                                      # negative2
+       #'id-token': none                                                      # negative3
+       #permissions: {id-token: write, contents: read, pull-requests: write}  # negative4
     steps:
       - name: debug
         shell: bash
@@ -3198,26 +2855,30 @@ jobs:
 <details><summary>Negative test num. 52 - tf file</summary>
 
 ```tf
-
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding description field"               allow-rule-test - #1
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding Terraform 'optional' statement"  allow-rule-test - #2
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding Terraform 'try' statement"       allow-rule-test - #3
 variable "linux_vms" {
+  # 1:
   description = "A list of the Linux VMs to create.  \n <a name=region:></a>[region:](#region:) The Azure location where the Windows Virtual Machine should exist. Changing this forces a new resource to be created.  \n <a name=size:></a>[size:](#size:) The SKU which should be used for this Virtual Machine, such as Standard_F2.  \n <a name=admin_username:></a>[admin_username:](#admin_username:) The username of the local administrator used for the Virtual Machine. Changing this forces a new resource to be created.  \n <a name=admin_password:></a>[admin_password:](#admin_password:) he Password which should be used for the local-administrator on this Virtual Machine. Changing this forces a new resource to be created."
   type = map(object({
     region                           = string
     size                             = optional(string)
     admin_username                   = optional(string)
-    admin_password                   = optional(string)
+    admin_password                   = optional(string) #2
   }))
   default = {}
 }
 
 resource "azurerm_linux_virtual_machine" "vms" {
-  admin_password        = try(each.value.admin_password, null)
+  admin_password        = try(each.value.admin_password, null)  #3
 }
 ```
 </details>
 <details><summary>Negative test num. 53 - bicep file</summary>
 
 ```bicep
+// "Generic Secret"   - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - 'Allow secrets retrieved from Bicep getSecret built in function'  allow-rule-test
 import { common, tagsObject, deployName, removeSpace } from '../../../CommonValues.bicep'
 
 @description('Nome do sistema')
@@ -3240,7 +2901,7 @@ module consumerModule '../SecretConsumer/Resource.bicep' = {
     systemName: systemName
     resourceName: resourceName
     tags: tags
-    apiClientSecret: kvTest.getSecret('secret-sample') 
+    apiClientSecret: kvTest.getSecret('secret-sample')  // negative1
   }
 }
 
@@ -3250,6 +2911,7 @@ module consumerModule '../SecretConsumer/Resource.bicep' = {
 
 ```json
 {
+    "metadata": "'Generic Token' - baee238e-1921-4801-9c3f-79ae1d7b2cbc - 'Avoiding Run After Triggers (if written in conformity with best practices)'  allow-rule-test",
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "resources": [
@@ -3298,6 +2960,7 @@ module consumerModule '../SecretConsumer/Resource.bicep' = {
 <details><summary>Negative test num. 55 - bicep file</summary>
 
 ```bicep
+// "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding references to module outputs in Bicep"  allow-rule-test (also avoided by TF resource access allow rule)
 param systemName string
 param resourceName string
 param tags object
@@ -3319,7 +2982,8 @@ module clientModule '../ClientModule/Resource.bicep' = {
     systemName: systemName
     resourceName: resourceName
     tags: tags
-    validationToken: myModule.outputs.apiToken 
+    // negative1:
+    validationToken: myModule.outputs.apiToken
   }
 }
 
@@ -3329,48 +2993,11 @@ output clientName string = clientModule.outputs.clientName
 
 ```
 </details>
-<details><summary>Negative test num. 56 - tf file</summary>
-
-```tf
-resource "aws_secretsmanager_secret_version" "secret_version" {
-  for_each = { for k, v in var.clients.scram : k => v if var.enabled && var.client_sasl_scram_enabled }
-
-  secret_id     = aws_secretsmanager_secret.client_secret[each.key].id                                                                                              # use of indexes
-  secret_string = jsonencode({ "username" : join("_", [var.product, each.key, var.environment == "dev" ? var.environment : var.stack]), "password" : random_password.client_password[each.key].result })
-}
-
-resource "aws_secretsmanager_secret_version" "secret_version_2" {
-  for_each = { for k, v in var.clients.scram : k => v if var.enabled && var.client_sasl_scram_enabled }
-
-  secret_id     = aws_secretsmanager_secret.client_secret[each.key].id                                                                                              # use of indexes
-  secret_string = jsonencode({ "username" : join("_", [var.product, each.key, var.environment == "dev" ? var.environment : var.stack]), "password" : random_password[each.key].client_password.result })
-}
-
-resource "aws_secretsmanager_secret_version" "secret_version_3" {
-  for_each = { for k, v in var.clients.scram : k => v if var.enabled && var.client_sasl_scram_enabled }
-
-  secret_id     = aws_secretsmanager_secret.client_secret[each.key].id                                                                                              # use of indexes
-  secret_string = jsonencode({ "username" : join("_", [var.product, each.key, var.environment == "dev" ? var.environment : var.stack]), "password" : random_password["index"].client_password.result })
-}
-
-resource "aws_msk_scram_secret_association" "msk_secret_association" {
-  count           = var.enabled && var.client_sasl_scram_enabled ? 1 : 0
-  cluster_arn     = aws_msk_cluster.kafka[0].arn
-  secret_arn_list = [for secret in aws_secretsmanager_secret.client_secret : secret.arn] # short reference
-}
-
-resource "aws_msk_scram_secret_association" "msk_secret_association_2" {
-  count           = var.enabled && var.client_sasl_scram_enabled ? 1 : 0
-  cluster_arn     = aws_msk_cluster.kafka[0].arn
-  secret_arn_list = [for secret in aws_secretsmanager_secret.client_secret : null] # short reference
-}
-
-```
-</details>
-<details><summary>Negative test num. 57 - json file</summary>
+<details><summary>Negative test num. 56 - json file</summary>
 
 ```json
 {
+  "metadata": "Generic Negative Test - no secrets",
   "openapi": "3.0.0",
   "info": {
     "title": "Simple API Overview",
@@ -3387,7 +3014,7 @@ resource "aws_msk_scram_secret_association" "msk_secret_association_2" {
 
 ```
 </details>
-<details><summary>Negative test num. 58 - proto file</summary>
+<details><summary>Negative test num. 57 - proto file</summary>
 
 ```proto
 // "Generic Token"       - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Proto File fields"   allow-rule-test - #1
@@ -3533,9 +3160,468 @@ enum EnumAllowingAlias {
   option end_of_sample = false;}enum InlineMessageFormat{option end_of_sample = true;}
 ```
 </details>
-<details><summary>Negative test num. 59 - tf file</summary>
+<details><summary>Negative test num. 58 - tf file</summary>
 
 ```tf
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding TF resource access"                   allow-rule-test - #1
+# Global allow rule  - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding array access"                         allow-rule-test - #2
+# "Generic Secret"   - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - "Avoiding TF resource access"                   allow-rule-test - #3
+# "Generic Secret"   - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - "Avoiding Secrets from Variable Interpolation"  allow-rule-test - #4
+
+resource "aws_secretsmanager_secret_version" "secret_version" {
+  for_each = { for k, v in var.clients.scram : k => v if var.enabled && var.client_sasl_scram_enabled }
+
+  secret_id     = aws_secretsmanager_secret.client_secret[each.key].id                                                                                              # use of indexes
+  #1:
+  secret_string = jsonencode({ "username" : join("_", [var.product, each.key, var.environment == "dev" ? var.environment : var.stack]), "password" : random_password.client_password[each.key].result })
+}
+
+resource "aws_secretsmanager_secret_version" "secret_version_2" {
+  for_each = { for k, v in var.clients.scram : k => v if var.enabled && var.client_sasl_scram_enabled }
+
+  secret_id     = aws_secretsmanager_secret.client_secret[each.key].id                                                                                              # use of indexes
+  #1:
+  secret_string = jsonencode({ "username" : join("_", [var.product, each.key, var.environment == "dev" ? var.environment : var.stack]), "password" : random_password[each.key].client_password.result })
+}
+
+resource "aws_secretsmanager_secret_version" "secret_version_3" {
+  for_each = { for k, v in var.clients.scram : k => v if var.enabled && var.client_sasl_scram_enabled }
+
+  secret_id     = aws_secretsmanager_secret.client_secret[each.key].id                                                                                              # use of indexes
+  #2:
+  secret_string = jsonencode({ "username" : join("_", [var.product, each.key, var.environment == "dev" ? var.environment : var.stack]), "password" : random_password["index"].client_password.result })
+}
+
+resource "aws_msk_scram_secret_association" "msk_secret_association" {
+  count           = var.enabled && var.client_sasl_scram_enabled ? 1 : 0
+  cluster_arn     = aws_msk_cluster.kafka[0].arn
+  secret_arn_list = [for secret in aws_secretsmanager_secret.client_secret : secret.arn]     #3
+}
+
+resource "aws_msk_scram_secret_association" "msk_secret_association_2" {
+  count           = var.enabled && var.client_sasl_scram_enabled ? 1 : 0
+  cluster_arn     = aws_msk_cluster.kafka[0].arn
+  secret_arn_list = [for secret in aws_secretsmanager_secret.client_secret : "${secret.arn}"] #4
+}
+```
+</details>
+<details><summary>Negative test num. 59 - proto file</summary>
+
+```proto
+// "Generic Token"       - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Proto File fields"   allow-rule-test - #1
+// "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258 - "Avoiding Proto File fields"   allow rule test - #2
+// "Encryption Key"      - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 - "Avoiding Proto File fields"   allow-rule-test - #3
+// "Generic Password"    - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding Proto File fields"   allow rule test - #4
+// "Generic Secret"      - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - "Avoiding Proto File fields"   allow rule test - #5
+// Global allow rule     - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding Boolean's"           allow-rule-test - #6
+syntax = "proto3";
+package com.example.security_test.v1;
+import "google/protobuf/wrappers.proto";
+option go_package = "github.com/CheckmarxDev/router-audit/gen/presets/v1;presets";
+
+// Scenario 1 - Simple attribution
+message SampleMessageNegative {
+  google.protobuf.StringValue refresh_token = 536870911; // if value is larger - out of range error "Field numbers cannot be greater than 536870911."  - Generic Token #1
+  google.protobuf.StringValue sonar_token = 39;google.protobuf.StringValue codecov_token = 40;// trailing comment test - Generic Token #1
+
+  google.protobuf.StringValue access_token= 111111111;                             // Generic Token #1
+  google.protobuf.StringValue    api_token = 7   ;                                 // Generic Token #1
+  google.protobuf.StringValue token = 8;                                           // Generic Token #1
+  google.protobuf.StringValue aws_session_token = 9;                               // Generic Token #1
+  google.protobuf.StringValue twilio_auth_token = 21;                              // Generic Token #1
+  google.protobuf.StringValue test_token_ = 122  ;                                 // Generic Token #1
+
+  google.protobuf.StringValue jwt_private_key = 25;                                // Generic Private Key #2
+  google.protobuf.StringValue ssh_private_key = 26;                                // Generic Private Key #2
+  google.protobuf.StringValue tls_private_key = 27;                                // Generic Private Key #2
+  google.protobuf.StringValue ca_private_key = 28    ;                             // Generic Private Key #2
+  google.protobuf.StringValue private_key = 5;                                     // Generic Private Key #2
+
+  google.protobuf.StringValue encryption_key = 22;                                 // Encryption Key #3
+  google.protobuf.StringValue data_encryption_key= 23   ;                          // Encryption Key #3
+  google.protobuf.StringValue key_encryption_key=24;                               // Encryption Key #3
+
+  google.protobuf.StringValue registry_password =    10421;                        // Generic Password #4
+  google.protobuf.StringValue artifactory_password   = 10731  ;                    // Generic Password #4
+  google.protobuf.StringValue nexus_password = 10853;                              // Generic Password #4
+  string password =          64114;                                                // Generic Password #4
+
+  string secret_key =   123456789;                                                 // Generic Secret #5
+  string secret_value   = 123456790;                                               // Generic Secret #5
+  string   secret   =   123456791;                                                 // Generic Secret #5
+}
+
+// Scenario 2 - Attribution with options
+message SampleMessageNegative2 {
+  google.protobuf.StringValue next_page_token = 5 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}];        // Generic Token #1
+  google.protobuf.StringValue next_next_page_token = 6[(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}  ] ; // Generic Token #1
+  google.protobuf.StringValue api_token = 7 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"jira_api_token\""}];    // Generic Token #1
+
+  google.protobuf.StringValue next_page_private_key = 8 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}];             // Generic Private Key #2
+  google.protobuf.StringValue next_next_page_private_key = 8[(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}  ] ;      // Generic Private Key #2
+  google.protobuf.StringValue api_private_key = 10 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"jira_api_private_key\""}];  // Generic Private Key #2
+
+  google.protobuf.StringValue next_page_encryption_key = 11 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}];                // Encryption Key #3
+  google.protobuf.StringValue next_next_page_encryption_key = 12[(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}  ] ;         // Encryption Key #3
+  google.protobuf.StringValue api_encryption_key = 13 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"jira_api_encryption_key\""}];   // Encryption Key #3
+
+  google.protobuf.StringValue next_page_password = 14 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}];          // Generic Password #4
+  google.protobuf.StringValue next_next_page_password = 15[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}  ] ;   // Generic Password #4
+  google.protobuf.StringValue api_password = 16 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"jira_api_password\""}];   // Generic Password #4
+
+  google.protobuf.StringValue next_page_secret = 17[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}];           // Generic Secret #5
+  google.protobuf.StringValue next_next_page_secret = 18[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}  ] ;   // Generic Secret #5
+  google.protobuf.StringValue api_secret = 19[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"jira_api_secret\""}];      // Generic Secret #5
+}
+
+message MyOptions {
+  string file_only_option_token = 1 [targets = TARGET_TYPE_FILE];                     // Generic Token       #1
+  int message_and_enum_option_token = 2 [targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Generic Token       #1 (line above)
+
+  string file_only_option_private_key = 11 [targets = TARGET_TYPE_FILE];              // Generic Private Key #2
+  int message_and_enum_option_private_key = 21 [targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Generic Private Key #2 (line above)
+
+  string file_only_option_encryption_key = 13 [targets = TARGET_TYPE_FILE];           // Encryption Key      #3
+  int message_and_enum_option_encryption_key = 23 [targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Encryption Key      #3 (line above)
+
+  string file_only_option_password = 14 [targets = TARGET_TYPE_FILE];                 // Generic Password    #4
+  int message_and_enum_option_password = 24 [targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Generic Password    #4 (line above)
+
+  string file_only_option_secret = 15[targets = TARGET_TYPE_FILE];                    // Generic Secret      #5
+  int message_and_enum_option_secret = 25[targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Generic Secret      #5 (line above)
+
+  int B_message_and_enum_option_token = 2 [targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];              // Generic Token        #1
+
+  int B_message_and_enum_option_private_key = 211 [targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];      // Generic Private Key  #2
+
+  int B_message_and_enum_option_encryption_key = 232 [targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];   // Encryption Key       #3
+
+  int B_message_and_enum_option_password = 243 [targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];         // Generic Password     #4
+
+  int B_message_and_enum_option_secret = 254[targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];            // Generic Secret       #5
+}
+
+message Not_a_Token {
+  string token          = 1  [json_name = "tk"];          // Generic Token       #1
+  string private_key    = 4  [json_name = "pk"];          // Generic Private Key #2
+  string encryption_key = 3  [json_name = "ek"];          // Encryption Key      #3
+  string password       = 2  [json_name = "ps"];          // Generic Password    #4
+  string secret         = 5[json_name = "se"];            // Generic Secret      #5
+}
+
+// Scenario 3 - Enum attributions
+enum Corpus {
+  DATA_A_UNSPECIFIED_TOKEN = 0 [  deprecated =   true  ] ;    // Generic Token       #1
+  DATA_A_TOKEN = 11[deprecated=true] ;                        // Generic Token       #1 & #6
+  DATA_A_PRIVATE_KEY = 2[deprecated = false];                 // Generic Private Key #2 & #6
+  DATA_A_ENCRYPTION_KEY = 3[deprecated = true];               // Encryption Key      #3 & #6
+  DATA_A_PASSWORD = 1234  [deprecated = false];               // Generic Password    #4 & #6
+  DATA_A_SECRET = 5[deprecated=true];                         // Generic Secret      #5 & #6
+
+                                                        // Generic Token       #1 (line below)
+  DATA_B_TOKEN = 2[
+    (string_name) = "display_value"
+  ];
+                                                        // Generic Private Key #2 (line below)
+  DATA_B_PRIVATE_KEY = 2 [
+    (string_name) = "display_value"
+  ];
+                                                        // Encryption Key      #3 (line below)
+  DATA_B_ENCRYPTION_KEY = 2 [
+    (string_name) = "display_value"
+  ];
+                                                        // Generic Password    #4 (line below)
+  DATA_B_PASSWORD = 28970[
+    (string_name) = "display_value"
+  ];
+                                                        // Generic Secret      #5 (line below)
+  DATA_B_SECRET = 123456789[
+    (string_name) = "display_value"
+  ];
+}
+
+// Scenario 4 - Generic keywords in "reserved"
+enum EnumAllowingAlias {
+  reserved "password", "api_token", "private_key", "encryption_key", "exposed_secret";
+  option end_of_sample = false;}enum InlineMessageFormat{option end_of_sample = true;}
+```
+</details>
+<details><summary>Negative test num. 60 - tf file</summary>
+
+```tf
+# "Encryption Key"  - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 - "Avoiding TF resource access"  allow-rule-test - #1
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding TF variables"        allow-rule-test - #2
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding array access"        allow-rule-test - #3
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "us-east-1"
+}
+
+variable "encryption_key" {
+  description = "Encryption key from external config"
+  type        = string
+  sensitive   = true
+}
+
+
+resource "aws_kms_key" "client_encryption_key" {
+  for_each = { for k, v in var.clients.storage : k => v if var.enabled }
+
+  description             = "KMS key for ${each.key}"
+  deletion_window_in_days = 30
+  enable_key_rotation     = true
+}
+
+resource "aws_kms_alias" "client_encryption_alias" {
+  for_each = { for k, v in var.clients.storage : k => v if var.enabled }
+
+  name          = "alias/${each.key}-encryption"
+  target_key_id = aws_kms_key.client_encryption_key[each.key].key_id
+}
+
+module "storage" {
+  for_each = { for k, v in var.clients.storage : k => v if var.enabled }
+  source   = "./modules/storage"
+
+  encryption_key = aws_kms_key.client_encryption_key[each.key].arn  #1
+}
+
+module "storage_2" {
+  for_each = { for k, v in var.clients.storage : k => v if var.enabled }
+  source   = "./modules/storage"
+
+  encryption_key = aws_kms_key[each.key].client_encryption_key.arn  #1
+}
+
+module "storage_3" {
+  for_each = { for k, v in var.clients.storage : k => v if var.enabled }
+  source   = "./modules/storage"
+
+  encryption_key = aws_kms_key["index"].client_encryption_key.arn   #3
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "bucket_enc" {
+  count  = var.enabled ? 1 : 0
+  bucket = aws_s3_bucket.main[0].id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm     = "aws:kms"
+      kms_master_key_id = [for k in aws_kms_key.client_encryption_key : k.arn]  #1
+    }
+  }
+}
+
+module "optional_encryption" {
+  source = "./modules/storage"
+
+  encryption_key = null #1
+}
+
+module "database" {
+  source = "./modules/database"
+
+  encryption_key = var.encryption_key #2
+}
+
+module "app" {
+  source = "./modules/app"
+
+  encryption_key = module.encryption.key_output.value #1
+}
+
+data "aws_kms_key" "existing" {
+  key_id = "alias/existing-encryption-key"
+}
+
+module "legacy" {
+  source = "./modules/legacy"
+
+  encryption_key = data.aws_kms_key.existing.arn  #1
+}
+
+locals {
+  encryption_config = {
+    key_arn = aws_kms_key.client_encryption_key["primary"].arn
+  }
+}
+
+module "monitoring" {
+  source = "./modules/monitoring"
+
+  encryption_key = local.encryption_config.key_arn  #1
+}
+```
+</details>
+<details><summary>Negative test num. 61 - yaml file</summary>
+
+```yaml
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - "Avoiding CloudFormation Parameters Descriptions" allow rule test
+Transform: 'AWS::Serverless-2016-10-31'
+Metadata:
+  'AWS::ServerlessRepo::Application':
+    Name: AthenaJdbcConnector
+    Description: 'This connector enables Amazon Athena to communicate with your Database instance(s) using JDBC driver.'
+    Author: 'default author'
+    SpdxLicenseId: Apache-2.0
+    LicenseUrl: LICENSE.txt
+    ReadmeUrl: README.md
+    Labels:
+      - athena-federation
+    HomePageUrl: 'https://github.com/awslabs/aws-athena-query-federation'
+    SemanticVersion: 2021.41.1
+    SourceCodeUrl: 'https://github.com/awslabs/aws-athena-query-federation'
+Parameters:
+  SecretNamePrefix:
+      # negative1 :
+      Description: 'Used to create resource-based authorization policy for "secretsmanager:GetSecretValue" action. E.g. All Athena JDBC Federation secret names can be prefixed with "AthenaJdbcFederation" and authorization policy will allow "arn:${AWS::Partition}:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:AthenaJdbcFederatione*". Parameter value in this case should be "AthenaJdbcFederation". If you do not have a prefix, you can manually update the IAM policy to add allow any secret names.'
+      Type: String
+Resources:
+```
+</details>
+<details><summary>Negative test num. 62 - tf file</summary>
+
+```tf
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding TF creation token"  allow-rule-test
+resource "aws_efs_file_system" "example" {
+  creation_token = "my-efs-filesystem"  # negative1
+
+  tags = {
+    Name = "MyEFS"
+  }
+}
+
+resource "aws_efs_file_system" "quoted_key" {
+  creation_token = "my-efs-token-123"   # negative2
+}
+```
+</details>
+<details><summary>Negative test num. 63 - tf file</summary>
+
+```tf
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding LifecycleActionToken Var"  allow-rule-test
+variable "lifecycle_config" {
+  default = {
+    LifecycleActionToken = "placeholder-token-value"
+  }
+}
+```
+</details>
+<details><summary>Negative test num. 64 - json file</summary>
+
+```json
+{
+  "metadata": "'Generic Token' - baee238e-1921-4801-9c3f-79ae1d7b2cbc - 'Avoiding LifecycleActionToken Var' allow-rule-test (line 13)",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.Compute/virtualMachineScaleSets",
+      "apiVersion": "2021-03-01",
+      "name": "[parameters('vmssName')]",
+      "location": "eastus",
+      "properties": {
+        "orchestrationMode": "Flexible",
+        "lifecycleHook": {
+          "LifecycleActionToken": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+          "LifecycleHookName": "my-lifecycle-hook",
+          "AutoScalingGroupName": "my-asg-group",
+          "LifecycleTransition": "autoscaling:EC2_INSTANCE_LAUNCHING"
+        }
+      }
+    }
+  ]
+}
+```
+</details>
+<details><summary>Negative test num. 65 - yaml file</summary>
+
+```yaml
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding LifecycleActionToken Var"  allow-rule-test (line 10)
+Resources:
+  LifecycleHookAction:
+    Type: AWS::AutoScaling::LifecycleHook
+    Properties:
+      AutoScalingGroupName: my-asg-group
+      LifecycleTransition: "autoscaling:EC2_INSTANCE_LAUNCHING"
+      NotificationMetadata: |
+        {
+          "LifecycleActionToken": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+          "LifecycleHookName": "my-lifecycle-hook"
+        }
+```
+</details>
+<details><summary>Negative test num. 66 - yaml file</summary>
+
+```yaml
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding result_token Var"  allow-rule-test (line 13)
+Resources:
+  ConfigEvaluatorFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Runtime: python3.12
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          import boto3
+          config = boto3.client('config')
+          def handler(event, context):
+              result_token = event['resultToken']
+              config.put_evaluations(
+                  Evaluations=[{
+                      'ComplianceResourceType': event['configRuleArn'],
+                      'ComplianceResourceId': event['resourceId'],
+                      'ComplianceType': 'COMPLIANT',
+                      'OrderingTimestamp': event['notificationCreationTime']
+                  }],
+                  ResultToken=result_token
+              )
+```
+</details>
+<details><summary>Negative test num. 67 - tf file</summary>
+
+```tf
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding next_token Var"  allow-rule-test (line 21)
+resource "aws_lambda_function" "list_resources" {
+  function_name = "list-all-resources"
+  runtime       = "python3.12"
+  handler       = "index.handler"
+  role          = aws_iam_role.lambda_role.arn
+  filename      = "lambda.zip"
+}
+
+resource "local_file" "lambda_code" {
+  filename = "index.py"
+  content  = <<EOF
+import boto3
+ec2 = boto3.client('ec2')
+def handler(event, context):
+    next_token = event.get('NextToken', None)
+    params = {'MaxResults': 100}
+    if next_token:
+        params['NextToken'] = next_token
+    response = ec2.describe_instances(**params)
+    return {'NextToken': response.get('NextToken')}
+EOF
+}
+```
+</details>
+<details><summary>Negative test num. 68 - tf file</summary>
+
+```tf
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - negative-test (empty string)
 resource "google_container_cluster" "primary3" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
@@ -3543,7 +3629,7 @@ resource "google_container_cluster" "primary3" {
 
   master_auth {
     username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
-    password = ""
+    password = ""   # negative1
 
     client_certificate_config {
       issue_client_certificate = true
@@ -3558,9 +3644,146 @@ resource "google_container_cluster" "primary3" {
 
 ```
 </details>
-<details><summary>Negative test num. 60 - tf file</summary>
+<details><summary>Negative test num. 69 - yaml file</summary>
+
+```yaml
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - "Avoiding Secrets from Variable Interpolation"  allow-rule-test
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template using dynamic references
+
+Resources:
+  MyRDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceClass: db.t3.micro
+      Engine: mysql
+      MasterUsername: '{{resolve:secretsmanager:prod/db/credentials:SecretString:username}}'
+      MasterUserPassword: '{{resolve:secretsmanager:prod/db/credentials:SecretString:password}}'
+      AllocatedStorage: 20
+
+  MyLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: my-function
+      Runtime: python3.12
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          def handler(event, context):
+              return {'statusCode': 200}
+      Environment:
+        Variables:
+          API_TOKEN: '{{resolve:ssm-secure:/prod/api/token}}'
+          DB_PASSWORD: '{{resolve:ssm-secure:/prod/db/password}}'
+          APP_SECRET: '{{resolve:ssm:/prod/app/config}}' # negative1
+```
+</details>
+<details><summary>Negative test num. 70 - yaml file</summary>
+
+```yaml
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding ansible-vault encrypted variables"  allow-rule-test
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template using dynamic references
+
+Resources:
+  MyRDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      db_password: !vault |       # negative1
+        $ANSIBLE_VAULT;1.1;AES256
+        3436396162306336
+      api_token: !vault |         # negative2
+        $ANSIBLE_VAULT;1.1;AES256
+        7172737475767778
+      secret_key: !vault |        # is not caught by current "Generic Secret" - future proffing test
+        $ANSIBLE_VAULT;1.1;AES256
+        6162636465666768
+```
+</details>
+<details><summary>Negative test num. 71 - tf file</summary>
 
 ```tf
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding sha-hashed mysql native passwords" allow-rule-test
+terraform {
+  required_providers {
+    mysql = {
+      source  = "petoju/mysql"
+      version = "~> 3.0"
+    }
+  }
+}
+
+provider "mysql" {
+  endpoint = "db.example.com:3306"
+  username = "admin"
+}
+
+resource "mysql_user" "app_user" {
+  user               = "app_user"
+  host               = "%"
+  auth_plugin         = "mysql_native_password"
+  plaintext_password  = "*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9" # negative1
+}
+
+resource "mysql_grant" "app_user_grant" {
+  user       = mysql_user.app_user.user
+  host       = mysql_user.app_user.host
+  database   = "app_db"
+  privileges = ["SELECT", "INSERT", "UPDATE", "DELETE"]
+}
+```
+</details>
+<details><summary>Negative test num. 72 - yaml file</summary>
+
+```yaml
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding sha-hashed mysql native passwords" allow-rule-test
+---
+- name: Configure MySQL database users
+  hosts: db_servers
+  become: yes
+
+  tasks:
+    - name: Create application database user
+      community.mysql.mysql_user:
+        name: app_user
+        host: '%'
+        password: '*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9' # negative1
+        encrypted: yes
+        priv: 'app_db.*:SELECT,INSERT,UPDATE,DELETE'
+        state: present
+
+    - name: Create readonly database user
+      community.mysql.mysql_user:
+        name: readonly_user
+        host: '10.0.0.%'
+        password: '*2470C0C06DEE42FD1618BB99005ADCA2EC9D1E19' # negative2
+        encrypted: yes
+        priv: 'app_db.*:SELECT'
+        state: present
+```
+</details>
+<details><summary>Negative test num. 73 - yaml file</summary>
+
+```yaml
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding CF resolve" allow-rule-test
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Example showing ambiguous secretsmanager resolve syntax
+
+Resources:
+  MyDatabase:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: !Sub '${Environment}-myapp-db'
+      DBInstanceClass: !Ref DBInstanceClass
+      Engine: postgres
+      EngineVersion: '15.4'
+      MasterUserPassword: '{{resolve:secretsmanager:prod/db/creds:SecretString:password:number1:value}}'  # negative1
+```
+</details>
+<details><summary>Negative test num. 74 - tf file</summary>
+
+```tf
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - negative-test (empty string)
 resource "google_container_cluster" "primary5" {
   name               = "marcellus-wallace-credential"
   location           = "us-central1-a"
@@ -3568,7 +3791,7 @@ resource "google_container_cluster" "primary5" {
 
   master_auth {
     username = "PRIVATE KEY_key"
-    password = ""
+    password = ""   # negative1
 
     client_certificate_config {
       issue_client_certificate = true
@@ -3583,9 +3806,10 @@ resource "google_container_cluster" "primary5" {
 
 ```
 </details>
-<details><summary>Negative test num. 61 - tf file</summary>
+<details><summary>Negative test num. 75 - tf file</summary>
 
 ```tf
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - negative-test (secret_(id) is not (key|value))
 resource "google_secret_manager_secret" "secret-basic" {
   secret_id = "secret-version"
 

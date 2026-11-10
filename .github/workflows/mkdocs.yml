@@ -18,28 +18,16 @@ permissions:
 jobs:
   deploy:
     name: Deploy documentation pages
+    environment: release
     runs-on: cx-public-ubuntu-x64
     permissions:
       contents: write # for git push to gh-pages
+      id-token: write # for configure-aws-credentials to assume the AWS role via OIDC
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
-        if: always()
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
-          card-layout-start: cozy
-          card-layout-exit: complete
-          show-on-start: true
-          show-on-exit: true
-          custom-actions: |
-            - name: View CI Logs
-              value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}"
-            - name: View HEAD Commit
-              value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: 3.x
@@ -55,7 +43,36 @@ jobs:
       - name: Update develop docs
         run: |
           mike deploy develop
+      - name: Configure AWS credentials
+        uses: step-security/configure-aws-credentials@1448016543d4432bd608e0de7871c7bf9e9be925 # v6.2.1
+        with:
+          role-to-assume: ${{ secrets.SECRET_MANAGER_ROLE_ARN }}
+          aws-region: ${{ secrets.SECRET_MANAGER_AWS_REGION }}
+          role-session-name: kics-release-app-key
+      - name: Fetch GitHub App private key
+        uses: step-security/aws-secretsmanager-get-secrets@102b6b2a2528747bcc321bb99ef326d8be7ef58f # v3.0.1
+        with:
+          secret-ids: KICS_APP_KEY,${{ secrets.SECRET_MANAGER_SECRET_NAME }}
+      - name: Mask each line of the private key
+        run: |
+          while IFS= read -r line; do
+            line="${line%$'\r'}"
+            if [ -n "${line}" ]; then
+              echo "::add-mask::${line}"
+            fi
+          done <<< "${KICS_APP_KEY}"
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          client-id: ${{ secrets.KICS_RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ env.KICS_APP_KEY }}
+          permission-contents: write
+      - name: Remove the private key from the environment
+        run: echo "KICS_APP_KEY=" >> "$GITHUB_ENV"
       - name: Fix version selector
+        env:
+          GH_APP_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           git checkout gh-pages
           find . -type f -name "*.html" -exec sed -i -E '/<script src="(.)*js\/version-select.js" defer><\/script>/d' {} +
@@ -63,4 +80,4 @@ jobs:
           find . -type f -name "version-select.css" -exec rm -f {} +
           find . -type f -name "version-select.js" -exec rm -f {} +
           git commit -a --amend --no-edit
-          git push origin gh-pages
+          git push "https://x-access-token:${GH_APP_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages

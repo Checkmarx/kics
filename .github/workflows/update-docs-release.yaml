@@ -84,7 +84,7 @@ jobs:
           CURRENT_VERSION: ${{ steps.version.outputs.cversion }}
         run: |
           mike delete latest
-          mike deploy latest "${CURRENT_VERSION}"
+          mike deploy latest "${CURRENT_VERSION}" --update-aliases --alias-type copy
       - name: Configure AWS credentials
         uses: step-security/configure-aws-credentials@1448016543d4432bd608e0de7871c7bf9e9be925 # v6.2.1
         with:
