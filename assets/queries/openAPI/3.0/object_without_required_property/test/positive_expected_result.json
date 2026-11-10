@@ -106,5 +106,11 @@
     "severity": "INFO",
     "line": 42,
     "filename": "positive8.yaml"
+  },
+  {
+    "queryName": "Object Without Required Property (v3)",
+    "severity": "INFO",
+    "line": 5,
+    "filename": "positive9.yaml"
   }
 ]

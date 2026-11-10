@@ -1,0 +1,19 @@
+openapi: 3.0.1
+info:
+  title: Header Sample
+  version: "1.0"
+paths:
+  /demo:
+    get:
+      responses:
+        '200':
+          description: ok
+          headers:
+            Access-Control-Allow-Origin:
+              description: Allowed origin
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              description: Allowed methods
+              schema:
+                type: string
