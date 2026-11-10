@@ -1,0 +1,13 @@
+{
+  "id": "4d8b6e2a-9f3c-4a1d-b7e5-8c2f0d6a3b9e",
+  "queryName": "IAM Role OIDC Trust Unrestricted Sub Condition",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "An AWS IAM role that trusts an OIDC provider via 'sts:AssumeRoleWithWebIdentity' must restrict the 'sub' (subject) claim to an allow-list. If no condition restricts 'sub' to specific values (negated operators like 'StringNotEquals' and non-string operators like 'Null' do not count), or it uses an overly permissive pattern (e.g. 'StringLike' with '*' or 'repo:*'), any identity able to obtain a token from the OIDC provider may assume the role.",
+  "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html",
+  "platform": "Terraform",
+  "descriptionID": "4d8b6e2a",
+  "cloudProvider": "aws",
+  "cwe": "284",
+  "riskScore": "6.0"
+}

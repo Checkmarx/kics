@@ -409,6 +409,12 @@ get_statement(policy) = st {
 } else = st {
 	is_array(policy.Statement)
 	st = policy.Statement
+} else = st {
+	is_object(policy.statement)
+	st = [policy.statement]
+} else = st {
+	is_array(policy.statement)
+	st = policy.statement
 }
 
 is_allow_effect(statement) {
