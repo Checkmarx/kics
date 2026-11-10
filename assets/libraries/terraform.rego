@@ -84,8 +84,10 @@ containsPort(rule, port) {
 	rule.from_port <= port
 	rule.to_port >= port
 } else {
+	# 0/0 means "all ports" only when the protocol is all (-1), a tcp/udp 0/0 rule only allows port 0
 	rule.from_port == 0
 	rule.to_port == 0
+	rule[prot_types[_]] == open_port[_]
 } else {
 	regex.match(sprintf("(^|\\s|,)%d(-|,|$|\\s)", [port]), rule.destination_port_range)
 } else {
