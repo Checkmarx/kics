@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: Checkmarx/kics-github-action
-          ref: fe35470377b09d56b3a887701e2bbcb67d5b8d86 # fix-kics-github-action branch
+          ref: 4a16c2130b02104dc2624c133d5224080e7cc49b # master (bump kics version to 2.2.1)
           path: .kics-github-action
           persist-credentials: false
       # The runner cannot reach registry.npmjs.org, and a remote `uses:` docker action is built during job setup without secrets.
