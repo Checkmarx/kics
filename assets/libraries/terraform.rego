@@ -14,6 +14,9 @@ check_cidr(rule) {
 	rule.cidr_ipv4 == "0.0.0.0/0"
 } else {
 	rule.cidr_ipv6 == common_lib.unrestricted_ipv6[_]
+} else {
+	# aws_network_acl uses the singular form
+	rule.ipv6_cidr_block == common_lib.unrestricted_ipv6[_]
 }
 
 is_security_group_ingress(type,resource) {
@@ -41,17 +44,40 @@ cidr_is_unmasked(resource) {
 prot_types := ["protocol","ip_protocol"]
 open_port := ["all","-1"]
 
+# TCP can be written as "tcp" or as the protocol number 6
+is_tcp(protocol) {
+	lower(protocol) == "tcp"
+} else {
+	protocol == "6"
+} else {
+	protocol == 6
+}
+
+# Network ACL rules: only an allow rule can open access
+nacl_rule_is_allow(rule) {
+	lower(rule.action) == "allow"
+} else {
+	lower(rule.rule_action) == "allow"
+}
+
+# aws_network_acl_rule with egress = true controls outbound traffic
+nacl_rule_is_egress(rule) {
+	rule.egress == true
+} else {
+	rule.egress == "true"
+}
+
 # Checks if a TCP port is open
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
-	rule[prot_types[_]] == "tcp"
+	is_tcp(rule[prot_types[_]])
 	containsPort(rule, port)
 }
 
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
-	rule[prot_types[_]] == "tcp"
+	is_tcp(rule[prot_types[_]])
 	containsPort(rule, port)
 }
 

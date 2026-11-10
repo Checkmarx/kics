@@ -16,5 +16,53 @@
     "severity": "HIGH",
     "line": 26,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 19,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 33,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 50,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 19,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 33,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 50,
+    "fileName": "positive5.tf"
   }
 ]

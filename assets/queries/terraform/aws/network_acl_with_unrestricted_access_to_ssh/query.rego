@@ -10,6 +10,7 @@ CxPolicy[result] {
 	is_array(resource.ingress)
 	tf_lib.portOpenToInternet(resource.ingress[idx], 22)
 	not is_tcp_port_zero(resource.ingress[idx])
+	tf_lib.nacl_rule_is_allow(resource.ingress[idx])
 
 	result := {
 		"documentId": doc.id,
@@ -31,6 +32,8 @@ CxPolicy[result] {
 
 	tf_lib.portOpenToInternet(net_acl_rule, 22)
 	not is_tcp_port_zero(net_acl_rule)
+	tf_lib.nacl_rule_is_allow(net_acl_rule)
+	not tf_lib.nacl_rule_is_egress(net_acl_rule)
 
 	result := {
 		"documentId": doc.id,
@@ -51,6 +54,7 @@ CxPolicy[result] {
 	not is_array(resource.ingress)
 	tf_lib.portOpenToInternet(resource.ingress, 22)
 	not is_tcp_port_zero(resource.ingress)
+	tf_lib.nacl_rule_is_allow(resource.ingress)
 
 	result := {
 		"documentId": doc.id,
@@ -72,6 +76,7 @@ CxPolicy[result] {
 
 	tf_lib.portOpenToInternet(rule, 22)
 	not is_tcp_port_zero(rule)
+	tf_lib.nacl_rule_is_allow(rule)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -86,7 +91,7 @@ CxPolicy[result] {
 }
 
 is_tcp_port_zero(rule) {
-	rule.protocol == "tcp"
+	tf_lib.is_tcp(rule.protocol)
 	rule.from_port == 0
 	rule.to_port == 0
 }
