@@ -1,0 +1,16 @@
+services:
+  webserver:
+    image: nginx:1
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "curl", "-s", "http://localhost"]
+      interval: 1m
+      retries: 3
+      start_period: 30s
+      start_interval: 3s
+    cap_drop:
+      - ALL
+    cap_add:
+      - CAP_SETGID
+      - CAP_SETUID

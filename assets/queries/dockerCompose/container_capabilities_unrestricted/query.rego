@@ -6,6 +6,7 @@ CxPolicy[result] {
 	resource := input.document[i]
 	service_parameters := resource.services[name]	
     common_lib.valid_key(service_parameters, "cap_add")
+	not capabilities_restricted(service_parameters)
     
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
@@ -30,4 +31,13 @@ CxPolicy[result] {
 		"keyActualValue": "Docker compose file doesn't have 'cap_drop' attribute. Make sure your container only has necessary capabilities.",
 		"searchLine": common_lib.build_search_line(["services", name], []),
 	}
+}
+
+capabilities_restricted(service_parameters) {
+	has_all(service_parameters.cap_drop)
+	not has_all(service_parameters.cap_add)
+}
+
+has_all(capabilities) {
+	lower(capabilities[_]) == "all"
 }
