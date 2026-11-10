@@ -1,0 +1,15 @@
+openapi: 3.0.1
+info:
+  title: Sample
+  version: '1.0'
+tags:
+  - name: demo
+    description: Demo tag
+paths:
+  /demo:
+    get:
+      tags:
+        - demo
+      responses:
+        '200':
+          description: ok

@@ -184,7 +184,6 @@ require_objects_v3 := {
 	"requestBody": {"value": {"content"}, "array": false, "map_object": false},
 	"requestBodies": {"value": {"content"}, "array": false, "map_object": true},
 	"responses": shared.responses,
-	"headers": {"value": {"name"}, "array": false, "map_object": true},
 	"discriminator": {"value": {"propertyName"}, "array": false, "map_object": false},
 	"securitySchemes": {"value": {"type"}, "array": false, "map_object": true},
 	"implicit": {"value": {"scopes"}, "array": false, "map_object": false},
