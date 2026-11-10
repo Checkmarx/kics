@@ -1,0 +1,49 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Template Path Sample",
+    "version": "1.0"
+  },
+  "paths": {
+    "/{testa}/{testb}": {
+      "get": {
+        "operationId": "demoOperationId",
+        "parameters": [
+          {
+            "name": "testa",
+            "in": "path",
+            "description": "testa",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "testb",
+            "in": "path",
+            "description": "testb",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok"
+          }
+        }
+      }
+    }
+  }
+}

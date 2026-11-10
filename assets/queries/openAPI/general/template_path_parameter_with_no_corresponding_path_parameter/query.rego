@@ -10,12 +10,12 @@ CxPolicy[result] {
 	matches := openapi_lib.is_path_template(name)
 	matches != []
 	path_param := trim_right(trim_left(matches[idx], "{"), "}")
-	parameter := path[verb].parameters[param]
+	parameter := path[verb].parameters[_]
 
-	count([parameter |
-		parameter.in == "path"
-		parameter.name == path_param
-		parameter := path[verb].parameters[param]
+	count([p |
+		p := path[verb].parameters[_]
+		p.in == "path"
+		p.name == path_param
 	]) == 0
 
 	result := {

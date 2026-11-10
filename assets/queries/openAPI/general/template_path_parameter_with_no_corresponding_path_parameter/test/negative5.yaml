@@ -1,0 +1,47 @@
+openapi: 3.0.1
+info:
+  title: Template Path Sample
+  version: "1.0"
+paths:
+  /{testa}/{testb}:
+    get:
+      operationId: demoOperationId
+      tags:
+      - demo
+      summary: ok
+      description: ok
+      parameters:
+      - name: testa
+        in: path
+        description: testa
+        required: true
+        schema:
+          type: string
+          maxLength: 128
+          pattern: ^.*$
+      - name: testb
+        in: path
+        description: testa
+        required: true
+        schema:
+          type: string
+          maxLength: 128
+          pattern: ^.*$
+      - name: limit
+        in: query
+        description: limit
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 1000
+      - name: offset
+        in: query
+        description: offset
+        required: false
+        schema:
+          type: integer
+          format: int64
+          minimum: 0
+          maximum: 999999999999
