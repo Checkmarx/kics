@@ -9,6 +9,7 @@ CxPolicy[result] {
 	resource := Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
 	properties := resource.Properties
+	not is_aurora(properties)
 	cf_lib.isCloudFormationFalse(properties.MultiAZ)
 
 	result := {
@@ -28,6 +29,7 @@ CxPolicy[result] {
 	resource := Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
 	properties := resource.Properties
+	not is_aurora(properties)
 	not common_lib.valid_key(properties, "MultiAZ")
 
 	result := {
@@ -39,4 +41,11 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("The RDS DBInstance '%s' should have Multi-Availability Zone enabled", [name]),
 		"keyActualValue": sprintf("The RDS DBInstance '%s' MultiAZ property is undefined and by default disabled", [name]),
 	}
+}
+
+# Aurora availability is configured at the cluster level, MultiAZ doesn't apply to its instances
+is_aurora(properties) {
+	startswith(lower(properties.Engine), "aurora")
+} else {
+	common_lib.valid_key(properties, "DBClusterIdentifier")
 }
