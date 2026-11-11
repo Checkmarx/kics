@@ -1,0 +1,6 @@
+version: "3"
+services:
+  frontend:
+    image: node:18
+    volumes:
+      - /usr/src/app/node_modules
