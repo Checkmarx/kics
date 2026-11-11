@@ -1,0 +1,6 @@
+replicaCount: 999
+image:
+  tag: discovered
+enabled: true
+variant: auto
+needsRequired: true

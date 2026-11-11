@@ -16,6 +16,7 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
 	"github.com/Checkmarx/kics/v2/pkg/progress"
+	"github.com/Checkmarx/kics/v2/pkg/resolver/helm"
 )
 
 var versionHTTPClient = &http.Client{
@@ -31,6 +32,8 @@ type Parameters struct {
 	ExcludeResults              []string
 	ExcludeSeverities           []string
 	ExperimentalQueries         bool
+	ExperimentalHelmScan        bool
+	HelmOverrides               *helm.Overrides
 	IncludeQueries              []string
 	InputData                   string
 	OutputName                  string
@@ -52,6 +55,7 @@ type Parameters struct {
 	ChangedDefaultLibrariesPath bool
 	ScanID                      string
 	BillOfMaterials             bool
+	ImageBOM                    bool
 	ExcludeGitIgnore            bool
 	OpenAPIResolveReferences    bool
 	ParallelScanFlag            int

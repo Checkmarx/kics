@@ -1,0 +1,7 @@
+services:
+  web:
+    image: nginx:1.21
+    ports:
+      - "8080:80"
+  cache:
+    image: redis:7

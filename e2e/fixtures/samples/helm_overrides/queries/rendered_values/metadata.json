@@ -1,0 +1,11 @@
+{
+  "id": "9f5128ee-5817-4e46-b7ac-38f06798578b",
+  "queryName": "Helm Override E2E Rendered Values",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "E2E observation query that records each rendered fixture ConfigMap.",
+  "descriptionUrl": "https://helm.sh/docs/chart_template_guide/values_files/",
+  "platform": "Kubernetes",
+  "descriptionID": "e2e00109",
+  "cloudProvider": "common"
+}

@@ -1,0 +1,3 @@
+image:
+  repository: alpine
+  tag: "3.19"
