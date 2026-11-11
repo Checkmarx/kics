@@ -8,4 +8,7 @@ Resources:
       DeploymentId: !Ref TestDeployment
       DocumentationVersion: ""
       MethodSettings:
-        LoggingLevel: "ON"
+        - LoggingLevel: "INFO"
+          DataTraceEnabled: False
+        - DataTraceEnabled: False
+          LoggingLevel: "ERROR"

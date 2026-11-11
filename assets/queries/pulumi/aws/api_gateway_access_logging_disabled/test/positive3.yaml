@@ -1,0 +1,16 @@
+name: aws-eks
+runtime: yaml
+description: An EKS cluster
+resources:
+  example:
+    type: aws:apigateway:Stage
+    properties:
+      restApiId: ${aws_api_gateway_rest_api.example.id}
+      stageName: prod
+      accessLogSettings:
+        destinationArn: sampleArn
+      methodSettings:
+        - loggingLevel: "OFF"
+          dataTraceEnabled: false
+        - dataTraceEnabled: false
+          loggingLevel: "INFO"
