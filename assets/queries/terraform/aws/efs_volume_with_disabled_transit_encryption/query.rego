@@ -51,8 +51,12 @@ CxPolicy[result] {
 	}
 }
 
+# Missing efs_volume_configuration only matters when the task may use host/EC2
+# volumes that should be EFS-backed. Fargate tasks use platform-managed local
+# storage for plain volume blocks, so requiring EFS transit encryption is an FP.
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ecs_task_definition[name]
+	not is_fargate_task(resource)
 	vol_info := get_volumes(resource)[_]
 	not common_lib.valid_key(vol_info.volume, "efs_volume_configuration")
 
@@ -69,6 +73,10 @@ CxPolicy[result] {
 		"keyExpectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration value should be defined",
 		"keyActualValue": "aws_ecs_task_definition.volume.efs_volume_configuration is not set",
 	}
+}
+
+is_fargate_task(resource) {
+	resource.requires_compatibilities[_] == "FARGATE"
 }
 
 get_volumes(resource) = volumes {
