@@ -1,0 +1,10 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    uses: external-org/deploy-workflows/.github/workflows/deploy.yml@main
+    secrets: inherit

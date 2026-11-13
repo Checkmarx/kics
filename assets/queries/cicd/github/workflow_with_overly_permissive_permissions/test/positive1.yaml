@@ -1,0 +1,58 @@
+name: PR Quality Checks
+
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  detect:
+    name: Detect PR type
+    runs-on: ubuntu-latest
+    outputs:
+      is_package_pr: ${{ steps.check.outputs.is_package_pr }}
+    steps:
+      - name: Check if README.md is modified
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          files=$(gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files --jq '.[].filename' 2>/dev/null || echo "")
+          if echo "$files" | grep -q '^README.md$'; then
+            echo "is_package_pr=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_package_pr=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  quality:
+    name: Repository quality checks
+    needs: detect
+    if: needs.detect.outputs.is_package_pr == 'true'
+    runs-on: ubuntu-latest
+    container: golang:latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Run quality checks
+        run: go run ./.github/scripts/check-quality/
+
+  auto-merge:
+    name: Enable auto-merge
+    needs: quality
+    if: always() && needs.quality.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enable auto-merge via squash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge ${{ github.event.pull_request.number }} \
+            --repo ${{ github.repository }} \
+            --auto \
+            --squash

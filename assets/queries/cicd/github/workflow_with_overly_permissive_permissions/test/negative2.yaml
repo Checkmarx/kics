@@ -1,0 +1,33 @@
+# pull_request_target workflow where write permissions are scoped to job level only.
+# No workflow-level write permissions exist, so this should not be flagged.
+
+name: Amber Automatic Code Review
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+
+jobs:
+  amber-review:
+    runs-on: ubuntu-latest
+    # Write permissions scoped to this job only — not at workflow level.
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read
+
+    steps:
+      - name: Checkout base ref
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          fetch-depth: 1
+
+      - name: Run code review
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: Review the PR and post findings.

@@ -1,0 +1,24 @@
+# Safe: writes to GITHUB_ENV but uses only trusted, non-user-controlled values.
+# github.event.pull_request.number and base.sha are not attacker-controllable
+# in ways that would allow environment injection.
+
+name: CI
+
+on:
+  pull_request_target:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+
+      - name: Set PR number env var
+        run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+
+      - name: Build
+        run: make build
