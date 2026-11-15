@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Lambda Function Without Reserved Concurrency",
+        "severity": "LOW",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Memorystore Redis Auth Disabled",
+        "severity": "HIGH",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Ansible pip Uses Extra Index URL Without Hash Verification",
+        "severity": "HIGH",
+        "line": 5,
+        "filename": "positive1.yaml"
+    }
+]

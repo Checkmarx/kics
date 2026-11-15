@@ -1,0 +1,14 @@
+{
+  "id": "781e75f7-bf43-4ab7-bae7-a08ad6607af3",
+  "queryName": "Beta - ENV Instruction Contains Secret",
+  "severity": "HIGH",
+  "category": "Secret Management",
+  "descriptionText": "Dockerfile ENV instructions should not store secrets, passwords, API keys or tokens as plaintext values. These values are embedded in every image layer and visible in 'docker inspect' output, risking credential exposure. Use build-time secrets (BuildKit) or a secrets manager instead.",
+  "descriptionUrl": "https://docs.docker.com/build/building/secrets/",
+  "platform": "Dockerfile",
+  "descriptionID": "7abccf53",
+  "cloudProvider": "common",
+  "cwe": "798",
+  "riskScore": "8.5",
+  "experimental": "true"
+}

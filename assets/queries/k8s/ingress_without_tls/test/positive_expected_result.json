@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - Ingress Without TLS",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive1.yaml"
+  }
+]

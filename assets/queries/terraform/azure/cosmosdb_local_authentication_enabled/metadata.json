@@ -1,0 +1,14 @@
+{
+  "id": "d18eb23e-81b1-4a12-adbb-fb7921901c7d",
+  "queryName": "Beta - CosmosDB Local Authentication Enabled",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Azure CosmosDB accounts should disable local authentication and use Azure Active Directory exclusively. Local authentication uses primary/secondary keys that cannot be scoped to individual users or revoked per-identity.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account#local_authentication_disabled",
+  "platform": "Terraform",
+  "descriptionID": "b8c9d0e1",
+  "cloudProvider": "azure",
+  "cwe": "287",
+  "riskScore": "5.5",
+  "experimental": "true"
+}
