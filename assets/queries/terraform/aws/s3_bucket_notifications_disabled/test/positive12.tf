@@ -5,3 +5,7 @@ resource "aws_lambda_function" "func" {
   handler       = "exports.example"
   runtime       = "nodejs20.x"
 }
+
+resource "aws_s3_bucket" "bucket" {
+  bucket = "your-bucket-name"
+}
