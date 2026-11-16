@@ -5,11 +5,13 @@ import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
     # Cases of "SNS Topic" or "SQS Queue" or "Lambda Function" with aws_s3_bucket_notification undefined
+    # for a document that defines an S3 bucket; without a bucket there are no notifications to enable
     s3 := input.document[i].resource[type][name]
     types := ["aws_sns_topic","aws_sqs_queue","aws_lambda_function"]
     type == types[_]
 
-    not common_lib.valid_key(input.document[i].resource, "aws_s3_bucket_notification")  
+    common_lib.valid_key(input.document[i].resource, "aws_s3_bucket")
+    not common_lib.valid_key(input.document[i].resource, "aws_s3_bucket_notification")
 
     result := {
         "documentId": input.document[i].id,
