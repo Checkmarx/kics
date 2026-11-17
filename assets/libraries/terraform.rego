@@ -11,6 +11,8 @@ check_cidr(rule) {
 } else {
 	rule.ipv6_cidr_blocks == common_lib.unrestricted_ipv6[_]
 } else {
+    rule.ipv6_cidr_block == common_lib.unrestricted_ipv6[_]
+} else {
 	rule.cidr_ipv4 == "0.0.0.0/0"
 } else {
 	rule.cidr_ipv6 == common_lib.unrestricted_ipv6[_]
