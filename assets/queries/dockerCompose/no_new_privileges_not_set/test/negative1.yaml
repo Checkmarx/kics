@@ -11,6 +11,14 @@ services:
     restart: always
     security_opt:
       - no-new-privileges:true
+  service-with-equals-separator:
+    image: example:latest
+    security_opt:
+      - no-new-privileges=true
+  service-with-implicit-boolean:
+    image: example:latest
+    security_opt:
+      - no-new-privileges
 
 networks:
   service-service-frontend:
