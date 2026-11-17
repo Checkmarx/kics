@@ -42,18 +42,19 @@ cidr_is_unmasked(resource) {
 
 prot_types := ["protocol","ip_protocol"]
 open_port := ["all","-1"]
+tcp_alias := ["tcp","6"]
 
 # Checks if a TCP port is open
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
-	rule[prot_types[_]] == "tcp"
+	rule[prot_types[_]] == tcp_alias[_]
 	containsPort(rule, port)
 }
 
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
-	rule[prot_types[_]] == "tcp"
+	rule[prot_types[_]] == tcp_alias[_]
 	containsPort(rule, port)
 }
 
