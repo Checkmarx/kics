@@ -34,6 +34,8 @@ CxPolicy[result] {
 	tf_lib.portOpenToInternet(net_acl_rule, 3389)
 	not is_tcp_port_zero(net_acl_rule)
 
+	not is_egress(net_acl_rule)
+
 	result := {
 		"documentId": doc.id,
 		"resourceType": "aws_network_acl_rule",
@@ -101,4 +103,8 @@ action_keys := ["action","rule_action"]
 
 is_network_action_allow(rule) {
 	rule[action_keys[_]] == "allow"
+}
+
+is_egress(rule) {
+	rule.egress == true
 }
