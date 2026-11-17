@@ -11,6 +11,8 @@ CxPolicy[result] {
 	tf_lib.portOpenToInternet(resource.ingress[idx], 3389)
 	not is_tcp_port_zero(resource.ingress[idx])
 
+	is_network_action_allow(resource.ingress)
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_network_acl",
@@ -52,6 +54,8 @@ CxPolicy[result] {
 	tf_lib.portOpenToInternet(resource.ingress, 3389)
 	not is_tcp_port_zero(resource.ingress)
 
+	is_network_action_allow(resource.ingress)
+
 	result := {
 		"documentId": doc.id,
 		"resourceType": "aws_network_acl",
@@ -73,6 +77,8 @@ CxPolicy[result] {
 	tf_lib.portOpenToInternet(rule, 3389)
 	not is_tcp_port_zero(rule)
 
+	is_network_action_allow(resource.ingress)
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "n/a",
@@ -89,4 +95,10 @@ is_tcp_port_zero(rule) {
 	rule.protocol == "tcp"
 	rule.from_port == 0
 	rule.to_port == 0
+}
+
+action_keys := ["action","rule_action"]
+
+is_network_action_allow(rule) {
+	rule[action_keys[_]] == "allow"
 }
