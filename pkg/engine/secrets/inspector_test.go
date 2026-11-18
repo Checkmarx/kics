@@ -3,6 +3,7 @@ package secrets
 import (
 	"context"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"sync"
 	"testing"
@@ -995,5 +996,68 @@ func TestInspectFailedQueries(t *testing.T) {
 			require.ErrorIs(t, queryErr, context.DeadlineExceeded,
 				"test[%s] GetFailedQueries()[%s] should be context.DeadlineExceeded", in.name, queryName)
 		}
+	}
+}
+
+func TestIsContextAllowRule(t *testing.T) {
+	query := &RegexQuery{
+		Regex: regexp.MustCompile(`(?i)secret\s*:\s*([a-z0-9-]{10,})`),
+	}
+	siblingKey := AllowRule{
+		Description:  "secret name next to a key",
+		Regex:        regexp.MustCompile(`secret\s*:\s*[a-z0-9-]+\s*\n\s*key\s*:\s*\S+`),
+		ContextLines: 1,
+	}
+	singleLine := siblingKey
+	singleLine.ContextLines = 0
+
+	tests := []struct {
+		name       string
+		lines      []string
+		lineNumber int
+		allowRules []AllowRule
+		want       bool
+	}{
+		{
+			name:       "sibling key on the next line is allowed",
+			lines:      []string{"ref:", "  secret: gitlab-webhook-secret", "  key: token"},
+			lineNumber: 1,
+			allowRules: []AllowRule{siblingKey},
+			want:       true,
+		},
+		{
+			name:       "no sibling key is not allowed",
+			lines:      []string{"ref:", "  secret: gitlab-webhook-secret", "  other: value"},
+			lineNumber: 1,
+			allowRules: []AllowRule{siblingKey},
+			want:       false,
+		},
+		{
+			name:       "rule without context lines is ignored",
+			lines:      []string{"ref:", "  secret: gitlab-webhook-secret", "  key: token"},
+			lineNumber: 1,
+			allowRules: []AllowRule{singleLine},
+			want:       false,
+		},
+		{
+			name:       "match on a neighbouring line only does not allow the current line",
+			lines:      []string{"  secret: first-secret-name", "  key: token", "  secret: second-secret-name"},
+			lineNumber: 2,
+			allowRules: []AllowRule{siblingKey},
+			want:       false,
+		},
+		{
+			name:       "line number out of range",
+			lines:      []string{"  secret: gitlab-webhook-secret"},
+			lineNumber: 3,
+			allowRules: []AllowRule{siblingKey},
+			want:       false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := IsContextAllowRule(tt.lines, tt.lineNumber, query, tt.allowRules)
+			require.Equal(t, tt.want, got)
+		})
 	}
 }

@@ -38,6 +38,8 @@ Since, in Terraform, we can come across cases like `token_key = data.terraform_r
 
 Moreover, to exclude scenarios like `automountServiceAccountToken: false`, we can use a **generic allowRules** (Avoiding Boolean's) to be applied not only in this rule but also in the remaining ones.
 
+By default, an allow rule is matched against the detected line only. An allow rule can set `"contextLines": N` to be matched against the detected line plus up to `N` lines before and after it (joined with `\n`), which lets it look at sibling keys. The line is excluded only when the allow rule's match overlaps the secret detected on that line. For example, "Avoiding Kubernetes Secret references" in the Generic Secret rule uses `"contextLines": 1` to exclude `secret: <secret-name>` when the next line is the `key: <field>` read from that Secret.
+
 ```json
 {
   "rules": [
