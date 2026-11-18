@@ -229,11 +229,16 @@ func closeFile(file *os.File, info os.FileInfo) {
 	}
 }
 
-func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-	path string, resolved bool) (bool, error) {
+func (s *FileSystemSourceProvider) isExcluded(info os.FileInfo) bool {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 
+	f, ok := s.excludes[info.Name()]
+	return ok && containsFile(f, info)
+}
+
+func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
+	path string, resolved bool) (bool, error) {
 	if info.IsDir() {
 		// exclude terraform cache folders
 		if queryRegexExcludeTerraCache.MatchString(path) {
@@ -245,7 +250,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 			}
 			return true, filepath.SkipDir
 		}
-		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
+		if s.isExcluded(info) {
 			log.Info().Msgf("Directory ignored: %s", path)
 			return true, filepath.SkipDir
 		}
@@ -256,7 +261,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 		return false, nil
 	}
 
-	if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
+	if s.isExcluded(info) {
 		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
