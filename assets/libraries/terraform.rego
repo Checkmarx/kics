@@ -11,6 +11,8 @@ check_cidr(rule) {
 } else {
 	rule.ipv6_cidr_blocks == common_lib.unrestricted_ipv6[_]
 } else {
+    rule.ipv6_cidr_block == common_lib.unrestricted_ipv6[_]
+} else {
 	rule.cidr_ipv4 == "0.0.0.0/0"
 } else {
 	rule.cidr_ipv6 == common_lib.unrestricted_ipv6[_]
@@ -40,30 +42,40 @@ cidr_is_unmasked(resource) {
 
 prot_types := ["protocol","ip_protocol"]
 open_port := ["all","-1"]
+tcp_alias := ["tcp","6"]
+action_keys := ["action","rule_action"]
 
 # Checks if a TCP port is open
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
-	rule[prot_types[_]] == "tcp"
+	rule[prot_types[_]] == tcp_alias[_]
 	containsPort(rule, port)
+	is_network_action_allow(rule)
 }
 
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
-	rule[prot_types[_]] == "tcp"
+	rule[prot_types[_]] == tcp_alias[_]
 	containsPort(rule, port)
+	is_network_action_allow(rule)
 }
 
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
 	rule[prot_types[_]] == open_port[_]
+	is_network_action_allow(rule)
 }
 
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
 	rule[prot_types[_]] == open_port[_]
+	is_network_action_allow(rule)
+}
+
+is_network_action_allow(rule) {
+	rule[action_keys[_]] == "allow"
 }
 
 get_ingress_list(ingress) = result {
