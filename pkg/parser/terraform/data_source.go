@@ -3,6 +3,7 @@ package terraform
 import (
 	"bytes"
 	"encoding/json"
+	"math/big"
 	"path/filepath"
 	"strings"
 	"sync"
@@ -14,7 +15,6 @@ import (
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/rs/zerolog/log"
 	"github.com/zclconf/go-cty/cty"
-	"github.com/zclconf/go-cty/cty/gocty"
 	ctyjson "github.com/zclconf/go-cty/cty/json"
 )
 
@@ -83,7 +83,7 @@ func getDataSourcePolicy(currentPath string) {
 	if len(tfFiles) == 0 {
 		return
 	}
-	jsonMap := make(map[string]map[string]string)
+	policyDocuments := make(map[string]cty.Value)
 	for _, tfFile := range tfFiles {
 		parsedFile, parseErr := parseFile(tfFile, true)
 		if parseErr != nil {
@@ -97,24 +97,103 @@ func getDataSourcePolicy(currentPath string) {
 		for _, block := range body.Blocks {
 			if block.Type == "data" && block.Labels[0] == "aws_iam_policy_document" && len(block.Labels) > 1 {
 				policyJSON := parseDataSourceBody(block.Body)
-				jsonMap[block.Labels[1]] = map[string]string{
-					"json": policyJSON,
-				}
+				instance := cty.ObjectVal(map[string]cty.Value{
+					"json": cty.StringVal(policyJSON),
+				})
+				policyDocuments[block.Labels[1]] = expandDataSourceInstances(block.Body, instance)
 			}
 		}
 	}
-	policyResource := map[string]map[string]map[string]string{
-		"aws_iam_policy_document": jsonMap,
-	}
-	data, err := gocty.ToCtyValue(policyResource, cty.Map(cty.Map(cty.Map(cty.String))))
-	if err != nil {
-		log.Error().Msgf("Error trying to convert policy to cty value: %s", err)
-		return
-	}
+	data := cty.ObjectVal(map[string]cty.Value{
+		"aws_iam_policy_document": cty.ObjectVal(policyDocuments),
+	})
 
 	mutexData.Lock()
 	inputVariableMap["data"] = data
 	mutexData.Unlock()
+}
+
+// dataSourceMetaArguments are Terraform meta-arguments that can be set on a data block but are not
+// part of the aws_iam_policy_document schema, so they must not be decoded as policy attributes.
+var dataSourceMetaArguments = map[string]bool{
+	"count":      true,
+	"for_each":   true,
+	"depends_on": true,
+	"provider":   true,
+}
+
+// withoutMetaArguments returns a copy of the data block body without Terraform meta-arguments
+// (count, for_each, depends_on, provider and lifecycle blocks).
+func withoutMetaArguments(body *hclsyntax.Body) *hclsyntax.Body {
+	filtered := *body
+	filtered.Attributes = make(hclsyntax.Attributes, len(body.Attributes))
+	for name, attr := range body.Attributes {
+		if !dataSourceMetaArguments[name] {
+			filtered.Attributes[name] = attr
+		}
+	}
+	filtered.Blocks = make(hclsyntax.Blocks, 0, len(body.Blocks))
+	for _, block := range body.Blocks {
+		if block.Type != "lifecycle" {
+			filtered.Blocks = append(filtered.Blocks, block)
+		}
+	}
+	return &filtered
+}
+
+// expandDataSourceInstances returns the value that references to the data source resolve to:
+// the instance itself, a tuple of instances when the block uses count (so name[0].json and
+// name[count.index].json resolve), or an object keyed by the for_each keys when they can be
+// evaluated statically (so name["key"].json resolves).
+func expandDataSourceInstances(body *hclsyntax.Body, instance cty.Value) cty.Value {
+	ctx := &hcl.EvalContext{
+		Variables: inputVariableMap,
+		Functions: functions.TerraformFuncs,
+	}
+	if attr, ok := body.Attributes["count"]; ok {
+		count := 1
+		if value, diags := attr.Expr.Value(ctx); !diags.HasErrors() && value.IsKnown() && !value.IsNull() && value.Type() == cty.Number {
+			if n, accuracy := value.AsBigFloat().Int64(); accuracy == big.Exact && n > 1 {
+				count = int(n)
+			}
+		}
+		instances := make([]cty.Value, count)
+		for i := range instances {
+			instances[i] = instance
+		}
+		return cty.TupleVal(instances)
+	}
+	if attr, ok := body.Attributes["for_each"]; ok {
+		expr := attr.Expr
+		// toset/tolist/tomap only convert the collection type and aren't in TerraformFuncs, so
+		// evaluate their argument directly: the keys are the same
+		if call, isCall := expr.(*hclsyntax.FunctionCallExpr); isCall && len(call.Args) == 1 &&
+			(call.Name == "toset" || call.Name == "tolist" || call.Name == "tomap") {
+			expr = call.Args[0]
+		}
+		value, diags := expr.Value(ctx)
+		if diags.HasErrors() || value.IsNull() || !value.IsWhollyKnown() {
+			return instance
+		}
+		keyed := make(map[string]cty.Value)
+		switch {
+		case value.Type().IsMapType() || value.Type().IsObjectType():
+			for key := range value.AsValueMap() {
+				keyed[key] = instance
+			}
+		case value.Type().IsSetType() || value.Type().IsListType() || value.Type().IsTupleType():
+			for _, element := range value.AsValueSlice() {
+				if element.Type() == cty.String {
+					keyed[element.AsString()] = instance
+				}
+			}
+		}
+		if len(keyed) == 0 {
+			return instance
+		}
+		return cty.ObjectVal(keyed)
+	}
+	return instance
 }
 
 func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy {
@@ -218,6 +297,7 @@ func getStatementSpec() *hcldec.BlockListSpec {
 }
 
 func parseDataSourceBody(body *hclsyntax.Body) string {
+	body = withoutMetaArguments(body)
 	dataSourceSpec := &hcldec.ObjectSpec{
 		"id": &hcldec.AttrSpec{
 			Name:     "id",
