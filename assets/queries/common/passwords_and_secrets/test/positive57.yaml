@@ -1,0 +1,11 @@
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99  positive-test (a real secret value next to a key, and a secret with no sibling key)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  first:
+    secret: Sup3rS3cretV4lue!2024  # positive1
+    key: token
+  second:
+    secret: a8f3k2m9q7x1z5w4  # positive2
