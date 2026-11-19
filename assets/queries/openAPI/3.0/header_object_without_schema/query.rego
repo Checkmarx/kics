@@ -10,6 +10,8 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 
 	headerObj := value.headers[header]
+	# "headers" inside "properties" is a schema field name, not a map of Header Objects
+	not path[count(path) - 1] == "properties"
 	not common_lib.valid_key(headerObj, "schema")
 
 	result := {
