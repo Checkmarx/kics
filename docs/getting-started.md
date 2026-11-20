@@ -12,6 +12,8 @@ To scan a directory/file on your host you have to mount it as a volume to the co
 ```shell
 docker pull checkmarx/kics:latest
 docker run -t -v "{path_to_host_folder_to_scan}":/path checkmarx/kics scan -p /path -o "/path/"
+# quickstart if you are already in the project folder
+docker run -t -v "$(pwd)":/path checkmarx/kics scan -p /path -o "/path/"
 ```
 
 **Available Image Variants:**
