@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: A sample template
+Resources:
+  mySymmetricKeyRotationOff:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: A symmetric key with KeySpec set explicitly and rotation disabled
+      KeySpec: SYMMETRIC_DEFAULT
+      EnableKeyRotation: false
+      KeyPolicy:
+        Version: '2012-10-17'
+        Id: key-default-1
+        Statement:
+        - Sid: Enable IAM User Permissions
+          Effect: Allow
+          Principal:
+            AWS: arn:aws:iam::111122223333:root
+          Action: kms:*
+          Resource: '*'
+  mySymmetricKeyNoRotation:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: A symmetric key with KeySpec and AWS_KMS origin, rotation disabled
+      KeySpec: SYMMETRIC_DEFAULT
+      Origin: AWS_KMS
+      EnableKeyRotation: false
+      KeyPolicy:
+        Version: '2012-10-17'
+        Id: key-default-1
+        Statement:
+        - Sid: Enable IAM User Permissions
+          Effect: Allow
+          Principal:
+            AWS: arn:aws:iam::111122223333:root
+          Action: kms:*
+          Resource: '*'
