@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "DB Snapshot Is Public",
+    "severity": "HIGH",
+    "line": 4
+  }
+]
