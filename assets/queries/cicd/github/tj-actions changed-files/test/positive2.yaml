@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  changed_files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Old major version - part of the vulnerable range (<= 45.0.7),
+      # and one of the tags retroactively rewritten in the real attack.
+      - name: Get changed files (old major version)
+        uses: tj-actions/changed-files@v1.0.0
+
+      # Another tag confirmed rewritten to the malicious commit during
+      # the incident.
+      - name: Get changed files (v44.5.1)
+        uses: tj-actions/changed-files@v44.5.1
+
+      # Exact upper boundary of the vulnerable range.
+      - name: Get changed files (boundary version)
+        uses: tj-actions/changed-files@v45.0.7
+
+      # Pinned directly to the known-malicious commit SHA - the
+      # strongest possible indicator of compromise.
+      - name: Get changed files (malicious commit)
+        uses: tj-actions/changed-files@0e58ed8671d6b60d0890c21b07f8835ace038e67
