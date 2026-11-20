@@ -9,17 +9,18 @@ CxPolicy[result] {
 	resource := input.document[i].resource[x][name]
 
 	path := checkPath(resource)
+    common_lib.valid_key(path.port, "host_port")
 
-	not common_lib.valid_key(path.port, "host_port")
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": x,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].%s.port", [x, name, resource_prefix]),
+		"searchKey": sprintf("%s[%s].%s.port.host_port", [x, name, resource_prefix]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'host_port' should be defined and not null",
-		"keyActualValue": "Attribute 'host_port' is undefined or null",
-	}
+		"keyExpectedValue": sprintf("%s[%s].%s.port.host_port should not be defined", [x, name, resource_prefix]),
+		"keyActualValue": sprintf("%s[%s].%s.port.host_port is defined", [x, name, resource_prefix]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", x, name], split(resource_prefix, ".")), ["port", "host_port"]),
+    }
 }
 
 checkPath(resource) = path {
