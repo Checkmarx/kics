@@ -98,6 +98,7 @@ var sarifTests = []sarifTest{
 							ResultRuleID:    "1",
 							ResultRuleIndex: 0,
 							ResultKind:      "fail",
+							ResultLevel:     "error",
 							ResultMessage:   sarifMessage{Text: "test", MessageProperties: sarifProperties{"platform": "", "riskScore": "6"}},
 							ResultLocations: []sarifLocation{
 								{
@@ -248,6 +249,7 @@ var sarifTests = []sarifTest{
 							ResultRuleID:    "1",
 							ResultRuleIndex: 0,
 							ResultKind:      "fail",
+							ResultLevel:     "error",
 							ResultMessage: sarifMessage{
 								Text:              "test",
 								MessageProperties: sarifProperties{"platform": "", "riskScore": "6"},
@@ -265,6 +267,7 @@ var sarifTests = []sarifTest{
 							ResultRuleID:    "2",
 							ResultRuleIndex: 1,
 							ResultKind:      "informational",
+							ResultLevel:     "none",
 							ResultMessage: sarifMessage{
 								Text:              "test",
 								MessageProperties: sarifProperties{"platform": "", "riskScore": "6"},
