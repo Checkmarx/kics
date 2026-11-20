@@ -48,7 +48,7 @@ jobs:
 
     steps:
       - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@ec61189d14ec14c8efccab744f656cffd0e33f37 # v6.1.0
+        uses: step-security/configure-aws-credentials@169c21e4c75dca522fb69a37bfdb5d8d634b9da4 # v6.3.0
         with:
           role-to-assume: ${{ secrets.CES_BUCKET_AWS_ROLE }}
           aws-region: ${{ secrets.CES_BUCKET_AWS_REGION }}
