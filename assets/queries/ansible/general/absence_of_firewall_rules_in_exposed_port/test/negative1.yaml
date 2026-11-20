@@ -1,0 +1,10 @@
+---
+- name: Configure firewall rules using Ansible
+  hosts: myserver
+  become: yes
+  tasks:
+    - name: Open port 80 (HTTP)
+      ansible.posix.firewalld:
+        rich_rule: rule service name="ftp" audit limit value="1/m" accept
+        permanent: true
+        state: enabled
