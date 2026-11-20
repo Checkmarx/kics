@@ -10,7 +10,7 @@ Resources:
           - InstancePort: '80'
             InstanceProtocol: HTTPS
             LoadBalancerPort: '443'
-            Protocol: HTTPS
+            #Protocol: HTTPS
             PolicyNames:
             - My-SSLNegotiation-Policy
             SSLCertificateId: arn:aws:iam::123456789012:server-certificate/my-server-certificate
