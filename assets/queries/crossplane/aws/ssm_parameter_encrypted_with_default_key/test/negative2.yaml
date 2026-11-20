@@ -1,0 +1,9 @@
+apiVersion: ssm.aws.jet.crossplane.io/v1alpha1
+kind: Parameter
+metadata:
+  name: foo
+spec:
+  forProvider:
+    region: us-west-1
+    type: SecureString
+    keyId: foo
