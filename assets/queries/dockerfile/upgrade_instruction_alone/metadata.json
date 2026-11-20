@@ -1,0 +1,10 @@
+{
+  "id": "df87631d-1ebb-45d8-9749-2d2ab2bb92f5",
+  "queryName": "Upgrade Instruction Alone",
+  "severity": "MEDIUM",
+  "category": "Build Process",
+  "descriptionText": "Instruction 'RUN <package> <install>' should always be preceded by '<package> <update>' in the same RUN statement to ensure the package index is up to date before installing packages",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
+  "platform": "Dockerfile",
+  "descriptionID": "6959662a"
+}
