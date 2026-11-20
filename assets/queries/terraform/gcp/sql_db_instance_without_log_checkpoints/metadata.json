@@ -1,0 +1,14 @@
+{
+  "id": "c15e35e0-62f3-4f7e-8718-b1ce1fab31aa",
+  "queryName": "Beta - Cloud SQL PostgreSQL log_checkpoints Not Enabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Google Cloud SQL PostgreSQL instances should enable the log_checkpoints database flag to log each checkpoint, supporting performance analysis and forensic investigation (CIS GCP 6.2.1).",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#database_flags",
+  "platform": "Terraform",
+  "descriptionID": "e1f2a3b4",
+  "cloudProvider": "gcp",
+  "cwe": "778",
+  "riskScore": "4.5",
+  "experimental": "true"
+}

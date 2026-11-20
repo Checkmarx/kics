@@ -1,0 +1,14 @@
+{
+  "id": "2178b485-6015-4d16-9487-c5fdfc869138",
+  "queryName": "Beta - GKE Node Pool Auto-Upgrade Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "GKE node pools should have auto-upgrade enabled so nodes are automatically updated to the latest stable Kubernetes version, ensuring security patches are applied without manual intervention.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool#auto_upgrade",
+  "platform": "Terraform",
+  "descriptionID": "b4c5d6e7",
+  "cloudProvider": "gcp",
+  "cwe": "1188",
+  "riskScore": "4.5",
+  "experimental": "true"
+}
