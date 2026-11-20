@@ -1,0 +1,14 @@
+{
+  "id": "a3e941c5-7708-40d1-943b-7093446ef5e6",
+  "queryName": "Beta - Azure Bastion Host Missing",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Ensures Azure Virtual Networks are protected by a Bastion Host with a valid ip_configuration block. Azure Bastion provides secure RDP/SSH access to VMs without public internet exposure. A complete setup requires an azurerm_bastion_host with ip_configuration referencing AzureBastionSubnet and a Standard-tier public IP. Note: subnet-level VNet association is not verified.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/bastion_host",
+  "platform": "Terraform",
+  "descriptionID": "a3e941c5",
+  "cloudProvider": "azure",
+  "cwe": "284",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
