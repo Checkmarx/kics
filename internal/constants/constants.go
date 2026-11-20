@@ -84,7 +84,9 @@ var (
 		"aws":          "",
 		"azure":        "",
 		"gcp":          "",
+		"ibmcloud":     "",
 		"nifcloud":     "",
+		"oraclecloud":  "",
 		"tencentcloud": "",
 	}
 )

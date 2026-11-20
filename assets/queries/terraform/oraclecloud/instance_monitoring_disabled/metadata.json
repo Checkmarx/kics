@@ -1,0 +1,14 @@
+{
+  "id": "1d2e88ff-7ee7-4c8a-bf16-01488c83f295",
+  "queryName": "Instance Monitoring Disabled",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "Instance should have monitoring enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_instance_configuration.html#is_monitoring_disabled-2",
+  "platform": "Terraform",
+  "descriptionID": "1d2e88ff",
+  "cloudProvider": "oraclecloud",
+  "cwe": "778",
+  "riskScore": "1.0",
+  "experimental": "true"
+}
