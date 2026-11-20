@@ -1,0 +1,13 @@
+{
+  "id": "d44bdf72-1b6c-44a7-bd67-4933211fe36c",
+  "queryName": "Network Policy Ingress Not Restricted",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Kubernetes NetworkPolicy ingress rules should define a 'from' block to restrict which sources can send traffic to the selected pods. An ingress rule without a 'from' block allows traffic from all sources, including any IP address on the internet.",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/network-policies/#behavior-of-to-and-from-selectors",
+  "platform": "Kubernetes",
+  "descriptionID": "d44bdf72",
+  "cloudProvider": "common",
+  "cwe": "668",
+  "riskScore": "7.5"
+}

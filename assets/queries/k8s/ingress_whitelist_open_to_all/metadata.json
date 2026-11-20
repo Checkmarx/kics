@@ -1,0 +1,13 @@
+{
+  "id": "3a7d4239-f768-438f-a30b-23a26f885966",
+  "queryName": "Ingress Whitelist Open To All IPs",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Kubernetes Ingress resources should not set the 'nginx.ingress.kubernetes.io/whitelist-source-range' annotation to '0.0.0.0/0' or '::/0'. These values allow traffic from all IPv4 or IPv6 addresses, effectively disabling the source IP restriction and exposing the service to the entire internet.",
+  "descriptionUrl": "https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#whitelist-source-range",
+  "platform": "Kubernetes",
+  "descriptionID": "3a7d4239",
+  "cloudProvider": "common",
+  "cwe": "668",
+  "riskScore": "7.5"
+}
