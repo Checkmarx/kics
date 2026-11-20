@@ -1,0 +1,11 @@
+{
+  "id": "8ed96160-aa71-4c13-8e91-2b961584345b",
+  "queryName": "SSM Parameter Encrypted With Default Key",
+  "severity": "INFO",
+  "category": "Secret Management",
+  "descriptionText": "SSM parameters of type “SecureString” use, by default, AWS KMS to encrypt and decrypt secure string parameter values. However, this does not offer full protection given that SSM parameters do not offer resource policies that prevent other users from viewing this data. Given this, a KMS key shall be defined for encrypting the SecureString.",
+  "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/ssm/parameter/#keyid_yaml",
+  "platform": "Pulumi",
+  "descriptionID": "481555e5",
+  "cloudProvider": "aws"
+}
