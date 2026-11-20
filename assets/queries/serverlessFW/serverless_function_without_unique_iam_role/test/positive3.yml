@@ -1,0 +1,72 @@
+# Cases that SHOULD be flagged - functions with different permission requirements sharing roles
+
+service: different-permissions-service
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+
+functions:
+  # HTTP function vs SQS function - different event types, different permissions needed
+  webApiHandler:
+    handler: handlers/api.handler
+    role: arn:aws:iam::123456789012:role/SharedRole  # PROBLEM: Same role
+    events:
+      - http:
+          path: /api/data
+          method: get
+    environment:
+      API_KEY: secret123
+
+  queueProcessor:
+    handler: handlers/queue.processor
+    role: arn:aws:iam::123456789012:role/SharedRole  # PROBLEM: Same role
+    events:
+      - sqs:
+          arn: arn:aws:sqs:us-east-1:123456789012:my-queue
+    environment:
+      QUEUE_URL: https://sqs.us-east-1.amazonaws.com/123456789012/my-queue
+
+  # S3 function vs DynamoDB function - different AWS services
+  s3FileProcessor:
+    handler: handlers/s3.processor
+    role: arn:aws:iam::123456789012:role/AnotherSharedRole  # PROBLEM: Same role
+    events:
+      - s3:
+          bucket: my-bucket
+          event: s3:ObjectCreated:*
+    environment:
+      S3_BUCKET: my-processing-bucket
+
+  dynamoDbUpdater:
+    handler: handlers/dynamo.updater
+    role: arn:aws:iam::123456789012:role/AnotherSharedRole  # PROBLEM: Same role
+    events:
+      - stream:
+          type: dynamodb
+          arn: arn:aws:dynamodb:us-east-1:123456789012:table/MyTable/stream/2023-01-01T00:00:00.000
+    environment:
+      DYNAMODB_TABLE: MyTable
+
+  # Functions with different AWS service environment variables
+  lambdaInvoker:
+    handler: handlers/lambda.invoker
+    role: arn:aws:iam::123456789012:role/ThirdSharedRole  # PROBLEM: Same role
+    events:
+      - http:
+          path: /invoke
+          method: post
+    environment:
+      LAMBDA_FUNCTION_NAME: target-function
+
+  snsPublisher:
+    handler: handlers/sns.publisher
+    role: arn:aws:iam::123456789012:role/ThirdSharedRole  # PROBLEM: Same role
+    events:
+      - http:
+          path: /notify
+          method: post
+    environment:
+      SNS_TOPIC_ARN: arn:aws:sns:us-east-1:123456789012:notifications

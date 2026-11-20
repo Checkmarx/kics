@@ -1,0 +1,290 @@
+# Cases that should NOT be flagged by the improved rule - legitimate volume mounts
+
+# Temporary storage - legitimate use case
+apiVersion: v1
+kind: Pod
+metadata:
+  name: temp-storage-pod
+spec:
+  containers:
+  - name: app
+    image: nginx
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - name: tmp-storage
+      mountPath: /tmp
+      readOnly: false
+  volumes:
+  - name: tmp-storage
+    emptyDir: {}
+
+---
+# Log aggregation - legitimate use case
+apiVersion: v1
+kind: Pod
+metadata:
+  name: log-collector
+spec:
+  containers:
+  - name: fluentd
+    image: fluentd
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+    volumeMounts:
+    - name: varlog
+      mountPath: /var/log
+      readOnly: false
+  volumes:
+  - name: varlog
+    hostPath:
+      path: /var/log
+
+---
+# Docker-in-Docker - legitimate use case
+apiVersion: v1
+kind: Pod
+metadata:
+  name: docker-build
+spec:
+  containers:
+  - name: docker
+    image: docker:dind
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "500m"
+      limits:
+        memory: "512Mi"
+        cpu: "1000m"
+    volumeMounts:
+    - name: docker-sock
+      mountPath: /var/run/docker.sock
+      readOnly: false
+    - name: docker-lib
+      mountPath: /var/lib/docker
+      readOnly: false
+  volumes:
+  - name: docker-sock
+    hostPath:
+      path: /var/run/docker.sock
+  - name: docker-lib
+    hostPath:
+      path: /var/lib/docker
+
+---
+# Service account tokens - legitimate
+apiVersion: v1
+kind: Pod
+metadata:
+  name: service-account-pod
+spec:
+  containers:
+  - name: app
+    image: nginx
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - name: service-account-token
+      mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      readOnly: true
+  volumes:
+  - name: service-account-token
+    secret:
+      secretName: default-token
+
+---
+# SSL certificates - legitimate
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ssl-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - name: ssl-certs
+      mountPath: /etc/ssl/certs
+      readOnly: true
+  volumes:
+  - name: ssl-certs
+    configMap:
+      name: ssl-certificates
+
+---
+# Cache directories - legitimate
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cache-pod
+spec:
+  containers:
+  - name: app
+    image: redis
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+    volumeMounts:
+    - name: cache-storage
+      mountPath: /var/cache
+      readOnly: false
+  volumes:
+  - name: cache-storage
+    emptyDir: {}
+
+---
+# Optional software - legitimate
+apiVersion: v1
+kind: Pod
+metadata:
+  name: opt-software
+spec:
+  containers:
+  - name: app
+    image: ubuntu
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - name: opt-mount
+      mountPath: /opt/myapp
+      readOnly: false
+  volumes:
+  - name: opt-mount
+    hostPath:
+      path: /opt/myapp
+
+---
+# User directories - can be legitimate
+apiVersion: v1
+kind: Pod
+metadata:
+  name: user-workload
+spec:
+  containers:
+  - name: app
+    image: ubuntu
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - name: user-home
+      mountPath: /home/user
+      readOnly: false
+  volumes:
+  - name: user-home
+    hostPath:
+      path: /home/user
+
+---
+# Local software installation - legitimate
+apiVersion: v1
+kind: Pod
+metadata:
+  name: local-software
+spec:
+  containers:
+  - name: installer
+    image: ubuntu
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - name: usr-local
+      mountPath: /usr/local/bin
+      readOnly: false
+  volumes:
+  - name: usr-local
+    hostPath:
+      path: /usr/local/bin
+
+---
+# ConfigMap volume - should be excluded
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-pod
+spec:
+  containers:
+  - name: app
+    image: nginx
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - name: config
+      mountPath: /etc/config
+      readOnly: false
+  volumes:
+  - name: config
+    configMap:
+      name: app-config
+
+---
+# Secret volume - should be excluded
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-pod
+spec:
+  containers:
+  - name: app
+    image: nginx
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - name: secret
+      mountPath: /etc/secrets
+      readOnly: false
+  volumes:
+  - name: secret
+    secret:
+      secretName: app-secret

@@ -1,0 +1,22 @@
+service: service-same-event-types
+frameworkVersion: '2'
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+# Functions with same event types should NOT be flagged - can share roles
+functions:
+  hello:
+    handler: handler.hello
+    role: sharedHttpRoleHello
+    events:
+      - http:
+          path: /hello
+          method: get
+  world:
+    handler: handler.world
+    role: sharedHttpRoleWorld
+    events:
+      - http:
+          path: /world
+          method: post

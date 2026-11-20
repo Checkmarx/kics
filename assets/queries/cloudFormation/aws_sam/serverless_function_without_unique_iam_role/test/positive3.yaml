@@ -1,0 +1,171 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Functions with different permissions - SHOULD be flagged
+
+Resources:
+  # HTTP API vs SQS - different event types, should have different roles
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: api.handler
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["SharedRole", "Arn"]}  # PROBLEM: Same role for different event types
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /api/data
+            Method: get
+      Environment:
+        Variables:
+          API_KEY: secret123
+
+  SqsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: sqs.handler
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["SharedRole", "Arn"]}  # PROBLEM: Same role for different event types
+      Events:
+        SqsEvent:
+          Type: SQS
+          Properties:
+            Queue: {"Fn::GetAtt": ["ProcessingQueue", "Arn"]}
+      Environment:
+        Variables:
+          QUEUE_URL: {"Ref": "ProcessingQueue"}
+
+  # S3 vs DynamoDB - different AWS services
+  S3Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: s3.processor
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["AnotherSharedRole", "Arn"]}  # PROBLEM: Same role for different services
+      Events:
+        S3Event:
+          Type: S3
+          Properties:
+            Bucket: {"Ref": "ProcessingBucket"}
+            Event: s3:ObjectCreated:*
+      Environment:
+        Variables:
+          S3_BUCKET_NAME: {"Ref": "ProcessingBucket"}
+
+  DynamoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: dynamo.processor
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["AnotherSharedRole", "Arn"]}  # PROBLEM: Same role for different services
+      Events:
+        DynamoEvent:
+          Type: DynamoDB
+          Properties:
+            Stream: {"Fn::GetAtt": ["DataTable", "StreamArn"]}
+            StartingPosition: LATEST
+      Environment:
+        Variables:
+          DYNAMODB_TABLE_NAME: {"Ref": "DataTable"}
+
+  # Functions with different AWS service environment variables
+  LambdaInvokerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: lambda.invoker
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["ThirdSharedRole", "Arn"]}  # PROBLEM: Same role for different services
+      Events:
+        InvokeEvent:
+          Type: Api
+          Properties:
+            Path: /invoke
+            Method: post
+      Environment:
+        Variables:
+          LAMBDA_FUNCTION_NAME: target-function
+
+  SnsPublisherFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: sns.publisher
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["ThirdSharedRole", "Arn"]}  # PROBLEM: Same role for different services
+      Events:
+        PublishEvent:
+          Type: Api
+          Properties:
+            Path: /notify
+            Method: post
+      Environment:
+        Variables:
+          SNS_TOPIC_ARN: {"Ref": "NotificationTopic"}
+
+  # Supporting Resources
+  SharedRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+
+  AnotherSharedRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+
+  ThirdSharedRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+
+  ProcessingQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: processing-queue
+
+  ProcessingBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: processing-bucket
+
+  DataTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: data-table
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  NotificationTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: notifications

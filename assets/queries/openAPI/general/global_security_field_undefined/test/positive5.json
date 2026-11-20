@@ -1,0 +1,49 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API with unsecured paths",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users": {
+      "get": {
+        "operationId": "getUsers",
+        "summary": "Get all users - NO SECURITY!",
+        "responses": {
+          "200": {
+            "description": "List of users"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createUser",
+        "summary": "Create user - ALSO NO SECURITY!",
+        "responses": {
+          "201": {
+            "description": "User created"
+          }
+        }
+      }
+    },
+    "/admin": {
+      "delete": {
+        "operationId": "deleteEverything",
+        "summary": "Delete everything - DANGEROUS AND UNSECURED!",
+        "responses": {
+          "200": {
+            "description": "Everything deleted"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    }
+  }
+}
