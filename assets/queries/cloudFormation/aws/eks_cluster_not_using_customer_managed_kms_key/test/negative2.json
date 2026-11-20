@@ -1,26 +1,26 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
     "Resources": {
-        "MyEKSClusterB": {
+        "myCluster": {
             "Type": "AWS::EKS::Cluster",
             "Properties": {
-                "Name": "dev",
+                "Name": "prod",
                 "Version": "1.14",
-                "RoleArn": "arn:aws:iam::123456789012:role/eks-service-role-AWSServiceRoleForAmazonEKS-NEWROLE1234",
+                "RoleArn": "arn:aws:iam::012345678910:role/eks-service-role-AWSServiceRoleForAmazonEKS-EXAMPLEBQ4PI",
                 "ResourcesVpcConfig": {
                     "SecurityGroupIds": [
-                        "sg-123abc45"
+                        "sg-6979fe18"
                     ],
                     "SubnetIds": [
-                        "subnet-1111aaaa",
-                        "subnet-2222bbbb"
+                        "subnet-6782e71e",
+                        "subnet-e7e761ac"
                     ]
                 },
                 "EncryptionConfig": [
                     {
-                        "Resources": [
-                            "not_secrets"
-                        ]
+                        "Provider": {
+                            "KeyArn": "arn:aws:kms:us-east-1:012345678910:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+                        }
                     }
                 ]
             }
