@@ -28,6 +28,8 @@ CxPolicy[result] {
 	protocol := resource.Properties.Protocol
 	protocol == "HTTP"
 
+	not check_actions(resource.Properties)
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
@@ -38,4 +40,14 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'Resources.%s.Protocol' equals to 'HTTP'", [name]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties","Protocol"], []),
 	}
+}
+
+check_actions(properties){
+	actions := properties.DefaultActions
+	count([x | y := redirecting_HTTPS(actions[x]); y == true]) > 0
+}
+
+redirecting_HTTPS(action){
+	action.Type == "redirect"
+	action.RedirectConfig.Protocol == "HTTPS"
 }
