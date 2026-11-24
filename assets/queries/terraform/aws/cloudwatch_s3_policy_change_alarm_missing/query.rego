@@ -56,11 +56,23 @@ expressionArr := [
 ]
 
 #{ ($.eventSource = \"s3.amazonaws.com\") && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) || ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) || ($.eventName = DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }
+s3Pattern(pattern) {
+	contains(pattern, "s3.amazonaws.com")
+}
+
+s3Pattern(pattern) {
+	contains(pattern, "PutBucket")
+}
+
+s3Pattern(pattern) {
+	contains(pattern, "DeleteBucket")
+}
+
 CxPolicy[result] {
 	doc := input.document[i]
-	_ := doc.resource.aws_cloudwatch_log_metric_filter[name]
+	filterRes := doc.resource.aws_cloudwatch_log_metric_filter[name]
+	s3Pattern(filterRes.pattern)
 
-	
 	count([alarm | alarm := doc.resource.aws_cloudwatch_metric_alarm[_]; contains(alarm.metric_name, name)]) == 0 
 	
 	result := {
@@ -90,6 +102,7 @@ CxPolicy[result] {
 	resources := doc.resource.aws_cloudwatch_log_metric_filter
 
 	resourceNames := [resourceName | [path, value] := walk(resources);
+	    s3Pattern(value.pattern)
 	    filter := common_lib.json_unmarshal(value.pattern);
 	    not check_expression_missing(filter);
 	    resourceName := path[count(path)-1]
