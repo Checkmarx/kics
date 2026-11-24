@@ -91,6 +91,12 @@ get_ingress_list(ingress) = result {
 	}
 }
 
+is_tcp_port_zero(rule) {
+	rule.protocol == tcp_alias[_]
+	rule.from_port == 0
+	rule.to_port == 0
+}
+
 # Checks if a port is included in a rule
 containsPort(rule, port) {
 	rule.from_port <= port
