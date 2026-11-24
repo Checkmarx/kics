@@ -29,13 +29,22 @@ options := {"&& ", "; "}
 hasClean(resourceValue, aptGet) {
 	res := replace(resourceValue, "\t", "")
 	listCommands := split(res, options[_])
-	startswith(trim_space(listCommands[install]), aptGet)
+	starts_with_apt(listCommands[install], aptGet)
 	startswith(trim_space(listCommands[clean]),  "apt-get clean")
 	install < clean
 } else {
 	res := replace(resourceValue, "\t", "")
 	listCommands := split(res, options[_])
-	startswith(trim_space(listCommands[install]), aptGet)
+	starts_with_apt(listCommands[install], aptGet)
 	startswith(trim_space(listCommands[remove]),  "rm -rf")
 	install < remove
+}
+
+# An env assignment such as DEBIAN_FRONTEND=noninteractive may precede apt-get.
+starts_with_apt(command, aptGet) {
+	startswith(trim_space(command), aptGet)
+} else {
+	stripped := regex.replace(trim_space(command), `^([A-Za-z_][A-Za-z0-9_]*=\S+\s+)+`, "")
+	stripped != trim_space(command)
+	startswith(stripped, aptGet)
 }
