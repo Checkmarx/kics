@@ -13,6 +13,7 @@ CxPolicy[result] {
 	common_lib.is_allow_effect(statement)
 	not common_lib.valid_key(statement, "Condition")
 	common_lib.has_wildcard(statement, "kms:*")
+	not account_root_only(statement)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -24,6 +25,28 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_kms_key[%s].policy has wildcard in 'Action' or 'Principal'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_kms_key", name, "policy"], []),
 	}
+}
+
+# kms:* on the account root enables IAM delegation. It does not grant other principals.
+account_root_only(statement) {
+	principals := aws_principals(statement)
+	count(principals) > 0
+	count({p | p := principals[_]; not root_arn(p)}) == 0
+}
+
+aws_principals(statement) = out {
+	is_string(statement.Principal.AWS)
+	out := [statement.Principal.AWS]
+} else = out {
+	is_array(statement.Principal.AWS)
+	out := statement.Principal.AWS
+} else = out {
+	is_string(statement.Principal)
+	out := [statement.Principal]
+}
+
+root_arn(principal) {
+	regex.match(`^arn:aws(-[a-z0-9]+)?:iam::[0-9]{12}:root$`, principal)
 }
 
 CxPolicy[result] {
