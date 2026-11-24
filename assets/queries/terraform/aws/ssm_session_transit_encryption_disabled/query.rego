@@ -9,7 +9,7 @@ is_unevaluated(content) {
 }
 
 has_kms_key_id(content) {
-	regex.match(`\bkmsKeyId\s*[=:]`, content)
+	regex.match(`(?:\bkmsKeyId|"kmsKeyId")\s*[=:]`, content)
 }
 
 CxPolicy[result] {
