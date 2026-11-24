@@ -10,6 +10,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	req := openapi_lib.require_objects_v2[obj_type]
 	obj := value[obj_type]
+	not operation_string_tags(obj_type, path)
 
 	req_obj := check_required(obj, req)
 	search_key := create_search_key(req_obj, path, obj_type)
@@ -42,6 +43,12 @@ CxPolicy[result] {
 		"keyExpectedValue": "Parameter object has 'type' defined",
 		"keyActualValue": "Parameter object does not have 'type' defined",
 	}
+}
+
+# Operation Object tags are a list of strings. Only the root Tag Objects require name.
+operation_string_tags(obj_type, path) {
+	obj_type == "tags"
+	count(path) > 0
 }
 
 check_required(obj, req) = req_obj {
