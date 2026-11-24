@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  HttpApi:
+    Type: AWS::ApiGatewayV2::Api
+    Properties:
+      Name: http-api
+      ProtocolType: HTTP
+  MyStage:
+    Type: AWS::ApiGatewayV2::Stage
+    Properties:
+      StageName: Prod
+      ApiId: !Ref HttpApi
+      AutoDeploy: true
+      AccessLogSettings:
+        DestinationArn: arn:aws:logs:us-east-1:123456789012:log-group:http-api
+        Format: '{"requestId":"$context.requestId"}'
