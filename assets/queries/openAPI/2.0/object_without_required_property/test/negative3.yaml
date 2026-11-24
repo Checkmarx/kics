@@ -1,0 +1,18 @@
+swagger: "2.0"
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  /v1/sourceTypes:
+    delete:
+      description: delete sources
+      responses:
+        "200":
+          description: Successful Response
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          type: array
+          items:
+            type: string
