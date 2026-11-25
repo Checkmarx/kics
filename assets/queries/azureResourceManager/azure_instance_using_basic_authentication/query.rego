@@ -27,24 +27,19 @@ CxPolicy[result] {
 	}
 }
 
-# OS can only be inferred from linuxConfiguration, osDisk.osType or an image publisher
+# The OS is only inferred from osProfile.linuxConfiguration/windowsConfiguration or storageProfile.osDisk.osType.
+# imageReference.publisher is not used, it only names the organization that created the image and doesn't identify the OS.
 is_linux(resource) {
 	resource.properties.osProfile.linuxConfiguration
 } else {
 	lower(resource.properties.storageProfile.osDisk.osType) == "linux"
-} else {
-	is_string(resource.properties.storageProfile.imageReference.publisher)
 }
 
 is_windows(resource) {
 	resource.properties.osProfile.windowsConfiguration
 } else {
 	lower(resource.properties.storageProfile.osDisk.osType) == "windows"
-} else {
-	validMSWindowsVer := ["windows", "microsoft"]
-	contains(lower(resource.properties.storageProfile.imageReference.publisher), validMSWindowsVer[_])
 }
-
 
 prepare_issue(doc, resource) = issue {
 	disablePasswordAuthentication:= resource.properties.osProfile.linuxConfiguration.disablePasswordAuthentication

@@ -52,5 +52,71 @@
     "severity": "MEDIUM",
     "line": 17,
     "filename": "positive4.bicep"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive5.bicep"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 40,
+    "filename": "positive6.json"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive6.bicep"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 106,
+    "filename": "positive7.json"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 60,
+    "filename": "positive7.bicep"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 40,
+    "filename": "positive8.json"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 75,
+    "filename": "positive8.json"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 110,
+    "filename": "positive8.json"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive8.bicep"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 38,
+    "filename": "positive8.bicep"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 64,
+    "filename": "positive8.bicep"
   }
 ]
