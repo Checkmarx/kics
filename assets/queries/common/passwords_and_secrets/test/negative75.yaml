@@ -1,0 +1,38 @@
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - "Avoiding Kubernetes Secret references (a Secret name next to the key that is read from it)"  allow-rule-test
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webhook-listener
+spec:
+  template:
+    spec:
+      containers:
+        - name: listener
+          image: example/listener:1.0
+          env:
+            - name: WEBHOOK_TOKEN
+              valueFrom:
+                externalSecret:
+                  secret: gitlab-webhook-secret  # negative1
+                  key: secret-token
+            - name: API_TOKEN
+              valueFrom:
+                externalSecret:
+                  key: api-token
+                  secret: listener-api-credentials  # negative2
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: gitlab-listener
+spec:
+  triggers:
+    - name: gitlab-push
+      interceptors:
+        - ref:
+            name: gitlab
+          params:
+            - name: secretRef
+              value:
+                secretKey: secretToken  # negative3
+                secretName: gitlab-webhook-secret

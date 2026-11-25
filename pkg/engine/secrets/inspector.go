@@ -71,7 +71,11 @@ type MultilineResult struct {
 type AllowRule struct {
 	Description string `json:"description"`
 	RegexStr    string `json:"regex"`
-	Regex       *regexp.Regexp
+	// ContextLines, when greater than zero, matches the allow rule against the detected line plus up to
+	// ContextLines lines before and after it, so a rule can look at sibling lines (e.g. a Kubernetes
+	// secret name next to its key). Rules without it are matched against the detected line only.
+	ContextLines int `json:"contextLines,omitempty"`
+	Regex        *regexp.Regexp
 }
 
 type RegexQuery struct {
@@ -379,6 +383,40 @@ func IsAllowRule(s string, query *RegexQuery, allowRules []AllowRule) bool {
 	return false
 }
 
+// IsContextAllowRule checks the allow rules that set ContextLines: each one is matched against the line
+// at lineNumber plus its surrounding lines, and the line is allowed when a match overlaps the secret
+// detected on that line.
+func IsContextAllowRule(lines []string, lineNumber int, query *RegexQuery, allowRules []AllowRule) bool {
+	if lineNumber < 0 || lineNumber >= len(lines) {
+		return false
+	}
+	regexMatch := query.Regex.FindStringIndex(lines[lineNumber])
+	if regexMatch == nil {
+		return false
+	}
+	for i := range allowRules {
+		contextLines := allowRules[i].ContextLines
+		if contextLines <= 0 || allowRules[i].Regex == nil {
+			continue
+		}
+		start := max(0, lineNumber-contextLines)
+		end := min(len(lines), lineNumber+contextLines+1)
+		offset := 0
+		for j := start; j < lineNumber; j++ {
+			offset += len(lines[j]) + 1
+		}
+		window := strings.Join(lines[start:end], "\n")
+		regexStart, regexEnd := regexMatch[0]+offset, regexMatch[1]+offset
+		for _, allowMatch := range allowRules[i].Regex.FindAllStringIndex(window, -1) {
+			allowStart, allowEnd := allowMatch[0], allowMatch[1]
+			if (allowStart <= regexEnd && allowStart >= regexStart) || (regexStart <= allowEnd && regexStart >= allowStart) {
+				return true
+			}
+		}
+	}
+	return false
+}
+
 // AllowRuleMatches return all the allow rules matches for the secret queries
 func AllowRuleMatches(s string, allowRules []AllowRule) [][]int {
 	allowRuleMatches := [][]int{}
@@ -478,6 +516,10 @@ func (c *Inspector) checkLineByLine(wg *sync.WaitGroup, query *RegexQuery,
 	defer wg.Done()
 	isSecret, groups := c.isSecret(currentLine, query)
 	if !isSecret {
+		return
+	}
+	if file.LinesOriginalData != nil &&
+		IsContextAllowRule(*file.LinesOriginalData, lineNumber, query, append(query.AllowRules, c.allowRules...)) {
 		return
 	}
 

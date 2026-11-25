@@ -2,7 +2,9 @@ package secrets
 
 import (
 	"context"
+	"encoding/json"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"sync"
 	"testing"
@@ -995,5 +997,115 @@ func TestInspectFailedQueries(t *testing.T) {
 			require.ErrorIs(t, queryErr, context.DeadlineExceeded,
 				"test[%s] GetFailedQueries()[%s] should be context.DeadlineExceeded", in.name, queryName)
 		}
+	}
+}
+
+func TestIsContextAllowRule(t *testing.T) {
+	query := &RegexQuery{
+		Regex: regexp.MustCompile(`(?i)secret\s*:\s*([a-z0-9-]{10,})`),
+	}
+	siblingKey := AllowRule{
+		Description:  "secret name next to a key",
+		Regex:        regexp.MustCompile(`secret\s*:\s*[a-z0-9-]+\s*\n\s*key\s*:\s*\S+`),
+		ContextLines: 1,
+	}
+	singleLine := siblingKey
+	singleLine.ContextLines = 0
+
+	tests := []struct {
+		name       string
+		lines      []string
+		lineNumber int
+		allowRules []AllowRule
+		want       bool
+	}{
+		{
+			name:       "sibling key on the next line is allowed",
+			lines:      []string{"ref:", "  secret: gitlab-webhook-secret", "  key: token"},
+			lineNumber: 1,
+			allowRules: []AllowRule{siblingKey},
+			want:       true,
+		},
+		{
+			name:       "no sibling key is not allowed",
+			lines:      []string{"ref:", "  secret: gitlab-webhook-secret", "  other: value"},
+			lineNumber: 1,
+			allowRules: []AllowRule{siblingKey},
+			want:       false,
+		},
+		{
+			name:       "rule without context lines is ignored",
+			lines:      []string{"ref:", "  secret: gitlab-webhook-secret", "  key: token"},
+			lineNumber: 1,
+			allowRules: []AllowRule{singleLine},
+			want:       false,
+		},
+		{
+			name:       "match on a neighbouring line only does not allow the current line",
+			lines:      []string{"  secret: first-secret-name", "  key: token", "  secret: second-secret-name"},
+			lineNumber: 2,
+			allowRules: []AllowRule{siblingKey},
+			want:       false,
+		},
+		{
+			name:       "line number out of range",
+			lines:      []string{"  secret: gitlab-webhook-secret"},
+			lineNumber: 3,
+			allowRules: []AllowRule{siblingKey},
+			want:       false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := IsContextAllowRule(tt.lines, tt.lineNumber, query, tt.allowRules)
+			require.Equal(t, tt.want, got)
+		})
+	}
+}
+
+// TestKubernetesSecretReferenceAllowRule runs the real "Avoiding Kubernetes Secret references" allow rule
+// from regex_rules.json against Secret references and against real secrets that sit next to a key.
+func TestKubernetesSecretReferenceAllowRule(t *testing.T) {
+	var rules RegexRuleStruct
+	require.NoError(t, json.Unmarshal([]byte(assets.SecretsQueryRegexRulesJSON), &rules))
+
+	var query *RegexQuery
+	for i := range rules.Rules {
+		if rules.Rules[i].Name == "Generic Secret" {
+			query = &rules.Rules[i]
+		}
+	}
+	require.NotNil(t, query)
+	query.Regex = regexp.MustCompile(query.RegexStr)
+	allowRules, err := CompileRegex(query.AllowRules)
+	require.NoError(t, err)
+
+	// built at runtime so secret scanners do not flag the test data as a real GitLab token
+	fakeToken := strings.Repeat("Ab1x", 5)
+
+	tests := []struct {
+		name       string
+		text       string
+		lineNumber int
+		want       bool
+	}{
+		{"secret name then key", "  secret: my-db-credentials\n  key: password", 0, true},
+		{"key then secret name", "  key: password\n  secret: my-db-credentials", 1, true},
+		{"key then secret name on the last line", "key: password\nsecret: my-db-credentials", 1, true},
+		{"trailing comment", "key: password\nsecret: my-db-credentials # managed by vault\nother: value", 1, true},
+		{"list item", "- key: password\n  secret: my-db-credentials", 1, true},
+		{"tekton secretKey then secretName", "secretKey: secretToken\nsecretName: github-webhook-secret", 0, true},
+		{"tekton secretName then secretKey", "secretName: github-webhook-secret\nsecretKey: secretToken", 1, true},
+		{"gitlab PAT after key", "key: connection\nsecret: glpat-" + fakeToken, 1, false},
+		{"gitlab runner token after key", "key: connection\nsecret: glrt-" + fakeToken, 1, false},
+		{"base64 value after key", "key: connection\nsecret: c3VwZXJzZWNyZXRWYWx1ZTEyMw==", 1, false},
+		{"real value next to key", "secret: Zx9kP2qL7mW3vR8Ab\nkey: password", 0, false},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			lines := strings.Split(tt.text, "\n")
+			require.True(t, query.Regex.MatchString(lines[tt.lineNumber]), "Generic Secret should detect the line")
+			require.Equal(t, tt.want, IsContextAllowRule(lines, tt.lineNumber, query, allowRules))
+		})
 	}
 }
