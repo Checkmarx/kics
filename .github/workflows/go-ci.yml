@@ -185,7 +185,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Run Gosec Security Scanner
-        uses: securego/gosec@d2d3ae66bd8d340b78b5142b6fe610691783c2fe # v2.22.5
+        uses: step-security/securego-gosec@3281807ab637177cdd8f594a9876c0d086a7bfb0 # v2.29.0
         with:
           args: "-no-fail -fmt sarif -out results.sarif ./..."
       - name: Show results

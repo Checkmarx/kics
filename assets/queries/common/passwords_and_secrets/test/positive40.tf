@@ -1,4 +1,5 @@
-# "AWS Context-specific credential" - 76c0bcde-903d-456e-ac13-e58c34987852  positive-test (line 15/16)
+# "AWS Context-specific credential" - b751213d-99a5-4005-8524-4bf799ee77a1  positive-test (line 16)
+# "AWS Certificate"                 - eb171053-9634-42c3-96e9-c625c8ffe698  positive-test (line 17)
 resource "aws_instance" "web_host" {
   # ec2 have plain text secrets in user data
   ami           = var.ami

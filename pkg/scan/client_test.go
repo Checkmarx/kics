@@ -71,6 +71,13 @@ func Test_CheckVersion(t *testing.T) {
 			expectedLatest:    true,
 			expectedLatestTag: "2.1.21",
 		},
+		{
+			name:              "v-prefixed current version is already latest",
+			currentVersion:    "v2.2.0",
+			releaseBody:       `{"tag_name": "v2.2.0"}`,
+			expectedLatest:    true,
+			expectedLatestTag: "2.2.0",
+		},
 	}
 
 	originalClient := versionHTTPClient

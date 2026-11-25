@@ -3,7 +3,7 @@
 # it does not define an ENTRYPOINT as this is a requirement described here:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops#linux-based-containers
 #
-FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.26.3-bookworm@sha256:386d475a660466863d9f8c766fec64d7fdad3edac2c6a05020c09534d71edb4b AS build_env
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.27.3-bookworm@sha256:972b4110ba0f47539a975c31e52c64765e1ff19f2d74469ae4a595c6676e80a5 AS build_env
 
 # Create a group and user
 RUN groupadd checkmarx && useradd -g checkmarx -M -s /bin/bash checkmarx
@@ -47,7 +47,7 @@ USER checkmarx
 # be sure to use /app/bin/kics as a path to the binary
 #
 # runtime image - buildpack-deps:scm already ships git, wget and ca-certificates
-FROM buildpack-deps:bookworm-scm@sha256:de4e518f98c6533eceeee6f8b14a77a918856fa8282a1b711c0292d089157c0c
+FROM buildpack-deps:bookworm-scm@sha256:1314fd2a9c83b257b37132883b3c8e326d3909211bdcb419c9757399ebc34bf3
 
 RUN groupadd checkmarx && useradd -g checkmarx -M -s /bin/bash checkmarx
 
