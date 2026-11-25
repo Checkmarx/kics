@@ -21,7 +21,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Run Trivy vulnerability scanner in repo mode
-        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 #v0.35.0
+        uses: step-security/trivy-action@4d04e2d32ba36aae5693467644b22741d68f9115 # v0.36.0
         with:
           scan-type: 'fs'
           ignore-unfixed: true
@@ -71,7 +71,7 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 #v0.36.0
+        uses: step-security/trivy-action@4d04e2d32ba36aae5693467644b22741d68f9115 # v0.36.0
         with:
           image-ref: kics:sec-trivy-tests-${{ github.sha }}
           ignore-unfixed: true
@@ -102,7 +102,7 @@ jobs:
           persist-credentials: false
       - name: Run Grype vulnerability scanner in repo mode
         id: grype-fs-scan
-        uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # 7.4.0
+        uses: step-security/anchore-scan-action@a09aeacdedd17f1a8e912b3519ee9d7ea124498a # v7.4.2
         with:
           path: "."
           only-fixed: true
@@ -141,7 +141,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Scan image
         id: grype-image-scan
-        uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # 7.4.0
+        uses: step-security/anchore-scan-action@a09aeacdedd17f1a8e912b3519ee9d7ea124498a # v7.4.2
         with:
           image: kics:sec-tests-${{ github.sha }}
           only-fixed: true
