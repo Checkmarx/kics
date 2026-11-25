@@ -28,5 +28,35 @@
     "severity": "MEDIUM",
     "line": 128,
     "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "RDS Multi-AZ Deployment Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "RDS Multi-AZ Deployment Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "RDS Multi-AZ Deployment Disabled",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "RDS Multi-AZ Deployment Disabled",
+    "severity": "MEDIUM",
+    "line": 27,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "RDS Multi-AZ Deployment Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive5.json"
   }
 ]

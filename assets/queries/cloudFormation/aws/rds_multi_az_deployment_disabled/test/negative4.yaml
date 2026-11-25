@@ -12,6 +12,11 @@ Resources:
       Engine: aurora-postgresql
       DBInstanceClass: db.r5.large
       MultiAZ: false
+  AuroraInstanceByEngineMultiAZUndefined:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      Engine: aurora-mysql
+      DBInstanceClass: db.r5.large
   AuroraInstanceByCluster:
     Type: AWS::RDS::DBInstance
     Properties:
