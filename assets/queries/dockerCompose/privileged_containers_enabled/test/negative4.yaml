@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  unrelated_string:
+    image: busybox
+    privileged: "enabled"
+  numeric_string:
+    image: busybox
+    privileged: "1"
+  numeric_value:
+    image: busybox
+    privileged: 1
+  empty_string:
+    image: busybox
+    privileged: ""
+  leading_whitespace:
+    image: busybox
+    privileged: " yes"
+  trailing_whitespace:
+    image: busybox
+    privileged: "true "
+  null_value:
+    image: busybox
+    privileged: null
