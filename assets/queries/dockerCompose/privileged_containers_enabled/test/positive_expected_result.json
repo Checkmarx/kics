@@ -1,14 +1,110 @@
 [
-    {
-      "queryName": "Privileged Containers Enabled",
-      "severity": "HIGH",
-      "line": 10,
-      "filename": "positive1.yaml"
-    },
-    {
-        "queryName": "Privileged Containers Enabled",
-        "severity": "HIGH",
-        "line": 13,
-        "filename": "positive2.yaml"
-    }
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 13,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 12,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 15,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 18,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 21,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 24,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 27,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 30,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 12,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 15,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 18,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 21,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 24,
+    "filename": "positive4.yaml"
+  }
 ]

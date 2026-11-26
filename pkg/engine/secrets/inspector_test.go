@@ -842,3 +842,158 @@ func TestSecretsDetectLine_MultilineMatchAtEndDoesNotPanic(t *testing.T) {
 		c.secretsDetectLine(query, file, vulnGroups)
 	})
 }
+
+// executionTimeout is negative on purpose and a negative tests an already expired
+// context without relying on timing (waits)
+var testInspectTimeoutInput = []struct {
+	name             string
+	executionTimeout int
+	cancelContext    bool
+	wantErr          error
+	wantVuln         bool
+}{
+	{
+		name:             "timeout_not_reached",
+		executionTimeout: 60,
+		cancelContext:    false,
+		wantErr:          nil,
+		wantVuln:         true,
+	},
+	{
+		name:             "timeout_reached",
+		executionTimeout: -1,
+		cancelContext:    false,
+		wantErr:          context.DeadlineExceeded,
+		wantVuln:         false,
+	},
+	{
+		name:             "parent_context_canceled",
+		executionTimeout: 60,
+		cancelContext:    true,
+		wantErr:          context.Canceled,
+		wantVuln:         false,
+	},
+}
+
+func TestInspectQueryTimeout(t *testing.T) {
+	files := model.FileMetadatas{
+		{
+			ID:                "b032c51d-2e7c-4ffc-8a81-41405c166bc8",
+			Document:          model.Document{},
+			OriginalData:      OriginalData2,
+			LinesOriginalData: utils.SplitLines(OriginalData2),
+			Kind:              "K8S",
+			FilePath:          "assets/queries/common/passwords_and_secrets/test/positive1.yaml",
+		},
+	}
+
+	for _, in := range testInspectTimeoutInput {
+		ctx, cancel := context.WithCancel(context.Background())
+		if in.cancelContext {
+			cancel()
+		}
+
+		// only the Generic Password rule is loaded, so it is the rule at index 0
+		secretsInspector, err := NewInspector(
+			ctx,
+			map[string]bool{},
+			&tracker.CITracker{},
+			&source.QueryInspectorParameters{
+				IncludeQueries: source.IncludeQueries{ByIDs: []string{"487f4be7-3fd9-4506-a07a-eae252180c08"}},
+				ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
+				InputDataPath:  "",
+			},
+			false,
+			in.executionTimeout,
+			assets.SecretsQueryRegexRulesJSON,
+			false,
+		)
+		require.NoError(t, err, "test[%s] NewInspector() should not return error", in.name)
+		require.Equal(t, 1, secretsInspector.GetQueriesLength(), "test[%s] NewInspector() should return 1 regex query", in.name)
+
+		basePaths := []string{filepath.FromSlash("assets/queries/")}
+		gotVulns, err := secretsInspector.inspectQuery(ctx, basePaths, files, 0)
+		cancel()
+
+		if in.wantErr != nil {
+			require.ErrorIs(t, err, in.wantErr, "test[%s] inspectQuery() should return %v", in.name, in.wantErr)
+		} else {
+			require.NoError(t, err, "test[%s] inspectQuery() should not return error", in.name)
+		}
+		require.Equal(t, in.wantVuln, len(gotVulns) > 0, "test[%s] inspectQuery() vulnerabilities found mismatch", in.name)
+	}
+}
+
+var testInspectFailedQueriesInput = []struct {
+	name             string
+	executionTimeout int
+	wantFailed       bool
+}{
+	{
+		name:             "timeout_not_reached",
+		executionTimeout: 60,
+		wantFailed:       false,
+	},
+	{
+		name:             "timeout_reached",
+		executionTimeout: -1,
+		wantFailed:       true,
+	},
+}
+
+func TestInspectFailedQueries(t *testing.T) {
+	files := model.FileMetadatas{
+		{
+			ID:                "b032c51d-2e7c-4ffc-8a81-41405c166bc8",
+			Document:          model.Document{},
+			OriginalData:      OriginalData2,
+			LinesOriginalData: utils.SplitLines(OriginalData2),
+			Kind:              "K8S",
+			FilePath:          "assets/queries/common/passwords_and_secrets/test/positive1.yaml",
+		},
+	}
+
+	for _, in := range testInspectFailedQueriesInput {
+		ctx := context.Background()
+		secretsInspector, err := NewInspector(
+			ctx,
+			map[string]bool{},
+			&tracker.CITracker{},
+			&source.QueryInspectorParameters{
+				IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
+				ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
+				InputDataPath:  "",
+			},
+			false,
+			in.executionTimeout,
+			assets.SecretsQueryRegexRulesJSON,
+			false,
+		)
+		require.NoError(t, err, "test[%s] NewInspector() should not return error", in.name)
+
+		currentQuery := make(chan int64, secretsInspector.GetQueriesLength())
+
+		basePaths := []string{filepath.FromSlash("assets/queries/")}
+		gotVulns, err := secretsInspector.Inspect(ctx, basePaths, files, currentQuery)
+
+		// a rule that times out does not abort the scan, it is only recorded as failed
+		require.NoError(t, err, "test[%s] Inspect() should not return error", in.name)
+		require.Len(t, currentQuery, secretsInspector.GetQueriesLength(),
+			"test[%s] Inspect() should step the progress once per rule", in.name)
+
+		failedQueries := secretsInspector.GetFailedQueries()
+		if !in.wantFailed {
+			require.Empty(t, failedQueries, "test[%s] GetFailedQueries() should be empty", in.name)
+			require.NotEmpty(t, gotVulns, "test[%s] Inspect() should return vulnerabilities", in.name)
+			continue
+		}
+
+		require.Empty(t, gotVulns, "test[%s] Inspect() should not return vulnerabilities", in.name)
+		require.Len(t, failedQueries, secretsInspector.GetQueriesLength(),
+			"test[%s] GetFailedQueries() should return every rule", in.name)
+		for queryName, queryErr := range failedQueries {
+			require.ErrorIs(t, queryErr, context.DeadlineExceeded,
+				"test[%s] GetFailedQueries()[%s] should be context.DeadlineExceeded", in.name, queryName)
+		}
+	}
+}

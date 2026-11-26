@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  quoted_no:
+    image: busybox
+    privileged: "no"
+  quoted_n:
+    image: busybox
+    privileged: "n"
+  quoted_off:
+    image: busybox
+    privileged: "off"
+  quoted_false:
+    image: busybox
+    privileged: "false"
+  quoted_no_uppercase:
+    image: busybox
+    privileged: "NO"
+  quoted_false_capitalized:
+    image: busybox
+    privileged: "False"
+  unquoted_no:
+    image: busybox
+    privileged: no
+  unquoted_n:
+    image: busybox
+    privileged: n
+  unquoted_off:
+    image: busybox
+    privileged: off
+  unquoted_false_uppercase:
+    image: busybox
+    privileged: FALSE

@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  quoted_yes:
+    image: busybox
+    privileged: "yes"
+  quoted_y:
+    image: busybox
+    privileged: "y"
+  quoted_on:
+    image: busybox
+    privileged: "on"
+  quoted_true:
+    image: busybox
+    privileged: "true"
+  quoted_yes_capitalized:
+    image: busybox
+    privileged: "Yes"
+  quoted_yes_uppercase:
+    image: busybox
+    privileged: "YES"
+  quoted_y_uppercase:
+    image: busybox
+    privileged: "Y"
+  quoted_on_mixed_case:
+    image: busybox
+    privileged: "oN"
+  quoted_true_uppercase:
+    image: busybox
+    privileged: "TRUE"
