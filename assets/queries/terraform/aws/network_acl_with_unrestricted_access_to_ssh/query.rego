@@ -88,5 +88,5 @@ CxPolicy[result] {
 }
 
 is_egress(rule) {
-	rule.egress == true
+	lower(sprintf("%v", [rule.egress])) == "true"
 }
