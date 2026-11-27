@@ -6,6 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	gateway := input.document[i].resource.azurerm_application_gateway[name]
 	not common_lib.valid_key(gateway, "waf_configuration")
+	not common_lib.valid_key(gateway, "firewall_policy_id")
 
 	result := {
 		"documentId": input.document[i].id,
