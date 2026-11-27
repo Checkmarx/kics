@@ -55,6 +55,20 @@ func TestQueries(t *testing.T) {
 	}
 }
 
+func TestSSMSessionTransitEncryption(t *testing.T) {
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
+
+	queries := loadQueries(t)
+	var found bool
+	for _, entry := range queries {
+		if strings.Contains(entry.dir, "ssm_session_transit_encryption_disabled") {
+			found = true
+			testPositiveAndNegativeQueries(t, entry)
+		}
+	}
+	require.True(t, found, "ssm_session_transit_encryption_disabled query was not loaded")
+}
+
 func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []model.Vulnerability) {
 	summary := &remediation.Summary{
 		SelectedRemediationNumber:   0,

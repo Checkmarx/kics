@@ -1,0 +1,15 @@
+variable "kms" {
+  type = string
+}
+
+resource "aws_ssm_document" "positive3" {
+  name          = "test_document"
+  document_type = "Session"
+
+  content = jsonencode({
+    schemaVersion = "1.0"
+    inputs = {
+      s3EncryptionEnabled = true
+    }
+  })
+}
