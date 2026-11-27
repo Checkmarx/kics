@@ -412,7 +412,7 @@
   "allowRules": [
     {
       "description": "Avoiding TF variables",
-      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*=\\s*['\"]?var\\.['\"]?"
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*=\\s*['\"]?(var|local)\\.[A-Za-z0-9_]+['\"]?\\s*(#.*)?$"
     },
     {
       "description": "Avoiding CloudFormation intrinsic functions",
