@@ -8,7 +8,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	[path, value] := walk(doc)
-	req := openapi_lib.require_objects_v2[obj_type]
+	req := required_spec(obj_type)
 	obj := value[obj_type]
 
 	req_obj := check_required(obj, req)
@@ -61,6 +61,15 @@ check_required(obj, req) = req_obj {
 	set := {x | not common_lib.valid_key(obj, "$ref"); v := req.value[val]; not common_lib.valid_key(obj, v); x := obj}
 	count(set) > 0
 	req_obj := ""
+}
+
+# Swagger Items Object is one schema, not a map of schemas. Requiring `type`
+# on each value flags `items: {type: string}`.
+required_spec(obj_type) = req {
+	obj_type == "items"
+	req := {"value": {"type"}, "array": false, "map_object": false}
+} else = req {
+	req := openapi_lib.require_objects_v2[obj_type]
 }
 
 create_search_key(req_obj, path, obj_type) = searchKey {
