@@ -16,5 +16,41 @@
     "severity": "MEDIUM",
     "line": 26,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive8.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive9.tf"
   }
 ]

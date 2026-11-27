@@ -11,6 +11,8 @@ check_cidr(rule) {
 } else {
 	rule.ipv6_cidr_blocks == common_lib.unrestricted_ipv6[_]
 } else {
+    rule.ipv6_cidr_block == common_lib.unrestricted_ipv6[_]
+} else {
 	rule.cidr_ipv4 == "0.0.0.0/0"
 } else {
 	rule.cidr_ipv6 == common_lib.unrestricted_ipv6[_]
@@ -40,30 +42,40 @@ cidr_is_unmasked(resource) {
 
 prot_types := ["protocol","ip_protocol"]
 open_port := ["all","-1"]
+tcp_alias := ["tcp","6"]
 
 # Checks if a TCP port is open
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
-	rule[prot_types[_]] == "tcp"
+	is_tcp(rule)
 	containsPort(rule, port)
+	not is_network_action_deny(rule)
 }
 
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
-	rule[prot_types[_]] == "tcp"
+	is_tcp(rule)
 	containsPort(rule, port)
+	not is_network_action_deny(rule)
 }
 
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
 	rule[prot_types[_]] == open_port[_]
+	not is_network_action_deny(rule)
 }
 
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
 	rule[prot_types[_]] == open_port[_]
+	not is_network_action_deny(rule)
+}
+
+is_network_action_deny(rule) {
+	action_keys := ["action","rule_action"]
+	lower(sprintf("%v", [rule[action_keys[_]]])) == "deny"
 }
 
 get_ingress_list(ingress) = result {
@@ -77,6 +89,16 @@ get_ingress_list(ingress) = result {
 		"value" : [ingress],
 		"is_unique_element" : true
 	}
+}
+
+is_tcp(rule) {
+	lower(sprintf("%v", [rule[prot_types[_]]])) == tcp_alias[_]
+}
+
+is_tcp_port_zero(rule) {
+	rule.protocol == tcp_alias[_]
+	rule.from_port == 0
+	rule.to_port == 0
 }
 
 # Checks if a port is included in a rule
@@ -729,4 +751,8 @@ check_key_empty(disk_encryption_key) = key {
 	common_lib.valid_key(disk_encryption_key, "kms_key_self_link")
 	common_lib.emptyOrNull(disk_encryption_key.kms_key_self_link)
 	key := "kms_key_self_link"
+}
+
+is_egress(rule) {
+	lower(sprintf("%v", [rule.egress])) == "true"
 }
