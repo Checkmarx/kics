@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	content = value.content
+	# "content" inside "properties" is a schema field name, not a map of Media Type Objects
+	not path[count(path) - 1] == "properties"
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
 	contentElement := content[x]
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	content = value.content
+	# "content" inside "properties" is a schema field name, not a map of Media Type Objects
+	not path[count(path) - 1] == "properties"
 	openapi_lib.is_operation(path) == {}
 	contentElement := content[x]
 	not common_lib.valid_key(contentElement, "schema")
