@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  unquoted_yes:
+    image: busybox
+    privileged: yes
+  unquoted_y:
+    image: busybox
+    privileged: y
+  unquoted_on:
+    image: busybox
+    privileged: on
+  unquoted_yes_uppercase:
+    image: busybox
+    privileged: YES
+  unquoted_on_capitalized:
+    image: busybox
+    privileged: On
+  unquoted_true_capitalized:
+    image: busybox
+    privileged: True
+  unquoted_true_uppercase:
+    image: busybox
+    privileged: TRUE

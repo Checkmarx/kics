@@ -242,7 +242,12 @@ func scalarNodeResolver(val *yaml.Node) interface{} {
 	var transformed interface{} = val.Value
 	switch val.Tag {
 	case "!!bool":
-		transformed = transformBoolScalarNode(val.Value)
+		var b bool
+		if err := val.Decode(&b); err != nil {
+			log.Error().Msgf("failed to convert boolean in yaml parser")
+			return val.Value
+		}
+		transformed = b
 	case "!!int":
 		v, err := strconv.ParseInt(val.Value, 0, 64)
 		if err != nil {
@@ -252,17 +257,9 @@ func scalarNodeResolver(val *yaml.Node) interface{} {
 		transformed = v
 	case "!!null":
 		transformed = nil
+	default:
+		// keep the raw string value for any other tag
 	}
 
 	return transformed
-}
-
-// transformBoolScalarNode transforms a string value to its boolean representation
-func transformBoolScalarNode(value string) bool {
-	switch value {
-	case "true", "True":
-		return true
-	default:
-		return false
-	}
 }
