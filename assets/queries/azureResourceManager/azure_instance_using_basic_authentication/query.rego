@@ -21,17 +21,25 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
-		"keyExpectedValue": "'disablePasswordAuthentication' should be set to true",
+		"keyExpectedValue": issue.keyExpectedValue,
 		"keyActualValue": issue.keyActualValue,
 		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}
 }
 
-is_windows(resource) {
-	validMSWindowsVer := ["windows", "microsoft"]
-	contains(lower(resource.properties.storageProfile.imageReference.publisher), validMSWindowsVer[_])
+# The OS is only inferred from osProfile.linuxConfiguration/windowsConfiguration or storageProfile.osDisk.osType.
+# imageReference.publisher is not used, it only names the organization that created the image and doesn't identify the OS.
+is_linux(resource) {
+	resource.properties.osProfile.linuxConfiguration
+} else {
+	lower(resource.properties.storageProfile.osDisk.osType) == "linux"
 }
 
+is_windows(resource) {
+	resource.properties.osProfile.windowsConfiguration
+} else {
+	lower(resource.properties.storageProfile.osDisk.osType) == "windows"
+}
 
 prepare_issue(doc, resource) = issue {
 	disablePasswordAuthentication:= resource.properties.osProfile.linuxConfiguration.disablePasswordAuthentication
@@ -42,20 +50,34 @@ prepare_issue(doc, resource) = issue {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'disablePasswordAuthentication' should be set to true",
 		"keyActualValue": sprintf("'disablePasswordAuthentication' %s is set to false",[dpa_type]),
 		"sk": ".properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
 		"sl": ["properties", "osProfile", "linuxConfiguration", "disablePasswordAuthentication"],
 	}
 } else = issue {
 	not resource.properties.osProfile.linuxConfiguration.disablePasswordAuthentication
-	
+	is_linux(resource)
+
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'disablePasswordAuthentication' should be set to true",
 		"keyActualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined",
 		"sk": "",
 		"sl": ["name"],
+	}
+} else = issue {
+	not resource.properties.osProfile.linuxConfiguration.disablePasswordAuthentication
 
+	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'osProfile' authentication should be defined ('linuxConfiguration.disablePasswordAuthentication' set to true if the OS is Linux)",
+		"keyActualValue": "Authentication is undefined and the OS type could not be determined",
+		"sk": "",
+		"sl": ["name"],
 	}
 }

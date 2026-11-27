@@ -1,0 +1,31 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "MySqlNoValueCluster": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "Engine": "mysql",
+        "DBInstanceClass": "db.t3.micro",
+        "DBClusterIdentifier": {
+          "Ref": "AWS::NoValue"
+        }
+      }
+    },
+    "AuroraInstance": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "Engine": "aurora-mysql",
+        "DBInstanceClass": "db.r5.large"
+      }
+    },
+    "AuroraInstanceByCluster": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "DBInstanceClass": "db.r5.large",
+        "DBClusterIdentifier": {
+          "Ref": "AuroraCluster"
+        }
+      }
+    }
+  }
+}
