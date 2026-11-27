@@ -862,3 +862,31 @@ func Test_GetIgnoreLines(t *testing.T) {
 		})
 	}
 }
+
+func TestDocument_UnmarshalYAML_Booleans(t *testing.T) {
+	tests := []struct {
+		name string
+		yaml string
+		want interface{}
+	}{
+		{name: "lowercase true", yaml: "key: true", want: true},
+		{name: "capitalized true", yaml: "key: True", want: true},
+		{name: "uppercase true", yaml: "key: TRUE", want: true},
+		{name: "lowercase false", yaml: "key: false", want: false},
+		{name: "capitalized false", yaml: "key: False", want: false},
+		{name: "uppercase false", yaml: "key: FALSE", want: false},
+		{name: "explicit bool tag true", yaml: "key: !!bool true", want: true},
+		{name: "explicit bool tag yes keeps raw string", yaml: "key: !!bool yes", want: "yes"},
+		{name: "explicit bool tag off keeps raw string", yaml: "key: !!bool off", want: "off"},
+		{name: "unquoted yes stays a string", yaml: "key: yes", want: "yes"},
+		{name: "quoted true stays a string", yaml: `key: "true"`, want: "true"},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			doc := Document{}
+			require.NoError(t, yaml.Unmarshal([]byte(tt.yaml), &doc))
+			require.Equal(t, tt.want, doc["key"])
+		})
+	}
+}
