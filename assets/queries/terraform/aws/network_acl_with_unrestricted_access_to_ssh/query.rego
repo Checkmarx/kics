@@ -32,7 +32,7 @@ CxPolicy[result] {
 	tf_lib.portOpenToInternet(net_acl_rule, 22)
 	not tf_lib.is_tcp_port_zero(net_acl_rule)
 
-	not is_egress(net_acl_rule)
+	not tf_lib.is_egress(net_acl_rule)
 
 	result := {
 		"documentId": doc.id,
@@ -85,8 +85,4 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_network_acl[%s].ingress[%d] 'SSH' (Port:22) is public", [name, idx]),
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck, idx], []),
 	}
-}
-
-is_egress(rule) {
-	lower(sprintf("%v", [rule.egress])) == "true"
 }

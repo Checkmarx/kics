@@ -752,3 +752,7 @@ check_key_empty(disk_encryption_key) = key {
 	common_lib.emptyOrNull(disk_encryption_key.kms_key_self_link)
 	key := "kms_key_self_link"
 }
+
+is_egress(rule) {
+	lower(sprintf("%v", [rule.egress])) == "true"
+}

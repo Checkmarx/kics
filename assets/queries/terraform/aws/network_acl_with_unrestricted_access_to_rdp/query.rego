@@ -32,7 +32,7 @@ CxPolicy[result] {
 	tf_lib.portOpenToInternet(net_acl_rule, 3389)
 	not tf_lib.is_tcp_port_zero(net_acl_rule)
 
-	not is_egress(net_acl_rule)
+	not tf_lib.is_egress(net_acl_rule)
 
 	result := {
 		"documentId": doc.id,
@@ -85,8 +85,4 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("module[%s].%s[%d] 'RDP' (TCP:3389) is public", [name, keyToCheck, idx]),
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck, idx], []),
 	}
-}
-
-is_egress(rule) {
-	lower(sprintf("%v", [rule.egress])) == "true"
 }
