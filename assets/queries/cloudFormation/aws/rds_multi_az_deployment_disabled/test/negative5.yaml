@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  RdsEngine:
+    Type: String
+    Default: aurora-postgresql
+Resources:
+  RdsDBCluster:
+    Type: AWS::RDS::DBCluster
+    Properties:
+      Engine: !Ref RdsEngine
+      MasterUsername: admin
+      ManageMasterUserPassword: true
+  RdsDBInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBClusterIdentifier: !Ref RdsDBCluster
+      DBInstanceClass: db.r5.large
+      Engine: !Ref RdsEngine
+  RdsDBInstanceMultiAZFalse:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBClusterIdentifier: !Ref RdsDBCluster
+      DBInstanceClass: db.r5.large
+      Engine: !Ref RdsEngine
+      MultiAZ: false

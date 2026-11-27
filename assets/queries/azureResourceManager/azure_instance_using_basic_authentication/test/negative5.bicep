@@ -214,6 +214,7 @@ resource virtualMachine 'Microsoft.Compute/virtualMachines@2019-12-01' = {
     storageProfile: {
       osDisk: {
         createOption: 'fromImage'
+        osType: 'Windows'
         managedDisk: {
           storageAccountType: 'Premium_LRS'
         }
