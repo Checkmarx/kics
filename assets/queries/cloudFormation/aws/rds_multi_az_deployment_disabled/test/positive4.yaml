@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  PostgresInMultiAZCluster:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      Engine: postgres
+      DBClusterIdentifier: my-multi-az-cluster
+      DBInstanceClass: db.m5d.large
+  MySqlEmptyCluster:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      Engine: mysql
+      DBClusterIdentifier: ""
+      DBInstanceClass: db.t3.micro
+  MySqlNoValueCluster:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      Engine: mysql
+      DBClusterIdentifier: !Ref AWS::NoValue
+      DBInstanceClass: db.t3.micro
+  MySqlClusterMultiAZFalse:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      Engine: mysql
+      DBClusterIdentifier: my-multi-az-cluster
+      DBInstanceClass: db.t3.micro
+      MultiAZ: false
