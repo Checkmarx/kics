@@ -28,6 +28,7 @@ check_required(obj, req) = req_obj {
 	req.map_object = false
 	set := {item |
 		item := obj[_]
+		is_object(item)
 		not common_lib.valid_key(item, "$ref")
 		v := req.value[_]
 		not common_lib.valid_key(item, v)
@@ -38,6 +39,7 @@ check_required(obj, req) = req_obj {
 	req.map_object = true
 	set := {n |
 		item := obj[n]
+		is_object(item)
 		not common_lib.valid_key(item, "$ref")
 		v := req.value[_]
 		not common_lib.valid_key(item, v)
