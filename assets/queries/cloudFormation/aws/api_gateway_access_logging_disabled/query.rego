@@ -9,6 +9,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::ApiGatewayV2::Stage"
 
 	properties := resource.Properties
+	not common_lib.valid_key(properties, "AccessLogSettings")
 	not common_lib.valid_key(properties, "DefaultRouteSettings")
 
 	result := {
@@ -30,6 +31,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::ApiGatewayV2::Stage"
 
 	properties := resource.Properties
+	not common_lib.valid_key(properties, "AccessLogSettings")
 	defaultRouteSettings := properties.DefaultRouteSettings
 	not common_lib.valid_key(defaultRouteSettings, "LoggingLevel")
 
