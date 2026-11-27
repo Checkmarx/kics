@@ -1,0 +1,21 @@
+Resources:
+
+  DbSecurityByEC2SecurityGroup:
+    Type: AWS::RDS::DBSecurityGroup
+    Properties:
+      GroupDescription: "Ingress for Amazon EC2 security group"
+      DBSecurityGroupIngress:
+        - CIDRIP: 1.2.3.4/24
+
+  DbSecurityByEC2SecurityGroup1:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Ingress for Amazon EC2 security group"
+      SecurityGroupIngress:
+        - CidrIp: 10.0.0.0/24
+
+  StandaloneIngressIPv4:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DbSecurityByEC2SecurityGroup1
+      CidrIp: 10.1.0.0/24
