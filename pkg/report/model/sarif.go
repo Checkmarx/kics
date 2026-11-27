@@ -22,6 +22,16 @@ var severityLevelEquivalence = map[model.Severity]string{
 	"CRITICAL": "error",
 }
 
+// severitySecurityScoreEquivalence maps KICS severities to the GitHub Code Scanning "security-severity" score,
+// which translates scores over 9.0 to critical, 7.0-8.9 to high, 4.0-6.9 to medium and 0.1-3.9 to low.
+// INFO is intentionally left out so informational results are not reported as security alerts.
+var severitySecurityScoreEquivalence = map[model.Severity]string{
+	"LOW":      "2.0",
+	"MEDIUM":   "5.5",
+	"HIGH":     "8.0",
+	"CRITICAL": "9.5",
+}
+
 var targetTemplate = sarifDescriptorReference{
 	ToolComponent: sarifComponentReference{
 		ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
@@ -563,8 +573,10 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 			RuleProperties:       nil,
 		}
 
-		// Initialize rule properties if we have CIS metadata or risk score
-		if cisMetadata.id != "" || queryMetadata.queryRiskScore != "" {
+		securitySeverity, hasSecuritySeverity := severitySecurityScoreEquivalence[queryMetadata.severity]
+
+		// Initialize rule properties if we have CIS metadata, risk score or security severity
+		if cisMetadata.id != "" || queryMetadata.queryRiskScore != "" || hasSecuritySeverity {
 			rule.RuleProperties = make(sarifProperties)
 
 			if cisMetadata.id != "" {
@@ -575,6 +587,10 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 
 			if queryMetadata.queryRiskScore != "" {
 				rule.RuleProperties["riskScore"] = queryMetadata.queryRiskScore
+			}
+
+			if hasSecuritySeverity {
+				rule.RuleProperties["security-severity"] = securitySeverity
 			}
 		}
 
