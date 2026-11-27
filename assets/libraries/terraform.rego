@@ -47,7 +47,7 @@ tcp_alias := ["tcp","6"]
 # Checks if a TCP port is open
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
-	rule[prot_types[_]] == tcp_alias[_]
+	is_tcp(rule)
 	containsPort(rule, port)
 	not is_network_action_deny(rule)
 }
@@ -55,7 +55,7 @@ portOpenToInternet(rule, port) {
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
-	rule[prot_types[_]] == tcp_alias[_]
+	is_tcp(rule)
 	containsPort(rule, port)
 	not is_network_action_deny(rule)
 }
@@ -75,7 +75,7 @@ portOpenToInternet(rules, port) {
 
 is_network_action_deny(rule) {
 	action_keys := ["action","rule_action"]
-	rule[action_keys[_]] == "deny"
+	lower(sprintf("%v", [rule[action_keys[_]]])) == "deny"
 }
 
 get_ingress_list(ingress) = result {
@@ -89,6 +89,10 @@ get_ingress_list(ingress) = result {
 		"value" : [ingress],
 		"is_unique_element" : true
 	}
+}
+
+is_tcp(rule) {
+	lower(sprintf("%v", [rule[prot_types[_]]])) == tcp_alias[_]
 }
 
 is_tcp_port_zero(rule) {
