@@ -1,0 +1,270 @@
+{
+	"document": [
+		{
+			"args": [],
+			"command": {
+				"alpine:3.15": [
+					{
+						"Cmd": "from",
+						"EndLine": 21,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.15",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.15"
+						],
+						"_kics_line": 21
+					},
+					{
+						"Cmd": "arg",
+						"EndLine": 22,
+						"Flags": [],
+						"JSON": false,
+						"Original": "ARG APP=app",
+						"SubCmd": "",
+						"Value": [
+							"APP=app"
+						],
+						"_kics_line": 22
+					},
+					{
+						"Cmd": "arg",
+						"EndLine": 23,
+						"Flags": [],
+						"JSON": false,
+						"Original": "ARG APP_USER=root",
+						"SubCmd": "",
+						"Value": [
+							"APP_USER=root"
+						],
+						"_kics_line": 23
+					},
+					{
+						"Cmd": "user",
+						"EndLine": 24,
+						"Flags": [],
+						"JSON": false,
+						"Original": "USER $APP_USER",
+						"SubCmd": "",
+						"Value": [
+							"root"
+						],
+						"_kics_line": 24
+					}
+				],
+				"alpine:3.16": [
+					{
+						"Cmd": "from",
+						"EndLine": 15,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.16",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.16"
+						],
+						"_kics_line": 15
+					},
+					{
+						"Cmd": "arg",
+						"EndLine": 16,
+						"Flags": [],
+						"JSON": false,
+						"Original": "ARG A=1",
+						"SubCmd": "",
+						"Value": [
+							"A=1"
+						],
+						"_kics_line": 16
+					},
+					{
+						"Cmd": "arg",
+						"EndLine": 17,
+						"Flags": [],
+						"JSON": false,
+						"Original": "ARG A_B=2",
+						"SubCmd": "",
+						"Value": [
+							"A_B=2"
+						],
+						"_kics_line": 17
+					},
+					{
+						"Cmd": "arg",
+						"EndLine": 18,
+						"Flags": [],
+						"JSON": false,
+						"Original": "ARG A_B_C=root",
+						"SubCmd": "",
+						"Value": [
+							"A_B_C=root"
+						],
+						"_kics_line": 18
+					},
+					{
+						"Cmd": "user",
+						"EndLine": 19,
+						"Flags": [],
+						"JSON": false,
+						"Original": "USER $A_B_C",
+						"SubCmd": "",
+						"Value": [
+							"root"
+						],
+						"_kics_line": 19
+					}
+				],
+				"alpine:3.17": [
+					{
+						"Cmd": "from",
+						"EndLine": 11,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.17",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.17"
+						],
+						"_kics_line": 11
+					},
+					{
+						"Cmd": "env",
+						"EndLine": 12,
+						"Flags": [],
+						"JSON": false,
+						"Original": "ENV RUN_AS=app RUN_AS_USER=root",
+						"SubCmd": "",
+						"Value": [
+							"RUN_AS",
+							"app",
+							"=",
+							"RUN_AS_USER",
+							"root",
+							"="
+						],
+						"_kics_line": 12
+					},
+					{
+						"Cmd": "user",
+						"EndLine": 13,
+						"Flags": [],
+						"JSON": false,
+						"Original": "USER ${RUN_AS_USER}",
+						"SubCmd": "",
+						"Value": [
+							"root"
+						],
+						"_kics_line": 13
+					}
+				],
+				"alpine:3.18": [
+					{
+						"Cmd": "from",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.18",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.18"
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "env",
+						"EndLine": 7,
+						"Flags": [],
+						"JSON": false,
+						"Original": "ENV SVC=svc",
+						"SubCmd": "",
+						"Value": [
+							"SVC",
+							"svc",
+							"="
+						],
+						"_kics_line": 7
+					},
+					{
+						"Cmd": "env",
+						"EndLine": 8,
+						"Flags": [],
+						"JSON": false,
+						"Original": "ENV SVC_USER=root",
+						"SubCmd": "",
+						"Value": [
+							"SVC_USER",
+							"root",
+							"="
+						],
+						"_kics_line": 8
+					},
+					{
+						"Cmd": "user",
+						"EndLine": 9,
+						"Flags": [],
+						"JSON": false,
+						"Original": "USER $SVC_USER",
+						"SubCmd": "",
+						"Value": [
+							"root"
+						],
+						"_kics_line": 9
+					}
+				],
+				"alpine:3.19": [
+					{
+						"Cmd": "from",
+						"EndLine": 1,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19"
+						],
+						"_kics_line": 1
+					},
+					{
+						"Cmd": "arg",
+						"EndLine": 2,
+						"Flags": [],
+						"JSON": false,
+						"Original": "ARG OWNER=app",
+						"SubCmd": "",
+						"Value": [
+							"OWNER=app"
+						],
+						"_kics_line": 2
+					},
+					{
+						"Cmd": "arg",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "ARG OWNER_NAME=nobody",
+						"SubCmd": "",
+						"Value": [
+							"OWNER_NAME=nobody"
+						],
+						"_kics_line": 3
+					},
+					{
+						"Cmd": "user",
+						"EndLine": 4,
+						"Flags": [],
+						"JSON": false,
+						"Original": "USER $OWNER_NAME",
+						"SubCmd": "",
+						"Value": [
+							"nobody"
+						],
+						"_kics_line": 4
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		}
+	]
+}

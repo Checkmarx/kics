@@ -1,0 +1,24 @@
+FROM alpine:3.19
+ARG OWNER=app
+ARG OWNER_NAME=nobody
+USER $OWNER_NAME
+
+FROM alpine:3.18
+ENV SVC=svc
+ENV SVC_USER=root
+USER $SVC_USER
+
+FROM alpine:3.17
+ENV RUN_AS=app RUN_AS_USER=root
+USER ${RUN_AS_USER}
+
+FROM alpine:3.16
+ARG A=1
+ARG A_B=2
+ARG A_B_C=root
+USER $A_B_C
+
+FROM alpine:3.15
+ARG APP=app
+ARG APP_USER=root
+USER $APP_USER

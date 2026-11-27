@@ -298,3 +298,179 @@ rUn echo "hello"
 		require.Equal(t, cmdsUpper[i].(map[string]interface{})["Value"], cmdsLower[i].(map[string]interface{})["Value"])
 	}
 }
+
+// userValue parses the sample and returns the Value of the first USER command
+func userValue(t *testing.T, sample string) []interface{} {
+	t.Helper()
+	p := &Parser{}
+	doc, _, err := p.Parse("Dockerfile", []byte(sample))
+	require.NoError(t, err)
+	require.Len(t, doc, 1)
+	for _, cmds := range doc[0]["command"].(map[string]interface{}) {
+		for _, c := range cmds.([]interface{}) {
+			cmd := c.(map[string]interface{})
+			if cmd["Cmd"] == "user" {
+				return cmd["Value"].([]interface{})
+			}
+		}
+	}
+	t.Fatal("no USER command found")
+	return nil
+}
+
+// TestParser_Parse_ResolveVariablesWithCommonPrefix tests that variables whose names are a prefix of
+// another variable are resolved deterministically. Go map iteration order is random, so the sample
+// is parsed many times to make an order-dependent bug visible
+func TestParser_Parse_ResolveVariablesWithCommonPrefix(t *testing.T) {
+	tests := []struct {
+		name   string
+		sample string
+		want   []interface{}
+	}{
+		{
+			name:   "ARG without braces, prefix ARG declared first",
+			sample: "FROM alpine:3.19\nARG APP=app\nARG APP_USER=root\nUSER $APP_USER\n",
+			want:   []interface{}{"root"},
+		},
+		{
+			name:   "ARG without braces, prefix ARG declared last",
+			sample: "FROM alpine:3.19\nARG APP_USER=root\nARG APP=app\nUSER $APP_USER\n",
+			want:   []interface{}{"root"},
+		},
+		{
+			name:   "ARG with braces",
+			sample: "FROM alpine:3.19\nARG APP=app\nARG APP_USER=root\nUSER ${APP_USER}\n",
+			want:   []interface{}{"root"},
+		},
+		{
+			name:   "ENV without braces",
+			sample: "FROM alpine:3.19\nENV APP=app\nENV APP_USER=root\nUSER $APP_USER\n",
+			want:   []interface{}{"root"},
+		},
+		{
+			name:   "ENV with braces",
+			sample: "FROM alpine:3.19\nENV APP=app\nENV APP_USER=root\nUSER ${APP_USER}\n",
+			want:   []interface{}{"root"},
+		},
+		{
+			name:   "multiple ENV in a single instruction",
+			sample: "FROM alpine:3.19\nENV APP=app APP_USER=root\nUSER $APP_USER\n",
+			want:   []interface{}{"root"},
+		},
+		{
+			name:   "prefix variable still resolved when followed by a non name character",
+			sample: "FROM alpine:3.19\nARG APP=app\nARG APP_USER=root\nUSER $APP:$APP_USER\n",
+			want:   []interface{}{"app:root"},
+		},
+		{
+			name:   "same variable used twice",
+			sample: "FROM alpine:3.19\nARG U=root\nUSER $U:$U\n",
+			want:   []interface{}{"root:root"},
+		},
+		{
+			name:   "undefined variable is kept as is",
+			sample: "FROM alpine:3.19\nARG APP=app\nUSER $APP_USER\n",
+			want:   []interface{}{"$APP_USER"},
+		},
+		{
+			name:   "substituted value is not expanded again",
+			sample: "FROM alpine:3.19\nARG A=$B\nARG B=root\nUSER $A\n",
+			want:   []interface{}{"$B"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			for i := 0; i < 100; i++ {
+				require.Equal(t, tt.want, userValue(t, tt.sample), "iteration %d", i)
+			}
+		})
+	}
+}
+
+// Test_resolveArgsAndEnvs tests the variable substitution in isolation
+func Test_resolveArgsAndEnvs(t *testing.T) {
+	tests := []struct {
+		name   string
+		values []string
+		args   map[string]string
+		want   []string
+	}{
+		{
+			name:   "no variables",
+			values: []string{"root"},
+			args:   map[string]string{"A": "x"},
+			want:   []string{"root"},
+		},
+		{
+			name:   "empty args",
+			values: []string{"$A"},
+			args:   map[string]string{},
+			want:   []string{"$A"},
+		},
+		{
+			name:   "prefix collision",
+			values: []string{"$APP_USER"},
+			args:   map[string]string{"APP": "app", "APP_USER": "root"},
+			want:   []string{"root"},
+		},
+		{
+			name:   "braces next to word characters",
+			values: []string{"${APP}_USER"},
+			args:   map[string]string{"APP": "app", "APP_USER": "root"},
+			want:   []string{"app_USER"},
+		},
+		{
+			name:   "all occurrences and all values",
+			values: []string{"$A-$A", "${A}"},
+			args:   map[string]string{"A": "x"},
+			want:   []string{"x-x", "x"},
+		},
+		{
+			name:   "variable followed by a path",
+			values: []string{"$DIR/bin"},
+			args:   map[string]string{"DIR": "/opt", "DIR2": "/other"},
+			want:   []string{"/opt/bin"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			for i := 0; i < 100; i++ {
+				got := resolveArgsAndEnvs(append([]string(nil), tt.values...), tt.args)
+				require.Equal(t, tt.want, got, "iteration %d", i)
+			}
+		})
+	}
+}
+
+// Test_saveEnvs tests that every key/value pair of an ENV instruction is saved.
+// The BuildKit parser emits ENV values as [key, value, delimiter] triples
+func Test_saveEnvs(t *testing.T) {
+	tests := []struct {
+		name   string
+		values []string
+		want   map[string]string
+	}{
+		{name: "key=value", values: []string{"A", "1", "="}, want: map[string]string{"A": "1"}},
+		{name: "key value", values: []string{"A", "1", ""}, want: map[string]string{"A": "1"}},
+		{
+			name:   "multiple pairs",
+			values: []string{"A", "1", "=", "B", "2", "="},
+			want:   map[string]string{"A": "1", "B": "2"},
+		},
+		{name: "empty", values: []string{}, want: map[string]string{}},
+		{name: "incomplete triple is ignored", values: []string{"A", "1", "=", "B"}, want: map[string]string{"A": "1"}},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			require.Equal(t, tt.want, saveEnvs(map[string]string{}, tt.values))
+		})
+	}
+}
+
+// TestParser_Parse_ENVOverridesARG tests that ENV takes precedence over an ARG with the same name
+func TestParser_Parse_ENVOverridesARG(t *testing.T) {
+	sample := "FROM alpine:3.19\nARG U=root\nENV U=app\nUSER $U\n"
+	for i := 0; i < 100; i++ {
+		require.Equal(t, []interface{}{"app"}, userValue(t, sample), "iteration %d", i)
+	}
+}
