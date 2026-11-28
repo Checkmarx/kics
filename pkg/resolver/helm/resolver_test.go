@@ -1,6 +1,7 @@
 package helm
 
 import (
+	"fmt"
 	"path/filepath"
 	"reflect"
 	"testing"
@@ -9,6 +10,53 @@ import (
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
 )
+
+func TestRenderHelmKeepsSuccessfulCombinations(t *testing.T) {
+	for _, defaultFails := range []bool{false, true} {
+		t.Run(fmt.Sprintf("defaultFails=%t", defaultFails), func(t *testing.T) {
+			dir := writeChart(t)
+			mustWrite(t, filepath.Join(dir, "templates", "cm.yaml"),
+				"{{ if .Values.broken }}{{ fail \"unsupported configuration\" }}{{ end }}\n"+
+					"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: valid\n")
+			mustWrite(t, filepath.Join(dir, "values.yaml"), fmt.Sprintf("broken: %t\n", defaultFails))
+			mustWrite(t, filepath.Join(dir, "bad.yaml"), "broken: true\n")
+			mustWrite(t, filepath.Join(dir, "good.yaml"), "broken: false\n")
+			renders, excluded, err := renderHelm(dir, true, nil)
+			require.NoError(t, err)
+			require.Contains(t, renders, "good.yaml")
+			require.Contains(t, renders, "bad.yaml+good.yaml")
+			require.NotContains(t, renders, "bad.yaml")
+			_, hasDefault := renders["values.yaml"]
+			require.Equal(t, !defaultFails, hasDefault)
+			require.Contains(t, excluded, filepath.Join(dir, "values.yaml"))
+			require.NotContains(t, excluded, "values.yaml")
+		})
+	}
+}
+
+func TestRenderHelmAllCombinationsFail(t *testing.T) {
+	dir := writeChart(t)
+	mustWrite(t, filepath.Join(dir, "templates", "cm.yaml"), "{{ fail \"unsupported configuration\" }}")
+	mustWrite(t, filepath.Join(dir, "other.yaml"), "image: {}\n")
+	_, _, err := renderHelm(dir, true, nil)
+	require.Error(t, err)
+}
+
+func TestGenerateCombinationsLimit(t *testing.T) {
+	for _, count := range []int{0, 3, 7, 64, 100} {
+		t.Run(fmt.Sprint(count), func(t *testing.T) {
+			files := make([]string, count)
+			for i := range files {
+				files[i] = fmt.Sprintf("values-%d.yaml", i)
+			}
+			want := maxCombinations - 1
+			if count < 7 {
+				want = (1 << count) - 1
+			}
+			require.Len(t, generateCombinations(files), want)
+		})
+	}
+}
 
 func TestHelm_SupportedTypes(t *testing.T) {
 	res := &Resolver{}

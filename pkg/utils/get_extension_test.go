@@ -3,10 +3,30 @@ package utils
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/stretchr/testify/require"
 )
+
+func TestGetExtensionVirtualPaths(t *testing.T) {
+	dir := t.TempDir()
+	for _, name := range []string{"templates/generated.yaml", "docker/generated.yml", "generated.json"} {
+		t.Run(name, func(t *testing.T) {
+			path := filepath.Join(dir, filepath.FromSlash(name))
+			ext, err := GetExtension(path)
+			require.NoError(t, err)
+			require.Equal(t, filepath.Ext(path), ext)
+		})
+	}
+	_, err := GetExtension(filepath.Join(dir, "missing"))
+	require.Error(t, err)
+
+	path := filepath.Join(dir, "directory.yaml")
+	require.NoError(t, os.Mkdir(path, 0755))
+	_, err = GetExtension(path)
+	require.EqualError(t, err, fmt.Sprintf("the path %s is a directory", path))
+}
 
 func TestGetExtension(t *testing.T) {
 	tests := []struct {

@@ -1,0 +1,3 @@
+replicaCount: 20
+image:
+  tag: pinned

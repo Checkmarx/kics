@@ -1,0 +1,6 @@
+replicaCount: 10
+image:
+  tag: global-file
+enabled: true
+items: [file-a, file-b]
+message: global-file

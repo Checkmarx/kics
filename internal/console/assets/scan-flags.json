@@ -53,11 +53,47 @@
     "defaultValue": "false",
     "usage": "include bill of materials (BoM) in results output"
   },
+  "image-bom": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "export a CycloneDX bill of materials (kics-image-bom.json) of the Docker images found in the scan"
+  },
   "experimental-queries": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
     "usage": "include experimental queries (queries not yet thoroughly reviewed)"
+  },
+  "experimental-helm-scan": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "render unrenderable helm charts by injecting placeholder values (a chart that still fails is skipped); may surface findings on injected values"
+  },
+  "helm-values": {
+    "flagType": "stringArray",
+    "usage": "local Helm values file applied to all charts; repeat for multiple files"
+  },
+  "helm-set": {
+    "flagType": "stringArray",
+    "usage": "Helm key=value override applied to all charts; can be repeated"
+  },
+  "helm-set-string": {
+    "flagType": "stringArray",
+    "usage": "Helm key=value string override applied to all charts; can be repeated"
+  },
+  "helm-chart-values": {
+    "flagType": "stringArray",
+    "usage": "chart-directory::values-file override for a specific Helm chart; can be repeated"
+  },
+  "helm-chart-set": {
+    "flagType": "stringArray",
+    "usage": "chart-directory::key=value override for a specific Helm chart; can be repeated"
+  },
+  "helm-chart-set-string": {
+    "flagType": "stringArray",
+    "usage": "chart-directory::key=value string override for a specific Helm chart; can be repeated"
   },
   "fail-on": {
     "flagType": "multiStr",

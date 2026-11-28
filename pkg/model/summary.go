@@ -37,6 +37,7 @@ type VulnerableFile struct {
 	Value            *string     `json:"value,omitempty"`
 	Remediation      string      `json:"remediation,omitempty"`
 	RemediationType  string      `json:"remediation_type,omitempty"`
+	ContextSelector  string      `json:"context_selector,omitempty"`
 }
 
 // QueryResult contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
@@ -234,6 +235,7 @@ func CreateSummary(counters *Counters, vulnerabilities []Vulnerability,
 			Value:            item.Value,
 			Remediation:      item.Remediation,
 			RemediationType:  item.RemediationType,
+			ContextSelector:  item.ContextSelector,
 		})
 
 		filePaths[resolvedPath] = item.FileName

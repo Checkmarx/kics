@@ -61,7 +61,7 @@ func Test_E2E_CLI(t *testing.T) {
 				// Check command Error
 				require.NoError(t, err, "Capture CLI output should not yield an error")
 
-				// Check exit status code (required) 
+				// Check exit status code (required)
 				require.True(t, arg < len(tt.WantStatus),
 					"No status code associated to this test. Check the wantStatus of the test case.")
 
@@ -152,6 +152,11 @@ func checkExpectedAnalyzerResults(t *testing.T, tt *testcases.TestCase, argIndex
 func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 	jsonFileName := tt.Args.ExpectedResult[argIndex].ResultsFile + ".json"
 	resultsFormats := tt.Args.ExpectedResult[argIndex].ResultsFormats
+	if validate := tt.Args.ExpectedResult[argIndex].Validate; validate != nil {
+		data, err := os.ReadFile(filepath.Join("output", jsonFileName))
+		require.NoError(t, err, "read generated report for semantic validation")
+		require.NoError(t, validate(data), "generated report did not match expected scan results")
+	}
 	// Check result file (compare with sample)
 	if _, err := os.Stat(filepath.Join("fixtures", jsonFileName)); err == nil {
 		utils.FileCheck(t, jsonFileName, jsonFileName, "result")
@@ -163,6 +168,10 @@ func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 	// Check result file (JSON including BoM)
 	if utils.Contains(resultsFormats, "json-bom") {
 		utils.JSONSchemaValidationFromFile(t, jsonFileName, "resultBoM.json")
+	}
+	// Check Docker image BoM file (--image-bom, fixed filename)
+	if utils.Contains(resultsFormats, "image-bom") {
+		utils.JSONSchemaValidationFromFile(t, jsonFileName, "result-image-bom.json")
 	}
 	// Check result file (JSON including CIS Descriptions)
 	if utils.Contains(resultsFormats, "json-cis") {

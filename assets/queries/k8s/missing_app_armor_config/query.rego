@@ -68,7 +68,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
-		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, annotationsPath]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.container={{%s}}", [metadata.name, annotationsPath, container]),
 		"issueType": "MissingAttribute",
 		"searchValue": sprintf("%s%s%d", [document.kind, types[x], c]), # handle multiple kinds and container combination
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s should specify an AppArmor profile for container {{%s}}", [metadata.name, annotationsPath, container]),
